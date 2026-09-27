@@ -1,0 +1,51 @@
+--- a/js/data/sources/atletica.js
++++ b/js/data/sources/atletica.js
+@@ -759,3 +759,3 @@
+             "abstract": "Analisi passo dopo passo delle variabili spazio-temporali (lunghezza del passo, frequenza del passo, tempi di contatto e di volo) lungo l'intera fase di accelerazione massimale (60 metri). Lo studio scompone l'accelerazione in tre sottofasi distinte: iniziale (passi 1-4, dominata dall'incremento della lunghezza del passo e tempi di contatto elevati), media (passi 5-16, aumento combinato di frequenza e lunghezza) e finale (stabilizzazione della frequenza e transizione alla velocita' di picco). Fondamentale per l'ottimizzazione del ritmo esecutivo.",
+-            "url": "https://pubmed.ncbi.nlm.nih.gov/24464016/",
++            "url": "https://pubmed.ncbi.nlm.nih.gov/24577864/",
+             "rules": {
+--- a/js/data/sources/sollevamento-pesi.js
++++ b/js/data/sources/sollevamento-pesi.js
+@@ -410,3 +410,3 @@
+             "abstract": "Meta-analisi esaustiva sul carico ottimale per la massima produzione di potenza negli esercizi per gli arti inferiori. Lo studio dimostra chiaramente che il picco di potenza nei derivati del sollevamento pesi (clean pull, snatch pull, jump shrug) si manifesta a carichi compresi tra il 70% e l'85% dell'1RM, mentre nello squat jump e nel back squat si colloca tra il 30% e il 60% dell'1RM. Questo divario fisiologico evidenzia come le alzate olimpiche consentano di sviluppare altissima potenza anche in condizioni di elevato sovraccarico esterno.",
+-            "url": "https://pubmed.ncbi.nlm.nih.gov/26063065/",
++            "url": "https://pubmed.ncbi.nlm.nih.gov/26063470/",
+             "rules": {
+@@ -506,3 +506,3 @@
+             "abstract": "Revisione sistematica con meta-analisi che dimostra come l'allenamento con sollevamento pesi olimpico produca miglioramenti nell'altezza del salto verticale (Countermovement Jump e Squat Jump) paragonabili o superiori a quelli ottenuti tramite pliometria tradizionale o resistance training convenzionale (ES = 0.77). L'alta specificita' dell'estensione dell'anca e l'enorme reclutamento delle unita' motrici veloci di tipo IIx durante la seconda tirata trasferiscono direttamente sull'impulso verticale degli atleti.",
+-            "url": "https://pubmed.ncbi.nlm.nih.gov/26848135/",
++            "url": "https://pubmed.ncbi.nlm.nih.gov/26626268/",
+             "rules": {
+@@ -672,3 +672,3 @@
+             "abstract": "Ricerca elettromiografica che evidenzia come il sollevamento pesi olimpico induca pattern di co-attivazione tra muscoli agonisti ed antagonisti del ginocchio (quadricipiti e flessori femorali) nettamente differenti rispetto al resistance training tradizionale. Gli atleti di weightlifting mostrano una co-attivazione antagonista ottimizzata che stabilizza l'articolazione del ginocchio senza inibire la produzione di coppia estensoria esplosiva, proteggendo il legamento crociato anteriore durante le brusche decelerazioni e gli atterraggi.",
+-            "url": "https://pubmed.ncbi.nlm.nih.gov/22344061/",
++            "url": "https://pubmed.ncbi.nlm.nih.gov/21997458/",
+             "rules": {
+--- a/js/data/sources/vbt.js
++++ b/js/data/sources/vbt.js
+@@ -183,10 +183,10 @@
+         {
+             "id": "sci_vbt_gonzalez_2017",
+-            "title": "Predictive accuracy of the load-velocity relationship for bench press",
++            "title": "Movement velocity as a measure of loading intensity in resistance training",
+             "authors": "Gonzalez-Badillo, J. J., & Sanchez-Medina, L.",
+             "journal": "International Journal of Sports Medicine",
+             "year": 2010,
+             "area": "VBT",
+             "abstract": "Studio pioneristico che stabilisce la relazione carico-velocità nella panca piana, dimostrando che la velocità di esecuzione è un predittore altamente affidabile dell'intensità relativa (%1RM). La velocità media propulsiva decresce linearmente con l'aumento del carico relativo. Questa relazione consente di stimare il 1RM senza test massimali, riducendo i rischi per l'atleta.",
+-            "url": "https://pubmed.ncbi.nlm.nih.gov/20024937/",
++            "url": "https://pubmed.ncbi.nlm.nih.gov/20180176/",
+             "rules": {
+@@ -307,3 +307,3 @@
+             "abstract": "Validazione scientifica dell'applicazione mobile PowerLift rispetto al trasduttore di posizione lineare (gold standard). Lo studio dimostra una correlazione quasi perfetta (r = 0.94, bias medio trascurabile) per la misurazione della velocita' media propulsiva (MPV) e per la stima dell'1RM nella panca piana. Permette ai preparatori di implementare il Velocity-Based Training sul campo senza costosa strumentazione di laboratorio, garantendo l'autoregolazione quotidiana del carico.",
+-            "url": "https://pubmed.ncbi.nlm.nih.gov/28098522/",
++            "url": "https://pubmed.ncbi.nlm.nih.gov/28097928/",
+             "rules": {
+--- a/js/data/sources/sport-squadra.js
++++ b/js/data/sources/sport-squadra.js
+@@ -350,3 +350,3 @@
+             "abstract": "Dimostra mediante ecografia che una ridotta lunghezza dei fascicoli muscolari del capo lungo del bicipite femorale (< 10.5 cm) e una bassa forza eccentrica dei flessori del ginocchio aumentano in modo combinato fino a 4 volte il rischio di lesione agli hamstring nei calciatori. L'allenamento con carico eccentrico pesante allunga la struttura fascicolare muscolare e sposta la curva forza-lunghezza verso angoli articolari maggiori, proteggendo la muscolatura durante la fase di sprint terminale.",
+-            "url": "https://pubmed.ncbi.nlm.nih.gov/26672828/",
++            "url": "https://pubmed.ncbi.nlm.nih.gov/26675089/",
+             "rules": {

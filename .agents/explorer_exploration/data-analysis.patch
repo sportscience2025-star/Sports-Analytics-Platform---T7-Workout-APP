@@ -1,0 +1,396 @@
+diff --git a/js/data-analysis.js b/js/data-analysis.js
+--- a/js/data-analysis.js
++++ b/js/data-analysis.js
+@@ -19,17 +19,103 @@
+             this.container.innerHTML = `
+                 <div class="analysis-container" style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+                     <div style="margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
+                         <h2 style="font-size: 2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                             <span style="font-size: 2.5rem;">📊</span> Data Analisi
+                         </h2>
+-                        <p style="color: var(--text-muted);">Importa file grezzi e usa il motore NLP per analizzare i dati dei tuoi atleti.</p>
++                        <p style="color: var(--text-muted);">Analizza i dati dei tuoi atleti tramite caricamento file o inserimento manuale.</p>
+                     </div>
+ 
+                     <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem;">
+                         <!-- LEFT PANEL: INPUT -->
+                         <div class="analysis-input-panel" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
+                             
+-                            <!-- FILE UPLOAD -->
+-                            <h3 style="margin-top:0; color:var(--accent);">1. Ingestione Dati</h3>
+-                            <div class="drop-zone" id="vbt-drop-zone" style="border: 2px dashed rgba(255,255,255,0.2); border-radius: 8px; padding: 1.5rem; text-align: center; cursor: pointer; margin-bottom: 1rem; transition: border-color 0.2s;">
+-                                <span style="font-size: 1.5rem;">📁</span>
+-                                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Trascina un file Excel grezzo, PDF o Screenshot</p>
+-                                <input type="file" id="vbt-file-input" style="display: none;" accept=".xlsx,.xls,.csv,.pdf,image/*">
+-                            </div>
+-
+-                            <div id="ocr-progress" style="display:none; margin-bottom: 1rem;">
+-                                <small style="color:var(--text-muted);">Scansione immagine in corso...</small>
+-                                <div style="width:100%; height:4px; background:#333; border-radius:2px; margin-top:5px;">
+-                                    <div id="ocr-progress-bar" style="width:0%; height:100%; background:var(--accent); border-radius:2px; transition:width 0.2s;"></div>
+-                                </div>
+-                            </div>
+-
+-                            <!-- NLP TEXT QUERY -->
+-                            <div id="nlp-section" style="display:none; margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem;">
+-                                <h3 style="margin-top:0; color:var(--accent);">2. Chiedi all'Intelligenza</h3>
+-                                <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem;">Scrivi cosa vuoi analizzare o usa i bottoni rapidi.</p>
+-                                <textarea id="nlp-prompt" placeholder="Es. Calcola lo Squat di Riccardo..." style="width:100%; height:80px; padding:0.75rem; border-radius:8px; background:rgba(0,0,0,0.3); color:white; border:1px solid var(--border); margin-bottom:1rem;"></textarea>
+-                                
+-                                <div class="form-group" style="margin-bottom: 1rem;">
+-                                    <label style="display:block; margin-bottom:0.5rem; font-size:0.85rem;">MVT (Solo per VBT)</label>
+-                                    <input type="number" step="0.01" id="vbt-mvt-input" value="0.30" class="custom-input" style="width: 100%; padding: 0.5rem; border-radius: 8px; background:rgba(0,0,0,0.3); color:white; border:1px solid var(--border);">
+-                                </div>
+-
+-                                <button id="btn-nlp-analyze" style="width: 100%; background: linear-gradient(135deg,#10b981,#6366f1); color: white; padding: 1rem; border-radius: 8px; font-weight: bold; border: none; cursor: pointer;">
+-                                    ✨ Esegui Analisi
+-                                </button>
+-                                
+-                                <!-- QUICK ACTION BUTTONS -->
+-                                <div id="quick-actions" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+-                                    <!-- Injected via JS -->
+-                                </div>
+-                            </div>
+-
++                            <!-- TABS NAVIGATION -->
++                            <div class="analysis-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
++                                <button class="analysis-tab-btn active" data-tab="upload" style="background: transparent; border: none; color: white; border-bottom: 2px solid var(--accent); padding: 0.5rem 1rem; cursor: pointer; font-weight: bold; font-family: inherit; font-size: 0.9rem;">Carica File</button>
++                                <button class="analysis-tab-btn" data-tab="manual" style="background: transparent; border: none; color: var(--text-muted); padding: 0.5rem 1rem; cursor: pointer; font-weight: bold; font-family: inherit; font-size: 0.9rem;">Inserimento Manuale</button>
++                            </div>
++
++                            <!-- TAB CONTENT 1: UPLOAD -->
++                            <div id="tab-upload-content">
++                                <h3 style="margin-top:0; color:var(--accent);">Ingestione Dati</h3>
++                                <div class="drop-zone" id="vbt-drop-zone" style="border: 2px dashed rgba(255,255,255,0.2); border-radius: 8px; padding: 1.5rem; text-align: center; cursor: pointer; margin-bottom: 1rem; transition: border-color 0.2s;">
++                                    <span style="font-size: 1.5rem;">📁</span>
++                                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Trascina un file Excel grezzo, PDF o Screenshot</p>
++                                    <input type="file" id="vbt-file-input" style="display: none;" accept=".xlsx,.xls,.csv,.pdf,image/*">
++                                </div>
++
++                                <div id="ocr-progress" style="display:none; margin-bottom: 1rem;">
++                                    <small style="color:var(--text-muted);">Scansione immagine in corso...</small>
++                                    <div style="width:100%; height:4px; background:#333; border-radius:2px; margin-top:5px;">
++                                        <div id="ocr-progress-bar" style="width:0%; height:100%; background:var(--accent); border-radius:2px; transition:width 0.2s;"></div>
++                                    </div>
++                                </div>
++
++                                <!-- NLP TEXT QUERY -->
++                                <div id="nlp-section" style="display:none; margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem;">
++                                    <h3 style="margin-top:0; color:var(--accent);">Chiedi all'Intelligenza</h3>
++                                    <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem;">Scrivi cosa vuoi analizzare o usa i bottoni rapidi.</p>
++                                    <textarea id="nlp-prompt" placeholder="Es. Calcola lo Squat di Riccardo..." style="width:100%; height:80px; padding:0.75rem; border-radius:8px; background:rgba(0,0,0,0.3); color:white; border:1px solid var(--border); margin-bottom:1rem;"></textarea>
++                                    
++                                    <div class="form-group" style="margin-bottom: 1rem;">
++                                        <label style="display:block; margin-bottom:0.5rem; font-size:0.85rem;">MVT (Solo per VBT)</label>
++                                        <input type="number" step="0.01" id="vbt-mvt-input" value="0.30" class="custom-input" style="width: 100%; padding: 0.5rem; border-radius: 8px; background:rgba(0,0,0,0.3); color:white; border:1px solid var(--border);">
++                                    </div>
++
++                                    <button id="btn-nlp-analyze" style="width: 100%; background: linear-gradient(135deg,#10b981,#6366f1); color: white; padding: 1rem; border-radius: 8px; font-weight: bold; border: none; cursor: pointer;">
++                                        ✨ Esegui Analisi
++                                    </button>
++                                    
++                                    <!-- QUICK ACTION BUTTONS -->
++                                    <div id="quick-actions" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
++                                        <!-- Injected via JS -->
++                                    </div>
++                                </div>
++                            </div>
++
++                            <!-- TAB CONTENT 2: MANUAL -->
++                            <div id="tab-manual-content" style="display: none;">
++                                <h3 style="margin-top:0; color:var(--accent);">Inserimento Dati Manuale</h3>
++                                
++                                <div class="form-group" style="margin-bottom: 1rem;">
++                                    <label style="display:block; margin-bottom:0.25rem; font-size:0.85rem;">Atleta</label>
++                                    <input type="text" id="manual-athlete" value="Mario Rossi" class="custom-input" style="width: 100%; padding: 0.5rem; border-radius: 8px; background:rgba(0,0,0,0.3); color:white; border:1px solid var(--border);">
++                                </div>
++
++                                <div class="form-group" style="margin-bottom: 1rem;">
++                                    <label style="display:block; margin-bottom:0.25rem; font-size:0.85rem;">Esercizio / Tipo Test</label>
++                                    <select id="manual-test-type" class="custom-input" style="width: 100%; padding: 0.5rem; border-radius: 8px; background:rgba(0,0,0,0.3); color:white; border:1px solid var(--border);">
++                                        <option value="VBT_SQUAT">VBT: Squat (MVT: 0.30 m/s)</option>
++                                        <option value="VBT_BENCH">VBT: Bench Press (MVT: 0.15 m/s)</option>
++                                        <option value="VBT_DEADLIFT">VBT: Deadlift (MVT: 0.15 m/s)</option>
++                                        <option value="VBT_CUSTOM">VBT: Custom (MVT custom)</option>
++                                        <option value="JUMP_EUR_RSI">Jump Test (EUR & RSI)</option>
++                                    </select>
++                                </div>
++
++                                <div id="manual-mvt-container" class="form-group" style="margin-bottom: 1rem;">
++                                    <label style="display:block; margin-bottom:0.25rem; font-size:0.85rem;">Soglia di Velocità Minima (MVT)</label>
++                                    <input type="number" step="0.01" id="manual-mvt" value="0.30" class="custom-input" style="width: 100%; padding: 0.5rem; border-radius: 8px; background:rgba(0,0,0,0.3); color:white; border:1px solid var(--border);">
++                                </div>
++
++                                <!-- VBT TABLE INPUT -->
++                                <div id="manual-vbt-table-container">
++                                    <h4 style="margin-bottom: 0.5rem; color: var(--accent);">Punti Carico-Velocità</h4>
++                                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 1rem;">
++                                        <thead>
++                                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); font-size: 0.8rem;">
++                                                <th style="padding: 0.5rem; text-align: left;">Carico (kg)</th>
++                                                <th style="padding: 0.5rem; text-align: left;">Velocità (m/s)</th>
++                                                <th style="padding: 0.5rem; text-align: center; width: 40px;"></th>
++                                            </tr>
++                                        </thead>
++                                        <tbody id="manual-vbt-tbody">
++                                            <!-- Default pre-populated literature rows -->
++                                            <tr class="manual-vbt-row" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
++                                                <td style="padding: 0.25rem;"><input type="number" step="1" class="manual-load-val custom-input" value="60" style="width: 90%; padding: 0.35rem; background:rgba(0,0,0,0.2); color:white; border:1px solid var(--border); border-radius: 4px;"></td>
++                                                <td style="padding: 0.25rem;"><input type="number" step="0.01" class="manual-velocity-val custom-input" value="1.00" style="width: 90%; padding: 0.35rem; background:rgba(0,0,0,0.2); color:white; border:1px solid var(--border); border-radius: 4px;"></td>
++                                                <td style="padding: 0.25rem; text-align: center;"><button type="button" class="btn-remove-vbt-row" style="background: transparent; color: #ef4444; border: none; cursor: pointer; font-size: 1.2rem;">&times;</button></td>
++                                            </tr>
++                                            <tr class="manual-vbt-row" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
++                                                <td style="padding: 0.25rem;"><input type="number" step="1" class="manual-load-val custom-input" value="90" style="width: 90%; padding: 0.35rem; background:rgba(0,0,0,0.2); color:white; border:1px solid var(--border); border-radius: 4px;"></td>
++                                                <td style="padding: 0.25rem;"><input type="number" step="0.01" class="manual-velocity-val custom-input" value="0.75" style="width: 90%; padding: 0.35rem; background:rgba(0,0,0,0.2); color:white; border:1px solid var(--border); border-radius: 4px;"></td>
++                                                <td style="padding: 0.25rem; text-align: center;"><button type="button" class="btn-remove-vbt-row" style="background: transparent; color: #ef4444; border: none; cursor: pointer; font-size: 1.2rem;">&times;</button></td>
++                                            </tr>
++                                            <tr class="manual-vbt-row" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
++                                                <td style="padding: 0.25rem;"><input type="number" step="1" class="manual-load-val custom-input" value="120" style="width: 90%; padding: 0.35rem; background:rgba(0,0,0,0.2); color:white; border:1px solid var(--border); border-radius: 4px;"></td>
++                                                <td style="padding: 0.25rem;"><input type="number" step="0.01" class="manual-velocity-val custom-input" value="0.50" style="width: 90%; padding: 0.35rem; background:rgba(0,0,0,0.2); color:white; border:1px solid var(--border); border-radius: 4px;"></td>
++                                                <td style="padding: 0.25rem; text-align: center;"><button type="button" class="btn-remove-vbt-row" style="background: transparent; color: #ef4444; border: none; cursor: pointer; font-size: 1.2rem;">&times;</button></td>
++                                            </tr>
++                                            <tr class="manual-vbt-row" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
++                                                <td style="padding: 0.25rem;"><input type="number" step="1" class="manual-load-val custom-input" value="135" style="width: 90%; padding: 0.35rem; background:rgba(0,0,0,0.2); color:white; border:1px solid var(--border); border-radius: 4px;"></td>
++                                                <td style="padding: 0.25rem;"><input type="number" step="0.01" class="manual-velocity-val custom-input" value="0.38" style="width: 90%; padding: 0.35rem; background:rgba(0,0,0,0.2); color:white; border:1px solid var(--border); border-radius: 4px;"></td>
++                                                <td style="padding: 0.25rem; text-align: center;"><button type="button" class="btn-remove-vbt-row" style="background: transparent; color: #ef4444; border: none; cursor: pointer; font-size: 1.2rem;">&times;</button></td>
++                                            </tr>
++                                        </tbody>
++                                    </table>
++                                    <button type="button" id="btn-add-vbt-row" style="width: 100%; background: rgba(255,255,255,0.05); color: white; padding: 0.5rem; border-radius: 6px; border: 1px dashed rgba(255,255,255,0.2); cursor: pointer; margin-bottom: 1.5rem; font-size: 0.85rem;">+ Aggiungi Punto</button>
++                                </div>
++
++                                <!-- JUMP TEST INPUTS -->
++                                <div id="manual-jump-container" style="display: none; margin-bottom: 1.5rem;">
++                                    <h4 style="margin-bottom: 0.5rem; color: var(--accent);">Dati Salto</h4>
++                                    
++                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
++                                        <div>
++                                            <label style="display:block; margin-bottom:0.25rem; font-size:0.8rem; color: var(--text-muted);">Squat Jump (SJ) cm</label>
++                                            <input type="number" step="0.1" id="manual-sj-height" value="31.0" class="custom-input" style="width: 100%; padding: 0.4rem; background:rgba(0,0,0,0.2); color:white; border:1px solid var(--border); border-radius:6px;">
++                                        </div>
++                                        <div>
++                                            <label style="display:block; margin-bottom:0.25rem; font-size:0.8rem; color: var(--text-muted);">CMJ Height (cm)</label>
++                                            <input type="number" step="0.1" id="manual-cmj-height" value="34.0" class="custom-input" style="width: 100%; padding: 0.4rem; background:rgba(0,0,0,0.2); color:white; border:1px solid var(--border); border-radius:6px;">
++                                        </div>
++                                    </div>
++
++                                    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; margin-top: 1rem;">
++                                        <h5 style="margin: 0 0 0.5rem 0; color: white;">Drop Jump (DJ) - Calcolo RSI</h5>
++                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
++                                            <div>
++                                                <label style="display:block; margin-bottom:0.25rem; font-size:0.8rem; color: var(--text-muted);">DJ Height (cm)</label>
++                                                <input type="number" step="0.1" id="manual-dj-height" value="37.0" class="custom-input" style="width: 100%; padding: 0.4rem; background:rgba(0,0,0,0.2); color:white; border:1px solid var(--border); border-radius:6px;">
++                                            </div>
++                                            <div>
++                                                <label style="display:block; margin-bottom:0.25rem; font-size:0.8rem; color: var(--text-muted);">Contact Time (s)</label>
++                                                <input type="number" step="0.001" id="manual-dj-contact" value="0.190" class="custom-input" style="width: 100%; padding: 0.4rem; background:rgba(0,0,0,0.2); color:white; border:1px solid var(--border); border-radius:6px;">
++                                            </div>
++                                        </div>
++                                    </div>
++                                </div>
++
++                                <button id="btn-manual-calculate" style="width: 100%; background: linear-gradient(135deg,#6366f1,#a855f7); color: white; padding: 1rem; border-radius: 8px; font-weight: bold; border: none; cursor: pointer;">
++                                    🚀 Elabora Dati Manuali
++                                </button>
++                            </div>
+                         </div>
+ 
+                         <!-- RIGHT PANEL: OUTPUT -->
+@@ -88,12 +174,103 @@
+         bindEvents() {
++            // TABS SWITCHING
++            const tabButtons = this.container.querySelectorAll('.analysis-tab-btn');
++            const uploadContent = document.getElementById('tab-upload-content');
++            const manualContent = document.getElementById('tab-manual-content');
++
++            tabButtons.forEach(btn => {
++                btn.addEventListener('click', () => {
++                    tabButtons.forEach(b => {
++                        b.classList.remove('active');
++                        b.style.color = 'var(--text-muted)';
++                        b.style.borderBottom = 'none';
++                    });
++                    btn.classList.add('active');
++                    btn.style.color = 'white';
++                    btn.style.borderBottom = '2px solid var(--accent)';
++
++                    if (btn.dataset.tab === 'upload') {
++                        uploadContent.style.display = 'block';
++                        manualContent.style.display = 'none';
++                    } else {
++                        uploadContent.style.display = 'none';
++                        manualContent.style.display = 'block';
++                    }
++                });
++            });
++
++            // MANUAL TEST TYPE SELECTION
++            const testTypeSelect = document.getElementById('manual-test-type');
++            const mvtContainer = document.getElementById('manual-mvt-container');
++            const mvtInput = document.getElementById('manual-mvt');
++            const vbtTableContainer = document.getElementById('manual-vbt-table-container');
++            const jumpContainer = document.getElementById('manual-jump-container');
++
++            testTypeSelect.addEventListener('change', () => {
++                const val = testTypeSelect.value;
++                if (val.startsWith('VBT_')) {
++                    vbtTableContainer.style.display = 'block';
++                    mvtContainer.style.display = 'block';
++                    jumpContainer.style.display = 'none';
++                    if (val === 'VBT_SQUAT') mvtInput.value = '0.30';
++                    else if (val === 'VBT_BENCH') mvtInput.value = '0.15';
++                    else if (val === 'VBT_DEADLIFT') mvtInput.value = '0.15';
++                } else {
++                    vbtTableContainer.style.display = 'none';
++                    mvtContainer.style.display = 'none';
++                    jumpContainer.style.display = 'block';
++                }
++            });
++
++            // ADD VBT TABLE ROW
++            const btnAddRow = document.getElementById('btn-add-vbt-row');
++            const vbtTbody = document.getElementById('manual-vbt-tbody');
++            btnAddRow.addEventListener('click', () => {
++                const tr = document.createElement('tr');
++                tr.className = 'manual-vbt-row';
++                tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
++                tr.innerHTML = `
++                    <td style="padding: 0.25rem;"><input type="number" step="1" class="manual-load-val custom-input" placeholder="kg" style="width: 90%; padding: 0.35rem; background:rgba(0,0,0,0.2); color:white; border:1px solid var(--border); border-radius: 4px;"></td>
++                    <td style="padding: 0.25rem;"><input type="number" step="0.01" class="manual-velocity-val custom-input" placeholder="m/s" style="width: 90%; padding: 0.35rem; background:rgba(0,0,0,0.2); color:white; border:1px solid var(--border); border-radius: 4px;"></td>
++                    <td style="padding: 0.25rem; text-align: center;"><button type="button" class="btn-remove-vbt-row" style="background: transparent; color: #ef4444; border: none; cursor: pointer; font-size: 1.2rem;">&times;</button></td>
++                `;
++                vbtTbody.appendChild(tr);
++            });
++
++            // REMOVE VBT TABLE ROW (delegated)
++            vbtTbody.addEventListener('click', (e) => {
++                if (e.target.classList.contains('btn-remove-vbt-row')) {
++                    const tr = e.target.closest('tr');
++                    if (tr) tr.remove();
++                }
++            });
++
++            // MANUAL CALCULATE BUTTON
++            const btnManualCalc = document.getElementById('btn-manual-calculate');
++            btnManualCalc.addEventListener('click', () => {
++                const athlete = document.getElementById('manual-athlete').value.trim() || 'Atleta Manual';
++                const testType = testTypeSelect.value;
++                
++                if (testType.startsWith('VBT_')) {
++                    const rows = vbtTbody.querySelectorAll('.manual-vbt-row');
++                    const dataPoints = [];
++                    rows.forEach(row => {
++                        const l = parseFloat(row.querySelector('.manual-load-val').value);
++                        const v = parseFloat(row.querySelector('.manual-velocity-val').value);
++                        if (!isNaN(l) && !isNaN(v) && l > 0 && v > 0) {
++                            dataPoints.push({ athlete, exercise: testType.replace('VBT_', ''), load: l, velocity: v });
++                        }
++                    });
++
++                    if (dataPoints.length < 2) {
++                        alert("Inserisci almeno 2 punti validi di Carico-Velocità.");
++                        return;
++                    }
++
++                    // Sync manual MVT to the analysis MVT element so renderVBTDashboard can read it
++                    const manualMvtVal = parseFloat(mvtInput.value) || 0.30;
++                    const vbtMvtEl = document.getElementById('vbt-mvt-input');
++                    if (vbtMvtEl) vbtMvtEl.value = manualMvtVal;
++
++                    this.renderVBTDashboard(dataPoints, athlete, testType.replace('VBT_', ''));
++                } else {
++                    const sj = parseFloat(document.getElementById('manual-sj-height').value) || 0;
++                    const cmj = parseFloat(document.getElementById('manual-cmj-height').value) || 0;
++                    const djHeight = parseFloat(document.getElementById('manual-dj-height').value) || 0;
++                    const djContact = parseFloat(document.getElementById('manual-dj-contact').value) || 0;
++
++                    const dataPoints = [];
++                    if (sj > 0) dataPoints.push({ athlete, exercise: 'SJ', jumpHeight: sj });
++                    if (cmj > 0) dataPoints.push({ athlete, exercise: 'CMJ', jumpHeight: cmj });
++                    if (djHeight > 0 && djContact > 0) {
++                        dataPoints.push({ athlete, exercise: 'DJ', jumpHeight: djHeight, contactTime: djContact });
++                    }
++
++                    if (dataPoints.length === 0) {
++                        alert("Inserisci almeno un dato di salto valido.");
++                        return;
++                    }
++
++                    this.renderJumpDashboard(dataPoints, athlete);
++                }
++            });
++
+             const dropZone = document.getElementById('vbt-drop-zone');
+             const fileInput = document.getElementById('vbt-file-input');
+ 
+@@ -279,19 +456,33 @@
+             if (vbtData.length < 2) {
+                 dashboard.innerHTML = `<div style="padding: 2rem; border: 1px solid red; color: red;">Dati VBT insufficienti (servono almeno 2 punti Carico-Velocità).</div>`;
+                 return;
+             }
+ 
++            // Destroy old Chart instance if exists to prevent canvas reuse error
++            if (this.chartInstance) {
++                this.chartInstance.destroy();
++                this.chartInstance = null;
++            }
++
+             const mvt = parseFloat(document.getElementById('vbt-mvt-input').value) || 0.30;
+             const regression = window.PhysicsEngine.linearRegressionVBT(vbtData);
+             const oneRM = window.PhysicsEngine.estimate1RM(regression, mvt);
+             const rounded1RM = Math.floor(oneRM / 5) * 5;
+ 
+             let html = `
+                 <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid var(--border); padding-bottom:1rem;">
+                     <h3>📊 Profilo VBT ${athlete ? '- ' + athlete : ''} ${exercise ? '[' + exercise + ']' : ''}</h3>
+                     <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">VBT Mode</span>
+                 </div>
+                 
+                 <div style="background: rgba(15, 23, 42, 0.4); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
+                     <canvas id="vbt-chart" style="width:100%; height:300px;"></canvas>
+                 </div>
+ 
+-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+-                    <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 1rem; text-align: center;">
+-                        <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--accent);">Stima 1RM (MVT: ${mvt}m/s)</div>
+-                        <div style="font-size: 2rem; font-weight: bold; color: white;">${rounded1RM} kg</div>
+-                    </div>
+-                    <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 8px; padding: 1rem; text-align: center;">
+-                        <div style="font-size: 0.8rem; text-transform: uppercase; color: #818cf8;">R² (Affidabilità)</div>
+-                        <div style="font-size: 2rem; font-weight: bold; color: white;">${regression.rSquared.toFixed(2)}</div>
+-                    </div>
+-                </div>
++                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
++                    <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 1rem; text-align: center;">
++                        <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--accent);">Stima 1RM (MVT: ${mvt}m/s)</div>
++                        <div style="font-size: 1.8rem; font-weight: bold; color: white;">${rounded1RM} kg</div>
++                        <small style="color: var(--text-muted); font-size: 0.75rem;">(${oneRM.toFixed(1)} kg non arr.)</small>
++                    </div>
++                    <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 8px; padding: 1rem; text-align: center;">
++                        <div style="font-size: 0.8rem; text-transform: uppercase; color: #818cf8;">R² (Affidabilità)</div>
++                        <div style="font-size: 1.8rem; font-weight: bold; color: white;">${regression.rSquared.toFixed(4)}</div>
++                        <small style="color: var(--text-muted); font-size: 0.75rem;">${regression.rSquared >= 0.95 ? 'Ottima' : 'Bassa'}</small>
++                    </div>
++                    <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 1rem; text-align: center;">
++                        <div style="font-size: 0.8rem; text-transform: uppercase; color: #fbbf24;">Parametri F0 & V0</div>
++                        <div style="font-size: 1.2rem; font-weight: bold; color: white; margin-top: 0.25rem;">F0: ${regression.f0 ? regression.f0.toFixed(1) + ' kg' : 'N/D'}</div>
++                        <div style="font-size: 1.2rem; font-weight: bold; color: white;">V0: ${regression.v0 ? regression.v0.toFixed(2) + ' m/s' : 'N/D'}</div>
++                    </div>
++                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 8px; padding: 1rem; text-align: center;">
++                        <div style="font-size: 0.8rem; text-transform: uppercase; color: #f87171;">Potenza Max (Pmax)</div>
++                        <div style="font-size: 1.8rem; font-weight: bold; color: white;">${regression.pmax ? Math.round(regression.pmax) + ' W' : 'N/D'}</div>
++                        <small style="color: var(--text-muted); font-size: 0.75rem;">A carico ~${regression.f0 ? Math.round(regression.f0 / 2) + ' kg' : '—'}</small>
++                    </div>
++                </div>
+ 
+                 <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; overflow-x: auto;">
+@@ -351,8 +542,8 @@
+-            new Chart(ctx, {
++            this.chartInstance = new Chart(ctx, {
+                 type: 'scatter',
+                 data: {
+                     datasets: [
+                         { label: 'Dati Reali (VBT)', data: scatterData, backgroundColor: '#10b981', pointRadius: 6 },
+                         { label: 'Regressione', data: lineData, type: 'line', borderColor: '#6366f1', borderWidth: 2, fill: false, pointRadius: 0 }
+                     ]
+                 },

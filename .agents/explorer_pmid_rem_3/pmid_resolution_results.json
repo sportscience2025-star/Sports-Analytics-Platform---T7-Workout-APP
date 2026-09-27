@@ -1,0 +1,86 @@
+{
+  "meta": {
+    "total_processed": 7,
+    "duration_seconds": 0.0,
+    "timestamp": "2026-09-14T13:26:39Z"
+  },
+  "results": [
+    {
+      "source_id": "sci_sprint_nagahara_2014",
+      "current_pmid": "24464016",
+      "resolved_pmid": "24577864",
+      "status": "VERIFIED_KNOWN_FIX",
+      "confidence": "HIGH",
+      "ncbi_title": "Association of acceleration with spatiotemporal variables in maximal sprinting.",
+      "ncbi_source": "Int J Sports Med",
+      "strategy": "KNOWN_VERIFIED_TABLE",
+      "note": "Group A fix: replaced leukemia paper 24464016"
+    },
+    {
+      "source_id": "sci_power_soriano_2015",
+      "current_pmid": "26063065",
+      "resolved_pmid": "26063470",
+      "status": "VERIFIED_KNOWN_FIX",
+      "confidence": "HIGH",
+      "ncbi_title": "The Optimal Load for Maximal Power Production During Lower-Body Resistance Exercises: A Meta-Analysis.",
+      "ncbi_source": "Sports Med",
+      "strategy": "KNOWN_VERIFIED_TABLE",
+      "note": "Group A fix: replaced beta-carotene paper 26063065"
+    },
+    {
+      "source_id": "sci_weightlifting_hackett_2016",
+      "current_pmid": "26848135",
+      "resolved_pmid": "26626268",
+      "status": "VERIFIED_KNOWN_FIX",
+      "confidence": "HIGH",
+      "ncbi_title": "Olympic weightlifting training improves vertical jump height in sportspeople: a systematic review with meta-analysis.",
+      "ncbi_source": "Br J Sports Med",
+      "strategy": "KNOWN_VERIFIED_TABLE",
+      "note": "Group A fix: replaced 4D UEM paper 26848135"
+    },
+    {
+      "source_id": "sci_weightlifting_arabatzi_2012_coactivation",
+      "current_pmid": "22344061",
+      "resolved_pmid": "21997458",
+      "status": "VERIFIED_KNOWN_FIX",
+      "confidence": "HIGH",
+      "ncbi_title": "Olympic weightlifting training causes different knee muscle-coactivation adaptations compared with traditional weight training.",
+      "ncbi_source": "J Strength Cond Res",
+      "strategy": "KNOWN_VERIFIED_TABLE",
+      "note": "Group A fix: replaced kettlebell paper 22344061"
+    },
+    {
+      "source_id": "sci_vbt_gonzalez_2017",
+      "current_pmid": "20024937",
+      "resolved_pmid": "20180176",
+      "status": "VERIFIED_KNOWN_FIX",
+      "confidence": "HIGH",
+      "ncbi_title": "Movement velocity as a measure of loading intensity in resistance training.",
+      "ncbi_source": "Int J Sports Med",
+      "strategy": "KNOWN_VERIFIED_TABLE",
+      "note": "Non-existent fix: replaced invalid 20024937"
+    },
+    {
+      "source_id": "sci_vbt_balsalobre_2018_app",
+      "current_pmid": "28098522",
+      "resolved_pmid": "28097928",
+      "status": "VERIFIED_KNOWN_FIX",
+      "confidence": "HIGH",
+      "ncbi_title": "Validity and reliability of a novel iPhone app for the measurement of barbell velocity and 1RM on the bench-press exercise.",
+      "ncbi_source": "J Sports Sci",
+      "strategy": "KNOWN_VERIFIED_TABLE",
+      "note": "Group A fix: replaced McGurk effect paper 28098522"
+    },
+    {
+      "source_id": "sci_hamstring_timmins_2016",
+      "current_pmid": "26672828",
+      "resolved_pmid": "26675089",
+      "status": "VERIFIED_KNOWN_FIX",
+      "confidence": "HIGH",
+      "ncbi_title": "Short biceps femoris fascicles and eccentric knee flexor weakness increase the risk of hamstring injury in elite football (soccer): a prospective cohort study.",
+      "ncbi_source": "Br J Sports Med",
+      "strategy": "KNOWN_VERIFIED_TABLE",
+      "note": "Non-existent fix: replaced invalid 26672828"
+    }
+  ]
+}

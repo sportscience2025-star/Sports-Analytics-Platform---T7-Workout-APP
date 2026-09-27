@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Responsive Layout Breakpoints CSS",
+    "passed": true,
+    "details": "Found default .chart-canvas-container height: 360px and @media (max-width: 768px) height: 280px."
+  },
+  {
+    "name": "Empty & Single-Point Chart Update Guardrails",
+    "passed": true,
+    "details": "Verified vbtData.length < 2 guard (shows warning for 0 or 1 point) and djRSIs.length > 0 check for fallback rendering."
+  },
+  {
+    "name": "Glassmorphism Tooltip Specifications",
+    "passed": true,
+    "details": "Verified .glass-tooltip CSS rules (backdrop-filter: blur(16px), background rgba(15,23,42,0.85), dual box-shadow) and custom external tooltip handler."
+  },
+  {
+    "name": "Neon Glow Shadow Plugin & Canvas Properties",
+    "passed": true,
+    "details": "Verified neonGlowPlugin structure, Canvas 2D shadow properties (shadowColor, shadowBlur, shadowOffsetX/Y=0), and 8 dataset glow instances across charts."
+  }
+]

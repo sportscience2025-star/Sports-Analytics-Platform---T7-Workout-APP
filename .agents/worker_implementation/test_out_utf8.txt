@@ -1,0 +1,185 @@
+
+==================================================
+T7 WORKOUT TEST SUITE HEADLESS RESULTS
+==================================================
+Status: FAIL
+Message: Suite complete. Passed: 12, Failed: 6. Time: 11243ms
+--------------------------------------------------
+PASS test_logic.js                            (857 ms)
+PASS test_periodization_extreme_cases.js      (800 ms)
+PASS test_periodization_stress.js             (1961 ms)
+PASS test_regression_edge_cases.js            (594 ms)
+PASS test_vbt_math_stress.js                  (529 ms)
+PASS test_stress_math_and_parser.js           (532 ms)
+PASS test_stress_parser.js                    (794 ms)
+PASS test_load_velocity.js                    (535 ms)
+PASS test_analysis.js                         (533 ms)
+PASS test_parsing.js                          (537 ms)
+PASS test_adversarial_challenger.js           (593 ms)
+FAIL test_adversarial_physics.js              (371 ms)
+   [ERROR] ? [FAIL] IQR outlier removal detected 1 outlier: got 0
+   [ERROR] ? [FAIL] Filtered slope is accurate to noise-free model: got 0.014
+   [ERROR] FAIL
+PASS test_adversarial_scientific_hub.js       (519 ms)
+FAIL test_chart_verification.js               (581 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_hybrid_regression.js                (609 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_knowledge_base.js                   (637 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_r2_r4_empirical.js                  (663 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_bryan_mann_stress.js                (685 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+==================================================
+TOTAL: 18 | PASSED: 12 | FAILED: 6
+==================================================
+
+
+==================================================
+T7 WORKOUT TEST SUITE HEADLESS RESULTS
+==================================================
+Status: FAIL
+Message: Suite complete. Passed: 12, Failed: 6. Time: 11271ms
+--------------------------------------------------
+PASS test_logic.js                            (857 ms)
+PASS test_periodization_extreme_cases.js      (800 ms)
+PASS test_periodization_stress.js             (1961 ms)
+PASS test_regression_edge_cases.js            (594 ms)
+PASS test_vbt_math_stress.js                  (529 ms)
+PASS test_stress_math_and_parser.js           (532 ms)
+PASS test_stress_parser.js                    (794 ms)
+PASS test_load_velocity.js                    (535 ms)
+PASS test_analysis.js                         (533 ms)
+PASS test_parsing.js                          (537 ms)
+PASS test_adversarial_challenger.js           (593 ms)
+FAIL test_adversarial_physics.js              (371 ms)
+   [ERROR] ? [FAIL] IQR outlier removal detected 1 outlier: got 0
+   [ERROR] ? [FAIL] Filtered slope is accurate to noise-free model: got 0.014
+   [ERROR] FAIL
+PASS test_adversarial_scientific_hub.js       (519 ms)
+FAIL test_chart_verification.js               (581 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_hybrid_regression.js                (609 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_knowledge_base.js                   (637 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_r2_r4_empirical.js                  (663 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_bryan_mann_stress.js                (685 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+==================================================
+TOTAL: 18 | PASSED: 12 | FAILED: 6
+==================================================
+
+
+==================================================
+T7 WORKOUT TEST SUITE HEADLESS RESULTS
+==================================================
+Status: FAIL
+Message: Suite complete. Passed: 12, Failed: 6. Time: 11298ms
+--------------------------------------------------
+PASS test_logic.js                            (857 ms)
+PASS test_periodization_extreme_cases.js      (800 ms)
+PASS test_periodization_stress.js             (1961 ms)
+PASS test_regression_edge_cases.js            (594 ms)
+PASS test_vbt_math_stress.js                  (529 ms)
+PASS test_stress_math_and_parser.js           (532 ms)
+PASS test_stress_parser.js                    (794 ms)
+PASS test_load_velocity.js                    (535 ms)
+PASS test_analysis.js                         (533 ms)
+PASS test_parsing.js                          (537 ms)
+PASS test_adversarial_challenger.js           (593 ms)
+FAIL test_adversarial_physics.js              (371 ms)
+   [ERROR] ? [FAIL] IQR outlier removal detected 1 outlier: got 0
+   [ERROR] ? [FAIL] Filtered slope is accurate to noise-free model: got 0.014
+   [ERROR] FAIL
+PASS test_adversarial_scientific_hub.js       (519 ms)
+FAIL test_chart_verification.js               (581 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_hybrid_regression.js                (609 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_knowledge_base.js                   (637 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_r2_r4_empirical.js                  (663 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_bryan_mann_stress.js                (685 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+==================================================
+TOTAL: 18 | PASSED: 12 | FAILED: 6
+==================================================
+
+
+==================================================
+T7 WORKOUT TEST SUITE HEADLESS RESULTS
+==================================================
+Status: FAIL
+Message: Suite complete. Passed: 12, Failed: 6. Time: 11329ms
+--------------------------------------------------
+PASS test_logic.js                            (857 ms)
+PASS test_periodization_extreme_cases.js      (800 ms)
+PASS test_periodization_stress.js             (1961 ms)
+PASS test_regression_edge_cases.js            (594 ms)
+PASS test_vbt_math_stress.js                  (529 ms)
+PASS test_stress_math_and_parser.js           (532 ms)
+PASS test_stress_parser.js                    (794 ms)
+PASS test_load_velocity.js                    (535 ms)
+PASS test_analysis.js                         (533 ms)
+PASS test_parsing.js                          (537 ms)
+PASS test_adversarial_challenger.js           (593 ms)
+FAIL test_adversarial_physics.js              (371 ms)
+   [ERROR] ? [FAIL] IQR outlier removal detected 1 outlier: got 0
+   [ERROR] ? [FAIL] Filtered slope is accurate to noise-free model: got 0.014
+   [ERROR] FAIL
+PASS test_adversarial_scientific_hub.js       (519 ms)
+FAIL test_chart_verification.js               (581 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_hybrid_regression.js                (609 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_knowledge_base.js                   (637 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_r2_r4_empirical.js                  (663 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_bryan_mann_stress.js                (685 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+==================================================
+TOTAL: 18 | PASSED: 12 | FAILED: 6
+==================================================
+
+
+==================================================
+T7 WORKOUT TEST SUITE HEADLESS RESULTS
+==================================================
+Status: FAIL
+Message: Suite complete. Passed: 12, Failed: 6. Time: 11351ms
+--------------------------------------------------
+PASS test_logic.js                            (857 ms)
+PASS test_periodization_extreme_cases.js      (800 ms)
+PASS test_periodization_stress.js             (1961 ms)
+PASS test_regression_edge_cases.js            (594 ms)
+PASS test_vbt_math_stress.js                  (529 ms)
+PASS test_stress_math_and_parser.js           (532 ms)
+PASS test_stress_parser.js                    (794 ms)
+PASS test_load_velocity.js                    (535 ms)
+PASS test_analysis.js                         (533 ms)
+PASS test_parsing.js                          (537 ms)
+PASS test_adversarial_challenger.js           (593 ms)
+FAIL test_adversarial_physics.js              (371 ms)
+   [ERROR] ? [FAIL] IQR outlier removal detected 1 outlier: got 0
+   [ERROR] ? [FAIL] Filtered slope is accurate to noise-free model: got 0.014
+   [ERROR] FAIL
+PASS test_adversarial_scientific_hub.js       (519 ms)
+FAIL test_chart_verification.js               (581 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_hybrid_regression.js                (609 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_knowledge_base.js                   (637 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_r2_r4_empirical.js                  (663 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+FAIL test_bryan_mann_stress.js                (685 ms)
+   [ERROR] ? Empirical verification failed: Cannot read properties of null (reading 'value')
+==================================================
+TOTAL: 18 | PASSED: 12 | FAILED: 6
+==================================================
+

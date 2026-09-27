@@ -1,0 +1,77 @@
+=== 1. MUSCLE_TAXONOMY DETAILS ===
+{
+        'Chest': { label: 'Pettorali (Chest)', muscles: ['Petto', 'Pettorale Alto'] },
+        'Back': { label: 'Schiena (Back)', muscles: ['Schiena', 'Gran Dorsale', 'Trapezio'] },
+        'Legs': { label: 'Gambe (Legs)', muscles: ['Gambe', 'Quadricipiti', 'Femorali', 'Glutei', 'Polpacci'] },
+        'Shoulders': { label: 'Spalle (Shoulders)', muscles: ['Spalle', 'Deltoide Anteriore', 'Deltoide Laterale', 'Deltoide Posteriore'] },
+        'Arms': { label: 'Braccia (Arms)', muscles: ['Braccia', 'Bicipiti', 'Tricipiti'] },
+        'Core': { label: 'Core / Addome', muscles: ['Core', 'Addominali', 'Obliqui'] }
+    }
+
+=== 2. LOGIC.JS HARDCODED MUSCLE KEYWORDS & REFS ===
+logic.js:757 -> } else if (focus.includes('Mobilità') || focus.includes('Gambe')) {
+logic.js:759 -> { id: 'cli_04', name: 'Goblet Squat su Box Alto (Angolo ginocchio max 60°)', primaryMuscle: 'Gambe', type: 'Multiarticolare', spec
+logic.js:775 -> { id: 'cli_d03', name: 'Mobilizzazione Dorsiflessione Caviglia (a muro)', primaryMuscle: 'Gambe', type: 'Mobilità', specs: { sets:
+logic.js:785 -> if (focus.includes('Gambe') && focus.includes('Petto')) {
+logic.js:788 -> { id: 'cli_11', name: 'Single-Leg Romanian Deadlift (SL RDL con appoggio a muro)', primaryMuscle: 'Gambe', type: 'Multiarticolare'
+logic.js:801 -> { id: 'cli_18', name: 'Copenhagen Plank semplificato (sul ginocchio)', primaryMuscle: 'Core', type: 'Isometrico', specs: { sets: 3
+logic.js:805 -> if (focus.includes('Gambe') && focus.includes('Petto')) {
+logic.js:807 -> { id: 'cli_19', name: 'Box Squat al Parallelo (ROM rigoroso 90°)', primaryMuscle: 'Gambe', type: 'Multiarticolare', specs: { sets:
+logic.js:813 -> { id: 'cli_22', name: 'Kettlebell Deadlift esplosivo (Decelerazione eccentrica)', primaryMuscle: 'Gambe', type: 'Multiarticolare',
+logic.js:819 -> { id: 'cli_25', name: 'Cicloergometro/Cyclette (Endurance Zona 2)', primaryMuscle: 'Gambe', type: 'Cardio', specs: { sets: '1 set'
+logic.js:820 -> { id: 'cli_26', name: 'Leg Extension a ROM limitato (90° a 30° - NO LOCKOUT)', primaryMuscle: 'Gambe', type: 'Isolamento', specs: 
+logic.js:825 -> if (focus.includes('Gambe') || focus.includes('Mobilità')) {
+logic.js:827 -> { id: 'cli_28', name: 'Test di Forza Submassimale Leg Press Monolaterale (ROM 80°)', primaryMuscle: 'Gambe', type: 'Multiarticolar
+logic.js:828 -> { id: 'cli_29', name: 'Test di Flessibilità Caviglia (Dorsiflessione a muro)', primaryMuscle: 'Gambe', type: 'Mobilità', specs: { 
+logic.js:837 -> { id: 'cli_32', name: 'Camminata veloce tapis roulant / Cyclette leggero scarico', primaryMuscle: 'Gambe', type: 'Cardio', specs: 
+logic.js:853 -> const muscleKeywords = ['Petto', 'Schiena', 'Gambe', 'Spalle', 'Braccia', 'Core', 'Glutei', 'Polpacci', 'Cardio', 'Mobilità', 'All
+logic.js:854 -> const targetMuscles = focus.filter(f => muscleKeywords.includes(f));
+logic.js:857 -> const musclesToUse = targetMuscles.length > 0 ? targetMuscles : focus;
+logic.js:861 -> (ex.primaryMuscle?.includes(muscle) || ex.muscles?.some(m => m.includes(muscle)))
+logic.js:1163 -> if (phaseBlueprint.kneeROM < 95 && (ex.primaryMuscle?.includes('Gambe') || ex.muscles?.some(m => m.includes('Gambe')))) {
+
+=== 3. ANOMALIES & NON-STANDARD MUSCLE NAMES IN EXERCISES ===
+All distinct muscle terms referenced in exercises catalog:
+  - ,
+  - Abduttori
+  - Addominali
+  - Adduttori
+  - Avambracci
+  - Bicipite Brachiale
+  - Bicipiti
+  - Braccia
+  - Brachiale
+  - Brachioradiale
+  - Core
+  - Deltoide Anteriore
+  - Deltoide Anteriore/Laterale
+  - Deltoide Laterale
+  - Deltoide Posteriore
+  - Dentato Anteriore
+  - Dorsali
+  - Erettori Spinali
+  - Femorali
+  - Flessori dell
+  - Gambe
+  - Glutei
+  - Gran Dorsale
+  - Grande Rotondo
+  - Obliqui
+  - Petto
+  - Petto Alto
+  - Pettorale Alto
+  - Pettorale Basso
+  - Polpacci
+  - Quadricipiti
+  - Retto Addominale
+  - Romboidi
+  - Rotatori Esterni
+  - Schiena
+  - Spalle
+  - Trapezio
+  - Trapezio Inferiore
+  - Trapezio Medio
+  - Trapezio Medio/Inferiore
+  - Tricep (Capo Lungo)
+  - Tricipiti
+  - Tricipiti (Capo Lungo)

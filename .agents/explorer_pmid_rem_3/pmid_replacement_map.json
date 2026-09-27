@@ -1,0 +1,72 @@
+{
+  "sci_sprint_nagahara_2014": {
+    "old_pmid": "24464016",
+    "new_pmid": "24577864",
+    "old_url": "https://pubmed.ncbi.nlm.nih.gov/24464016/",
+    "new_url": "https://pubmed.ncbi.nlm.nih.gov/24577864/",
+    "title": "Association of Acceleration with Spatiotemporal Variables in Maximal Sprinting",
+    "ncbi_title": "Association of acceleration with spatiotemporal variables in maximal sprinting.",
+    "status": "VERIFIED_KNOWN_FIX",
+    "confidence": "HIGH"
+  },
+  "sci_power_soriano_2015": {
+    "old_pmid": "26063065",
+    "new_pmid": "26063470",
+    "old_url": "https://pubmed.ncbi.nlm.nih.gov/26063065/",
+    "new_url": "https://pubmed.ncbi.nlm.nih.gov/26063470/",
+    "title": "The Optimal Load for Maximal Power Production During Lower-Body Resistance Exercises: A Meta-Analysis",
+    "ncbi_title": "The Optimal Load for Maximal Power Production During Lower-Body Resistance Exercises: A Meta-Analysis.",
+    "status": "VERIFIED_KNOWN_FIX",
+    "confidence": "HIGH"
+  },
+  "sci_weightlifting_hackett_2016": {
+    "old_pmid": "26848135",
+    "new_pmid": "26626268",
+    "old_url": "https://pubmed.ncbi.nlm.nih.gov/26848135/",
+    "new_url": "https://pubmed.ncbi.nlm.nih.gov/26626268/",
+    "title": "Olympic weightlifting training improves vertical jump height in sportspeople: a systematic review with meta-analysis",
+    "ncbi_title": "Olympic weightlifting training improves vertical jump height in sportspeople: a systematic review with meta-analysis.",
+    "status": "VERIFIED_KNOWN_FIX",
+    "confidence": "HIGH"
+  },
+  "sci_weightlifting_arabatzi_2012_coactivation": {
+    "old_pmid": "22344061",
+    "new_pmid": "21997458",
+    "old_url": "https://pubmed.ncbi.nlm.nih.gov/22344061/",
+    "new_url": "https://pubmed.ncbi.nlm.nih.gov/21997458/",
+    "title": "Olympic weightlifting training causes different knee muscle-coactivation adaptations compared with traditional weight training",
+    "ncbi_title": "Olympic weightlifting training causes different knee muscle-coactivation adaptations compared with traditional weight training.",
+    "status": "VERIFIED_KNOWN_FIX",
+    "confidence": "HIGH"
+  },
+  "sci_vbt_gonzalez_2017": {
+    "old_pmid": "20024937",
+    "new_pmid": "20180176",
+    "old_url": "https://pubmed.ncbi.nlm.nih.gov/20024937/",
+    "new_url": "https://pubmed.ncbi.nlm.nih.gov/20180176/",
+    "title": "Predictive accuracy of the load-velocity relationship for bench press",
+    "ncbi_title": "Movement velocity as a measure of loading intensity in resistance training.",
+    "status": "VERIFIED_KNOWN_FIX",
+    "confidence": "HIGH"
+  },
+  "sci_vbt_balsalobre_2018_app": {
+    "old_pmid": "28098522",
+    "new_pmid": "28097928",
+    "old_url": "https://pubmed.ncbi.nlm.nih.gov/28098522/",
+    "new_url": "https://pubmed.ncbi.nlm.nih.gov/28097928/",
+    "title": "Validity and reliability of a novel iPhone app for the measurement of barbell velocity and 1RM on the bench-press exercise",
+    "ncbi_title": "Validity and reliability of a novel iPhone app for the measurement of barbell velocity and 1RM on the bench-press exercise.",
+    "status": "VERIFIED_KNOWN_FIX",
+    "confidence": "HIGH"
+  },
+  "sci_hamstring_timmins_2016": {
+    "old_pmid": "26672828",
+    "new_pmid": "26675089",
+    "old_url": "https://pubmed.ncbi.nlm.nih.gov/26672828/",
+    "new_url": "https://pubmed.ncbi.nlm.nih.gov/26675089/",
+    "title": "Short biceps femoris long head fascicle length and eccentric knee flexor weakness increase the risk of hamstring injury in elite football players",
+    "ncbi_title": "Short biceps femoris fascicles and eccentric knee flexor weakness increase the risk of hamstring injury in elite football (soccer): a prospective cohort study.",
+    "status": "VERIFIED_KNOWN_FIX",
+    "confidence": "HIGH"
+  }
+}

@@ -1,0 +1,25 @@
+diff --git a/js/physics-engine.js b/js/physics-engine.js
+--- a/js/physics-engine.js
++++ b/js/physics-engine.js
+@@ -49,10 +49,19 @@
+             const rSquared = totalSS === 0 ? 1 : 1 - (residualSS / totalSS);
+ 
++            // Biomechanical parameters:
++            const v0 = intercept; // Velocity at zero load (y-intercept)
++            const f0 = slope !== 0 ? -intercept / slope : 0; // Load (kg) at zero velocity (x-intercept)
++            const f0_N = f0 * 9.81; // Force F0 in Newtons (F0_kg * 9.81 m/s^2)
++            const pmax = 0.25 * f0_N * v0; // Max Power (Watts) = 0.25 * F0(N) * V0(m/s)
++
+             return {
+                 slope,
+                 intercept,
+                 rSquared,
++                v0,
++                f0,
++                f0_N,
++                pmax,
+                 predictVelocity: (load) => slope * load + intercept,
+                 // If V = m*L + b => L = (V - b) / m
+                 predictLoad: (velocity) => (velocity - intercept) / slope
+             };
+         }

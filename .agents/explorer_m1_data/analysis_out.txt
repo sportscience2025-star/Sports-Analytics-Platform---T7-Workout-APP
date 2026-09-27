@@ -1,0 +1,186 @@
+=== LOGIC.JS MUSCLE SEARCH / FILTERING CODE ===
+ 841:             return session;
+ 842:         }
+ 843: 
+ 844:         _buildDynamicSession(phaseId, focus, pool, params, phaseBlueprint) {
+ 845:             let session = [];
+ 846:             const rpeCap = phaseBlueprint.rpeCap || 8;
+ 847:             const isDeload = phaseBlueprint.isDeload;
+ 848: 
+ 849:             const isClinical = params.patientType === 'Clinico';
+ 850:             const sport = params.sportPraticato || params.sport;
+ 851:             const isEndurance = !isClinical && sport === 'Endurance';
+ 852: 
+ 853:             const muscleKeywords = ['Petto', 'Schiena', 'Gambe', 'Spalle', 'Braccia', 'Core', 'Glutei', 'Polpacci', 'Cardio', 'Mobilità', 'Allungamento'];
+ 854:             const targetMuscles = focus.filter(f => muscleKeywords.includes(f));
+ 855: 
+ 856:             // If targetMuscles is empty (e.g. no standard muscle keywords found), fallback to all focus items
+ 857:             const musclesToUse = targetMuscles.length > 0 ? targetMuscles : focus;
+ 858: 
+ 859:             musclesToUse.forEach(muscle => {
+ 860:                 let cands = pool.filter(ex =>
+ 861:                     (ex.primaryMuscle?.includes(muscle) || ex.muscles?.some(m => m.includes(muscle)))
+ 862:                 );
+ 863: 
+ 864:                 if (isEndurance) {
+ 865:                     const onlyCompounds = cands.filter(ex => ex.type === 'Multiarticolare');
+ 866:                     if (onlyCompounds.length > 0) {
+ 867:                         cands = onlyCompounds;
+ 868:                     }
+ 869:                 }
+ 870: 
+ 871:                 if (params.patientType === 'Clinico' && phaseBlueprint.kneeROM < 120) {
+ 872:                     cands = cands.filter(ex => {
+ 873:                         const nameLower = (ex.name || '').toLowerCase();
+ 874:                         if (phaseBlueprint.kneeROM <= 60 && (nameLower.includes('squat') || nameLower.includes('affond') || nameLower.includes('press') || nameLower.includes('pistol') || nameLower.includes('lunge'))) {
+ 875:                             if (nameLower.includes('isometric') || nameLower.includes('box alto') || nameLower.includes('wall sit')) return true;
+
+=== LOGIC.JS KNEE ROM / GAMBE FILTERING CODE ===
+1156:             }
+1157: 
+1158:             if (phaseBlueprint.rpeCap && !(isDeload && !isClinical)) {
+1159:                 rpe = Math.min(rpe, phaseBlueprint.rpeCap);
+1160:             }
+1161: 
+1162:             let note = ex.modification || ex.note || null;
+1163:             if (phaseBlueprint.kneeROM < 95 && (ex.primaryMuscle?.includes('Gambe') || ex.muscles?.some(m => m.includes('Gambe')))) {
+1164:                 note = `⚠️ Limitare flessione ginocchio a ${phaseBlueprint.kneeROM}° max. ` + (note || '');
+1165:             }
+1166: 
+1167:             return {
+1168:                 ...ex,
+1169:                 specs: { sets, reps, rest, rpe, tempo, load },
+1170:                 isadapted: ex.modification || phaseBlueprint.kneeROM < 95 ? true : false,
+1171:                 note: note
+1172:             };
+1173:         }
+1174: 
+1175:         _pickRandom(arr, session = []) {
+
+=== UI.JS FILTERING & SEARCH CODE ===
+--- line 1318 ---
+1316: 
+1317:     // Internal active filter state
+1318:     const currentFilters = {
+1319:         search: '',
+1320:         muscle: 'all',
+--- line 1474 ---
+1472: 
+1473:     // Helper: trigger filter change
+1474:     function notifyChange() {
+1475:         // Toggle Reset Button visibility
+1476:         const isFiltered = currentFilters.search !== '' || currentFilters.muscle !== 'all' || currentFilters.level !== 'all' || currentFilters.equipment !== 'all' || currentFilters.quality !== 'all';
+--- line 1476 ---
+1474:     function notifyChange() {
+1475:         // Toggle Reset Button visibility
+1476:         const isFiltered = currentFilters.search !== '' || currentFilters.muscle !== 'all' || currentFilters.level !== 'all' || currentFilters.equipment !== 'all' || currentFilters.quality !== 'all';
+1477:         const resetBtn = container.querySelector('#btn-reset-filters');
+1478:         if (resetBtn) resetBtn.style.display = isFiltered ? 'inline-flex' : 'none';
+--- line 1480 ---
+1478:         if (resetBtn) resetBtn.style.display = isFiltered ? 'inline-flex' : 'none';
+1479: 
+1480:         onFilterChange({ ...currentFilters });
+1481:     }
+1482: 
+--- line 1488 ---
+1486:     if (searchInput) {
+1487:         searchInput.addEventListener('input', (e) => {
+1488:             currentFilters.search = e.target.value;
+1489:             if (searchClear) searchClear.style.display = e.target.value ? 'block' : 'none';
+1490:             notifyChange();
+--- line 1490 ---
+1488:             currentFilters.search = e.target.value;
+1489:             if (searchClear) searchClear.style.display = e.target.value ? 'block' : 'none';
+1490:             notifyChange();
+1491:         });
+1492:     }
+--- line 1497 ---
+1495:             if (searchInput) {
+1496:                 searchInput.value = '';
+1497:                 currentFilters.search = '';
+1498:                 searchClear.style.display = 'none';
+1499:                 notifyChange();
+--- line 1499 ---
+1497:                 currentFilters.search = '';
+1498:                 searchClear.style.display = 'none';
+1499:                 notifyChange();
+1500:             }
+1501:         });
+--- line 1513 ---
+1511:             const catId = btn.dataset.categoryPill;
+1512:             if (catId === 'all') {
+1513:                 currentFilters.muscle = 'all';
+1514:             } else {
+1515:                 // Find first muscle or set search term / group
+--- line 1519 ---
+1517:                 const catGroup = taxonomy[catId];
+1518:                 if (catGroup && catGroup.muscles && catGroup.muscles.length > 0) {
+1519:                     currentFilters.muscle = catGroup.muscles[0]; // Set primary muscle of group
+1520:                 } else {
+1521:                     currentFilters.muscle = 'all';
+--- line 1521 ---
+1519:                     currentFilters.muscle = catGroup.muscles[0]; // Set primary muscle of group
+1520:                 } else {
+1521:                     currentFilters.muscle = 'all';
+1522:                 }
+1523:             }
+--- line 1526 ---
+1524: 
+1525:             // Update custom muscle trigger UI
+1526:             updateCustomSelectUI('muscle', currentFilters.muscle);
+1527:             notifyChange();
+1528:         });
+--- line 1527 ---
+1525:             // Update custom muscle trigger UI
+1526:             updateCustomSelectUI('muscle', currentFilters.muscle);
+1527:             notifyChange();
+1528:         });
+1529:     });
+--- line 1595 ---
+1593:                 e.stopPropagation();
+1594:                 const selectedVal = opt.dataset.val;
+1595:                 currentFilters[type] = selectedVal;
+1596: 
+1597:                 updateCustomSelectUI(type, selectedVal);
+--- line 1599 ---
+1597:                 updateCustomSelectUI(type, selectedVal);
+1598:                 closeAllMenus();
+1599:                 notifyChange();
+1600:             });
+1601:         });
+--- line 1627 ---
+1625:     if (resetBtn) {
+1626:         resetBtn.addEventListener('click', () => {
+1627:             currentFilters.search = '';
+1628:             currentFilters.muscle = 'all';
+1629:             currentFilters.level = 'all';
+--- line 1628 ---
+1626:         resetBtn.addEventListener('click', () => {
+1627:             currentFilters.search = '';
+1628:             currentFilters.muscle = 'all';
+1629:             currentFilters.level = 'all';
+1630:             currentFilters.equipment = 'all';
+--- line 1629 ---
+1627:             currentFilters.search = '';
+1628:             currentFilters.muscle = 'all';
+1629:             currentFilters.level = 'all';
+1630:             currentFilters.equipment = 'all';
+1631:             currentFilters.quality = 'all';
+--- line 1630 ---
+1628:             currentFilters.muscle = 'all';
+1629:             currentFilters.level = 'all';
+1630:             currentFilters.equipment = 'all';
+1631:             currentFilters.quality = 'all';
+1632: 
+--- line 1631 ---
+1629:             currentFilters.level = 'all';
+1630:             currentFilters.equipment = 'all';
+1631:             currentFilters.quality = 'all';
+1632: 
+1633:             if (searchInput) searchInput.value = '';
+--- line 1639 ---
+1637:             selectTypes.forEach(type => updateCustomSelectUI(type, 'all'));
+1638: 
+1639:             notifyChange();
+1640:         });
+1641:     }

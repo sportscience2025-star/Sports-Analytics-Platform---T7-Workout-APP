@@ -1,0 +1,1891 @@
+[
+  {
+    "id": "sci_hamstring_timmins_2016",
+    "area": "sportSquadra",
+    "expected_title": "Short biceps femoris long head fascicle length and eccentric knee flexor weakness increase the risk of hamstring injury in elite football players",
+    "expected_authors": "Timmins, R. G., Bourne, M. N., Shield, A. J., Williams, M. D., Lorenzen, C., & Opar, D. A.",
+    "expected_year": 2016,
+    "expected_journal": "British Journal of Sports Medicine",
+    "current_pmid": "26672828",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/26672828/",
+    "best_match": {
+      "pmid": "38655154",
+      "title": "Biceps Femoris Fascicle Lengths Increase after Hamstring Injury Rehabilitation to a Greater Extent in the Injured Leg.",
+      "journal": "Transl Sports Med",
+      "pubdate": "2022",
+      "authors": [
+        "Whiteley R",
+        "Hickey JT",
+        "Vermeulen R",
+        "Timmins R",
+        "Best TM",
+        "Rio E",
+        "Opar D"
+      ],
+      "score": 0.5916666666666666,
+      "fa_matched": true,
+      "query_used": "Timmins biceps femoris long head fascicle"
+    },
+    "best_score": 0.5916666666666666,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_komi_2000",
+    "area": "biomeccanica",
+    "expected_title": "Stretch-shortening cycle: a powerful model to study normal and fatigued muscle structure and function",
+    "expected_authors": "Komi, P. V.",
+    "expected_year": 2000,
+    "expected_journal": "Journal of Biomechanics",
+    "current_pmid": "10917766",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/10917766/",
+    "best_match": {
+      "pmid": "10899328",
+      "title": "Stretch-shortening cycle: a powerful model to study normal and fatigued muscle.",
+      "journal": "J Biomech",
+      "pubdate": "2000 Oct",
+      "authors": [
+        "Komi PV"
+      ],
+      "score": 1.1,
+      "fa_matched": true,
+      "query_used": "Komi stretch shortening cycle powerful model"
+    },
+    "best_score": 1.1,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_nigg_2001",
+    "area": "biomeccanica",
+    "expected_title": "The role of impact forces and foot pronation: a new paradigm",
+    "expected_authors": "Nigg, B. M.",
+    "expected_year": 2001,
+    "expected_journal": "Clinical Journal of Sport Medicine",
+    "current_pmid": "11176141",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/11176141/",
+    "best_match": {
+      "pmid": "11176139",
+      "title": "The role of impact forces and foot pronation: a new paradigm.",
+      "journal": "Clin J Sport Med",
+      "pubdate": "2001 Jan",
+      "authors": [
+        "Nigg BM"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Nigg impact forces foot pronation new"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_enoka_1988",
+    "area": "biomeccanica",
+    "expected_title": "Muscle strength and its development: new perspectives",
+    "expected_authors": "Enoka, R. M.",
+    "expected_year": 1988,
+    "expected_journal": "Sports Medicine",
+    "current_pmid": "3057316",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/3057316/",
+    "best_match": {
+      "pmid": "3055145",
+      "title": "Muscle strength and its development. New perspectives.",
+      "journal": "Sports Med",
+      "pubdate": "1988 Sep",
+      "authors": [
+        "Enoka RM"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Enoka muscle strength its development new"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_herzog_2004",
+    "area": "biomeccanica",
+    "expected_title": "History-dependent properties of skeletal muscle: rheological properties and residual force enhancement",
+    "expected_authors": "Herzog, W.",
+    "expected_year": 2004,
+    "expected_journal": "Journal of Electromyography and Kinesiology",
+    "current_pmid": "15094144",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/15094144/",
+    "best_match": {
+      "pmid": "34062271",
+      "title": "Residual force enhancement in human skeletal muscles: A systematic review and meta-analysis.",
+      "journal": "J Sport Health Sci",
+      "pubdate": "2022 Jan",
+      "authors": [
+        "de Campos D",
+        "Orssatto LBR",
+        "Trajano GS",
+        "Herzog W",
+        "Fontana HB"
+      ],
+      "score": 0.6555555555555554,
+      "fa_matched": true,
+      "query_used": "Herzog history dependent properties skeletal muscle"
+    },
+    "best_score": 0.6555555555555554,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_zatsiorsky_2002",
+    "area": "biomeccanica",
+    "expected_title": "Kinetics of Human Motion",
+    "expected_authors": "Zatsiorsky, V. M.",
+    "expected_year": 2002,
+    "expected_journal": "Human Kinetics",
+    "current_pmid": "11932598",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/11932598/",
+    "best_match": {
+      "pmid": "18255182",
+      "title": "Finger inter-dependence: linking the kinetic and kinematic variables.",
+      "journal": "Hum Mov Sci",
+      "pubdate": "2008 Jun",
+      "authors": [
+        "Kim SW",
+        "Shim JK",
+        "Zatsiorsky VM",
+        "Latash ML"
+      ],
+      "score": 0.3,
+      "fa_matched": true,
+      "query_used": "Zatsiorsky kinetics human motion"
+    },
+    "best_score": 0.3,
+    "resolved": false
+  },
+  {
+    "id": "sci_biomech_cavanagh_1980",
+    "area": "biomeccanica",
+    "expected_title": "Ground reaction forces in distance running",
+    "expected_authors": "Cavanagh, P. R., & Lafortune, M. A.",
+    "expected_year": 1980,
+    "expected_journal": "Journal of Biomechanics",
+    "current_pmid": "7400379",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/7400379/",
+    "best_match": {
+      "pmid": "7400169",
+      "title": "Ground reaction forces in distance running.",
+      "journal": "J Biomech",
+      "pubdate": "1980",
+      "authors": [
+        "Cavanagh PR",
+        "Lafortune MA"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Cavanagh ground reaction forces distance running"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_arampatzis_2006",
+    "area": "biomeccanica",
+    "expected_title": "Influence of the muscle-tendon unit mechanical properties on mechanical efficiency in bouncing gait",
+    "expected_authors": "Arampatzis, A., et al.",
+    "expected_year": 2006,
+    "expected_journal": "Journal of Experimental Biology",
+    "current_pmid": "16731809",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/16731809/",
+    "best_match": {
+      "pmid": "16916971",
+      "title": "Influence of the muscle-tendon unit's mechanical and morphological properties on running economy.",
+      "journal": "J Exp Biol",
+      "pubdate": "2006 Sep",
+      "authors": [
+        "Arampatzis A",
+        "De Monte G",
+        "Karamanidis K",
+        "Morey-Klapsing G",
+        "Stafilidis S",
+        "Brüggemann GP"
+      ],
+      "score": 0.8833333333333333,
+      "fa_matched": true,
+      "query_used": "Arampatzis influence muscle tendon unit mechanical"
+    },
+    "best_score": 0.8833333333333333,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_ishikawa_2005",
+    "area": "biomeccanica",
+    "expected_title": "Interaction between fascicle and tendinous tissue in short-contact stretch-shortening cycle exercise",
+    "expected_authors": "Ishikawa, M., Niemelä, E., & Komi, P. V.",
+    "expected_year": 2005,
+    "expected_journal": "Journal of Applied Physiology",
+    "current_pmid": "15890807",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/15890807/",
+    "best_match": {
+      "pmid": "15705735",
+      "title": "Interaction between fascicle and tendinous tissues in short-contact stretch-shortening cycle exercise with varying eccentric intensities.",
+      "journal": "J Appl Physiol (1985)",
+      "pubdate": "2005 Jul",
+      "authors": [
+        "Ishikawa M",
+        "Niemelä E",
+        "Komi PV"
+      ],
+      "score": 1.0714285714285714,
+      "fa_matched": true,
+      "query_used": "Ishikawa interaction fascicle tendinous tissue short"
+    },
+    "best_score": 1.0714285714285714,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_deluca_2006",
+    "area": "biomeccanica",
+    "expected_title": "Filtering the surface EMG signal: Movement artifact and baseline noise removal",
+    "expected_authors": "De Luca, C. J., et al.",
+    "expected_year": 2006,
+    "expected_journal": "Journal of Electromyography and Kinesiology",
+    "current_pmid": "16679036",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/16679036/",
+    "best_match": {
+      "pmid": "20206934",
+      "title": "Filtering the surface EMG signal: Movement artifact and baseline noise contamination.",
+      "journal": "J Biomech",
+      "pubdate": "2010 May 28",
+      "authors": [
+        "De Luca CJ",
+        "Gilmore LD",
+        "Kuznetsov M",
+        "Roy SH"
+      ],
+      "score": 1.1444444444444444,
+      "fa_matched": true,
+      "query_used": "De Luca filtering surface emg signal movement"
+    },
+    "best_score": 1.1444444444444444,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_moritani_1979",
+    "area": "biomeccanica",
+    "expected_title": "Neural factors versus hypertrophy in time course of muscle strength gain",
+    "expected_authors": "Moritani, T., & deVries, H. A.",
+    "expected_year": 1979,
+    "expected_journal": "American Journal of Physical Medicine",
+    "current_pmid": "443443",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/443443/",
+    "best_match": {
+      "pmid": "453338",
+      "title": "Neural factors versus hypertrophy in the time course of muscle strength gain.",
+      "journal": "Am J Phys Med",
+      "pubdate": "1979 Jun",
+      "authors": [
+        "Moritani T",
+        "deVries HA"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Moritani neural factors hypertrophy time course"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_escamilla_2000",
+    "area": "biomeccanica",
+    "expected_title": "Knee biomechanics during the squat exercise",
+    "expected_authors": "Escamilla, R. F.",
+    "expected_year": 2000,
+    "expected_journal": "Medicine & Science in Sports & Exercise",
+    "current_pmid": "10776897",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/10776897/",
+    "best_match": {
+      "pmid": "19127183",
+      "title": "Cruciate ligament force during the wall squat and the one-leg squat.",
+      "journal": "Med Sci Sports Exerc",
+      "pubdate": "2009 Feb",
+      "authors": [
+        "Escamilla RF",
+        "Zheng N",
+        "Imamura R",
+        "Macleod TD",
+        "Edwards WB",
+        "Hreljac A",
+        "Fleisig GS",
+        "Wilk KE",
+        "Moorman CT 3rd",
+        "Andrews JR"
+      ],
+      "score": 0.475,
+      "fa_matched": true,
+      "query_used": "Escamilla knee biomechanics squat exercise"
+    },
+    "best_score": 0.475,
+    "resolved": false
+  },
+  {
+    "id": "sci_biomech_lieber_2004",
+    "area": "biomeccanica",
+    "expected_title": "Skeletal muscle design to meet functional demands",
+    "expected_authors": "Lieber, R. L., & Fridén, J.",
+    "expected_year": 2004,
+    "expected_journal": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    "current_pmid": "15519971",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/15519971/",
+    "best_match": {
+      "pmid": "21502118",
+      "title": "Skeletal muscle design to meet functional demands.",
+      "journal": "Philos Trans R Soc Lond B Biol Sci",
+      "pubdate": "2011 May 27",
+      "authors": [
+        "Lieber RL",
+        "Ward SR"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Lieber skeletal muscle design meet functional"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_gregersen_2006",
+    "area": "biomeccanica",
+    "expected_title": "Biomechanics of cycling: loads on the spine, knee, and ankle",
+    "expected_authors": "Gregersen, C. S., & Hull, M. L.",
+    "expected_year": 2006,
+    "expected_journal": "Journal of Biomechanical Engineering",
+    "current_pmid": "16706012",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/16706012/",
+    "best_match": {
+      "pmid": "16718804",
+      "title": "Functional oesophago-gastric junction imaging.",
+      "journal": "World J Gastroenterol",
+      "pubdate": "2006 May 14",
+      "authors": [
+        "McMahon BP",
+        "Drewes AM",
+        "Gregersen H"
+      ],
+      "score": 0.3,
+      "fa_matched": true,
+      "query_used": "Gregersen journal biomechanical engineering 2006"
+    },
+    "best_score": 0.3,
+    "resolved": false
+  },
+  {
+    "id": "sci_biomech_samozino_2016",
+    "area": "biomeccanica",
+    "expected_title": "Optimal Force-Velocity Profile in Ballistic Movements: Altius, Citius, Fortius",
+    "expected_authors": "Samozino, P., et al.",
+    "expected_year": 2016,
+    "expected_journal": "Medicine & Science in Sports & Exercise",
+    "current_pmid": "26741119",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/26741119/",
+    "best_match": {
+      "pmid": "21775909",
+      "title": "Optimal force-velocity profile in ballistic movements--altius: citius or fortius?",
+      "journal": "Med Sci Sports Exerc",
+      "pubdate": "2012 Feb",
+      "authors": [
+        "Samozino P",
+        "Rejc E",
+        "Di Prampero PE",
+        "Belli A",
+        "Morin JB"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Samozino optimal force velocity profile ballistic"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_mcgill_2001",
+    "area": "biomeccanica",
+    "expected_title": "Low back stability: mechanics, injury mechanisms, and rehabilitation",
+    "expected_authors": "McGill, S. M.",
+    "expected_year": 2001,
+    "expected_journal": "Journal of Electromyography and Kinesiology",
+    "current_pmid": "11738952",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/11738952/",
+    "best_match": {
+      "pmid": "14759749",
+      "title": "Linking latest knowledge of injury mechanisms and spine function to the prevention of low back disorders.",
+      "journal": "J Electromyogr Kinesiol",
+      "pubdate": "2004 Feb",
+      "authors": [
+        "McGill SM"
+      ],
+      "score": 0.7285714285714285,
+      "fa_matched": true,
+      "query_used": "McGill low back stability mechanics injury"
+    },
+    "best_score": 0.7285714285714285,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_winter_1990",
+    "area": "biomeccanica",
+    "expected_title": "Biomechanics and Motor Control of Human Movement",
+    "expected_authors": "Winter, D. A.",
+    "expected_year": 1990,
+    "expected_journal": "John Wiley & Sons",
+    "current_pmid": "2275521",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/2275521/",
+    "best_match": {
+      "pmid": "40525283",
+      "title": "Compensatory Proximal Adjustments Characterize Effective Reaching Movements After Stroke.",
+      "journal": "Stroke",
+      "pubdate": "2025 Aug",
+      "authors": [
+        "Wolf S",
+        "Winter LV",
+        "Elangovan N",
+        "Braaß H",
+        "Feldheim J",
+        "Graterol Pérez JA",
+        "Quandt F",
+        "Schulz R",
+        "Konczak J",
+        "Gerloff C"
+      ],
+      "score": 0.3,
+      "fa_matched": true,
+      "query_used": "Winter biomechanics motor control human movement"
+    },
+    "best_score": 0.3,
+    "resolved": false
+  },
+  {
+    "id": "sci_biomech_cronin_2005",
+    "area": "biomeccanica",
+    "expected_title": "Strength and power predictors of sports speed: deterministic modeling",
+    "expected_authors": "Cronin, J., & Hansen, K. T.",
+    "expected_year": 2005,
+    "expected_journal": "Sports Medicine",
+    "current_pmid": "15799745",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/15799745/",
+    "best_match": {
+      "pmid": "15903374",
+      "title": "Strength and power predictors of sports speed.",
+      "journal": "J Strength Cond Res",
+      "pubdate": "2005 May",
+      "authors": [
+        "Cronin JB",
+        "Hansen KT"
+      ],
+      "score": 1.0142857142857142,
+      "fa_matched": true,
+      "query_used": "Cronin strength power predictors sports speed"
+    },
+    "best_score": 1.0142857142857142,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_cormie_2011",
+    "area": "biomeccanica",
+    "expected_title": "Developing maximal neuromuscular power: Part 1 - Biological basis of maximal power production",
+    "expected_authors": "Cormie, P., McGuigan, M. R., & Newton, R. U.",
+    "expected_year": 2011,
+    "expected_journal": "Sports Medicine",
+    "current_pmid": "21198305",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/21198305/",
+    "best_match": {
+      "pmid": "21142282",
+      "title": "Developing maximal neuromuscular power: Part 1--biological basis of maximal power production.",
+      "journal": "Sports Med",
+      "pubdate": "2011 Jan 1",
+      "authors": [
+        "Cormie P",
+        "McGuigan MR",
+        "Newton RU"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Cormie developing maximal neuromuscular power part"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_bryanton_2012",
+    "area": "biomeccanica",
+    "expected_title": "Effect of squat depth on muscle activation",
+    "expected_authors": "Bryanton, M. A., Kennedy, M. D., Carey, J. P., & Chiu, L. Z.",
+    "expected_year": 2012,
+    "expected_journal": "Journal of Strength and Conditioning Research",
+    "current_pmid": "22344055",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/22344055/",
+    "best_match": {
+      "pmid": "42512881",
+      "title": "Effects of Barbell Position and Squat Depth on Trunk and Lower-Extremity Muscle Activation During the Back Squat in Healthy Adult Men.",
+      "journal": "Medicina (Kaunas)",
+      "pubdate": "2026 Jul 11",
+      "authors": [
+        "Park JH",
+        "Lei S",
+        "Cho HY",
+        "Kim SH"
+      ],
+      "score": 0.6538461538461539,
+      "fa_matched": false,
+      "query_used": "squat depth muscle activation"
+    },
+    "best_score": 0.6538461538461539,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_kubo_2001",
+    "area": "biomeccanica",
+    "expected_title": "Effects of resistance and stretching training programmes on the viscoelastic properties of human tendon structures in vivo",
+    "expected_authors": "Kubo, K., Kanehisa, H., & Fukunaga, T.",
+    "expected_year": 2002,
+    "expected_journal": "Journal of Physiology",
+    "current_pmid": "11796676",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/11796676/",
+    "best_match": {
+      "pmid": "11773330",
+      "title": "Effects of resistance and stretching training programmes on the viscoelastic properties of human tendon structures in vivo.",
+      "journal": "J Physiol",
+      "pubdate": "2002 Jan 1",
+      "authors": [
+        "Kubo K",
+        "Kanehisa H",
+        "Fukunaga T"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Kubo resistance stretching training programmes viscoelastic"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_wulf_2013",
+    "area": "biomeccanica",
+    "expected_title": "Attentional focus and motor learning: a review of 15 years",
+    "expected_authors": "Wulf, G.",
+    "expected_year": 2013,
+    "expected_journal": "International Review of Sport and Exercise Psychology",
+    "current_pmid": "23745671",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/23745671/",
+    "best_match": {
+      "pmid": "34843301",
+      "title": "Superiority of external attentional focus for motor performance and learning: Systematic reviews and meta-analyses.",
+      "journal": "Psychol Bull",
+      "pubdate": "2021 Jun",
+      "authors": [
+        "Chua LK",
+        "Jimenez-Diaz J",
+        "Lewthwaite R",
+        "Kim T",
+        "Wulf G"
+      ],
+      "score": 0.7871794871794872,
+      "fa_matched": true,
+      "query_used": "Wulf attentional focus motor learning review"
+    },
+    "best_score": 0.7871794871794872,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_flanagan_2012",
+    "area": "biomeccanica",
+    "expected_title": "Muscle activation patterns and knee mechanics during isometric and dynamic squats",
+    "expected_authors": "Flanagan, S. P., & Salem, G. J.",
+    "expected_year": 2007,
+    "expected_journal": "Journal of Strength and Conditioning Research",
+    "current_pmid": "17685679",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/17685679/",
+    "best_match": {
+      "pmid": "17313262",
+      "title": "Muscle dynamics differences between legs in healthy adults.",
+      "journal": "J Strength Cond Res",
+      "pubdate": "2007 Feb",
+      "authors": [
+        "Flanagan EP",
+        "Harrison AJ"
+      ],
+      "score": 0.4009615384615385,
+      "fa_matched": true,
+      "query_used": "Flanagan journal strength conditioning 2007"
+    },
+    "best_score": 0.4009615384615385,
+    "resolved": false
+  },
+  {
+    "id": "sci_biomech_mcgill_2009",
+    "area": "biomeccanica",
+    "expected_title": "Comparison of different strongman events: trunk muscle activation and lumbar spine motion, load, and stiffness",
+    "expected_authors": "McGill, S. M., McDermott, A., & Fenwick, C. M.",
+    "expected_year": 2009,
+    "expected_journal": "Journal of Strength and Conditioning Research",
+    "current_pmid": "19077735",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/19077735/",
+    "best_match": {
+      "pmid": "19528856",
+      "title": "Comparison of different strongman events: trunk muscle activation and lumbar spine motion, load, and stiffness.",
+      "journal": "J Strength Cond Res",
+      "pubdate": "2009 Jul",
+      "authors": [
+        "McGill SM",
+        "McDermott A",
+        "Fenwick CM"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "McGill comparison different strongman events trunk"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_biomech_vigotsky_2018",
+    "area": "biomeccanica",
+    "expected_title": "The role of internal and external forces on the biomechanics of the squat exercise",
+    "expected_authors": "Vigotsky, A. D., Bryanton, M. A., Nuckols, G., & Beardsley, C.",
+    "expected_year": 2019,
+    "expected_journal": "International Journal of Sports Physical Therapy",
+    "current_pmid": "30746294",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/30746294/",
+    "best_match": {
+      "pmid": "31174981",
+      "title": "Influence of the Powers™ strap on pain and lower limb biomechanics in individuals with patellofemoral pain.",
+      "journal": "Knee",
+      "pubdate": "2019 Dec",
+      "authors": [
+        "Greuel H",
+        "Herrington L",
+        "Liu A",
+        "Jones RK"
+      ],
+      "score": 0.11904761904761904,
+      "fa_matched": false,
+      "query_used": "internal external forces biomechanics squat exercise"
+    },
+    "best_score": 0.11904761904761904,
+    "resolved": false
+  },
+  {
+    "id": "sci_lca_myer_2006",
+    "area": "clinico",
+    "expected_title": "Targeted neuromuscular training improves performance and neuromuscular biomechanics in female athletes",
+    "expected_authors": "Myer, G. D., Ford, K. R., Palumbo, J. P., & Hewett, T. E.",
+    "expected_year": 2006,
+    "expected_journal": "Journal of Strength and Conditioning Research",
+    "current_pmid": "16503678",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/16503678/",
+    "best_match": {
+      "pmid": "41718606",
+      "title": "The Effects of Neuromuscular Training and Additive Visual Biofeedback on Landing Biomechanics and Sensorimotor Brain Activity in Young Female Athletes.",
+      "journal": "Med Sci Sports Exerc",
+      "pubdate": "2026 Jul 1",
+      "authors": [
+        "Slutsky-Ganesh AB",
+        "Chaput M",
+        "Hogg JA",
+        "Zuleger TM",
+        "Kim H",
+        "Diekfuss JA",
+        "Anand M",
+        "Schille A",
+        "Dicesare C",
+        "Warren SM",
+        "Riehm CD",
+        "Schnittjer AJ",
+        "Farraye BT",
+        "Pierce S",
+        "Roe JW",
+        "Bennison J",
+        "Barber Foss KD",
+        "Simon JE",
+        "Riley MA",
+        "Myer GD",
+        "Grooms DR"
+      ],
+      "score": 0.76875,
+      "fa_matched": true,
+      "query_used": "Myer targeted neuromuscular training improves performance"
+    },
+    "best_score": 0.76875,
+    "resolved": true
+  },
+  {
+    "id": "sci_lca_buckthorpe_2019",
+    "area": "clinico",
+    "expected_title": "Optimising the early-stage rehabilitation process after anterior cruciate ligament reconstruction",
+    "expected_authors": "Buckthorpe, M., Della Villa, F., Della Villa, S., & Roi, G. S.",
+    "expected_year": 2019,
+    "expected_journal": "Sports Medicine",
+    "current_pmid": "31168817",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/31168817/",
+    "best_match": {
+      "pmid": "37787846",
+      "title": "Optimising the Early-Stage Rehabilitation Process Post-ACL Reconstruction.",
+      "journal": "Sports Med",
+      "pubdate": "2024 Jan",
+      "authors": [
+        "Buckthorpe M",
+        "Gokeler A",
+        "Herrington L",
+        "Hughes M",
+        "Grassi A",
+        "Wadey R",
+        "Patterson S",
+        "Compagnin A",
+        "La Rosa G",
+        "Della Villa F"
+      ],
+      "score": 0.906060606060606,
+      "fa_matched": true,
+      "query_used": "Buckthorpe optimising early stage rehabilitation process"
+    },
+    "best_score": 0.906060606060606,
+    "resolved": true
+  },
+  {
+    "id": "sci_lca_hewett_2005",
+    "area": "clinico",
+    "expected_title": "Biomechanical measures of neuromuscular control and valgus loading of the knee predict anterior cruciate ligament injury risk in female athletes",
+    "expected_authors": "Hewett, T. E., Myer, G. D., Ford, K. R., et al.",
+    "expected_year": 2005,
+    "expected_journal": "The American Journal of Sports Medicine",
+    "current_pmid": "15722363",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/15722363/",
+    "best_match": {
+      "pmid": "15722287",
+      "title": "Biomechanical measures of neuromuscular control and valgus loading of the knee predict anterior cruciate ligament injury risk in female athletes: a prospective study.",
+      "journal": "Am J Sports Med",
+      "pubdate": "2005 Apr",
+      "authors": [
+        "Hewett TE",
+        "Myer GD",
+        "Ford KR",
+        "Heidt RS Jr",
+        "Colosimo AJ",
+        "McLean SG",
+        "van den Bogert AJ",
+        "Paterno MV",
+        "Succop P"
+      ],
+      "score": 1.26875,
+      "fa_matched": true,
+      "query_used": "Hewett biomechanical measures neuromuscular control valgus"
+    },
+    "best_score": 1.26875,
+    "resolved": true
+  },
+  {
+    "id": "sci_tendon_malliaras_2013",
+    "area": "clinico",
+    "expected_title": "Achilles and patellar tendinopathy loading programmes : a systematic review comparing clinical outcomes and identifying potential mechanisms for effectiveness",
+    "expected_authors": "Malliaras, P., Barton, C. J., Reeves, N. D., & Langberg, H.",
+    "expected_year": 2013,
+    "expected_journal": "Sports Medicine",
+    "current_pmid": "23625465",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/23625465/",
+    "best_match": {
+      "pmid": "23494258",
+      "title": "Achilles and patellar tendinopathy loading programmes : a systematic review comparing clinical outcomes and identifying potential mechanisms for effectiveness.",
+      "journal": "Sports Med",
+      "pubdate": "2013 Apr",
+      "authors": [
+        "Malliaras P",
+        "Barton CJ",
+        "Reeves ND",
+        "Langberg H"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Malliaras achilles patellar tendinopathy loading programmes"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_tendon_cook_2009",
+    "area": "clinico",
+    "expected_title": "Is tendon pathology a continuum? A clinical model to explain the clinical presentation of load-induced tendinopathy",
+    "expected_authors": "Cook, J. L., & Purdam, C. R.",
+    "expected_year": 2009,
+    "expected_journal": "British Journal of Sports Medicine",
+    "current_pmid": "19776044",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/19776044/",
+    "best_match": {
+      "pmid": "18812414",
+      "title": "Is tendon pathology a continuum? A pathology model to explain the clinical presentation of load-induced tendinopathy.",
+      "journal": "Br J Sports Med",
+      "pubdate": "2009 Jun",
+      "authors": [
+        "Cook JL",
+        "Purdam CR"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Cook tendon pathology continuum clinical model"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_hamstring_ekstrand_2012",
+    "area": "clinico",
+    "expected_title": "Hamstring muscle strain recurrence and time loss in professional football",
+    "expected_authors": "Ekstrand, J., Hägglund, M., & Waldén, M.",
+    "expected_year": 2012,
+    "expected_journal": "British Journal of Sports Medicine",
+    "current_pmid": "22219258",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/22219258/",
+    "best_match": {
+      "pmid": "22144005",
+      "title": "Hamstring muscle injuries in professional football: the correlation of MRI findings with return to play.",
+      "journal": "Br J Sports Med",
+      "pubdate": "2012 Feb",
+      "authors": [
+        "Ekstrand J",
+        "Healy JC",
+        "Waldén M",
+        "Lee JC",
+        "English B",
+        "Hägglund M"
+      ],
+      "score": 0.6928571428571428,
+      "fa_matched": true,
+      "query_used": "Ekstrand hamstring muscle strain recurrence time"
+    },
+    "best_score": 0.6928571428571428,
+    "resolved": true
+  },
+  {
+    "id": "sci_hamstring_vandyk_2019",
+    "area": "clinico",
+    "expected_title": "Including the Nordic hamstring exercise in injury prevention programmes halves the rate of hamstring injuries: a systematic review and meta-analysis of 8459 athletes",
+    "expected_authors": "van Dyk, N., Behan, F. P., & Whiteley, R.",
+    "expected_year": 2019,
+    "expected_journal": "British Journal of Sports Medicine",
+    "current_pmid": "30819786",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/30819786/",
+    "best_match": {
+      "pmid": "30808663",
+      "title": "Including the Nordic hamstring exercise in injury prevention programmes halves the rate of hamstring injuries: a systematic review and meta-analysis of 8459 athletes.",
+      "journal": "Br J Sports Med",
+      "pubdate": "2019 Nov",
+      "authors": [
+        "van Dyk N",
+        "Behan FP",
+        "Whiteley R"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "van Dyk including nordic hamstring exercise injury"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_hamstring_petersen_2011",
+    "area": "clinico",
+    "expected_title": "Preventing hamstring strains in football players: a randomized controlled trial",
+    "expected_authors": "Petersen, J., Thorborg, K., Nielsen, M. B., Budtz-Jørgensen, E., & Holmich, P.",
+    "expected_year": 2011,
+    "expected_journal": "The American Journal of Sports Medicine",
+    "current_pmid": "21803979",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/21803979/",
+    "best_match": {
+      "pmid": "41939953",
+      "title": "The Effect of Therapeutic Exercises and Ultrasound for Rehabilitation of Partially Injured Hamstring Muscles in Elite Soccer (Football) Players: A Study Protocol for a Randomized Controlled Trial.",
+      "journal": "Int J Sports Phys Ther",
+      "pubdate": "2026",
+      "authors": [
+        "Hadib Abdulridha K",
+        "Al-Tameemi IKH",
+        "Alzaidi AHA",
+        "Cuenca-Zaldivar JN",
+        "Aguilar Latorre A",
+        "Gómez-Soria I",
+        "Calatayud E"
+      ],
+      "score": 0.5416666666666666,
+      "fa_matched": false,
+      "query_used": "preventing hamstring strains football players randomized"
+    },
+    "best_score": 0.5416666666666666,
+    "resolved": false
+  },
+  {
+    "id": "sci_hamstring_bourne_2018",
+    "area": "clinico",
+    "expected_title": "Impact of exercise selection on hamstring muscle activation and architectural adaptations: a systematic review",
+    "expected_authors": "Bourne, M. N., Timmins, R. G., Opar, D. A., et al.",
+    "expected_year": 2018,
+    "expected_journal": "Sports Medicine",
+    "current_pmid": "29450822",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/29450822/",
+    "best_match": {
+      "pmid": "27467123",
+      "title": "Impact of exercise selection on hamstring muscle activation.",
+      "journal": "Br J Sports Med",
+      "pubdate": "2017 Jul",
+      "authors": [
+        "Bourne MN",
+        "Williams MD",
+        "Opar DA",
+        "Al Najjar A",
+        "Kerr GK",
+        "Shield AJ"
+      ],
+      "score": 0.8999999999999999,
+      "fa_matched": true,
+      "query_used": "Bourne impact exercise selection hamstring muscle"
+    },
+    "best_score": 0.8999999999999999,
+    "resolved": true
+  },
+  {
+    "id": "sci_shoulder_cools_2007",
+    "area": "clinico",
+    "expected_title": "Rehabilitation of scapular dyskinesis: from the office to the field",
+    "expected_authors": "Cools, A. M., Struyf, F., De Mey, K., Danneels, L., & Cambier, D.",
+    "expected_year": 2007,
+    "expected_journal": "Journal of Sport Rehabilitation",
+    "current_pmid": "17923728",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/17923728/",
+    "best_match": {
+      "pmid": "18070811",
+      "title": "Internal impingement in the tennis player: rehabilitation guidelines.",
+      "journal": "Br J Sports Med",
+      "pubdate": "2008 Mar",
+      "authors": [
+        "Cools AM",
+        "Declercq G",
+        "Cagnie B",
+        "Cambier D",
+        "Witvrouw E"
+      ],
+      "score": 0.45,
+      "fa_matched": true,
+      "query_used": "Cools journal sport rehabilitation 2007"
+    },
+    "best_score": 0.45,
+    "resolved": false
+  },
+  {
+    "id": "sci_shoulder_kibler_2010",
+    "area": "clinico",
+    "expected_title": "Current concepts: scapular dyskinesis",
+    "expected_authors": "Kibler, W. B., & Sciascia, A.",
+    "expected_year": 2010,
+    "expected_journal": "British Journal of Sports Medicine",
+    "current_pmid": "20371559",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/20371559/",
+    "best_match": {
+      "pmid": "19996329",
+      "title": "Current concepts: scapular dyskinesis.",
+      "journal": "Br J Sports Med",
+      "pubdate": "2010 Apr",
+      "authors": [
+        "Kibler WB",
+        "Sciascia A"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Kibler current concepts scapular dyskinesis"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_shoulder_wilk_2009",
+    "area": "clinico",
+    "expected_title": "The shoulder in baseball: rehabilitation principles",
+    "expected_authors": "Wilk, K. E., Reinold, M. M., & Dugas, J. R.",
+    "expected_year": 2009,
+    "expected_journal": "Journal of Orthopaedic & Sports Physical Therapy",
+    "current_pmid": "19182317",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/19182317/",
+    "best_match": {
+      "pmid": "24079440",
+      "title": "Nonoperative and postoperative rehabilitation for glenohumeral instability.",
+      "journal": "Clin Sports Med",
+      "pubdate": "2013 Oct",
+      "authors": [
+        "Wilk KE",
+        "Macrina LC"
+      ],
+      "score": 0.4875,
+      "fa_matched": true,
+      "query_used": "Wilk shoulder baseball rehabilitation principles"
+    },
+    "best_score": 0.4875,
+    "resolved": false
+  },
+  {
+    "id": "sci_spine_mcgill_2001",
+    "area": "clinico",
+    "expected_title": "Low back stability: from formal description to issues for performance and rehabilitation",
+    "expected_authors": "McGill, S. M.",
+    "expected_year": 2001,
+    "expected_journal": "Exercise and Sport Sciences Reviews",
+    "current_pmid": "11265986",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/11265986/",
+    "best_match": {
+      "pmid": "11210443",
+      "title": "Low back stability: from formal description to issues for performance and rehabilitation.",
+      "journal": "Exerc Sport Sci Rev",
+      "pubdate": "2001",
+      "authors": [
+        "McGill SM"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "McGill low back stability formal description"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_spine_cholewicki_1996",
+    "area": "clinico",
+    "expected_title": "Mechanical stability of the in vivo lumbar spine: implications for injury and chronic low back pain",
+    "expected_authors": "Cholewicki, J., & McGill, S. M.",
+    "expected_year": 1996,
+    "expected_journal": "Journal of Biomechanics",
+    "current_pmid": "8827400",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/8827400/",
+    "best_match": {
+      "pmid": "11415593",
+      "title": "Mechanical stability of the in vivo lumbar spine: implications for injury and chronic low back pain.",
+      "journal": "Clin Biomech (Bristol)",
+      "pubdate": "1996 Jan",
+      "authors": [
+        "Cholewicki J",
+        "McGill SM"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Cholewicki mechanical stability vivo lumbar spine"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_spine_hodges_1996",
+    "area": "clinico",
+    "expected_title": "Inefficient muscular stabilization of the lumbar spine associated with low back pain: a motor control evaluation of transversus abdominis",
+    "expected_authors": "Hodges, P. W., & Richardson, C. A.",
+    "expected_year": 1996,
+    "expected_journal": "Spine",
+    "current_pmid": "8923631",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/8923631/",
+    "best_match": {
+      "pmid": "8961451",
+      "title": "Inefficient muscular stabilization of the lumbar spine associated with low back pain. A motor control evaluation of transversus abdominis.",
+      "journal": "Spine (Phila Pa 1976)",
+      "pubdate": "1996 Nov 15",
+      "authors": [
+        "Hodges PW",
+        "Richardson CA"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Hodges inefficient muscular stabilization lumbar spine"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_spine_hides_1996",
+    "area": "clinico",
+    "expected_title": "Multifidus muscle recovery is not automatic after resolution of acute, first-episode low back pain",
+    "expected_authors": "Hides, J. A., Richardson, C. A., & Jull, G. A.",
+    "expected_year": 1996,
+    "expected_journal": "Spine",
+    "current_pmid": "8961451",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/8961451/",
+    "best_match": {
+      "pmid": "8979323",
+      "title": "Multifidus muscle recovery is not automatic after resolution of acute, first-episode low back pain.",
+      "journal": "Spine (Phila Pa 1976)",
+      "pubdate": "1996 Dec 1",
+      "authors": [
+        "Hides JA",
+        "Richardson CA",
+        "Jull GA"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Hides spine 1996"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_lca_ardern_2016",
+    "area": "clinico",
+    "expected_title": "2016 Consensus statement on return to sport from the first world congress in sports physical therapy",
+    "expected_authors": "Ardern, C. L., Glasgow, P., Schneiders, A., Witvrouw, E., Clarsen, B., Cools, A., & Bizzini, M.",
+    "expected_year": 2016,
+    "expected_journal": "British Journal of Sports Medicine",
+    "current_pmid": "26888237",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/26888237/",
+    "best_match": {
+      "pmid": "27226389",
+      "title": "2016 Consensus statement on return to sport from the First World Congress in Sports Physical Therapy, Bern.",
+      "journal": "Br J Sports Med",
+      "pubdate": "2016 Jul",
+      "authors": [
+        "Ardern CL",
+        "Glasgow P",
+        "Schneiders A",
+        "Witvrouw E",
+        "Clarsen B",
+        "Cools A",
+        "Gojanovic B",
+        "Griffin S",
+        "Khan KM",
+        "Moksnes H",
+        "Mutch SA",
+        "Phillips N",
+        "Reurink G",
+        "Sadler R",
+        "Silbernagel KG",
+        "Thorborg K",
+        "Wangensteen A",
+        "Wilk KE",
+        "Bizzini M"
+      ],
+      "score": 1.2583333333333333,
+      "fa_matched": true,
+      "query_used": "Ardern 2016 consensus statement return sport"
+    },
+    "best_score": 1.2583333333333333,
+    "resolved": true
+  },
+  {
+    "id": "sci_spine_hicks_2005",
+    "area": "clinico",
+    "expected_title": "Preliminary development of a clinical prediction rule for determining which patients with low back pain will respond to a stabilization exercise program",
+    "expected_authors": "Hicks, G. E., Fritz, J. M., Delitto, A., & McGill, S. M.",
+    "expected_year": 2005,
+    "expected_journal": "Archives of Physical Medicine and Rehabilitation",
+    "current_pmid": "16084801",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/16084801/",
+    "best_match": {
+      "pmid": "16181938",
+      "title": "Preliminary development of a clinical prediction rule for determining which patients with low back pain will respond to a stabilization exercise program.",
+      "journal": "Arch Phys Med Rehabil",
+      "pubdate": "2005 Sep",
+      "authors": [
+        "Hicks GE",
+        "Fritz JM",
+        "Delitto A",
+        "McGill SM"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Hicks preliminary development clinical prediction rule"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_shoulder_escamilla_2009",
+    "area": "clinico",
+    "expected_title": "Shoulder muscle recruitment patterns and related biomechanics during upper extremity sports",
+    "expected_authors": "Escamilla, R. F., & Andrews, J. R.",
+    "expected_year": 2009,
+    "expected_journal": "Sports Medicine",
+    "current_pmid": "19453205",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/19453205/",
+    "best_match": {
+      "pmid": "19530752",
+      "title": "Shoulder muscle recruitment patterns and related biomechanics during upper extremity sports.",
+      "journal": "Sports Med",
+      "pubdate": "2009",
+      "authors": [
+        "Escamilla RF",
+        "Andrews JR"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Escamilla shoulder muscle recruitment patterns related"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_knee_powers_2010",
+    "area": "clinico",
+    "expected_title": "The influence of abnormal hip mechanics on knee injury: a biomechanical perspective",
+    "expected_authors": "Powers, C. M.",
+    "expected_year": 2010,
+    "expected_journal": "Journal of Orthopaedic & Sports Physical Therapy",
+    "current_pmid": "20710093",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/20710093/",
+    "best_match": {
+      "pmid": "20118526",
+      "title": "The influence of abnormal hip mechanics on knee injury: a biomechanical perspective.",
+      "journal": "J Orthop Sports Phys Ther",
+      "pubdate": "2010 Feb",
+      "authors": [
+        "Powers CM"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "influence abnormal hip mechanics knee injury"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_muscle_opar_2012",
+    "area": "clinico",
+    "expected_title": "Hamstring strain injuries: factors that lead to injury and re-injury",
+    "expected_authors": "Opar, D. A., Williams, M. D., & Shield, A. J.",
+    "expected_year": 2012,
+    "expected_journal": "Sports Medicine",
+    "current_pmid": "22356851",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/22356851/",
+    "best_match": {
+      "pmid": "22239734",
+      "title": "Hamstring strain injuries: factors that lead to injury and re-injury.",
+      "journal": "Sports Med",
+      "pubdate": "2012 Mar 1",
+      "authors": [
+        "Opar DA",
+        "Williams MD",
+        "Shield AJ"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Opar hamstring strain injuries factors lead"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_rehab_blanchard_2000",
+    "area": "clinico",
+    "expected_title": "The effects of cold water immersion on recovery from exercise-induced muscle damage",
+    "expected_authors": "Bleakley, C. M., & Davison, G. W.",
+    "expected_year": 2010,
+    "expected_journal": "British Journal of Sports Medicine",
+    "current_pmid": "19945969",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/19945969/",
+    "best_match": {
+      "pmid": "22336838",
+      "title": "Cold-water immersion (cryotherapy) for preventing and treating muscle soreness after exercise.",
+      "journal": "Cochrane Database Syst Rev",
+      "pubdate": "2012 Feb 15",
+      "authors": [
+        "Bleakley C",
+        "McDonough S",
+        "Gardner E",
+        "Baxter GD",
+        "Hopkins JT",
+        "Davison GW"
+      ],
+      "score": 0.8208333333333333,
+      "fa_matched": true,
+      "query_used": "Bleakley cold water immersion recovery exercise"
+    },
+    "best_score": 0.8208333333333333,
+    "resolved": true
+  },
+  {
+    "id": "sci_fifa_alattar_2017",
+    "area": "sportSquadra",
+    "expected_title": "How effective are F-MARC injury prevention programmes for teamsports? A systematic review and meta-analysis",
+    "expected_authors": "Al Attar, W. S. A., Soomro, N., Pappas, E., Sinclair, P. J., & Sanders, R. H.",
+    "expected_year": 2017,
+    "expected_journal": "British Journal of Sports Medicine",
+    "current_pmid": "28122797",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/28122797/",
+    "best_match": {
+      "pmid": "26403470",
+      "title": "How Effective are F-MARC Injury Prevention Programs for Soccer Players? A Systematic Review and Meta-Analysis.",
+      "journal": "Sports Med",
+      "pubdate": "2016 Feb",
+      "authors": [
+        "Al Attar WS",
+        "Soomro N",
+        "Pappas E",
+        "Sinclair PJ",
+        "Sanders RH"
+      ],
+      "score": 1.05,
+      "fa_matched": true,
+      "query_used": "Al Attar how effective are marc injury"
+    },
+    "best_score": 1.05,
+    "resolved": true
+  },
+  {
+    "id": "sci_fifa_bahr_2015",
+    "area": "sportSquadra",
+    "expected_title": "Why screening tests to predict injury do not work-and probably never will...: a story of 3500 medical examinations",
+    "expected_authors": "Bahr, R.",
+    "expected_year": 2015,
+    "expected_journal": "British Journal of Sports Medicine",
+    "current_pmid": "26002938",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/26002938/",
+    "best_match": {
+      "pmid": "27095747",
+      "title": "Why screening tests to predict injury do not work-and probably never will…: a critical review.",
+      "journal": "Br J Sports Med",
+      "pubdate": "2016 Jul",
+      "authors": [
+        "Bahr R"
+      ],
+      "score": 0.9696428571428573,
+      "fa_matched": true,
+      "query_used": "Bahr why screening tests predict injury"
+    },
+    "best_score": 0.9696428571428573,
+    "resolved": true
+  },
+  {
+    "id": "sci_workload_windt_2017",
+    "area": "sportSquadra",
+    "expected_title": "How do training and competition workloads relate to injury? The workload-injury etiology model",
+    "expected_authors": "Windt, J., & Gabbett, T. J.",
+    "expected_year": 2017,
+    "expected_journal": "British Journal of Sports Medicine",
+    "current_pmid": "27405944",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/27405944/",
+    "best_match": {
+      "pmid": "27418321",
+      "title": "How do training and competition workloads relate to injury? The workload-injury aetiology model.",
+      "journal": "Br J Sports Med",
+      "pubdate": "2017 Mar",
+      "authors": [
+        "Windt J",
+        "Gabbett TJ"
+      ],
+      "score": 1.1444444444444444,
+      "fa_matched": true,
+      "query_used": "Windt how training competition workloads relate"
+    },
+    "best_score": 1.1444444444444444,
+    "resolved": true
+  },
+  {
+    "id": "sci_rsa_rampinini_2007",
+    "area": "sportSquadra",
+    "expected_title": "Factors influencing repeated-sprint ability in football players",
+    "expected_authors": "Rampinini, E., Sassi, A., Morelli, A., Mazzoni, S., Fanchini, M., & Coutts, A. J.",
+    "expected_year": 2007,
+    "expected_journal": "International Journal of Sports Medicine",
+    "current_pmid": "17497576",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/17497576/",
+    "best_match": {
+      "pmid": "38492212",
+      "title": "Monitoring of sprint and change of direction velocity, vertical jump height, and repeated sprint ability in sub-elite female football players throughout their menstrual cycle.",
+      "journal": "Sci Med Footb",
+      "pubdate": "2024 Nov",
+      "authors": [
+        "Igonin PH",
+        "Cognasse F",
+        "Gonzalo P",
+        "Philippot P",
+        "Rogowski I",
+        "Sabot T",
+        "Boisseau N",
+        "Martin C"
+      ],
+      "score": 0.47619047619047616,
+      "fa_matched": false,
+      "query_used": "factors influencing repeated sprint ability football"
+    },
+    "best_score": 0.47619047619047616,
+    "resolved": false
+  },
+  {
+    "id": "sci_rsa_buchheit_2013",
+    "area": "sportSquadra",
+    "expected_title": "High-intensity interval training, solutions to the programming puzzle: Part I: cardiopulmonary engines",
+    "expected_authors": "Buchheit, M., & Laursen, P. B.",
+    "expected_year": 2013,
+    "expected_journal": "Sports Medicine",
+    "current_pmid": "23539301",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/23539301/",
+    "best_match": {
+      "pmid": "23539308",
+      "title": "High-intensity interval training, solutions to the programming puzzle: Part I: cardiopulmonary emphasis.",
+      "journal": "Sports Med",
+      "pubdate": "2013 May",
+      "authors": [
+        "Buchheit M",
+        "Laursen PB"
+      ],
+      "score": 1.1590909090909092,
+      "fa_matched": true,
+      "query_used": "Buchheit high intensity interval training solutions"
+    },
+    "best_score": 1.1590909090909092,
+    "resolved": true
+  },
+  {
+    "id": "sci_rsa_girard_2011",
+    "area": "sportSquadra",
+    "expected_title": "Repeated-sprint ability - part 1: factors contributing to fatigue",
+    "expected_authors": "Girard, O., Mendez-Villanueva, A., & Bishop, D.",
+    "expected_year": 2011,
+    "expected_journal": "Sports Medicine",
+    "current_pmid": "21688903",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/21688903/",
+    "best_match": {
+      "pmid": "21780851",
+      "title": "Repeated-sprint ability - part I: factors contributing to fatigue.",
+      "journal": "Sports Med",
+      "pubdate": "2011 Aug 1",
+      "authors": [
+        "Girard O",
+        "Mendez-Villanueva A",
+        "Bishop D"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Girard repeated sprint ability part factors"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_cod_sheppard_2006",
+    "area": "sportSquadra",
+    "expected_title": "Agility literature review: classifications in movement and sport-specific decision-making components",
+    "expected_authors": "Sheppard, J. M., & Young, W. B.",
+    "expected_year": 2006,
+    "expected_journal": "Journal of Sports Sciences",
+    "current_pmid": "16935793",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/16935793/",
+    "best_match": {
+      "pmid": "16882626",
+      "title": "Agility literature review: classifications, training and testing.",
+      "journal": "J Sports Sci",
+      "pubdate": "2006 Sep",
+      "authors": [
+        "Sheppard JM",
+        "Young WB"
+      ],
+      "score": 0.6666666666666667,
+      "fa_matched": true,
+      "query_used": "Sheppard agility literature review classifications movement"
+    },
+    "best_score": 0.6666666666666667,
+    "resolved": true
+  },
+  {
+    "id": "sci_cod_spiteri_2014",
+    "area": "sportSquadra",
+    "expected_title": "Mechanical determinants of faster change of direction and agility performance in female basketball players",
+    "expected_authors": "Spiteri, T., Nimphius, S., Hart, N. H., Specos, C., Sheppard, J. M., & Newton, R. U.",
+    "expected_year": 2014,
+    "expected_journal": "Journal of Strength and Conditioning Research",
+    "current_pmid": "24149526",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/24149526/",
+    "best_match": {
+      "pmid": "25734779",
+      "title": "Mechanical Determinants of Faster Change of Direction and Agility Performance in Female Basketball Athletes.",
+      "journal": "J Strength Cond Res",
+      "pubdate": "2015 Aug",
+      "authors": [
+        "Spiteri T",
+        "Newton RU",
+        "Binetti M",
+        "Hart NH",
+        "Sheppard JM",
+        "Nimphius S"
+      ],
+      "score": 1.1590909090909092,
+      "fa_matched": true,
+      "query_used": "Spiteri mechanical determinants faster change direction"
+    },
+    "best_score": 1.1590909090909092,
+    "resolved": true
+  },
+  {
+    "id": "sci_cod_nimphius_2016",
+    "area": "sportSquadra",
+    "expected_title": "Change of direction deficit: a more isolated measure of change of direction performance",
+    "expected_authors": "Nimphius, S., Callaghan, S. J., Spiteri, T., & Lockie, R. G.",
+    "expected_year": 2016,
+    "expected_journal": "Journal of Strength and Conditioning Research",
+    "current_pmid": "26982400",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/26982400/",
+    "best_match": {
+      "pmid": "26982972",
+      "title": "Change of Direction Deficit: A More Isolated Measure of Change of Direction Performance Than Total 505 Time.",
+      "journal": "J Strength Cond Res",
+      "pubdate": "2016 Nov",
+      "authors": [
+        "Nimphius S",
+        "Callaghan SJ",
+        "Spiteri T",
+        "Lockie RG"
+      ],
+      "score": 1.1181818181818182,
+      "fa_matched": true,
+      "query_used": "Nimphius change direction deficit more isolated"
+    },
+    "best_score": 1.1181818181818182,
+    "resolved": true
+  },
+  {
+    "id": "sci_team_impellizzeri_2006",
+    "area": "sportSquadra",
+    "expected_title": "Physiological and performance effects of generic versus specific high-intensity interval training in football players",
+    "expected_authors": "Impellizzeri, F. M., Marcora, S. M., Castagna, C., Reilly, T., Sassi, A., & Rampinini, E.",
+    "expected_year": 2006,
+    "expected_journal": "International Journal of Sports Medicine",
+    "current_pmid": "16802251",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/16802251/",
+    "best_match": {
+      "pmid": "16767613",
+      "title": "Physiological and performance effects of generic versus specific aerobic training in soccer players.",
+      "journal": "Int J Sports Med",
+      "pubdate": "2006 Jun",
+      "authors": [
+        "Impellizzeri FM",
+        "Marcora SM",
+        "Castagna C",
+        "Reilly T",
+        "Sassi A",
+        "Iaia FM",
+        "Rampinini E"
+      ],
+      "score": 0.8500000000000001,
+      "fa_matched": true,
+      "query_used": "Impellizzeri physiological performance generic specific high"
+    },
+    "best_score": 0.8500000000000001,
+    "resolved": true
+  },
+  {
+    "id": "sci_team_taylor_2017",
+    "area": "sportSquadra",
+    "expected_title": "Physical demands of elite basketball: a systematic review",
+    "expected_authors": "Taylor, J. B., Wright, A. A., Dischiavi, S. L., Townsend, M. A., & Marmon, A. R.",
+    "expected_year": 2017,
+    "expected_journal": "Journal of Sports Sciences",
+    "current_pmid": "28362127",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/28362127/",
+    "best_match": {
+      "pmid": "32134965",
+      "title": "Training load and match-play demands in basketball based on competition level: A systematic review.",
+      "journal": "PLoS One",
+      "pubdate": "2020",
+      "authors": [
+        "Petway AJ",
+        "Freitas TT",
+        "Calleja-González J",
+        "Medina Leal D",
+        "Alcaraz PE"
+      ],
+      "score": 0.48717948717948717,
+      "fa_matched": false,
+      "query_used": "physical demands elite basketball systematic review"
+    },
+    "best_score": 0.48717948717948717,
+    "resolved": false
+  },
+  {
+    "id": "sci_team_ekstrand_2011",
+    "area": "sportSquadra",
+    "expected_title": "Injury incidence and injury patterns in professional football: the UEFA injury study",
+    "expected_authors": "Ekstrand, J., Hägglund, M., & Waldén, M.",
+    "expected_year": 2011,
+    "expected_journal": "British Journal of Sports Medicine",
+    "current_pmid": "21586354",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/21586354/",
+    "best_match": {
+      "pmid": "31182429",
+      "title": "Time before return to play for the most common injuries in professional football: a 16-year follow-up of the UEFA Elite Club Injury Study.",
+      "journal": "Br J Sports Med",
+      "pubdate": "2020 Apr",
+      "authors": [
+        "Ekstrand J",
+        "Krutsch W",
+        "Spreco A",
+        "van Zoest W",
+        "Roberts C",
+        "Meyer T",
+        "Bengtsson H"
+      ],
+      "score": 0.7583333333333333,
+      "fa_matched": true,
+      "query_used": "Ekstrand injury incidence injury patterns professional"
+    },
+    "best_score": 0.7583333333333333,
+    "resolved": true
+  },
+  {
+    "id": "sci_groin_thorborg_2018",
+    "area": "sportSquadra",
+    "expected_title": "Effect of the Copenhagen Adduction exercise on groin injury risk in male football players: a cluster-randomised controlled trial",
+    "expected_authors": "Harøy, J., Clarsen, B., Wiger, E. G., Øyen, M. G., Serner, A., Thorborg, K., Hölmich, P., Andersen, T. E., & Bahr, R.",
+    "expected_year": 2019,
+    "expected_journal": "British Journal of Sports Medicine",
+    "current_pmid": "30413448",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/30413448/",
+    "best_match": {
+      "pmid": "29891614",
+      "title": "The Adductor Strengthening Programme prevents groin problems among male football players: a cluster-randomised controlled trial.",
+      "journal": "Br J Sports Med",
+      "pubdate": "2019 Feb",
+      "authors": [
+        "Harøy J",
+        "Clarsen B",
+        "Wiger EG",
+        "Øyen MG",
+        "Serner A",
+        "Thorborg K",
+        "Hölmich P",
+        "Andersen TE",
+        "Bahr R"
+      ],
+      "score": 0.8182186234817814,
+      "fa_matched": true,
+      "query_used": "Harøy copenhagen adduction exercise groin injury"
+    },
+    "best_score": 0.8182186234817814,
+    "resolved": true
+  },
+  {
+    "id": "sci_cod_donelon_2020",
+    "area": "sportSquadra",
+    "expected_title": "Biomechanical determinants of knee joint loads during cutting manoeuvres in sporting populations: a systematic review",
+    "expected_authors": "Donelon, T. A., Dos'Santos, T., Thomas, C., Comfort, P., & Jones, P. A.",
+    "expected_year": 2020,
+    "expected_journal": "Physical Therapy in Sport",
+    "current_pmid": "32417711",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/32417711/",
+    "best_match": {
+      "pmid": "33136207",
+      "title": "Biomechanical Determinants of Knee Joint Loads Associated with Increased Anterior Cruciate Ligament Loading During Cutting: A Systematic Review and Technical Framework.",
+      "journal": "Sports Med Open",
+      "pubdate": "2020 Nov 2",
+      "authors": [
+        "Donelon TA",
+        "Dos'Santos T",
+        "Pitchers G",
+        "Brown M",
+        "Jones PA"
+      ],
+      "score": 0.8741626794258373,
+      "fa_matched": true,
+      "query_used": "Donelon biomechanical determinants knee joint loads"
+    },
+    "best_score": 0.8741626794258373,
+    "resolved": true
+  },
+  {
+    "id": "sci_team_longo_2012",
+    "area": "sportSquadra",
+    "expected_title": "Prevention of injuries in football: a systematic review of interventions",
+    "expected_authors": "Longo, U. G., Loppini, M., Berton, A., Marinozzi, A., Maffulli, N., & Denaro, V.",
+    "expected_year": 2012,
+    "expected_journal": "British Journal of Sports Medicine",
+    "current_pmid": "22442232",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/22442232/",
+    "best_match": {
+      "pmid": "39271248",
+      "title": "ICON 2023: International Scientific Tendinopathy Symposium Consensus - the core outcome set for Achilles tendinopathy (COS-AT) using a systematic review and a Delphi study of professional participants and patients.",
+      "journal": "Br J Sports Med",
+      "pubdate": "2024 Oct 22",
+      "authors": [
+        "de Vos RJ",
+        "Gravare Silbernagel K",
+        "Malliaras P",
+        "Visser TS",
+        "Alfredson H",
+        "Akker-Scheek IVD",
+        "van Ark M",
+        "Brorsson A",
+        "Chimenti R",
+        "Docking S",
+        "Eliasson P",
+        "Farnqvist K",
+        "Haleem Z",
+        "Hanlon SL",
+        "Kaux JF",
+        "Kearney RS",
+        "Kirwan PD",
+        "Kulig K",
+        "Kumar B",
+        "Lewis T",
+        "Longo UG",
+        "Lui TH",
+        "Maffulli N",
+        "Mallows AJ",
+        "Masci L",
+        "McGonagle D",
+        "Morrissey D",
+        "Murphy MC",
+        "Newsham-West R",
+        "Nilsson-Helander KM",
+        "Norris R",
+        "Oliva F",
+        "O'Neill S",
+        "Peers K",
+        "Rio EK",
+        "Sancho I",
+        "Scott A",
+        "Seymore KD",
+        "Soh SE",
+        "Vallance P",
+        "Verhaar JAN",
+        "van der Vlist AC",
+        "Weir A",
+        "Zellers JA",
+        "Vicenzino B"
+      ],
+      "score": 0.5101449275362319,
+      "fa_matched": true,
+      "query_used": "Longo prevention injuries football systematic review"
+    },
+    "best_score": 0.5101449275362319,
+    "resolved": false
+  },
+  {
+    "id": "sci_team_mccall_2014",
+    "area": "sportSquadra",
+    "expected_title": "Injury prevention strategies in professional football (soccer): the FIFA 11+ programme and other emerging approaches",
+    "expected_authors": "McCall, A., Davison, M., Andersen, T. E., Beasley, I., Bizzini, M., & Dupont, G.",
+    "expected_year": 2015,
+    "expected_journal": "British Journal of Sports Medicine",
+    "current_pmid": "25452613",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/25452613/",
+    "best_match": {
+      "pmid": "26795611",
+      "title": "Injury prevention strategies, coach compliance and player adherence of 33 of the UEFA Elite Club Injury Study teams: a survey of teams' head medical officers.",
+      "journal": "Br J Sports Med",
+      "pubdate": "2016 Jun",
+      "authors": [
+        "McCall A",
+        "Dupont G",
+        "Ekstrand J"
+      ],
+      "score": 0.5015810276679842,
+      "fa_matched": true,
+      "query_used": "McCall injury prevention strategies professional football"
+    },
+    "best_score": 0.5015810276679842,
+    "resolved": false
+  },
+  {
+    "id": "sci_team_akenhead_2016",
+    "area": "sportSquadra",
+    "expected_title": "Diminutions of acceleration and deceleration output during professional football match play",
+    "expected_authors": "Akenhead, R., Hayes, P. R., Thompson, K. G., & French, D.",
+    "expected_year": 2013,
+    "expected_journal": "Journal of Science and Medicine in Sport",
+    "current_pmid": "22884568",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/22884568/",
+    "best_match": {
+      "pmid": "23333009",
+      "title": "Diminutions of acceleration and deceleration output during professional football match play.",
+      "journal": "J Sci Med Sport",
+      "pubdate": "2013 Nov",
+      "authors": [
+        "Akenhead R",
+        "Hayes PR",
+        "Thompson KG",
+        "French D"
+      ],
+      "score": 1.3,
+      "fa_matched": true,
+      "query_used": "Akenhead diminutions acceleration deceleration output professional"
+    },
+    "best_score": 1.3,
+    "resolved": true
+  },
+  {
+    "id": "sci_team_dello_2016",
+    "area": "sportSquadra",
+    "expected_title": "Match-related physical performance in professional basketball: a systematic review",
+    "expected_authors": "Stojanovic, E., Stojiljkovic, N., Scanlan, A. T., Dalbo, V. J., Berkelmans, D. M., & Milanovic, Z.",
+    "expected_year": 2018,
+    "expected_journal": "Sports Medicine",
+    "current_pmid": "29282680",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/29282680/",
+    "best_match": {
+      "pmid": "29039018",
+      "title": "The Activity Demands and Physiological Responses Encountered During Basketball Match-Play: A Systematic Review.",
+      "journal": "Sports Med",
+      "pubdate": "2018 Jan",
+      "authors": [
+        "Stojanović E",
+        "Stojiljković N",
+        "Scanlan AT",
+        "Dalbo VJ",
+        "Berkelmans DM",
+        "Milanović Z"
+      ],
+      "score": 0.39285714285714285,
+      "fa_matched": false,
+      "query_used": "Stojanovic sports medicine 2018"
+    },
+    "best_score": 0.39285714285714285,
+    "resolved": false
+  },
+  {
+    "id": "sci_team_tierney_2016",
+    "area": "sportSquadra",
+    "expected_title": "An assessment of hamstring injury prevention programs in sport: a review of practices in professional rugby union",
+    "expected_authors": "Tierney, G. J., Elliott-Sale, K. J., & Mayeux, S.",
+    "expected_year": 2020,
+    "expected_journal": "Sports Medicine",
+    "current_pmid": "31512147",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/31512147/",
+    "best_match": {
+      "pmid": "33051214",
+      "title": "Mechanisms of acute ankle syndesmosis ligament injuries in professional male rugby union players: a systematic visual video analysis.",
+      "journal": "Br J Sports Med",
+      "pubdate": "2021 Jun",
+      "authors": [
+        "Delahunt E",
+        "Farrell G",
+        "Boylan A",
+        "Kerin F",
+        "Tierney P",
+        "Hogan H",
+        "Boreham C"
+      ],
+      "score": 0.5015810276679842,
+      "fa_matched": true,
+      "query_used": "Tierney sports medicine 2020"
+    },
+    "best_score": 0.5015810276679842,
+    "resolved": false
+  },
+  {
+    "id": "sci_team_harper_2019",
+    "area": "sportSquadra",
+    "expected_title": "Relationships between eccentric hamstring strength and match-play sprinting in professional football",
+    "expected_authors": "Harper, D. J., & Kiely, J.",
+    "expected_year": 2018,
+    "expected_journal": "Journal of Sports Sciences",
+    "current_pmid": "29281917",
+    "current_url": "https://pubmed.ncbi.nlm.nih.gov/29281917/",
+    "best_match": {
+      "pmid": "35207016",
+      "title": "\"Dietitians May Only Have One Chance\"-The Realities of Treating Obesity in Private Practice in Australia.",
+      "journal": "Healthcare (Basel)",
+      "pubdate": "2022 Feb 21",
+      "authors": [
+        "Harper C",
+        "Seimon RV",
+        "Sainsbury A",
+        "Maher J"
+      ],
+      "score": 0.3,
+      "fa_matched": true,
+      "query_used": "Harper journal sports sciences 2018"
+    },
+    "best_score": 0.3,
+    "resolved": false
+  }
+]

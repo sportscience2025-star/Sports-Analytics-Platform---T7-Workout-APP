@@ -1,0 +1,10 @@
+[
+  {
+    "msg": "window.App.MUSCLE_TAXONOMY is missing!",
+    "status": "FAIL"
+  },
+  {
+    "msg": "Unhandled error during empirical test: TypeError: window.App.initData is not a function\n    at window.onload (http://127.0.0.1:8090/tests/challenger2_harness.html:38:24)",
+    "status": "FAIL"
+  }
+]

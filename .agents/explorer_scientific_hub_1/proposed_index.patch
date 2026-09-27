@@ -1,0 +1,12 @@
+--- index.html
++++ index.html
+@@ -104,8 +104,9 @@
+     <script src="js/impact-calculator.js?v=pwa_v13"></script>
+     <script src="js/clinical.js?v=pwa_v13"></script>
+     <script src="js/physics-engine.js?v=pwa_v13"></script>
+     <script src="js/parser.js?v=pwa_v13"></script>
++    <script src="js/knowledge-base.js?v=pwa_v13"></script>
+     <script src="js/logic.js?v=pwa_v13"></script>
+     <script src="js/data-analysis.js?v=pwa_v13"></script>
+     <script src="js/ui.js?v=pwa_v13"></script>
+     <script src="js/app.js?v=pwa_v13"></script>

@@ -1,0 +1,2744 @@
+{
+  "matched_count": 120,
+  "not_found": [
+    {
+      "id": "sci_vbt_gonzalez_2017",
+      "area": "vbt",
+      "title": "Predictive accuracy of the load-velocity relationship for bench press",
+      "authors": "Gonzalez-Badillo, J. J., & Sanchez-Medina, L.",
+      "year": 2010,
+      "journal": "International Journal of Sports Medicine",
+      "pmid": "20024937"
+    },
+    {
+      "id": "sci_hamstring_timmins_2016",
+      "area": "sportSquadra",
+      "title": "Short biceps femoris long head fascicle length and eccentric knee flexor weakness increase the risk of hamstring injury in elite football players",
+      "authors": "Timmins, R. G., Bourne, M. N., Shield, A. J., Williams, M. D., Lorenzen, C., & Opar, D. A.",
+      "year": 2016,
+      "journal": "British Journal of Sports Medicine",
+      "pmid": "26672828"
+    }
+  ],
+  "mismatches": [
+    {
+      "source": {
+        "id": "sci_sprint_morin_2011",
+        "area": "atletica",
+        "title": "Technical ability of elite sprinters: ground force application orientation",
+        "authors": "Morin, J. B., Bourdin, M., Edouard, P., Peyrot, N., Samozino, P., & Lacour, J. R.",
+        "year": 2011,
+        "journal": "Medicine & Science in Sports & Exercise",
+        "pmid": "21317862"
+      },
+      "ncbi_title": "Galiximab in relapsed hodgkin lymphoma.",
+      "ncbi_source": "Clin Adv Hematol Oncol",
+      "ncbi_authors": [
+        "Smith SM"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_sprint_weyand_2000",
+        "area": "atletica",
+        "title": "Faster top speeds of human sprinters are achieved with greater ground forces, not rapid leg movements",
+        "authors": "Weyand, P. G., Sternlight, D. N., Bellizzi, M. J., & Wright, S. T.",
+        "year": 2000,
+        "journal": "Journal of Applied Physiology",
+        "pmid": "11056116"
+      },
+      "ncbi_title": "The role of LH in ovarian stimulation: exogenous LH: let's design the future.",
+      "ncbi_source": "Hum Reprod",
+      "ncbi_authors": [
+        "L\u00e9vy DP",
+        "Navarro JM",
+        "Schattman GL"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_sprint_clark_2014",
+        "area": "atletica",
+        "title": "General force-velocity trajectories describe maximal running accelerations in humans",
+        "authors": "Clark, K. P., Ryan, L. J., & Weyand, P. G.",
+        "year": 2014,
+        "journal": "Journal of Experimental Biology",
+        "pmid": "24737762"
+      },
+      "ncbi_title": "Wood frog adaptations to overwintering in Alaska: new limits to freezing tolerance.",
+      "ncbi_source": "J Exp Biol",
+      "ncbi_authors": [
+        "Larson DJ",
+        "Middle L",
+        "Vu H"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_sprint_cross_2017",
+        "area": "atletica",
+        "title": "Training at maximal power output in sprint acceleration: Horizontal force-velocity-power profiling",
+        "authors": "Cross, M. R., Brughelli, M., Samozino, P., & Morin, J. B.",
+        "year": 2017,
+        "journal": "International Journal of Sports Physiology and Performance",
+        "pmid": "28488884"
+      },
+      "ncbi_title": "Evaluation of a novel risk assessment method for self-harm associated with Borderline Personality Disorder.",
+      "ncbi_source": "Australas Psychiatry",
+      "ncbi_authors": [
+        "Rao S",
+        "Broadbear JH",
+        "Thompson K"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_sprint_lockie_2003",
+        "area": "atletica",
+        "title": "The effects of resisted sled towing on sprint kinematics in field-sport athletes",
+        "authors": "Lockie, R. G., Murphy, A. J., & Spinks, C. D.",
+        "year": 2003,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "14636093"
+      },
+      "ncbi_title": "Postactivation potentiation response in athletic and recreationally trained individuals.",
+      "ncbi_source": "J Strength Cond Res",
+      "ncbi_authors": [
+        "Chiu LZ",
+        "Fry AC",
+        "Weiss LW"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_sprint_haugen_2014",
+        "area": "atletica",
+        "title": "Sprint running performance: a compilation of data with analysis of sprint training practices",
+        "authors": "Haugen, T. A., T\u00f8nnessen, E., Hisdal, J., & Seiler, S.",
+        "year": 2014,
+        "journal": "International Journal of Sports Physiology and Performance",
+        "pmid": "24509711"
+      },
+      "ncbi_title": "A single low-energy, iron-poor supernova as the source of metals in the star SMSS J031300.36-670839.3.",
+      "ncbi_source": "Nature",
+      "ncbi_authors": [
+        "Keller SC",
+        "Bessell MS",
+        "Frebel A"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_jump_komi_2000",
+        "area": "atletica",
+        "title": "Stretch-shortening cycle: a powerful model to study normal and fatigued muscle",
+        "authors": "Komi, P. V.",
+        "year": 2000,
+        "journal": "Journal of Biomechanics",
+        "pmid": "10978496"
+      },
+      "ncbi_title": "PTSD-related hyperarousal assessed during sleep.",
+      "ncbi_source": "Physiol Behav",
+      "ncbi_authors": [
+        "Woodward SH",
+        "Murburg MM",
+        "Bliwise DL"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_jump_bobbert_1996",
+        "area": "atletica",
+        "title": "Why is countermovement jump height greater than squat jump height?",
+        "authors": "Bobbert, M. F., Gerritsen, K. G., Litjens, G. J., & Van Soest, A. J.",
+        "year": 1996,
+        "journal": "Medicine & Science in Sports & Exercise",
+        "pmid": "8887768"
+      },
+      "ncbi_title": "Effect of muscle acidity on muscle metabolism and fatigue during intense exercise in man.",
+      "ncbi_source": "J Physiol",
+      "ncbi_authors": [
+        "Bangsbo J",
+        "Madsen K",
+        "Kiens B"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_jump_ramirez_2014",
+        "area": "atletica",
+        "title": "Effects of drop jump training on physical fitness of youth soccer players",
+        "authors": "Ramirez-Campillo, R., Meylan, C., Alvarez, C., Henriquez-Olguin, C., Martinez, C., Ca\u00f1as-Jamett, R., Andrade, D. C., & Izquierdo, M.",
+        "year": 2014,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "24077376"
+      },
+      "ncbi_title": "Development and implementation of a novel measure for quantifying training loads in rowing: the T2minute method.",
+      "ncbi_source": "J Strength Cond Res",
+      "ncbi_authors": [
+        "Tran J",
+        "Rice AJ",
+        "Main LC"
+      ],
+      "common_words": [
+        "training"
+      ],
+      "match_score": 0.1111111111111111
+    },
+    {
+      "source": {
+        "id": "sci_throws_terzis_2008",
+        "area": "atletica",
+        "title": "Muscle fiber type composition and squatted jump performance in shot putters",
+        "authors": "Terzis, G., Georgiadis, G., Vassiliadou, E., & Manta, P.",
+        "year": 2008,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "18515989"
+      },
+      "ncbi_title": "[Analysis of willingness-to-quit cigarette price among Korean male adults].",
+      "ncbi_source": "J Prev Med Public Health",
+      "ncbi_authors": [
+        "Chung W",
+        "Lee S",
+        "Shin K"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_sprint_morin_2016",
+        "area": "atletica",
+        "title": "A simple method for computing sprint acceleration kinetics from running velocity data",
+        "authors": "Samozino, P., Rabita, G., Dorel, S., Slawinski, J., Peyrot, N., Saez de Villarreal, E., & Morin, J. B.",
+        "year": 2016,
+        "journal": "Journal of Biomechanics",
+        "pmid": "26997718"
+      },
+      "ncbi_title": "Comparative evaluation of antiplatelet effect of lycopene with aspirin and the effect of their combination on platelet aggregation: An in vitro study.",
+      "ncbi_source": "Indian J Pharmacol",
+      "ncbi_authors": [
+        "Sawardekar SB",
+        "Patel TC",
+        "Uchil D"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_sprint_jimenez_2018",
+        "area": "atletica",
+        "title": "Effectiveness of an individualized training based on force-velocity profiling during jumping",
+        "authors": "Jimenez-Reyes, P., Samozino, P., Brughelli, M., & Morin, J. B.",
+        "year": 2017,
+        "journal": "Frontiers in Physiology",
+        "pmid": "28326043"
+      },
+      "ncbi_title": "Perceived Academic Control and Academic Emotions Predict Undergraduate University Student Success: Examining Effects on Dropout Intention and Achievement.",
+      "ncbi_source": "Front Psychol",
+      "ncbi_authors": [
+        "Respondek L",
+        "Seufert T",
+        "Stupnisky R"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_sprint_haugen_2019",
+        "area": "atletica",
+        "title": "Sprint running performance monitoring: methodological and practical considerations",
+        "authors": "Haugen, T. A., Breitschadel, F., & Seiler, S.",
+        "year": 2020,
+        "journal": "Sports Medicine",
+        "pmid": "31782009"
+      },
+      "ncbi_title": "A Prospective Randomized Multicenter Controlled Trial on Salvianolate for Treatment of Unstable Angina Pectoris in A Chinese Elderly Population.",
+      "ncbi_source": "Chin J Integr Med",
+      "ncbi_authors": [
+        "Cui H",
+        "Li XY",
+        "Gao XW"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_jump_markstrom_2019",
+        "area": "atletica",
+        "title": "Plyometric training for youth athletes: a narrative review",
+        "authors": "Ramirez-Campillo, R., Alvarez, C., Garcia-Hermoso, A., Ramirez-Velez, R., & Gentil, P.",
+        "year": 2018,
+        "journal": "Strength and Conditioning Journal",
+        "pmid": "30100827"
+      },
+      "ncbi_title": "A crystallographic study of crystalline casts and pseudomorphs from the 3.5\u2005Ga Dresser Formation, Pilbara Craton (Australia).",
+      "ncbi_source": "J Appl Crystallogr",
+      "ncbi_authors": [
+        "Ot\u00e1lora F",
+        "Mazurier A",
+        "Garcia-Ruiz JM"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_jump_mcmahon_2017",
+        "area": "atletica",
+        "title": "Understanding the key phases of the countermovement jump force-time curve",
+        "authors": "McMahon, J. J., Suchomel, T. J., Lake, J. P., & Comfort, P.",
+        "year": 2018,
+        "journal": "Strength and Conditioning Journal",
+        "pmid": "29503474"
+      },
+      "ncbi_title": "Nothophytophthora gen. nov., a new sister genus of Phytophthora from natural and semi-natural ecosystems.",
+      "ncbi_source": "Persoonia",
+      "ncbi_authors": [
+        "Jung T",
+        "Scanu B",
+        "Bakonyi J"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_sprint_alcaraz_2018",
+        "area": "atletica",
+        "title": "Effects of a resisted sprint training program on sprint kinematics in competitive youth athletes",
+        "authors": "Alcaraz, P. E., Carlos-Vivas, J., Oponjuru, B. O., & Martinez-Rodriguez, A.",
+        "year": 2018,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "28957942"
+      },
+      "ncbi_title": "Purification and characterization of a new highly pure, double virus inactivated von Willebrand factor concentrate.",
+      "ncbi_source": "Blood Coagul Fibrinolysis",
+      "ncbi_authors": [
+        "Mori F",
+        "Maddaluno M",
+        "Farina C"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_sprint_nagahara_2014",
+        "area": "atletica",
+        "title": "Association of Acceleration with Spatiotemporal Variables in Maximal Sprinting",
+        "authors": "Nagahara, R., Matsubayashi, T., Matsuo, A., & Zushi, K.",
+        "year": 2014,
+        "journal": "International Journal of Sports Medicine",
+        "pmid": "24464016"
+      },
+      "ncbi_title": "Extracellular HMGB1 promotes differentiation of nurse-like cells in chronic lymphocytic leukemia.",
+      "ncbi_source": "Blood",
+      "ncbi_authors": [
+        "Jia L",
+        "Clear A",
+        "Liu FT"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_strength_suchomel_2016",
+        "area": "sollevamentoPesi",
+        "title": "The Importance of Muscular Strength in Athletic Performance",
+        "authors": "Suchomel, T. J., Nimphius, S., & Stone, M. H.",
+        "year": 2016,
+        "journal": "Sports Medicine",
+        "pmid": "26791930"
+      },
+      "ncbi_title": "Delaying standard combined chemoradiotherapy after surgical resection does not impact survival in newly diagnosed glioblastoma patients.",
+      "ncbi_source": "Radiother Oncol",
+      "ncbi_authors": [
+        "Louvel G",
+        "Metellus P",
+        "Noel G"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_power_cormie_2011",
+        "area": "sollevamentoPesi",
+        "title": "Developing maximal neuromuscular power: Part 1 - Biological basis of maximal power production",
+        "authors": "Cormie, P., McGuigan, M. R., & Newton, R. U.",
+        "year": 2011,
+        "journal": "Sports Medicine",
+        "pmid": "21198303"
+      },
+      "ncbi_title": "Comparison of knowledge and practices of breast self examination (BSE): a pilot study in Turkey.",
+      "ncbi_source": "Asian Pac J Cancer Prev",
+      "ncbi_authors": [
+        "Ta\u015f\u00e7\u0131 A",
+        "Usta YY"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_ballistic_newton_1996",
+        "area": "sollevamentoPesi",
+        "title": "Kinematics, kinetics, and muscle activation during explosive upper body movements",
+        "authors": "Newton, R. U., Kraemer, W. J., H\u00e4kkinen, K., Triplett, N. T., & Arys, A. C.",
+        "year": 1996,
+        "journal": "Journal of Applied Biomechanics",
+        "pmid": "9414013"
+      },
+      "ncbi_title": "Layer V neurons bear the majority of mRNAs encoding the five distinct dopamine receptor subtypes in the primate prefrontal cortex.",
+      "ncbi_source": "Synapse",
+      "ncbi_authors": [
+        "Lidow MS",
+        "Wang F",
+        "Cao Y"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_weightlifting_haff_2001",
+        "area": "sollevamentoPesi",
+        "title": "Force-time curve characteristics of dynamic and isometric muscle actions of elite women Olympic weightlifters",
+        "authors": "Haff, G. G., Whitley, A., & Potteiger, J. A.",
+        "year": 2001,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "11708871"
+      },
+      "ncbi_title": "Phenotype and genotype heterogeneity in Mediterranean citrullinemia.",
+      "ncbi_source": "Mol Genet Metab",
+      "ncbi_authors": [
+        "Vilaseca MA",
+        "Kobayashi K",
+        "Briones P"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_weightlifting_stone_2006",
+        "area": "sollevamentoPesi",
+        "title": "Maximum strength and weightlifting performance: Relationship to vertical jump and sprint speed",
+        "authors": "Stone, M. H., Stone, M. E., & Sands, W. A.",
+        "year": 2006,
+        "journal": "Sports Biomechanics",
+        "pmid": "16553066"
+      },
+      "ncbi_title": "Displaying uncertainty: investigating the effects of display format and specificity.",
+      "ncbi_source": "Hum Factors",
+      "ncbi_authors": [
+        "Bisantz AM",
+        "Marsiglio SS",
+        "Munch J"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_weightlifting_suchomel_2017",
+        "area": "sollevamentoPesi",
+        "title": "Weightlifting Derivatives: Barbell Position and Catch Phase Modifications",
+        "authors": "Suchomel, T. J., Comfort, P., & Lake, J. P.",
+        "year": 2017,
+        "journal": "Sports Medicine",
+        "pmid": "28247103"
+      },
+      "ncbi_title": "Anatomy of the fasciae and fascial spaces of the maxillofacial and the anterior neck regions.",
+      "ncbi_source": "Anat Sci Int",
+      "ncbi_authors": [
+        "Kitamura S"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_physiol_fleck_2004",
+        "area": "fisiologia",
+        "title": "Designing Resistance Training Programs (4th Edition)",
+        "authors": "Fleck, S. J., & Kraemer, W. J.",
+        "year": 2014,
+        "journal": "Human Kinetics",
+        "pmid": "15064696"
+      },
+      "ncbi_title": "Cyclosporine and mycophenolate mofetil prophylaxis with fludarabine and melphalan conditioning for unrelated donor transplantation: a prospective study of 22 patients with hematologic malignancies.",
+      "ncbi_source": "Bone Marrow Transplant",
+      "ncbi_authors": [
+        "Rodriguez R",
+        "Parker P",
+        "Nademanee A"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_weightlifting_storey_2012",
+        "area": "sollevamentoPesi",
+        "title": "Unique aspects of competitive weightlifting performance: structural, neuromuscular and metabolic adaptations",
+        "authors": "Storey, A., & Smith, H. K.",
+        "year": 2012,
+        "journal": "Sports Medicine",
+        "pmid": "22897427"
+      },
+      "ncbi_title": "Attenuation of foot pressure during running on four different surfaces: asphalt, concrete, rubber, and natural grass.",
+      "ncbi_source": "J Sports Sci",
+      "ncbi_authors": [
+        "Tessutti V",
+        "Ribeiro AP",
+        "Trombini-Souza F"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_pap_chiu_2003",
+        "area": "sollevamentoPesi",
+        "title": "Postactivation potentiation response in athletic and recreationally trained individuals",
+        "authors": "Chiu, L. Z., Fry, A. C., Weiss, L. W., Schilling, B. K., Brown, L. E., & Smith, S. L.",
+        "year": 2003,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "14636098"
+      },
+      "ncbi_title": "Effects of aerobic exercise on strength performance following various periods of recovery.",
+      "ncbi_source": "J Strength Cond Res",
+      "ncbi_authors": [
+        "Sporer BC",
+        "Wenger HA"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_weightlifting_garhammer_1993",
+        "area": "sollevamentoPesi",
+        "title": "A review of power output studies of Olympic and powerlifting: methodology, performance prediction, and evaluation tests",
+        "authors": "Garhammer, J.",
+        "year": 1993,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "8437146"
+      },
+      "ncbi_title": "The surgical management and outcome of oesophageal cancer in Khartoum.",
+      "ncbi_source": "J R Coll Surg Edinb",
+      "ncbi_authors": [
+        "Ahmed ME"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_weightlifting_comfort_2012",
+        "area": "sollevamentoPesi",
+        "title": "Comparisons of peak ground reaction force and rate of force development during variations of the power clean",
+        "authors": "Comfort, P., Allen, M., & Graham-Smith, P.",
+        "year": 2012,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "21993027"
+      },
+      "ncbi_title": "What has transcranial magnetic stimulation taught us about neural adaptations to strength training? A brief review.",
+      "ncbi_source": "J Strength Cond Res",
+      "ncbi_authors": [
+        "Kidgell DJ",
+        "Pearce AJ"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_weightlifting_james_2018",
+        "area": "sollevamentoPesi",
+        "title": "Effect of Olympic weightlifting-based training on reactive strength and sprint performance in adolescent athletes",
+        "authors": "James, L. P., Haff, G. G., Kelly, V. G., & Beckman, E. M.",
+        "year": 2018,
+        "journal": "Strength and Conditioning Journal",
+        "pmid": "29503625"
+      },
+      "ncbi_title": "A Comparison of Change Blindness in Real-World and On-Screen Viewing of Museum Artefacts.",
+      "ncbi_source": "Front Psychol",
+      "ncbi_authors": [
+        "Attwood JE",
+        "Kennard C",
+        "Harris J"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_weightlifting_kipp_2012",
+        "area": "sollevamentoPesi",
+        "title": "Mechanical demand of the hang power clean and jump shrug in collegiate athletes",
+        "authors": "Kipp, K., Malloy, P. J., Smith, J., & Comfort, P.",
+        "year": 2018,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "29698322"
+      },
+      "ncbi_title": "Lentiviral infection of proliferating brain macrophages in HIV and simian immunodeficiency virus encephalitis despite sterile alpha motif and histidine-aspartate domain-containing protein 1 expression.",
+      "ncbi_source": "AIDS",
+      "ncbi_authors": [
+        "Lindgren AA",
+        "Filipowicz AR",
+        "Hattler JB"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_weightlifting_haff_2015",
+        "area": "sollevamentoPesi",
+        "title": "Training load and monitoring an athlete's tolerance for endurance, strength, and power activities",
+        "authors": "Haff, G. G.",
+        "year": 2015,
+        "journal": "Strength and Conditioning Journal",
+        "pmid": "26199192"
+      },
+      "ncbi_title": "Interunit handoffs from emergency department to inpatient care: A cross-sectional survey of physicians at a university medical center.",
+      "ncbi_source": "J Hosp Med",
+      "ncbi_authors": [
+        "Smith CJ",
+        "Britigan DH",
+        "Lyden E"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_weightlifting_stone_2005",
+        "area": "sollevamentoPesi",
+        "title": "Maximum strength and strength training: a relationship to endurance?",
+        "authors": "Stone, M. H., Stone, M., & Sands, W. A.",
+        "year": 2005,
+        "journal": "Strength and Conditioning Journal",
+        "pmid": "16287367"
+      },
+      "ncbi_title": "Blood lactate and metabolic responses to controlled frequency breathing during graded swimming.",
+      "ncbi_source": "J Strength Cond Res",
+      "ncbi_authors": [
+        "West SA",
+        "Drummond MJ",
+        "Vanness JM"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_power_soriano_2015",
+        "area": "sollevamentoPesi",
+        "title": "The Optimal Load for Maximal Power Production During Lower-Body Resistance Exercises: A Meta-Analysis",
+        "authors": "Soriano, M. A., Jimenez-Reyes, P., Rhea, M. R., & Marin, P. J.",
+        "year": 2015,
+        "journal": "Sports Medicine",
+        "pmid": "26063065"
+      },
+      "ncbi_title": "A Combination of Single-Nucleotide Polymorphisms Is Associated with Interindividual Variability in Dietary \u03b2-Carotene Bioavailability in Healthy Men.",
+      "ncbi_source": "J Nutr",
+      "ncbi_authors": [
+        "Borel P",
+        "Desmarchelier C",
+        "Nowicki M"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_weightlifting_hackett_2016",
+        "area": "sollevamentoPesi",
+        "title": "Olympic weightlifting training improves vertical jump height in sportspeople: a systematic review with meta-analysis",
+        "authors": "Hackett, D., Davies, T., Soomro, N., & Halaki, M.",
+        "year": 2016,
+        "journal": "British Journal of Sports Medicine",
+        "pmid": "26848135"
+      },
+      "ncbi_title": "Infrared PINEM developed by diffraction in 4D UEM.",
+      "ncbi_source": "Proc Natl Acad Sci U S A",
+      "ncbi_authors": [
+        "Liu H",
+        "Baskin JS",
+        "Zewail AH"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_weightlifting_arabatzi_2012_coactivation",
+        "area": "sollevamentoPesi",
+        "title": "Olympic weightlifting training causes different knee muscle-coactivation adaptations compared with traditional weight training",
+        "authors": "Arabatzi, F., & Kellis, E.",
+        "year": 2012,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "22344061"
+      },
+      "ncbi_title": "Effects of weightlifting vs. kettlebell training on vertical jump, strength, and body composition.",
+      "ncbi_source": "J Strength Cond Res",
+      "ncbi_authors": [
+        "Otto WH 3rd",
+        "Coburn JW",
+        "Brown LE"
+      ],
+      "common_words": [
+        "training",
+        "weightlifting"
+      ],
+      "match_score": 0.15384615384615385
+    },
+    {
+      "source": {
+        "id": "sci_endurance_ronnestad_2014",
+        "area": "fisiologia",
+        "title": "Optimizing strength training for running and cycling performance: A review",
+        "authors": "R\u00f8nnestad, B. R., & Mujika, I.",
+        "year": 2014,
+        "journal": "Scandinavian Journal of Medicine & Science in Sports",
+        "pmid": "23914664"
+      },
+      "ncbi_title": "Ista sista pista--life as a medic at the cutting edge of the Roman army.",
+      "ncbi_source": "Trans Med Soc Lond",
+      "ncbi_authors": [
+        "Gibbons H"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_endurance_midgley_2007",
+        "area": "fisiologia",
+        "title": "Training to enhance maximal oxygen uptake: how to maximize time at or near VO2max",
+        "authors": "Midgley, A. W., McNaughton, L. R., & Jones, A. M.",
+        "year": 2007,
+        "journal": "Sports Medicine",
+        "pmid": "17196020"
+      },
+      "ncbi_title": "PCR-RFLP of ITS rDNA for the rapid identification of Penicillium subgenus Biverticillium species.",
+      "ncbi_source": "Rev Iberoam Micol",
+      "ncbi_authors": [
+        "Dupont J",
+        "Denneti\u00e8re B",
+        "Jacquet C"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_endurance_jones_2006",
+        "area": "fisiologia",
+        "title": "The physiology of the world record holder for the women's marathon: a case study",
+        "authors": "Jones, A. M.",
+        "year": 2006,
+        "journal": "International Journal of Sports Science & Coaching",
+        "pmid": "16931758"
+      },
+      "ncbi_title": "Discrete sandwich compounds of monolayer palladium sheets.",
+      "ncbi_source": "Science",
+      "ncbi_authors": [
+        "Murahashi T",
+        "Fujimoto M",
+        "Oka MA"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_detraining_mujika_2000",
+        "area": "fisiologia",
+        "title": "Detraining: loss of training-induced physiological and performance adaptations. Part I: short-term insufficient training stimulus",
+        "authors": "Mujika, I., & Padilla, S.",
+        "year": 2000,
+        "journal": "Sports Medicine",
+        "pmid": "10999422"
+      },
+      "ncbi_title": "Exercise following heart transplantation.",
+      "ncbi_source": "Sports Med",
+      "ncbi_authors": [
+        "Braith RW",
+        "Edwards DG"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_physiol_ahtiainen_2003",
+        "area": "fisiologia",
+        "title": "Muscle hypertrophy, hormonal adaptation and strength development during strength training in strength-trained and untrained men",
+        "authors": "Ahtiainen, J. P., Pakarinen, A., Alen, M., Kraemer, W. J., & H\u00e4kkinen, K.",
+        "year": 2003,
+        "journal": "European Journal of Applied Physiology",
+        "pmid": "12629688"
+      },
+      "ncbi_title": "[FGAM synthetase].",
+      "ncbi_source": "Nihon Rinsho",
+      "ncbi_authors": [
+        "Kaneko K"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_physiol_crewther_2006",
+        "area": "fisiologia",
+        "title": "Two emerging concepts in physical training: Neuromuscular fatigue and postactivation potentiation from fatigue to potentiation",
+        "authors": "Crewther, B., Keogh, J., Cronin, J., & Cook, C.",
+        "year": 2006,
+        "journal": "Sports Medicine",
+        "pmid": "17052063"
+      },
+      "ncbi_title": "Rubinstein-Taybi syndrome and familial Mediterranean fever in a single patient: two distinct genetic diseases located on chromosome 16p13.3.",
+      "ncbi_source": "J Natl Med Assoc",
+      "ncbi_authors": [
+        "Kalyoncu U",
+        "Tufan A",
+        "Karadag O"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_monitoring_mcguigan_2012",
+        "area": "fisiologia",
+        "title": "Monitoring training load and fatigue in resistance training",
+        "authors": "McGuigan, M. R., Al-Curry, M., & Foster, C.",
+        "year": 2012,
+        "journal": "International Journal of Sports Physiology and Performance",
+        "pmid": "23136270"
+      },
+      "ncbi_title": "Special CCM Supplement in the American Journal of Tropical Medicine and Hygiene. Preface.",
+      "ncbi_source": "Am J Trop Med Hyg",
+      "ncbi_authors": [
+        "Lake A"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_physiol_bangsbo_1994",
+        "area": "fisiologia",
+        "title": "Physiological response to intermittent exercise",
+        "authors": "Bangsbo, J.",
+        "year": 1994,
+        "journal": "International Journal of Sports Medicine",
+        "pmid": "7851956"
+      },
+      "ncbi_title": "Associations of IgA and IgA-rheumatoid factor with disease features in patients with rheumatoid arthritis.",
+      "ncbi_source": "Immunol Invest",
+      "ncbi_authors": [
+        "Moore S",
+        "Ruska K",
+        "Peters L"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_physiol_izquierdo_2006",
+        "area": "fisiologia",
+        "title": "Differential effects of strength training leading to failure versus not to failure on hormonal responses, strength, and muscle power",
+        "authors": "Izquierdo, M., et al.",
+        "year": 2006,
+        "journal": "Journal of Applied Physiology",
+        "pmid": "16672361"
+      },
+      "ncbi_title": "Short-course postexposure antibiotic prophylaxis combined with vaccination protects against experimental inhalational anthrax.",
+      "ncbi_source": "Proc Natl Acad Sci U S A",
+      "ncbi_authors": [
+        "Vietri NJ",
+        "Purcell BK",
+        "Lawler JV"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_physiol_wasserman_1973",
+        "area": "fisiologia",
+        "title": "Anaerobic threshold and respiratory gas exchange during exercise",
+        "authors": "Wasserman, K., et al.",
+        "year": 1973,
+        "journal": "Journal of Applied Physiology",
+        "pmid": "4761272"
+      },
+      "ncbi_title": "[The constitution and configuration of rifamycins B, O, S and SV].",
+      "ncbi_source": "Helv Chim Acta",
+      "ncbi_authors": [
+        "Oppolzer W",
+        "Prelog V"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_physiol_seiler_2006",
+        "area": "fisiologia",
+        "title": "Autonomic recovery after exercise in trained athletes: intensity and duration effects",
+        "authors": "Seiler, S., Haugen, O., & Kuffel, E.",
+        "year": 2006,
+        "journal": "Medicine & Science in Sports & Exercise",
+        "pmid": "16888457"
+      },
+      "ncbi_title": "Oxidative stress response in trained men following repeated squats or sprints.",
+      "ncbi_source": "Med Sci Sports Exerc",
+      "ncbi_authors": [
+        "Bloomer RJ",
+        "Falvo MJ",
+        "Fry AC"
+      ],
+      "common_words": [
+        "trained"
+      ],
+      "match_score": 0.1111111111111111
+    },
+    {
+      "source": {
+        "id": "sci_physiol_gibala_2006",
+        "area": "fisiologia",
+        "title": "Short-term sprint interval training increases human skeletal muscle oxidative capacity and endurance performance",
+        "authors": "Gibala, M. J., et al.",
+        "year": 2006,
+        "journal": "Journal of Physiology",
+        "pmid": "16973704"
+      },
+      "ncbi_title": "Similar nociceptive afferents mediate psychophysical and electrophysiological responses to heat stimulation of glabrous and hairy skin in humans.",
+      "ncbi_source": "J Physiol",
+      "ncbi_authors": [
+        "Iannetti GD",
+        "Zambreanu L",
+        "Tracey I"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_physiol_gollnick_1972",
+        "area": "fisiologia",
+        "title": "Enzyme activity and fiber composition in skeletal muscle of untrained and trained men",
+        "authors": "Gollnick, P. D., et al.",
+        "year": 1972,
+        "journal": "Journal of Applied Physiology",
+        "pmid": "5075868"
+      },
+      "ncbi_title": "Sex differences and institutionalization in the word associations of schizophrenics.",
+      "ncbi_source": "J Consult Clin Psychol",
+      "ncbi_authors": [
+        "DeWolfe AS",
+        "McDonald RK"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_physiol_hawley_2014",
+        "area": "fisiologia",
+        "title": "Integrative biology of exercise",
+        "authors": "Hawley, J. A., Hargreaves, M., Joyner, M. J., & Zierath, J. R.",
+        "year": 2014,
+        "journal": "Cell",
+        "pmid": "25417157"
+      },
+      "ncbi_title": "Sequencing the mouse Y chromosome reveals convergent gene acquisition and amplification on both sex chromosomes.",
+      "ncbi_source": "Cell",
+      "ncbi_authors": [
+        "Soh YQ",
+        "Alf\u00f6ldi J",
+        "Pyntikova T"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_physiol_millet_2011",
+        "area": "fisiologia",
+        "title": "Neuromuscular fatigue in ultra-endurance exercise",
+        "authors": "Millet, G. Y.",
+        "year": 2011,
+        "journal": "Sports Medicine",
+        "pmid": "22082073"
+      },
+      "ncbi_title": "Family members' report on speech-language pathology and community services for persons with aphasia in Hong Kong.",
+      "ncbi_source": "Disabil Rehabil",
+      "ncbi_authors": [
+        "Kong AP"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_physiol_fry_1997",
+        "area": "fisiologia",
+        "title": "Overtraining in athletes: an update",
+        "authors": "Fry, A. C., & Kraemer, W. J.",
+        "year": 1997,
+        "journal": "Sports Medicine",
+        "pmid": "9068094"
+      },
+      "ncbi_title": "Ergospirometry and its history.",
+      "ncbi_source": "Sports Med",
+      "ncbi_authors": [
+        "Hollmann W",
+        "Prinz JP"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_physiol_schoenfeld_2016",
+        "area": "fisiologia",
+        "title": "Dose-response relationship between weekly resistance training volume and increases in muscle mass: A systematic review and meta-analysis",
+        "authors": "Schoenfeld, B. J., Ogborn, D., & Krieger, J. W.",
+        "year": 2016,
+        "journal": "Journal of Sports Sciences",
+        "pmid": "27433960"
+      },
+      "ncbi_title": "Fitness Is Independently Associated with Central Hemodynamics in Metabolic Syndrome.",
+      "ncbi_source": "Med Sci Sports Exerc",
+      "ncbi_authors": [
+        "Ramos JS",
+        "Ramos MV",
+        "Dalleck LC"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_physiol_tesch_1986",
+        "area": "fisiologia",
+        "title": "Muscle metabolism during intense resistance exercise",
+        "authors": "Tesch, P. A., et al.",
+        "year": 1986,
+        "journal": "European Journal of Applied Physiology and Occupational Physiology",
+        "pmid": "3770020"
+      },
+      "ncbi_title": "Proceedings of the international symposium: Laser in urology. L\u00fcbeck, November 9, 1985.",
+      "ncbi_source": "Eur Urol",
+      "ncbi_authors": [],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_physiol_schoenfeld_freq_2016",
+        "area": "fisiologia",
+        "title": "Effects of resistance training frequency on measures of muscle hypertrophy: a systematic review and meta-analysis",
+        "authors": "Schoenfeld, B. J., Ogborn, D., & Krieger, J. W.",
+        "year": 2016,
+        "journal": "Sports Medicine",
+        "pmid": "27102424"
+      },
+      "ncbi_title": "Increased superior frontal gyrus activation during working memory processing in psychosis: Significant relation to cumulative antipsychotic medication and to negative symptoms.",
+      "ncbi_source": "Schizophr Res",
+      "ncbi_authors": [
+        "Vogel T",
+        "Smieskova R",
+        "Schmidt A"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_physiol_damas_2015",
+        "area": "fisiologia",
+        "title": "A review of resistance training-induced changes in skeletal muscle protein synthesis and their contribution to hypertrophy",
+        "authors": "Damas, F., Phillips, S., Vechin, F. C., & Ugrinowitsch, C.",
+        "year": 2015,
+        "journal": "Sports Medicine",
+        "pmid": "25702468"
+      },
+      "ncbi_title": "[Gender features of forced expiratory tracheal noises duration in human subjects aged between 17-25 years].",
+      "ncbi_source": "Fiziol Cheloveka",
+      "ncbi_authors": [
+        "Pochekutova IA",
+        "Malaeva VV",
+        "Korenbaum VI"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_physiol_hoppeler_2011",
+        "area": "fisiologia",
+        "title": "Molecular mechanisms of muscle plasticity with exercise",
+        "authors": "Hoppeler, H., Baum, O., Lurman, G., & Mueller, M.",
+        "year": 2011,
+        "journal": "Comprehensive Physiology",
+        "pmid": "23728984"
+      },
+      "ncbi_title": "Control of breathing during exercise.",
+      "ncbi_source": "Compr Physiol",
+      "ncbi_authors": [
+        "Forster HV",
+        "Haouzi P",
+        "Dempsey JA"
+      ],
+      "common_words": [
+        "exercise"
+      ],
+      "match_score": 0.16666666666666666
+    },
+    {
+      "source": {
+        "id": "sci_physiol_behm_2010",
+        "area": "fisiologia",
+        "title": "Effect of acute static stretching on force, balance, reaction time, and movement time",
+        "authors": "Behm, D. G., Bambury, A., Cahill, F., & Power, K.",
+        "year": 2004,
+        "journal": "Medicine & Science in Sports & Exercise",
+        "pmid": "15292746"
+      },
+      "ncbi_title": "Energy balance, bone turnover, and skeletal health in physically active individuals.",
+      "ncbi_source": "Med Sci Sports Exerc",
+      "ncbi_authors": [
+        "Zanker CL",
+        "Cooke CB"
+      ],
+      "common_words": [
+        "balance"
+      ],
+      "match_score": 0.1111111111111111
+    },
+    {
+      "source": {
+        "id": "sci_vbt_badillo_2010",
+        "area": "vbt",
+        "title": "Movement velocity as a measure of loading intensity in resistance training",
+        "authors": "Gonz\u00e1lez-Badillo, J. J., & S\u00e1nchez-Medina, L.",
+        "year": 2010,
+        "journal": "International Journal of Sports Medicine",
+        "pmid": "20146162"
+      },
+      "ncbi_title": "[LOX-1 receptor as a novel target in endothelial dysfunction and atherosclerosis].",
+      "ncbi_source": "Dtsch Med Wochenschr",
+      "ncbi_authors": [
+        "Morawietz H"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_vbt_sanchez_2011",
+        "area": "vbt",
+        "title": "Velocity loss as an indicator of neuromuscular fatigue during resistance training",
+        "authors": "S\u00e1nchez-Medina, L., & Gonz\u00e1lez-Badillo, J. J.",
+        "year": 2011,
+        "journal": "Medicine & Science in Sports & Exercise",
+        "pmid": "20689453"
+      },
+      "ncbi_title": "Lower extremity joint kinematics during stair climbing in knee osteoarthritis.",
+      "ncbi_source": "Med Sci Sports Exerc",
+      "ncbi_authors": [
+        "Hicks-Little CA",
+        "Peindl RD",
+        "Hubbard TJ"
+      ],
+      "common_words": [
+        "during"
+      ],
+      "match_score": 0.125
+    },
+    {
+      "source": {
+        "id": "sci_vbt_pareja_2017",
+        "area": "vbt",
+        "title": "Effects of velocity loss during resistance training on athletic performance, strength, and muscle hypertrophy",
+        "authors": "Pareja-Blanco, F., Rodr\u00edguez-Rosell, D., S\u00e1nchez-Medina, L., Sanchis-Moysi, J., Dorado, C., Mora-Custodio, R., Y\u00e1\u00f1ez-Garc\u00eda, J. M., Morales-Alamo, D., Calbet, J. A. L., & Gonz\u00e1lez-Badillo, J. J.",
+        "year": 2017,
+        "journal": "Medicine & Science in Sports & Exercise",
+        "pmid": "27845943"
+      },
+      "ncbi_title": "Broadening the Anatomic Landscape of Sclerosing Perineurioma: A Series of 5 Cases in Nonacral Sites.",
+      "ncbi_source": "Am J Dermatopathol",
+      "ncbi_authors": [
+        "Erstine EM",
+        "Ko JS",
+        "Rubin BP"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_vbt_weakley_2021",
+        "area": "vbt",
+        "title": "Velocity-Based Training: From Theory to Application",
+        "authors": "Weakley, J., Mann, B., Banyard, H., McLaren, S., Scott, T., & Garcia-Ramos, A.",
+        "year": 2021,
+        "journal": "Sports Medicine",
+        "pmid": "33433845"
+      },
+      "ncbi_title": "Irish cancer patients and survivors have a positive view of the role of nutritional care in cancer management from diagnosis through survivorship.",
+      "ncbi_source": "Ir J Med Sci",
+      "ncbi_authors": [
+        "Keaver L"
+      ],
+      "common_words": [
+        "from"
+      ],
+      "match_score": 0.16666666666666666
+    },
+    {
+      "source": {
+        "id": "sci_vbt_garcia_2018",
+        "area": "vbt",
+        "title": "The Force-Velocity Relationship in Resistance Exercises: Technical Aspects and Methodology",
+        "authors": "Garc\u00eda-Ramos, A., & Jaric, S.",
+        "year": 2018,
+        "journal": "Sports Biomechanics",
+        "pmid": "29092658"
+      },
+      "ncbi_title": "An Unexpected Circumstance: Acute Dystonic Reaction in the Setting of Clozapine Administration.",
+      "ncbi_source": "J Pharm Pract",
+      "ncbi_authors": [
+        "Kaplan AM",
+        "Pitts WB",
+        "Ahmed I"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_vbt_dorrell_2020",
+        "area": "vbt",
+        "title": "Comparison of velocity-based and traditional percentage-based loading methods on maximal strength and power adaptations",
+        "authors": "Dorrell, H. F., Smith, M. F., & Sheridan, G. J.",
+        "year": 2020,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "31009432"
+      },
+      "ncbi_title": "Autoregulation by \"Repetitions in Reserve\" Leads to Greater Improvements in Strength Over a 12-Week Training Program Than Fixed Loading.",
+      "ncbi_source": "J Strength Cond Res",
+      "ncbi_authors": [
+        "Graham T",
+        "Cleather DJ"
+      ],
+      "common_words": [
+        "loading",
+        "strength"
+      ],
+      "match_score": 0.18181818181818182
+    },
+    {
+      "source": {
+        "id": "sci_vbt_jovanovic_2014",
+        "area": "vbt",
+        "title": "The load-velocity relationship in the back squat: individualized vs. generalized load-velocity profiles",
+        "authors": "Jovanovic, M., & Flanagan, E. P.",
+        "year": 2014,
+        "journal": "International Journal of Sports Physiology and Performance",
+        "pmid": "24809472"
+      },
+      "ncbi_title": "The deficiency of tumor suppressor prep1 accelerates the onset of meis1- hoxa9 leukemogenesis.",
+      "ncbi_source": "PLoS One",
+      "ncbi_authors": [
+        "Dardaei L",
+        "Modica L",
+        "Iotti G"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_vbt_banyard_2017",
+        "area": "vbt",
+        "title": "The reliability of individualized load-velocity profiles in the free-weight back squat",
+        "authors": "Banyard, H. G., Nosaka, K., & Haff, G. G.",
+        "year": 2017,
+        "journal": "International Journal of Sports Physiology and Performance",
+        "pmid": "27633948"
+      },
+      "ncbi_title": "A new mathematical modeling for pure parsimony haplotyping problem.",
+      "ncbi_source": "Math Biosci",
+      "ncbi_authors": [
+        "Feizabadi R",
+        "Bagherian M",
+        "Vaziri HR"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_vbt_perez_2020",
+        "area": "vbt",
+        "title": "Effects of different velocity loss thresholds on passive recovery time",
+        "authors": "Perez-Castilla, A., Piepoli, A., Delgado-Garcia, G., Garrido-Blanca, G., & Garcia-Ramos, A.",
+        "year": 2020,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "30946269"
+      },
+      "ncbi_title": "Predictors of Fat Oxidation and Caloric Expenditure With and Without Weighted Vest Running.",
+      "ncbi_source": "J Strength Cond Res",
+      "ncbi_authors": [
+        "Purdom TM",
+        "Mermier C",
+        "Dokladny K"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_vbt_mann_2015",
+        "area": "vbt",
+        "title": "Velocity-based training in football",
+        "authors": "Mann, J. B., Ivey, P. A., & Sayers, S. P.",
+        "year": 2015,
+        "journal": "Strength and Conditioning Journal",
+        "pmid": "26197614"
+      },
+      "ncbi_title": "[A Method for Selecting Self-Adoptive Chromaticity of the Projected Markers].",
+      "ncbi_source": "Guang Pu Xue Yu Guang Pu Fen Xi",
+      "ncbi_authors": [
+        "Zhao SB",
+        "Zhang FM",
+        "Qu XH"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_vbt_conceicao_2016",
+        "area": "vbt",
+        "title": "Movement velocity as a measure of exercise intensity in three lower limb exercises",
+        "authors": "Conceicao, F., Fernandes, J., Lewis, M., Gonzalez-Badillo, J. J., & Jimenez-Reyes, P.",
+        "year": 2016,
+        "journal": "Journal of Sports Sciences",
+        "pmid": "26732397"
+      },
+      "ncbi_title": "A Not-So-Gentle Refutation of the Defence of Homeopathy.",
+      "ncbi_source": "J Bioeth Inq",
+      "ncbi_authors": [
+        "Zawi\u0142a-Nied\u017awiecki J",
+        "Olender J"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_vbt_thompson_2023",
+        "area": "vbt",
+        "title": "Velocity-based training: a systematic review and meta-analysis",
+        "authors": "Thompson, S. W., Rogerson, D., Dorrell, H. F., Ruddock, A., & Barnes, A.",
+        "year": 2023,
+        "journal": "Sports Medicine",
+        "pmid": "36399261"
+      },
+      "ncbi_title": "Reply to: The role of pets in SARS-CoV-2 transmission: an exploratory analysis.",
+      "ncbi_source": "Infection",
+      "ncbi_authors": [
+        "Galmiche S",
+        "Charmet T",
+        "Mailles A"
+      ],
+      "common_words": [
+        "analysis"
+      ],
+      "match_score": 0.14285714285714285
+    },
+    {
+      "source": {
+        "id": "sci_vbt_balsalobre_2018_app",
+        "area": "vbt",
+        "title": "Validity and reliability of a novel iPhone app for the measurement of barbell velocity and 1RM on the bench-press exercise",
+        "authors": "Balsalobre-Fernandez, C., Marchante, D., Baz-Valle, E., Alonso-Molero, I., Jimenez, S. L., & Munoa, M.",
+        "year": 2018,
+        "journal": "Journal of Sports Sciences",
+        "pmid": "28098522"
+      },
+      "ncbi_title": "McGurk Effect in Gender Identification: Vision Trumps Audition in Voice Judgments.",
+      "ncbi_source": "J Gen Psychol",
+      "ncbi_authors": [
+        "Peynircio\u01e7lu ZF",
+        "Brent W",
+        "Tatz JR"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_komi_2000",
+        "area": "biomeccanica",
+        "title": "Stretch-shortening cycle: a powerful model to study normal and fatigued muscle structure and function",
+        "authors": "Komi, P. V.",
+        "year": 2000,
+        "journal": "Journal of Biomechanics",
+        "pmid": "10917766"
+      },
+      "ncbi_title": "Pharmaceutical price regulation in the UK.",
+      "ncbi_source": "Internist (Berl)",
+      "ncbi_authors": [
+        "Lockhart-Mirams A"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_nigg_2001",
+        "area": "biomeccanica",
+        "title": "The role of impact forces and foot pronation: a new paradigm",
+        "authors": "Nigg, B. M.",
+        "year": 2001,
+        "journal": "Clinical Journal of Sport Medicine",
+        "pmid": "11176141"
+      },
+      "ncbi_title": "Paralysis from sport and diving accidents.",
+      "ncbi_source": "Clin J Sport Med",
+      "ncbi_authors": [
+        "Schmitt H",
+        "Gerner HJ"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_enoka_1988",
+        "area": "biomeccanica",
+        "title": "Muscle strength and its development: new perspectives",
+        "authors": "Enoka, R. M.",
+        "year": 1988,
+        "journal": "Sports Medicine",
+        "pmid": "3057316"
+      },
+      "ncbi_title": "Metabolic consequences of resistive-type exercise.",
+      "ncbi_source": "Med Sci Sports Exerc",
+      "ncbi_authors": [
+        "Dudley GA"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_herzog_2004",
+        "area": "biomeccanica",
+        "title": "History-dependent properties of skeletal muscle: rheological properties and residual force enhancement",
+        "authors": "Herzog, W.",
+        "year": 2004,
+        "journal": "Journal of Electromyography and Kinesiology",
+        "pmid": "15094144"
+      },
+      "ncbi_title": "Are hamstrings activated to counteract shear forces during isometric knee extension efforts in healthy subjects?",
+      "ncbi_source": "J Electromyogr Kinesiol",
+      "ncbi_authors": [
+        "Kingma I",
+        "Aalbersberg S",
+        "van Die\u00ebn JH"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_zatsiorsky_2002",
+        "area": "biomeccanica",
+        "title": "Kinetics of Human Motion",
+        "authors": "Zatsiorsky, V. M.",
+        "year": 2002,
+        "journal": "Human Kinetics",
+        "pmid": "11932598"
+      },
+      "ncbi_title": "Soft-tissue flap coverage maximizes limb salvage after allograft bone extremity reconstruction.",
+      "ncbi_source": "Plast Reconstr Surg",
+      "ncbi_authors": [
+        "Mastorakos DP",
+        "Disa JJ",
+        "Athanasian E"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_cavanagh_1980",
+        "area": "biomeccanica",
+        "title": "Ground reaction forces in distance running",
+        "authors": "Cavanagh, P. R., & Lafortune, M. A.",
+        "year": 1980,
+        "journal": "Journal of Biomechanics",
+        "pmid": "7400379"
+      },
+      "ncbi_title": "Zomepirac and warfarin: a clinical study to determine if interaction exists.",
+      "ncbi_source": "J Clin Pharmacol",
+      "ncbi_authors": [
+        "Minn FL",
+        "Zinny MA"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_arampatzis_2006",
+        "area": "biomeccanica",
+        "title": "Influence of the muscle-tendon unit mechanical properties on mechanical efficiency in bouncing gait",
+        "authors": "Arampatzis, A., et al.",
+        "year": 2006,
+        "journal": "Journal of Experimental Biology",
+        "pmid": "16731809"
+      },
+      "ncbi_title": "Post-genomic approaches to understanding the mechanisms of environmentally induced phenotypic plasticity.",
+      "ncbi_source": "J Exp Biol",
+      "ncbi_authors": [
+        "Cossins A",
+        "Fraser J",
+        "Hughes M"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_ishikawa_2005",
+        "area": "biomeccanica",
+        "title": "Interaction between fascicle and tendinous tissue in short-contact stretch-shortening cycle exercise",
+        "authors": "Ishikawa, M., Niemel\u00e4, E., & Komi, P. V.",
+        "year": 2005,
+        "journal": "Journal of Applied Physiology",
+        "pmid": "15890807"
+      },
+      "ncbi_title": "The tryptophan requirement of growing and finishing barrows.",
+      "ncbi_source": "J Anim Sci",
+      "ncbi_authors": [
+        "Guzik AC",
+        "Shelton JL",
+        "Southern LL"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_deluca_2006",
+        "area": "biomeccanica",
+        "title": "Filtering the surface EMG signal: Movement artifact and baseline noise removal",
+        "authors": "De Luca, C. J., et al.",
+        "year": 2006,
+        "journal": "Journal of Electromyography and Kinesiology",
+        "pmid": "16679036"
+      },
+      "ncbi_title": "Mitochondrial activity is modulated by TNFalpha and IL-1beta in normal human chondrocyte cells.",
+      "ncbi_source": "Osteoarthritis Cartilage",
+      "ncbi_authors": [
+        "L\u00f3pez-Armada MJ",
+        "Caram\u00e9s B",
+        "Mart\u00edn MA"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_moritani_1979",
+        "area": "biomeccanica",
+        "title": "Neural factors versus hypertrophy in time course of muscle strength gain",
+        "authors": "Moritani, T., & deVries, H. A.",
+        "year": 1979,
+        "journal": "American Journal of Physical Medicine",
+        "pmid": "443443"
+      },
+      "ncbi_title": "Cardiac performance of isolated perfused hearts from alloxan diabetic rats.",
+      "ncbi_source": "Am J Physiol",
+      "ncbi_authors": [
+        "Miller TB Jr"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_escamilla_2000",
+        "area": "biomeccanica",
+        "title": "Knee biomechanics during the squat exercise",
+        "authors": "Escamilla, R. F.",
+        "year": 2000,
+        "journal": "Medicine & Science in Sports & Exercise",
+        "pmid": "10776897"
+      },
+      "ncbi_title": "Lactate transporters (MCT proteins) in heart and skeletal muscles.",
+      "ncbi_source": "Med Sci Sports Exerc",
+      "ncbi_authors": [
+        "Bonen A"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_lieber_2004",
+        "area": "biomeccanica",
+        "title": "Skeletal muscle design to meet functional demands",
+        "authors": "Lieber, R. L., & Frid\u00e9n, J.",
+        "year": 2004,
+        "journal": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+        "pmid": "15519971"
+      },
+      "ncbi_title": "Origins of the southeastern Australian vegetation.",
+      "ncbi_source": "Philos Trans R Soc Lond B Biol Sci",
+      "ncbi_authors": [
+        "Hill RS"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_gregersen_2006",
+        "area": "biomeccanica",
+        "title": "Biomechanics of cycling: loads on the spine, knee, and ankle",
+        "authors": "Gregersen, C. S., & Hull, M. L.",
+        "year": 2006,
+        "journal": "Journal of Biomechanical Engineering",
+        "pmid": "16706012"
+      },
+      "ncbi_title": "[Advances in studies on chemical constituents and bioactivities of plants from flacourtiaceae].",
+      "ncbi_source": "Zhongguo Zhong Yao Za Zhi",
+      "ncbi_authors": [
+        "Chai XY",
+        "Lu YN",
+        "Ren HY"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_samozino_2016",
+        "area": "biomeccanica",
+        "title": "Optimal Force-Velocity Profile in Ballistic Movements: Altius, Citius, Fortius",
+        "authors": "Samozino, P., et al.",
+        "year": 2016,
+        "journal": "Medicine & Science in Sports & Exercise",
+        "pmid": "26741119"
+      },
+      "ncbi_title": "Enhanced Endurance Performance by Periodization of Carbohydrate Intake: \"Sleep Low\" Strategy.",
+      "ncbi_source": "Med Sci Sports Exerc",
+      "ncbi_authors": [
+        "Marquet LA",
+        "Brisswalter J",
+        "Louis J"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_mcgill_2001",
+        "area": "biomeccanica",
+        "title": "Low back stability: mechanics, injury mechanisms, and rehabilitation",
+        "authors": "McGill, S. M.",
+        "year": 2001,
+        "journal": "Journal of Electromyography and Kinesiology",
+        "pmid": "11738952"
+      },
+      "ncbi_title": "The assessment of posture control in the elderly using the displacement of the center of pressure after forward platform translation.",
+      "ncbi_source": "J Electromyogr Kinesiol",
+      "ncbi_authors": [
+        "Nakamura H",
+        "Tsuchida T",
+        "Mano Y"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_winter_1990",
+        "area": "biomeccanica",
+        "title": "Biomechanics and Motor Control of Human Movement",
+        "authors": "Winter, D. A.",
+        "year": 1990,
+        "journal": "John Wiley & Sons",
+        "pmid": "2275521"
+      },
+      "ncbi_title": "[Daily bifractionated split course radiotherapy in non-anaplastic, non-metastatic, non-resectable cancers of the lung. A preliminary study. Apropos of 129 cases].",
+      "ncbi_source": "Ann Radiol (Paris)",
+      "ncbi_authors": [
+        "Duchamp C",
+        "Bernardini J",
+        "Balozet P"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_cronin_2005",
+        "area": "biomeccanica",
+        "title": "Strength and power predictors of sports speed: deterministic modeling",
+        "authors": "Cronin, J., & Hansen, K. T.",
+        "year": 2005,
+        "journal": "Sports Medicine",
+        "pmid": "15799745"
+      },
+      "ncbi_title": "Valsalva retinopathy: diagnostic challenges in a patient with pars-planitis.",
+      "ncbi_source": "Acta Ophthalmol Scand",
+      "ncbi_authors": [
+        "Androudi S",
+        "Ahmed M",
+        "Brazitikos P"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_cormie_2011",
+        "area": "biomeccanica",
+        "title": "Developing maximal neuromuscular power: Part 1 - Biological basis of maximal power production",
+        "authors": "Cormie, P., McGuigan, M. R., & Newton, R. U.",
+        "year": 2011,
+        "journal": "Sports Medicine",
+        "pmid": "21198305"
+      },
+      "ncbi_title": "Perceived family support of women with breast cancer and affecting factors in Turkey.",
+      "ncbi_source": "Asian Pac J Cancer Prev",
+      "ncbi_authors": [
+        "Ardahan M",
+        "Yesilbalkan OU"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_bryanton_2012",
+        "area": "biomeccanica",
+        "title": "Effect of squat depth on muscle activation",
+        "authors": "Bryanton, M. A., Kennedy, M. D., Carey, J. P., & Chiu, L. Z.",
+        "year": 2012,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "22344055"
+      },
+      "ncbi_title": "Influence of squatting depth on jumping performance.",
+      "ncbi_source": "J Strength Cond Res",
+      "ncbi_authors": [
+        "Hartmann H",
+        "Wirth K",
+        "Klusemann M"
+      ],
+      "common_words": [
+        "depth"
+      ],
+      "match_score": 0.2
+    },
+    {
+      "source": {
+        "id": "sci_biomech_kubo_2001",
+        "area": "biomeccanica",
+        "title": "Effects of resistance and stretching training programmes on the viscoelastic properties of human tendon structures in vivo",
+        "authors": "Kubo, K., Kanehisa, H., & Fukunaga, T.",
+        "year": 2002,
+        "journal": "Journal of Physiology",
+        "pmid": "11796676"
+      },
+      "ncbi_title": "Does age, sex, or ACE genotype affect glucose and insulin responses to strength training?",
+      "ncbi_source": "J Appl Physiol (1985)",
+      "ncbi_authors": [
+        "Hurlbut DE",
+        "Lott ME",
+        "Ryan AS"
+      ],
+      "common_words": [
+        "training"
+      ],
+      "match_score": 0.09090909090909091
+    },
+    {
+      "source": {
+        "id": "sci_biomech_wulf_2013",
+        "area": "biomeccanica",
+        "title": "Attentional focus and motor learning: a review of 15 years",
+        "authors": "Wulf, G.",
+        "year": 2013,
+        "journal": "International Review of Sport and Exercise Psychology",
+        "pmid": "23745671"
+      },
+      "ncbi_title": "Prognostic factors in papillary microcarcinoma with emphasis on histologic subtyping: a clinicopathologic study of 148 cases.",
+      "ncbi_source": "Thyroid",
+      "ncbi_authors": [
+        "Ghossein R",
+        "Ganly I",
+        "Biagini A"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_flanagan_2012",
+        "area": "biomeccanica",
+        "title": "Muscle activation patterns and knee mechanics during isometric and dynamic squats",
+        "authors": "Flanagan, S. P., & Salem, G. J.",
+        "year": 2007,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "17685679"
+      },
+      "ncbi_title": "Duration of static stretching influences muscle force production in hamstring muscles.",
+      "ncbi_source": "J Strength Cond Res",
+      "ncbi_authors": [
+        "Ogura Y",
+        "Miyahara Y",
+        "Naito H"
+      ],
+      "common_words": [
+        "muscle"
+      ],
+      "match_score": 0.1111111111111111
+    },
+    {
+      "source": {
+        "id": "sci_biomech_mcgill_2009",
+        "area": "biomeccanica",
+        "title": "Comparison of different strongman events: trunk muscle activation and lumbar spine motion, load, and stiffness",
+        "authors": "McGill, S. M., McDermott, A., & Fenwick, C. M.",
+        "year": 2009,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "19077735"
+      },
+      "ncbi_title": "Does core strength training influence running kinetics, lower-extremity stability, and 5000-M performance in runners?",
+      "ncbi_source": "J Strength Cond Res",
+      "ncbi_authors": [
+        "Sato K",
+        "Mokha M"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_biomech_vigotsky_2018",
+        "area": "biomeccanica",
+        "title": "The role of internal and external forces on the biomechanics of the squat exercise",
+        "authors": "Vigotsky, A. D., Bryanton, M. A., Nuckols, G., & Beardsley, C.",
+        "year": 2019,
+        "journal": "International Journal of Sports Physical Therapy",
+        "pmid": "30746294"
+      },
+      "ncbi_title": "NEUROMUSCULAR ADAPTIONS FOLLOWING A DAILY STRENGTHENING EXERCISE IN INDIVIDUALS WITH ROTATOR CUFF RELATED SHOULDER PAIN: A PILOT CASE-CONTROL STUDY.",
+      "ncbi_source": "Int J Sports Phys Ther",
+      "ncbi_authors": [
+        "Seitz AL",
+        "Podlecki LA",
+        "Melton ER"
+      ],
+      "common_words": [
+        "exercise"
+      ],
+      "match_score": 0.14285714285714285
+    },
+    {
+      "source": {
+        "id": "sci_lca_myer_2006",
+        "area": "clinico",
+        "title": "Targeted neuromuscular training improves performance and neuromuscular biomechanics in female athletes",
+        "authors": "Myer, G. D., Ford, K. R., Palumbo, J. P., & Hewett, T. E.",
+        "year": 2006,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "16503678"
+      },
+      "ncbi_title": "Effect of interrepetition rest intervals on weight training repetition power output.",
+      "ncbi_source": "J Strength Cond Res",
+      "ncbi_authors": [
+        "Lawton TW",
+        "Cronin JB",
+        "Lindsell RP"
+      ],
+      "common_words": [
+        "training"
+      ],
+      "match_score": 0.125
+    },
+    {
+      "source": {
+        "id": "sci_lca_buckthorpe_2019",
+        "area": "clinico",
+        "title": "Optimising the early-stage rehabilitation process after anterior cruciate ligament reconstruction",
+        "authors": "Buckthorpe, M., Della Villa, F., Della Villa, S., & Roi, G. S.",
+        "year": 2019,
+        "journal": "Sports Medicine",
+        "pmid": "31168817"
+      },
+      "ncbi_title": "Use of an amikacin-infused collagen sponge concurrent with implant removal for treatment of tibial plateau leveling osteotomy surgical site infection in 31 cases.",
+      "ncbi_source": "Vet Surg",
+      "ncbi_authors": [
+        "Lee SJ",
+        "Frederick SW",
+        "Cross AR"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_lca_hewett_2005",
+        "area": "clinico",
+        "title": "Biomechanical measures of neuromuscular control and valgus loading of the knee predict anterior cruciate ligament injury risk in female athletes",
+        "authors": "Hewett, T. E., Myer, G. D., Ford, K. R., et al.",
+        "year": 2005,
+        "journal": "The American Journal of Sports Medicine",
+        "pmid": "15722363"
+      },
+      "ncbi_title": "Evaluation of a regional community action intervention in New Zealand to improve age checks for young people purchasing alcohol.",
+      "ncbi_source": "Health Promot Int",
+      "ncbi_authors": [
+        "Huckle T",
+        "Conway K",
+        "Casswell S"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_tendon_malliaras_2013",
+        "area": "clinico",
+        "title": "Achilles and patellar tendinopathy loading programmes : a systematic review comparing clinical outcomes and identifying potential mechanisms for effectiveness",
+        "authors": "Malliaras, P., Barton, C. J., Reeves, N. D., & Langberg, H.",
+        "year": 2013,
+        "journal": "Sports Medicine",
+        "pmid": "23625465"
+      },
+      "ncbi_title": "The entotympanic in late fetal Artiodactyla (Mammalia).",
+      "ncbi_source": "J Morphol",
+      "ncbi_authors": [
+        "Maier W"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_tendon_cook_2009",
+        "area": "clinico",
+        "title": "Is tendon pathology a continuum? A clinical model to explain the clinical presentation of load-induced tendinopathy",
+        "authors": "Cook, J. L., & Purdam, C. R.",
+        "year": 2009,
+        "journal": "British Journal of Sports Medicine",
+        "pmid": "19776044"
+      },
+      "ncbi_title": "Computed tomographic findings characteristic for encapsulating peritoneal sclerosis: a case-control study.",
+      "ncbi_source": "Perit Dial Int",
+      "ncbi_authors": [
+        "Vlijm A",
+        "Stoker J",
+        "Bipat S"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_hamstring_ekstrand_2012",
+        "area": "clinico",
+        "title": "Hamstring muscle strain recurrence and time loss in professional football",
+        "authors": "Ekstrand, J., H\u00e4gglund, M., & Wald\u00e9n, M.",
+        "year": 2012,
+        "journal": "British Journal of Sports Medicine",
+        "pmid": "22219258"
+      },
+      "ncbi_title": "Meta-analysis of cause of death following total joint replacement using different thromboprophylaxis regimens.",
+      "ncbi_source": "J Bone Joint Surg Br",
+      "ncbi_authors": [
+        "Poultsides LA",
+        "Gonzalez Della Valle A",
+        "Memtsoudis SG"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_hamstring_vandyk_2019",
+        "area": "clinico",
+        "title": "Including the Nordic hamstring exercise in injury prevention programmes halves the rate of hamstring injuries: a systematic review and meta-analysis of 8459 athletes",
+        "authors": "van Dyk, N., Behan, F. P., & Whiteley, R.",
+        "year": 2019,
+        "journal": "British Journal of Sports Medicine",
+        "pmid": "30819786"
+      },
+      "ncbi_title": "Hospital Volume Versus Good Clinical Practice.",
+      "ncbi_source": "Oncologist",
+      "ncbi_authors": [
+        "Valenti V"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_hamstring_petersen_2011",
+        "area": "clinico",
+        "title": "Preventing hamstring strains in football players: a randomized controlled trial",
+        "authors": "Petersen, J., Thorborg, K., Nielsen, M. B., Budtz-J\u00f8rgensen, E., & Holmich, P.",
+        "year": 2011,
+        "journal": "The American Journal of Sports Medicine",
+        "pmid": "21803979"
+      },
+      "ncbi_title": "Arthroscopic-assisted Brostr\u00f6m-Gould for chronic ankle instability: a long-term follow-up.",
+      "ncbi_source": "Am J Sports Med",
+      "ncbi_authors": [
+        "Nery C",
+        "Raduan F",
+        "Del Buono A"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_hamstring_bourne_2018",
+        "area": "clinico",
+        "title": "Impact of exercise selection on hamstring muscle activation and architectural adaptations: a systematic review",
+        "authors": "Bourne, M. N., Timmins, R. G., Opar, D. A., et al.",
+        "year": 2018,
+        "journal": "Sports Medicine",
+        "pmid": "29450822"
+      },
+      "ncbi_title": "A troubled marriage: When electrical and mechanical dyssynchrony don't go along.",
+      "ncbi_source": "J Nucl Cardiol",
+      "ncbi_authors": [
+        "Fudim M",
+        "Borges-Neto S"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_shoulder_cools_2007",
+        "area": "clinico",
+        "title": "Rehabilitation of scapular dyskinesis: from the office to the field",
+        "authors": "Cools, A. M., Struyf, F., De Mey, K., Danneels, L., & Cambier, D.",
+        "year": 2007,
+        "journal": "Journal of Sport Rehabilitation",
+        "pmid": "17923728"
+      },
+      "ncbi_title": "Identification of risk factors for exertional heat illness: a brief commentary on genetic testing.",
+      "ncbi_source": "J Sport Rehabil",
+      "ncbi_authors": [
+        "Muldoon S",
+        "Bunger R",
+        "Deuster P"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_shoulder_kibler_2010",
+        "area": "clinico",
+        "title": "Current concepts: scapular dyskinesis",
+        "authors": "Kibler, W. B., & Sciascia, A.",
+        "year": 2010,
+        "journal": "British Journal of Sports Medicine",
+        "pmid": "20371559"
+      },
+      "ncbi_title": "A new classification system for shoulder instability.",
+      "ncbi_source": "Br J Sports Med",
+      "ncbi_authors": [
+        "Kuhn JE"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_shoulder_wilk_2009",
+        "area": "clinico",
+        "title": "The shoulder in baseball: rehabilitation principles",
+        "authors": "Wilk, K. E., Reinold, M. M., & Dugas, J. R.",
+        "year": 2009,
+        "journal": "Journal of Orthopaedic & Sports Physical Therapy",
+        "pmid": "19182317"
+      },
+      "ncbi_title": "[Encapsulating peritoneal sclerosis].",
+      "ncbi_source": "Laeknabladid",
+      "ncbi_authors": [
+        "Arnadottir M",
+        "Elvarson F",
+        "Indridason OS"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_spine_mcgill_2001",
+        "area": "clinico",
+        "title": "Low back stability: from formal description to issues for performance and rehabilitation",
+        "authors": "McGill, S. M.",
+        "year": 2001,
+        "journal": "Exercise and Sport Sciences Reviews",
+        "pmid": "11265986"
+      },
+      "ncbi_title": "Pain in Anderson-Fabry's disease.",
+      "ncbi_source": "Lancet",
+      "ncbi_authors": [
+        "Chowdhury MM",
+        "Holt PJ"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_spine_cholewicki_1996",
+        "area": "clinico",
+        "title": "Mechanical stability of the in vivo lumbar spine: implications for injury and chronic low back pain",
+        "authors": "Cholewicki, J., & McGill, S. M.",
+        "year": 1996,
+        "journal": "Journal of Biomechanics",
+        "pmid": "8827400"
+      },
+      "ncbi_title": "Clinical pharmacokinetics of nasal nicotine delivery. A review and comparison to other nicotine systems.",
+      "ncbi_source": "Clin Pharmacokinet",
+      "ncbi_authors": [
+        "Schneider NG",
+        "Lunell E",
+        "Olmstead RE"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_spine_hodges_1996",
+        "area": "clinico",
+        "title": "Inefficient muscular stabilization of the lumbar spine associated with low back pain: a motor control evaluation of transversus abdominis",
+        "authors": "Hodges, P. W., & Richardson, C. A.",
+        "year": 1996,
+        "journal": "Spine",
+        "pmid": "8923631"
+      },
+      "ncbi_title": "The possibility of creating lordosis and correcting scoliosis simultaneously after partial disc removal. Balance lines of lumbar motion segments.",
+      "ncbi_source": "Spine (Phila Pa 1976)",
+      "ncbi_authors": [
+        "Ogon M",
+        "Haid C",
+        "Krismer M"
+      ],
+      "common_words": [
+        "lumbar"
+      ],
+      "match_score": 0.07142857142857142
+    },
+    {
+      "source": {
+        "id": "sci_spine_hides_1996",
+        "area": "clinico",
+        "title": "Multifidus muscle recovery is not automatic after resolution of acute, first-episode low back pain",
+        "authors": "Hides, J. A., Richardson, C. A., & Jull, G. A.",
+        "year": 1996,
+        "journal": "Spine",
+        "pmid": "8961451"
+      },
+      "ncbi_title": "Inefficient muscular stabilization of the lumbar spine associated with low back pain. A motor control evaluation of transversus abdominis.",
+      "ncbi_source": "Spine (Phila Pa 1976)",
+      "ncbi_authors": [
+        "Hodges PW",
+        "Richardson CA"
+      ],
+      "common_words": [
+        "pain",
+        "back"
+      ],
+      "match_score": 0.18181818181818182
+    },
+    {
+      "source": {
+        "id": "sci_lca_ardern_2016",
+        "area": "clinico",
+        "title": "2016 Consensus statement on return to sport from the first world congress in sports physical therapy",
+        "authors": "Ardern, C. L., Glasgow, P., Schneiders, A., Witvrouw, E., Clarsen, B., Cools, A., & Bizzini, M.",
+        "year": 2016,
+        "journal": "British Journal of Sports Medicine",
+        "pmid": "26888237"
+      },
+      "ncbi_title": "Assessment of relationship between oral health behavior, oral hygiene and gingival status of dental students.",
+      "ncbi_source": "Indian J Dent Res",
+      "ncbi_authors": [
+        "Lalani A",
+        "Dasar PL",
+        "Sandesh N"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_spine_hicks_2005",
+        "area": "clinico",
+        "title": "Preliminary development of a clinical prediction rule for determining which patients with low back pain will respond to a stabilization exercise program",
+        "authors": "Hicks, G. E., Fritz, J. M., Delitto, A., & McGill, S. M.",
+        "year": 2005,
+        "journal": "Archives of Physical Medicine and Rehabilitation",
+        "pmid": "16084801"
+      },
+      "ncbi_title": "Initial psychometric assessment of a functional oral intake scale for dysphagia in stroke patients.",
+      "ncbi_source": "Arch Phys Med Rehabil",
+      "ncbi_authors": [
+        "Crary MA",
+        "Mann GD",
+        "Groher ME"
+      ],
+      "common_words": [
+        "patients"
+      ],
+      "match_score": 0.0625
+    },
+    {
+      "source": {
+        "id": "sci_shoulder_escamilla_2009",
+        "area": "clinico",
+        "title": "Shoulder muscle recruitment patterns and related biomechanics during upper extremity sports",
+        "authors": "Escamilla, R. F., & Andrews, J. R.",
+        "year": 2009,
+        "journal": "Sports Medicine",
+        "pmid": "19453205"
+      },
+      "ncbi_title": "Exercise and bone mass in adults.",
+      "ncbi_source": "Sports Med",
+      "ncbi_authors": [
+        "Guadalupe-Grau A",
+        "Fuentes T",
+        "Guerra B"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_knee_powers_2010",
+        "area": "clinico",
+        "title": "The influence of abnormal hip mechanics on knee injury: a biomechanical perspective",
+        "authors": "Powers, C. M.",
+        "year": 2010,
+        "journal": "Journal of Orthopaedic & Sports Physical Therapy",
+        "pmid": "20710093"
+      },
+      "ncbi_title": "Outcomes before and after total knee arthroplasty compared to healthy adults.",
+      "ncbi_source": "J Orthop Sports Phys Ther",
+      "ncbi_authors": [
+        "Bade MJ",
+        "Kohrt WM",
+        "Stevens-Lapsley JE"
+      ],
+      "common_words": [
+        "knee"
+      ],
+      "match_score": 0.14285714285714285
+    },
+    {
+      "source": {
+        "id": "sci_muscle_opar_2012",
+        "area": "clinico",
+        "title": "Hamstring strain injuries: factors that lead to injury and re-injury",
+        "authors": "Opar, D. A., Williams, M. D., & Shield, A. J.",
+        "year": 2012,
+        "journal": "Sports Medicine",
+        "pmid": "22356851"
+      },
+      "ncbi_title": "Leptin signaling protects the gut from Entamoeba histolytica infection.",
+      "ncbi_source": "Gut Microbes",
+      "ncbi_authors": [
+        "Vedantam G",
+        "Viswanathan VK"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_rehab_blanchard_2000",
+        "area": "clinico",
+        "title": "The effects of cold water immersion on recovery from exercise-induced muscle damage",
+        "authors": "Bleakley, C. M., & Davison, G. W.",
+        "year": 2010,
+        "journal": "British Journal of Sports Medicine",
+        "pmid": "19945969"
+      },
+      "ncbi_title": "Exogenous carbon monoxide protects the bystander Chinese hamster ovary cells in mixed coculture system after alpha-particle irradiation.",
+      "ncbi_source": "Carcinogenesis",
+      "ncbi_authors": [
+        "Han W",
+        "Wu L",
+        "Chen S"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_fifa_alattar_2017",
+        "area": "sportSquadra",
+        "title": "How effective are F-MARC injury prevention programmes for teamsports? A systematic review and meta-analysis",
+        "authors": "Al Attar, W. S. A., Soomro, N., Pappas, E., Sinclair, P. J., & Sanders, R. H.",
+        "year": 2017,
+        "journal": "British Journal of Sports Medicine",
+        "pmid": "28122797"
+      },
+      "ncbi_title": "Single dose of prophylactic oral dextrose gel reduces neonatal hypoglycaemia.",
+      "ncbi_source": "Evid Based Med",
+      "ncbi_authors": [
+        "Chandrasekharan P",
+        "Lakshminrusimha S"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_fifa_bahr_2015",
+        "area": "sportSquadra",
+        "title": "Why screening tests to predict injury do not work-and probably never will...: a story of 3500 medical examinations",
+        "authors": "Bahr, R.",
+        "year": 2015,
+        "journal": "British Journal of Sports Medicine",
+        "pmid": "26002938"
+      },
+      "ncbi_title": "Academic dishonesty among health science school students.",
+      "ncbi_source": "Nurs Ethics",
+      "ncbi_authors": [
+        "Oran NT",
+        "Can H\u00d6",
+        "\u015eenol S"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_workload_windt_2017",
+        "area": "sportSquadra",
+        "title": "How do training and competition workloads relate to injury? The workload-injury etiology model",
+        "authors": "Windt, J., & Gabbett, T. J.",
+        "year": 2017,
+        "journal": "British Journal of Sports Medicine",
+        "pmid": "27405944"
+      },
+      "ncbi_title": "Is your manuscript ready for Free Radical Redox Report of Research in Biology and Medicine? A guide for authors.",
+      "ncbi_source": "Redox Rep",
+      "ncbi_authors": [
+        "Koppenol WH",
+        "Bounds PL"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_rsa_rampinini_2007",
+        "area": "sportSquadra",
+        "title": "Factors influencing repeated-sprint ability in football players",
+        "authors": "Rampinini, E., Sassi, A., Morelli, A., Mazzoni, S., Fanchini, M., & Coutts, A. J.",
+        "year": 2007,
+        "journal": "International Journal of Sports Medicine",
+        "pmid": "17497576"
+      },
+      "ncbi_title": "Fatigue differences between adults and prepubertal males.",
+      "ncbi_source": "Int J Sports Med",
+      "ncbi_authors": [
+        "Paraschos I",
+        "Hassani A",
+        "Bassa E"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_rsa_buchheit_2013",
+        "area": "sportSquadra",
+        "title": "High-intensity interval training, solutions to the programming puzzle: Part I: cardiopulmonary engines",
+        "authors": "Buchheit, M., & Laursen, P. B.",
+        "year": 2013,
+        "journal": "Sports Medicine",
+        "pmid": "23539301"
+      },
+      "ncbi_title": "Transgenic manipulation of plant embryo sacs tracked through cell-type-specific fluorescent markers: cell labeling, cell ablation, and adventitious embryos.",
+      "ncbi_source": "Plant Reprod",
+      "ncbi_authors": [
+        "Lawit SJ",
+        "Chamberlin MA",
+        "Agee A"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_rsa_girard_2011",
+        "area": "sportSquadra",
+        "title": "Repeated-sprint ability - part 1: factors contributing to fatigue",
+        "authors": "Girard, O., Mendez-Villanueva, A., & Bishop, D.",
+        "year": 2011,
+        "journal": "Sports Medicine",
+        "pmid": "21688903"
+      },
+      "ncbi_title": "The moderating effect of relationship quality on partner secondary traumatic stress among couples coping with cancer.",
+      "ncbi_source": "Fam Syst Health",
+      "ncbi_authors": [
+        "Brosseau DC",
+        "McDonald MJ",
+        "Stephen JE"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_cod_sheppard_2006",
+        "area": "sportSquadra",
+        "title": "Agility literature review: classifications in movement and sport-specific decision-making components",
+        "authors": "Sheppard, J. M., & Young, W. B.",
+        "year": 2006,
+        "journal": "Journal of Sports Sciences",
+        "pmid": "16935793"
+      },
+      "ncbi_title": "Catalase restores the altered mRNA expression of collagen and matrix metalloproteinases by dermal fibroblasts exposed to reactive oxygen species.",
+      "ncbi_source": "Eur J Dermatol",
+      "ncbi_authors": [
+        "Zaw KK",
+        "Yokoyama Y",
+        "Abe M"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_cod_spiteri_2014",
+        "area": "sportSquadra",
+        "title": "Mechanical determinants of faster change of direction and agility performance in female basketball players",
+        "authors": "Spiteri, T., Nimphius, S., Hart, N. H., Specos, C., Sheppard, J. M., & Newton, R. U.",
+        "year": 2014,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "24149526"
+      },
+      "ncbi_title": "Influence of two different rest interval lengths in resistance training sessions for upper and lower body.",
+      "ncbi_source": "J Sports Sci Med",
+      "ncbi_authors": [
+        "Senna G",
+        "Salles BF",
+        "Prestes J"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_cod_nimphius_2016",
+        "area": "sportSquadra",
+        "title": "Change of direction deficit: a more isolated measure of change of direction performance",
+        "authors": "Nimphius, S., Callaghan, S. J., Spiteri, T., & Lockie, R. G.",
+        "year": 2016,
+        "journal": "Journal of Strength and Conditioning Research",
+        "pmid": "26982400"
+      },
+      "ncbi_title": "NMC report reveals fall in FtP referrals.",
+      "ncbi_source": "Nurs Stand",
+      "ncbi_authors": [],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_team_impellizzeri_2006",
+        "area": "sportSquadra",
+        "title": "Physiological and performance effects of generic versus specific high-intensity interval training in football players",
+        "authors": "Impellizzeri, F. M., Marcora, S. M., Castagna, C., Reilly, T., Sassi, A., & Rampinini, E.",
+        "year": 2006,
+        "journal": "International Journal of Sports Medicine",
+        "pmid": "16802251"
+      },
+      "ncbi_title": "Highly demanding resistive vibration exercise program is tolerated during 56 days of strict bed-rest.",
+      "ncbi_source": "Int J Sports Med",
+      "ncbi_authors": [
+        "Rittweger J",
+        "Belavy D",
+        "Hunek P"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_team_taylor_2017",
+        "area": "sportSquadra",
+        "title": "Physical demands of elite basketball: a systematic review",
+        "authors": "Taylor, J. B., Wright, A. A., Dischiavi, S. L., Townsend, M. A., & Marmon, A. R.",
+        "year": 2017,
+        "journal": "Journal of Sports Sciences",
+        "pmid": "28362127"
+      },
+      "ncbi_title": "Welcome to the 2017 Annual Review of Sex Research.",
+      "ncbi_source": "J Sex Res",
+      "ncbi_authors": [
+        "van Anders SM"
+      ],
+      "common_words": [
+        "review"
+      ],
+      "match_score": 0.16666666666666666
+    },
+    {
+      "source": {
+        "id": "sci_team_ekstrand_2011",
+        "area": "sportSquadra",
+        "title": "Injury incidence and injury patterns in professional football: the UEFA injury study",
+        "authors": "Ekstrand, J., H\u00e4gglund, M., & Wald\u00e9n, M.",
+        "year": 2011,
+        "journal": "British Journal of Sports Medicine",
+        "pmid": "21586354"
+      },
+      "ncbi_title": "The structure of the adenosine receptors: implications for drug discovery.",
+      "ncbi_source": "Adv Pharmacol",
+      "ncbi_authors": [
+        "Lane JR",
+        "Jaakola VP",
+        "Ijzerman AP"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_groin_thorborg_2018",
+        "area": "sportSquadra",
+        "title": "Effect of the Copenhagen Adduction exercise on groin injury risk in male football players: a cluster-randomised controlled trial",
+        "authors": "Har\u00f8y, J., Clarsen, B., Wiger, E. G., \u00d8yen, M. G., Serner, A., Thorborg, K., H\u00f6lmich, P., Andersen, T. E., & Bahr, R.",
+        "year": 2019,
+        "journal": "British Journal of Sports Medicine",
+        "pmid": "30413448"
+      },
+      "ncbi_title": "Use of Integra dermal substitute to prevent implantable device extrusion in an Olympic athlete.",
+      "ncbi_source": "BMJ Case Rep",
+      "ncbi_authors": [
+        "Page F",
+        "Patel K",
+        "Jaffe W"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_cod_donelon_2020",
+        "area": "sportSquadra",
+        "title": "Biomechanical determinants of knee joint loads during cutting manoeuvres in sporting populations: a systematic review",
+        "authors": "Donelon, T. A., Dos'Santos, T., Thomas, C., Comfort, P., & Jones, P. A.",
+        "year": 2020,
+        "journal": "Physical Therapy in Sport",
+        "pmid": "32417711"
+      },
+      "ncbi_title": "On the use of EBT3 film for relative dosimetry of kilovoltage X ray beams.",
+      "ncbi_source": "Phys Med",
+      "ncbi_authors": [
+        "Prentou E",
+        "Lekatou A",
+        "Pantelis E"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_team_longo_2012",
+        "area": "sportSquadra",
+        "title": "Prevention of injuries in football: a systematic review of interventions",
+        "authors": "Longo, U. G., Loppini, M., Berton, A., Marinozzi, A., Maffulli, N., & Denaro, V.",
+        "year": 2012,
+        "journal": "British Journal of Sports Medicine",
+        "pmid": "22442232"
+      },
+      "ncbi_title": "Crystallization and preliminary X-ray analysis of alginate importer from Sphingomonas sp. A1.",
+      "ncbi_source": "Acta Crystallogr Sect F Struct Biol Cryst Commun",
+      "ncbi_authors": [
+        "Maruyama Y",
+        "Itoh T",
+        "Nishitani Y"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_team_mccall_2014",
+        "area": "sportSquadra",
+        "title": "Injury prevention strategies in professional football (soccer): the FIFA 11+ programme and other emerging approaches",
+        "authors": "McCall, A., Davison, M., Andersen, T. E., Beasley, I., Bizzini, M., & Dupont, G.",
+        "year": 2015,
+        "journal": "British Journal of Sports Medicine",
+        "pmid": "25452613"
+      },
+      "ncbi_title": "Cerebrovascular reactivity assessed by transcranial Doppler ultrasound in sport-related concussion: a systematic review.",
+      "ncbi_source": "Br J Sports Med",
+      "ncbi_authors": [
+        "Gardner AJ",
+        "Tan CO",
+        "Ainslie PN"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_team_akenhead_2016",
+        "area": "sportSquadra",
+        "title": "Diminutions of acceleration and deceleration output during professional football match play",
+        "authors": "Akenhead, R., Hayes, P. R., Thompson, K. G., & French, D.",
+        "year": 2013,
+        "journal": "Journal of Science and Medicine in Sport",
+        "pmid": "22884568"
+      },
+      "ncbi_title": "Assessment of brain glucose metabolism with input function determined from brain PET images by means of Bayesian ICA and MCMC methods.",
+      "ncbi_source": "Comput Med Imaging Graph",
+      "ncbi_authors": [
+        "Berradja K",
+        "Boughanmi N"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_team_dello_2016",
+        "area": "sportSquadra",
+        "title": "Match-related physical performance in professional basketball: a systematic review",
+        "authors": "Stojanovic, E., Stojiljkovic, N., Scanlan, A. T., Dalbo, V. J., Berkelmans, D. M., & Milanovic, Z.",
+        "year": 2018,
+        "journal": "Sports Medicine",
+        "pmid": "29282680"
+      },
+      "ncbi_title": "Predicting and Overcoming Chemotherapeutic Resistance in Breast Cancer.",
+      "ncbi_source": "Adv Exp Med Biol",
+      "ncbi_authors": [
+        "Chun KH",
+        "Park JH",
+        "Fan S"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_team_tierney_2016",
+        "area": "sportSquadra",
+        "title": "An assessment of hamstring injury prevention programs in sport: a review of practices in professional rugby union",
+        "authors": "Tierney, G. J., Elliott-Sale, K. J., & Mayeux, S.",
+        "year": 2020,
+        "journal": "Sports Medicine",
+        "pmid": "31512147"
+      },
+      "ncbi_title": "Efficacy of cefoxitin versus carbapenem in febrile male urinary tract infections caused by extended spectrum beta-lactamase-producing Escherichia coli: a multicenter retrospective cohort study with propensity score analysis.",
+      "ncbi_source": "Eur J Clin Microbiol Infect Dis",
+      "ncbi_authors": [
+        "Senard O",
+        "Lafaurie M",
+        "Lesprit P"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    },
+    {
+      "source": {
+        "id": "sci_team_harper_2019",
+        "area": "sportSquadra",
+        "title": "Relationships between eccentric hamstring strength and match-play sprinting in professional football",
+        "authors": "Harper, D. J., & Kiely, J.",
+        "year": 2018,
+        "journal": "Journal of Sports Sciences",
+        "pmid": "29281917"
+      },
+      "ncbi_title": "Recording advance decisions to refuse treatment.",
+      "ncbi_source": "Br J Community Nurs",
+      "ncbi_authors": [
+        "Griffith R"
+      ],
+      "common_words": [],
+      "match_score": 0.0
+    }
+  ],
+  "non_pmids": [
+    {
+      "id": "sci_weightlifting_takano_2012",
+      "title": "Weightlifting programming: a winning coach's guide",
+      "authors": "Takano, B.",
+      "journal": "Catalyst Athletics",
+      "year": 2012,
+      "area": "Sollevamento Pesi",
+      "abstract": "Guida pratica alla periodizzazione nel sollevamento pesi olimpico da parte di un allenatore di livello internazionale. Delinea i principi della programmazione a blocchi per sollevatori agonisti, enfatizzando la gestione del volume e dell'intensit\u00e0 in cicli di preparazione generale, specifica e agonistica. Offre modelli concreti per la distribuzione settimanale del carico tra strappo, girata e slancio, e esercizi accessori.",
+      "url": "https://www.catalystathletics.com/",
+      "rules": {
+        "patientTypes": [
+          "Atleta"
+        ],
+        "sports": [
+          "Bodybuilding",
+          "Sport di Squadra"
+        ],
+        "goals": [
+          "Strength",
+          "Power"
+        ]
+      }
+    }
+  ]
+}

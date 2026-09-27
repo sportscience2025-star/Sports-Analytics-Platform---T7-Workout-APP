@@ -1,0 +1,35 @@
+
+Gibala 2006 (Gibala MJ[Author] AND "endurance performance" AND 2006[Date - Publication]):
+  PMID: 16888462 | Year: 2006 | Journal: Med Sci Sports Exerc | Title: Failure of protein to improve time trial performance when added to a sports drink. | Authors: ['van Essen M', 'Gibala MJ']
+
+Midgley 2007 (Midgley AW[Author] AND McNaughton LR[Author] AND 2007[Date - Publication]):
+  PMID: 19171956 | Year: 2007 | Journal: Int J Sports Physiol Perform | Title: The effect of superoxygenated water on blood gases, lactate, and aerobic cycling performance. | Authors: ['McNaughton LR', 'Kenney S', 'Siegler J']
+  PMID: 18027991 | Year: 2007 | Journal: Sports Med | Title: Criteria for determination of maximal oxygen uptake: a brief critique and recommendations for future research. | Authors: ['Midgley AW', 'McNaughton LR', 'Polman R']
+  PMID: 18004683 | Year: 2008 | Journal: Int J Sports Med | Title: Pre-exercise alkalosis and acid-base recovery. | Authors: ['Siegler JC', 'Keatley S', 'Midgley AW']
+  PMID: 17887811 | Year: 2007 | Journal: Sports Med | Title: Training to enhance the physiological determinants of long-distance running performance: can valid recommendations be given to runners and coaches based on current scientific knowledge? | Authors: ['Midgley AW', 'McNaughton LR', 'Jones AM']
+  PMID: 17497578 | Year: 2007 | Journal: Int J Sports Med | Title: Time at VO2max during intermittent treadmill running: test protocol dependent or methodological artefact? | Authors: ['Midgley AW', 'McNaughton LR', 'Carroll S']
+
+Crewther 2006 (Crewther B[Author] AND Cronin J[Author] AND 2006[Date - Publication]):
+  PMID: 16526834 | Year: 2006 | Journal: Sports Med | Title: Possible stimuli for strength and power adaptation: acute hormonal responses. | Authors: ['Crewther B', 'Keogh J', 'Cronin J']
+  PMID: 16445311 | Year: 2006 | Journal: Sports Med | Title: Possible stimuli for strength and power adaptation : acute metabolic responses. | Authors: ['Crewther B', 'Cronin J', 'Keogh J']
+
+Millet 2011 (Millet GY[Author] AND "ultra-marathons"):
+  PMID: 29062284 | Year: 2017 | Journal: Front Physiol | Title: Does the Running Economy Really Increase after Ultra-Marathons? | Authors: ['Vernillo G', 'Millet GP', 'Millet GY']
+  PMID: 21615190 | Year: 2011 | Journal: Sports Med | Title: Can neuromuscular fatigue explain running strategies and performance in ultra-marathons?: the flush model. | Authors: ['Millet GY']
+
+Millet 2011 b (Millet GY[Author] AND "Neuromuscular fatigue in"):
+  PMID: 42704774 | Year: 2026 | Journal: Med Sci Sports Exerc | Title: Sex Differences in Prefrontal Oxygenation and Neuromuscular Fatigue to Incremental Cycling and Cognitive Testing Lead to Similar Cognitive Performance. | Authors: ['Goepp T', 'Nivet M', 'Millet GY']
+  PMID: 42561257 | Year: 2026 | Journal: J Strength Cond Res | Title: Effects of Narrow- Vs. Wide-Pulse Neuromuscular Electrical Stimulation Training on Functional Performance. | Authors: ['Espeit L', 'Rozand V', 'Gravholt A']
+  PMID: 42287390 | Year: 2026 | Journal: Eur J Appl Physiol | Title: Influence of age on walking performance among adults with bilateral spastic cerebral palsy. | Authors: ['Gravholt A', 'Fernandez B', 'Chauvet L']
+  PMID: 41343292 | Year: 2025 | Journal: Scand J Med Sci Sports | Title: Effect of Habitual Physical Activity on Strength Loss and Fatigability in Old and Very Old Men. | Authors: ['Luneau E', 'Rozand V', 'Murias JM']
+  PMID: 40849102 | Year: 2025 | Journal: Int J Sports Physiol Perform | Title: Sex Differences in Sustained Attention Performance and Neuromuscular Fatigue During an Intense Cognitive-Motor Dual Task in Normoxia and Hypoxia. | Authors: ['Goepp T', 'Hayes M', 'Di Domenico H']
+
+McGuigan 2012 (McGuigan MR[Author] AND "Monitoring training load and fatigue"):
+  PMID: 38418370 | Year: 2024 | Journal: Physiol Rep | Title: Modeling the repetitions-in-reserve-velocity relationship: a valid method for resistance training monitoring and prescription, and fatigue management. | Authors: ['Jukic I', 'Prnjak K', 'Helms ER']
+  PMID: 37668949 | Year: 2023 | Journal: Sports Med Open | Title: One Velocity Loss Threshold Does Not Fit All: Consideration of Sex, Training Status, History, and Personality Traits When Monitoring and Controlling Fatigue During Resistance Training. | Authors: ['Jukic I', 'Prnjak K', 'McGuigan MR']
+  PMID: 36925096 | Year: 2023 | Journal: Physiol Behav | Title: The fastest repetition in a set predicts the number of repetitions completed to failure during resistance training: The impact of individual characteristics. | Authors: ['Jukic I', 'Helms ER', 'McGuigan MR']
+  PMID: 36823322 | Year: 2023 | Journal: Eur J Appl Physiol | Title: Velocity loss is a flawed method for monitoring and prescribing resistance training volume with a free-weight back squat exercise. | Authors: ['Jukic I', 'Prnjak K', 'King A']
+  PMID: 36178597 | Year: 2023 | Journal: Sports Med | Title: The Acute and Chronic Effects of Implementing Velocity Loss Thresholds During Resistance Training: A Systematic Review, Meta-Analysis, and Critical Evaluation of the Literature. | Authors: ['Jukic I', 'Castilla AP', 'Ramos AG']
+
+Jones 2006 (Jones AM[Author] AND "marathon" AND "case study"):
+  Result: None

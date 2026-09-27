@@ -1,0 +1,88 @@
+[1] ID: sci_hamstring_timmins_2016 (sportSquadra)
+  Exp: 'Short biceps femoris long head fascicle length and eccentric knee flexor weakness increase the risk of hamstring injury in elite football players' by Timmins, R. G., Bourne, M. N., Shield, A. J., Williams, M. D., Lorenzen, C., & Opar, D. A.
+  Cand: PMID 38655154 -> 'Biceps Femoris Fascicle Lengths Increase after Hamstring Injury Rehabilitation to a Greater Extent in the Injured Leg.' by ['Whiteley R', 'Hickey JT', 'Vermeulen R']
+
+[2] ID: sci_biomech_herzog_2004 (biomeccanica)
+  Exp: 'History-dependent properties of skeletal muscle: rheological properties and residual force enhancement' by Herzog, W.
+  Cand: PMID 34062271 -> 'Residual force enhancement in human skeletal muscles: A systematic review and meta-analysis.' by ['de Campos D', 'Orssatto LBR', 'Trajano GS']
+
+[3] ID: sci_biomech_gregersen_2006 (biomeccanica)
+  Exp: 'Biomechanics of cycling: loads on the spine, knee, and ankle' by Gregersen, C. S., & Hull, M. L.
+  Cand: PMID 16704336 -> 'Mitochondrial fusion and fission in mammals.' by ['Chan DC']
+
+[4] ID: sci_biomech_mcgill_2001 (biomeccanica)
+  Exp: 'Low back stability: mechanics, injury mechanisms, and rehabilitation' by McGill, S. M.
+  Cand: PMID 14759749 -> 'Linking latest knowledge of injury mechanisms and spine function to the prevention of low back disorders.' by ['McGill SM']
+
+[5] ID: sci_biomech_bryanton_2012 (biomeccanica)
+  Exp: 'Effect of squat depth on muscle activation' by Bryanton, M. A., Kennedy, M. D., Carey, J. P., & Chiu, L. Z.
+  Cand: PMID 42512881 -> 'Effects of Barbell Position and Squat Depth on Trunk and Lower-Extremity Muscle Activation During the Back Squat in Healthy Adult Men.' by ['Park JH', 'Lei S', 'Cho HY']
+
+[6] ID: sci_biomech_wulf_2013 (biomeccanica)
+  Exp: 'Attentional focus and motor learning: a review of 15 years' by Wulf, G.
+  Cand: PMID 34843301 -> 'Superiority of external attentional focus for motor performance and learning: Systematic reviews and meta-analyses.' by ['Chua LK', 'Jimenez-Diaz J', 'Lewthwaite R']
+
+[7] ID: sci_biomech_flanagan_2012 (biomeccanica)
+  Exp: 'Muscle activation patterns and knee mechanics during isometric and dynamic squats' by Flanagan, S. P., & Salem, G. J.
+  Cand: PMID 18076249 -> 'Bilateral differences in the net joint torques during the squat exercise.' by ['Flanagan SP', 'Salem GJ']
+
+[8] ID: sci_biomech_vigotsky_2018 (biomeccanica)
+  Exp: 'The role of internal and external forces on the biomechanics of the squat exercise' by Vigotsky, A. D., Bryanton, M. A., Nuckols, G., & Beardsley, C.
+  Cand: PMID 29489722 -> 'Biomechanical, Anthropometric, and Psychological Determinants of Barbell Back Squat Strength.' by ['Vigotsky AD', 'Bryanton MA', 'Nuckols G']
+
+[9] ID: sci_lca_myer_2006 (clinico)
+  Exp: 'Targeted neuromuscular training improves performance and neuromuscular biomechanics in female athletes' by Myer, G. D., Ford, K. R., Palumbo, J. P., & Hewett, T. E.
+  Cand: PMID 41718606 -> 'The Effects of Neuromuscular Training and Additive Visual Biofeedback on Landing Biomechanics and Sensorimotor Brain Activity in Young Female Athletes.' by ['Slutsky-Ganesh AB', 'Chaput M', 'Hogg JA']
+
+[10] ID: sci_hamstring_ekstrand_2012 (clinico)
+  Exp: 'Hamstring muscle strain recurrence and time loss in professional football' by Ekstrand, J., Hägglund, M., & Waldén, M.
+  Cand: PMID 22144005 -> 'Hamstring muscle injuries in professional football: the correlation of MRI findings with return to play.' by ['Ekstrand J', 'Healy JC', 'Waldén M']
+
+[11] ID: sci_hamstring_petersen_2011 (clinico)
+  Exp: 'Preventing hamstring strains in football players: a randomized controlled trial' by Petersen, J., Thorborg, K., Nielsen, M. B., Budtz-Jørgensen, E., & Holmich, P.
+  Cand: PMID 21825112 -> 'Preventive effect of eccentric training on acute hamstring injuries in men's soccer: a cluster-randomized controlled trial.' by ['Petersen J', 'Thorborg K', 'Nielsen MB']
+
+[12] ID: sci_shoulder_wilk_2009 (clinico)
+  Exp: 'The shoulder in baseball: rehabilitation principles' by Wilk, K. E., Reinold, M. M., & Dugas, J. R.
+  Cand: PMID 19194026 -> 'Shoulder injuries in the overhead athlete.' by ['Wilk KE', 'Obma P', 'Simpson CD']
+
+[13] ID: sci_rehab_blanchard_2000 (clinico)
+  Exp: 'The effects of cold water immersion on recovery from exercise-induced muscle damage' by Bleakley, C. M., & Davison, G. W.
+  Cand: PMID 22336838 -> 'Cold-water immersion (cryotherapy) for preventing and treating muscle soreness after exercise.' by ['Bleakley C', 'McDonough S', 'Gardner E']
+
+[14] ID: sci_rsa_rampinini_2007 (sportSquadra)
+  Exp: 'Factors influencing repeated-sprint ability in football players' by Rampinini, E., Sassi, A., Morelli, A., Mazzoni, S., Fanchini, M., & Coutts, A. J.
+  Cand: PMID 19935835 -> 'Hexose-6-phosphate dehydrogenase: a new risk gene for multiple sclerosis.' by ['Alcina A', 'Ramagopalan SV', 'Fernández O']
+
+[15] ID: sci_cod_sheppard_2006 (sportSquadra)
+  Exp: 'Agility literature review: classifications in movement and sport-specific decision-making components' by Sheppard, J. M., & Young, W. B.
+  Cand: PMID 16882626 -> 'Agility literature review: classifications, training and testing.' by ['Sheppard JM', 'Young WB']
+
+[16] ID: sci_team_taylor_2017 (sportSquadra)
+  Exp: 'Physical demands of elite basketball: a systematic review' by Taylor, J. B., Wright, A. A., Dischiavi, S. L., Townsend, M. A., & Marmon, A. R.
+  Cand: PMID 28801751 -> 'Activity Demands During Multi-Directional Team Sports: A Systematic Review.' by ['Taylor JB', 'Wright AA', 'Dischiavi SL']
+
+[17] ID: sci_groin_thorborg_2018 (sportSquadra)
+  Exp: 'Effect of the Copenhagen Adduction exercise on groin injury risk in male football players: a cluster-randomised controlled trial' by Harøy, J., Clarsen, B., Wiger, E. G., Øyen, M. G., Serner, A., Thorborg, K., Hölmich, P., Andersen, T. E., & Bahr, R.
+  Cand: PMID 29891614 -> 'The Adductor Strengthening Programme prevents groin problems among male football players: a cluster-randomised controlled trial.' by ['Harøy J', 'Clarsen B', 'Wiger EG']
+
+[18] ID: sci_team_longo_2012 (sportSquadra)
+  Exp: 'Prevention of injuries in football: a systematic review of interventions' by Longo, U. G., Loppini, M., Berton, A., Marinozzi, A., Maffulli, N., & Denaro, V.
+  Cand: PMID 22415208 -> 'The FIFA 11+ program is effective in preventing injuries in elite male basketball players: a cluster randomized controlled trial.' by ['Longo UG', 'Loppini M', 'Berton A']
+
+[19] ID: sci_team_mccall_2014 (sportSquadra)
+  Exp: 'Injury prevention strategies in professional football (soccer): the FIFA 11+ programme and other emerging approaches' by McCall, A., Davison, M., Andersen, T. E., Beasley, I., Bizzini, M., & Dupont, G.
+  Cand: PMID 25878078 -> 'Injury prevention strategies at the FIFA 2014 World Cup: perceptions and practices of the physicians from the 32 participating national teams.' by ['McCall A', 'Davison M', 'Andersen TE']
+
+[20] ID: sci_team_dello_2016 (sportSquadra)
+  Exp: 'Match-related physical performance in professional basketball: a systematic review' by Stojanovic, E., Stojiljkovic, N., Scanlan, A. T., Dalbo, V. J., Berkelmans, D. M., & Milanovic, Z.
+  Cand: PMID 29039018 -> 'The Activity Demands and Physiological Responses Encountered During Basketball Match-Play: A Systematic Review.' by ['Stojanović E', 'Stojiljković N', 'Scanlan AT']
+
+[21] ID: sci_team_tierney_2016 (sportSquadra)
+  Exp: 'An assessment of hamstring injury prevention programs in sport: a review of practices in professional rugby union' by Tierney, G. J., Elliott-Sale, K. J., & Mayeux, S.
+  Cand: PMID 31502142 -> 'The Effect of Nordic Hamstring Exercise Intervention Volume on Eccentric Strength and Muscle Architecture Adaptations: A Systematic Review and Meta-analyses.' by ['Cuthbert M', 'Ripley N', 'McMahon JJ']
+
+[22] ID: sci_team_harper_2019 (sportSquadra)
+  Exp: 'Relationships between eccentric hamstring strength and match-play sprinting in professional football' by Harper, D. J., & Kiely, J.
+  Cand: PMID 31506901 -> 'High-Intensity Acceleration and Deceleration Demands in Elite Team Sports Competitive Match Play: A Systematic Review and Meta-Analysis of Observational Studies.' by ['Harper DJ', 'Carling C', 'Kiely J']
+

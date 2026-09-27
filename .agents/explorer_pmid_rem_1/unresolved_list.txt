@@ -1,0 +1,178 @@
+Unresolved count: 16
+
+ID: sci_biomech_zatsiorsky_2002 (biomeccanica)
+  Expected Title:   Kinetics of Human Motion
+  Expected Authors: Zatsiorsky, V. M.
+  Expected Year:    2002
+  Expected Journal: Human Kinetics
+  Current PMID:     11932598
+  Best Match PMID:  18255182 (Score: 0.30)
+  Best Match Title: Finger inter-dependence: linking the kinetic and kinematic variables.
+  Best Match Source:Hum Mov Sci (2008 Jun)
+  Best Match Auth:  ['Kim SW', 'Shim JK', 'Zatsiorsky VM', 'Latash ML']
+------------------------------------------------------------
+ID: sci_biomech_escamilla_2000 (biomeccanica)
+  Expected Title:   Knee biomechanics during the squat exercise
+  Expected Authors: Escamilla, R. F.
+  Expected Year:    2000
+  Expected Journal: Medicine & Science in Sports & Exercise
+  Current PMID:     10776897
+  Best Match PMID:  19127183 (Score: 0.47)
+  Best Match Title: Cruciate ligament force during the wall squat and the one-leg squat.
+  Best Match Source:Med Sci Sports Exerc (2009 Feb)
+  Best Match Auth:  ['Escamilla RF', 'Zheng N', 'Imamura R', 'Macleod TD', 'Edwards WB', 'Hreljac A', 'Fleisig GS', 'Wilk KE', 'Moorman CT 3rd', 'Andrews JR']
+------------------------------------------------------------
+ID: sci_biomech_gregersen_2006 (biomeccanica)
+  Expected Title:   Biomechanics of cycling: loads on the spine, knee, and ankle
+  Expected Authors: Gregersen, C. S., & Hull, M. L.
+  Expected Year:    2006
+  Expected Journal: Journal of Biomechanical Engineering
+  Current PMID:     16706012
+  Best Match PMID:  16718804 (Score: 0.30)
+  Best Match Title: Functional oesophago-gastric junction imaging.
+  Best Match Source:World J Gastroenterol (2006 May 14)
+  Best Match Auth:  ['McMahon BP', 'Drewes AM', 'Gregersen H']
+------------------------------------------------------------
+ID: sci_biomech_winter_1990 (biomeccanica)
+  Expected Title:   Biomechanics and Motor Control of Human Movement
+  Expected Authors: Winter, D. A.
+  Expected Year:    1990
+  Expected Journal: John Wiley & Sons
+  Current PMID:     2275521
+  Best Match PMID:  40525283 (Score: 0.30)
+  Best Match Title: Compensatory Proximal Adjustments Characterize Effective Reaching Movements After Stroke.
+  Best Match Source:Stroke (2025 Aug)
+  Best Match Auth:  ['Wolf S', 'Winter LV', 'Elangovan N', 'Braaß H', 'Feldheim J', 'Graterol Pérez JA', 'Quandt F', 'Schulz R', 'Konczak J', 'Gerloff C']
+------------------------------------------------------------
+ID: sci_biomech_flanagan_2012 (biomeccanica)
+  Expected Title:   Muscle activation patterns and knee mechanics during isometric and dynamic squats
+  Expected Authors: Flanagan, S. P., & Salem, G. J.
+  Expected Year:    2007
+  Expected Journal: Journal of Strength and Conditioning Research
+  Current PMID:     17685679
+  Best Match PMID:  17313262 (Score: 0.40)
+  Best Match Title: Muscle dynamics differences between legs in healthy adults.
+  Best Match Source:J Strength Cond Res (2007 Feb)
+  Best Match Auth:  ['Flanagan EP', 'Harrison AJ']
+------------------------------------------------------------
+ID: sci_biomech_vigotsky_2018 (biomeccanica)
+  Expected Title:   The role of internal and external forces on the biomechanics of the squat exercise
+  Expected Authors: Vigotsky, A. D., Bryanton, M. A., Nuckols, G., & Beardsley, C.
+  Expected Year:    2019
+  Expected Journal: International Journal of Sports Physical Therapy
+  Current PMID:     30746294
+  Best Match PMID:  31174981 (Score: 0.12)
+  Best Match Title: Influence of the Powers™ strap on pain and lower limb biomechanics in individuals with patellofemoral pain.
+  Best Match Source:Knee (2019 Dec)
+  Best Match Auth:  ['Greuel H', 'Herrington L', 'Liu A', 'Jones RK']
+------------------------------------------------------------
+ID: sci_hamstring_petersen_2011 (clinico)
+  Expected Title:   Preventing hamstring strains in football players: a randomized controlled trial
+  Expected Authors: Petersen, J., Thorborg, K., Nielsen, M. B., Budtz-Jørgensen, E., & Holmich, P.
+  Expected Year:    2011
+  Expected Journal: The American Journal of Sports Medicine
+  Current PMID:     21803979
+  Best Match PMID:  41939953 (Score: 0.54)
+  Best Match Title: The Effect of Therapeutic Exercises and Ultrasound for Rehabilitation of Partially Injured Hamstring Muscles in Elite Soccer (Football) Players: A Study Protocol for a Randomized Controlled Trial.
+  Best Match Source:Int J Sports Phys Ther (2026)
+  Best Match Auth:  ['Hadib Abdulridha K', 'Al-Tameemi IKH', 'Alzaidi AHA', 'Cuenca-Zaldivar JN', 'Aguilar Latorre A', 'Gómez-Soria I', 'Calatayud E']
+------------------------------------------------------------
+ID: sci_shoulder_cools_2007 (clinico)
+  Expected Title:   Rehabilitation of scapular dyskinesis: from the office to the field
+  Expected Authors: Cools, A. M., Struyf, F., De Mey, K., Danneels, L., & Cambier, D.
+  Expected Year:    2007
+  Expected Journal: Journal of Sport Rehabilitation
+  Current PMID:     17923728
+  Best Match PMID:  18070811 (Score: 0.45)
+  Best Match Title: Internal impingement in the tennis player: rehabilitation guidelines.
+  Best Match Source:Br J Sports Med (2008 Mar)
+  Best Match Auth:  ['Cools AM', 'Declercq G', 'Cagnie B', 'Cambier D', 'Witvrouw E']
+------------------------------------------------------------
+ID: sci_shoulder_wilk_2009 (clinico)
+  Expected Title:   The shoulder in baseball: rehabilitation principles
+  Expected Authors: Wilk, K. E., Reinold, M. M., & Dugas, J. R.
+  Expected Year:    2009
+  Expected Journal: Journal of Orthopaedic & Sports Physical Therapy
+  Current PMID:     19182317
+  Best Match PMID:  24079440 (Score: 0.49)
+  Best Match Title: Nonoperative and postoperative rehabilitation for glenohumeral instability.
+  Best Match Source:Clin Sports Med (2013 Oct)
+  Best Match Auth:  ['Wilk KE', 'Macrina LC']
+------------------------------------------------------------
+ID: sci_rsa_rampinini_2007 (sportSquadra)
+  Expected Title:   Factors influencing repeated-sprint ability in football players
+  Expected Authors: Rampinini, E., Sassi, A., Morelli, A., Mazzoni, S., Fanchini, M., & Coutts, A. J.
+  Expected Year:    2007
+  Expected Journal: International Journal of Sports Medicine
+  Current PMID:     17497576
+  Best Match PMID:  38492212 (Score: 0.48)
+  Best Match Title: Monitoring of sprint and change of direction velocity, vertical jump height, and repeated sprint ability in sub-elite female football players throughout their menstrual cycle.
+  Best Match Source:Sci Med Footb (2024 Nov)
+  Best Match Auth:  ['Igonin PH', 'Cognasse F', 'Gonzalo P', 'Philippot P', 'Rogowski I', 'Sabot T', 'Boisseau N', 'Martin C']
+------------------------------------------------------------
+ID: sci_team_taylor_2017 (sportSquadra)
+  Expected Title:   Physical demands of elite basketball: a systematic review
+  Expected Authors: Taylor, J. B., Wright, A. A., Dischiavi, S. L., Townsend, M. A., & Marmon, A. R.
+  Expected Year:    2017
+  Expected Journal: Journal of Sports Sciences
+  Current PMID:     28362127
+  Best Match PMID:  32134965 (Score: 0.49)
+  Best Match Title: Training load and match-play demands in basketball based on competition level: A systematic review.
+  Best Match Source:PLoS One (2020)
+  Best Match Auth:  ['Petway AJ', 'Freitas TT', 'Calleja-González J', 'Medina Leal D', 'Alcaraz PE']
+------------------------------------------------------------
+ID: sci_team_longo_2012 (sportSquadra)
+  Expected Title:   Prevention of injuries in football: a systematic review of interventions
+  Expected Authors: Longo, U. G., Loppini, M., Berton, A., Marinozzi, A., Maffulli, N., & Denaro, V.
+  Expected Year:    2012
+  Expected Journal: British Journal of Sports Medicine
+  Current PMID:     22442232
+  Best Match PMID:  39271248 (Score: 0.51)
+  Best Match Title: ICON 2023: International Scientific Tendinopathy Symposium Consensus - the core outcome set for Achilles tendinopathy (COS-AT) using a systematic review and a Delphi study of professional participants and patients.
+  Best Match Source:Br J Sports Med (2024 Oct 22)
+  Best Match Auth:  ['de Vos RJ', 'Gravare Silbernagel K', 'Malliaras P', 'Visser TS', 'Alfredson H', 'Akker-Scheek IVD', 'van Ark M', 'Brorsson A', 'Chimenti R', 'Docking S', 'Eliasson P', 'Farnqvist K', 'Haleem Z', 'Hanlon SL', 'Kaux JF', 'Kearney RS', 'Kirwan PD', 'Kulig K', 'Kumar B', 'Lewis T', 'Longo UG', 'Lui TH', 'Maffulli N', 'Mallows AJ', 'Masci L', 'McGonagle D', 'Morrissey D', 'Murphy MC', 'Newsham-West R', 'Nilsson-Helander KM', 'Norris R', 'Oliva F', "O'Neill S", 'Peers K', 'Rio EK', 'Sancho I', 'Scott A', 'Seymore KD', 'Soh SE', 'Vallance P', 'Verhaar JAN', 'van der Vlist AC', 'Weir A', 'Zellers JA', 'Vicenzino B']
+------------------------------------------------------------
+ID: sci_team_mccall_2014 (sportSquadra)
+  Expected Title:   Injury prevention strategies in professional football (soccer): the FIFA 11+ programme and other emerging approaches
+  Expected Authors: McCall, A., Davison, M., Andersen, T. E., Beasley, I., Bizzini, M., & Dupont, G.
+  Expected Year:    2015
+  Expected Journal: British Journal of Sports Medicine
+  Current PMID:     25452613
+  Best Match PMID:  26795611 (Score: 0.50)
+  Best Match Title: Injury prevention strategies, coach compliance and player adherence of 33 of the UEFA Elite Club Injury Study teams: a survey of teams' head medical officers.
+  Best Match Source:Br J Sports Med (2016 Jun)
+  Best Match Auth:  ['McCall A', 'Dupont G', 'Ekstrand J']
+------------------------------------------------------------
+ID: sci_team_dello_2016 (sportSquadra)
+  Expected Title:   Match-related physical performance in professional basketball: a systematic review
+  Expected Authors: Stojanovic, E., Stojiljkovic, N., Scanlan, A. T., Dalbo, V. J., Berkelmans, D. M., & Milanovic, Z.
+  Expected Year:    2018
+  Expected Journal: Sports Medicine
+  Current PMID:     29282680
+  Best Match PMID:  29039018 (Score: 0.39)
+  Best Match Title: The Activity Demands and Physiological Responses Encountered During Basketball Match-Play: A Systematic Review.
+  Best Match Source:Sports Med (2018 Jan)
+  Best Match Auth:  ['Stojanović E', 'Stojiljković N', 'Scanlan AT', 'Dalbo VJ', 'Berkelmans DM', 'Milanović Z']
+------------------------------------------------------------
+ID: sci_team_tierney_2016 (sportSquadra)
+  Expected Title:   An assessment of hamstring injury prevention programs in sport: a review of practices in professional rugby union
+  Expected Authors: Tierney, G. J., Elliott-Sale, K. J., & Mayeux, S.
+  Expected Year:    2020
+  Expected Journal: Sports Medicine
+  Current PMID:     31512147
+  Best Match PMID:  33051214 (Score: 0.50)
+  Best Match Title: Mechanisms of acute ankle syndesmosis ligament injuries in professional male rugby union players: a systematic visual video analysis.
+  Best Match Source:Br J Sports Med (2021 Jun)
+  Best Match Auth:  ['Delahunt E', 'Farrell G', 'Boylan A', 'Kerin F', 'Tierney P', 'Hogan H', 'Boreham C']
+------------------------------------------------------------
+ID: sci_team_harper_2019 (sportSquadra)
+  Expected Title:   Relationships between eccentric hamstring strength and match-play sprinting in professional football
+  Expected Authors: Harper, D. J., & Kiely, J.
+  Expected Year:    2018
+  Expected Journal: Journal of Sports Sciences
+  Current PMID:     29281917
+  Best Match PMID:  35207016 (Score: 0.30)
+  Best Match Title: "Dietitians May Only Have One Chance"-The Realities of Treating Obesity in Private Practice in Australia.
+  Best Match Source:Healthcare (Basel) (2022 Feb 21)
+  Best Match Auth:  ['Harper C', 'Seimon RV', 'Sainsbury A', 'Maher J']
+------------------------------------------------------------

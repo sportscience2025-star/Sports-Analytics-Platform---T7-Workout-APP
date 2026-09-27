@@ -1,0 +1,34 @@
+{
+  "cleanup_body": "{\n            const tooltipEl = document.getElementById('chartjs-glass-tooltip');\n            if (tooltipEl) tooltipEl.remove();\n\n            if (this.chartInstance) {\n                this.chartInstance.destroy();\n                this.chartInstance = null;\n            }\n            if (this.powerCurveChart) {\n                this.powerCurveChart.destroy();\n                this.powerCurveChart = null;\n            }\n            if (this.jumpHeightChart) {\n                this.jumpHeightChart.destroy();\n                this.jumpHeightChart = null;\n            }\n            if (this.rsiChart) {\n                this.rsiChart.destroy();\n                this.rsiChart = null;\n            }\n        }",
+  "destroys_chartInstance": true,
+  "destroys_powerCurveChart": true,
+  "destroys_jumpHeightChart": true,
+  "destroys_rsiChart": true,
+  "removes_glass_tooltip": true,
+  "renderVBTDashboard_invokes_cleanup": true,
+  "renderRunningDashboard_invokes_cleanup": true,
+  "renderJumpDashboard_invokes_cleanup": true,
+  "app_renderView_invokes_cleanup": true,
+  "glass_tooltip_creation": true,
+  "rsi_canvas_empty_handled": false,
+  "rsi_canvas_not_removed_via_remove": true,
+  "app_header_css": {
+    "position_sticky": true,
+    "top_0": true,
+    "z_index_100": true,
+    "webkit_backdrop_filter": true,
+    "backdrop_filter": true,
+    "background_color_rgba": true
+  },
+  "modal_backdrop_css": {
+    "position_fixed": true,
+    "top_0": true,
+    "left_0": true,
+    "width_100vw": true,
+    "height_100vh": true,
+    "background_color_rgba": true,
+    "webkit_backdrop_filter": true,
+    "backdrop_filter": true,
+    "z_index_1000": true
+  }
+}

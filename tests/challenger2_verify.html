@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Challenger 2 Verification Harness</title>
+    <script>
+    window.capturedErrors = [];
+    window.onerror = function(msg, url, line, col, error) {
+        window.capturedErrors.push({ msg, url, line, col, stack: error ? error.stack : '' });
+        console.error("WINDOW ONERROR:", msg, "at line", line);
+        return true;
+    };
+    window.localStorage = {
+        getItem: function() { return null; },
+        setItem: function() {}
+    };
+    </script>
+</head>
+<body>
+    <div id="filter-container"></div>
+    <div id="catalog-container"></div>
+    <pre id="test-results"></pre>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/logic.js"></script>
+    <script src="../js/ui.js"></script>
+
+    <script>
+    window.onload = function() {
+        const logs = [];
+        function log(msg, status="PASS") {
+            logs.push({ msg, status });
+            console.log(`[${status}] ${msg}`);
+        }
+
+        if (window.capturedErrors.length > 0) {
+            window.capturedErrors.forEach(err => {
+                log(`[CRITICAL SYNTAX ERROR] ${err.msg} at ${err.url}:${err.line}:${err.col}`, "FAIL");
+            });
+        }
+
+        try {
+            if (!window.App || !window.App.MUSCLE_TAXONOMY) {
+                log("window.App.MUSCLE_TAXONOMY is missing due to script parse error in js/data.js", "FAIL");
+            } else {
+                log("window.App.MUSCLE_TAXONOMY successfully loaded.", "PASS");
+            }
+        } catch(err) {
+            log(`Execution Error: ${err.message}`, "FAIL");
+        }
+
+        document.getElementById('test-results').innerText = JSON.stringify(logs, null, 2);
+
+        fetch('/test-results', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(logs)
+        });
+    };
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+window.process = { exit: function(code) { console.log("PROCESS_EXIT_" + code); } };
+window.onload = function() {
+    const out = document.getElementById("output");
+    function append(msg) {
+        if (out) out.innerText += msg + "\n";
+    }
+    const origLog = console.log;
+    const origErr = console.error;
+    console.log = function(...args) { origLog(...args); append("LOG: " + args.join(" ")); };
+    console.error = function(...args) { origErr(...args); append("ERR: " + args.join(" ")); };
+};
+</script>
+<script src="../js/physics-engine.js"></script>
+<script src="test_bryan_mann_stress.js"></script>
+</head>
+<body>
+<h1>Bryan Mann Test Runner</h1>
+<pre id="output"></pre>
+</body>
+</html>

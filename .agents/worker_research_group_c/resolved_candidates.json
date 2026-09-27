@@ -1,0 +1,250 @@
+{
+  "clinico": [
+    {
+      "pmid": "23536466",
+      "title": "Acute hamstring injuries in Swedish elite football: a prospective randomised controlled clinical trial comparing two rehabilitation protocols",
+      "authors": [
+        "Askling CM",
+        "Tengvar M",
+        "Thorstensson A"
+      ],
+      "journal": "Br J Sports Med",
+      "year": 2013,
+      "query_name": "Askling_2013"
+    },
+    {
+      "pmid": "28277402",
+      "title": "A Multifactorial, Criteria-based Progressive Algorithm for Hamstring Injury Treatment",
+      "authors": [
+        "Mendiguchia J",
+        "Martinez-Ruiz E",
+        "Edouard P",
+        "Morin JB",
+        "Martinez-Martinez F",
+        "Idoate F",
+        "Mendez-Villanueva A"
+      ],
+      "journal": "Med Sci Sports Exerc",
+      "year": 2017,
+      "query_name": "Mendiguchia_2017"
+    },
+    {
+      "pmid": "19793213",
+      "title": "Corticosteroid injections, eccentric decline squat training and heavy slow resistance training in patellar tendinopathy",
+      "authors": [
+        "Kongsgaard M",
+        "Kovanen V",
+        "Aagaard P",
+        "Doessing S",
+        "Hansen P",
+        "Laursen AH",
+        "Kaldau NC",
+        "Kjaer M",
+        "Magnusson SP"
+      ],
+      "journal": "Scand J Med Sci Sports",
+      "year": 2009,
+      "query_name": "Kongsgaard_2009"
+    },
+    {
+      "pmid": "26018970",
+      "title": "Heavy Slow Resistance Versus Eccentric Training as Treatment for Achilles Tendinopathy: A Randomized Controlled Trial",
+      "authors": [
+        "Beyer R",
+        "Kongsgaard M",
+        "Hougs Kj\u00e6r B",
+        "\u00d8hlenschl\u00e6ger T",
+        "Kj\u00e6r M",
+        "Magnusson SP"
+      ],
+      "journal": "Am J Sports Med",
+      "year": 2015,
+      "query_name": "Beyer_2015"
+    },
+    {
+      "pmid": "25213604",
+      "title": "Effect of specific exercise strategy on need for surgery in patients with subacromial impingement syndrome: randomised controlled study",
+      "authors": [
+        "Holmgren T",
+        "Hallgren HB",
+        "Oberg B",
+        "Adolfsson L",
+        "Johansson K"
+      ],
+      "journal": "Br J Sports Med",
+      "year": 2014,
+      "query_name": "Holmgren_2012"
+    },
+    {
+      "pmid": "26742533",
+      "title": "Motor control exercise for chronic non-specific low-back pain",
+      "authors": [
+        "Saragiotto BT",
+        "Maher CG",
+        "Yamato TP",
+        "Costa LO",
+        "Menezes Costa LC",
+        "Ostelo RW",
+        "Macedo LG"
+      ],
+      "journal": "Cochrane Database Syst Rev",
+      "year": 2016,
+      "query_name": "Saragiotto_2016"
+    },
+    {
+      "pmid": "29573872",
+      "title": "Prevention and treatment of low back pain: evidence, challenges, and promising directions",
+      "authors": [
+        "Foster NE",
+        "Anema JR",
+        "Cherkin D",
+        "Chou R",
+        "Cohen SP",
+        "Gross DP",
+        "Ferreira PH",
+        "Fritz JM",
+        "Koes BW",
+        "Peul W",
+        "Turner JA",
+        "Maher CG",
+        "Lancet Low Back Pain Series Working Group"
+      ],
+      "journal": "Lancet",
+      "year": 2018,
+      "query_name": "Foster_2018"
+    },
+    {
+      "pmid": "26405113",
+      "title": "Exercise for osteoarthritis of the knee: a Cochrane systematic review",
+      "authors": [
+        "Fransen M",
+        "McConnell S",
+        "Harmer AR",
+        "Van der Esch M",
+        "Simic M",
+        "Bennell KL"
+      ],
+      "journal": "Br J Sports Med",
+      "year": 2015,
+      "query_name": "Fransen_2015"
+    },
+    {
+      "pmid": "29514819",
+      "title": "Diagnosis, treatment and prevention of ankle sprains: update of an evidence-based clinical guideline",
+      "authors": [
+        "Vuurberg G",
+        "Hoorntje A",
+        "Wink LM",
+        "van der Doelen BFW",
+        "van den Bekerom MP",
+        "Dekker R",
+        "van Dijk CN",
+        "Krips R",
+        "Loogman MCM",
+        "Ridderikhof ML",
+        "Smithuis FF",
+        "Stufkens SAS",
+        "Verhagen EALM",
+        "de Bie RA",
+        "Kerkhoffs GMMJ"
+      ],
+      "journal": "Br J Sports Med",
+      "year": 2018,
+      "query_name": "Vuurberg_2018"
+    },
+    {
+      "pmid": "31782065",
+      "title": "Optimising the 'Mid-Stage' Training and Testing Process After ACL Reconstruction",
+      "authors": [
+        "Buckthorpe M",
+        "Della Villa F"
+      ],
+      "journal": "Sports Med",
+      "year": 2020,
+      "query_name": "Buckthorpe_2020"
+    },
+    {
+      "pmid": "26390269",
+      "title": "Patellar Tendinopathy: Clinical Diagnosis, Load Management, and Advice for Challenging Case Presentations",
+      "authors": [
+        "Malliaras P",
+        "Cook J",
+        "Purdam C",
+        "Rio E"
+      ],
+      "journal": "J Orthop Sports Phys Ther",
+      "year": 2015,
+      "query_name": "Malliaras_2015"
+    },
+    {
+      "pmid": "21084657",
+      "title": "The majority of patients with Achilles tendinopathy recover fully when treated with exercise alone: a 5-year follow-up",
+      "authors": [
+        "Silbernagel KG",
+        "Brorsson A",
+        "Lundberg M"
+      ],
+      "journal": "Am J Sports Med",
+      "year": 2011,
+      "query_name": "Silbernagel_2007"
+    }
+  ],
+  "team": [
+    {
+      "pmid": "31970529",
+      "title": "Quantifying the Collision Dose in Rugby League: A Systematic Review, Meta-analysis, and Critical Analysis",
+      "authors": [
+        "Naughton M",
+        "Jones B",
+        "Hendricks S",
+        "King D",
+        "Murphy A",
+        "Cummins C"
+      ],
+      "journal": "Sports Med Open",
+      "year": 2020,
+      "query_name": "Cummins_2013"
+    },
+    {
+      "pmid": "21395363",
+      "title": "Physiology of small-sided games training in football: a systematic review",
+      "authors": [
+        "Hill-Haas SV",
+        "Dawson B",
+        "Impellizzeri FM",
+        "Coutts AJ"
+      ],
+      "journal": "Sports Med",
+      "year": 2011,
+      "query_name": "Hill_Haas_2011"
+    },
+    {
+      "pmid": "35156469",
+      "title": "High rate of muscle injury despite no changes in physical, physiological and psychophysiological parameters in a professional football team during a long-congested fixture period",
+      "authors": [
+        "Pinheiro GS",
+        "Quint\u00e3o RC",
+        "Claudino JG",
+        "Carling C",
+        "Lames M",
+        "Couto BP"
+      ],
+      "journal": "Res Sports Med",
+      "year": 2023,
+      "query_name": "Carling_2015"
+    },
+    {
+      "pmid": "30131704",
+      "title": "A Standardized Small Sided Game Can Be Used to Monitor Neuromuscular Fatigue in Professional A-League Football Players",
+      "authors": [
+        "Rowell AE",
+        "Aughey RJ",
+        "Clubb J",
+        "Cormack SJ"
+      ],
+      "journal": "Front Physiol",
+      "year": 2018,
+      "query_name": "Cormack_2008"
+    }
+  ]
+}

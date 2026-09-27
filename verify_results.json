@@ -1,0 +1,818 @@
+{
+  "status": "FAIL",
+  "message": "Suite complete. Passed: 19, Failed: 3. Time: 17408ms",
+  "results": {
+    "test_logic.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_logic.js"
+        }
+      ],
+      "duration": 757
+    },
+    "test_periodization_extreme_cases.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_periodization_extreme_cases.js"
+        },
+        {
+          "type": "log",
+          "text": "=== WorkoutGeneratorAI Extreme Edge Cases & Pathology Stress Test ===\n"
+        }
+      ],
+      "duration": 806.5
+    },
+    "test_periodization_stress.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_periodization_stress.js"
+        },
+        {
+          "type": "log",
+          "text": "=== Loading System Modules for Stress Verification ==="
+        },
+        {
+          "type": "log",
+          "text": "\u2705 All core modules loaded successfully.\n"
+        },
+        {
+          "type": "log",
+          "text": "=== Part 1: Starting Program Generation Permutation Stress Test ==="
+        },
+        {
+          "type": "log",
+          "text": "\n=== Part 2: Adversarial & Extreme Boundary Testing ==="
+        },
+        {
+          "type": "log",
+          "text": "\u2705 Passed adversarial test: Extreme 24 Weeks"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 Passed adversarial test: Zero Weeks (Fallback)"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 Passed adversarial test: Multi-Pathology Overload (5 pathologies)"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 Passed adversarial test: Unknown Sport Custom"
+        },
+        {
+          "type": "log",
+          "text": "\n========================================================="
+        },
+        {
+          "type": "log",
+          "text": "\ud83c\udf89 STRESS VERIFICATION COMPLETE!"
+        },
+        {
+          "type": "log",
+          "text": "- Standard Permutations Evaluated: 240 (100% Passed)"
+        },
+        {
+          "type": "log",
+          "text": "- Adversarial Boundary Cases Evaluated: 4 (100% Passed)"
+        },
+        {
+          "type": "log",
+          "text": "- Total Citation Array Items Validated: 4476"
+        },
+        {
+          "type": "log",
+          "text": "- Summary Rationale Cohesion & Integrity Rate: 100%"
+        },
+        {
+          "type": "log",
+          "text": "- Citation Cleanliness & Abstract Omission Rate: 100%"
+        },
+        {
+          "type": "log",
+          "text": "=========================================================\n"
+        }
+      ],
+      "duration": 1762.5
+    },
+    "test_regression_edge_cases.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_regression_edge_cases.js"
+        },
+        {
+          "type": "log",
+          "text": "=== REGRESSION EDGE CASES: PHYSICS ENGINE AUTO-SELECT ==="
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] autoSelectRegressionVBT(null) should return null"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] autoSelectRegressionVBT(undefined) should return null"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] autoSelectRegressionVBT([]) should return null"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] autoSelectRegressionVBT with 1 point should return null"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] autoSelectRegressionVBT with 2 points should be non-null"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] autoSelectRegressionVBT with 2 points should return linear model"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] VBT slope is correct"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] autoSelectRegressionVBT with malformed points leaving <2 points should return null"
+        },
+        {
+          "type": "log",
+          "text": "\n=================================================="
+        },
+        {
+          "type": "log",
+          "text": "\ud83c\udfaf REGRESSION EDGE CASES SUMMARY: 8 / 8 TESTS PASSED"
+        },
+        {
+          "type": "log",
+          "text": "==================================================\n"
+        },
+        {
+          "type": "log",
+          "text": "process.exit(0) chiamato."
+        }
+      ],
+      "duration": 208.5
+    },
+    "test_vbt_math_stress.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_vbt_math_stress.js"
+        }
+      ],
+      "duration": 413.40000000596046
+    },
+    "test_stress_math_and_parser.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_stress_math_and_parser.js"
+        }
+      ],
+      "duration": 531.8000000119209
+    },
+    "test_stress_parser.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_stress_parser.js"
+        }
+      ],
+      "duration": 837.5
+    },
+    "test_load_velocity.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_load_velocity.js"
+        },
+        {
+          "type": "log",
+          "text": "\n--- Testing generateBryanMannVBTTable ---"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 Squat Bryan Mann table verified (5 zones, correct target velocities)"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 Bench Press dynamic velocity thresholds verified (<0.35 m/s)"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 Strict binding property validation passed (no NaN/undefined)"
+        }
+      ],
+      "duration": 855.0999999940395
+    },
+    "test_analysis.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_analysis.js"
+        }
+      ],
+      "duration": 843.6999999880791
+    },
+    "test_parsing.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_parsing.js"
+        }
+      ],
+      "duration": 795.3000000119209
+    },
+    "test_adversarial_challenger.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_adversarial_challenger.js"
+        },
+        {
+          "type": "log",
+          "text": "=== Running Adversarial Challenger Test Suite ===\n"
+        }
+      ],
+      "duration": 901.1000000238419
+    },
+    "test_adversarial_physics.js": {
+      "status": "FAIL",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_adversarial_physics.js"
+        },
+        {
+          "type": "log",
+          "text": "=== EMPIRICAL CHALLENGER: PHYSICS ENGINE VERIFICATION SUITE ==="
+        },
+        {
+          "type": "log",
+          "text": "\n--- SUITE 1: Interface & Fundamental Math ---"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Linear regression returned valid object"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Slope correct (-0.01): got -0.01"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Intercept correct (1.4): got 1.4"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] F0 correct (140 kg): got 140"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] V0 correct (1.4 m/s): got 1.4"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Pmax formula correct: got 480.69W"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] 1RM estimation correct (110 kg at MVT 0.30): got 109.99999999999999"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] 95% CI bounds properly encapsulate point estimate"
+        },
+        {
+          "type": "error",
+          "text": "Errore durante l'esecuzione del test: PhysicsEngine.analyzeLoadVelocity is not a function\nStack: TypeError: PhysicsEngine.analyzeLoadVelocity is not a function\n    at eval (eval at <anonymous> (http://localhost:8087/tests/iframe_runner.html?test=test_adversarial_physics.js&t=1784230922689:221:34), <anonymous>:72:32)\n    at http://localhost:8087/tests/iframe_runner.html?test=test_adversarial_physics.js&t=1784230922689:229:17"
+        }
+      ],
+      "duration": 507.5
+    },
+    "test_adversarial_scientific_hub.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_adversarial_scientific_hub.js"
+        },
+        {
+          "type": "log",
+          "text": "=== ADVERSARIAL & EXTREME INPUTS VALIDATION SUITE ==="
+        }
+      ],
+      "duration": 419.90000000596046
+    },
+    "test_chart_verification.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_chart_verification.js"
+        },
+        {
+          "type": "log",
+          "text": "================================================="
+        },
+        {
+          "type": "log",
+          "text": "\ud83d\udd2c EMPIRICAL CHART.JS & MEMORY VERIFICATION SUITE"
+        },
+        {
+          "type": "log",
+          "text": "=================================================\n"
+        },
+        {
+          "type": "log",
+          "text": "--- TEST 1: Empirical Verification of VBT Canvas Rendering ---"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 TEST 1 PASSED: VBT canvas rendering and dataset structures verified.\n"
+        },
+        {
+          "type": "log",
+          "text": "--- TEST 2: Empirical Verification of Jump Canvas Rendering ---"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 TEST 2 PASSED: Jump canvas rendering and dataset structures verified.\n"
+        },
+        {
+          "type": "log",
+          "text": "--- TEST 3: Edge Case \u2014 Empty Drop Jump Data in Jump Dashboard ---"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 TEST 3 PASSED: Handled empty Drop Jump edge case.\n"
+        },
+        {
+          "type": "log",
+          "text": "--- TEST 4: Memory Leak & Destruction Cycle Stress Harness (500 cycles) ---"
+        },
+        {
+          "type": "log",
+          "text": "Active Chart instances after 500 switch cycles: 2"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 TEST 4 PASSED: No Chart instance memory leaks detected after 500 cycles.\n"
+        },
+        {
+          "type": "log",
+          "text": "--- TEST 5: Empirical Inspection of DOM Tooltip Leaks ---"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 DOM TOOLTIP VERIFICATION: #chartjs-glass-tooltip is successfully removed from document.body upon cleanup/destruction.\n"
+        },
+        {
+          "type": "log",
+          "text": "================================================="
+        },
+        {
+          "type": "log",
+          "text": "\ud83c\udf89 ALL EMPIRICAL VERIFICATIONS COMPLETED"
+        },
+        {
+          "type": "log",
+          "text": "================================================="
+        },
+        {
+          "type": "log",
+          "text": "process.exit(0) chiamato."
+        }
+      ],
+      "duration": 966.0999999940395
+    },
+    "test_hybrid_regression.js": {
+      "status": "FAIL",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_hybrid_regression.js"
+        },
+        {
+          "type": "log",
+          "text": "=========================================================="
+        },
+        {
+          "type": "log",
+          "text": "   VERIFICATION SUITE: HYBRID REGRESSION & PRECISION      "
+        },
+        {
+          "type": "log",
+          "text": "=========================================================="
+        },
+        {
+          "type": "log",
+          "text": "\n\u2500\u2500 1. Dynamic Model Selection (Linear vs Quadratic) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+        },
+        {
+          "type": "log",
+          "text": "  \u2705 PASS  Model result is not null for straight dataset"
+        },
+        {
+          "type": "log",
+          "text": "  \u2705 PASS  Straight dataset selects 'linear' model"
+        },
+        {
+          "type": "log",
+          "text": "  \u2705 PASS  Model result is not null for curved dataset"
+        },
+        {
+          "type": "log",
+          "text": "  \u2705 PASS  Curvilinear dataset selects 'quadratic' model"
+        },
+        {
+          "type": "log",
+          "text": "  \u2705 PASS  Model result is not null for small dataset (n=3)"
+        },
+        {
+          "type": "log",
+          "text": "  \u2705 PASS  Small sample (n=3) defaults to 'linear' model"
+        },
+        {
+          "type": "log",
+          "text": "\n\u2500\u2500 2. 1RM 95% Confidence Interval Calculation \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+        },
+        {
+          "type": "log",
+          "text": "  \u2705 PASS  estimate1RM with {detailed: true} returns object"
+        },
+        {
+          "type": "log",
+          "text": "  \u2705 PASS  Estimated 1RM is positive"
+        },
+        {
+          "type": "log",
+          "text": "  \u2705 PASS  CI 95% margin is calculated and non-zero"
+        },
+        {
+          "type": "log",
+          "text": "  \u2705 PASS  ci95 is a tuple [min, max]"
+        },
+        {
+          "type": "log",
+          "text": "  \u2705 PASS  Estimated 1RM is strictly within [ci95Min, ci95Max]"
+        },
+        {
+          "type": "log",
+          "text": "  \u2705 PASS  Margin equals ci95Max - estimated"
+        },
+        {
+          "type": "log",
+          "text": "\n\u2500\u2500 3. Biomechanical Parameters (F0, V0, Pmax) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+        },
+        {
+          "type": "error",
+          "text": "Errore durante l'esecuzione del test: PhysicsEngine.analyzeLoadVelocity is not a function\nStack: TypeError: PhysicsEngine.analyzeLoadVelocity is not a function\n    at eval (eval at <anonymous> (http://localhost:8087/tests/iframe_runner.html?test=test_hybrid_regression.js&t=1784230925102:221:34), <anonymous>:96:32)\n    at http://localhost:8087/tests/iframe_runner.html?test=test_hybrid_regression.js&t=1784230925102:229:17"
+        }
+      ],
+      "duration": 284.69999998807907
+    },
+    "test_knowledge_base.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_knowledge_base.js"
+        }
+      ],
+      "duration": 412.7999999821186
+    },
+    "test_r2_r4_empirical.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_r2_r4_empirical.js"
+        },
+        {
+          "type": "log",
+          "text": "=== Running R2 and R4 Empirical Verification Test Suite ===\n"
+        }
+      ],
+      "duration": 218.19999998807907
+    },
+    "test_bryan_mann_stress.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_bryan_mann_stress.js"
+        },
+        {
+          "type": "log",
+          "text": "=== EMPIRICAL CHALLENGER: BRYAN MANN VBT TABLE STRESS TEST SUITE ==="
+        },
+        {
+          "type": "log",
+          "text": "\n--- SUITE 1: 1RM Edge Cases & Missing Regression ---"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Zero 1RM (oneRM = 0) returns empty array []"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Negative 1RM (oneRM = -50) returns empty array []"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Null regression object returns empty array []"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Undefined regression object returns empty array []"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] -Infinity 1RM returns empty array []"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] +Infinity 1RM handled via internal fallback, returns 5 rows"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] +Infinity 1RM rows contain finite numeric values (zero NaN/Infinity)"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] NaN 1RM returns empty array []"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] String 1RM ('100') rejected by type guard, returns empty array []"
+        },
+        {
+          "type": "log",
+          "text": "\n--- SUITE 2: Regression Slopes & Malformed Objects ---"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Steep negative slope returns 5 Bryan Mann zones"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Negative predicted velocities are safely clamped to >= 0"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Zero regression slope returns 5 rows"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Empty regression object {} handled gracefully, returns 5 rows"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Velocity and power default to 0 when predictVelocity missing"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Regression returning NaN velocity handled gracefully"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] NaN velocity safely defaults to 0"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Infinity velocity safely defaults to 0"
+        },
+        {
+          "type": "log",
+          "text": "\n--- SUITE 3: Row Output Schema & String Formatting Verification ---"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Checked 225 rows across multiple 1RM values and exercise profiles"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Zero NaN or undefined found across all 225 generated rows"
+        },
+        {
+          "type": "log",
+          "text": "\n=================================================="
+        },
+        {
+          "type": "log",
+          "text": "\ud83c\udfaf BRYAN MANN VBT STRESS TEST SUMMARY: 19 / 19 TESTS PASSED"
+        },
+        {
+          "type": "log",
+          "text": "==================================================\n"
+        },
+        {
+          "type": "log",
+          "text": "process.exit(0) chiamato."
+        }
+      ],
+      "duration": 600.2000000178814
+    },
+    "test_new_profiles.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_new_profiles.js"
+        },
+        {
+          "type": "log",
+          "text": "=== Loading System Modules for New Profiles Verification ==="
+        },
+        {
+          "type": "log",
+          "text": "\u2705 All core modules loaded successfully.\n"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 PASS: Clinico_Anziano profile produces CLINICAL periodization and warmups"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 PASS: Sedentario profile produces sedentario-specific warmup/cooldown"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 PASS: Calcio sport produces soccer-specific warmup/cooldown"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 PASS: Basketball sport produces basketball-specific warmup/cooldown"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 PASS: Atletica Leggera sport produces athletics-specific warmup/cooldown"
+        },
+        {
+          "type": "log",
+          "text": "\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550"
+        },
+        {
+          "type": "log",
+          "text": "  RESULTS: 5 PASS  /  0 FAIL"
+        },
+        {
+          "type": "log",
+          "text": "  \u2705 ALL TESTS PASSED"
+        },
+        {
+          "type": "log",
+          "text": "process.exit(0) chiamato."
+        }
+      ],
+      "duration": 900.5999999940395
+    },
+    "test_rag.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_rag.js"
+        },
+        {
+          "type": "log",
+          "text": "=== STARTING T7 WORKOUT RAG ENGINE TEST SUITE ==="
+        }
+      ],
+      "duration": 400.2000000178814
+    },
+    "test_vbt_fallbacks.js": {
+      "status": "FAIL",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_vbt_fallbacks.js"
+        },
+        {
+          "type": "log",
+          "text": "=== STARTING ADVERSARIAL VBT & RAG FALLBACK TESTS ==="
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Handles insufficient data (<2 points) with error message"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Filters out invalid points (load/velocity <= 0)"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Handles identical loads safely without crashing"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Positive slope does not bind NaN or undefined to UI"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Multiple MVT values with 'is' (Regex fails due to 'is' exclusion): MVT extracted is 0.3 (expected 0.3)"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Malformed decimal '0.' (Regex fails correctly): MVT extracted is 0.3 (expected 0.3)"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Malformed decimal '0.4' without units (Regex parses successfully): MVT extracted is 0.4 (expected 0.4)"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Standard MVT match 'Squat MVT di 0.35': MVT extracted is 0.35 (expected 0.35)"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Regex shadowing: 'di' matches, backtracking allows matching 'di circa' successfully: MVT extracted is 0.38 (expected 0.38)"
+        },
+        {
+          "type": "error",
+          "text": "\u274c [FAIL] Vicinity bug: Squat matches Bench Press MVT due to vicinity proximity match without checking exercise name correlation: MVT extracted is 0.3 (expected 0.18)"
+        },
+        {
+          "type": "log",
+          "text": "\n=================================================="
+        },
+        {
+          "type": "log",
+          "text": "\ud83c\udfaf FALLBACK & ADVERSARIAL VERIFICATION SUMMARY: 9 / 10 PASSED"
+        },
+        {
+          "type": "log",
+          "text": "==================================================\n"
+        },
+        {
+          "type": "log",
+          "text": "process.exit(1) chiamato."
+        }
+      ],
+      "duration": 571
+    },
+    "test_rag_ui_adversarial.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_rag_ui_adversarial.js"
+        },
+        {
+          "type": "log",
+          "text": "=== STARTING ADVERSARIAL RAG UI VERIFICATION SUITE ==="
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] RAG dev toggle exists"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Drag & Drop zone exists"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Search input exists"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Search input exists after toggle"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] State preservation confirmed: Search input value was preserved on toggle"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Flicker mitigation confirmed: '.drag-drop-zone * { pointer-events: none; }' exists in CSS"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] File input exists"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 [PASS] Re-upload capability confirmed: fileInput.value is cleared after selection"
+        }
+      ],
+      "duration": 661.6999999880791
+    }
+  }
+}

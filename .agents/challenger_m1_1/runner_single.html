@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Single Test Runner</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const testFile = urlParams.get('test') || '.agents/challenger_m1_1/test_adversarial_physics.js';
+        
+        const iframe = document.createElement('iframe');
+        iframe.src = `/iframe_runner.html?test=${encodeURIComponent(testFile)}`;
+        document.body.appendChild(iframe);
+
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.type === 'test_result') {
+                const result = event.data;
+                fetch('/test-results', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        status: result.status,
+                        message: result.message || 'Execution finished',
+                        results: {
+                            [testFile]: result
+                        }
+                    })
+                }).catch(err => console.error(err));
+            }
+        });
+    </script>
+</body>
+</html>

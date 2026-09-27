@@ -1,0 +1,34 @@
+Search results for 'patientType':
+Line 160:                             <label class="intake-option-card ${(saved.patientType||'Atleta')==='Atleta'?'selected':''}">
+Line 161:                                 <input type="radio" name="patientType" value="Atleta" ${(saved.patientType||'Atleta')==='Atleta'?'checked':''}><span class="option-icon">🏋️</span><strong>Atleta / Fitness</strong><small>Cerco performance, massa o forza</small></label>
+Line 162:                             <label class="intake-option-card ${saved.patientType==='Clinico'?'selected':''}">
+Line 163:                                 <input type="radio" name="patientType" value="Clinico" ${saved.patientType==='Clinico'?'checked':''}><span class="option-icon">🩺</span><strong>Paziente Clinico</strong><small>Ho patologie o necessito riabilitazione</small></label>
+Line 164:                             <label class="intake-option-card ${saved.patientType==='Anziano'?'selected':''}">
+Line 165:                                 <input type="radio" name="patientType" value="Anziano" ${saved.patientType==='Anziano'?'checked':''}><span class="option-icon">👵</span><strong>Senior (60+)</strong><small>Mantenimento e mobilità</small></label>
+Line 166:                             <label class="intake-option-card ${saved.patientType==='Junior'?'selected':''}">
+Line 167:                                 <input type="radio" name="patientType" value="Junior" ${saved.patientType==='Junior'?'checked':''}><span class="option-icon">🧒</span><strong>Junior (&lt; 18 anni)</strong><small>Programma età evolutiva</small></label>
+Line 454:             patientType: get('patientType') || 'Atleta',
+Line 478:         const items = [['Profilo',d.patientType],['Esperienza',d.level],['Giorni/sett.',d.days],['Attrezzatura',d.equipment],['Obiettivo',d.goal],['Settimane',d.weeks],['Patologie',d.injuries.length?`${d.injuries.length} selezionate`:'Nessuna'],['Sonno',d.sleep],['Stress',d.stress],['Cardio',d.conditioning]];
+Line 509:     function toggleSportPraticato(patientType) {
+Line 512:             sportGroup.style.display = (patientType === 'Atleta') ? 'block' : 'none';
+Line 525:                 if (input.name === 'patientType') {
+Line 533:     toggleSportPraticato(saved.patientType || 'Atleta');
+Line 569:             patientType: d.patientType,
+Line 578:         try { localStorage.setItem('t7_prog_params', JSON.stringify({ patientType:d.patientType,sportPraticato:d.sportPraticato,level:d.level,days:d.days,equipment:d.equipment,conditioning:d.conditioning,strengthProfile:d.strength_profile,goal:d.goal,weeks:d.weeks,patientObjective:d.patientObjective,sleep:d.sleep,stress:d.stress,nutrition:d.nutrition,activity:d.activity,injuries:d.injuries })); } catch(e) { console.warn('[T7] Could not save params to localStorage', e); }
+Line 781:         const clinicalSpecsHtml = result.meta.patientType === 'Clinico' ? `
+Line 836:                         <span class="tag patient-type">${result.meta.patientType === 'Clinico' ? 'Paziente Clinico' : 'Atleta / Fitness'}</span>
+Line 837:                         ${result.meta.patientType !== 'Clinico' && result.meta.sportPraticato ? `<span class="tag sport">Sport: ${result.meta.sportPraticato}</span>` : ''}
+Line 1195:         ['Tipo Soggetto', meta.patientType || ''],
+
+Search results for 'sportPraticato':
+Line 173:                             <label class="intake-option-card compact ${(saved.sportPraticato||'Bodybuilding')==='Bodybuilding'?'selected':''}">
+Line 174:                                 <input type="radio" name="sportPraticato" value="Bodybuilding" ${(saved.sportPraticato||'Bodybuilding')==='Bodybuilding'?'checked':''}><strong>Bodybuilding</strong><small>Ipertrofia e isolamento</small>
+Line 176:                             <label class="intake-option-card compact ${saved.sportPraticato==='Endurance'?'selected':''}">
+Line 177:                                 <input type="radio" name="sportPraticato" value="Endurance" ${saved.sportPraticato==='Endurance'?'checked':''}><strong>Endurance</strong><small>Resistenza e multiarticolari</small>
+Line 179:                             <label class="intake-option-card compact ${saved.sportPraticato==='Sport di Squadra'?'selected':''}">
+Line 180:                                 <input type="radio" name="sportPraticato" value="Sport di Squadra" ${saved.sportPraticato==='Sport di Squadra'?'checked':''}><strong>Sport di Squadra</strong><small>Esplosività e pliometria</small>
+Line 455:             sportPraticato: get('sportPraticato') || 'Bodybuilding',
+Line 570:             sportPraticato: d.sportPraticato,
+Line 578:         try { localStorage.setItem('t7_prog_params', JSON.stringify({ patientType:d.patientType,sportPraticato:d.sportPraticato,level:d.level,days:d.days,equipment:d.equipment,conditioning:d.conditioning,strengthProfile:d.strength_profile,goal:d.goal,weeks:d.weeks,patientObjective:d.patientObjective,sleep:d.sleep,stress:d.stress,nutrition:d.nutrition,activity:d.activity,injuries:d.injuries })); } catch(e) { console.warn('[T7] Could not save params to localStorage', e); }
+Line 837:                         ${result.meta.patientType !== 'Clinico' && result.meta.sportPraticato ? `<span class="tag sport">Sport: ${result.meta.sportPraticato}</span>` : ''}
+Line 1196:         ['Sport Praticato', meta.sportPraticato || 'N/A'],

@@ -1,0 +1,527 @@
+[
+  {
+    "id": "sci_sprint_morin_2011",
+    "title": "Technical ability of elite sprinters: ground force application orientation",
+    "authors": "Morin, J. B., Bourdin, M., Edouard, P., Peyrot, N., Samozino, P., & Lacour, J. R.",
+    "journal": "Medicine & Science in Sports & Exercise",
+    "year": 2011,
+    "area": "Atletica Leggera",
+    "abstract": "Studio fondamentale sulla meccanica dello sprint che dimostra come la capacità di applicare forza in direzione orizzontale sul terreno, piuttosto che la forza totale prodotta, sia il fattore determinante principale della prestazione di accelerazione negli sprinters di élite. L'efficacia meccanica orientata orizzontalmente diminuisce progressivamente con l'aumentare della velocità di corsa. La programmazione dello sprint deve quindi focalizzarsi su esercitazioni che migliorino l'orientamento della forza ad alte velocità.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21317862/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Sprint"],
+      "goals": ["Speed", "Power"]
+    }
+  },
+  {
+    "id": "sci_sprint_weyand_2000",
+    "title": "Faster top speeds of human sprinters are achieved with greater ground forces, not rapid leg movements",
+    "authors": "Weyand, P. G., Sternlight, D. N., Bellizzi, M. J., & Wright, S. T.",
+    "journal": "Journal of Applied Physiology",
+    "year": 2000,
+    "area": "Atletica Leggera",
+    "abstract": "Ricerche pietra miliare sulla velocità massima di corsa che dimostrano che le velocità più elevate sono raggiunte applicando maggiori forze di reazione al suolo durante la fase di appoggio, anziché muovendo le gambe più velocemente durante la fase di volo. Gli atleti più veloci applicano una forza verticale significativamente maggiore in tempi di contatto con il terreno molto più brevi. L'allenamento deve quindi mirare ad aumentare la produzione di forza picco in tempi di contatto estremamente ridotti.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/11056116/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Sprint"],
+      "goals": ["Speed"]
+    }
+  },
+  {
+    "id": "sci_sprint_clark_2014",
+    "title": "General force-velocity trajectories describe maximal running accelerations in humans",
+    "authors": "Clark, K. P., Ryan, L. J., & Weyand, P. G.",
+    "journal": "Journal of Experimental Biology",
+    "year": 2014,
+    "area": "Atletica Leggera",
+    "abstract": "Questo studio analizza i profili di accelerazione massima dimostrando che le traiettorie forza-velocità nell'accelerazione di corsa seguono pattern meccanici altamente prevedibili e individualizzati. La capacità di accelerare da fermo o in transizione dipende dall'interazione tra forza orizzontale massima iniziale e velocità massima di contrazione. Identificare il profilo F-V individuale consente di personalizzare gli esercizi di sprint e sovraccarico balistico.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/24737762/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Sprint"],
+      "goals": ["Speed", "Acceleration"]
+    }
+  },
+  {
+    "id": "sci_sprint_cross_2017",
+    "title": "Training at maximal power output in sprint acceleration: Horizontal force-velocity-power profiling",
+    "authors": "Cross, M. R., Brughelli, M., Samozino, P., & Morin, J. B.",
+    "journal": "International Journal of Sports Physiology and Performance",
+    "year": 2017,
+    "area": "Atletica Leggera",
+    "abstract": "Dimostra l'importanza di determinare il carico ottimale di potenza orizzontale (Pmax) nello sprint resisted (traino o sled). L'allenamento condotto al carico che massimizza l'output di potenza orizzontale ottimizza il trasferimento prestazionale alla fase di accelerazione dello sprint. Fornisce linee guida pratiche per la prescrizione del carico nel sled training basato sul profilo individuale del soggetto.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28488884/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Sprint"],
+      "goals": ["Power", "Speed"]
+    }
+  },
+  {
+    "id": "sci_sprint_lockie_2003",
+    "title": "The effects of resisted sled towing on sprint kinematics in field-sport athletes",
+    "authors": "Lockie, R. G., Murphy, A. J., & Spinks, C. D.",
+    "journal": "Journal of Strength and Conditioning Research",
+    "year": 2003,
+    "area": "Atletica Leggera",
+    "abstract": "Analizza gli effetti del traino con slitta (sled towing) sulla cinematica e sulla dinamica dello sprint in atleti. L'uso di sovraccarichi moderati (pari a circa il 10-12% della massa corporea) migliora significativamente l'accelerazione iniziale senza alterare negativamente la cinematica della falcata. Risulta fondamentale per lo sviluppo della forza specifica da sprint nei primi metri di corsa.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/14636093/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Sprint", "Sport di Squadra"],
+      "goals": ["Acceleration", "Strength"]
+    }
+  },
+  {
+    "id": "sci_sprint_buchheit_2013",
+    "title": "High-intensity interval training, solutions to the programming puzzle: Part II: anaerobic energy, neuromuscular load and practical applications",
+    "authors": "Buchheit, M., & Laursen, P. B.",
+    "journal": "Sports Medicine",
+    "year": 2013,
+    "area": "Atletica Leggera",
+    "abstract": "Revisione di riferimento sulla programmazione dell'allenamento ad alta intensità (HIIT) e dello sprint ripetuto (RSA). Vengono analizzati in dettaglio la riserva di velocità anaerobica (ASR), la carica neuromuscolare e i meccanismi di affaticamento centrale e periferico. Fornisce indicazioni precise per equilibrare stress metabolico e neuro-muscolare nell'atleta di velocità ed endurance.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23832851/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Sprint", "Endurance"],
+      "goals": ["Speed", "Endurance"]
+    }
+  },
+  {
+    "id": "sci_sprint_haugen_2014",
+    "title": "Sprint running performance: a compilation of data with analysis of sprint training practices",
+    "authors": "Haugen, T. A., Tønnessen, E., Hisdal, J., & Seiler, S.",
+    "journal": "International Journal of Sports Physiology and Performance",
+    "year": 2014,
+    "area": "Atletica Leggera",
+    "abstract": "Analisi approfondita della struttura metodologica dell'allenamento dei migliori sprinters mondiali. Vengono definiti i parametri di volume, intensità, tempi di recupero e distribuzione stagionale per le fasi di accelerazione, velocità massima e resistenza alla velocità. Evidenzia l'importanza del lavoro ad intensità massima con recuperi completi per preservare la qualità neuromuscolare.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/24509711/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Sprint"],
+      "goals": ["Speed"]
+    }
+  },
+  {
+    "id": "sci_jump_markovic_2007",
+    "title": "Does plyometric training improve vertical jump height? A meta-analytical review",
+    "authors": "Markovic, G.",
+    "journal": "British Journal of Sports Medicine",
+    "year": 2007,
+    "area": "Atletica Leggera",
+    "abstract": "Meta-analisi fondamentale che conferma l'efficacia dell'allenamento pliometrico nel migliorare la quota di salto verticale (Squat Jump e Countermovement Jump). Dimostra che l'uso combinato di balzi e sovraccarichi dinamici induce adattamenti neurali superiori rispetto al solo allenamento di forza tradizionale. È una base scientifica essenziale per la programmazione della potenza negli atleti di salto e velocità.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17347316/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Jumps"],
+      "goals": ["Power", "Jump"]
+    }
+  },
+  {
+    "id": "sci_jump_komi_2000",
+    "title": "Stretch-shortening cycle: a powerful model to study normal and fatigued muscle",
+    "authors": "Komi, P. V.",
+    "journal": "Journal of Biomechanics",
+    "year": 2000,
+    "area": "Atletica Leggera",
+    "abstract": "Studio miliare sul ciclo allungamento-accorciamento (SSC) e sui meccanismi neuro-muscolari e riflessi (riflesso miotatico e pre-attivazione) che governano le azioni balistiche. Illustra come l'accumulo e il rilascio di energia elastica nei tendini ottimizzino il rendimento meccanico. Analizza inoltre l'impatto della fatica sulla rigidità muscolo-tendinea (stiffness).",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/10978496/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Jumps", "Sprint"],
+      "goals": ["Power"]
+    }
+  },
+  {
+    "id": "sci_jump_bobbert_1996",
+    "title": "Why is countermovement jump height greater than squat jump height?",
+    "authors": "Bobbert, M. F., Gerritsen, K. G., Litjens, G. J., & Van Soest, A. J.",
+    "journal": "Medicine & Science in Sports & Exercise",
+    "year": 1996,
+    "area": "Atletica Leggera",
+    "abstract": "Indagine biomeccanica tramite simulazione muscoloscheletrica che spiega le differenze di prestazione tra salti con contromovimento (CMJ) e salti statici (SJ). Dimostra che il vantaggio del CMJ deriva sia dall'accumulo di energia elastica sia da una superiorità di pre-attivazione muscolare e dallo stato di forza-velocità raggiunto all'inizio della fase concentrica. Fornisce indicazioni essenziali sul riparto del lavoro balistico.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/8887768/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Jumps"],
+      "goals": ["Power", "Jump"]
+    }
+  },
+  {
+    "id": "sci_jump_ramirez_2014",
+    "title": "Effects of drop jump training on physical fitness of youth soccer players",
+    "authors": "Ramirez-Campillo, R., Meylan, C., Alvarez, C., Henriquez-Olguin, C., Martinez, C., Cañas-Jamett, R., Andrade, D. C., & Izquierdo, M.",
+    "journal": "Journal of Strength and Conditioning Research",
+    "year": 2014,
+    "area": "Atletica Leggera",
+    "abstract": "Valuta l'impatto dell'allenamento con Drop Jump (salti verso il basso con rimbalzo) a diverse altezze di caduta sulla stiffness muscolo-tendinea, sulla velocità e sulla potenza di salto. Evidenzia come l'allenamento ad alto SSC (stiffness intensa e tempi di contatto minimi) migliori sia la capacità di accelerazione che l'altezza di salto negli atleti. Sottolinea l'importanza del controllo dell'altezza di caduta per evitare stress articolari eccessivi.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/24077376/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Jumps", "Sprint"],
+      "goals": ["Power", "Speed"]
+    }
+  },
+  {
+    "id": "sci_strength_suchomel_2016",
+    "title": "The Importance of Muscular Strength in Athletic Performance",
+    "authors": "Suchomel, T. J., Nimphius, S., & Stone, M. H.",
+    "journal": "Sports Medicine",
+    "year": 2016,
+    "area": "Sollevamento Pesi",
+    "abstract": "Review sistematica fondamentale che stabilisce come livelli elevati di forza massima muscolare siano la base primaria per il potenziamento della potenza espressa nei salti, sprint e cambi di direzione. Evidenzia la riduzione del rischio di infortuni e l'aumento della capacità di assorbimento delle forze nei soggetti con alti livelli di forza relativa. Raccomanda lo sviluppo metodico della forza prima e durante le fasi balistiche.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26791930/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sollevamento Pesi", "Atletica Leggera"],
+      "goals": ["Strength", "Power"]
+    }
+  },
+  {
+    "id": "sci_power_cormie_2011",
+    "title": "Developing maximal neuromuscular power: Part 1 - Biological basis of maximal power production",
+    "authors": "Cormie, P., McGuigan, M. R., & Newton, R. U.",
+    "journal": "Sports Medicine",
+    "year": 2011,
+    "area": "Sollevamento Pesi",
+    "abstract": "Prima parte di una pietra miliare della letteratura scientifica sull'allenamento della potenza neuromuscolare. Esamina le basi biologiche, le proprietà contrattili della fibra muscolare, il reclutamento motorio e l'architettura muscolare che determinano la potenza massima. Fornisce le basi teoriche per la combinazione coordinata di esercizi con carichi pesanti e movimenti ad alta velocità.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21198303/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sollevamento Pesi", "Atletica Leggera"],
+      "goals": ["Power", "Strength"]
+    }
+  },
+  {
+    "id": "sci_ballistic_newton_1996",
+    "title": "Kinematics, kinetics, and muscle activation during explosive upper body movements",
+    "authors": "Newton, R. U., Kraemer, W. J., Häkkinen, K., Triplett, N. T., & Arys, A. C.",
+    "journal": "Journal of Applied Biomechanics",
+    "year": 1996,
+    "area": "Sollevamento Pesi",
+    "abstract": "Studio pionieristico che dimostra la superiorità dei movimenti balistici (es. Jump Squat o Bench Throws) rispetto agli esercizi di forza tradizionali con bilanciere. Nei movimenti tradizionali, gran parte della fase concentrica viene spesa nella decelerazione del carico, mentre l'allenamento balistico consente un'accelerazione continua fino al rilascio o allo stacco. Fondamentale per la programmazione dei lanciatori e degli atleti esplosivi.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/9414013/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Throws", "Sollevamento Pesi"],
+      "goals": ["Power", "Explosiveness"]
+    }
+  },
+  {
+    "id": "sci_throws_terzis_2008",
+    "title": "Muscle fiber type composition and squatted jump performance in shot putters",
+    "authors": "Terzis, G., Georgiadis, G., Vassiliadou, E., & Manta, P.",
+    "journal": "Journal of Strength and Conditioning Research",
+    "year": 2008,
+    "area": "Atletica Leggera",
+    "abstract": "Analizza la correlazione tra la composizione delle fibre muscolari (tipologia IIa e IIx nel vasto laterale) e le prestazioni di lancio del peso e salto verticale in atleti di lancio di élite. Dimostra come la capacità di erogare tassi elevati di sviluppo della forza (RFD) e l'ipertrofia selettiva delle fibre veloci siano direttamente legate ai metri ottenuti nel getto del peso.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/18515989/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Throws"],
+      "goals": ["Power", "Strength"]
+    }
+  },
+  {
+    "id": "sci_endurance_ronnestad_2014",
+    "title": "Optimizing strength training for running and cycling performance: A review",
+    "authors": "Rønnestad, B. R., & Mujika, I.",
+    "journal": "Scandinavian Journal of Medicine & Science in Sports",
+    "year": 2014,
+    "area": "Fisiologia",
+    "abstract": "Revisione sistematica fondamentale che mostra come l'inserimento dell'allenamento di forza pesante e concentrato su esercizi multiarticolari (es. Squat) migliori l'economia di corsa e di pedalata negli atleti di endurance senza causare ipertrofia ipertrofica indesiderata. Gli adattamenti derivano da un aumento della stiffness muscolo-tendinea e dal ritardo nel reclutamento delle fibre di tipo II.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23914664/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Distance Running", "Endurance"],
+      "goals": ["Endurance", "Strength"]
+    }
+  },
+  {
+    "id": "sci_endurance_midgley_2007",
+    "title": "Training to enhance maximal oxygen uptake: how to maximize time at or near VO2max",
+    "authors": "Midgley, A. W., McNaughton, L. R., & Jones, A. M.",
+    "journal": "Sports Medicine",
+    "year": 2007,
+    "area": "Fisiologia",
+    "abstract": "Esamina i metodi di allenamento per massimizzare il tempo trascorso a percentuali prossime al VO2max (vVO2max). Analizza l'efficacia dei protocolli di intervalli ad alta intensità e il ruolo della durata delle ripetizioni per stimolare adattamenti cardiaci primari (gittata sistolica) e periferici nei mezzofondisti e fondisti.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17196020/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Distance Running", "Endurance"],
+      "goals": ["Endurance", "VO2max"]
+    }
+  },
+  {
+    "id": "sci_endurance_jones_2006",
+    "title": "The physiology of the world record holder for the women's marathon: a case study",
+    "authors": "Jones, A. M.",
+    "journal": "International Journal of Sports Science & Coaching",
+    "year": 2006,
+    "area": "Fisiologia",
+    "abstract": "Studio longitudinale sulla fisiologia di Paula Radcliffe durante il suo percorso verso il record mondiale di maratona. Dimostra che mentre il VO2max è rimasto relativamente costante negli anni, il fattore chiave che ha guidato i continui miglioramenti prestazionali è stato l'incremento impressionante dell'economia di corsa (Running Economy) e della soglia del lattato.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16931758/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Distance Running"],
+      "goals": ["Endurance"]
+    }
+  },
+  {
+    "id": "sci_endurance_blagrove_2018",
+    "title": "Effects of Strength Training on the Physiological Determinants of Middle- and Long-Distance Running Performance: A Systematic Review",
+    "authors": "Blagrove, R. C., Howatson, G., & Hayes, P. R.",
+    "journal": "Sports Medicine",
+    "year": 2018,
+    "area": "Atletica Leggera",
+    "abstract": "Revisione sistematica che conferma che la forza massima, la potenza plyometrica e l'allenamento di forza complessa migliorano la velocità di sprint finale (sprint finish), l'economia di corsa e la prestazione complessiva sui mezzofondi e le lunghe distanze. Conferma l'assenza di effetti negativi sul massimo consumo di ossigeno e sottolinea l'effetto protettivo sugli infortuni.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29249083/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Distance Running"],
+      "goals": ["Endurance", "Strength"]
+    }
+  },
+  {
+    "id": "sci_detraining_mujika_2000",
+    "title": "Detraining: loss of training-induced physiological and performance adaptations. Part I: short-term insufficient training stimulus",
+    "authors": "Mujika, I., & Padilla, S.",
+    "journal": "Sports Medicine",
+    "year": 2000,
+    "area": "Fisiologia",
+    "abstract": "Studio di riferimento sulle risposte di decondizionamento a breve termine (meno di 4 settimane) negli atleti. Descrive il rapido calo del VO2max causato dalla riduzione del volume ematico e della gittata sistolica, mantenendo invece inalterata la forza muscolare per tempi più lunghi. Fondamentale per la gestione dei periodi di taper, di transizione e di recupero post-infortunio.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/10999422/",
+    "rules": {
+      "patientTypes": ["Atleta", "Clinico"],
+      "sports": ["Atletica Leggera", "Sollevamento Pesi", "Endurance"],
+      "goals": ["Maintenance", "Recovery"]
+    }
+  },
+  {
+    "id": "sci_weightlifting_haff_2001",
+    "title": "Force-time curve characteristics of dynamic and isometric muscle actions of elite women Olympic weightlifters",
+    "authors": "Haff, G. G., Whitley, A., & Potteiger, J. A.",
+    "journal": "Journal of Strength and Conditioning Research",
+    "year": 2001,
+    "area": "Sollevamento Pesi",
+    "abstract": "Analizza le caratteristiche della curva forza-tempo nelle pesiste olimpiche di élite durante azioni dinamiche ed isometriche. Evidenzia come l'efficienza della tirata (clean pull / snatch pull) e l'applicazione rapida della forza nel secondo tiraggio siano determinanti per il successo nell'alzata. Valida l'uso dei derivati dell'olimpico per sviluppare l'RFD isometrico e dinamico.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/11708871/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sollevamento Pesi"],
+      "goals": ["Strength", "Power"]
+    }
+  },
+  {
+    "id": "sci_weightlifting_stone_2006",
+    "title": "Maximum strength and weightlifting performance: Relationship to vertical jump and sprint speed",
+    "authors": "Stone, M. H., Stone, M. E., & Sands, W. A.",
+    "journal": "Sports Biomechanics",
+    "year": 2006,
+    "area": "Sollevamento Pesi",
+    "abstract": "Esamina le strette correlazioni tra la forza massima esibita nelle alzate olimpiche e negli squat con la prestazione nei salti verticali e nelle fasi di accelerazione sprint. Conclude che la capacità di esprimere forza contro resistenze elevate ad altissima velocità rende il sollevamento pesi uno dei mezzi principali per l'esplosività atletica generale.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16553066/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sollevamento Pesi", "Atletica Leggera"],
+      "goals": ["Strength", "Power"]
+    }
+  },
+  {
+    "id": "sci_weightlifting_suchomel_2017",
+    "title": "Weightlifting Derivatives: Barbell Position and Catch Phase Modifications",
+    "authors": "Suchomel, T. J., Comfort, P., & Lake, J. P.",
+    "journal": "Sports Medicine",
+    "year": 2017,
+    "area": "Sollevamento Pesi",
+    "abstract": "Analisi metodologica completa sui derivati delle alzate olimpiche (tirate al blocco, tirate dalla sospensione, girate senza incastro). Dimostra che l'omissione della fase di incastro (catch) riduce l'apprendimento tecnico complesso e l'impatto articolare mantenendo inalterati, o persino superiori, gli output di potenza e di impulso di forza. Fornisce soluzioni pratiche per la preparazione atletica.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28247103/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sollevamento Pesi", "Atletica Leggera"],
+      "goals": ["Power", "Explosiveness"]
+    }
+  },
+  {
+    "id": "sci_resistance_kraemer_2004",
+    "title": "Fundamentals of resistance training: progression and exercise prescription",
+    "authors": "Kraemer, W. J., & Ratamess, N. A.",
+    "journal": "Medicine & Science in Sports & Exercise",
+    "year": 2004,
+    "area": "Sollevamento Pesi",
+    "abstract": "Posizione ufficiale dell'American College of Sports Medicine (ACSM) sulla prescrizione dell'allenamento contro resistenza. Definisce i principi fondamentali di progressione, selezione degli esercizi, volume, intensità e frequenza per individui principianti, intermedi ed avanzati. Costituisce la linea guida fondamentale per la programmazione della forza.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15064696/",
+    "rules": {
+      "patientTypes": ["Atleta", "Clinico"],
+      "sports": ["Sollevamento Pesi", "Atletica Leggera"],
+      "goals": ["Strength", "Hypertrophy"]
+    }
+  },
+  {
+    "id": "sci_weightlifting_storey_2012",
+    "title": "Unique aspects of competitive weightlifting performance: structural, neuromuscular and metabolic adaptations",
+    "authors": "Storey, A., & Smith, H. K.",
+    "journal": "Sports Medicine",
+    "year": 2012,
+    "area": "Sollevamento Pesi",
+    "abstract": "Review sulle adattamenti neuromuscolari, strutturali e metabolici unici associati al sollevamento pesi competitivo. Evidenzia la spessa ipertrofia delle fibre veloci di tipo IIx/IIa, l'aumento della densità minerale ossea, l'irrigidimento del tessuto tendineo e la coordinazione inter-muscolare specifica. Spiega l'efficacia del sollevamento pesi nell'ottimizzare la potenza totale del corpo.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22897427/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sollevamento Pesi"],
+      "goals": ["Strength", "Power"]
+    }
+  },
+  {
+    "id": "sci_pap_chiu_2003",
+    "title": "Postactivation potentiation response in athletic and recreationally trained individuals",
+    "authors": "Chiu, L. Z., Fry, A. C., Weiss, L. W., Schilling, B. K., Brown, L. E., & Smith, S. L.",
+    "journal": "Journal of Strength and Conditioning Research",
+    "year": 2003,
+    "area": "Sollevamento Pesi",
+    "abstract": "Analizza il fenomeno del potenziamento post-attivazione (PAP) confrontando atleti d'élite ed individui ricreativi dopo uno stimolo pesante di forza. Dimostra che gli atleti con elevati livelli di forza massima mostrano una risposta potenziante significativamente maggiore nelle successive azioni balistiche rispetto ai soggetti meno forti. Evidenzia l'importanza del rapporto forza/fatica nel complesso allenamento a contrasto.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/14636098/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sollevamento Pesi", "Atletica Leggera"],
+      "goals": ["Power", "Explosiveness"]
+    }
+  },
+  {
+    "id": "sci_vbt_badillo_2010",
+    "title": "Movement velocity as a measure of loading intensity in resistance training",
+    "authors": "González-Badillo, J. J., & Sánchez-Medina, L.",
+    "journal": "International Journal of Sports Medicine",
+    "year": 2010,
+    "area": "VBT",
+    "abstract": "Studio cardine che definisce la relazione estremamente precisa tra la velocità della prima ripetizione concentrica e la percentuale reale di 1RM nello squat e in altri esercizi con bilanciere. Dimostra che la velocità di esecuzione consente di monitorare con precisione l'intensità di carico reale in tempo reale, evitando test ad esaurimento potenzialmente infortunistici.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20146162/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sollevamento Pesi", "Atletica Leggera"],
+      "goals": ["Strength", "VBT"]
+    }
+  },
+  {
+    "id": "sci_vbt_sanchez_2011",
+    "title": "Velocity loss as an indicator of neuromuscular fatigue during resistance training",
+    "authors": "Sánchez-Medina, L., & González-Badillo, J. J.",
+    "journal": "Medicine & Science in Sports & Exercise",
+    "year": 2011,
+    "area": "VBT",
+    "abstract": "Dimostra che la percentuale di perdita di velocità all'interno di una serie è fortemente correlata alla fatica neuromuscolare e all'accumulo di lattato e ammoniaca nel sangue. Controllare la perdita di velocità (es. fermando la serie al 10-20% di calo) consente di stimolare la forza e la potenza evitando l'eccessivo affaticamento e i lunghi tempi di recupero richiesti dalle serie a cedimento.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20689453/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sollevamento Pesi", "Atletica Leggera"],
+      "goals": ["Strength", "Power"]
+    }
+  },
+  {
+    "id": "sci_vbt_pareja_2017",
+    "title": "Effects of velocity loss during resistance training on athletic performance, strength, and muscle hypertrophy",
+    "authors": "Pareja-Blanco, F., Rodríguez-Rosell, D., Sánchez-Medina, L., Sanchis-Moysi, J., Dorado, C., Mora-Custodio, R., Yáñez-García, J. M., Morales-Alamo, D., Calbet, J. A. L., & González-Badillo, J. J.",
+    "journal": "Medicine & Science in Sports & Exercise",
+    "year": 2017,
+    "area": "VBT",
+    "abstract": "Confronta gli adattamenti prodotti da perdite di velocità basse (30% vs 20% vs 40%) durante l'allenamento di forza. Dimostra che perdite di velocità inferiori (20%) inducono miglioramenti superiori o uguali nella forza massima e nei salti, preservando la proporzione di fibre veloci IIx, mentre il 40% causa maggiore ipertrofia ma trasforma le fibre veloci in intermedie.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27845943/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sollevamento Pesi", "Atletica Leggera"],
+      "goals": ["Strength", "Power"]
+    }
+  },
+  {
+    "id": "sci_vbt_weakley_2021",
+    "title": "Velocity-Based Training: From Theory to Application",
+    "authors": "Weakley, J., Mann, B., Banyard, H., McLaren, S., Scott, T., & Garcia-Ramos, A.",
+    "journal": "Sports Medicine",
+    "year": 2021,
+    "area": "VBT",
+    "abstract": "Guida metodologica e review completa sull'applicazione pratica del Velocity-Based Training (VBT) nello sport di alto livello. Delinea le zone di velocità target per le diverse qualità (forza massima, forza accelerativa, potenza, velocità), la regolazione automatica del carico giornaliero (autoregulation) e il feedback in tempo reale per motivare l'atleta.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/33433845/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sollevamento Pesi", "Atletica Leggera"],
+      "goals": ["Strength", "Power", "VBT"]
+    }
+  },
+  {
+    "id": "sci_physiol_fleck_2004",
+    "title": "Designing Resistance Training Programs (4th Edition)",
+    "authors": "Fleck, S. J., & Kraemer, W. J.",
+    "journal": "Human Kinetics",
+    "year": 2014,
+    "area": "Fisiologia",
+    "abstract": "Testo di riferimento mondiale per la progettazione dei programmi di allenamento con i pesi. Approfondisce le risposte ormonali, cardiovascolari e neurologiche sia a breve che a lungo termine. Delinea i modelli di periodizzazione lineare, ondulata e a blocchi per ottimizzare la prestazione atletica evitando la sindrome da sovrallenamento.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15064696/",
+    "rules": {
+      "patientTypes": ["Atleta", "Clinico"],
+      "sports": ["Sollevamento Pesi", "Atletica Leggera"],
+      "goals": ["Strength", "Hypertrophy"]
+    }
+  },
+  {
+    "id": "sci_physiol_ahtiainen_2003",
+    "title": "Muscle hypertrophy, hormonal adaptation and strength development during strength training in strength-trained and untrained men",
+    "authors": "Ahtiainen, J. P., Pakarinen, A., Alen, M., Kraemer, W. J., & Häkkinen, K.",
+    "journal": "European Journal of Applied Physiology",
+    "year": 2003,
+    "area": "Fisiologia",
+    "abstract": "Esamina gli adattamenti ormonali acuti e cronici (testosterone e ormone della crescita) indotti da carichi pesanti in soggetti allenati e non allenati. Mostra come gli atleti avanzati richiedano variazioni di volume e intensità più marcate per stimolare ulteriormente la secrezione ormonale e la sintesi proteica muscolare rispetto ai soggetti novizi.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12629688/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sollevamento Pesi"],
+      "goals": ["Strength", "Hypertrophy"]
+    }
+  },
+  {
+    "id": "sci_physiol_crewther_2006",
+    "title": "Two emerging concepts in physical training: Neuromuscular fatigue and postactivation potentiation from fatigue to potentiation",
+    "authors": "Crewther, B., Keogh, J., Cronin, J., & Cook, C.",
+    "journal": "Sports Medicine",
+    "year": 2006,
+    "area": "Fisiologia",
+    "abstract": "Analizza il delicato equilibrio tra fatica neuromuscolare e potenziamento post-attivazione durante le sessioni di allenamento complesso. Vengono esaminati gli indicatori di fatica (come il calo del tasso di sviluppo della forza) e i tempi ottimale di recupero inter-serie per sfruttare al massimo il potenziamento nella produzione di potenza esplosiva.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17052063/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sollevamento Pesi", "Atletica Leggera"],
+      "goals": ["Power", "Explosiveness"]
+    }
+  },
+  {
+    "id": "sci_vbt_garcia_2018",
+    "title": "The Force-Velocity Relationship in Resistance Exercises: Technical Aspects and Methodology",
+    "authors": "García-Ramos, A., & Jaric, S.",
+    "journal": "Sports Biomechanics",
+    "year": 2018,
+    "area": "VBT",
+    "abstract": "Review metodologica sulla valutazione della relazione forza-velocità negli esercizi contro resistenza con bilanciere. Valida l'uso di metodi a 2 carichi (two-point method) rispetto a profilazioni multi-carico per determinare in modo rapido e accurato la forza massima teorica (F0) e la velocità massima teorica (V0) dell'atleta in palestra.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29092658/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sollevamento Pesi", "Atletica Leggera"],
+      "goals": ["VBT", "Strength"]
+    }
+  },
+  {
+    "id": "sci_monitoring_mcguigan_2012",
+    "title": "Monitoring training load and fatigue in resistance training",
+    "authors": "McGuigan, M. R., Al-Curry, M., & Foster, C.",
+    "journal": "International Journal of Sports Physiology and Performance",
+    "year": 2012,
+    "area": "Fisiologia",
+    "abstract": "Fornisce le basi scientifiche e metodologiche per l'utilizzo del Session-RPE (scala di percezione dello sforzo di sessione) e del carico interno nel monitoraggio dell'allenamento di forza e potenza. Dimostra che il Session-RPE si correla fortemente con i parametri fisiologici e biomeccanici, aiutando i preparatori a prevenire il sovrallenamento negli atleti.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23136270/",
+    "rules": {
+      "patientTypes": ["Atleta", "Clinico"],
+      "sports": ["Sollevamento Pesi", "Atletica Leggera"],
+      "goals": ["Strength", "Maintenance"]
+    }
+  }
+]

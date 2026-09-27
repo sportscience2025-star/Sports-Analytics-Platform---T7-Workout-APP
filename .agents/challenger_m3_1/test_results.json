@@ -1,0 +1,142 @@
+[
+  {
+    "index": 1,
+    "desc": "Single name with long token",
+    "input": "'Tommaso_mhkuhpch00134m'",
+    "isEncodedId": true,
+    "extractReadableName": "Tommaso"
+  },
+  {
+    "index": 2,
+    "desc": "Multi-word name with long token",
+    "input": "'Mario_Rossi_mhkuhpch00134m'",
+    "isEncodedId": true,
+    "extractReadableName": "Mario Rossi"
+  },
+  {
+    "index": 3,
+    "desc": "Short device token",
+    "input": "'Tommaso_vbt01'",
+    "isEncodedId": true,
+    "extractReadableName": "Tommaso"
+  },
+  {
+    "index": 4,
+    "desc": "Generic encoder token",
+    "input": "'encoder_123456'",
+    "isEncodedId": true,
+    "extractReadableName": "Encoder"
+  },
+  {
+    "index": 5,
+    "desc": "Empty string",
+    "input": "''",
+    "isEncodedId": false,
+    "extractReadableName": "Encoder"
+  },
+  {
+    "index": 6,
+    "desc": "Whitespace string",
+    "input": "'   '",
+    "isEncodedId": false,
+    "extractReadableName": "Encoder"
+  },
+  {
+    "index": 7,
+    "desc": "Null input",
+    "input": "None",
+    "isEncodedId": false,
+    "extractReadableName": "Encoder"
+  },
+  {
+    "index": 8,
+    "desc": "Numeric input",
+    "input": "12345",
+    "isEncodedId": false,
+    "extractReadableName": "Encoder"
+  },
+  {
+    "index": 9,
+    "desc": "Multi-word name with underscore (surname ends in >2 alphanum)",
+    "input": "'Mario_Rossi'",
+    "isEncodedId": true,
+    "extractReadableName": "Mario"
+  },
+  {
+    "index": 10,
+    "desc": "3-part name with underscores",
+    "input": "'Gianni_Maria_Verdi'",
+    "isEncodedId": true,
+    "extractReadableName": "Gianni Maria"
+  },
+  {
+    "index": 11,
+    "desc": "Athlete with number index",
+    "input": "'Athlete_1'",
+    "isEncodedId": false,
+    "extractReadableName": "Athlete"
+  },
+  {
+    "index": 12,
+    "desc": "Leading underscore only",
+    "input": "'_mhkuhpch00134m'",
+    "isEncodedId": false,
+    "extractReadableName": "Encoder"
+  },
+  {
+    "index": 13,
+    "desc": "Trailing underscore only",
+    "input": "'Tommaso_'",
+    "isEncodedId": false,
+    "extractReadableName": "Tommaso"
+  },
+  {
+    "index": 14,
+    "desc": "Underscore with 1-char token",
+    "input": "'Tommaso_a'",
+    "isEncodedId": false,
+    "extractReadableName": "Tommaso"
+  },
+  {
+    "index": 15,
+    "desc": "Underscore with 2-char token",
+    "input": "'Tommaso_ab'",
+    "isEncodedId": false,
+    "extractReadableName": "Tommaso"
+  },
+  {
+    "index": 16,
+    "desc": "Underscore with 3-char token",
+    "input": "'Tommaso_abc'",
+    "isEncodedId": true,
+    "extractReadableName": "Tommaso"
+  },
+  {
+    "index": 17,
+    "desc": "Special character @ in name",
+    "input": "'Tommaso@Gym_mhkuhpch00134m'",
+    "isEncodedId": true,
+    "extractReadableName": "Tommaso@gym"
+  },
+  {
+    "index": 18,
+    "desc": "Hyphenated name with token",
+    "input": "'Anna-Maria_mhkuhpch00134m'",
+    "isEncodedId": true,
+    "extractReadableName": "Anna-maria"
+  },
+  {
+    "index": 19,
+    "desc": "Literal 'Encoder' string",
+    "input": "'Encoder'",
+    "isEncodedId": false,
+    "extractReadableName": "Encoder"
+  },
+  {
+    "index": 20,
+    "desc": "Generic unknown token",
+    "input": "'UNKNOWN_123'",
+    "isEncodedId": true,
+    "extractReadableName": "Encoder"
+  }
+]

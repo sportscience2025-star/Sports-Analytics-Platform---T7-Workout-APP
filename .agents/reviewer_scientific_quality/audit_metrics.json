@@ -1,0 +1,99 @@
+{
+  "totalSources": 260,
+  "baselineCount": 161,
+  "newCount": 99,
+  "patientTypes": [
+    "Atleta",
+    "Clinico"
+  ],
+  "sports": [
+    "Atletica Leggera",
+    "Sport di Squadra",
+    "Endurance",
+    "Bodybuilding",
+    "Calcio",
+    "Basketball"
+  ],
+  "goals": [
+    "Power",
+    "Strength",
+    "Resistenza",
+    "Hypertrophy",
+    "Rehab",
+    "Definition"
+  ],
+  "injuriesCount": 28,
+  "duplicateAbstracts": 0,
+  "urlStats": {
+    "pmidCount": 99,
+    "doiCount": 0,
+    "otherUrlCount": 0
+  },
+  "abstractStats": {
+    "minWords": 42,
+    "maxWords": 126,
+    "avgWords": "68.7"
+  },
+  "topJournals": [
+    [
+      "Journal of Strength and Conditioning Research",
+      20
+    ],
+    [
+      "Sports Medicine",
+      17
+    ],
+    [
+      "British Journal of Sports Medicine",
+      8
+    ],
+    [
+      "Scandinavian Journal of Medicine & Science in Sports",
+      6
+    ],
+    [
+      "Journal of Sports Sciences",
+      5
+    ],
+    [
+      "International Journal of Sports Physiology and Performance",
+      4
+    ],
+    [
+      "Medicine and Science in Sports and Exercise",
+      3
+    ],
+    [
+      "International Journal of Environmental Research and Public Health",
+      3
+    ],
+    [
+      "Journal of Applied Physiology",
+      3
+    ],
+    [
+      "The American Journal of Sports Medicine",
+      3
+    ],
+    [
+      "European Journal of Sport Science",
+      2
+    ],
+    [
+      "Sports Biomechanics",
+      2
+    ],
+    [
+      "European Journal of Applied Physiology",
+      2
+    ],
+    [
+      "International Journal of Sports Medicine",
+      2
+    ],
+    [
+      "Frontiers in Physiology",
+      2
+    ]
+  ]
+}

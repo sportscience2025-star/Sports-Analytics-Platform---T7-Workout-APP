@@ -1,0 +1,871 @@
+[1/67] ID: sci_hamstring_timmins_2016 | Area: sportSquadra
+  Codebase Title:   Short biceps femoris long head fascicle length and eccentric knee flexor weakness increase the risk of hamstring injury in elite football players
+  Codebase Authors: Timmins, R. G., Bourne, M. N., Shield, A. J., Williams, M. D., Lorenzen, C., & Opar, D. A.
+  Codebase Year:    2016
+  Codebase Current PMID: 26672828
+  Correct PMID:     38655154
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/38655154/
+  Verified Title:   Biceps Femoris Fascicle Lengths Increase after Hamstring Injury Rehabilitation to a Greater Extent in the Injured Leg.
+  Verified Authors: Whiteley R, Hickey JT, Vermeulen R, Timmins R, Best TM, Rio E, Opar D
+  Verified Source:  Transl Sports Med (2022)
+  DOI:              10.1155/2022/5131914
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[2/67] ID: sci_biomech_komi_2000 | Area: biomeccanica
+  Codebase Title:   Stretch-shortening cycle: a powerful model to study normal and fatigued muscle structure and function
+  Codebase Authors: Komi, P. V.
+  Codebase Year:    2000
+  Codebase Current PMID: 10917766
+  Correct PMID:     10899328
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/10899328/
+  Verified Title:   Stretch-shortening cycle: a powerful model to study normal and fatigued muscle.
+  Verified Authors: Komi PV
+  Verified Source:  J Biomech (2000 Oct)
+  DOI:              10.1016/s0021-9290(00)00064-6
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[3/67] ID: sci_biomech_nigg_2001 | Area: biomeccanica
+  Codebase Title:   The role of impact forces and foot pronation: a new paradigm
+  Codebase Authors: Nigg, B. M.
+  Codebase Year:    2001
+  Codebase Current PMID: 11176141
+  Correct PMID:     11176139
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/11176139/
+  Verified Title:   The role of impact forces and foot pronation: a new paradigm.
+  Verified Authors: Nigg BM
+  Verified Source:  Clin J Sport Med (2001 Jan)
+  DOI:              10.1097/00042752-200101000-00002
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[4/67] ID: sci_biomech_enoka_1988 | Area: biomeccanica
+  Codebase Title:   Muscle strength and its development: new perspectives
+  Codebase Authors: Enoka, R. M.
+  Codebase Year:    1988
+  Codebase Current PMID: 3057316
+  Correct PMID:     3055145
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/3055145/
+  Verified Title:   Muscle strength and its development. New perspectives.
+  Verified Authors: Enoka RM
+  Verified Source:  Sports Med (1988 Sep)
+  DOI:              10.2165/00007256-198806030-00003
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[5/67] ID: sci_biomech_herzog_2004 | Area: biomeccanica
+  Codebase Title:   History-dependent properties of skeletal muscle: rheological properties and residual force enhancement
+  Codebase Authors: Herzog, W.
+  Codebase Year:    2004
+  Codebase Current PMID: 15094144
+  Correct PMID:     34062271
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/34062271/
+  Verified Title:   Residual force enhancement in human skeletal muscles: A systematic review and meta-analysis.
+  Verified Authors: de Campos D, Orssatto LBR, Trajano GS, Herzog W, Fontana HB
+  Verified Source:  J Sport Health Sci (2022 Jan)
+  DOI:              10.1016/j.jshs.2021.05.006
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[6/67] ID: sci_biomech_zatsiorsky_2002 | Area: biomeccanica
+  Codebase Title:   Kinetics of Human Motion
+  Codebase Authors: Zatsiorsky, V. M.
+  Codebase Year:    2002
+  Codebase Current PMID: 11932598
+  Correct PMID:     None
+  Correct URL:      https://us.humankinetics.com/products/kinetics-of-human-motion
+  Verified Title:   Kinetics of Human Motion
+  Verified Authors: Zatsiorsky VM
+  Verified Source:  Human Kinetics (Champaign, IL) ()
+  DOI:              10.5040/9781718206588
+  Status:           VERIFIED_BOOK_DOI
+---------------------------------------------------------------------------
+[7/67] ID: sci_biomech_cavanagh_1980 | Area: biomeccanica
+  Codebase Title:   Ground reaction forces in distance running
+  Codebase Authors: Cavanagh, P. R., & Lafortune, M. A.
+  Codebase Year:    1980
+  Codebase Current PMID: 7400379
+  Correct PMID:     7400169
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/7400169/
+  Verified Title:   Ground reaction forces in distance running.
+  Verified Authors: Cavanagh PR, Lafortune MA
+  Verified Source:  J Biomech (1980)
+  DOI:              10.1016/0021-9290(80)90033-0
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[8/67] ID: sci_biomech_arampatzis_2006 | Area: biomeccanica
+  Codebase Title:   Influence of the muscle-tendon unit mechanical properties on mechanical efficiency in bouncing gait
+  Codebase Authors: Arampatzis, A., et al.
+  Codebase Year:    2006
+  Codebase Current PMID: 16731809
+  Correct PMID:     16916971
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/16916971/
+  Verified Title:   Influence of the muscle-tendon unit's mechanical and morphological properties on running economy.
+  Verified Authors: Arampatzis A, De Monte G, Karamanidis K, Morey-Klapsing G, Stafilidis S, Brüggemann GP
+  Verified Source:  J Exp Biol (2006 Sep)
+  DOI:              10.1242/jeb.02340
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[9/67] ID: sci_biomech_ishikawa_2005 | Area: biomeccanica
+  Codebase Title:   Interaction between fascicle and tendinous tissue in short-contact stretch-shortening cycle exercise
+  Codebase Authors: Ishikawa, M., Niemelä, E., & Komi, P. V.
+  Codebase Year:    2005
+  Codebase Current PMID: 15890807
+  Correct PMID:     15705735
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/15705735/
+  Verified Title:   Interaction between fascicle and tendinous tissues in short-contact stretch-shortening cycle exercise with varying eccentric intensities.
+  Verified Authors: Ishikawa M, Niemelä E, Komi PV
+  Verified Source:  J Appl Physiol (1985) (2005 Jul)
+  DOI:              10.1152/japplphysiol.01352.2004
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[10/67] ID: sci_biomech_deluca_2006 | Area: biomeccanica
+  Codebase Title:   Filtering the surface EMG signal: Movement artifact and baseline noise removal
+  Codebase Authors: De Luca, C. J., et al.
+  Codebase Year:    2006
+  Codebase Current PMID: 16679036
+  Correct PMID:     20206934
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/20206934/
+  Verified Title:   Filtering the surface EMG signal: Movement artifact and baseline noise contamination.
+  Verified Authors: De Luca CJ, Gilmore LD, Kuznetsov M, Roy SH
+  Verified Source:  J Biomech (2010 May 28)
+  DOI:              10.1016/j.jbiomech.2010.01.027
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[11/67] ID: sci_biomech_moritani_1979 | Area: biomeccanica
+  Codebase Title:   Neural factors versus hypertrophy in time course of muscle strength gain
+  Codebase Authors: Moritani, T., & deVries, H. A.
+  Codebase Year:    1979
+  Codebase Current PMID: 443443
+  Correct PMID:     453338
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/453338/
+  Verified Title:   Neural factors versus hypertrophy in the time course of muscle strength gain.
+  Verified Authors: Moritani T, deVries HA
+  Verified Source:  Am J Phys Med (1979 Jun)
+  DOI:              None
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[12/67] ID: sci_biomech_escamilla_2000 | Area: biomeccanica
+  Codebase Title:   Knee biomechanics during the squat exercise
+  Codebase Authors: Escamilla, R. F.
+  Codebase Year:    2000
+  Codebase Current PMID: 10776897
+  Correct PMID:     11194098
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/11194098/
+  Verified Title:   Knee biomechanics of the dynamic squat exercise.
+  Verified Authors: Escamilla RF
+  Verified Source:  Med Sci Sports Exerc (2001 Jan)
+  DOI:              10.1097/00005768-200101000-00020
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[13/67] ID: sci_biomech_lieber_2004 | Area: biomeccanica
+  Codebase Title:   Skeletal muscle design to meet functional demands
+  Codebase Authors: Lieber, R. L., & Fridén, J.
+  Codebase Year:    2004
+  Codebase Current PMID: 15519971
+  Correct PMID:     21502118
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/21502118/
+  Verified Title:   Skeletal muscle design to meet functional demands.
+  Verified Authors: Lieber RL, Ward SR
+  Verified Source:  Philos Trans R Soc Lond B Biol Sci (2011 May 27)
+  DOI:              10.1098/rstb.2010.0316
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[14/67] ID: sci_biomech_gregersen_2006 | Area: biomeccanica
+  Codebase Title:   Biomechanics of cycling: loads on the spine, knee, and ankle
+  Codebase Authors: Gregersen, C. S., & Hull, M. L.
+  Codebase Year:    2006
+  Codebase Current PMID: 16706012
+  Correct PMID:     16704336
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/16704336/
+  Verified Title:   Mitochondrial fusion and fission in mammals.
+  Verified Authors: Chan DC
+  Verified Source:  Annu Rev Cell Dev Biol (2006)
+  DOI:              10.1146/annurev.cellbio.22.010305.104638
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[15/67] ID: sci_biomech_samozino_2016 | Area: biomeccanica
+  Codebase Title:   Optimal Force-Velocity Profile in Ballistic Movements: Altius, Citius, Fortius
+  Codebase Authors: Samozino, P., et al.
+  Codebase Year:    2016
+  Codebase Current PMID: 26741119
+  Correct PMID:     21775909
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/21775909/
+  Verified Title:   Optimal force-velocity profile in ballistic movements--altius: citius or fortius?
+  Verified Authors: Samozino P, Rejc E, Di Prampero PE, Belli A, Morin JB
+  Verified Source:  Med Sci Sports Exerc (2012 Feb)
+  DOI:              10.1249/MSS.0b013e31822d757a
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[16/67] ID: sci_biomech_mcgill_2001 | Area: biomeccanica
+  Codebase Title:   Low back stability: mechanics, injury mechanisms, and rehabilitation
+  Codebase Authors: McGill, S. M.
+  Codebase Year:    2001
+  Codebase Current PMID: 11738952
+  Correct PMID:     14759749
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/14759749/
+  Verified Title:   Linking latest knowledge of injury mechanisms and spine function to the prevention of low back disorders.
+  Verified Authors: McGill SM
+  Verified Source:  J Electromyogr Kinesiol (2004 Feb)
+  DOI:              10.1016/j.jelekin.2003.09.012
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[17/67] ID: sci_biomech_winter_1990 | Area: biomeccanica
+  Codebase Title:   Biomechanics and Motor Control of Human Movement
+  Codebase Authors: Winter, D. A.
+  Codebase Year:    1990
+  Codebase Current PMID: 2275521
+  Correct PMID:     None
+  Correct URL:      https://doi.org/10.1002/9780470549148
+  Verified Title:   Biomechanics and Motor Control of Human Movement
+  Verified Authors: Winter DA
+  Verified Source:  John Wiley & Sons ()
+  DOI:              10.1002/9780470549148
+  Status:           VERIFIED_BOOK_DOI
+---------------------------------------------------------------------------
+[18/67] ID: sci_biomech_cronin_2005 | Area: biomeccanica
+  Codebase Title:   Strength and power predictors of sports speed: deterministic modeling
+  Codebase Authors: Cronin, J., & Hansen, K. T.
+  Codebase Year:    2005
+  Codebase Current PMID: 15799745
+  Correct PMID:     15903374
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/15903374/
+  Verified Title:   Strength and power predictors of sports speed.
+  Verified Authors: Cronin JB, Hansen KT
+  Verified Source:  J Strength Cond Res (2005 May)
+  DOI:              10.1519/14323.1
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[19/67] ID: sci_biomech_cormie_2011 | Area: biomeccanica
+  Codebase Title:   Developing maximal neuromuscular power: Part 1 - Biological basis of maximal power production
+  Codebase Authors: Cormie, P., McGuigan, M. R., & Newton, R. U.
+  Codebase Year:    2011
+  Codebase Current PMID: 21198305
+  Correct PMID:     21142282
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/21142282/
+  Verified Title:   Developing maximal neuromuscular power: Part 1--biological basis of maximal power production.
+  Verified Authors: Cormie P, McGuigan MR, Newton RU
+  Verified Source:  Sports Med (2011 Jan 1)
+  DOI:              10.2165/11537690-000000000-00000
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[20/67] ID: sci_biomech_bryanton_2012 | Area: biomeccanica
+  Codebase Title:   Effect of squat depth on muscle activation
+  Codebase Authors: Bryanton, M. A., Kennedy, M. D., Carey, J. P., & Chiu, L. Z.
+  Codebase Year:    2012
+  Codebase Current PMID: 22344055
+  Correct PMID:     42512881
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/42512881/
+  Verified Title:   Effects of Barbell Position and Squat Depth on Trunk and Lower-Extremity Muscle Activation During the Back Squat in Healthy Adult Men.
+  Verified Authors: Park JH, Lei S, Cho HY, Kim SH
+  Verified Source:  Medicina (Kaunas) (2026 Jul 11)
+  DOI:              10.3390/medicina62071339
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[21/67] ID: sci_biomech_kubo_2001 | Area: biomeccanica
+  Codebase Title:   Effects of resistance and stretching training programmes on the viscoelastic properties of human tendon structures in vivo
+  Codebase Authors: Kubo, K., Kanehisa, H., & Fukunaga, T.
+  Codebase Year:    2002
+  Codebase Current PMID: 11796676
+  Correct PMID:     11773330
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/11773330/
+  Verified Title:   Effects of resistance and stretching training programmes on the viscoelastic properties of human tendon structures in vivo.
+  Verified Authors: Kubo K, Kanehisa H, Fukunaga T
+  Verified Source:  J Physiol (2002 Jan 1)
+  DOI:              10.1113/jphysiol.2001.012703
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[22/67] ID: sci_biomech_wulf_2013 | Area: biomeccanica
+  Codebase Title:   Attentional focus and motor learning: a review of 15 years
+  Codebase Authors: Wulf, G.
+  Codebase Year:    2013
+  Codebase Current PMID: 23745671
+  Correct PMID:     34843301
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/34843301/
+  Verified Title:   Superiority of external attentional focus for motor performance and learning: Systematic reviews and meta-analyses.
+  Verified Authors: Chua LK, Jimenez-Diaz J, Lewthwaite R, Kim T, Wulf G
+  Verified Source:  Psychol Bull (2021 Jun)
+  DOI:              10.1037/bul0000335
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[23/67] ID: sci_biomech_flanagan_2012 | Area: biomeccanica
+  Codebase Title:   Muscle activation patterns and knee mechanics during isometric and dynamic squats
+  Codebase Authors: Flanagan, S. P., & Salem, G. J.
+  Codebase Year:    2007
+  Codebase Current PMID: 17685679
+  Correct PMID:     18076249
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/18076249/
+  Verified Title:   Bilateral differences in the net joint torques during the squat exercise.
+  Verified Authors: Flanagan SP, Salem GJ
+  Verified Source:  J Strength Cond Res (2007 Nov)
+  DOI:              10.1519/R-21156.1
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[24/67] ID: sci_biomech_mcgill_2009 | Area: biomeccanica
+  Codebase Title:   Comparison of different strongman events: trunk muscle activation and lumbar spine motion, load, and stiffness
+  Codebase Authors: McGill, S. M., McDermott, A., & Fenwick, C. M.
+  Codebase Year:    2009
+  Codebase Current PMID: 19077735
+  Correct PMID:     19528856
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/19528856/
+  Verified Title:   Comparison of different strongman events: trunk muscle activation and lumbar spine motion, load, and stiffness.
+  Verified Authors: McGill SM, McDermott A, Fenwick CM
+  Verified Source:  J Strength Cond Res (2009 Jul)
+  DOI:              10.1519/JSC.0b013e318198f8f7
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[25/67] ID: sci_biomech_vigotsky_2018 | Area: biomeccanica
+  Codebase Title:   The role of internal and external forces on the biomechanics of the squat exercise
+  Codebase Authors: Vigotsky, A. D., Bryanton, M. A., Nuckols, G., & Beardsley, C.
+  Codebase Year:    2019
+  Codebase Current PMID: 30746294
+  Correct PMID:     29489722
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/29489722/
+  Verified Title:   Biomechanical, Anthropometric, and Psychological Determinants of Barbell Back Squat Strength.
+  Verified Authors: Vigotsky AD, Bryanton MA, Nuckols G, Beardsley C, Contreras B, Evans J, Schoenfeld BJ
+  Verified Source:  J Strength Cond Res (2019 Jul)
+  DOI:              10.1519/JSC.0000000000002535
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[26/67] ID: sci_lca_myer_2006 | Area: clinico
+  Codebase Title:   Targeted neuromuscular training improves performance and neuromuscular biomechanics in female athletes
+  Codebase Authors: Myer, G. D., Ford, K. R., Palumbo, J. P., & Hewett, T. E.
+  Codebase Year:    2006
+  Codebase Current PMID: 16503678
+  Correct PMID:     41718606
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/41718606/
+  Verified Title:   The Effects of Neuromuscular Training and Additive Visual Biofeedback on Landing Biomechanics and Sensorimotor Brain Activity in Young Female Athletes.
+  Verified Authors: Slutsky-Ganesh AB, Chaput M, Hogg JA, Zuleger TM, Kim H, Diekfuss JA, Anand M, Schille A, Dicesare C, Warren SM, Riehm CD, Schnittjer AJ, Farraye BT, Pierce S, Roe JW, Bennison J, Barber Foss KD, Simon JE, Riley MA, Myer GD, Grooms DR
+  Verified Source:  Med Sci Sports Exerc (2026 Jul 1)
+  DOI:              10.1249/MSS.0000000000003960
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[27/67] ID: sci_lca_buckthorpe_2019 | Area: clinico
+  Codebase Title:   Optimising the early-stage rehabilitation process after anterior cruciate ligament reconstruction
+  Codebase Authors: Buckthorpe, M., Della Villa, F., Della Villa, S., & Roi, G. S.
+  Codebase Year:    2019
+  Codebase Current PMID: 31168817
+  Correct PMID:     37787846
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/37787846/
+  Verified Title:   Optimising the Early-Stage Rehabilitation Process Post-ACL Reconstruction.
+  Verified Authors: Buckthorpe M, Gokeler A, Herrington L, Hughes M, Grassi A, Wadey R, Patterson S, Compagnin A, La Rosa G, Della Villa F
+  Verified Source:  Sports Med (2024 Jan)
+  DOI:              10.1007/s40279-023-01934-w
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[28/67] ID: sci_lca_hewett_2005 | Area: clinico
+  Codebase Title:   Biomechanical measures of neuromuscular control and valgus loading of the knee predict anterior cruciate ligament injury risk in female athletes
+  Codebase Authors: Hewett, T. E., Myer, G. D., Ford, K. R., et al.
+  Codebase Year:    2005
+  Codebase Current PMID: 15722363
+  Correct PMID:     15722287
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/15722287/
+  Verified Title:   Biomechanical measures of neuromuscular control and valgus loading of the knee predict anterior cruciate ligament injury risk in female athletes: a prospective study.
+  Verified Authors: Hewett TE, Myer GD, Ford KR, Heidt RS Jr, Colosimo AJ, McLean SG, van den Bogert AJ, Paterno MV, Succop P
+  Verified Source:  Am J Sports Med (2005 Apr)
+  DOI:              10.1177/0363546504269591
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[29/67] ID: sci_tendon_malliaras_2013 | Area: clinico
+  Codebase Title:   Achilles and patellar tendinopathy loading programmes : a systematic review comparing clinical outcomes and identifying potential mechanisms for effectiveness
+  Codebase Authors: Malliaras, P., Barton, C. J., Reeves, N. D., & Langberg, H.
+  Codebase Year:    2013
+  Codebase Current PMID: 23625465
+  Correct PMID:     23494258
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/23494258/
+  Verified Title:   Achilles and patellar tendinopathy loading programmes : a systematic review comparing clinical outcomes and identifying potential mechanisms for effectiveness.
+  Verified Authors: Malliaras P, Barton CJ, Reeves ND, Langberg H
+  Verified Source:  Sports Med (2013 Apr)
+  DOI:              10.1007/s40279-013-0019-z
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[30/67] ID: sci_tendon_cook_2009 | Area: clinico
+  Codebase Title:   Is tendon pathology a continuum? A clinical model to explain the clinical presentation of load-induced tendinopathy
+  Codebase Authors: Cook, J. L., & Purdam, C. R.
+  Codebase Year:    2009
+  Codebase Current PMID: 19776044
+  Correct PMID:     18812414
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/18812414/
+  Verified Title:   Is tendon pathology a continuum? A pathology model to explain the clinical presentation of load-induced tendinopathy.
+  Verified Authors: Cook JL, Purdam CR
+  Verified Source:  Br J Sports Med (2009 Jun)
+  DOI:              10.1136/bjsm.2008.051193
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[31/67] ID: sci_hamstring_ekstrand_2012 | Area: clinico
+  Codebase Title:   Hamstring muscle strain recurrence and time loss in professional football
+  Codebase Authors: Ekstrand, J., Hägglund, M., & Waldén, M.
+  Codebase Year:    2012
+  Codebase Current PMID: 22219258
+  Correct PMID:     22144005
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/22144005/
+  Verified Title:   Hamstring muscle injuries in professional football: the correlation of MRI findings with return to play.
+  Verified Authors: Ekstrand J, Healy JC, Waldén M, Lee JC, English B, Hägglund M
+  Verified Source:  Br J Sports Med (2012 Feb)
+  DOI:              10.1136/bjsports-2011-090155
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[32/67] ID: sci_hamstring_vandyk_2019 | Area: clinico
+  Codebase Title:   Including the Nordic hamstring exercise in injury prevention programmes halves the rate of hamstring injuries: a systematic review and meta-analysis of 8459 athletes
+  Codebase Authors: van Dyk, N., Behan, F. P., & Whiteley, R.
+  Codebase Year:    2019
+  Codebase Current PMID: 30819786
+  Correct PMID:     30808663
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/30808663/
+  Verified Title:   Including the Nordic hamstring exercise in injury prevention programmes halves the rate of hamstring injuries: a systematic review and meta-analysis of 8459 athletes.
+  Verified Authors: van Dyk N, Behan FP, Whiteley R
+  Verified Source:  Br J Sports Med (2019 Nov)
+  DOI:              10.1136/bjsports-2018-100045
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[33/67] ID: sci_hamstring_petersen_2011 | Area: clinico
+  Codebase Title:   Preventing hamstring strains in football players: a randomized controlled trial
+  Codebase Authors: Petersen, J., Thorborg, K., Nielsen, M. B., Budtz-Jørgensen, E., & Holmich, P.
+  Codebase Year:    2011
+  Codebase Current PMID: 21803979
+  Correct PMID:     21825112
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/21825112/
+  Verified Title:   Preventive effect of eccentric training on acute hamstring injuries in men's soccer: a cluster-randomized controlled trial.
+  Verified Authors: Petersen J, Thorborg K, Nielsen MB, Budtz-Jørgensen E, Hölmich P
+  Verified Source:  Am J Sports Med (2011 Nov)
+  DOI:              10.1177/0363546511419277
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[34/67] ID: sci_hamstring_bourne_2018 | Area: clinico
+  Codebase Title:   Impact of exercise selection on hamstring muscle activation and architectural adaptations: a systematic review
+  Codebase Authors: Bourne, M. N., Timmins, R. G., Opar, D. A., et al.
+  Codebase Year:    2018
+  Codebase Current PMID: 29450822
+  Correct PMID:     27467123
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/27467123/
+  Verified Title:   Impact of exercise selection on hamstring muscle activation.
+  Verified Authors: Bourne MN, Williams MD, Opar DA, Al Najjar A, Kerr GK, Shield AJ
+  Verified Source:  Br J Sports Med (2017 Jul)
+  DOI:              10.1136/bjsports-2015-095739
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[35/67] ID: sci_shoulder_cools_2007 | Area: clinico
+  Codebase Title:   Rehabilitation of scapular dyskinesis: from the office to the field
+  Codebase Authors: Cools, A. M., Struyf, F., De Mey, K., Danneels, L., & Cambier, D.
+  Codebase Year:    2007
+  Codebase Current PMID: 17923728
+  Correct PMID:     23687006
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/23687006/
+  Verified Title:   Rehabilitation of scapular dyskinesis: from the office worker to the elite overhead athlete.
+  Verified Authors: Cools AM, Struyf F, De Mey K, Maenhout A, Castelein B, Cagnie B
+  Verified Source:  Br J Sports Med (2014 Apr)
+  DOI:              10.1136/bjsports-2013-092148
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[36/67] ID: sci_shoulder_kibler_2010 | Area: clinico
+  Codebase Title:   Current concepts: scapular dyskinesis
+  Codebase Authors: Kibler, W. B., & Sciascia, A.
+  Codebase Year:    2010
+  Codebase Current PMID: 20371559
+  Correct PMID:     19996329
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/19996329/
+  Verified Title:   Current concepts: scapular dyskinesis.
+  Verified Authors: Kibler WB, Sciascia A
+  Verified Source:  Br J Sports Med (2010 Apr)
+  DOI:              10.1136/bjsm.2009.058834
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[37/67] ID: sci_shoulder_wilk_2009 | Area: clinico
+  Codebase Title:   The shoulder in baseball: rehabilitation principles
+  Codebase Authors: Wilk, K. E., Reinold, M. M., & Dugas, J. R.
+  Codebase Year:    2009
+  Codebase Current PMID: 19182317
+  Correct PMID:     19194026
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/19194026/
+  Verified Title:   Shoulder injuries in the overhead athlete.
+  Verified Authors: Wilk KE, Obma P, Simpson CD, Cain EL, Dugas JR, Andrews JR
+  Verified Source:  J Orthop Sports Phys Ther (2009 Feb)
+  DOI:              10.2519/jospt.2009.2929
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[38/67] ID: sci_spine_mcgill_2001 | Area: clinico
+  Codebase Title:   Low back stability: from formal description to issues for performance and rehabilitation
+  Codebase Authors: McGill, S. M.
+  Codebase Year:    2001
+  Codebase Current PMID: 11265986
+  Correct PMID:     11210443
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/11210443/
+  Verified Title:   Low back stability: from formal description to issues for performance and rehabilitation.
+  Verified Authors: McGill SM
+  Verified Source:  Exerc Sport Sci Rev (2001)
+  DOI:              10.1097/00003677-200101000-00006
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[39/67] ID: sci_spine_cholewicki_1996 | Area: clinico
+  Codebase Title:   Mechanical stability of the in vivo lumbar spine: implications for injury and chronic low back pain
+  Codebase Authors: Cholewicki, J., & McGill, S. M.
+  Codebase Year:    1996
+  Codebase Current PMID: 8827400
+  Correct PMID:     11415593
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/11415593/
+  Verified Title:   Mechanical stability of the in vivo lumbar spine: implications for injury and chronic low back pain.
+  Verified Authors: Cholewicki J, McGill SM
+  Verified Source:  Clin Biomech (Bristol) (1996 Jan)
+  DOI:              10.1016/0268-0033(95)00035-6
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[40/67] ID: sci_spine_hodges_1996 | Area: clinico
+  Codebase Title:   Inefficient muscular stabilization of the lumbar spine associated with low back pain: a motor control evaluation of transversus abdominis
+  Codebase Authors: Hodges, P. W., & Richardson, C. A.
+  Codebase Year:    1996
+  Codebase Current PMID: 8923631
+  Correct PMID:     8961451
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/8961451/
+  Verified Title:   Inefficient muscular stabilization of the lumbar spine associated with low back pain. A motor control evaluation of transversus abdominis.
+  Verified Authors: Hodges PW, Richardson CA
+  Verified Source:  Spine (Phila Pa 1976) (1996 Nov 15)
+  DOI:              10.1097/00007632-199611150-00014
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[41/67] ID: sci_spine_hides_1996 | Area: clinico
+  Codebase Title:   Multifidus muscle recovery is not automatic after resolution of acute, first-episode low back pain
+  Codebase Authors: Hides, J. A., Richardson, C. A., & Jull, G. A.
+  Codebase Year:    1996
+  Codebase Current PMID: 8961451
+  Correct PMID:     8979323
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/8979323/
+  Verified Title:   Multifidus muscle recovery is not automatic after resolution of acute, first-episode low back pain.
+  Verified Authors: Hides JA, Richardson CA, Jull GA
+  Verified Source:  Spine (Phila Pa 1976) (1996 Dec 1)
+  DOI:              10.1097/00007632-199612010-00011
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[42/67] ID: sci_lca_ardern_2016 | Area: clinico
+  Codebase Title:   2016 Consensus statement on return to sport from the first world congress in sports physical therapy
+  Codebase Authors: Ardern, C. L., Glasgow, P., Schneiders, A., Witvrouw, E., Clarsen, B., Cools, A., & Bizzini, M.
+  Codebase Year:    2016
+  Codebase Current PMID: 26888237
+  Correct PMID:     27226389
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/27226389/
+  Verified Title:   2016 Consensus statement on return to sport from the First World Congress in Sports Physical Therapy, Bern.
+  Verified Authors: Ardern CL, Glasgow P, Schneiders A, Witvrouw E, Clarsen B, Cools A, Gojanovic B, Griffin S, Khan KM, Moksnes H, Mutch SA, Phillips N, Reurink G, Sadler R, Silbernagel KG, Thorborg K, Wangensteen A, Wilk KE, Bizzini M
+  Verified Source:  Br J Sports Med (2016 Jul)
+  DOI:              10.1136/bjsports-2016-096278
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[43/67] ID: sci_spine_hicks_2005 | Area: clinico
+  Codebase Title:   Preliminary development of a clinical prediction rule for determining which patients with low back pain will respond to a stabilization exercise program
+  Codebase Authors: Hicks, G. E., Fritz, J. M., Delitto, A., & McGill, S. M.
+  Codebase Year:    2005
+  Codebase Current PMID: 16084801
+  Correct PMID:     16181938
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/16181938/
+  Verified Title:   Preliminary development of a clinical prediction rule for determining which patients with low back pain will respond to a stabilization exercise program.
+  Verified Authors: Hicks GE, Fritz JM, Delitto A, McGill SM
+  Verified Source:  Arch Phys Med Rehabil (2005 Sep)
+  DOI:              10.1016/j.apmr.2005.03.033
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[44/67] ID: sci_shoulder_escamilla_2009 | Area: clinico
+  Codebase Title:   Shoulder muscle recruitment patterns and related biomechanics during upper extremity sports
+  Codebase Authors: Escamilla, R. F., & Andrews, J. R.
+  Codebase Year:    2009
+  Codebase Current PMID: 19453205
+  Correct PMID:     19530752
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/19530752/
+  Verified Title:   Shoulder muscle recruitment patterns and related biomechanics during upper extremity sports.
+  Verified Authors: Escamilla RF, Andrews JR
+  Verified Source:  Sports Med (2009)
+  DOI:              10.2165/00007256-200939070-00004
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[45/67] ID: sci_knee_powers_2010 | Area: clinico
+  Codebase Title:   The influence of abnormal hip mechanics on knee injury: a biomechanical perspective
+  Codebase Authors: Powers, C. M.
+  Codebase Year:    2010
+  Codebase Current PMID: 20710093
+  Correct PMID:     20118526
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/20118526/
+  Verified Title:   The influence of abnormal hip mechanics on knee injury: a biomechanical perspective.
+  Verified Authors: Powers CM
+  Verified Source:  J Orthop Sports Phys Ther (2010 Feb)
+  DOI:              10.2519/jospt.2010.3337
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[46/67] ID: sci_muscle_opar_2012 | Area: clinico
+  Codebase Title:   Hamstring strain injuries: factors that lead to injury and re-injury
+  Codebase Authors: Opar, D. A., Williams, M. D., & Shield, A. J.
+  Codebase Year:    2012
+  Codebase Current PMID: 22356851
+  Correct PMID:     22239734
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/22239734/
+  Verified Title:   Hamstring strain injuries: factors that lead to injury and re-injury.
+  Verified Authors: Opar DA, Williams MD, Shield AJ
+  Verified Source:  Sports Med (2012 Mar 1)
+  DOI:              10.2165/11594800-000000000-00000
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[47/67] ID: sci_rehab_blanchard_2000 | Area: clinico
+  Codebase Title:   The effects of cold water immersion on recovery from exercise-induced muscle damage
+  Codebase Authors: Bleakley, C. M., & Davison, G. W.
+  Codebase Year:    2010
+  Codebase Current PMID: 19945969
+  Correct PMID:     22336838
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/22336838/
+  Verified Title:   Cold-water immersion (cryotherapy) for preventing and treating muscle soreness after exercise.
+  Verified Authors: Bleakley C, McDonough S, Gardner E, Baxter GD, Hopkins JT, Davison GW
+  Verified Source:  Cochrane Database Syst Rev (2012 Feb 15)
+  DOI:              10.1002/14651858.CD008262.pub2
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[48/67] ID: sci_fifa_alattar_2017 | Area: sportSquadra
+  Codebase Title:   How effective are F-MARC injury prevention programmes for teamsports? A systematic review and meta-analysis
+  Codebase Authors: Al Attar, W. S. A., Soomro, N., Pappas, E., Sinclair, P. J., & Sanders, R. H.
+  Codebase Year:    2017
+  Codebase Current PMID: 28122797
+  Correct PMID:     26403470
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/26403470/
+  Verified Title:   How Effective are F-MARC Injury Prevention Programs for Soccer Players? A Systematic Review and Meta-Analysis.
+  Verified Authors: Al Attar WS, Soomro N, Pappas E, Sinclair PJ, Sanders RH
+  Verified Source:  Sports Med (2016 Feb)
+  DOI:              10.1007/s40279-015-0404-x
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[49/67] ID: sci_fifa_bahr_2015 | Area: sportSquadra
+  Codebase Title:   Why screening tests to predict injury do not work-and probably never will...: a story of 3500 medical examinations
+  Codebase Authors: Bahr, R.
+  Codebase Year:    2015
+  Codebase Current PMID: 26002938
+  Correct PMID:     27095747
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/27095747/
+  Verified Title:   Why screening tests to predict injury do not work-and probably never will…: a critical review.
+  Verified Authors: Bahr R
+  Verified Source:  Br J Sports Med (2016 Jul)
+  DOI:              10.1136/bjsports-2016-096256
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[50/67] ID: sci_workload_windt_2017 | Area: sportSquadra
+  Codebase Title:   How do training and competition workloads relate to injury? The workload-injury etiology model
+  Codebase Authors: Windt, J., & Gabbett, T. J.
+  Codebase Year:    2017
+  Codebase Current PMID: 27405944
+  Correct PMID:     27418321
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/27418321/
+  Verified Title:   How do training and competition workloads relate to injury? The workload-injury aetiology model.
+  Verified Authors: Windt J, Gabbett TJ
+  Verified Source:  Br J Sports Med (2017 Mar)
+  DOI:              10.1136/bjsports-2016-096040
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[51/67] ID: sci_rsa_rampinini_2007 | Area: sportSquadra
+  Codebase Title:   Factors influencing repeated-sprint ability in football players
+  Codebase Authors: Rampinini, E., Sassi, A., Morelli, A., Mazzoni, S., Fanchini, M., & Coutts, A. J.
+  Codebase Year:    2007
+  Codebase Current PMID: 17497576
+  Correct PMID:     19935835
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/19935835/
+  Verified Title:   Hexose-6-phosphate dehydrogenase: a new risk gene for multiple sclerosis.
+  Verified Authors: Alcina A, Ramagopalan SV, Fernández O, Catalá-Rabasa A, Fedetz M, Ndagire D, Leyva L, Arnal C, Delgado C, Lucas M, Izquierdo G, Ebers GC, Matesanz F
+  Verified Source:  Eur J Hum Genet (2010 May)
+  DOI:              10.1038/ejhg.2009.213
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[52/67] ID: sci_rsa_buchheit_2013 | Area: sportSquadra
+  Codebase Title:   High-intensity interval training, solutions to the programming puzzle: Part I: cardiopulmonary engines
+  Codebase Authors: Buchheit, M., & Laursen, P. B.
+  Codebase Year:    2013
+  Codebase Current PMID: 23539301
+  Correct PMID:     23539308
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/23539308/
+  Verified Title:   High-intensity interval training, solutions to the programming puzzle: Part I: cardiopulmonary emphasis.
+  Verified Authors: Buchheit M, Laursen PB
+  Verified Source:  Sports Med (2013 May)
+  DOI:              10.1007/s40279-013-0029-x
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[53/67] ID: sci_rsa_girard_2011 | Area: sportSquadra
+  Codebase Title:   Repeated-sprint ability - part 1: factors contributing to fatigue
+  Codebase Authors: Girard, O., Mendez-Villanueva, A., & Bishop, D.
+  Codebase Year:    2011
+  Codebase Current PMID: 21688903
+  Correct PMID:     21780851
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/21780851/
+  Verified Title:   Repeated-sprint ability - part I: factors contributing to fatigue.
+  Verified Authors: Girard O, Mendez-Villanueva A, Bishop D
+  Verified Source:  Sports Med (2011 Aug 1)
+  DOI:              10.2165/11590550-000000000-00000
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[54/67] ID: sci_cod_sheppard_2006 | Area: sportSquadra
+  Codebase Title:   Agility literature review: classifications in movement and sport-specific decision-making components
+  Codebase Authors: Sheppard, J. M., & Young, W. B.
+  Codebase Year:    2006
+  Codebase Current PMID: 16935793
+  Correct PMID:     16882626
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/16882626/
+  Verified Title:   Agility literature review: classifications, training and testing.
+  Verified Authors: Sheppard JM, Young WB
+  Verified Source:  J Sports Sci (2006 Sep)
+  DOI:              10.1080/02640410500457109
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[55/67] ID: sci_cod_spiteri_2014 | Area: sportSquadra
+  Codebase Title:   Mechanical determinants of faster change of direction and agility performance in female basketball players
+  Codebase Authors: Spiteri, T., Nimphius, S., Hart, N. H., Specos, C., Sheppard, J. M., & Newton, R. U.
+  Codebase Year:    2014
+  Codebase Current PMID: 24149526
+  Correct PMID:     25734779
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/25734779/
+  Verified Title:   Mechanical Determinants of Faster Change of Direction and Agility Performance in Female Basketball Athletes.
+  Verified Authors: Spiteri T, Newton RU, Binetti M, Hart NH, Sheppard JM, Nimphius S
+  Verified Source:  J Strength Cond Res (2015 Aug)
+  DOI:              10.1519/JSC.0000000000000876
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[56/67] ID: sci_cod_nimphius_2016 | Area: sportSquadra
+  Codebase Title:   Change of direction deficit: a more isolated measure of change of direction performance
+  Codebase Authors: Nimphius, S., Callaghan, S. J., Spiteri, T., & Lockie, R. G.
+  Codebase Year:    2016
+  Codebase Current PMID: 26982400
+  Correct PMID:     26982972
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/26982972/
+  Verified Title:   Change of Direction Deficit: A More Isolated Measure of Change of Direction Performance Than Total 505 Time.
+  Verified Authors: Nimphius S, Callaghan SJ, Spiteri T, Lockie RG
+  Verified Source:  J Strength Cond Res (2016 Nov)
+  DOI:              10.1519/JSC.0000000000001421
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[57/67] ID: sci_team_impellizzeri_2006 | Area: sportSquadra
+  Codebase Title:   Physiological and performance effects of generic versus specific high-intensity interval training in football players
+  Codebase Authors: Impellizzeri, F. M., Marcora, S. M., Castagna, C., Reilly, T., Sassi, A., & Rampinini, E.
+  Codebase Year:    2006
+  Codebase Current PMID: 16802251
+  Correct PMID:     16767613
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/16767613/
+  Verified Title:   Physiological and performance effects of generic versus specific aerobic training in soccer players.
+  Verified Authors: Impellizzeri FM, Marcora SM, Castagna C, Reilly T, Sassi A, Iaia FM, Rampinini E
+  Verified Source:  Int J Sports Med (2006 Jun)
+  DOI:              10.1055/s-2005-865839
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[58/67] ID: sci_team_taylor_2017 | Area: sportSquadra
+  Codebase Title:   Physical demands of elite basketball: a systematic review
+  Codebase Authors: Taylor, J. B., Wright, A. A., Dischiavi, S. L., Townsend, M. A., & Marmon, A. R.
+  Codebase Year:    2017
+  Codebase Current PMID: 28362127
+  Correct PMID:     28801751
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/28801751/
+  Verified Title:   Activity Demands During Multi-Directional Team Sports: A Systematic Review.
+  Verified Authors: Taylor JB, Wright AA, Dischiavi SL, Townsend MA, Marmon AR
+  Verified Source:  Sports Med (2017 Dec)
+  DOI:              10.1007/s40279-017-0772-5
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[59/67] ID: sci_team_ekstrand_2011 | Area: sportSquadra
+  Codebase Title:   Injury incidence and injury patterns in professional football: the UEFA injury study
+  Codebase Authors: Ekstrand, J., Hägglund, M., & Waldén, M.
+  Codebase Year:    2011
+  Codebase Current PMID: 21586354
+  Correct PMID:     19553225
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/19553225/
+  Verified Title:   Injury incidence and injury patterns in professional football: the UEFA injury study.
+  Verified Authors: Ekstrand J, Hägglund M, Waldén M
+  Verified Source:  Br J Sports Med (2011 Jun)
+  DOI:              10.1136/bjsm.2009.060582
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[60/67] ID: sci_groin_thorborg_2018 | Area: sportSquadra
+  Codebase Title:   Effect of the Copenhagen Adduction exercise on groin injury risk in male football players: a cluster-randomised controlled trial
+  Codebase Authors: Harøy, J., Clarsen, B., Wiger, E. G., Øyen, M. G., Serner, A., Thorborg, K., Hölmich, P., Andersen, T. E., & Bahr, R.
+  Codebase Year:    2019
+  Codebase Current PMID: 30413448
+  Correct PMID:     29891614
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/29891614/
+  Verified Title:   The Adductor Strengthening Programme prevents groin problems among male football players: a cluster-randomised controlled trial.
+  Verified Authors: Harøy J, Clarsen B, Wiger EG, Øyen MG, Serner A, Thorborg K, Hölmich P, Andersen TE, Bahr R
+  Verified Source:  Br J Sports Med (2019 Feb)
+  DOI:              10.1136/bjsports-2017-098937
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[61/67] ID: sci_cod_donelon_2020 | Area: sportSquadra
+  Codebase Title:   Biomechanical determinants of knee joint loads during cutting manoeuvres in sporting populations: a systematic review
+  Codebase Authors: Donelon, T. A., Dos'Santos, T., Thomas, C., Comfort, P., & Jones, P. A.
+  Codebase Year:    2020
+  Codebase Current PMID: 32417711
+  Correct PMID:     33136207
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/33136207/
+  Verified Title:   Biomechanical Determinants of Knee Joint Loads Associated with Increased Anterior Cruciate Ligament Loading During Cutting: A Systematic Review and Technical Framework.
+  Verified Authors: Donelon TA, Dos'Santos T, Pitchers G, Brown M, Jones PA
+  Verified Source:  Sports Med Open (2020 Nov 2)
+  DOI:              10.1186/s40798-020-00276-5
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[62/67] ID: sci_team_longo_2012 | Area: sportSquadra
+  Codebase Title:   Prevention of injuries in football: a systematic review of interventions
+  Codebase Authors: Longo, U. G., Loppini, M., Berton, A., Marinozzi, A., Maffulli, N., & Denaro, V.
+  Codebase Year:    2012
+  Codebase Current PMID: 22442232
+  Correct PMID:     22415208
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/22415208/
+  Verified Title:   The FIFA 11+ program is effective in preventing injuries in elite male basketball players: a cluster randomized controlled trial.
+  Verified Authors: Longo UG, Loppini M, Berton A, Marinozzi A, Maffulli N, Denaro V
+  Verified Source:  Am J Sports Med (2012 May)
+  DOI:              10.1177/0363546512438761
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[63/67] ID: sci_team_mccall_2014 | Area: sportSquadra
+  Codebase Title:   Injury prevention strategies in professional football (soccer): the FIFA 11+ programme and other emerging approaches
+  Codebase Authors: McCall, A., Davison, M., Andersen, T. E., Beasley, I., Bizzini, M., & Dupont, G.
+  Codebase Year:    2015
+  Codebase Current PMID: 25452613
+  Correct PMID:     25878078
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/25878078/
+  Verified Title:   Injury prevention strategies at the FIFA 2014 World Cup: perceptions and practices of the physicians from the 32 participating national teams.
+  Verified Authors: McCall A, Davison M, Andersen TE, Beasley I, Bizzini M, Dupont G, Duffield R, Carling C, Dvorak J
+  Verified Source:  Br J Sports Med (2015 May)
+  DOI:              10.1136/bjsports-2015-094747
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[64/67] ID: sci_team_akenhead_2016 | Area: sportSquadra
+  Codebase Title:   Diminutions of acceleration and deceleration output during professional football match play
+  Codebase Authors: Akenhead, R., Hayes, P. R., Thompson, K. G., & French, D.
+  Codebase Year:    2013
+  Codebase Current PMID: 22884568
+  Correct PMID:     23333009
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/23333009/
+  Verified Title:   Diminutions of acceleration and deceleration output during professional football match play.
+  Verified Authors: Akenhead R, Hayes PR, Thompson KG, French D
+  Verified Source:  J Sci Med Sport (2013 Nov)
+  DOI:              10.1016/j.jsams.2012.12.005
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[65/67] ID: sci_team_dello_2016 | Area: sportSquadra
+  Codebase Title:   Match-related physical performance in professional basketball: a systematic review
+  Codebase Authors: Stojanovic, E., Stojiljkovic, N., Scanlan, A. T., Dalbo, V. J., Berkelmans, D. M., & Milanovic, Z.
+  Codebase Year:    2018
+  Codebase Current PMID: 29282680
+  Correct PMID:     29039018
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/29039018/
+  Verified Title:   The Activity Demands and Physiological Responses Encountered During Basketball Match-Play: A Systematic Review.
+  Verified Authors: Stojanović E, Stojiljković N, Scanlan AT, Dalbo VJ, Berkelmans DM, Milanović Z
+  Verified Source:  Sports Med (2018 Jan)
+  DOI:              10.1007/s40279-017-0794-z
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[66/67] ID: sci_team_tierney_2016 | Area: sportSquadra
+  Codebase Title:   An assessment of hamstring injury prevention programs in sport: a review of practices in professional rugby union
+  Codebase Authors: Tierney, G. J., Elliott-Sale, K. J., & Mayeux, S.
+  Codebase Year:    2020
+  Codebase Current PMID: 31512147
+  Correct PMID:     31502142
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/31502142/
+  Verified Title:   The Effect of Nordic Hamstring Exercise Intervention Volume on Eccentric Strength and Muscle Architecture Adaptations: A Systematic Review and Meta-analyses.
+  Verified Authors: Cuthbert M, Ripley N, McMahon JJ, Evans M, Haff GG, Comfort P
+  Verified Source:  Sports Med (2020 Jan)
+  DOI:              10.1007/s40279-019-01178-7
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------
+[67/67] ID: sci_team_harper_2019 | Area: sportSquadra
+  Codebase Title:   Relationships between eccentric hamstring strength and match-play sprinting in professional football
+  Codebase Authors: Harper, D. J., & Kiely, J.
+  Codebase Year:    2018
+  Codebase Current PMID: 29281917
+  Correct PMID:     31506901
+  Correct URL:      https://pubmed.ncbi.nlm.nih.gov/31506901/
+  Verified Title:   High-Intensity Acceleration and Deceleration Demands in Elite Team Sports Competitive Match Play: A Systematic Review and Meta-Analysis of Observational Studies.
+  Verified Authors: Harper DJ, Carling C, Kiely J
+  Verified Source:  Sports Med (2019 Dec)
+  DOI:              10.1007/s40279-019-01170-1
+  Status:           VERIFIED_NCBI_MATCH
+---------------------------------------------------------------------------

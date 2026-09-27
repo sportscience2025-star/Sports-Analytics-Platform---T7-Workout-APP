@@ -1,0 +1,31 @@
+{
+  "totalSourceCount": 260,
+  "aggregatedCount": 260,
+  "baselinePreservedCount": 161,
+  "missingBaselineIds": [],
+  "invalidPatientTypes": [],
+  "abstractItalianScoreFails": [],
+  "invalidUrls": [],
+  "invalidYears": [],
+  "findings": [
+    {
+      "severity": "major",
+      "message": "DUPLICATE PMID detected: 15064696",
+      "details": {
+        "id1": "sci_resistance_kraemer_2004",
+        "id2": "sci_physiol_fleck_2004",
+        "title1": "Fundamentals of resistance training: progression and exercise prescription",
+        "title2": "Designing Resistance Training Programs (4th Edition)"
+      }
+    },
+    {
+      "severity": "major",
+      "message": "DUPLICATE TITLE detected: \"Developing maximal neuromuscular power: Part 1 - Biological basis of maximal power production\"",
+      "details": {
+        "id1": "sci_power_cormie_2011",
+        "id2": "sci_biomech_cormie_2011",
+        "title": "Developing maximal neuromuscular power: Part 1 - Biological basis of maximal power production"
+      }
+    }
+  ]
+}

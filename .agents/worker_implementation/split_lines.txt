@@ -1,0 +1,335 @@
+1: const fs = require('fs');
+2: const path = require('path');
+3: 
+4: // --- Helper assertion library ---
+5: function assert(condition, message) {
+6:     if (!condition) {
+7:         console.error(\"❌ Assertion Failed:\", message);
+8:         throw new Error(\"Assertion Failed: \" + message);
+9:     }
+10: }
+11: 
+12: function assertClose(actual, expected, margin = 1e-3, name = \"\") {
+13:     const diff = Math.abs(actual - expected);
+14:     if (diff \u003e margin) {
+15:         console.error(`❌ Assertion Failed for ${name}: Expected ${expected} (margin ${margin}), got ${actual}`);
+16:         throw new Error(`Assertion Failed for ${name}`);
+17:     }
+18: }
+19: 
+20: // --- DOM and Environment Mock Harness ---
+21: class MockDOMElement {
+22:     constructor(tagName, id = '') {
+23:         this.tagName = tagName.toUpperCase();
+24:         this.id = id;
+25:         this.className = '';
+26:         this.style = {};
+27:         this.children = [];
+28:         this.parentElement = null;
+29:         this.listeners = {};
+30:         this.attributes = {};
+31:         this._innerHTML = '';
+32:     }
+33: 
+34:     get innerHTML() {
+35:         return this._innerHTML;
+36:     }
+37: 
+38:     set innerHTML(val) {
+39:         this._innerHTML = val;
+40:         // Parse basic tags in innerHTML to maintain mock child references if needed
+41:         this.children = [];
+42:         if (typeof val === 'string' \u0026\u0026 val.includes('id=')) {
+43:             const matches = val.matchAll(/id=[\"']([^\"']+)[\"']/g);
+44:             for (const match of matches) {
+45:                 const child = new MockDOMElement('div', match[1]);
+46:                 child.parentElement = this;
+47:                 this.children.push(child);
+48:             }
+49:         }
+50:     }
+51: 
+52:     appendChild(child) {
+53:         child.parentElement = this;
+54:         this.children.push(child);
+55:         return child;
+56:     }
+57: 
+58:     remove() {
+59:         if (this.parentElement) {
+60:             const idx = this.parentElement.children.indexOf(this);
+61:             if (idx \u003e= 0) this.parentElement.children.splice(idx, 1);
+62:         }
+63:     }
+64: 
+65:     getContext(type) {
+66:         if (type === '2d') {
+67:             return {
+68:                 canvas: this,
+69:                 save: () =\u003e {},
+70:                 restore: () =\u003e {},
+71:                 beginPath: () =\u003e {},
+72:                 arc: () =\u003e {},
+73:                 fill: () =\u003e {},
+74:                 stroke: () =\u003e {},
+75:                 shadowColor: '',
+76:                 shadowBlur: 0,
+77:                 shadowOffsetX: 0,
+78:                 shadowOffsetY: 0
+79:             };
+80:         }
+81:         return null;
+82:     }
+83: 
+84:     getBoundingClientRect() {
+85:         return { left: 100, top: 100, width: 600, height: 400 };
+86:     }
+87: 
+88:     addEventListener(event, handler) {
+89:         if (!this.listeners[event]) this.listeners[event] = [];
+90:         this.listeners[event].push(handler);
+91:     }
+92: }
+93: 
+94: class MockDocument {
+95:     constructor() {
+96:         this.body = new MockDOMElement('body');
+97:         this.documentElement = { scrollTop: 0, scrollLeft: 0 };
+98:         this.elementsById = {};
+99:     }
+100: 
+101:     createElement(tag) {
+102:         return new MockDOMElement(tag);
+103:     }
+104: 
+105:     getElementById(id) {
+106:         // First check body and its tree
+107:         const findInTree = (el) =\u003e {
+108:             if (el.id === id) return el;
+109:             for (const child of el.children) {
+110:                 const res = findInTree(child);
+111:                 if (res) return res;
+112:             }
+113:             return null;
+114:         };
+115:         const found = findInTree(this.body);
+116:         if (found) return found;
+117:         return this.elementsById[id] || null;
+118:     }
+119: 
+120:     registerElement(el) {
+121:         if (el.id) this.elementsById[el.id] = el;
+122:     }
+123: }
+124: 
+125: // --- Chart.js Mock Trackers ---
+126: let activeChartInstances = [];
+127: let chartCreationLogs = [];
+128: 
+129: class MockChart {
+130:     constructor(ctx, config) {
+131:         this.ctx = ctx;
+132:         this.canvas = ctx.canvas || ctx;
+133:         this.config = config;
+134:         this.type = config.type;
+135:         this.data = config.data;
+136:         this.options = config.options;
+137:         this.destroyed = false;
+138: 
+139:         activeChartInstances.push(this);
+140:         chartCreationLogs.push({
+141:             type: this.type,
+142:             canvasId: this.canvas.id,
+143:             datasets: this.data ? this.data.datasets.length : 0
+144:         });
+145:     }
+146: 
+147:     destroy() {
+148:         this.destroyed = true;
+149:         const idx = activeChartInstances.indexOf(this);
+150:         if (idx \u003e= 0) {
+151:             activeChartInstances.splice(idx, 1);
+152:         }
+153:     }
+154: 
+155:     update() {
+156:         this.updated = true;
+157:     }
+158: }
+159: 
+160: // Global window setup
+161: global.window = global.window || {};
+162: global.document = new MockDocument();
+163: global.window.pageYOffset = 0;
+164: global.window.pageXOffset = 0;
+165: global.window.Chart = MockChart;
+166: global.Chart = MockChart;
+167: 
+168: // Setup containers in mock DOM body
+169: const dashboardContainer = new MockDOMElement('div', 'dashboard-container');
+170: global.document.body.appendChild(dashboardContainer);
+171: 
+172: const vbtMvtInput = new MockDOMElement('input', 'vbt-mvt-input');
+173: vbtMvtInput.value = '0.30';
+174: global.document.body.appendChild(vbtMvtInput);
+175: 
+176: // Load physics-engine.js and data-analysis.js
+177: const physicsPath = path.join(__dirname, '..', 'js', 'physics-engine.js');
+178: const analysisPath = path.join(__dirname, '..', 'js', 'data-analysis.js');
+179: 
+180: const physicsCode = fs.readFileSync(physicsPath, 'utf8');
+181: eval(physicsCode);
+182: 
+183: const analysisCode = fs.readFileSync(analysisPath, 'utf8');
+184: eval(analysisCode);
+185: 
+186: const DataAnalysisUI = global.window.DataAnalysisUI;
+187: 
+188: function runEmpiricalTests() {
+189:     console.log(\"=================================================\");
+190:     console.log(\"🔬 EMPIRICAL CHART.JS \u0026 MEMORY VERIFICATION SUITE\");
+191:     console.log(\"=================================================\
+192: \");
+193: 
+194:     const ui = new DataAnalysisUI('dashboard-container');
+195: 
+196:     // Sample datasets for testing
+197:     const sampleVBTData = [
+198:         { load: 40, velocity: 1.05, athlete: 'Athlete A', exercise: 'Panca Piana' },
+199:         { load: 60, velocity: 0.85, athlete: 'Athlete A', exercise: 'Panca Piana' },
+200:         { load: 80, velocity: 0.62, athlete: 'Athlete A', exercise: 'Panca Piana' },
+201:         { load: 100, velocity: 0.41, athlete: 'Athlete A', exercise: 'Panca Piana' }
+202:     ];
+203: 
+204:     const sampleJumpData = [
+205:         { exercise: 'SJ', jumpHeight: 32.5, athlete: 'Athlete B' },
+206:         { exercise: 'CMJ', jumpHeight: 36.0, athlete: 'Athlete B' },
+207:         { exercise: 'DJ', jumpHeight: 34.0, contactTime: 0.19, athlete: 'Athlete B' },
+208:         { exercise: 'DJ', jumpHeight: 35.5, contactTime: 0.18, athlete: 'Athlete B' }
+209:     ];
+210: 
+211:     // --------------------------------------------------
+212:     // TEST 1: VBT Charts Rendering (#vbt-chart \u0026 #power-curve-chart)
+213:     // --------------------------------------------------
+214:     console.log(\"--- TEST 1: Empirical Verification of VBT Canvas Rendering ---\");
+215:     activeChartInstances = [];
+216:     chartCreationLogs = [];
+217:     
+218:     ui.renderVBTDashboard(sampleVBTData, 'Athlete A', 'Panca Piana');
+219: 
+220:     assert(activeChartInstances.length === 2, \"Expected 2 active Chart instances for VBT dashboard\");
+221:     assert(ui.chartInstance !== null, \"ui.chartInstance should be initialized\");
+222:     assert(ui.powerCurveChart !== null, \"ui.powerCurveChart should be initialized\");
+223:     
+224:     assert(ui.chartInstance.type === 'scatter', \"vbt-chart should be type scatter\");
+225:     assert(ui.chartInstance.data.datasets.length === 3, \"vbt-chart should have 3 datasets (scatter, regression line, MVT)\");
+226:     assert(ui.powerCurveChart.type === 'line', \"power-curve-chart should be type line\");
+227:     assert(ui.powerCurveChart.data.datasets.length === 2, \"power-curve-chart should have 2 datasets (power curve line, Pmax scatter)\");
+228: 
+229:     console.log(\"✅ TEST 1 PASSED: VBT canvas rendering and dataset structures verified.\
+230: \");
+231: 
+232:     // --------------------------------------------------
+233:     // TEST 2: Jump Charts Rendering (#jump-heights-chart \u0026 #rsi-trials-chart)
+234:     // --------------------------------------------------
+235:     console.log(\"--- TEST 2: Empirical Verification of Jump Canvas Rendering ---\");
+236:     
+237:     ui.renderJumpDashboard(sampleJumpData, 'Athlete B');
+238: 
+239:     assert(ui.jumpHeightChart !== null, \"ui.jumpHeightChart should be initialized\");
+240:     assert(ui.rsiChart !== null, \"ui.rsiChart should be initialized\");
+241:     assert(ui.jumpHeightChart.type === 'bar', \"jump-heights-chart should be type bar\");
+242:     assert(ui.rsiChart.type === 'line', \"rsi-trials-chart should be type line\");
+243:     assert(ui.rsiChart.data.datasets[0].data.length === 2, \"rsi-trials-chart should have 2 RSI trial points\");
+244: 
+245:     console.log(\"✅ TEST 2 PASSED: Jump canvas rendering and dataset structures verified.\
+246: \");
+247: 
+248:     // --------------------------------------------------
+249:     // TEST 3: Edge Case Verification — Empty Drop Jump Data for #rsi-trials-chart
+250:     // --------------------------------------------------
+251:     console.log(\"--- TEST 3: Edge Case — Empty Drop Jump Data in Jump Dashboard ---\");
+252:     
+253:     const jumpDataNoDJ = [
+254:         { exercise: 'SJ', jumpHeight: 30.0, athlete: 'Athlete C' },
+255:         { exercise: 'CMJ', jumpHeight: 33.0, athlete: 'Athlete C' }
+256:     ];
+257: 
+258:     ui.renderJumpDashboard(jumpDataNoDJ, 'Athlete C');
+259:     assert(ui.rsiChart === null, \"ui.rsiChart should be null when no DJ data is present\");
+260:     
+261:     // Check DOM mutation flaw on line 1390
+262:     const rsiCanvasContainer = global.document.getElementById('rsi-trials-chart');
+263:     if (!rsiCanvasContainer) {
+264:         console.log(\"⚠️ DOM DISCOVERY: Canvas #rsi-trials-chart was destroyed and replaced by HTML string when no DJ data was present.\");
+265:     }
+266: 
+267:     console.log(\"✅ TEST 3 PASSED: Handled empty Drop Jump edge case.\
+268: \");
+269: 
+270:     // --------------------------------------------------
+271:     // TEST 4: Stress Testing Memory Leaks \u0026 Destruction Cycles
+272:     // --------------------------------------------------
+273:     console.log(\"--- TEST 4: Memory Leak \u0026 Destruction Cycle Stress Harness (500 cycles) ---\");
+274:     
+275:     const cycles = 500;
+276:     for (let i = 0; i \u003c cycles; i++) {
+277:         if (i % 2 === 0) {
+278:             ui.renderVBTDashboard(sampleVBTData, 'Athlete A', 'Panca Piana');
+279:         } else {
+280:             ui.renderJumpDashboard(sampleJumpData, 'Athlete B');
+281:         }
+282:     }
+283: 
+284:     console.log(`Active Chart instances after ${cycles} switch cycles: ${activeChartInstances.length}`);
+285:     assert(activeChartInstances.length \u003c= 2, \"Memory leak detected! Chart instances were not destroyed properly.\");
+286:     
+287:     ui.cleanup();
+288:     assert(activeChartInstances.length === 0, \"Active chart instances should be 0 after cleanup()\");
+289:     console.log(\"✅ TEST 4 PASSED: No Chart instance memory leaks detected after 500 cycles.\
+290: \");
+291: 
+292:     // --------------------------------------------------
+293:     // TEST 5: Inspection of Tooltip Handler \u0026 DOM Leaks
+294:     // --------------------------------------------------
+295:     console.log(\"--- TEST 5: Empirical Inspection of DOM Tooltip Leaks ---\");
+296:     
+297:     // Trigger tooltip handler
+298:     const mockContext = {
+299:         chart: { canvas: new MockDOMElement('canvas') },
+300:         tooltip: { opacity: 1, caretX: 50, caretY: 50, title: ['Test'], body: [{ lines: ['Val: 10'] }], labelColors: [{ borderColor: '#fff' }] }
+301:     };
+302: 
+303:     // Access glassTooltipHandler through options of active chart or evaluate
+304:     ui.renderVBTDashboard(sampleVBTData, 'Athlete A', 'Panca Piana');
+305:     const tooltipHandler = ui.chartInstance.options.plugins.tooltip.external;
+306:     
+307:     assert(typeof tooltipHandler === 'function', \"glassTooltipHandler should be defined\");
+308:     
+309:     tooltipHandler(mockContext);
+310:     let tooltipEl = global.document.getElementById('chartjs-glass-tooltip');
+311:     assert(tooltipEl !== null, \"#chartjs-glass-tooltip should be created in document.body\");
+312: 
+313:     // Perform cleanup and check if tooltip is orphaned in DOM
+314:     ui.cleanup();
+315:     tooltipEl = global.document.getElementById('chartjs-glass-tooltip');
+316:     assert(tooltipEl !== null, \"FINDING CONFIRMED: #chartjs-glass-tooltip remains orphaned in DOM after cleanup()\");
+317:     assert(tooltipEl.style.opacity === '0', \"Tooltip opacity set to 0 on cleanup\");
+318: 
+319:     console.log(\"⚠️ DOM TOOLTIP FINDING: #chartjs-glass-tooltip is hidden (opacity: 0) but NEVER removed from document.body upon cleanup/destruction.\
+320: \");
+321: 
+322:     console.log(\"=================================================\");
+323:     console.log(\"🎉 ALL EMPIRICAL VERIFICATIONS COMPLETED\");
+324:     console.log(\"=================================================\");
+325: }
+326: 
+327: try {
+328:     runEmpiricalTests();
+329:     if (global.process) global.process.exit(0);
+330: } catch (err) {
+331:     console.error(\"❌ Empirical verification failed:\", err.message);
+332:     if (global.process) global.process.exit(1);
+333: }
+334: ","Description":"Create test_chart_verification.js for empirical testing","Overwrite":true,"TargetFile":"e:\\Nuove App Installate\\App esercizi scienze motorie\\test_chart_verification.js","toolAction":"Writing test_chart_verification.js","toolSummary":"Create test_chart_verification.js"}:
+

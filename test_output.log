@@ -1,0 +1,47 @@
+
+==================================================
+T7 WORKOUT TEST SUITE SUMMARY
+==================================================
+Status: FAIL
+Message: Suite complete. Passed: 13, Failed: 4. Time: 6193ms
+--------------------------------------------------
+PASS test_logic.js                            (296 ms)
+PASS test_periodization_extreme_cases.js      (254 ms)
+FAIL test_periodization_stress.js             (93 ms)
+   [log] Caricamento del file di test: test_periodization_stress.js
+   [error] Errore durante l'esecuzione del test: Invalid or unexpected token
+Stack: SyntaxError: Invalid or unexpected token
+    at new Function (<anonymous>)
+    at http://127.0.0.1:8085/tests/iframe_runner.html?test=test_periodization_stress.js:202:34
+FAIL test_regression_edge_cases.js            (28 ms)
+   [log] Caricamento del file di test: test_regression_edge_cases.js
+   [error] Errore durante l'esecuzione del test: Invalid or unexpected token
+Stack: SyntaxError: Invalid or unexpected token
+    at new Function (<anonymous>)
+    at http://127.0.0.1:8085/tests/iframe_runner.html?test=test_regression_edge_cases.js:202:34
+PASS test_vbt_math_stress.js                  (635 ms)
+PASS test_stress_math_and_parser.js           (236 ms)
+PASS test_stress_parser.js                    (259 ms)
+PASS test_load_velocity.js                    (365 ms)
+PASS test_analysis.js                         (231 ms)
+PASS test_parsing.js                          (254 ms)
+PASS test_adversarial_challenger.js           (552 ms)
+FAIL test_adversarial_physics.js              (62 ms)
+   [log] Caricamento del file di test: test_adversarial_physics.js
+   [error] Errore durante l'esecuzione del test: Invalid or unexpected token
+Stack: SyntaxError: Invalid or unexpected token
+    at new Function (<anonymous>)
+    at http://127.0.0.1:8085/tests/iframe_runner.html?test=test_adversarial_physics.js:202:34
+PASS test_adversarial_scientific_hub.js       (242 ms)
+FAIL test_chart_verification.js               (44 ms)
+   [log] Caricamento del file di test: test_chart_verification.js
+   [error] Errore durante l'esecuzione del test: Invalid or unexpected token
+Stack: SyntaxError: Invalid or unexpected token
+    at new Function (<anonymous>)
+    at http://127.0.0.1:8085/tests/iframe_runner.html?test=test_chart_verification.js:202:34
+PASS test_hybrid_regression.js                (250 ms)
+PASS test_knowledge_base.js                   (257 ms)
+PASS test_r2_r4_empirical.js                  (232 ms)
+==================================================
+TOTAL: 17 | PASSED: 13 | FAILED: 4
+==================================================

@@ -1,0 +1,10 @@
+[
+  {
+    "msg": "[CRITICAL SYNTAX ERROR] Uncaught SyntaxError: Unexpected identifier 'Addome' at http://127.0.0.1:8092/js/data.js:38:35",
+    "status": "FAIL"
+  },
+  {
+    "msg": "window.App.MUSCLE_TAXONOMY is missing due to script parse error in js/data.js",
+    "status": "FAIL"
+  }
+]

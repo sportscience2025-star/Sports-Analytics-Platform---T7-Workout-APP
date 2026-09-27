@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>T7 Test Runner Iframe</title>
+</head>
+<body>
+    <script>
+        // Intercept console output
+        const logs = [];
+        const originalLog = console.log;
+        const originalError = console.error;
+
+        console.log = function(...args) {
+            const msg = args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ');
+            logs.push({ type: 'log', text: msg });
+            originalLog.apply(console, args);
+            fetch('/log', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ type: 'log', text: msg })
+            }).catch(() => {});
+        };
+
+        console.error = function(...args) {
+            const msg = args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ');
+            logs.push({ type: 'error', text: msg });
+            originalError.apply(console, args);
+            fetch('/log', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ type: 'error', text: msg })
+            }).catch(() => {});
+        };
+
+        // Handle uncaught errors
+        let reported = false;
+        function reportResult(status, message = "") {
+            if (reported) return;
+            reported = true;
+            window.parent.postMessage({
+                type: 'test_result',
+                testFile: testFile,
+                status: status,
+                message: message,
+                logs: logs
+            }, '*');
+        }
+
+        window.onerror = function(message, source, lineno, colno, error) {
+            console.error(`Errore non gestito: ${message} alla riga ${lineno}:${colno}`);
+            if (error && error.stack) {
+                console.error(error.stack);
+            }
+            reportResult('FAIL', message);
+            return true;
+        };
+
+        // Binary Buffer implementation for browser
+        class BrowserBuffer extends Uint8Array {
+            toString(encoding = 'utf-8') {
+                const decoder = new TextDecoder(encoding);
+                return decoder.decode(this);
+            }
+        }
+
+        window.Buffer = {
+            from: function(data, encoding) {
+                if (typeof data === 'string') {
+                    const encoder = new TextEncoder();
+                    return new BrowserBuffer(encoder.encode(data));
+                } else if (data instanceof ArrayBuffer) {
+                    return new BrowserBuffer(data);
+                } else if (data instanceof Uint8Array || data instanceof BrowserBuffer) {
+                    return new BrowserBuffer(data);
+                } else if (Array.isArray(data)) {
+                    return new BrowserBuffer(data);
+                }
+                return data;
+            }
+        };
+
+        // Node.js process mock
+        window.process = {
+            exit: function(code) {
+                console.log("process.exit(" + code + ") chiamato.");
+                reportResult(code === 0 ? "PASS" : "FAIL", "Processo terminato con codice " + code);
+            }
+        };
+
+        // Node.js __dirname & __filename mocks
+        const urlParams = new URLSearchParams(window.location.search);
+        const testFile = urlParams.get('test');
+        window.__dirname = '..';
+        window.__filename = testFile;
+
+        // Synchronous file loader (fs mock)
+        const fsMock = {
+            readFileSync: function(filePath, encoding) {
+                const xhr = new XMLHttpRequest();
+                // Normalize path separator
+                let url = filePath.replace(/\\/g, '/');
+                
+                // If it is read as binary (no encoding parameter)
+                if (!encoding) {
+                    xhr.open('GET', url, false);
+                    xhr.overrideMimeType('text/plain; charset=x-user-defined');
+                    xhr.send();
+                    if (xhr.status !== 200) {
+                        throw new Error(`Impossibile leggere il file binario: ${filePath} (Stato HTTP: ${xhr.status})`);
+                    }
+                    const text = xhr.responseText;
+                    const len = text.length;
+                    const arr = new Uint8Array(len);
+                    for (let i = 0; i < len; i++) {
+                        arr[i] = text.charCodeAt(i) & 0xff;
+                    }
+                    return new BrowserBuffer(arr);
+                } else {
+                    // Read as text
+                    xhr.open('GET', url, false);
+                    xhr.overrideMimeType('text/plain; charset=utf-8');
+                    xhr.send();
+                    if (xhr.status !== 200) {
+                        throw new Error(`Impossibile leggere il file: ${filePath} (Stato HTTP: ${xhr.status})`);
+                    }
+                    return xhr.responseText;
+                }
+            },
+            existsSync: function(filePath) {
+                const xhr = new XMLHttpRequest();
+                let url = filePath.replace(/\\/g, '/');
+                try {
+                    xhr.open('HEAD', url, false);
+                    xhr.send();
+                    return xhr.status === 200;
+                } catch (e) {
+                    // Fallback to GET if HEAD is not supported/configured
+                    try {
+                        xhr.open('GET', url, false);
+                        xhr.send();
+                        return xhr.status === 200;
+                    } catch (e2) {
+                        return false;
+                    }
+                }
+            }
+        };
+
+        // Node.js path mock
+        const pathMock = {
+            join: function(...args) {
+                return args.join('/').replace(/\/+/g, '/');
+            },
+            resolve: function(...args) {
+                return args.join('/').replace(/\/+/g, '/');
+            },
+            dirname: function(p) {
+                const parts = p.split('/');
+                parts.pop();
+                return parts.join('/') || '.';
+            }
+        };
+
+        // Proxy to redirect global accesses (mocking 'global' keyword in Node.js)
+        const globalMock = {
+            localStorage: {
+                getItem: (key) => null,
+                setItem: (key, val) => {}
+            }
+        };
+
+        const globalHandler = {
+            get: function(target, prop) {
+                if (prop === 'window') {
+                    return window;
+                }
+                if (prop in target) {
+                    return target[prop];
+                }
+                return window[prop];
+            },
+            set: function(target, prop, value) {
+                if (prop === 'window') {
+                    if (value && typeof value === 'object') {
+                        for (let key in value) {
+                            try { window[key] = value[key]; } catch(e) {}
+                        }
+                    }
+                    return true;
+                }
+                target[prop] = value;
+                try { window[prop] = value; } catch(e) {}
+                return true;
+            }
+        };
+
+        window.global = new Proxy(globalMock, globalHandler);
+
+        // Require mock
+        window.require = function(module) {
+            if (module === 'fs') return fsMock;
+            if (module === 'path') return pathMock;
+            throw new Error(`Modulo '${module}' non supportato nel test runner browser.`);
+        };
+
+        // Load and execute the test file
+        if (testFile) {
+            console.log(`Caricamento del file di test: ${testFile}`);
+            try {
+                const code = fsMock.readFileSync(testFile, 'utf8');
+                const documentProxy = new Proxy({}, {
+                    get: function(target, prop) {
+                        const doc = window.global.document || window.document;
+                        const val = doc[prop];
+                        if (typeof val === 'function') {
+                            return val.bind(doc);
+                        }
+                        return val;
+                    },
+                    set: function(target, prop, value) {
+                        const doc = window.global.document || window.document;
+                        doc[prop] = value;
+                        return true;
+                    }
+                });
+
+                const runnerFn = new Function('__dirname', '__filename', 'document', code);
+                runnerFn('..', testFile, documentProxy);
+
+                // If the script finished executing without calling process.exit, wait 100ms and report PASS
+                setTimeout(() => {
+                    if (!reported) {
+                        reportResult('PASS', 'Esecuzione completata con successo.');
+                    }
+                }, 200);
+
+            } catch (err) {
+                console.error(`Errore durante l'esecuzione del test: ${err.message || String(err)}\nStack: ${err.stack || 'No stack'}`);
+                reportResult('FAIL', err.message || String(err));
+            }
+        } else {
+            console.error("Nessun file di test specificato.");
+            reportResult('FAIL', "Nessun file di test specificato.");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+{
+  "timestamp": "2026-06-29T21:00:47.577Z",
+  "testsPassed": 29,
+  "testsFailed": 0,
+  "details": [
+    {
+      "status": "PASS",
+      "name": "Table generation structure for 'Panca Piana'",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Velocity threshold boundaries for 'Panca Piana' (Bench Low MVT)",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Table generation structure for 'Stacco'",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Velocity threshold boundaries for 'Stacco' (Stacco Low MVT)",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Table generation structure for 'Bench Press'",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Velocity threshold boundaries for 'Bench Press' (Bench English)",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Table generation structure for 'Deadlift'",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Velocity threshold boundaries for 'Deadlift' (Deadlift English)",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Table generation structure for 'Chest Press'",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Velocity threshold boundaries for 'Chest Press' (Chest English)",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Table generation structure for 'Distensioni su panca'",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Velocity threshold boundaries for 'Distensioni su panca' (Distensioni Italian)",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Table generation structure for 'Squat'",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Velocity threshold boundaries for 'Squat' (Squat Standard MVT)",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Table generation structure for 'Leg Press'",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Velocity threshold boundaries for 'Leg Press' (Unknown/Other Standard MVT)",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Table generation structure for 'Trazioni'",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Velocity threshold boundaries for 'Trazioni' (Unknown/Other Standard MVT)",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Table generation structure for ''",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Velocity threshold boundaries for '' (Empty string)",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Table generation structure for 'null'",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Velocity threshold boundaries for 'null' (null input)",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Table generation structure for 'undefined'",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "Velocity threshold boundaries for 'undefined' (undefined input)",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "load2_5kg divisibility by 2.5 across 1070 rows",
+      "details": "Failed rows: 0"
+    },
+    {
+      "status": "PASS",
+      "name": "forceN == load2_5kg * 9.81 precision across 1070 rows",
+      "details": "Failed rows: 0"
+    },
+    {
+      "status": "PASS",
+      "name": "powerW == forceN * velocity precision across 1070 rows",
+      "details": "Failed rows: 0"
+    },
+    {
+      "status": "PASS",
+      "name": "calculateForce(100) === 981",
+      "details": ""
+    },
+    {
+      "status": "PASS",
+      "name": "calculatePower(981, 0.5) === 490.5",
+      "details": ""
+    }
+  ]
+}

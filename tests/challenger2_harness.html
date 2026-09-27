@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Challenger 2 Empirical Harness</title>
+    <script src="../js/data.js"></script>
+    <script src="../js/logic.js"></script>
+    <script src="../js/ui.js"></script>
+</head>
+<body>
+    <div id="filter-container"></div>
+    <div id="catalog-container"></div>
+    <div id="test-results"></div>
+
+    <script>
+    window.onload = function() {
+        const results = [];
+        function log(msg, status="INFO") {
+            results.push({ msg, status });
+            console.log(`[${status}] ${msg}`);
+        }
+
+        try {
+            // Test 1: Taxonomy check
+            const tax = window.App.MUSCLE_TAXONOMY;
+            if (!tax) {
+                log("window.App.MUSCLE_TAXONOMY is missing!", "FAIL");
+            } else {
+                log(`Found ${Object.keys(tax).length} categories in taxonomy.`, "PASS");
+                if (!tax.Feet) {
+                    log("Category 'Feet' missing from MUSCLE_TAXONOMY!", "FAIL");
+                } else {
+                    log(`Category 'Feet' exists: label='${tax.Feet.label}', muscles=${JSON.stringify(tax.Feet.muscles)}`, "PASS");
+                }
+            }
+
+            // Initialize data
+            window.App.initData();
+            const exercises = window.App.exercises;
+            log(`Loaded ${exercises.length} exercises in catalog.`, "PASS");
+
+            // Check exercise data structure completeness
+            let undefinedFieldsCount = 0;
+            let missingPrimaryCount = 0;
+            exercises.forEach((ex, idx) => {
+                if (!ex.id || !ex.name) {
+                    log(`Exercise at index ${idx} missing id or name!`, "FAIL");
+                }
+                if (!ex.primaryMuscle) {
+                    missingPrimaryCount++;
+                }
+                for (let key in ex) {
+                    if (ex[key] === undefined || String(ex[key]).includes('undefined')) {
+                        undefinedFieldsCount++;
+                    }
+                }
+            });
+            log(`Data structure check: ${missingPrimaryCount} exercises missing primaryMuscle, ${undefinedFieldsCount} undefined field instances.`, undefinedFieldsCount > 0 ? "WARN" : "PASS");
+
+            // Test 2: Dropdown rendering & filtering for ALL muscle categories
+            const filterContainer = document.getElementById('filter-container');
+            window.App.renderFilters('filter-container', (filters) => {});
+            log("renderFilters executed successfully.", "PASS");
+
+            // Check if "Piedi e Caviglie" exists in the rendered HTML menu
+            const menuMuscle = document.getElementById('menu-muscle');
+            const menuHtml = menuMuscle ? menuMuscle.innerHTML : '';
+            if (menuHtml.includes('Piedi e Caviglie')) {
+                log("Dropdown menu successfully rendered header 'Piedi e Caviglie (Feet & Ankles)'.", "PASS");
+            } else {
+                log("Dropdown menu DOES NOT contain 'Piedi e Caviglie'!", "FAIL");
+            }
+
+            // Check each muscle category in taxonomy for dropdown selection and filtering
+            const categories = Object.keys(tax);
+            categories.forEach(catKey => {
+                const catObj = tax[catKey];
+                const resKey = window.App.getExercises({ muscle: catKey });
+                log(`Filter by key '${catKey}': found ${resKey.length} exercises.`, "PASS");
+            });
+
+            // Specific check for 'Feet' / 'Piedi e Caviglie' / individual muscles
+            const feetExercisesKey = window.App.getExercises({ muscle: 'Feet' });
+            const feetExercisesLabel = window.App.getExercises({ muscle: 'Piedi e Caviglie' });
+            const tibialeExercises = window.App.getExercises({ muscle: 'Tibiale Anteriore' });
+            log(`Filtering results: muscle='Feet' -> ${feetExercisesKey.length}, muscle='Piedi e Caviglie' -> ${feetExercisesLabel.length}, muscle='Tibiale Anteriore' -> ${tibialeExercises.length}`, "PASS");
+
+            // Render catalog for filtered exercises and test UI bindings
+            const catalogContainer = document.getElementById('catalog-container');
+            window.App.renderCatalog(tibialeExercises);
+            const catalogHtml = catalogContainer.innerHTML;
+            if (catalogHtml.includes('undefined')) {
+                log("UI Rendering vulnerability: 'undefined' string found in rendered catalog DOM!", "FAIL");
+            } else {
+                log("UI Rendering verification: No 'undefined' text found in rendered catalog DOM.", "PASS");
+            }
+
+            // Render catalog for ALL exercises to check for dangling elements or undefined bindings
+            window.App.renderCatalog(exercises.slice(0, 50));
+            const allCatalogHtml = catalogContainer.innerHTML;
+            if (allCatalogHtml.includes('undefined')) {
+                log("UI Rendering vulnerability in general catalog: 'undefined' string found in DOM!", "FAIL");
+            } else {
+                log("UI Rendering verification (50 exercises): No 'undefined' text found in catalog DOM.", "PASS");
+            }
+
+        } catch(err) {
+            log(`Unhandled error during empirical test: ${err.stack || err}`, "FAIL");
+        }
+
+        // Post results back to Python server
+        fetch('/test-results', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(results)
+        });
+    };
+    </script>
+</body>
+</html>

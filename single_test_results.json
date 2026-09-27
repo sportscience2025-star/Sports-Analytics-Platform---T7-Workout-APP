@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "message": "Suite complete. Passed: 1, Failed: 0. Time: 1949ms",
+  "results": {
+    "test_views_modular.js": {
+      "status": "PASS",
+      "logs": [
+        {
+          "type": "log",
+          "text": "Caricamento del file di test: test_views_modular.js"
+        },
+        {
+          "type": "log",
+          "text": "=== Verifying Modular Views (js/views/*.js) ==="
+        },
+        {
+          "type": "log",
+          "text": "\u2705 View 'catalog' verified (render & cleanup present)"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 View 'wizard' verified (render & cleanup present)"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 View 'analysis' verified (render & cleanup present)"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 View 'favorites' verified (render & cleanup present)"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 View 'scientific_hub' verified (render & cleanup present)"
+        },
+        {
+          "type": "log",
+          "text": "\u2705 View 'rag' verified (render & cleanup present)"
+        },
+        {
+          "type": "log",
+          "text": "ALL MODULAR VIEWS VERIFIED SUCCESSFULLY!"
+        },
+        {
+          "type": "log",
+          "text": "process.exit(0) chiamato."
+        }
+      ],
+      "duration": 1283.3999999985099
+    }
+  }
+}

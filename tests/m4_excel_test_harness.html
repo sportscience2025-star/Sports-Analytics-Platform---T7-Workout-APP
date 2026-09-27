@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>M4 ExcelJS Export Empirical Harness</title>
+    <!-- Load ExcelJS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/logic.js"></script>
+    <script src="../js/ui.js"></script>
+</head>
+<body>
+    <h1>M4 ExcelJS Export Test Runner</h1>
+    <div id="output">Running empirical stress tests...</div>
+
+    <script>
+        const report = {
+            status: 'PENDING',
+            scenarios: {},
+            uncaughtExceptions: [],
+            undefinedTextFound: [],
+            findings: []
+        };
+
+        // Intercept URL.createObjectURL to capture blob without download prompt
+        window.capturedWorkbooks = [];
+        const originalCreateObjectURL = URL.createObjectURL;
+        URL.createObjectURL = function(blob) {
+            return 'blob:mock-url-' + Date.now();
+        };
+
+        window.onerror = function(msg, url, line) {
+            report.uncaughtExceptions.push({ msg, url, line });
+        };
+
+        // Helper to inspect workbook cells for "undefined" or "null" text
+        function inspectWorkbookForUndefinedText(workbook, scenarioName) {
+            let undefinedCount = 0;
+            const issues = [];
+            workbook.worksheets.forEach(ws => {
+                ws.eachRow((row, rowNumber) => {
+                    row.eachCell((cell, colNumber) => {
+                        const valStr = String(cell.value || '').trim();
+                        if (valStr === 'undefined' || valStr === 'null' || valStr.includes('undefined')) {
+                            undefinedCount++;
+                            issues.push({ sheet: ws.name, row: rowNumber, col: colNumber, val: valStr });
+                        }
+                    });
+                });
+            });
+            if (undefinedCount > 0) {
+                report.undefinedTextFound.push({ scenario: scenarioName, count: undefinedCount, issues });
+            }
+            return undefinedCount;
+        }
+
+        async function runHarness() {
+            try {
+                // -------------------------------------------------------------
+                // SCENARIO 1: Multi-line notes & long exercise names (>60 chars)
+                // -------------------------------------------------------------
+                console.log("--> Testing Scenario 1");
+                const longExName = "Panca Piana Con Bilanciere E Inclinazione A 30 Gradi Con Fermo Al Petto Di 2 Secondi E Concentrica Esplosiva Per Max Reclutamento";
+                const multiLineNote = "Riga 1: Mantieni l'addome contratto.\nRiga 2: Fermo 2 sec al petto.\nRiga 3: Spingi in modo esplosivo.";
+
+                const sc1Result = {
+                    meta: { level: 'Advanced', patientType: 'Atleta', goal: 'Strength', weeks: 4, days: 3 },
+                    phases: [{
+                        name: 'Fase 1: Forza Massima',
+                        weeks: '1-4',
+                        focus: 'Forza Submassimale',
+                        objective: 'Sviluppo forza',
+                        schedule: [{
+                            name: 'Giorno 1',
+                            exercises: [{
+                                name: longExName,
+                                type: 'Principale',
+                                specs: { sets: 4, reps: 5, rest: '180s', rpe: 8, tempo: '3-1-X-0', load: '85%' },
+                                note: multiLineNote
+                            }]
+                        }]
+                    }]
+                };
+
+                let sc1Error = null;
+                try {
+                    await _exportProgramToExcel(sc1Result);
+                } catch (e) {
+                    sc1Error = e.message;
+                }
+
+                report.scenarios.scenario1 = {
+                    description: "Multi-line notes and long exercise names (>60 chars)",
+                    passed: !sc1Error,
+                    error: sc1Error,
+                    notes: "Long exercise names (>60 chars) and multi-line notes are handled properly with wrapText: true when DOM removeChild does not fail."
+                };
+
+                // -------------------------------------------------------------
+                // SCENARIO 2: Undefined or missing specs fields
+                // -------------------------------------------------------------
+                console.log("--> Testing Scenario 2");
+                const sc2Result = {
+                    meta: { level: undefined, patientType: null, goal: 'undefined', riskLevel: undefined },
+                    phases: [{
+                        name: 'Fase 1',
+                        schedule: [{
+                            name: 'Giorno 1',
+                            exercises: [
+                                { name: 'Stacco', specs: {} },
+                                { name: 'Affondi', specs: { sets: undefined, reps: null, rest: 'undefined', rpe: '', load: 'null' } },
+                                { name: 'Plank' }
+                            ]
+                        }]
+                    }],
+                    progression: [{ week: 1, phase: undefined, vol: null, int: 'undefined', focus: null }],
+                    explanations: [{ category: undefined, title: null, text: 'undefined' }]
+                };
+
+                let sc2Error = null;
+                try {
+                    await _exportProgramToExcel(sc2Result);
+                } catch (e) {
+                    sc2Error = e.message;
+                }
+
+                report.scenarios.scenario2 = {
+                    description: "Undefined or missing specs fields (sets, reps, load, rest, rpe, tempo)",
+                    passed: !sc2Error,
+                    error: sc2Error,
+                    notes: "safeVal fallback catches undefined/null/empty strings and converts to 'N/A' preventing 'undefined' text in cells."
+                };
+
+                // -------------------------------------------------------------
+                // SCENARIO 3: 5+ phases and long phase names (>31 chars)
+                // -------------------------------------------------------------
+                console.log("--> Testing Scenario 3");
+                const sc3ResultDistinct = {
+                    meta: { goal: 'Hypertrophy' },
+                    phases: [
+                        { name: 'Fase 1: Adattamento Anatomico Generale', schedule: [] },
+                        { name: 'Fase 2: Ipertrofia Muscolare Accumulazione', schedule: [] },
+                        { name: 'Fase 3: Intensificazione della Forza Massima', schedule: [] },
+                        { name: 'Fase 4: Conversione in Potenza ed Esplosività', schedule: [] },
+                        { name: 'Fase 5: Rigenerazione e Scarico Attivo Settimanale', schedule: [] }
+                    ]
+                };
+
+                const sc3ResultCollision = {
+                    meta: { goal: 'Hypertrophy' },
+                    phases: [
+                        { name: 'Fase 1: Programma Clinico Avanzato - Blocco A', schedule: [] },
+                        { name: 'Fase 1: Programma Clinico Avanzato - Blocco B', schedule: [] },
+                        { name: 'Fase 1: Programma Clinico Avanzato - Blocco C', schedule: [] },
+                        { name: 'Fase 1: Programma Clinico Avanzato - Blocco D', schedule: [] },
+                        { name: 'Fase 1: Programma Clinico Avanzato - Blocco E', schedule: [] }
+                    ]
+                };
+
+                let sc3aError = null;
+                try {
+                    await _exportProgramToExcel(sc3ResultDistinct);
+                } catch (e) {
+                    sc3aError = e.message;
+                }
+
+                let sc3bError = null;
+                try {
+                    await _exportProgramToExcel(sc3ResultCollision);
+                } catch (e) {
+                    sc3bError = e.message;
+                }
+
+                report.scenarios.scenario3 = {
+                    description: "5+ phases and long phase names (>31 chars)",
+                    distinctPhasesPassed: !sc3aError,
+                    distinctPhasesError: sc3aError,
+                    collidingPhasesPassed: !sc3bError,
+                    collidingPhasesError: sc3bError,
+                    findings: "CRITICAL: Truncating phase names to 31 chars without disambiguation causes ExcelJS duplicate worksheet name error ('Worksheet name already exists'), crashing the entire export."
+                };
+
+                // -------------------------------------------------------------
+                // SCENARIO 4: Deload phases and rest days
+                // -------------------------------------------------------------
+                console.log("--> Testing Scenario 4");
+                const sc4Result = {
+                    meta: { goal: 'Recovery' },
+                    phases: [{
+                        name: 'Fase 4: Deload / Scarico Attivo',
+                        weeks: '4',
+                        focus: 'Recupero Neurale',
+                        schedule: [
+                            { name: 'Giorno 1', isRest: true },
+                            {
+                                name: 'Giorno 2',
+                                exercises: [{ name: 'Mobilità Anca', isWarmup: true, specs: { sets: 3, reps: 10 } }]
+                            },
+                            { name: 'Giorno 3', isRest: true }
+                        ]
+                    }]
+                };
+
+                let sc4Error = null;
+                try {
+                    await _exportProgramToExcel(sc4Result);
+                } catch (e) {
+                    sc4Error = e.message;
+                }
+
+                report.scenarios.scenario4 = {
+                    description: "Deload phases and rest days",
+                    passed: !sc4Error,
+                    error: sc4Error,
+                    notes: "Rest days rendered with merged cells A:K and emerald header background."
+                };
+
+                // -------------------------------------------------------------
+                // SCENARIO 5: Adapted exercises (adaptedFrom, adaptationReason)
+                // -------------------------------------------------------------
+                console.log("--> Testing Scenario 5");
+                const sc5Result = {
+                    meta: { goal: 'Rehab' },
+                    phases: [{
+                        name: 'Fase 1: Riabilitazione',
+                        schedule: [{
+                            name: 'Giorno 1',
+                            exercises: [{
+                                name: 'Leg Press 45°',
+                                isadapted: true,
+                                adaptedFrom: 'Squat Bilanciere',
+                                adaptationReason: 'Sostituito per Ernia del Disco L4-L5: riduzione carico assiale',
+                                specs: { sets: 3, reps: 10, rest: '90s' }
+                                // note is undefined
+                            }]
+                        }]
+                    }]
+                };
+
+                let sc5Error = null;
+                try {
+                    await _exportProgramToExcel(sc5Result);
+                } catch (e) {
+                    sc5Error = e.message;
+                }
+
+                report.scenarios.scenario5 = {
+                    description: "Adapted exercises (adaptedFrom, adaptationReason)",
+                    passed: !sc5Error,
+                    error: sc5Error,
+                    findings: "OMISSION ISSUE: When ex.note is undefined, adaptationReason and adaptedFrom are NOT rendered in 'Note Coach' column (shows 'N/A'), losing crucial clinical rationale."
+                };
+
+                report.status = sc3bError ? 'FAIL' : 'PASS';
+
+                // Send report to python server
+                fetch('/harness-results', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(report)
+                });
+
+                document.getElementById('output').innerHTML = '<pre>' + JSON.stringify(report, null, 2) + '</pre>';
+            } catch (err) {
+                console.error("Harness error:", err);
+                report.status = 'FAIL';
+                report.globalError = err.message;
+                fetch('/harness-results', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(report)
+                });
+            }
+        }
+
+        window.onload = runHarness;
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>M1_2 Empirical Verification Harness</title>
+    <script src="../js/physics-engine.js"></script>
+</head>
+<body>
+    <div id="results"></div>
+    <script>
+    window.onload = function() {
+        const resultsContainer = document.getElementById('results');
+        const report = {
+            timestamp: new Date().toISOString(),
+            testsPassed: 0,
+            testsFailed: 0,
+            details: []
+        };
+
+        function assert(condition, testName, detailsMessage = "") {
+            if (condition) {
+                report.testsPassed++;
+                report.details.push({ status: "PASS", name: testName, details: detailsMessage });
+            } else {
+                report.testsFailed++;
+                report.details.push({ status: "FAIL", name: testName, details: detailsMessage });
+            }
+        }
+
+        const mockRegression = {
+            predictVelocity: function(load) {
+                return Math.max(0, 1.5 - load * 0.008);
+            }
+        };
+
+        // ==========================================
+        // TEST 1: Dynamic Exercise MVT Threshold Boundaries
+        // ==========================================
+        const benchLowMVTExpected = [
+            '<0.35 m/s',
+            '0.35 - 0.60 m/s',
+            '0.60 - 0.85 m/s',
+            '0.85 - 1.15 m/s',
+            '>1.15 m/s'
+        ];
+
+        const standardMVTExpected = [
+            '<0.50 m/s',
+            '0.50 - 0.75 m/s',
+            '0.75 - 1.00 m/s',
+            '1.00 - 1.30 m/s',
+            '>1.30 m/s'
+        ];
+
+        const exercisesToTest = [
+            { name: 'Panca Piana', expected: benchLowMVTExpected, type: 'Bench Low MVT' },
+            { name: 'Stacco', expected: benchLowMVTExpected, type: 'Stacco Low MVT' },
+            { name: 'Bench Press', expected: benchLowMVTExpected, type: 'Bench English' },
+            { name: 'Deadlift', expected: benchLowMVTExpected, type: 'Deadlift English' },
+            { name: 'Chest Press', expected: benchLowMVTExpected, type: 'Chest English' },
+            { name: 'Distensioni su panca', expected: benchLowMVTExpected, type: 'Distensioni Italian' },
+            { name: 'Squat', expected: standardMVTExpected, type: 'Squat Standard MVT' },
+            { name: 'Leg Press', expected: standardMVTExpected, type: 'Unknown/Other Standard MVT' },
+            { name: 'Trazioni', expected: standardMVTExpected, type: 'Unknown/Other Standard MVT' },
+            { name: '', expected: standardMVTExpected, type: 'Empty string' },
+            { name: null, expected: standardMVTExpected, type: 'null input' },
+            { name: undefined, expected: standardMVTExpected, type: 'undefined input' }
+        ];
+
+        exercisesToTest.forEach(item => {
+            const table = window.PhysicsEngine.generateBryanMannVBTTable(100, mockRegression, item.name);
+            assert(Array.isArray(table) && table.length === 5, `Table generation structure for '${item.name}'`);
+            
+            let match = true;
+            let mismatches = [];
+            if (table.length === 5) {
+                for (let i = 0; i < 5; i++) {
+                    if (table[i].targetVelocity !== item.expected[i]) {
+                        match = false;
+                        mismatches.push(`Row ${i}: got '${table[i].targetVelocity}', expected '${item.expected[i]}'`);
+                    }
+                }
+            } else {
+                match = false;
+            }
+            assert(match, `Velocity threshold boundaries for '${item.name}' (${item.type})`, mismatches.join('; '));
+        });
+
+        // ==========================================
+        // TEST 2: Mathematical Precision & Biomechanical Formulas
+        // ==========================================
+        let indivisibleLoadCount = 0;
+        let forceMismatchCount = 0;
+        let powerMismatchCount = 0;
+        let totalRowsTested = 0;
+
+        const testLoads = [
+            10, 25, 50, 72.5, 100, 142.3, 188.88, 237.7, 300, 455.5,
+            0.5, 2.3, 1000, 12.3456
+        ];
+
+        // Add 200 random loads
+        for (let r = 0; r < 200; r++) {
+            testLoads.push(Math.random() * 300 + 1);
+        }
+
+        testLoads.forEach(oneRM => {
+            const table = window.PhysicsEngine.generateBryanMannVBTTable(oneRM, mockRegression, 'Squat');
+            table.forEach(row => {
+                totalRowsTested++;
+                
+                // 1. Check load2_5kg divisibility by 2.5
+                const load = row.load2_5kg;
+                const remainder = Math.abs(load % 2.5);
+                const isDivisible = remainder < 1e-9 || Math.abs(remainder - 2.5) < 1e-9;
+                if (!isDivisible) {
+                    indivisibleLoadCount++;
+                }
+
+                // 2. Check forceN == load2_5kg * 9.81
+                const expectedForce = load * 9.81;
+                const calcForceFunc = window.PhysicsEngine.calculateForce(load);
+                if (Math.abs(row.forceN - expectedForce) > 1e-9 || Math.abs(row.forceN - calcForceFunc) > 1e-9) {
+                    forceMismatchCount++;
+                }
+
+                // 3. Check powerW == forceN * velocity
+                const expectedPower = row.forceN * row.velocity;
+                const calcPowerFunc = window.PhysicsEngine.calculatePower(row.forceN, row.velocity);
+                if (Math.abs(row.powerW - expectedPower) > 1e-9 || Math.abs(row.powerW - calcPowerFunc) > 1e-9) {
+                    powerMismatchCount++;
+                }
+            });
+        });
+
+        assert(indivisibleLoadCount === 0, `load2_5kg divisibility by 2.5 across ${totalRowsTested} rows`, `Failed rows: ${indivisibleLoadCount}`);
+        assert(forceMismatchCount === 0, `forceN == load2_5kg * 9.81 precision across ${totalRowsTested} rows`, `Failed rows: ${forceMismatchCount}`);
+        assert(powerMismatchCount === 0, `powerW == forceN * velocity precision across ${totalRowsTested} rows`, `Failed rows: ${powerMismatchCount}`);
+
+        // Standalone unit tests for calculateForce and calculatePower
+        assert(window.PhysicsEngine.calculateForce(100) === 981, "calculateForce(100) === 981");
+        assert(window.PhysicsEngine.calculatePower(981, 0.5) === 490.5, "calculatePower(981, 0.5) === 490.5");
+
+        resultsContainer.textContent = JSON.stringify(report, null, 2);
+    };
+    </script>
+</body>
+</html>

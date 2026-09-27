@@ -1,0 +1,764 @@
+# -*- coding: utf-8 -*-
+"""
+Validation and Generation Script for Research Group A
+Validates 43 scientific sources against schema and Master Deduplication Index.
+"""
+
+import json
+import re
+import os
+import sys
+
+SOURCES_A = [
+    # ==================== ATLETICA LEGGERA (14) ====================
+    {
+        "id": "sci_sprint_morin_2017",
+        "title": "Very-Heavy Sled Training for Improving Horizontal-Force Output in Soccer Players",
+        "authors": "Morin, J. B., Petrakos, G., Jimenez-Reyes, P., Brown, S. R., Samozino, P., & Cross, M. R.",
+        "journal": "International Journal of Sports Physiology and Performance",
+        "year": 2017,
+        "area": "Atletica Leggera",
+        "abstract": "Questo studio pionieristico dimostra che l'allenamento con slitta a carico molto pesante (fino all'80% della massa corporea) induce adattamenti neuromuscolari superiori nella produzione di forza orizzontale e nell'efficacia meccanica della spinta rispetto allo sprint libero. Il sovraccarico orizzontale consente di sovraccaricare specificamente i muscoli estensori dell'anca durante la fase di accelerazione precoce (0-15 metri) senza alterare negativamente la tecnica di corsa ad alta velocita', risultando un mezzo elettivo per atleti con deficit di forza orizzontale nel profilo F-v.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27834560/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Atletica Leggera", "Sport di Squadra", "Calcio"],
+            "goals": ["Power", "Strength"]
+        }
+    },
+    {
+        "id": "sci_sprint_bezodis_2015",
+        "title": "Relationships between lower-limb kinematics and block phase performance in a cross section of sprinters",
+        "authors": "Bezodis, N. E., Salo, A. I. T., & Trewartha, G.",
+        "journal": "European Journal of Sport Science",
+        "year": 2015,
+        "area": "Atletica Leggera",
+        "abstract": "Analisi cinematica tridimensionale della fase di uscita dai blocchi di partenza in velocisti di livello elite ed evoluti. Lo studio evidenzia che la massima potenza orizzontale esterna dai blocchi e' determinata principalmente dall'estensione coordinata prossimale-distale dell'arto anteriore e dalla durata della spinta dell'arto posteriore. L'estensione completa dell'anca posteriore prima dello stacco dai blocchi e' il fattore cinematico piu' correlato alla velocita' di uscita, fornendo indicazioni fondamentali per il posizionamento dei blocchi e il cueing tecnico per i velocisti.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24963548/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Atletica Leggera"],
+            "goals": ["Power"]
+        }
+    },
+    {
+        "id": "sci_sprint_churchill_2015",
+        "title": "The effect of the bend on technique and performance during maximal effort sprinting",
+        "authors": "Churchill, S. M., Salo, A. I. T., & Trewartha, G.",
+        "journal": "Sports Biomechanics",
+        "year": 2015,
+        "area": "Atletica Leggera",
+        "abstract": "Lo studio analizza le alterazioni cinematiche e dinamiche della corsa veloce in curva (200m e 400m) rispetto al rettilineo. La velocita' di gara subisce un decremento medio del 4.7% dovuto alla riduzione della frequenza del passo interno e della lunghezza del passo esterno. L'arto interno svolge una funzione stabilizzatrice nel piano frontale con marcata adduzione d'anca ed eversione tibiotarsica per generare la forza centripeta necessaria, implicando la necessita' di protocolli asimmetrici di forza e stabilita' della caviglia e dell'anca per i velocisti di curva.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25896099/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Atletica Leggera"],
+            "goals": ["Power", "Strength"]
+        }
+    },
+    {
+        "id": "sci_hurdle_hanley_2021",
+        "title": "Biomechanics of World-Class Men and Women Hurdlers",
+        "authors": "Hanley, B., Walker, J., Paradisis, G. P., Merlino, S., & Bissas, A.",
+        "journal": "Frontiers in Sports and Active Living",
+        "year": 2021,
+        "area": "Atletica Leggera",
+        "abstract": "Analisi biomeccanica comparativa della tecnica di passaggio dell'ostacolo su atleti finalisti ai Campionati Mondiali IAAF. Lo studio evidenzia le differenze cinematiche tra i 110m ostacoli maschili e i 100m ostacoli femminili in relazione all'altezza relativa dell'ostacolo rispetto alla statura. Le atlete beneficiano di una parabola di volo piu' piatta e minore oscillazione verticale del centro di massa, mentre negli uomini la minimizzazione della decelerazione allo stacco e il rapido richiamo dell'arto di richiamo (trail leg) sono i determinanti critici per preservare la velocita' orizzontale inter-ostacolo.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34308350/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Atletica Leggera"],
+            "goals": ["Power"]
+        }
+    },
+    {
+        "id": "sci_hurdle_rowley_2021",
+        "title": "Effect of hurdling step strategy on the kinematics of the hurdle clearance technique",
+        "authors": "Rowley, L. J., Churchill, S. M., Dunn, M., & Wheat, J.",
+        "journal": "Sports Biomechanics",
+        "year": 2021,
+        "area": "Atletica Leggera",
+        "abstract": "Indagine biomeccanica sull'impatto della strategia di approccio al primo ostacolo (7 passi vs 8 passi) nei 110 metri ostacoli. Sebbene i tempi complessivi di approccio possano risultare equivalenti, la strategia a 7 passi richiede una maggiore estensione della spinta nei primi tre appoggi dai blocchi e modifica la distanza di stacco dall'ostacolo, riducendo l'angolo di attacco e favorendo una transizione piu' fluida alla massima velocita' di corsa. La scelta della strategia deve essere vincolata ai livelli individuali di forza esplosiva e alla statura dell'ostacolista.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34783302/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Atletica Leggera"],
+            "goals": ["Power"]
+        }
+    },
+    {
+        "id": "sci_jump_linthorne_2005",
+        "title": "Optimum take-off angle in the long jump",
+        "authors": "Linthorne, N. P., Guzman, M. S., & Bridgett, L. A.",
+        "journal": "Journal of Sports Sciences",
+        "year": 2005,
+        "area": "Atletica Leggera",
+        "abstract": "Studio fondamentale che quantifica l'angolo ottimale di stacco nel salto in lungo attraverso modelli cinematici balistici e rilievi sperimentali su atleti. L'angolo teorico ideale si attesta tra 18 gradi e 23 gradi, significativamente inferiore ai 45 gradi della balistica pura, a causa del compromesso biomeccanico tra la conservazione della velocita' orizzontale di rincorsa (9.5-11 m/s) e la generazione dell'impulso verticale durante il tempo di contatto (100-120 ms). Aumentare artificialmente l'angolo di stacco riduce drasticamente la distanza del salto a causa della perdita di velocita' d'uscita.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/16195020/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Atletica Leggera"],
+            "goals": ["Power"]
+        }
+    },
+    {
+        "id": "sci_jump_allen_2016",
+        "title": "The effect of increasing strength and approach velocity on triple jump performance",
+        "authors": "Allen, S. J., King, M. A., & Yeadon, M. R.",
+        "journal": "Journal of Biomechanics",
+        "year": 2016,
+        "area": "Atletica Leggera",
+        "abstract": "Modellizzazione computazionale tridimensionale a guida dinamica che valuta l'interazione tra forza muscolare degli arti inferiori e velocita' di rincorsa sulle tre fasi del salto triplo (hop, step, jump). I risultati evidenziano che incrementi della velocita' di rincorsa portano a maggiori prestazioni solo se accompagnati da un proporzionale aumento della forza eccentrica e reattiva; in caso contrario, la fase di step collassa sotto carichi d'impatto superiori a 15 volte il peso corporeo. La ripartizione ottimale delle percentuali di fase evolve verso un modello bilanciato all'aumentare della forza atletica.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27789035/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Atletica Leggera"],
+            "goals": ["Power", "Strength"]
+        }
+    },
+    {
+        "id": "sci_jump_dapena_1988",
+        "title": "Vertical and radial motions of the body during the take-off phase of high jumping",
+        "authors": "Dapena, J., & Chung, C. S.",
+        "journal": "Medicine and Science in Sports and Exercise",
+        "year": 1988,
+        "area": "Atletica Leggera",
+        "abstract": "Analisi cinematica e dinamica della fase di stacco nel salto in alto con tecnica Fosbury-flop. Gli autori dimostrano come la traiettoria curvilinea finale della rincorsa generi una forza centripeta che consente all'atleta di inclinarsi verso l'interno della curva e convertire il momento angolare in momento di rotazione sull'asticella. I movimenti radiali degli arti liberi (braccia e arto di slancio) aumentano la forza verticale di reazione al suolo dell'arto di stacco, permettendo di raggiungere la massima quota del centro di massa.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/3386510/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Atletica Leggera"],
+            "goals": ["Power"]
+        }
+    },
+    {
+        "id": "sci_pacing_casado_2021",
+        "title": "Pacing Profiles of Middle-Distance Running World Records in Men and Women",
+        "authors": "Casado, A., Hanley, B., Jimenez-Reyes, P., & Renfree, A.",
+        "journal": "International Journal of Environmental Research and Public Health",
+        "year": 2021,
+        "area": "Atletica Leggera",
+        "abstract": "Analisi dei profili di distribuzione dello sforzo (pacing) nei record del mondo di mezzofondo (800m, 1500m, miglio) maschili e femminili. Negli 800 metri la strategia vincente e' marcatamente 'positiva' (primi 200m massimali seguiti da progressiva decelerazione fisiologica), mentre nei 1500m e nel miglio prevale un profilo a U o a J rovesciata con un incremento significativo della velocita' nei 300 metri finali. La comprensione di queste dinamiche e' indispensabile per strutturare le sedute ad intervalli e allenare la tolleranza al lattato ad intensita' gara.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34886317/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Atletica Leggera", "Endurance"],
+            "goals": ["Resistenza", "Power"]
+        }
+    },
+    {
+        "id": "sci_sprint_morin_2012",
+        "title": "Mechanical determinants of 100-m sprint running performance",
+        "authors": "Morin, J. B., Bourdin, M., Edouard, P., Peyrot, N., Samozino, P., & Lacour, J. R.",
+        "journal": "European Journal of Applied Physiology",
+        "year": 2012,
+        "area": "Atletica Leggera",
+        "abstract": "Studio cardine sui fattori biomeccanici e dinamici che determinano la prestazione sui 100 metri piani. Piu' che la quantita' totale di forza prodotta a terra, e' l'orientamento vettoriale della forza di reazione al suolo (indice di efficacia meccanica RF e decremento DRF) a discriminare i velocisti piu' rapidi. La capacita' di mantenere una spinta nettamente orizzontale anche ad altissime velocita' di traslazione correla direttamente con il tempo finale, offrendo un razionale scientifico inattaccabile per l'uso di sprint trainati e balzi orizzontali.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22422028/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Atletica Leggera", "Sport di Squadra"],
+            "goals": ["Power", "Strength"]
+        }
+    },
+    {
+        "id": "sci_sprint_samozino_2022",
+        "title": "Optimal mechanical force-velocity profile for sprint acceleration performance",
+        "authors": "Samozino, P., Peyrot, N., Edouard, P., Nagahara, R., Jimenez-Reyes, P., Vanwanseele, B., & Morin, J. B.",
+        "journal": "Scandinavian Journal of Medicine & Science in Sports",
+        "year": 2022,
+        "area": "Atletica Leggera",
+        "abstract": "Sviluppo e validazione di un modello biomeccanico a cinematica inversa per calcolare il profilo forza-velocita' orizzontale ottimale individuale nello sprint. La performance di accelerazione dipende sia dalla potenza massimale orizzontale per unita' di massa corporea (Pmax) sia dall'equilibrio tra capacita' di forza a basse velocita' (F0) e velocita' a basse forze (V0). Identificare lo sbilanciamento del profilo consente di personalizzare il lavoro con carichi pesanti orizzontali (se F0 deficitario) o sprint sovramassimali assistiti (se V0 deficitario).",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34775654/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Atletica Leggera", "Sport di Squadra"],
+            "goals": ["Power"]
+        }
+    },
+    {
+        "id": "sci_jump_jarvis_2022",
+        "title": "Reactive Strength Index and its Associations with Measures of Physical and Sports Performance: A Systematic Review with Meta-Analysis",
+        "authors": "Jarvis, P., Turner, A., Read, P., & Bishop, C.",
+        "journal": "Sports Medicine",
+        "year": 2022,
+        "area": "Atletica Leggera",
+        "abstract": "Revisione sistematica con meta-analisi sul Reactive Strength Index (RSI calcolato tramite Drop Jump o 10/5 Repeated Jump Test) e la sua correlazione con le qualita' atletiche. L'RSI presenta correlazioni forti con la velocita' di sprint (in particolare nella fase di velocita' lanciata, r = -0.60 a -0.72) e con l'agilita', riflettendo la capacita' del complesso muscolo-tendineo di immagazzinare e restituire energia elastica in tempi di contatto inferiori a 250 ms. Viene stabilito un quadro di riferimento per il monitoraggio della stiffness tendinea e la programmazione pliometrica avanzata.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34606061/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Atletica Leggera", "Sport di Squadra"],
+            "goals": ["Power"]
+        }
+    },
+    {
+        "id": "sci_sprint_cahill_2020",
+        "title": "Influence of resisted sled-push training on the sprint force-velocity profile of male high school athletes",
+        "authors": "Cahill, M. J., Oliver, J. L., Cronin, J. B., Clark, K. P., Cross, M. R., & Lloyd, R. S.",
+        "journal": "Scandinavian Journal of Medicine & Science in Sports",
+        "year": 2020,
+        "area": "Atletica Leggera",
+        "abstract": "Studio longitudinale controllato che valuta l'impatto dello sled-push (spinta della slitta) rispetto allo sled-pull (trazione della slitta) sul profilo forza-velocita' e sull'accelerazione. Lo sled-push consente una maggiore inclinazione del tronco e una coordinazione estensoria dell'anca e del ginocchio altamente specifica per i primi passi dello sprint, provocando incrementi marcati della forza orizzontale teorica F0 (+11.4%) e della potenza massimale. Fornisce linee guida su come integrare la slitta in spinta nei protocolli di potenziamento per velocisti.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31742795/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Atletica Leggera", "Sport di Squadra"],
+            "goals": ["Power", "Strength"]
+        }
+    },
+    {
+        "id": "sci_sprint_nagahara_2014",
+        "title": "Association of Acceleration with Spatiotemporal Variables in Maximal Sprinting",
+        "authors": "Nagahara, R., Matsubayashi, T., Matsuo, A., & Zushi, K.",
+        "journal": "International Journal of Sports Medicine",
+        "year": 2014,
+        "area": "Atletica Leggera",
+        "abstract": "Analisi passo dopo passo delle variabili spazio-temporali (lunghezza del passo, frequenza del passo, tempi di contatto e di volo) lungo l'intera fase di accelerazione massimale (60 metri). Lo studio scompone l'accelerazione in tre sottofasi distinte: iniziale (passi 1-4, dominata dall'incremento della lunghezza del passo e tempi di contatto elevati), media (passi 5-16, aumento combinato di frequenza e lunghezza) e finale (stabilizzazione della frequenza e transizione alla velocita' di picco). Fondamentale per l'ottimizzazione del ritmo esecutivo.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24464016/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Atletica Leggera"],
+            "goals": ["Power"]
+        }
+    },
+
+    # ==================== SOLLEVAMENTO PESI (14) ====================
+    {
+        "id": "sci_power_soriano_2015",
+        "title": "The Optimal Load for Maximal Power Production During Lower-Body Resistance Exercises: A Meta-Analysis",
+        "authors": "Soriano, M. A., Jimenez-Reyes, P., Rhea, M. R., & Marin, P. J.",
+        "journal": "Sports Medicine",
+        "year": 2015,
+        "area": "Sollevamento Pesi",
+        "abstract": "Meta-analisi esaustiva sul carico ottimale per la massima produzione di potenza negli esercizi per gli arti inferiori. Lo studio dimostra chiaramente che il picco di potenza nei derivati del sollevamento pesi (clean pull, snatch pull, jump shrug) si manifesta a carichi compresi tra il 70% e l'85% dell'1RM, mentre nello squat jump e nel back squat si colloca tra il 30% e il 60% dell'1RM. Questo divario fisiologico evidenzia come le alzate olimpiche consentano di sviluppare altissima potenza anche in condizioni di elevato sovraccarico esterno.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26063065/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Power", "Strength"]
+        }
+    },
+    {
+        "id": "sci_weightlifting_comfort_2023",
+        "title": "National Strength and Conditioning Association Position Statement on Weightlifting for Sports Performance",
+        "authors": "Comfort, P., Haff, G. G., Suchomel, T. J., Soriano, M. A., Pierce, K. C., Hornsby, W. G., Haff, E. E., Sommerfield, L. M., Chavda, S., Morris, S. J., Fry, A. C., & Stone, M. H.",
+        "journal": "Journal of Strength and Conditioning Research",
+        "year": 2023,
+        "area": "Sollevamento Pesi",
+        "abstract": "Dichiarazione di posizione ufficiale della NSCA sull'impiego del weightlifting e dei suoi derivati nella preparazione fisica per atleti di sport diversi. Vengono analizzati i requisiti biomeccanici della tripla estensione coordinata (anca, ginocchio, caviglia), i tassi di sviluppo della forza (RFD > 20000 N/s), la sicurezza articolare e la progressione metodologica didattica dal pulling con partenza dai blocchi alle alzate complete. Costituisce il documento di riferimento internazionale per la programmazione del sollevamento pesi per la potenza atletica.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36952649/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Power", "Strength"]
+        }
+    },
+    {
+        "id": "sci_weightlifting_suchomel_2015_derivatives",
+        "title": "Weightlifting pulling derivatives: rationale for implementation and application",
+        "authors": "Suchomel, T. J., Comfort, P., & Stone, M. H.",
+        "journal": "Sports Medicine",
+        "year": 2015,
+        "area": "Sollevamento Pesi",
+        "abstract": "Rassegna metodologica che introduce la classificazione e la gerarchia applicativa dei derivati di tirata del weightlifting (pulling derivatives), suddivisi in varianti con o senza fase di incastro (catch phase) e con partenza da terra, dai blocchi o dalla sospensione (hang). L'eliminazione dell'incastro (es. nel jump shrug o nel clean pull) riduce la complessita' tecnica e lo stress sui polsi/spalle, consentendo velocita' di picco e potenze meccaniche persino superiori rispetto alle alzate complete, massimizzando il transfer alla prestazione sportiva.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25689955/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Power", "Strength"]
+        }
+    },
+    {
+        "id": "sci_imtp_guppy_2022",
+        "title": "The Reliability and Magnitude of Time-Dependent Force-Time Characteristics During the Isometric Midthigh Pull Are Affected by Both Testing Protocol and Analysis Choices",
+        "authors": "Guppy, S. N., Kotani, Y., Brady, C. J., Connolly, S., Comfort, P., & Haff, G. G.",
+        "journal": "Journal of Strength and Conditioning Research",
+        "year": 2022,
+        "area": "Sollevamento Pesi",
+        "abstract": "Studio metodologico che stabilisce standard rigorosi per il test di tirata isometrica a meta' coscia (Isometric Mid-Thigh Pull, IMTP), strumento d'elezione per valutare la forza massimale isometrica (IPF) e il rate of force development (RFD a 50, 100, 150 e 200 ms). Gli autori evidenziano come la posizione articolare (angolo del ginocchio a 125-145 gradi e anca a 140-150 gradi) e i criteri di filtraggio del segnale influenzino direttamente l'affidabilita' delle metriche, fornendo le linee guida per il monitoraggio della fatica neuromuscolare e del picco di forza nei sollevatori.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35482542/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Strength", "Power"]
+        }
+    },
+    {
+        "id": "sci_weightlifting_hackett_2016",
+        "title": "Olympic weightlifting training improves vertical jump height in sportspeople: a systematic review with meta-analysis",
+        "authors": "Hackett, D., Davies, T., Soomro, N., & Halaki, M.",
+        "journal": "British Journal of Sports Medicine",
+        "year": 2016,
+        "area": "Sollevamento Pesi",
+        "abstract": "Revisione sistematica con meta-analisi che dimostra come l'allenamento con sollevamento pesi olimpico produca miglioramenti nell'altezza del salto verticale (Countermovement Jump e Squat Jump) paragonabili o superiori a quelli ottenuti tramite pliometria tradizionale o resistance training convenzionale (ES = 0.77). L'alta specificita' dell'estensione dell'anca e l'enorme reclutamento delle unita' motrici veloci di tipo IIx durante la seconda tirata trasferiscono direttamente sull'impulso verticale degli atleti.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26848135/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Power", "Strength"]
+        }
+    },
+    {
+        "id": "sci_cluster_tufano_2017",
+        "title": "Theoretical and Practical Aspects of Different Cluster Set Structures: A Systematic Review",
+        "authors": "Tufano, J. J., Brown, L. E., & Haff, G. G.",
+        "journal": "Journal of Strength and Conditioning Research",
+        "year": 2017,
+        "area": "Sollevamento Pesi",
+        "abstract": "Revisione sistematica che definisce la teoria e l'applicazione pratica dei cluster set (serie con pause intra-set di 10-30 secondi tra singoli o doppi colpi) nel sollevamento pesi e nell'allenamento della forza. L'inserimento del micro-recupero consente la risintesi parziale della fosfocreatina, attenuando la perdita di velocita' e potenza della sbarra lungo la serie rispetto alle serie tradizionali. I cluster set permettono cosi' di accumulare volumi superiori a intensita' elevate (>85% 1RM) preservando una perfetta pulizia tecnica.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27465625/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Strength", "Power", "Hypertrophy"]
+        }
+    },
+    {
+        "id": "sci_snatch_gourgoulis_2009",
+        "title": "Unsuccessful vs. successful performance in snatch lifts: a kinematic approach",
+        "authors": "Gourgoulis, V., Aggeloussis, N., Garas, A., & Mavromatis, G.",
+        "journal": "Journal of Strength and Conditioning Research",
+        "year": 2009,
+        "area": "Sollevamento Pesi",
+        "abstract": "Analisi cinematica comparativa tra tentativi riusciti e falliti dello strappo (snatch) in pesisti agonisti. Lo studio rileva che i sollevamenti falliti non dipendono primariamente da una carenza di velocita' massima verticale, ma dalla direzione del vettore di accelerazione risultante durante la seconda fase di tirata e dall'eccessivo spostamento orizzontale della sbarra in avanti o indietro. Mantenere la sbarra aderente al baricentro corporeo e coordinare il turnover verso l'incastro profondo sono i fattori tecnici cardine per la riuscita dell'alzata.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19197201/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra"],
+            "goals": ["Power", "Strength"]
+        }
+    },
+    {
+        "id": "sci_pap_seitz_2016",
+        "title": "Factors Modulating Post-Activation Potentiation of Jump, Sprint, Throw, and Upper-Body Ballistic Performances: A Systematic Review with Meta-Analysis",
+        "authors": "Seitz, L. B., & Haff, G. G.",
+        "journal": "Sports Medicine",
+        "year": 2016,
+        "area": "Sollevamento Pesi",
+        "abstract": "Meta-analisi di riferimento sui fattori che modulano il potenziamento post-attivazione (PAP / PAPE) in salti, sprint e lanci. L'effetto di potenziamento e' significativamente piu' marcato nei soggetti con elevati livelli di forza di base (1RM squat > 2x peso corporeo) e quando lo stimolo condizionante consiste in carichi submassimali o massimali pesanti (>85% 1RM) con un intervallo di recupero ottimale di 4-8 minuti. Fornisce le basi matematiche per la programmazione di complessi di contrasto e combinati forza-potenza.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26508319/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Power", "Strength"]
+        }
+    },
+    {
+        "id": "sci_weightlifting_suchomel_2017_power",
+        "title": "Power-Time Curve Comparison between Weightlifting Derivatives",
+        "authors": "Suchomel, T. J., Sole, C. J., Bailey, C. A., Grazer, J. L., & Beckham, G. K.",
+        "journal": "Journal of Strength and Conditioning Research",
+        "year": 2017,
+        "area": "Sollevamento Pesi",
+        "abstract": "Studio comparativo delle curve potenza-tempo tra hang power clean, jump shrug e hang high pull attraverso molteplici percentuali di carico relativo. Il jump shrug sviluppa picchi di potenza e lavoro meccanico significativamente maggiori rispetto al hang power clean a tutti i carichi testati (30%-80% 1RM), poiche' l'atleta non deve decelerare per ricevere la sbarra ma puo' estendersi balisticamente in fase di volo. Viene raccomandata l'inclusione del jump shrug per picchi di RFD e potenza pura.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28912659/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Power"]
+        }
+    },
+    {
+        "id": "sci_weightlifting_arabatzi_2010",
+        "title": "Vertical jump biomechanics after plyometric, weight lifting, and combined (weight lifting + plyometric) training",
+        "authors": "Arabatzi, F., Kellis, E., & Saez-Saez de Villarreal, E.",
+        "journal": "Journal of Strength and Conditioning Research",
+        "year": 2010,
+        "area": "Sollevamento Pesi",
+        "abstract": "Intervento longitudinale che confronta gli effetti biomeccanici di allenamento pliometrico, sollevamento pesi e allenamento combinato (weightlifting + pliometria) sulle caratteristiche del salto verticale. Il gruppo combinato ha mostrato gli incrementi piu' pronunciati nella stiffness della caviglia, nell'attivazione mioelettrica degli estensori e nella forza propulsiva concentrica. L'integrazione contemporanea di alzate olimpiche pesanti e rimbalzi pliometrici veloci stimola l'intero spettro della curva forza-velocita'.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20706157/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Power", "Strength"]
+        }
+    },
+    {
+        "id": "sci_weightlifting_soriano_2019_overhead",
+        "title": "Weightlifting Overhead Pressing Derivatives: A Review of the Literature",
+        "authors": "Soriano, M. A., Suchomel, T. J., & Comfort, P.",
+        "journal": "Sports Medicine",
+        "year": 2019,
+        "area": "Sollevamento Pesi",
+        "abstract": "Rassegna scientifica completa sui derivati di spinta sopra la testa del sollevamento pesi: push press, power jerk e split jerk. Vengono documentati i contributi cinematici e cinetici della fase di dip and drive degli arti inferiori, che generano oltre il 70% della velocita' verticale iniziale impressa al bilanciere prima del blocco articolare delle braccia. Il documento fornisce chiare indicazioni per la selezione dell'esercizio in funzione della stabilizzazione scapolo-omerale e dello sviluppo della potenza degli arti superiori.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30924081/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra"],
+            "goals": ["Power", "Strength"]
+        }
+    },
+    {
+        "id": "sci_weightlifting_arabatzi_2012_coactivation",
+        "title": "Olympic weightlifting training causes different knee muscle-coactivation adaptations compared with traditional weight training",
+        "authors": "Arabatzi, F., & Kellis, E.",
+        "journal": "Journal of Strength and Conditioning Research",
+        "year": 2012,
+        "area": "Sollevamento Pesi",
+        "abstract": "Ricerca elettromiografica che evidenzia come il sollevamento pesi olimpico induca pattern di co-attivazione tra muscoli agonisti ed antagonisti del ginocchio (quadricipiti e flessori femorali) nettamente differenti rispetto al resistance training tradizionale. Gli atleti di weightlifting mostrano una co-attivazione antagonista ottimizzata che stabilizza l'articolazione del ginocchio senza inibire la produzione di coppia estensoria esplosiva, proteggendo il legamento crociato anteriore durante le brusche decelerazioni e gli atterraggi.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22344061/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra"],
+            "goals": ["Strength", "Power", "Rehab"]
+        }
+    },
+    {
+        "id": "sci_weightlifting_suchomel_2020_overload",
+        "title": "Training With Weightlifting Derivatives: The Effects of Force and Velocity Overload Stimuli",
+        "authors": "Suchomel, T. J., McKeever, S. M., & Comfort, P.",
+        "journal": "Journal of Strength and Conditioning Research",
+        "year": 2020,
+        "area": "Sollevamento Pesi",
+        "abstract": "Studio di intervento che confronta gli adattamenti indotti da derivati del sollevamento pesi orientati al sovraccarico di forza (pulling da terra/blocchi con carichi >100% 1RM power clean) rispetto a derivati orientati alla velocita' (jump shrugs con carichi 30-50% 1RM). Entrambi i gruppi hanno mostrato miglioramenti significativi, ma la combinazione periodizzata di stimoli di sovraccarico di forza e velocita' massimizza lo spostamento parallelo della curva forza-velocita' e le prestazioni di sprint e salto.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32398635/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Strength", "Power"]
+        }
+    },
+    {
+        "id": "sci_strength_lin_2022_variable",
+        "title": "Effects of Variable-Resistance Training Versus Constant-Resistance Training on Maximum Strength: A Systematic Review and Meta-Analysis",
+        "authors": "Lin, Y., Xu, Y., Hong, F., Li, J., Ye, W., & Korivi, M.",
+        "journal": "International Journal of Environmental Research and Public Health",
+        "year": 2022,
+        "area": "Sollevamento Pesi",
+        "abstract": "Meta-analisi che confronta l'efficacia del variable-resistance training (VRT, uso di catene ed elastici applicati al bilanciere) rispetto al carico costante tradizionale (CRT) sullo sviluppo della forza massimale (1RM). Il VRT si e' dimostrato significativamente superiore nell'aumentare l'1RM nei soggetti allenati (ES = 0.57), in particolare quando il carico combinato supera l'80% dell'1RM. Gli elastici modificano la curva di resistenza riducendo la fase di decelerazione terminale del bilanciere e sovraccaricando i punti articolari a maggior vantaggio meccanico.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35886409/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Strength", "Power"]
+        }
+    },
+
+    # ==================== VBT (15) ====================
+    {
+        "id": "sci_vbt_balsalobre_2018_app",
+        "title": "Validity and reliability of a novel iPhone app for the measurement of barbell velocity and 1RM on the bench-press exercise",
+        "authors": "Balsalobre-Fernandez, C., Marchante, D., Baz-Valle, E., Alonso-Molero, I., Jimenez, S. L., & Munoa, M.",
+        "journal": "Journal of Sports Sciences",
+        "year": 2018,
+        "area": "VBT",
+        "abstract": "Validazione scientifica dell'applicazione mobile PowerLift rispetto al trasduttore di posizione lineare (gold standard). Lo studio dimostra una correlazione quasi perfetta (r = 0.94, bias medio trascurabile) per la misurazione della velocita' media propulsiva (MPV) e per la stima dell'1RM nella panca piana. Permette ai preparatori di implementare il Velocity-Based Training sul campo senza costosa strumentazione di laboratorio, garantendo l'autoregolazione quotidiana del carico.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28098522/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Strength", "Power"]
+        }
+    },
+    {
+        "id": "sci_vbt_balsalobre_2016_push",
+        "title": "Validity and Reliability of the PUSH Wearable Device to Measure Movement Velocity During the Back Squat Exercise",
+        "authors": "Balsalobre-Fernandez, C., Kuzdub, M., Poveda-Ortiz, P., & del Campo-Vecino, J.",
+        "journal": "Journal of Strength and Conditioning Research",
+        "year": 2016,
+        "area": "VBT",
+        "abstract": "Studio di validazione e affidabilita' dell'accelerometro indossabile (PUSH band) per il monitoraggio della velocita' media e di picco durante il back squat. Il dispositivo ha mostrato elevata concordanza con il trasduttore lineare (ICC > 0.85), sebbene presenti una leggera tendenza alla sovrastima alle velocita' piu' basse. I dati supportano l'uso pratico di sensori inerziali per monitorare l'intento di massima velocita' esecutiva e prevenire la fatica eccessiva nelle sessioni di squat.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26670993/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Strength", "Power"]
+        }
+    },
+    {
+        "id": "sci_vbt_garcia_ramos_2023_twopoint",
+        "title": "The 2-Point Method: Theoretical Basis, Methodological Considerations, Experimental Support, and Its Application Under Field Conditions",
+        "authors": "Garcia-Ramos, A., & Jaric, S.",
+        "journal": "International Journal of Sports Physiology and Performance",
+        "year": 2023,
+        "area": "VBT",
+        "abstract": "Sintesi metodologica e teorica del 'metodo a due punti' per determinare la relazione carico-velocita' e stimare l'1RM. Gli autori dimostrano che testare due soli carichi distanziati (uno leggero a ~45% 1RM e uno pesante a ~80-85% 1RM) produce un'accuratezza predittiva indistinguibile dai protocolli esaustivi a 5-6 carichi, eliminando la fatica accumulata e abbreviando il tempo di testing. Rappresenta l'approccio piu' efficiente per il monitoraggio continuativo nel VBT.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37541677/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Strength", "Power"]
+        }
+    },
+    {
+        "id": "sci_vbt_pareja_blanco_2020_critical",
+        "title": "Velocity Loss as a Critical Variable Determining the Adaptations to Strength Training",
+        "authors": "Pareja-Blanco, F., Alcazar, J., Sanchez-Valdepenas, J., Cornejo-Daza, P. J., Piqueras-Sanchiz, F., Mora-Vela, R., Sanchez-Moreno, M., Bachero-Mena, B., Ortega-Becerra, M., & Alegre, L. M.",
+        "journal": "Medicine & Science in Sports & Exercise",
+        "year": 2020,
+        "area": "VBT",
+        "abstract": "Studio di riferimento che isola la perdita di velocita' intra-serie (VL: 0%, 10%, 20%, 40%) come variabile indipendente nel controllo degli adattamenti all'allenamento della forza. Soglie di perdita di velocita' basse o moderate (10-20% VL) massimizzano l'ipertrofia funzionale, la preservazione delle fibre veloci IIX e l'incremento di potenza esplosiva e salto verticale, mentre soglie elevate (40% VL o cedimento) provocano eccessivo stress metabolico, affaticamento neuromuscolare prolungato e conversione delle fibre veloci in forme piu' lente.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32049887/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Strength", "Power", "Hypertrophy"]
+        }
+    },
+    {
+        "id": "sci_vbt_pareja_blanco_2020_bench",
+        "title": "Effects of velocity loss in the bench press exercise on strength gains, neuromuscular adaptations, and muscle hypertrophy",
+        "authors": "Pareja-Blanco, F., Alcazar, J., Cornejo-Daza, P. J., Sanchez-Valdepenas, J., Rodriguez-Lopez, C., Hidalgo-de Mora, J., Sanchez-Moreno, M., Bachero-Mena, B., Alegre, L. M., & Ortega-Becerra, M.",
+        "journal": "Scandinavian Journal of Medicine & Science in Sports",
+        "year": 2020,
+        "area": "VBT",
+        "abstract": "Valutazione degli adattamenti di forza, ipertrofia del pettorale e attivita' elettromiografica in risposta a quattro soglie di perdita di velocita' nella panca piana (0%, 15%, 25%, 50% VL). La soglia al 15% VL ha prodotto i migliori adattamenti nell'attivazione neuromuscolare e nel rate of force development (RFD precoce) con meta' delle ripetizioni totali rispetto al 50% VL. La soglia al 50% VL ha massimizzato l'ipertrofia strutturale del gran pettorale a scapito pero' della velocita' di contrazione balistica.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32681665/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra"],
+            "goals": ["Strength", "Hypertrophy", "Power"]
+        }
+    },
+    {
+        "id": "sci_vbt_weakley_2019_feedback",
+        "title": "Visual feedback attenuates mean concentric barbell velocity loss and improves motivation, competitiveness, and perceived workload in male adolescent athletes",
+        "authors": "Weakley, J. J. S., Wilson, K. M., Till, K., Read, D. B., Darrall-Jones, J., Roe, G. A. B., Phibbs, P. J., & Jones, B.",
+        "journal": "Journal of Strength and Conditioning Research",
+        "year": 2019,
+        "area": "VBT",
+        "abstract": "Indagine sull'effetto acuto del feedback visivo istantaneo della velocita' del bilanciere durante serie di squat. Gli atleti che hanno ricevuto feedback numerico in tempo reale dopo ogni ripetizione hanno mostrato una significativa attenuazione della perdita di velocita' intra-serie, una maggiore velocita' media concentrica (+6-9%) e livelli significativamente piu' elevati di motivazione e competitivita' rispetto al gruppo di controllo senza feedback. Convalida il ruolo psicologico e neuromuscolare del biofeedback nel VBT.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28704314/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Strength", "Power"]
+        }
+    },
+    {
+        "id": "sci_vbt_pearson_2020_thresholds",
+        "title": "Velocity Loss Thresholds Reliably Control Kinetic and Kinematic Outputs during Free Weight Resistance Training",
+        "authors": "Pearson, M., Garcia-Ramos, A., Morrison, M., Ramirez-Lopez, C., Dalton-Barron, N., & Weakley, J.",
+        "journal": "International Journal of Environmental Research and Public Health",
+        "year": 2020,
+        "area": "VBT",
+        "abstract": "Studio di riproducibilita' tra sessioni delle soglie di perdita di velocita' (10%, 20%, 30% VLT) nello squat libero. I risultati confermano che le uscite cinetiche e cinematiche (velocita' media, potenza di picco e lavoro totale per ripetizione) sono altamente stabili e riproducibili quando le serie vengono interrotte in base alla velocita', nonostante il numero di ripetizioni completate vari significativamente tra le sessioni per effetto della fatica fluttuante dell'atleta. Dimostra la superiorita' del VBT rispetto alle serie a ripetizioni fisse.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32906825/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Strength", "Power"]
+        }
+    },
+    {
+        "id": "sci_vbt_rodriguez_rosell_2018_effort",
+        "title": "Effort Index as a Novel Variable for Monitoring the Level of Effort During Resistance Exercises",
+        "authors": "Rodriguez-Rosell, D., Yanez-Garcia, J. M., Sanchez-Medina, L., Mora-Custodio, R., & Gonzalez-Badillo, J. J.",
+        "journal": "Journal of Strength and Conditioning Research",
+        "year": 2018,
+        "area": "VBT",
+        "abstract": "Introduzione e validazione dell'Indice di Sforzo (Effort Index, EI), una metrica composita che moltiplica la velocita' della prima ripetizione per la percentuale di perdita di velocita' nella serie. L'EI ha dimostrato correlazioni quasi perfette (r = 0.91-0.95) con la concentrazione ematica di lattato e con la perdita di altezza nel salto verticale post-allenamento. L'Indice di Sforzo consente ai coach di quantificare con precisione matematica lo stress metabolico e neuromuscolare interno senza necessita' di prelievi ematici invasivi.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29781942/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Strength", "Power"]
+        }
+    },
+    {
+        "id": "sci_vbt_garcia_ramos_2021_mvt",
+        "title": "Bench Press 1-Repetition Maximum Estimation Through the Individualized Load-Velocity Relationship: Comparison of Different Regression Models and Minimal Velocity Thresholds",
+        "authors": "Garcia-Ramos, A., Pestana-Melero, F. L., Perez-Castilla, A., Rojas, F. J., & Haff, G. G.",
+        "journal": "International Journal of Sports Physiology and Performance",
+        "year": 2021,
+        "area": "VBT",
+        "abstract": "Confronto tra modelli di regressione lineare e polinomiale e diverse soglie di velocita' minima (Minimal Velocity Threshold, MVT: individualizzata vs fissa a ~0.17 m/s) per la stima dell'1RM nella panca piana. L'uso di un modello lineare combinato con l'MVT individualizzata o standardizzata a 0.17 m/s fornisce una stima accurata dell'1RM (errore tipico < 3.5%), confermando che la velocita' all'1RM e' una caratteristica fisiologica altamente stabile nell'atleta allenato.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33771947/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra"],
+            "goals": ["Strength"]
+        }
+    },
+    {
+        "id": "sci_vbt_banyard_2017_validity",
+        "title": "Reliability and Validity of the Load-Velocity Relationship to Predict the 1RM Back Squat",
+        "authors": "Banyard, H. G., Nosaka, K., & Haff, G. G.",
+        "journal": "Journal of Strength and Conditioning Research",
+        "year": 2017,
+        "area": "VBT",
+        "abstract": "Valutazione critica dell'accuratezza della predizione dell'1RM nel back squat libero tramite la curva carico-velocita'. Gli autori riscontrano una variabilita' inter-individuale nella velocita' all'1RM (compresa tra 0.25 e 0.38 m/s), suggerendo cautela nell'applicare soglie fisse universali per lo squat libero rispetto alla panca piana o alla Smith Machine. Lo studio raccomanda di calibrare regolarmente il profilo individuale dell'atleta per evitare errori di prescrizione del carico di lavoro.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27669192/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Strength"]
+        }
+    },
+    {
+        "id": "sci_vbt_pareja_blanco_2017_scand",
+        "title": "Effects of velocity loss during resistance training on athletic performance, strength gains and muscle adaptations",
+        "authors": "Pareja-Blanco, F., Rodriguez-Rosell, D., Sanchez-Medina, L., Gorostiaga, E. M., & Gonzalez-Badillo, J. J.",
+        "journal": "Scandinavian Journal of Medicine & Science in Sports",
+        "year": 2017,
+        "area": "VBT",
+        "abstract": "Confronto tra un protocollo con perdita di velocita' del 20% (VL20) e uno con perdita del 40% (VL40) nello squat su atleti. Il gruppo VL20 ha ottenuto guadagni di forza massimale identici al VL40 e miglioramenti tripli nell'altezza di salto CMJ (+9.5% vs +3.5%), eseguendo il 40% in meno di ripetizioni totali. L'analisi bioptica ha evidenziato che il protocollo VL40 ha provocato una conversione sfavorevole delle fibre veloci MHC-IIX in IIA, provando che la fatica non necessaria compromette l'esplosivita' muscolare.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27038416/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Strength", "Power", "Hypertrophy"]
+        }
+    },
+    {
+        "id": "sci_vbt_perez_castilla_2021_pulling",
+        "title": "Validity of Different Velocity-Based Methods and Repetitions-to-Failure Equations for Predicting the 1 Repetition Maximum During 2 Upper-Body Pulling Exercises",
+        "authors": "Perez-Castilla, A., Garcia-Ramos, A., Padial, P., Morales-Artacho, A. J., & Feriche, B.",
+        "journal": "Journal of Strength and Conditioning Research",
+        "year": 2021,
+        "area": "VBT",
+        "abstract": "Studio sulla validita' predittiva del VBT e delle equazioni di ripetizioni a cedimento nel prone bench pull e nelle trazioni alla sbarra. I metodi basati sulla velocita' (in particolare il metodo a carico multiplo e il metodo a due punti) hanno mostrato un errore di stima significativamente inferiore rispetto alle equazioni basate sulle ripetizioni a cedimento, confermando l'applicabilita' e la superiorita' del monitoraggio cinematico anche negli esercizi di tirata per la parte superiore del corpo.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30741875/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra"],
+            "goals": ["Strength", "Power"]
+        }
+    },
+    {
+        "id": "sci_vbt_tillaar_2010_sticking",
+        "title": "The 'sticking period' in a maximum bench press",
+        "authors": "van den Tillaar, R., & Ettema, G.",
+        "journal": "Journal of Sports Sciences",
+        "year": 2010,
+        "area": "VBT",
+        "abstract": "Analisi cinematica ed elettromiografica del 'punto critico' o 'sticking region' nella panca piana massimale. La decelerazione della sbarra ha inizio a circa 5-7 cm dal petto e raggiunge la minima velocita' a circa 12-15 cm, corrispondente a una configurazione geometrica svantaggiosa dei bracci di leva articolari e ad una riduzione del potenziamento elastico iniziale. La misurazione della velocita' attraverso il passaggio del punto critico e' il parametro cardine per identificare l'MVT e programmare esercizi parziali di sblocco.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20373201/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra"],
+            "goals": ["Strength"]
+        }
+    },
+    {
+        "id": "sci_vbt_orange_2022_meta",
+        "title": "Comparison of the effects of velocity-based vs. traditional resistance training methods on adaptations in strength, power, and sprint speed: A systematic review, meta-analysis, and quality of evidence appraisal",
+        "authors": "Orange, S. T., Metcalfe, J. W., Robinson, A., Applegarth, P. J., & Liefeith, A.",
+        "journal": "Journal of Sports Sciences",
+        "year": 2022,
+        "area": "VBT",
+        "abstract": "Meta-analisi esaustiva di trial controllati randomizzati che confronta l'allenamento basato sulla velocita' rispetto alla prescrizione tradizionale a percentuali fisse dell'1RM (%1RM). Il VBT si dimostra superiore nel migliorare la prestazione di salto verticale (SMD = 0.36) e la velocita' di sprint, con guadagni equivalenti o superiori nella forza massimale (1RM) ma con un volume totale di sollevamento marcatamente inferiore. Dimostra una maggiore efficienza temporale e minore affaticamento cronico per gli atleti.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35380511/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Strength", "Power"]
+        }
+    },
+    {
+        "id": "sci_vbt_jidovtseff_2011_prediction",
+        "title": "Using the load-velocity relationship for 1RM prediction",
+        "authors": "Jidovtseff, B., Harris, N. K., Crielaard, J. M., & Cronin, J. B.",
+        "journal": "Journal of Strength and Conditioning Research",
+        "year": 2011,
+        "area": "VBT",
+        "abstract": "Studio fondamentale che ha introdotto l'estrapolazione lineare della relazione carico-velocita' per la stima dell'1RM senza giungere al cedimento concentrico. Analizzando le velocita' medie e di picco a carichi progressivi, gli autori hanno rilevato una correlazione r = 0.95 tra il carico teorico estrapolato a velocita' zero/minima e l'1RM reale nella panca piana. L'approccio riduce il rischio di infortuni da sovraccarico massimale acuto e consente una valutazione continua della forma fisica.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19966589/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra"],
+            "goals": ["Strength"]
+        }
+    }
+]
+
+def main():
+    print(f"Total entries to validate: {len(SOURCES_A)}")
+    
+    # Check counts per area
+    counts = {}
+    for s in SOURCES_A:
+        counts[s["area"]] = counts.get(s["area"], 0) + 1
+    print("Counts by area:", counts)
+    assert counts.get("Atletica Leggera") == 14, f"Expected 14 Atletica Leggera, got {counts.get('Atletica Leggera')}"
+    assert counts.get("Sollevamento Pesi") == 14, f"Expected 14 Sollevamento Pesi, got {counts.get('Sollevamento Pesi')}"
+    assert counts.get("VBT") == 15, f"Expected 15 VBT, got {counts.get('VBT')}"
+    assert len(SOURCES_A) == 43, f"Expected 43 total, got {len(SOURCES_A)}"
+
+    # Check schema fields
+    required_fields = ["id", "title", "authors", "journal", "year", "area", "abstract", "url", "rules"]
+    ids = set()
+    titles = set()
+    pmids = set()
+
+    # Check for emojis regex
+    emoji_pattern = re.compile("[\U00010000-\U0010ffff]", flags=re.UNICODE)
+
+    for i, s in enumerate(SOURCES_A):
+        for f in required_fields:
+            assert f in s, f"Missing field {f} in entry {i}: {s.get('id')}"
+            assert s[f] is not None, f"Field {f} is None in entry {i}: {s.get('id')}"
+        
+        # Check ID
+        assert s["id"] not in ids, f"Duplicate ID: {s['id']}"
+        ids.add(s["id"])
+
+        # Check title
+        norm_title = s["title"].strip().lower()
+        assert norm_title not in titles, f"Duplicate title: {s['title']}"
+        titles.add(norm_title)
+
+        # Check URL and extract PMID
+        m = re.match(r"^https://pubmed\.ncbi\.nlm\.nih\.gov/(\d+)/$", s["url"])
+        assert m, f"Invalid PubMed URL format: {s['url']} in {s['id']}"
+        pmid = m.group(1)
+        assert pmid not in pmids, f"Duplicate PMID within Group A: {pmid} in {s['id']}"
+        pmids.add(pmid)
+
+        # Check year
+        assert isinstance(s["year"], int) and 1950 <= s["year"] <= 2026, f"Invalid year: {s['year']} in {s['id']}"
+
+        # Check rules
+        assert "patientTypes" in s["rules"], f"Missing patientTypes in rules of {s['id']}"
+        assert isinstance(s["rules"]["patientTypes"], list) and len(s["rules"]["patientTypes"]) > 0
+
+        # Check emoji in all string fields
+        for k, v in s.items():
+            if isinstance(v, str):
+                assert not emoji_pattern.search(v), f"Emoji detected in {k} of {s['id']}"
+
+    print(f"Self-check passed: 43 unique IDs, 43 unique titles, 43 unique PMIDs.")
+
+    # Load existing sources from explorer report / knowledge-base.js to ensure zero collisions
+    existing_report_path = "e:/Nuove App Installate/App esercizi scienze motorie/.agents/explorer_sources_inventory/report.md"
+    with open(existing_report_path, "r", encoding="utf-8") as f:
+        report_text = f.read()
+
+    # Find master PMID index in report
+    m_pmid_block = re.search(r"### 6\.2 Master PMID Index.*?\n```text\n(.*?)\n```", report_text, re.DOTALL)
+    assert m_pmid_block, "Could not find Master PMID Index in report.md"
+    existing_pmids = set(x.strip() for x in m_pmid_block.group(1).split(",") if x.strip())
+    print(f"Loaded {len(existing_pmids)} existing PMIDs from Master Index.")
+
+    # Check collisions
+    pmid_collisions = pmids.intersection(existing_pmids)
+    assert not pmid_collisions, f"Collisions found with existing PMIDs: {pmid_collisions}"
+    print("Zero collisions with Master PMID Index verified!")
+
+    # Check titles collision with existing knowledge base
+    kb_path = "e:/Nuove App Installate/App esercizi scienze motorie/js/knowledge-base.js"
+    with open(kb_path, "r", encoding="utf-8") as f:
+        kb_text = f.read()
+
+    existing_kb_titles = set(t.strip().lower() for t in re.findall(r'"title":\s*"([^"]+)"', kb_text))
+    existing_kb_ids = set(re.findall(r'"id":\s*"([^"]+)"', kb_text))
+    print(f"Loaded {len(existing_kb_titles)} titles and {len(existing_kb_ids)} IDs from js/knowledge-base.js.")
+
+    title_collisions = titles.intersection(existing_kb_titles)
+    assert not title_collisions, f"Collisions found with existing titles: {title_collisions}"
+    print("Zero title collisions verified against all existing KB titles!")
+
+    id_collisions = ids.intersection(existing_kb_ids)
+    assert not id_collisions, f"Collisions found with existing IDs: {id_collisions}"
+    print("Zero ID collisions verified against all existing KB IDs!")
+
+    # Write output to sources_group_a.json
+    output_path = "e:/Nuove App Installate/App esercizi scienze motorie/.agents/worker_research_group_a/sources_group_a.json"
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(SOURCES_A, f, indent=2, ensure_ascii=False)
+
+    print(f"Successfully generated {output_path} with {len(SOURCES_A)} sources.")
+    print("ALL INTEGRITY CHECKS PASSED.")
+
+if __name__ == "__main__":
+    main()

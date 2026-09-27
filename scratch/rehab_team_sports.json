@@ -1,0 +1,495 @@
+[
+  {
+    "id": "sci_lca_myer_2006",
+    "title": "Targeted neuromuscular training improves performance and neuromuscular biomechanics in female athletes",
+    "authors": "Myer, G. D., Ford, K. R., Palumbo, J. P., & Hewett, T. E.",
+    "journal": "Journal of Strength and Conditioning Research",
+    "year": 2006,
+    "area": "Clinico",
+    "abstract": "Il training neuromuscolare mirato riduce significativamente i deficit di asimmetria di carico e il valgismo dinamico del ginocchio nelle atlete. Questo approccio integra esercizi pliometrici, stabilità del core e rinforzo della catena posteriore per prevenire lesioni non da contatto del LCA. Nei percorsi riabilitativi post-operatori, ripristina la meccanica d'atterraggio sicura prima del ritorno allo sport.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16503678/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["lesione_lca", "post_op_lca", "knee_generic"]
+    }
+  },
+  {
+    "id": "sci_lca_grindem_2016",
+    "title": "Simple decision rules reduce reinjury risk after anterior cruciate ligament reconstruction: the Delaware-Oslo ACL cohort study",
+    "authors": "Grindem, H., Snyder-Mackler, L., Moksnes, H., Engebretsen, L., & Risberg, M. A.",
+    "journal": "British Journal of Sports Medicine",
+    "year": 2016,
+    "area": "Clinico",
+    "abstract": "Dimostra che ritardare il ritorno allo sport fino a 9 mesi dopo la ricostruzione del LCA e soddisfare criteri oggettivi di forza e simmetria muscolare (LSI > 90%) riduce il tasso di re-infortunio dell'84%. Ogni mese aggiuntivo di riabilitazione prima del rientro agonistico riduce significativamente il rischio di nuova lesione. L'allenamento deve concentrarsi sul ripristino completo della forza del quadricipite e della potenza esplosiva.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27162233/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["post_op_lca", "lesione_lca"]
+    }
+  },
+  {
+    "id": "sci_lca_buckthorpe_2019",
+    "title": "Optimising the early-stage rehabilitation process after anterior cruciate ligament reconstruction",
+    "authors": "Buckthorpe, M., Della Villa, F., Della Villa, S., & Roi, G. S.",
+    "journal": "Sports Medicine",
+    "year": 2019,
+    "area": "Clinico",
+    "abstract": "Fornisce linee guida dettagliate per la fase iniziale di riabilitazione dopo la ricostruzione del LCA, enfatizzando il controllo del versamento, l'estensione completa del ginocchio e l'attivazione precoce del quadricipite. Evita carichi di taglio eccessivi in catena cinetica aperta nei gradi terminali per proteggere il graft. Promuove l'uso di esercizio isometrico e a catena cinetica chiusa per stabilizzare l'articolazione femoro-rotulea.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31168817/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["post_op_lca", "lesione_lca"]
+    }
+  },
+  {
+    "id": "sci_lca_hewett_2005",
+    "title": "Biomechanical measures of neuromuscular control and valgus loading of the knee predict anterior cruciate ligament injury risk in female athletes",
+    "authors": "Hewett, T. E., Myer, G. D., Ford, K. R., et al.",
+    "journal": "The American Journal of Sports Medicine",
+    "year": 2005,
+    "area": "Clinico",
+    "abstract": "Studio prospettico pietra miliare che dimostra come il momento di valgo del ginocchio e l'inadeguato controllo neuromuscolare durante i salti predicano direttamente il rischio di lesione del LCA. La correzione dei pattern di movimento errati attraverso il rinforzo dei glutei e degli hamstring è fondamentale per la prevenzione. La riabilitazione deve includere il riaddestramento al biofeedback motorio per eliminare il valgo dinamico.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15722363/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["lesione_lca", "post_op_lca", "knee_generic"]
+    }
+  },
+  {
+    "id": "sci_tendon_malliaras_2013",
+    "title": "Achilles and patellar tendinopathy loading programmes : a systematic review comparing clinical outcomes and identifying potential mechanisms for effectiveness",
+    "authors": "Malliaras, P., Barton, C. J., Reeves, N. D., & Langberg, H.",
+    "journal": "Sports Medicine",
+    "year": 2013,
+    "area": "Clinico",
+    "abstract": "Revisione sistematica che confronta i programmi di carico isometrico, eccentrico e pesante lento (HSR - Heavy Slow Resistance) per la tendinopatia Achillea e rotulea. Evidenzia che il carico progressivo adattato al dolore è superiore al semplice riposo o alle terapie passive. L'allenamento pesante e lento stimola il rimodellamento del collagene e migliora la tolleranza al carico del tendine in modo sicuro.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23625465/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["patellar_tendonitis", "achilles_tendonitis", "tendinopatia"]
+    }
+  },
+  {
+    "id": "sci_tendon_cook_2009",
+    "title": "Is tendon pathology a continuum? A clinical model to explain the clinical presentation of load-induced tendinopathy",
+    "authors": "Cook, J. L., & Purdam, C. R.",
+    "journal": "British Journal of Sports Medicine",
+    "year": 2009,
+    "area": "Clinico",
+    "abstract": "Propone il modello del continuum della patologia tendinea (reattiva, disfunzione strutturale, degenerativa) per guidare la gestione clinica dell'allenamento. Nelle fasi reattive, la priorità è ridurre i carichi di compressione e accumulo di energia mediante contrazioni isometriche. Nelle fasi degenerative, è necessario un carico progressivo meccanico a velocità controllata per stimolare l'adattamento del tessuto sano circostante.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/19776044/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["patellar_tendonitis", "achilles_tendonitis", "tendinopatia"]
+    }
+  },
+  {
+    "id": "sci_tendon_bohm_2015",
+    "title": "Human tendon adaptation to mechanical loading: a systematic review and meta-analysis of physiological determinants in vivo",
+    "authors": "Bohm, S., Mersmann, F., & Arampatzis, A.",
+    "journal": "Sports Medicine - Open",
+    "year": 2015,
+    "area": "Clinico",
+    "abstract": "Meta-analisi che individua le caratteristiche ottimali del carico per indurre l'adattamento morfo-meccanico del tendine umano. Dimostra che contrazioni ad alta tensione (circa 85% MVIC) con un tempo di deformazione sostenuto (3-4 secondi per rep) stimolano al massimo la rigidità e il modulo di elasticità tendineo. Modelli ad alta frequenza o bassa intensità non producono cambiamenti strutturali significativi.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27747846/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["patellar_tendonitis", "achilles_tendonitis", "tendinopatia"]
+    }
+  },
+  {
+    "id": "sci_hamstring_ekstrand_2012",
+    "title": "Hamstring muscle strain recurrence and time loss in professional football",
+    "authors": "Ekstrand, J., Hägglund, M., & Waldén, M.",
+    "journal": "British Journal of Sports Medicine",
+    "year": 2012,
+    "area": "Clinico",
+    "abstract": "Analisi prospettica sugli infortuni ai muscoli posteriori della coscia (hamstring) nel calcio professionistico europeo. Rivela un alto tasso di recidiva legato a una riabilitazione incompleta o al rientro prematuro in campo senza adeguata preparazione eccentrica. Sottolinea l'importanza di protocolli rigidi per il ripristino della forza in allungamento prima del Return to Play.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22219258/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["hamstring_strain", "lesione_muscolare", "thigh_strain"]
+    }
+  },
+  {
+    "id": "sci_hamstring_vandyk_2019",
+    "title": "Including the Nordic hamstring exercise in injury prevention programmes halves the rate of hamstring injuries: a systematic review and meta-analysis of 8459 athletes",
+    "authors": "van Dyk, N., Behan, F. P., & Whiteley, R.",
+    "journal": "British Journal of Sports Medicine",
+    "year": 2019,
+    "area": "Clinico",
+    "abstract": "Dimostra su oltre 8400 atleti che l'inclusione costante dell'esercizio Nordic Hamstring Curl riduce del 51% l'incidenza complessiva delle lesioni agli hamstring. L'esercizio aumenta la lunghezza dei fascicoli muscolari del bicipite femorale e la forza eccentrica a lunghi angoli articolari. Costituisce un pilastro insostituibile sia nei programmi di prevenzione che nelle fasi finali di riabilitazione clinica.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30819786/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["hamstring_strain", "lesione_muscolare", "thigh_strain"]
+    }
+  },
+  {
+    "id": "sci_hamstring_petersen_2011",
+    "title": "Preventing hamstring strains in football players: a randomized controlled trial",
+    "authors": "Petersen, J., Thorborg, K., Nielsen, M. B., Budtz-Jørgensen, E., & Holmich, P.",
+    "journal": "The American Journal of Sports Medicine",
+    "year": 2011,
+    "area": "Clinico",
+    "abstract": "Studio clinico controllato randomizzato in calciatori maschi che dimostra l'efficacia di un programma di allenamento eccentrico di 10 settimane nel prevenire lesioni primarie e recidive degli hamstring. Dimostra una riduzione fino all'85% dei re-infortuni rispetto al gruppo di controllo. Evidenzia l'importanza del carico eccentrico progressivo integrato nella preparazione settimanale.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21803979/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["hamstring_strain", "lesione_muscolare"]
+    }
+  },
+  {
+    "id": "sci_hamstring_bourne_2018",
+    "title": "Impact of exercise selection on hamstring muscle activation and architectural adaptations: a systematic review",
+    "authors": "Bourne, M. N., Timmins, R. G., Opar, D. A., et al.",
+    "journal": "Sports Medicine",
+    "year": 2018,
+    "area": "Clinico",
+    "abstract": "Esamina l'impatto di diversi esercizi (Nordic Hamstring, Romanian Deadlift, Hip Extension, Razor Curl) sull'attivazione muscolare e sull'architettura del bicipite femorale. L'esercizio Nordic Hamstring allunga principalmente i fascicoli del capo lungo del bicipite femorale, mentre le estensioni d'anca guidano l'ipertrofia regionale. La combinazione di esercizi basati sul ginocchio e sull'anca garantisce una protezione completa contro le lesioni da sprint.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29450822/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["hamstring_strain", "lesione_muscolare"]
+    }
+  },
+  {
+    "id": "sci_shoulder_cools_2007",
+    "title": "Rehabilitation of scapular dyskinesis: from the office to the field",
+    "authors": "Cools, A. M., Struyf, F., De Mey, K., Danneels, L., & Cambier, D.",
+    "journal": "Journal of Sport Rehabilitation",
+    "year": 2007,
+    "area": "Clinico",
+    "abstract": "Presenta un algoritmo progressivo per il trattamento della discinesi scapolare negli atleti sopra-capo (overhead). Risalta la necessità di ripristinare il bilanciamento muscolare tra Trapezio Inferiore/Dentato Anteriore e Trapezio Superiore per evitare la sindrome da conflitto subacromiale. Propone esercizi selettivi a bassa intensità iniziale prima di introdurre gesti atletici ad alta velocità.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17923728/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["shoulder_impingement", "rotator_cuff", "scapular_dyskinesis", "shoulder_instability"]
+    }
+  },
+  {
+    "id": "sci_shoulder_kibler_2010",
+    "title": "Current concepts: scapular dyskinesis",
+    "authors": "Kibler, W. B., & Sciascia, A.",
+    "journal": "British Journal of Sports Medicine",
+    "year": 2010,
+    "area": "Clinico",
+    "abstract": "Analizza il ruolo centrale della scapola come anello di congiunzione nella catena cinetica per il trasferimento di energia dalle gambe al braccio negli atleti lanciatori. La disfunzione scapolare altera la biomeccanica della spalla aumentando lo stress sulla cuffia dei ruotatori e sul labbro glenoideo. La riabilitazione deve integrare l'attivazione del core e degli arti inferiori insieme al rinforzo stabilizzatore della spalla.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20371559/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["shoulder_impingement", "rotator_cuff", "shoulder_instability"]
+    }
+  },
+  {
+    "id": "sci_shoulder_wilk_2009",
+    "title": "The shoulder in baseball: rehabilitation principles",
+    "authors": "Wilk, K. E., Reinold, M. M., & Dugas, J. R.",
+    "journal": "Journal of Orthopaedic & Sports Physical Therapy",
+    "year": 2009,
+    "area": "Clinico",
+    "abstract": "Delinea i principi di riabilitazione ed esercizio per le lesioni della spalla negli atleti lanciatori. Sottolinea l'importanza del ripristino dell'escursione articolare in rotazione interna (GIRD) e del rinforzo dinamico degli eccentrici della cuffia dei ruotatori posteriore. L'allenamento pliometrico specifico per l'arto superiore è essenziale prima del ritorno all'attività agonistica.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/19182317/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["rotator_cuff", "shoulder_instability", "shoulder_impingement"]
+    }
+  },
+  {
+    "id": "sci_spine_mcgill_2001",
+    "title": "Low back stability: from formal description to issues for performance and rehabilitation",
+    "authors": "McGill, S. M.",
+    "journal": "Exercise and Sport Sciences Reviews",
+    "year": 2001,
+    "area": "Clinico",
+    "abstract": "Definisce il concetto di stabilità della colonna vertebrale basato sulla co-attivazione isometrica di tutti i muscoli della parete addominale e dorsale (effetto bracing). Sconsiglia vivamente esercizi di flessione o torsione sotto carico (come i classici crunch) che aumentano le forze di taglio sui dischi intervertebrali lombari. Propone i Big Three (Bird-Dog, Side Plank, Curl-up modificato) per creare rigidezza e proteggere il rachide.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/11265986/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["lumbar_pain", "hernia_disk", "spinal_stenosis", "sensitive_back"]
+    }
+  },
+  {
+    "id": "sci_spine_cholewicki_1996",
+    "title": "Mechanical stability of the in vivo lumbar spine: implications for injury and chronic low back pain",
+    "authors": "Cholewicki, J., & McGill, S. M.",
+    "journal": "Journal of Biomechanics",
+    "year": 1996,
+    "area": "Clinico",
+    "abstract": "Dimostra che la stabilità meccanica della colonna lombare richiede una coordinazione precisa e una costante contrazione di sottofondo di tutti i muscoli del tronco, piuttosto che la sola forza di singoli muscoli estensori o flessori. Evidenzia che micro-instabilità possono verificarsi a bassi carichi se la sintonizzazione motoria fallisce. Il protocollo riabilitativo deve puntare sulla resistenza muscolare e sul controllo motorio rigido in posizione neutra.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/8827400/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["lumbar_pain", "hernia_disk", "spondylolysis"]
+    }
+  },
+  {
+    "id": "sci_spine_hodges_1996",
+    "title": "Inefficient muscular stabilization of the lumbar spine associated with low back pain: a motor control evaluation of transversus abdominis",
+    "authors": "Hodges, P. W., & Richardson, C. A.",
+    "journal": "Spine",
+    "year": 1996,
+    "area": "Clinico",
+    "abstract": "Studio fondamentale che rivela la risposta anticipatoria (feedforward) del trasverso dell'addome prima del movimento degli arti nelle persone sane, e il suo ritardo di attivazione nei pazienti con lombalgia. Evidenzia l'importanza del riaddestramento del controllo motorio profondo prima di passare a carichi globali elevati. La contrazione isolata e controllata riduce l'instabilità segmentale lombare.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/8923631/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["lumbar_pain", "sensitive_back", "hernia_disk"]
+    }
+  },
+  {
+    "id": "sci_spine_hides_1996",
+    "title": "Multifidus muscle recovery is not automatic after resolution of acute, first-episode low back pain",
+    "authors": "Hides, J. A., Richardson, C. A., & Jull, G. A.",
+    "journal": "Spine",
+    "year": 1996,
+    "area": "Clinico",
+    "abstract": "Dimostra mediante ecografia che l'atrofia del muscolo multifido dopo un primo episodio di lombalgia acuta non regredisce spontaneamente anche se il dolore scompare. L'assenza di un allenamento specifico di stabilizzazione porta a tassi di recidiva del 84% rispetto al 30% dei soggetti trattati. Rimarca la necessità di riattivare selettivamente i multifidi con esercizi di controllo isometrico in neutro.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/8961451/",
+    "rules": {
+      "patientTypes": ["Clinico"],
+      "injuries": ["lumbar_pain", "sensitive_back", "hernia_disk"]
+    }
+  },
+  {
+    "id": "sci_fifa_soligard_2008",
+    "title": "Comprehensive warm-up programme to prevent injuries in female football players: cluster randomised controlled trial",
+    "authors": "Soligard, T., Myklebust, G., Steffen, K., et al.",
+    "journal": "BMJ",
+    "year": 2008,
+    "area": "Sport di Squadra",
+    "abstract": "Valida l'efficacia del programma di riscaldamento FIFA 11+ nel ridurre gli infortuni complessivi del 32% e le lesioni severe del 45% nelle giovani calciatrici. Integra esercizi di corsa, stabilizzazione del core, controllo neuromuscolare e pliometria dinamica. Dimostra l'importanza di una routine standardizzata e costante prima di ogni allenamento per ottimizzare l'allineamento degli arti inferiori.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/19066253/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Calcio", "Football"]
+    }
+  },
+  {
+    "id": "sci_fifa_alattar_2017",
+    "title": "How effective are F-MARC injury prevention programmes for teamsports? A systematic review and meta-analysis",
+    "authors": "Al Attar, W. S. A., Soomro, N., Pappas, E., Sinclair, P. J., & Sanders, R. H.",
+    "journal": "British Journal of Sports Medicine",
+    "year": 2017,
+    "area": "Sport di Squadra",
+    "abstract": "Meta-analisi che conferma l'efficacia dei programmi preventivi FIFA (come FIFA 11+ e FIFA 11+ Kids) nel ridurre l'incidenza globale degli infortuni nei giochi di squadra del 39%. Dimostra una consistente riduzione del rischio di infortuni al ginocchio e alla caviglia. Sottolinea che l'aderenza costante (almeno 2 volte a settimana) è la chiave per mantenere i benefici protettivi neuromuscolari.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28122797/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Calcio", "Basketball"]
+    }
+  },
+  {
+    "id": "sci_fifa_bahr_2015",
+    "title": "Why screening tests to predict injury do not work-and probably never will...: a story of 3500 medical examinations",
+    "authors": "Bahr, R.",
+    "journal": "British Journal of Sports Medicine",
+    "year": 2015,
+    "area": "Sport di Squadra",
+    "abstract": "Analisi critica che dimostra come i test di screening isolati abbiano un basso valore predittivo per il singolo infortunio nello sport. Suggerisce di spostare il focus dai test predittivi all'implementazione sistematica di interventi di prevenzione ad ampio spettro (come il FIFA 11+ e la gestione del carico). L'allenamento neuromuscolare globale protegge l'intera squadra indipendentemente dai punteggi di screening individuali.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26002938/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Calcio", "Basketball"]
+    }
+  },
+  {
+    "id": "sci_workload_gabbett_2016",
+    "title": "The training-injury prevention paradox: should athletes be training smarter and harder?",
+    "authors": "Gabbett, T. J.",
+    "journal": "British Journal of Sports Medicine",
+    "year": 2016,
+    "area": "Sport di Squadra",
+    "abstract": "Introduce il concetto del rapporto tra carico acuto e carico cronico (Acute:Chronic Workload Ratio - ACWR). Dimostra che elevati carichi cronici (condizionamento elevato) proteggono dagli infortuni, mentre picchi improvvisi nel carico acuto (ACWR > 1.5) aumentano drasticamente il rischio di lesioni muscolari. Il programma di allenamento deve progressionare in modo fluido evitando impennate di volume o intensità.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26758673/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Calcio", "Basketball", "Endurance"]
+    }
+  },
+  {
+    "id": "sci_workload_windt_2017",
+    "title": "How do training and competition workloads relate to injury? The workload-injury etiology model",
+    "authors": "Windt, J., & Gabbett, T. J.",
+    "journal": "British Journal of Sports Medicine",
+    "year": 2017,
+    "area": "Sport di Squadra",
+    "abstract": "Elabora il modello eziologico carico-infortunio, spiegando come il carico di lavoro agisca sia come agente eziologico (stress meccanico) sia come fattore protettivo (adattamento delle capacità fisiche). L'applicazione metodica di carichi progressivi migliora la robustezza tissutale e la tolleranza alla fatica. La gestione personalizzata dei tempi di recupero previene il degradamento delle prestazioni e le lesioni da sovraccarico.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27405944/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Calcio", "Basketball"]
+    }
+  },
+  {
+    "id": "sci_rsa_rampinini_2007",
+    "title": "Factors influencing repeated-sprint ability in football players",
+    "authors": "Rampinini, E., Sassi, A., Morelli, A., Mazzoni, S., Fanchini, M., & Coutts, A. J.",
+    "journal": "International Journal of Sports Medicine",
+    "year": 2007,
+    "area": "Sport di Squadra",
+    "abstract": "Identifica i fattori fisiologici determinanti la Repeated Sprint Ability (RSA) nei calciatori professionisti. Evidenzia il ruolo chiave della potenza aerobica massima (VO2max) e della velocità di risintesi della fosfocreatina nel limitare il decadimento prestazionale negli sprint ripetuti. L'allenamento deve combinare intervalli ad alta intensità (HIIT) e sprint con pause brevi per rispecchiare le richieste agonistiche.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17497576/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Calcio"]
+    }
+  },
+  {
+    "id": "sci_rsa_buchheit_2013",
+    "title": "High-intensity interval training, solutions to the programming puzzle: Part I: cardiopulmonary engines",
+    "authors": "Buchheit, M., & Laursen, P. B.",
+    "journal": "Sports Medicine",
+    "year": 2013,
+    "area": "Sport di Squadra",
+    "abstract": "Fornisce un quadro metodologico esaustivo per la programmazione dell'allenamento intervallato ad alta intensità (HIIT) negli sport di squadra. Analizza come manipolare durata del tratto, intensità, tipo di recupero e volume per sollecitare in modo mirato il sistema cardiopolmonare e neuromuscolare. L'uso di forme di allenamento specificamente intermittenti (es. 15s/15s o Small Sided Games) massimizza il tempo speso vicino al VO2max.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23539301/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Calcio", "Basketball"]
+    }
+  },
+  {
+    "id": "sci_rsa_girard_2011",
+    "title": "Repeated-sprint ability - part 1: factors contributing to fatigue",
+    "authors": "Girard, O., Mendez-Villanueva, A., & Bishop, D.",
+    "journal": "Sports Medicine",
+    "year": 2011,
+    "area": "Sport di Squadra",
+    "abstract": "Revisione approfondita dei meccanismi di fatica centrale e periferica durante sprint ripetuti ad alta velocità negli sport intermittenti. Spiega come l'accumulo di metaboliti e l'alterata eccitabilità della membrana muscolare riducano la prestazione negli sprint successivi. L'allenamento mirato deve sviluppare la capacità tampone muscolare e la tolleranza neuromuscolare allo sforzo ripetuto.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21688903/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Calcio", "Basketball"]
+    }
+  },
+  {
+    "id": "sci_cod_sheppard_2006",
+    "title": "Agility literature review: classifications in movement and sport-specific decision-making components",
+    "authors": "Sheppard, J. M., & Young, W. B.",
+    "journal": "Journal of Sports Sciences",
+    "year": 2006,
+    "area": "Sport di Squadra",
+    "abstract": "Definisce e distingue chiaramente la capacità di Change of Direction (COD - cambio di direzione pre-pianificato) dalla reale Agilità (che include processi percettivo-cognitivi e di presa di decisione). Evidenzia che lo sviluppo dell'agilità negli sport di squadra richiede non solo forza esplosiva e tecnica di decelerazione, ma anche esercitazioni con stimoli visivi e reattivi incerti.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16935793/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Calcio", "Basketball"]
+    }
+  },
+  {
+    "id": "sci_cod_spiteri_2014",
+    "title": "Mechanical determinants of faster change of direction and agility performance in female basketball players",
+    "authors": "Spiteri, T., Nimphius, S., Hart, N. H., Specos, C., Sheppard, J. M., & Newton, R. U.",
+    "journal": "Journal of Strength and Conditioning Research",
+    "year": 2014,
+    "area": "Sport di Squadra",
+    "abstract": "Identifica nei determinanti meccanici della forza eccentrica e isometrica degli arti inferiori gli elementi chiave per migliorare la velocità di cambio di direzione nelle giocatrici di pallacanestro. Una maggiore forza eccentrica permette una decelerazione più rapida e un ri-orientamento del corpo più efficiente. La programmazione deve includere esercizi di forza massima ed eccentrica per ottimizzare i tempi di contatto al suolo.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/24149526/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Basketball", "Calcio"]
+    }
+  },
+  {
+    "id": "sci_cod_nimphius_2016",
+    "title": "Change of direction deficit: a more isolated measure of change of direction performance",
+    "authors": "Nimphius, S., Callaghan, S. J., Spiteri, T., & Lockie, R. G.",
+    "journal": "Journal of Strength and Conditioning Research",
+    "year": 2016,
+    "area": "Sport di Squadra",
+    "abstract": "Introduce il concetto di Change of Direction Deficit (COD Deficit) come misura isolata della capacità di virata, sottraendo il tempo di sprint in rettilineo dal tempo del test COD. Dimostra che atleti veloci nei 10 metri non sempre posseggono una buona tecnica di cambio di direzione. Permette di individuare se programmare lavoro di forza esplosiva rettilinea o focalizzarsi sulla biomeccanica di decelerazione e spinta laterale.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26982400/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Calcio", "Basketball"]
+    }
+  },
+  {
+    "id": "sci_team_impellizzeri_2006",
+    "title": "Physiological and performance effects of generic versus specific high-intensity interval training in football players",
+    "authors": "Impellizzeri, F. M., Marcora, S. M., Castagna, C., Reilly, T., Sassi, A., & Rampinini, E.",
+    "journal": "International Journal of Sports Medicine",
+    "year": 2006,
+    "area": "Sport di Squadra",
+    "abstract": "Confronta gli effetti del training intervallato generico in corsa (4x4 min al 90-95% FCmax) rispetto a esercitazioni con palla ad alta intensità (Small-Sided Games) nei calciatori. Dimostra che entrambi i metodi producono miglioramenti equivalenti del VO2max e della distanza percorsa in partita. I giochi a tema in spazi ridotti offrono il vantaggio supplementare di sollecitare contemporaneamente le abilità tecnico-tattiche e il carico cognitivo.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16802251/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Calcio"]
+    }
+  },
+  {
+    "id": "sci_team_taylor_2017",
+    "title": "Physical demands of elite basketball: a systematic review",
+    "authors": "Taylor, J. B., Wright, A. A., Dischiavi, S. L., Townsend, M. A., & Marmon, A. R.",
+    "journal": "Journal of Sports Sciences",
+    "year": 2017,
+    "area": "Sport di Squadra",
+    "abstract": "Analizza le richieste fisiche e fisiologiche della pallacanestro d'elite, caratterizzata da transizioni ad alta intensità ogni 21 secondi e frequenti salti ed accelerazioni/decelerazioni multidirezionali. Risalta la necessità di sviluppare una solida base di potenza anaerobica alattacida unitamente a una rapida capacità di recupero aerobico tra le azioni. La prevenzione deve focalizzarsi sull'assorbimento delle forze d'impatto nei salti ripetuti.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28362127/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Basketball"]
+    }
+  },
+  {
+    "id": "sci_team_ekstrand_2011",
+    "title": "Injury incidence and injury patterns in professional football: the UEFA injury study",
+    "authors": "Ekstrand, J., Hägglund, M., & Waldén, M.",
+    "journal": "British Journal of Sports Medicine",
+    "year": 2011,
+    "area": "Sport di Squadra",
+    "abstract": "Studio epidemiologico su grande scala condotto dall'UEFA che registra l'incidenza e i pattern di infortunio nel calcio professionistico in un decennio. Rivelato che le lesioni muscolari (hamstrings, adduttori, quadricipiti) e le distorsioni articolari (caviglia e ginocchio) costituiscono la maggioranza assoluta dei tempi di assenza. Evidenzia l'esigenza di programmi profilattici targetizzati sui gruppi muscolari maggiormente sollecitati.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21586354/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Calcio"]
+    }
+  },
+  {
+    "id": "sci_groin_thorborg_2018",
+    "title": "Effect of the Copenhagen Adduction exercise on groin injury risk in male football players: a cluster-randomised controlled trial",
+    "authors": "Harøy, J., Clarsen, B., Wiger, E. G., Øyen, M. G., Serner, A., Thorborg, K., Hölmich, P., Andersen, T. E., & Bahr, R.",
+    "journal": "British Journal of Sports Medicine",
+    "year": 2019,
+    "area": "Sport di Squadra",
+    "abstract": "Dimostra che l'introduzione dell'esercizio Copenhagen Adduction nel programma d'allenamento settimanale riduce del 41% il rischio di infortuni all'inguine nei calciatori maschi. L'esercizio incrementa in modo significativo la forza eccentrica degli adduttori dell'anca e ripristina il bilanciamento tra adduttori ed abduttori. Rappresenta lo standard d'oro per la prevenzione e la riabilitazione delle pubalgie e delle tendinopatia degli adduttori.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30413448/",
+    "rules": {
+      "patientTypes": ["Clinico", "Atleta"],
+      "injuries": ["groin_pain", "adductor_tendinopathy", "pubalgia"],
+      "sports": ["Sport di Squadra", "Calcio"]
+    }
+  },
+  {
+    "id": "sci_cod_donelon_2020",
+    "title": "Biomechanical determinants of knee joint loads during cutting manoeuvres in sporting populations: a systematic review",
+    "authors": "Donelon, T. A., Dos'Santos, T., Thomas, C., Comfort, P., & Jones, P. A.",
+    "journal": "Physical Therapy in Sport",
+    "year": 2020,
+    "area": "Sport di Squadra",
+    "abstract": "Esamina i determinanti biomeccanici che aumentano il carico sul ginocchio e il rischio lesionale del LCA durante le manovre di cambio di direzione (cutting). Evidenzia che un ampio angolo di inclinazione del tronco, una limitata flessione del ginocchio e un forte momento valgo aumentano drasticamente le forze di taglio. Il riaddestramento tecnico della postura durante le decelerazioni e le virate riduce lo stress articolare senza compromettere la velocità.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/32417711/",
+    "rules": {
+      "patientTypes": ["Clinico", "Atleta"],
+      "injuries": ["lesione_lca", "knee_generic"],
+      "sports": ["Sport di Squadra", "Calcio", "Basketball"]
+    }
+  },
+  {
+    "id": "sci_hamstring_timmins_2016",
+    "title": "Short biceps femoris long head fascicle length and eccentric knee flexor weakness increase the risk of hamstring injury in elite football players",
+    "authors": "Timmins, R. G., Bourne, M. N., Shield, A. J., Williams, M. D., Lorenzen, C., & Opar, D. A.",
+    "journal": "British Journal of Sports Medicine",
+    "year": 2016,
+    "area": "Sport di Squadra",
+    "abstract": "Dimostra mediante ecografia che una ridotta lunghezza dei fascicoli muscolari del capo lungo del bicipite femorale (< 10.5 cm) e una bassa forza eccentrica dei flessori del ginocchio aumentano in modo combinato fino a 4 volte il rischio di lesione agli hamstring nei calciatori. L'allenamento con carico eccentrico pesante allunga la struttura fascicolare muscolare e sposta la curva forza-lunghezza verso angoli articolari maggiori, proteggendo la muscolatura durante la fase di sprint terminale.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26672828/",
+    "rules": {
+      "patientTypes": ["Clinico", "Atleta"],
+      "injuries": ["hamstring_strain", "lesione_muscolare"],
+      "sports": ["Sport di Squadra", "Calcio"]
+    }
+  }
+]

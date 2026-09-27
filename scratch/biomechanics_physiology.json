@@ -1,0 +1,504 @@
+[
+  {
+    "id": "sci_biomech_komi_2000",
+    "title": "Stretch-shortening cycle: a powerful model to study normal and fatigued muscle structure and function",
+    "authors": "Komi, P. V.",
+    "journal": "Journal of Biomechanics",
+    "year": 2000,
+    "area": "Biomeccanica",
+    "abstract": "Il ciclo allungamento-accorciamento (SSC) sfrutta l'energia elastica immagazzinata nei tendini e i riflessi propriocettivi per aumentare l'efficienza meccano-funzionale. La fatica neuromuscolare riduce la rigidità tendinea e l'attivazione riflessa, compromettendo la capacità di tollerare elevati carichi d'impatto. L'allenamento pliometrico mirato ottimizza l'accoppiamento muscolo-tendineo e la tolleranza al carico neurale.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/10917766/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Atletica Leggera"],
+      "goals": ["Power", "Strength"]
+    }
+  },
+  {
+    "id": "sci_biomech_nigg_2001",
+    "title": "The role of impact forces and foot pronation: a new paradigm",
+    "authors": "Nigg, B. M.",
+    "journal": "Clinical Journal of Sport Medicine",
+    "year": 2001,
+    "area": "Biomeccanica",
+    "abstract": "Le forze d'impatto al suolo (GRF) e la pronazione del piede non costituiscono fattori di rischio di infortunio diretti, ma fungono da stimoli sensoriali per l'attivazione muscolare coordinata (accordatura muscolare). Il corpo regola l'attivazione neuromuscolare prima dell'impatto per minimizzare le vibrazioni dei tessuti molli. Un pre-attivazione muscolare adeguata riduce lo stress articolare e ottimizza la trasmissione delle forze.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/11176141/",
+    "rules": {
+      "patientTypes": ["Atleta", "Sedentario"],
+      "sports": ["Running", "Endurance"]
+    }
+  },
+  {
+    "id": "sci_biomech_enoka_1988",
+    "title": "Muscle strength and its development: new perspectives",
+    "authors": "Enoka, R. M.",
+    "journal": "Sports Medicine",
+    "year": 1988,
+    "area": "Biomeccanica",
+    "abstract": "Gli adattamenti della forza muscolare non dipendono esclusivamente dall'ipertrofia, ma da profonde riorganizzazioni del reclutamento delle unità motorie e della frequenza di scarica neurale. L'interazione cinetica tra gruppi muscolari richiede una coordinazione intermuscolare complessa che si sviluppa specificamente con i movimenti coordinati multiarticolari. La capacità del sistema nervoso di attivare agonisti e inibire antagonisti definisce la forza espressa.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/3057316/",
+    "rules": {
+      "patientTypes": ["Atleta", "Sedentario"],
+      "goals": ["Strength", "Power"]
+    }
+  },
+  {
+    "id": "sci_biomech_herzog_2004",
+    "title": "History-dependent properties of skeletal muscle: rheological properties and residual force enhancement",
+    "authors": "Herzog, W.",
+    "journal": "Journal of Electromyography and Kinesiology",
+    "year": 2004,
+    "area": "Biomeccanica",
+    "abstract": "La produzione di forza muscolare è fortemente influenzata dalla storia del movimento, come dimostrato dall'aumento di forza residuo (Residual Force Enhancement) dopo un allungamento attivo. La proteina titina agisce come molla molecolare regolabile che incrementa la rigidità muscolare durante la contrazione eccentrica. Questo meccanismo biomeccanico spiega l'elevata efficienza e capacità di carico del lavoro eccentrico.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15094144/",
+    "rules": {
+      "patientTypes": ["Atleta", "Clinico"],
+      "goals": ["Strength", "Hypertrophy"]
+    }
+  },
+  {
+    "id": "sci_biomech_zatsiorsky_2002",
+    "title": "Kinetics of Human Motion",
+    "authors": "Zatsiorsky, V. M.",
+    "journal": "Human Kinetics",
+    "year": 2002,
+    "area": "Biomeccanica",
+    "abstract": "Analisi approfondita della cinematica e della dinamica dei segmenti corporei, concentrandosi sulla distribuzione delle masse e sui momenti d'inerzia articolari. La comprensione dei momenti di forza articolari è essenziale per calcolare i carichi interni che agiscono su tendini e articolazioni durante gli esercizi con sovraccarico. La corretta traiettoria del bilanciere riduce i bracci di leva parassiti e massimizza l'efficienza meccanica del sollevamento.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/11932598/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Powerlifting", "Bodybuilding"],
+      "goals": ["Strength"]
+    }
+  },
+  {
+    "id": "sci_biomech_cavanagh_1980",
+    "title": "Ground reaction forces in distance running",
+    "authors": "Cavanagh, P. R., & Lafortune, M. A.",
+    "journal": "Journal of Biomechanics",
+    "year": 1980,
+    "area": "Biomeccanica",
+    "abstract": "Analisi delle componenti verticali e antero-posteriori delle forze di reazione del suolo (GRF) durante la corsa di resistenza. Il picco di impatto iniziale trasmette forze impulsive pari a 2-3 volte il peso corporeo attraverso la catena cinetica dell'arto inferiore. Il controllo della cadenza e del tipo di appoggio modifica la magnitudo del picco di impatto e la velocità di caricamento della forza.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/7400379/",
+    "rules": {
+      "patientTypes": ["Atleta", "Clinico"],
+      "sports": ["Running", "Endurance"]
+    }
+  },
+  {
+    "id": "sci_biomech_arampatzis_2006",
+    "title": "Influence of the muscle-tendon unit mechanical properties on mechanical efficiency in bouncing gait",
+    "authors": "Arampatzis, A., et al.",
+    "journal": "Journal of Experimental Biology",
+    "year": 2006,
+    "area": "Biomeccanica",
+    "abstract": "Le proprietà meccaniche dell'unità muscolo-tendinea, in particolare la rigidità del tendine d'Achille, dettano l'efficienza energetica della locomozione balistica. Un tendine con rigidità ottimale permette alle fibre muscolari di operare a velocità ridotte vicine all'optimum della relazione forza-velocità. Allenamenti isometrici ad alta intensità aumentano la rigidità tendinea migliorando il ritorno elastico.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16731809/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Atletica Leggera", "Endurance"],
+      "goals": ["Power"]
+    }
+  },
+  {
+    "id": "sci_biomech_ishikawa_2005",
+    "title": "Interaction between fascicle and tendinous tissue in short-contact stretch-shortening cycle exercise",
+    "authors": "Ishikawa, M., Niemelä, E., & Komi, P. V.",
+    "journal": "Journal of Applied Physiology",
+    "year": 2005,
+    "area": "Biomeccanica",
+    "abstract": "Durante movimenti ad alto impatto con tempi di contatto brevi, i fascicoli muscolari rimangono quasi isometrici mentre il tessuto tendineo subisce allungamento e rapido ritorno elastico. Questo comportamento disaccoppiato protegge le fibre muscolari da lesioni da allungamento eccessivo e riduce il costo metabolico della produzione di forza. La fatica altera questa interazione riducendo la capacità assorbente del tendine.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15890807/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Atletica Leggera"]
+    }
+  },
+  {
+    "id": "sci_biomech_deluca_2006",
+    "title": "Filtering the surface EMG signal: Movement artifact and baseline noise removal",
+    "authors": "De Luca, C. J., et al.",
+    "journal": "Journal of Electromyography and Kinesiology",
+    "year": 2006,
+    "area": "Biomeccanica",
+    "abstract": "L'elettromiografia di superficie (sEMG) è fondamentale per quantificare l'attivazione muscolare e l'insorgenza della fatica neuromuscolare durante l'esercizio. I segnali EMG riflettono la somma dei potenziali d'azione delle unità motorie e la loro frequenza di scarica sottostante. La corretta elaborazione del segnale permette di identificare le strategie di reclutamento muscolare e la coordinazione intermuscolare nei movimenti complessi.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16679036/",
+    "rules": {
+      "patientTypes": ["Atleta", "Clinico"],
+      "goals": ["Strength", "Rehab"]
+    }
+  },
+  {
+    "id": "sci_biomech_moritani_1979",
+    "title": "Neural factors versus hypertrophy in time course of muscle strength gain",
+    "authors": "Moritani, T., & deVries, H. A.",
+    "journal": "American Journal of Physical Medicine",
+    "year": 1979,
+    "area": "Biomeccanica",
+    "abstract": "Studio pietra miliare che ha separato i contributi neurali da quelli ipertrofici nel guadagno di forza muscolare. Nelle prime 3-5 settimane di allenamento con sovraccarichi, gli incrementi di forza sono prevalentemente dovuti all'aumento dell'attivazione elettromiografica (reclutamento e sincronizzazione delle unità motorie). L'ipertrofia strutturale diventa il fattore predominante solo nelle fasi successive dell'allenamento.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/443443/",
+    "rules": {
+      "patientTypes": ["Sedentario", "Atleta"],
+      "goals": ["Strength"]
+    }
+  },
+  {
+    "id": "sci_biomech_escamilla_2000",
+    "title": "Knee biomechanics during the squat exercise",
+    "authors": "Escamilla, R. F.",
+    "journal": "Medicine & Science in Sports & Exercise",
+    "year": 2000,
+    "area": "Biomeccanica",
+    "abstract": "Esame approfondito dei momenti articolari e delle forze di taglio al ginocchio durante l'esecuzione dello squat. Le forze compressive femoro-rotulee e tibio-femorali aumentano con l'aumentare dell'angolo di flessione del ginocchio, raggiungendo il picco a 90-130 gradi. Una posizione dei piedi moderatamente larga e una traiettoria controllata riducono le forze di taglio anteriori mantenendo alto il reclutamento del quadricipite e dei glutei.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/10776897/",
+    "rules": {
+      "patientTypes": ["Atleta", "Clinico"],
+      "sports": ["Powerlifting", "Bodybuilding"],
+      "injuries": ["knee_generic", "patellar_tendonitis"]
+    }
+  },
+  {
+    "id": "sci_biomech_lieber_2004",
+    "title": "Skeletal muscle design to meet functional demands",
+    "authors": "Lieber, R. L., & Fridén, J.",
+    "journal": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    "year": 2004,
+    "area": "Biomeccanica",
+    "abstract": "L'architettura muscolare, definita dalla lunghezza dei fascicoli, dall'angolo di pennazione e dall'area di sezione trasversale fisiologica (PCSA), determina la capacità funzionale del muscolo. Muscoli con pennazione elevata producono grandi forze a basse velocità, mentre muscoli con fascicoli lunghi sono specializzati nell'accorciamento rapido. L'allenamento eccentrico allunga i fascicoli muscolari spostando la curva forza-lunghezza verso lunghezze maggiori.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15519971/",
+    "rules": {
+      "patientTypes": ["Atleta", "Clinico"],
+      "goals": ["Hypertrophy", "Rehab"]
+    }
+  },
+  {
+    "id": "sci_biomech_gregersen_2006",
+    "title": "Biomechanics of cycling: loads on the spine, knee, and ankle",
+    "authors": "Gregersen, C. S., & Hull, M. L.",
+    "journal": "Journal of Biomechanical Engineering",
+    "year": 2006,
+    "area": "Biomeccanica",
+    "abstract": "Analisi cinematica e cinetica delle articolazioni dell'arto inferiore e della colonna vertebrale durante la pedalata. La flessione prolungata del tronco aumenta il momento di flessione sulla colonna lombare, mentre una regolazione errata della sella altera le forze patellofemorali al ginocchio. La biomeccanica del gesto ciclistico richiede un bilanciamento tra efficienza aerodinamica e prevenzione del sovraccarico articolare.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16706012/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Endurance", "Ciclismo"],
+      "injuries": ["lumbar_pain", "knee_generic"]
+    }
+  },
+  {
+    "id": "sci_biomech_samozino_2016",
+    "title": "Optimal Force-Velocity Profile in Ballistic Movements: Altius, Citius, Fortius",
+    "authors": "Samozino, P., et al.",
+    "journal": "Medicine & Science in Sports & Exercise",
+    "year": 2016,
+    "area": "Biomeccanica",
+    "abstract": "Esiste un profilo Forza-Velocità ottimale individuale che massimizza la prestazione di salto verticale indipendentemente dalla potenza massima espressa. Il deficit di forza o di velocità identifica lo sbilanciamento meccanico dell'atleta rispetto all'optimum teorico. L'allenamento orientato a colmare lo specifico deficit (con carichi pesanti o velocità elevate) produce miglioramenti prestazionali superiori rispetto all'allenamento generico.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26741119/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Atletica Leggera"],
+      "goals": ["Power", "Strength"]
+    }
+  },
+  {
+    "id": "sci_biomech_mcgill_2001",
+    "title": "Low back stability: mechanics, injury mechanisms, and rehabilitation",
+    "authors": "McGill, S. M.",
+    "journal": "Journal of Electromyography and Kinesiology",
+    "year": 2001,
+    "area": "Biomeccanica",
+    "abstract": "La stabilità della colonna lombare dipende dall'azione coordinata della muscolatura del tronco (effetto guy-wire) piuttosto che dalla forza di un singolo muscolo. I movimenti ripetuti di flessione lombare sotto carico elevato sono la causa primaria di prolasso e erniazione discale. L'adozione di esercizi a colonna neutrale e la co-attivazione dei muscoli addominali e spinali protegge i dischi intervertebrali minimizzando lo shear stress.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/11738952/",
+    "rules": {
+      "patientTypes": ["Clinico", "Sedentario"],
+      "injuries": ["lumbar_pain", "hernia_disk", "sensitive_back"]
+    }
+  },
+  {
+    "id": "sci_biomech_winter_1990",
+    "title": "Biomechanics and Motor Control of Human Movement",
+    "authors": "Winter, D. A.",
+    "journal": "John Wiley & Sons",
+    "year": 1990,
+    "area": "Biomeccanica",
+    "abstract": "Testo di riferimento fondamentale per la metodologia di analisi biomeccanica del movimento umano tramite cinematica 3D e dinamica inversa. Descrive il calcolo dei momenti articolari netti e del lavoro meccanico compiuto dai gruppi muscolari agonistici e antagonistici durante il cammino e la corsa. Fornisce le basi teoriche per la comprensione delle sinergie muscolari e della conservazione dell'energia meccanica.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/2275521/",
+    "rules": {
+      "patientTypes": ["Atleta", "Clinico"]
+    }
+  },
+  {
+    "id": "sci_biomech_cronin_2005",
+    "title": "Strength and power predictors of sports speed: deterministic modeling",
+    "authors": "Cronin, J., & Hansen, K. T.",
+    "journal": "Sports Medicine",
+    "year": 2005,
+    "area": "Biomeccanica",
+    "abstract": "Analisi delle correlazioni biomeccaniche tra forza massima, Rate of Force Development (RFD) e velocità di sprint su brevi distanze. La forza espressa in tempi inferiori a 100 ms è il determinante biomeccanico principale della fase di accelerazione nello sprint. Esercizi balistici e balistici con sovraccarico migliorano la produzione di potenza a tempi di contatto ridotti.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15799745/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Atletica Leggera"],
+      "goals": ["Power"]
+    }
+  },
+  {
+    "id": "sci_biomech_cormie_2011",
+    "title": "Developing maximal neuromuscular power: Part 1 - Biological basis of maximal power production",
+    "authors": "Cormie, P., McGuigan, M. R., & Newton, R. U.",
+    "journal": "Sports Medicine",
+    "year": 2011,
+    "area": "Biomeccanica",
+    "abstract": "Revisione sistematica sulle basi biologiche e biomeccaniche della massima potenza neuromuscolare. La potenza è il prodotto di forza e velocità, e il carico che massimizza la potenza varia in base alla struttura dell'esercizio e all'architettura muscolare coinvolta. Gli adattamenti neurali, come l'aumento della frequenza di scarica iniziale, giocano un ruolo dominante nell'esplosività.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21198305/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "goals": ["Power", "Strength"]
+    }
+  },
+  {
+    "id": "sci_physiol_tabata_1996",
+    "title": "Effects of moderate-intensity endurance and high-intensity intermittent training on anaerobic capacity and VO2max",
+    "authors": "Tabata, I., et al.",
+    "journal": "Medicine & Science in Sports & Exercise",
+    "year": 1996,
+    "area": "Fisiologia",
+    "abstract": "Dimostrazione che un protocollo ad altissima intensità ad intervalli (20s sforzo a 170% VO2max, 10s pausa per 4 minuti) migliora contemporaneamente la capacità aerobica (VO2max) e la capacità anaerobica lattacida. Il debito di ossigeno accumulato durante le frazioni di lavoro stimola sia il reclutamento delle fibre veloci che gli adattamenti cardiovascolari periferici. Rappresenta il benchmark fisiologico per l'allenamento HIIT ad alta densità.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/8897392/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Endurance"],
+      "goals": ["Power", "Endurance"]
+    }
+  },
+  {
+    "id": "sci_physiol_bangsbo_1994",
+    "title": "Physiological response to intermittent exercise",
+    "authors": "Bangsbo, J.",
+    "journal": "International Journal of Sports Medicine",
+    "year": 1994,
+    "area": "Fisiologia",
+    "abstract": "Analisi della cinetica del lattato e del consumo di ossigeno durante l'esercizio intermittente ad alta intensità tipico dei giochi di squadra. Durante le pause di recupero attivo o passivo, il ripristino della fosfocreatina (PCr) e la rimozione del lattato dipendono fortemente dalla capacità ossidativa mitocondriale. Un'elevata potenza aerobica di base accelera il recupero tra sprint ripetuti.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/7851956/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra"]
+    }
+  },
+  {
+    "id": "sci_physiol_buchheit_2013",
+    "title": "High-intensity interval training, solutions to the programming puzzle: Part I: cardiopulmonary / neuromuscular responses",
+    "authors": "Buchheit, M., & Laursen, P. B.",
+    "journal": "Sports Medicine",
+    "year": 2013,
+    "area": "Fisiologia",
+    "abstract": "Framework fisiologico per la programmazione dell'allenamento ad intervalli ad alta intensità (HIIT). Per ottimizzare gli adattamenti cardiocircolatori è necessario stimolare il sistema a percentuali prossime al VO2max (vVO2max) per un tempo accumulato sufficiente. La manipolazione di durata dell'intervallo, intensità e tipo di recupero regola accuratamente il carico neuromuscolare e metabolico.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23539308/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Endurance"]
+    }
+  },
+  {
+    "id": "sci_physiol_izquierdo_2006",
+    "title": "Differential effects of strength training leading to failure versus not to failure on hormonal responses, strength, and muscle power",
+    "authors": "Izquierdo, M., et al.",
+    "journal": "Journal of Applied Physiology",
+    "year": 2006,
+    "area": "Fisiologia",
+    "abstract": "Confronto tra allenamento con sovraccarichi condotto a cedimento muscolare e non a cedimento. L'allenamento costantemente a cedimento provoca una soppressione prolungata delle concentrazioni basali di IGF-1 e un aumento del cortisolo a riposo, inducendo fatica neuromuscolare cronica. Evitare il cedimento sistematico permette di mantenere più elevate le capacità di potenza ed esplosività.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16672361/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Sport di Squadra", "Powerlifting"],
+      "goals": ["Power", "Strength"]
+    }
+  },
+  {
+    "id": "sci_physiol_wasserman_1973",
+    "title": "Anaerobic threshold and respiratory gas exchange during exercise",
+    "authors": "Wasserman, K., et al.",
+    "journal": "Journal of Applied Physiology",
+    "year": 1973,
+    "area": "Fisiologia",
+    "abstract": "Articolo storico che ha introdotto il concetto di soglia anaerobica (soglia ventilatoria) determinata attraverso lo scambio dei gas respiratori. Identifica il punto di intensità dell'esercizio in cui la produzione di acido lattico supera la capacità di tampone ematico, causando un aumento sproporzionato della ventilazione. Fondamentale per la personalizzazione delle zone di allenamento aerobico.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/4761272/",
+    "rules": {
+      "patientTypes": ["Atleta", "Sedentario", "Clinico"],
+      "sports": ["Endurance", "Running"]
+    }
+  },
+  {
+    "id": "sci_physiol_brooks_1986",
+    "title": "The lactate shuttle: carbohydrate metabolism during exercise",
+    "authors": "Brooks, G. A.",
+    "journal": "Medicine & Science in Sports & Exercise",
+    "year": 1986,
+    "area": "Fisiologia",
+    "abstract": "Introduzione della teoria del Lactate Shuttle, che ha rivoluzionato la comprensione del metabolismo del lattato. Il lattato non è un semplice sottoprodotto di scarto della glicolisi anaerobica, ma un importante substrato energetico e una molecola di segnalazione che viene trasportata dalle fibre glicolitiche a quelle ossidative (e al cuore e cervello) per essere ossidato.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/3523107/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Endurance", "Running", "Ciclismo"]
+    }
+  },
+  {
+    "id": "sci_physiol_seiler_2006",
+    "title": "Autonomic recovery after exercise in trained athletes: intensity and duration effects",
+    "authors": "Seiler, S., Haugen, O., & Kuffel, E.",
+    "journal": "Medicine & Science in Sports & Exercise",
+    "year": 2006,
+    "area": "Fisiologia",
+    "abstract": "Studio sull'impatto dell'intensità dell'allenamento sul ripristino dell'equilibrio autonomico tramite la variabilità della frequenza cardiaca (HRV). Sessioni eseguite al di sotto della prima soglia lattacida (LT1) provocano uno stress autonomo minimo e consentono un rapido recupero simpato-vagale. Sessioni sopra la soglia anaerobica richiedono tempi di recupero significativamente più lunghi.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16888457/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Endurance"],
+      "goals": ["Endurance"]
+    }
+  },
+  {
+    "id": "sci_physiol_gibala_2006",
+    "title": "Short-term sprint interval training increases human skeletal muscle oxidative capacity and endurance performance",
+    "authors": "Gibala, M. J., et al.",
+    "journal": "Journal of Physiology",
+    "year": 2006,
+    "area": "Fisiologia",
+    "abstract": "Dimostrazione che un basso volume di sprint interval training (SIT, es. 4-6 sprint Wingate di 30 secondi) induce aumenti nella capacità ossidativa muscolare (enzima citrato sintasi) e nel contenuto di glicogeno equivalenti a sessioni tradizionali di endurance ad alto volume. Dimostra l'efficienza temporale degli stimoli ad altissima intensità negli adattamenti mitocondriali.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16973704/",
+    "rules": {
+      "patientTypes": ["Atleta", "Sedentario"],
+      "goals": ["Endurance", "WeightLoss"]
+    }
+  },
+  {
+    "id": "sci_physiol_gollnick_1972",
+    "title": "Enzyme activity and fiber composition in skeletal muscle of untrained and trained men",
+    "authors": "Gollnick, P. D., et al.",
+    "journal": "Journal of Applied Physiology",
+    "year": 1972,
+    "area": "Fisiologia",
+    "abstract": "Studio classico sul profilo enzimatico e la tipizzazione delle fibre muscolari nell'uomo. Mostra che l'allenamento di resistenza aumenta drasticamente l'attività degli enzimi ossidativi del ciclo di Krebs (come succinato deidrogenasi) sia nelle fibre di Tipo I che di Tipo II, dimostrando la notevole plasticità metabolica del muscolo scheletrico in risposta allo stress fisiologico.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/5075868/",
+    "rules": {
+      "patientTypes": ["Atleta", "Sedentario"],
+      "sports": ["Endurance"]
+    }
+  },
+  {
+    "id": "sci_physiol_hawley_2014",
+    "title": "Integrative biology of exercise",
+    "authors": "Hawley, J. A., Hargreaves, M., Joyner, M. J., & Zierath, J. R.",
+    "journal": "Cell",
+    "year": 2014,
+    "area": "Fisiologia",
+    "abstract": "Revisione di alto livello sulle vie di segnalazione molecolare attivate dall'esercizio fisico. L'aumento del calcio intracellulare, il rapporto AMP/ATP e lo stress meccanico attivano chinasi chiave come AMPK e PGC-1alfa, regolatrici primarie della biogenesi mitocondriale e dell'assunzione di glucosio GLUT4. Evidenzia la specificità cellulare della risposta all'allenamento.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/25417157/",
+    "rules": {
+      "patientTypes": ["Atleta", "Sedentario"]
+    }
+  },
+  {
+    "id": "sci_physiol_millet_2011",
+    "title": "Neuromuscular fatigue in ultra-endurance exercise",
+    "authors": "Millet, G. Y.",
+    "journal": "Sports Medicine",
+    "year": 2011,
+    "area": "Fisiologia",
+    "abstract": "Analisi dell'origine della fatica neuromuscolare negli sforzi di ultra-endurance. Nelle gare di lunga durata, la riduzione della forza massima è causata prevalentemente da fatica centrale (diminuzione del drive motorio cerebrale e spinale) e dall'alterazione dell'accoppiamento eccitazione-contrazione nei ponti trasversi. La protezione articolare e il mantenimento dell'attivazione neurale diventano prioritari.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22082073/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Endurance"],
+      "goals": ["Endurance"]
+    }
+  },
+  {
+    "id": "sci_physiol_fry_1997",
+    "title": "Overtraining in athletes: an update",
+    "authors": "Fry, A. C., & Kraemer, W. J.",
+    "journal": "Sports Medicine",
+    "year": 1997,
+    "area": "Fisiologia",
+    "abstract": "Esame dei meccanismi neuroendocrini e fisiologici della sindrome da sovrallenamento (Overtraining Syndrome). L'allenamento ad intensità eccessiva senza adeguato recupero altera l'asse ipotalamo-ipofisi-surrene, riduce i livelli di testosterone e degrada la risposta simpatica. Sottolinea l'importanza della periodizzazione e del monitoraggio del carico di lavoro.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/9068094/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "goals": ["Strength", "Endurance"]
+    }
+  },
+  {
+    "id": "sci_physiol_schoenfeld_2016",
+    "title": "Dose-response relationship between weekly resistance training volume and increases in muscle mass: A systematic review and meta-analysis",
+    "authors": "Schoenfeld, B. J., Ogborn, D., & Krieger, J. W.",
+    "journal": "Journal of Sports Sciences",
+    "year": 2016,
+    "area": "Fisiologia",
+    "abstract": "Meta-analisi che dimostra una relazione dose-risposta tra il volume di allenamento settimanale (numero di serie per gruppo muscolare) e l'ipertrofia muscolare. Protocolli con 10 o più serie settimanali per gruppo muscolare producono guadagni di massa muscolare significativamente superiori rispetto a volumi più bassi. Il volume è un driver primario dell'ipertrofia quando l'intensità è controllata.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27433960/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Bodybuilding"],
+      "goals": ["Hypertrophy"]
+    }
+  },
+  {
+    "id": "sci_physiol_morton_2018",
+    "title": "A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults",
+    "authors": "Morton, R. W., et al.",
+    "journal": "British Journal of Sports Medicine",
+    "year": 2018,
+    "area": "Fisiologia",
+    "abstract": "Studio di sintesi sull'impatto dell'apporto proteico sugli adattamenti muscolari e di forza durante l'allenamento contro resistenza. L'assunzione complessiva di proteine fino a ~1.6 g/kg/giorno ottimizza l'ipertrofia e i guadagni di forza indotti dall'allenamento, con benefici trascurabili oltre questa soglia nei soggetti sani. La disponibilità amminoacidica è necessaria per sostenere la sintesi proteica muscolare indotta dal carico meccanico.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28698222/",
+    "rules": {
+      "patientTypes": ["Atleta", "Sedentario"],
+      "goals": ["Hypertrophy", "Strength"]
+    }
+  },
+  {
+    "id": "sci_physiol_gundersen_2016",
+    "title": "Muscle memory and a new cellular model for sarcopenia and atrophy",
+    "authors": "Gundersen, K.",
+    "journal": "Journal of Experimental Biology",
+    "year": 2016,
+    "area": "Fisiologia",
+    "abstract": "Presentazione del modello cellulare della memoria muscolare basato sull'acquisizione permanente di mionuclei durante l'ipertrofia. Quando le fibre muscolari vanno incontro ad atrofia per inattività o disuso, i mionuclei acquisiti rimangono intatti all'interno del sincizio muscolare. Ciò consente un rapido ri-apprendimento e ri-accrescimento della massa muscolare quando l'allenamento viene ripreso.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26792335/",
+    "rules": {
+      "patientTypes": ["Atleta", "Clinico", "Sedentario"],
+      "goals": ["Hypertrophy", "Rehab"]
+    }
+  },
+  {
+    "id": "sci_physiol_tesch_1986",
+    "title": "Muscle metabolism during intense resistance exercise",
+    "authors": "Tesch, P. A., et al.",
+    "journal": "European Journal of Applied Physiology and Occupational Physiology",
+    "year": 1986,
+    "area": "Fisiologia",
+    "abstract": "Caratterizzazione delle risposte metaboliche intramuscolari durante sessioni di allenamento con manubri e bilancieri ad alta intensità. L'esercizio intenso contro resistenza causa una drastica deplezione del glicogeno muscolare e della fosfocreatina, accompagnata da un marcato accumulo di lattato e idrogenioni intracellulari. La risposta glicolitica è essenziale per sostenere le contrazioni ad alto sforzo.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/3770020/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Bodybuilding", "Powerlifting"],
+      "goals": ["Hypertrophy", "Strength"]
+    }
+  },
+  {
+    "id": "sci_physiol_joyner_2008",
+    "title": "Endurance exercise performance: the physiology of champions",
+    "authors": "Joyner, M. J., & Coyle, E. F.",
+    "journal": "Journal of Physiology",
+    "year": 2008,
+    "area": "Fisiologia",
+    "abstract": "Revisione dei tre principali determinanti fisiologici della prestazione negli sport di endurance: il consumo massimo di ossigeno (VO2max), la percentuale di VO2max sostenibile alla soglia lattacida (LT) e l'efficienza grossolana o economia del movimento (Running/Cycling Economy). L'interazione integrata di questi tre fattori definisce la capacità prestazionale dell'atleta d'élite.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17991697/",
+    "rules": {
+      "patientTypes": ["Atleta"],
+      "sports": ["Endurance", "Running", "Ciclismo"],
+      "goals": ["Endurance"]
+    }
+  }
+]

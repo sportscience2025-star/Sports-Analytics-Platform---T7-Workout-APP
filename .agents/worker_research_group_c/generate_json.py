@@ -1,0 +1,445 @@
+import json
+
+sources = [
+    # --- CLINICO (14) ---
+    {
+        "id": "sci_acl_kyritsis_2016",
+        "title": "Likelihood of ACL graft rupture: not meeting six clinical discharge criteria before return to sport is associated with a four times greater risk of rupture",
+        "authors": "Kyritsis, P., Bahr, R., Landreau, P., Miladi, R., & Witvrouw, E.",
+        "journal": "British Journal of Sports Medicine",
+        "year": 2016,
+        "area": "Clinico",
+        "abstract": "Studio clinico prospettico fondamentale che dimostra come il mancato superamento di sei criteri oggettivi di dimissione clinica (forza isocinetica dei quadricipiti con simmetria >90%, quattro test di salto monopodalico con LSI >90%, e completamento di test di agilità sul campo) prima del ritorno allo sport quadruplica il rischio di nuova rottura del trapianto di LCA. Per ogni mese di ritardo nel ritorno allo sport fino a nove mesi dall'intervento, il tasso di re-infortunio si riduce del 51%. La riabilitazione deve abbandonare criteri basati unicamente sul tempo per adottare verifiche funzionali basate su criteri quantitativi.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27215935/",
+        "rules": {
+            "patientTypes": ["Clinico", "Atleta"],
+            "sports": ["Sport di Squadra", "Calcio"],
+            "goals": ["Rehab"],
+            "injuries": ["lesione_lca", "post_op_lca", "knee_generic"]
+        }
+    },
+    {
+        "id": "sci_hamstring_askling_2013",
+        "title": "Acute hamstring injuries in Swedish elite football: a prospective randomised controlled clinical trial comparing two rehabilitation protocols",
+        "authors": "Askling, C. M., Tengvar, M., & Thorstensson, A.",
+        "journal": "British Journal of Sports Medicine",
+        "year": 2013,
+        "area": "Clinico",
+        "abstract": "Trial clinico randomizzato prospettico che confronta due protocolli riabilitativi per lesioni acute dei flessori del ginocchio nel calcio professionistico: il protocollo L (focalizzato sull'allungamento eccentrico e contrazioni a lunghezze muscolari estreme: Extender, Diver, Glider) rispetto al protocollo convenzionale C. Il gruppo del protocollo L ha mostrato un tempo significativamente inferiore per il ritorno al gioco (media 28 giorni vs 51 giorni) senza aumento del tasso di recidiva. Il carico eccentrico a lunghezze elevate è cruciale per la riparazione strutturale e il ripristino dell'angolo di picco di coppia.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23536466/",
+        "rules": {
+            "patientTypes": ["Clinico", "Atleta"],
+            "sports": ["Calcio", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Rehab"],
+            "injuries": ["hamstring_strain", "lesione_muscolare", "thigh_strain"]
+        }
+    },
+    {
+        "id": "sci_hamstring_mendiguchia_2017",
+        "title": "A Multifactorial, Criteria-based Progressive Algorithm for Hamstring Injury Treatment",
+        "authors": "Mendiguchia, J., Martinez-Ruiz, E., Edouard, P., Morin, J. B., Martinez-Martinez, F., Idoate, F., & Mendez-Villanueva, A.",
+        "journal": "Medicine & Science in Sports & Exercise",
+        "year": 2017,
+        "area": "Clinico",
+        "abstract": "Studio prospettico controllato che valida un algoritmo progressivo multifattoriale per la riabilitazione delle lesioni agli ischiocrurali, strutturato su criteri oggettivi e mirato a correggere i deficit specifici: forza eccentrica del bicipite femorale, controllo lombo-pelvico, flessibilità attiva e meccanica di sprint ad alta velocità. Gli atleti riabilitati con questo protocollo hanno mostrato una riduzione statisticamente significativa del tempo di ritorno allo sport e un tasso di recidiva a 6 mesi dimezzato rispetto ai controlli convenzionali.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28277402/",
+        "rules": {
+            "patientTypes": ["Clinico", "Atleta"],
+            "sports": ["Calcio", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Rehab"],
+            "injuries": ["hamstring_strain", "lesione_muscolare"]
+        }
+    },
+    {
+        "id": "sci_tendon_kongsgaard_2009",
+        "title": "Corticosteroid injections, eccentric decline squat training and heavy slow resistance training in patellar tendinopathy",
+        "authors": "Kongsgaard, M., Kovanen, V., Aagaard, P., Doessing, S., Hansen, P., Laursen, A. H., Kaldau, N. C., Longo, U. F., Heinemeier, K. M., & Kjaer, M.",
+        "journal": "Scandinavian Journal of Medicine & Science in Sports",
+        "year": 2009,
+        "area": "Clinico",
+        "abstract": "Trial clinico randomizzato di riferimento che ha introdotto il concetto di Heavy Slow Resistance (HSR) nel trattamento della tendinopatia rotulea, confrontandolo con squat eccentrico su piano inclinato e iniezioni di corticosteroidi. A 6 mesi di follow-up, sia l'HSR (3 serie da 6-15 RM al 70-85% 1RM con cadenza 3s concentrica e 3s eccentrica) che l'allenamento eccentrico hanno mostrato miglioramenti clinici superiori e duraturi rispetto ai corticosteroidi. Tuttavia, solo il protocollo HSR ha indotto un significativo aumento della sintesi di collagene e un rimodellamento positivo della matrice tendinea e della vascolarizzazione anomala, risultando maggiormente tollerato dai pazienti.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19793213/",
+        "rules": {
+            "patientTypes": ["Clinico", "Atleta"],
+            "sports": ["Sport di Squadra", "Basketball", "Atletica Leggera"],
+            "goals": ["Rehab", "Strength"],
+            "injuries": ["patellar_tendonitis", "tendinopatia_rotulea", "tendon_generic"]
+        }
+    },
+    {
+        "id": "sci_tendon_beyer_2015",
+        "title": "Heavy Slow Resistance Versus Eccentric Training as Treatment for Achilles Tendinopathy: A Randomized Controlled Trial",
+        "authors": "Beyer, R., Kongsgaard, M., Hougs Kjær, B., Øhlenschlæger, T., Kjær, M., & Magnusson, S. P.",
+        "journal": "The American Journal of Sports Medicine",
+        "year": 2015,
+        "area": "Clinico",
+        "abstract": "Studio controllato randomizzato che confronta l'allenamento eccentrico tradizionale (protocollo Alfredson: 180 ripetizioni al giorno, 7 giorni su 7) con l'Heavy Slow Resistance (HSR: 3 sedute settimanali con carichi progressivi dal 15RM al 6RM su calf raise seduto e in piedi) in pazienti con tendinopatia achillea cronica inserzionale e della porzione media. Entrambi i gruppi hanno ottenuto miglioramenti sovrapponibili nel punteggio VISA-A a 12 settimane e a 1 anno, ma il gruppo HSR ha riportato una soddisfazione del paziente significativamente superiore (100% vs 80%) e una maggiore aderenza alla terapia grazie al minor volume giornaliero e alla maggiore stimolazione meccanica del tessuto connettivo.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26018970/",
+        "rules": {
+            "patientTypes": ["Clinico", "Atleta"],
+            "sports": ["Endurance", "Atletica Leggera", "Sport di Squadra"],
+            "goals": ["Rehab", "Strength"],
+            "injuries": ["achilles_tendonitis", "tendinopatia", "tendon_generic"]
+        }
+    },
+    {
+        "id": "sci_shoulder_holmgren_2014",
+        "title": "Effect of specific exercise strategy on need for surgery in patients with subacromial impingement syndrome: randomised controlled study",
+        "authors": "Holmgren, T., Hallgren, H. B., Öberg, B., Adolfsson, L., & Johansson, K.",
+        "journal": "British Journal of Sports Medicine",
+        "year": 2014,
+        "area": "Clinico",
+        "abstract": "Trial clinico randomizzato pragmatico che dimostra come un programma di esercizi mirato al rinforzo eccentrico dei rotatori della cuffia e alla stabilità periscapolare riduca significativamente la necessità di intervento chirurgico di decompressione subacromiale nei pazienti con conflitto subacromiale persistente. L'intervento basato su carichi progressivi ed esercizi mirati al trapezio inferiore e al dentato anteriore ha prodotto miglioramenti clinici marcati e duraturi nel dolore e nella funzione a 1 anno di follow-up rispetto a un programma di controllo aspecifico, evitando la chirurgia nell'80% dei partecipanti.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25213604/",
+        "rules": {
+            "patientTypes": ["Clinico", "Atleta"],
+            "sports": ["Bodybuilding", "Sport di Squadra"],
+            "goals": ["Rehab", "Strength"],
+            "injuries": ["shoulder_impingement", "rotator_cuff", "scapular_dyskinesis"]
+        }
+    },
+    {
+        "id": "sci_spine_saragiotto_2016",
+        "title": "Motor control exercise for chronic non-specific low-back pain",
+        "authors": "Saragiotto, B. T., Maher, C. G., Yamato, T. P., Costa, L. O., Menezes Costa, L. C., Ostelo, R. W., & Macedo, L. G.",
+        "journal": "Cochrane Database of Systematic Reviews",
+        "year": 2016,
+        "area": "Clinico",
+        "abstract": "Revisione sistematica Cochrane con meta-analisi che valuta l'efficacia degli esercizi di controllo motorio (MCE) nei pazienti con lombalgia cronica non specifica. L'intervento focalizzato sulla riattivazione selettiva dei muscoli stabilizzatori profondi (trasverso dell'addome, multifido lombare e pavimento pelvico) e sulla successiva integrazione funzionale in catene cinetiche complesse produce miglioramenti clinicamente rilevanti del dolore e della disabilità a breve, medio e lungo termine rispetto a terapie passive o cure minime, risultando un pilastro essenziale nella riabilitazione vertebrale.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26742533/",
+        "rules": {
+            "patientTypes": ["Clinico"],
+            "goals": ["Rehab"],
+            "injuries": ["lumbar_pain", "low_back_pain", "hernia_disk", "sensitive_back", "spine_generic"]
+        }
+    },
+    {
+        "id": "sci_spine_foster_2018",
+        "title": "Prevention and treatment of low back pain: evidence, challenges, and promising directions",
+        "authors": "Foster, N. E., Anema, J. R., Cherkin, D., Chou, R., Cohen, S. P., Gross, D. P., Ferreira, P. H., et al.",
+        "journal": "The Lancet",
+        "year": 2018,
+        "area": "Clinico",
+        "abstract": "Pubblicazione cardine della serie Lancet sul Low Back Pain che sintetizza le linee guida internazionali basate sull'evidenza. Gli autori condannano l'abuso di riposo a letto, imaging precoce, oppioidi e chirurgia non necessaria, stabilendo che la terapia di prima linea assoluta per la lombalgia cronica deve essere l'esercizio fisico attivo combinato con l'educazione biopsicosociale e il mantenimento delle normali attività quotidiane. I programmi di ricondizionamento progressivo, forza ed endurance del tronco mostrano il più elevato rapporto costo-efficacia e la massima prevenzione delle recidive.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29573872/",
+        "rules": {
+            "patientTypes": ["Clinico", "Atleta"],
+            "goals": ["Rehab"],
+            "injuries": ["lumbar_pain", "low_back_pain", "hernia_disk", "sensitive_back", "spine_generic"]
+        }
+    },
+    {
+        "id": "sci_knee_fransen_2015",
+        "title": "Exercise for osteoarthritis of the knee: a Cochrane systematic review",
+        "authors": "Fransen, M., McConnell, S., Harmer, A. R., Van der Esch, M., Simic, M., & Bennell, K. L.",
+        "journal": "British Journal of Sports Medicine",
+        "year": 2015,
+        "area": "Clinico",
+        "abstract": "Sintesi della revisione sistematica Cochrane che include 54 trial clinici randomizzati e oltre 3900 pazienti, confermando con elevata qualità dell'evidenza che l'esercizio terapeutico per il ginocchio (rinforzo muscolare dei quadricipiti, mobilità articolare ed esercizio aerobico a basso impatto) riduce significativamente il dolore e migliora la qualità della vita e la funzionalità articolare nei pazienti con osteoartrite del ginocchio. I benefici analgesici e funzionali dell'esercizio strutturato sono equiparabili a quelli dei FANS ma con un profilo di sicurezza incomparabilmente superiore e assenza di effetti collaterali sistemici.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26405113/",
+        "rules": {
+            "patientTypes": ["Clinico"],
+            "goals": ["Rehab", "Strength"],
+            "injuries": ["knee_generic", "patellofemoral"]
+        }
+    },
+    {
+        "id": "sci_groin_holmich_1999",
+        "title": "Effectiveness of active physical training as treatment for long-standing adductor-related groin pain in athletes: randomised trial",
+        "authors": "Hölmich, P., Uhrskou, P., Ulnits, L., Kanstrup, I. L., Bachmann Nielsen, M., Bjerg, A. M., & Krogsgaard, M.",
+        "journal": "The Lancet",
+        "year": 1999,
+        "area": "Clinico",
+        "abstract": "Trial clinico randomizzato pionieristico pubblicato su The Lancet che ha rivoluzionato il trattamento della pubalgia e del dolore inguinale cronico correlato agli adduttori negli atleti. Lo studio ha confrontato un programma di allenamento fisico attivo (esercizi isometrici ed eccentrici per gli adduttori, rinforzo degli addominali, stabilità pelvica e coordinazione posturale senza elettroterapia) rispetto alla fisioterapia passiva convenzionale. Il 79% degli atleti nel gruppo di esercizio attivo è tornato con successo allo sport agonistico senza dolore, contro solo il 14% del gruppo di terapia passiva, dimostrando che il carico meccanico mirato è indispensabile per la risoluzione dell'entesopatia adduttoria.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/9989713/",
+        "rules": {
+            "patientTypes": ["Clinico", "Atleta"],
+            "sports": ["Calcio", "Sport di Squadra"],
+            "goals": ["Rehab", "Strength"],
+            "injuries": ["groin_pain", "adductor_tendinopathy", "pubalgia"]
+        }
+    },
+    {
+        "id": "sci_ankle_vuurberg_2018",
+        "title": "Diagnosis, treatment and prevention of ankle sprains: update of an evidence-based clinical guideline",
+        "authors": "Vuurberg, G., Hoorntje, A., Wink, L. M., van der Doelen, B. F. W., van den Bekerom, M. P., Dekker, R., et al.",
+        "journal": "British Journal of Sports Medicine",
+        "year": 2018,
+        "area": "Clinico",
+        "abstract": "Linea guida clinica internazionale della Dutch Association of Sports Medicine e approvata dal BJSM sulla gestione delle distorsioni laterali di caviglia e dell'instabilità cronica. Il panel raccomanda fortemente l'avvio precoce di mobilizzazione attiva e carico tollerato supportato da tutore funzionale, sconsigliando l'immobilizzazione rigida prolungata oltre i 10 giorni. L'allenamento neuromuscolare e propriocettivo combinato con esercizi di forza dinamica per i peronieri e la catena cinetica riduce del 40-50% il rischio di distorsioni ricorrenti e instabilità cronica di caviglia negli atleti.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29514819/",
+        "rules": {
+            "patientTypes": ["Clinico", "Atleta"],
+            "sports": ["Sport di Squadra", "Basketball", "Calcio"],
+            "goals": ["Rehab"],
+            "injuries": ["ankle_sprain", "ankle_instability"]
+        }
+    },
+    {
+        "id": "sci_acl_buckthorpe_2020",
+        "title": "Optimising the 'Mid-Stage' Training and Testing Process After ACL Reconstruction",
+        "authors": "Buckthorpe, M., & Della Villa, F.",
+        "journal": "Sports Medicine",
+        "year": 2020,
+        "area": "Clinico",
+        "abstract": "Revisione clinico-metodologica fondamentale sulla fase intermedia (mid-stage) della riabilitazione post-ricostruzione del legamento crociato anteriore. Gli autori identificano come priorità assoluta il recupero completo dell'ipertrofia e della forza massimale del quadricipite (con enfasi su carichi pesanti in catena cinetica aperta e chiusa tra 90° e 45°), la re-atletizzazione delle capacità di frenata e decelerazione eccentrica, e lo sviluppo della stiffness tendinea. Vengono stabiliti criteri oggettivi di progressione basati su forza isometrica, dinamometria e simmetria cinematica prima di passare alla fase sul campo.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31782065/",
+        "rules": {
+            "patientTypes": ["Clinico", "Atleta"],
+            "sports": ["Calcio", "Sport di Squadra", "Basketball"],
+            "goals": ["Rehab", "Strength", "Power"],
+            "injuries": ["lesione_lca", "post_op_lca", "knee_generic"]
+        }
+    },
+    {
+        "id": "sci_tendon_malliaras_2015",
+        "title": "Patellar Tendinopathy: Clinical Diagnosis, Load Management, and Advice for Challenging Case Presentations",
+        "authors": "Malliaras, P., Cook, J., Purdam, C., & Rio, E.",
+        "journal": "Journal of Orthopaedic & Sports Physical Therapy",
+        "year": 2015,
+        "area": "Clinico",
+        "abstract": "Guida clinica di riferimento per la gestione e la progressione di carico nella tendinopatia rotulea nell'atleta. Si articola una progressione in quattro fasi basata sull'irritabilità tissutale: 1) contrazioni isometriche prolungate pesanti (45 secondi al 70% MVC) per indurre analgesia immediata e abbassare l'inibizione corticale; 2) carico isotonico lento pesante (HSR) concentrico-eccentrico per stimolare l'adattamento della matrice; 3) accumulo di energia elastica e ciclo allungamento-accorciamento (salti progressivi); 4) ritorno specifico allo sport con carichi pliometrici ad alta intensità e monitoraggio del dolore nelle 24 ore successive.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26390269/",
+        "rules": {
+            "patientTypes": ["Clinico", "Atleta"],
+            "sports": ["Basketball", "Sport di Squadra", "Atletica Leggera"],
+            "goals": ["Rehab", "Power"],
+            "injuries": ["patellar_tendonitis", "tendinopatia_rotulea", "tendon_generic"]
+        }
+    },
+    {
+        "id": "sci_tendon_silbernagel_2011",
+        "title": "The majority of patients with Achilles tendinopathy recover fully when treated with exercise alone: a 5-year follow-up",
+        "authors": "Silbernagel, K. G., Brorsson, A., & Lundberg, M.",
+        "journal": "The American Journal of Sports Medicine",
+        "year": 2011,
+        "area": "Clinico",
+        "abstract": "Studio clinico prospettico longitudinale con follow-up a 5 anni che dimostra l'eccellente prognosi a lungo termine della tendinopatia achillea trattata con un modello di progressione dell'esercizio basato sul monitoraggio del dolore (pain-monitoring model: dolore tollerabile fino a 5/10 durante o dopo l'esercizio che regredisce entro la mattina seguente). Il 94% dei pazienti ha mantenuto il recupero clinico e funzionale completo senza ricorrere a chirurgia o terapie invasive, confermando che il continuo stimolo meccanico controllato preserva la capacità di carico del tendine e previene le ricadute nel tempo.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21084657/",
+        "rules": {
+            "patientTypes": ["Clinico", "Atleta"],
+            "sports": ["Endurance", "Atletica Leggera", "Sport di Squadra"],
+            "goals": ["Rehab"],
+            "injuries": ["achilles_tendonitis", "tendinopatia", "tendon_generic"]
+        }
+    },
+
+    # --- SPORT DI SQUADRA (14) ---
+    {
+        "id": "sci_team_cummins_2013",
+        "title": "Global positioning systems (GPS) and microtechnology sensors in team sports: a systematic review",
+        "authors": "Cummins, C., Orr, R., O'Connor, H., & West, C.",
+        "journal": "Sports Medicine",
+        "year": 2013,
+        "area": "Sport di Squadra",
+        "abstract": "Revisione sistematica esaustiva sull'affidabilità, validità e applicazione pratica dei sistemi GPS e dei sensori inerziali (microtecnologia con accelerometri triassiali) nel monitoraggio del carico esterno negli sport di squadra (rugby, calcio, football australiano). Gli autori evidenziano come frequenze di campionamento di 10-15 Hz siano necessarie per quantificare con precisione accelerazioni, decelerazioni e cambi di direzione repentini, identificando le metriche cinematiche chiave per calibrare il carico competitivo, prevenire il sovrallenamento e guidare le fasi di return-to-play.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23812857/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Sport di Squadra", "Calcio", "Basketball"],
+            "goals": ["Resistenza", "Power"]
+        }
+    },
+    {
+        "id": "sci_team_harper_2019_demands",
+        "title": "High-Intensity Acceleration and Deceleration Demands in Elite Team Sports Competitive Match Play: A Systematic Review and Meta-Analysis of Observational Studies",
+        "authors": "Harper, D. J., Carling, C., & Kiely, J.",
+        "journal": "Sports Medicine",
+        "year": 2019,
+        "area": "Sport di Squadra",
+        "abstract": "Revisione sistematica e meta-analisi pionieristica che quantifica per la prima volta i profili di accelerazione e decelerazione ad alta intensità nelle competizioni di alto livello degli sport di squadra. Lo studio dimostra che i giocatori eseguono una frequenza significativamente maggiore di decelerazioni ad alta intensità (>3 m/s²) rispetto alle accelerazioni, accumulando elevatissime forze di frenata eccentrica che generano stress meccanico muscolo-tendineo acuto e affaticamento neuromuscolare prolungato. L'allenamento deve prevedere carichi eccentrici e compiti di frenata specifica per sviluppare la capacità di assorbimento della forza.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31506901/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Sport di Squadra", "Calcio", "Basketball"],
+            "goals": ["Power", "Resistenza"]
+        }
+    },
+    {
+        "id": "sci_team_hickey_2020",
+        "title": "Pain-Free Versus Pain-Threshold Rehabilitation Following Acute Hamstring Strain Injury: A Randomized Controlled Trial",
+        "authors": "Hickey, J. T., Timmins, R. G., Maniar, N., Rio, E., Hickey, P. F., Pitcher, C. A., Williams, M. D., & Opar, D. A.",
+        "journal": "Journal of Orthopaedic & Sports Physical Therapy",
+        "year": 2020,
+        "area": "Sport di Squadra",
+        "abstract": "Trial clinico randomizzato di grande impatto negli sport di squadra che ha confrontato un protocollo riabilitativo senza dolore (pain-free) con uno basato sulla soglia del dolore (pain-threshold: progressione con dolore consentito fino a 4/10) per le lesioni acute degli ischiocrurali. Il protocollo a soglia di dolore ha consentito un recupero significativamente più rapido della forza isometrica del bicipite femorale e un maggiore allungamento dei fascicoli muscolari alla dimissione, senza allungare i tempi di ritorno al gioco né aumentare il tasso di re-infortunio a 6 mesi, confutando il paradigma che la riabilitazione muscolare debba essere totalmente asintomatica.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32005093/",
+        "rules": {
+            "patientTypes": ["Clinico", "Atleta"],
+            "sports": ["Calcio", "Sport di Squadra"],
+            "goals": ["Rehab", "Strength"],
+            "injuries": ["hamstring_strain", "lesione_muscolare"]
+        }
+    },
+    {
+        "id": "sci_team_gabbett_2019",
+        "title": "To Couple or not to Couple? For Acute:Chronic Workload Ratios and Injury Risk, Does it Really Matter?",
+        "authors": "Gabbett, T. J., Hulin, B. T., & Blanch, P.",
+        "journal": "International Journal of Sports Medicine",
+        "year": 2019,
+        "area": "Sport di Squadra",
+        "abstract": "Studio metodologico chiarificatore sul dibattito matematico relativo al calcolo dell'Acute:Chronic Workload Ratio (ACWR). Gli autori confrontano empiricamente i modelli accoppiati (coupled: in cui la settimana acuta fa parte della media cronica delle 4 settimane) e disaccoppiati (uncoupled), dimostrando che entrambi i modelli identificano le medesime relazioni a U tra picchi repentini di carico (ACWR >1.5) e aumento del rischio di infortunio tissutale. Si raccomanda di utilizzare l'ACWR non come strumento diagnostico isolato ma come metrica di supporto decisionale all'interno di un sistema olistico di monitoraggio dell'atleta.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31291651/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Sport di Squadra", "Calcio"],
+            "goals": ["Resistenza", "Power", "Rehab"]
+        }
+    },
+    {
+        "id": "sci_team_hulin_2016",
+        "title": "Low chronic workload and the acute:chronic workload ratio are more predictive of injury than between-match recovery time: a two-season prospective cohort study in elite rugby league players",
+        "authors": "Hulin, B. T., Gabbett, T. J., Caputi, P., Lawson, D. W., & Sampson, J. A.",
+        "journal": "British Journal of Sports Medicine",
+        "year": 2016,
+        "area": "Sport di Squadra",
+        "abstract": "Studio di coorte prospettico biennale su giocatori professionisti di rugby league che analizza la relazione tra carico cronico elevato, ACWR e intervallo di recupero tra match ravvicinati. I risultati evidenziano che atleti con carichi cronici bassi (<1600 m di corsa ad alta velocità) e ACWR elevato (>1.5) presentano una probabilità di infortunio tre volte superiore. Al contrario, un elevato carico cronico aerobico e neuromuscolare agisce come fattore protettivo ('vaccino'), rendendo gli atleti capaci di tollerare match ravvicinati con brevi tempi di recupero senza picchi di infortunio.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26851288/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Sport di Squadra", "Calcio"],
+            "goals": ["Resistenza", "Power"]
+        }
+    },
+    {
+        "id": "sci_team_blanch_2016",
+        "title": "Has the athlete trained enough to return to play safely? The acute:chronic workload ratio permits clinicians to quantify a player's risk of subsequent injury",
+        "authors": "Blanch, P., & Gabbett, T. J.",
+        "journal": "British Journal of Sports Medicine",
+        "year": 2016,
+        "area": "Sport di Squadra",
+        "abstract": "Articolo fondamentale che teorizza la 'sweet spot' dell'Acute:Chronic Workload Ratio (ACWR compreso tra 0.8 e 1.3) applicata in particolare ai protocolli di return-to-play negli sport di squadra. Gli autori dimostrano che la causa primaria di recidiva post-infortunio non è il carico assoluto sostenuto durante la gara, ma il divario eccessivo tra la scarsa preparazione cronica accumulata durante la degenza e le richieste atletiche della competizione. Il passaggio dalla riabilitazione clinica alla gara deve avvenire costruendo gradualmente carichi cronici protettivi prima del rientro agonistico.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26701923/",
+        "rules": {
+            "patientTypes": ["Atleta", "Clinico"],
+            "sports": ["Sport di Squadra", "Calcio"],
+            "goals": ["Rehab", "Resistenza"]
+        }
+    },
+    {
+        "id": "sci_team_hillhaas_2011",
+        "title": "Physiology of small-sided games training in football: a systematic review",
+        "authors": "Hill-Haas, S. V., Dawson, B., Impellizzeri, F. M., & Coutts, A. J.",
+        "journal": "Sports Medicine",
+        "year": 2011,
+        "area": "Sport di Squadra",
+        "abstract": "Revisione sistematica cardine che sintetizza i determinanti fisiologici, tecnici e metodologici dei giochi a ranghi ridotti (Small-Sided Games, SSG) nel calcio. Lo studio quantifica l'impatto delle variabili di regolamento (dimensioni del campo, numero di giocatori da 2v2 a 8v8, limitazioni di tocchi, presenza di portieri e incitamento verbale) sulla frequenza cardiaca, concentrazione ematica di lattato e RPE. Gli SSG in spazi ridotti enfatizzano il carico neuromuscolare e le accelerazioni/decelerazioni, mentre campi più ampi con meno vincoli stimolano la velocità aerobica massima e la ripetizione di sprint ad alta intensità.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21395363/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Calcio", "Sport di Squadra"],
+            "goals": ["Resistenza", "Power"]
+        }
+    },
+    {
+        "id": "sci_team_bishop_2011",
+        "title": "Repeated-sprint ability - part II: recommendations for training",
+        "authors": "Bishop, D., Girard, O., & Mendez-Villanueva, A.",
+        "journal": "Sports Medicine",
+        "year": 2011,
+        "area": "Sport di Squadra",
+        "abstract": "Seconda parte della rassegna di riferimento mondiale sulla Repeated-Sprint Ability (RSA) negli sport di squadra, dedicata alla prescrizione scientifica dell'allenamento. Gli autori integrano evidenze bioenergetiche e neuromuscolari, proponendo una combinazione triangolare essenziale per massimizzare la RSA: 1) allenamento della velocità massimale e forza esplosiva per elevare la prestazione del singolo sprint; 2) sprint ripetuti specifici (sprint <10s con recuperi <60s) per ottimizzare la fosforilazione ossidativa e l'espressione di proteine tampone del lattato; 3) HIIT aerobico per accelerare la risintesi della fosfocreatina (PCr) e la clearance dei metaboliti.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21846163/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Sport di Squadra", "Calcio", "Basketball"],
+            "goals": ["Power", "Resistenza"]
+        }
+    },
+    {
+        "id": "sci_team_buchheit_2008",
+        "title": "The 30-15 intermittent fitness test: accuracy for individualizing interval training of young intermittent sport players",
+        "authors": "Buchheit, M.",
+        "journal": "Journal of Strength and Conditioning Research",
+        "year": 2008,
+        "area": "Sport di Squadra",
+        "abstract": "Studio originale che ha introdotto e validato il test intermittente 30-15 (30-15 IFT) per atleti di sport di squadra. Il test consiste in navette di 30 secondi intervallate da 15 secondi di recupero passivo con incremento progressivo di 0.5 km/h. La velocità finale raggiunta (VIFT) riflette in maniera integrata non solo il VO2max e la velocità aerobica massima, ma anche la capacità anaerobica, la riserva di accelerazione, la Repeated-Sprint Ability e la qualità di cambio di direzione, fornendo un parametro di calibrazione dell'HIIT negli sport di squadra nettamente più accurato rispetto al test di Cooper o ai test continui lineari.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/18550949/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Sport di Squadra", "Calcio", "Basketball"],
+            "goals": ["Resistenza", "Power"]
+        }
+    },
+    {
+        "id": "sci_team_bangsbo_2008",
+        "title": "The Yo-Yo intermittent recovery test : a useful tool for evaluation of physical performance in intermittent sports",
+        "authors": "Bangsbo, J., Iaia, F. M., & Krustrup, P.",
+        "journal": "Sports Medicine",
+        "year": 2008,
+        "area": "Sport di Squadra",
+        "abstract": "Rassegna metodologica e fisiologica esaustiva sul test Yo-Yo Intermittent Recovery (Livello 1 e Livello 2) sviluppato per valutare la capacità specifica dell'atleta di recuperare e riprodurre sforzi ad alta intensità negli sport intermittenti. Gli autori dimostrano la sensibilità del test alle variazioni stagionali, al ruolo tattico e al livello competitivo nel calcio d'élite, correlandolo direttamente alla distanza percorsa ad alta velocità durante i match ufficiali. Il test rappresenta uno standard internazionale di screening e monitoraggio della tolleranza alla fatica intermittente.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/18081366/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Calcio", "Sport di Squadra", "Basketball"],
+            "goals": ["Resistenza"]
+        }
+    },
+    {
+        "id": "sci_team_dupont_2010",
+        "title": "Effect of 2 soccer matches in a week on physical performance and injury rate",
+        "authors": "Dupont, G., Nedelec, M., McCall, A., McCormack, D., Berthoin, S., & Wisløff, U.",
+        "journal": "The American Journal of Sports Medicine",
+        "year": 2010,
+        "area": "Sport di Squadra",
+        "abstract": "Studio epidemiologico e cinematica pionieristico condotto su calciatori professionisti che disputano match della UEFA Champions League e campionati nazionali. Gli autori dimostrano che quando l'intervallo tra due partite consecutive è inferiore a 72-96 ore (2 match in una settimana), l'incidenza di lesioni muscolari e tendinee aumenta di oltre sei volte (25.6 infortuni per 1000 ore di esposizione vs 4.1 infortuni con recupero prolungato), pur mantenendo invariata la distanza percorsa ad alta intensità. Ciò evidenzia come l'atleta riesca a mascherare la fatica neuromuscolare a scapito dell'integrità strutturale, rendendo indispensabili strategie di rotazione della rosa e recupero attivo.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20400751/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Calcio", "Sport di Squadra"],
+            "goals": ["Resistenza", "Rehab"]
+        }
+    },
+    {
+        "id": "sci_team_bradley_2009",
+        "title": "High-intensity running in English FA Premier League soccer matches",
+        "authors": "Bradley, P. S., Sheldon, W., Wooster, B., Olsen, P., Boanas, P., & Krustrup, P.",
+        "journal": "Journal of Sports Sciences",
+        "year": 2009,
+        "area": "Sport di Squadra",
+        "abstract": "Studio di riferimento nell'analisi cinematica del calcio moderno basato sul tracciamento multi-camera computerizzato su centinaia di match della Premier League inglese. Vengono quantificate le richieste di corsa ad alta intensità (>19.8 km/h) e di sprint (>25.2 km/h) in relazione al ruolo tattico (centrocampisti esterni e terzini coprono le distanze maggiori a velocità massime). Lo studio evidenzia inoltre una diminuzione temporanea delle corse ad alta intensità nei 5 minuti successivi al periodo di picco del match e un calo sistematico nel secondo tempo, fornendo parametri di riferimento per la periodizzazione della resistenza specifica.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19153866/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Calcio", "Sport di Squadra"],
+            "goals": ["Resistenza", "Power"]
+        }
+    },
+    {
+        "id": "sci_team_ronnestad_2011",
+        "title": "Effects of in-season strength maintenance training frequency in professional soccer players",
+        "authors": "Rønnestad, B. R., Nymark, B. S., & Raastad, T.",
+        "journal": "Journal of Strength and Conditioning Research",
+        "year": 2011,
+        "area": "Sport di Squadra",
+        "abstract": "Studio randomizzato controllato su calciatori professionisti d'élite durante la stagione agonistica (durata 12 settimane) che confronta gli effetti di una sessione settimanale di forza pesante (1RM squat) rispetto a una sessione ogni due settimane. Il gruppo che eseguiva un allenamento di forza pesante ogni 7 giorni ha mantenuto inalterata la forza massimale (1RM), la potenza nei salti (CMJ) e la prestazione nello sprint sui 40m, mentre il gruppo che si allenava ogni 14 giorni ha mostrato un calo significativo della forza muscolare e della potenza esplosiva. Una singola seduta settimanale ad alta intensità e basso volume (microdosing) è il dosaggio minimo efficace per preservare le qualità neuromuscolari in-season.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21873897/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Calcio", "Sport di Squadra"],
+            "goals": ["Strength", "Power"]
+        }
+    },
+    {
+        "id": "sci_team_aughey_2011",
+        "title": "Applications of GPS technologies to field sports",
+        "authors": "Aughey, R. J.",
+        "journal": "International Journal of Sports Physiology and Performance",
+        "year": 2011,
+        "area": "Sport di Squadra",
+        "abstract": "Rassegna metodologica fondamentale sulle applicazioni e i limiti della tecnologia GPS per l'analisi della prestazione negli sport di campo. L'autore analizza le metriche di velocità di picco, PlayerLoad, distanza percorsa al minuto e densità delle accelerazioni, stabilendo le linee guida per standardizzare l'interpretazione dei dati tra allenamento e competizione. La quantificazione accurata dei picchi di intensità transitori (worst-case scenarios) consente di progettare esercitazioni con carichi fisici specifici che replichino o sovraccarichino le fasi più esigenti del match play.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21911856/",
+        "rules": {
+            "patientTypes": ["Atleta"],
+            "sports": ["Sport di Squadra", "Calcio"],
+            "goals": ["Resistenza", "Power"]
+        }
+    }
+]
+
+# Write to sources_group_c.json
+with open('sources_group_c.json', 'w', encoding='utf-8') as f:
+    json.dump(sources, f, indent=2, ensure_ascii=False)
+
+print(f"Successfully generated sources_group_c.json with {len(sources)} sources!")

@@ -1,0 +1,16 @@
+# Cartelle temporanee Edge browser (profili di test)
+tmp_edge_user_data*/
+
+# Profili Edge degli agenti
+.agents/**/temp_edge_profile/
+
+# Node modules
+node_modules/
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Log files
+*.log

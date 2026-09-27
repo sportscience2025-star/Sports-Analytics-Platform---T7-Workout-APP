@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+<script>
+window.onerror = function(msg, url, line, col, error) {
+    fetch('/test-results', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ status: 'FAIL', file: 'sw.js', msg: msg, line: line, col: col })
+    });
+    return true;
+};
+</script>
+<script src="../sw.js"></script>
+<script>
+setTimeout(function() {
+    fetch('/test-results', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ status: 'PASS', file: 'sw.js' })
+    });
+}, 300);
+</script>
+</body>
+</html>

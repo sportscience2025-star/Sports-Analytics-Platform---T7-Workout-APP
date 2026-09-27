@@ -1,0 +1,892 @@
+[
+  {
+    "raw_index": 0,
+    "id": "cervical_pain",
+    "name": "Cervicalgia",
+    "nameEn": "Cervical Pain",
+    "category": "colonna",
+    "description": "Dolore, rigidità o tensione muscolare localizzata nel tratto cervicale.",
+    "icon": "neck",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 1,
+    "id": "spondylosis_cervical",
+    "name": "Spondilosi Cervicale",
+    "nameEn": "Cervical Spondylosis",
+    "category": "colonna",
+    "description": "Degenerazione cronica delle vertebre e dei dischi cervicali con riduzione del canale.",
+    "icon": "neck",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 2,
+    "id": "thoracic_outlet",
+    "name": "Sindrome dello Stretto Toracico",
+    "nameEn": "Thoracic Outlet Syndrome",
+    "category": "colonna",
+    "description": "Compressione neurovascolare nel passaggio tra collo e torace.",
+    "icon": "neck",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 3,
+    "id": "dorsal_pain",
+    "name": "Dorsalgia",
+    "nameEn": "Thoracic Back Pain",
+    "category": "colonna",
+    "description": "Dolore localizzato nel tratto toracico (dorso superiore) spesso posturale.",
+    "icon": "spine",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 4,
+    "id": "lumbar_pain",
+    "name": "Lombalgia Cronica",
+    "nameEn": "Chronic Low Back Pain",
+    "category": "colonna",
+    "description": "Dolore lombare persistente con rigidità mattutina o da postura prolungata.",
+    "icon": "spine",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 5,
+    "id": "hernia_disk",
+    "name": "Ernia Discale Lombale",
+    "nameEn": "Lumbar Disc Herniation",
+    "category": "colonna",
+    "description": "Fuoriuscita o protrusione del nucleo polposo discale (tipico L4-L5/L5-S1) con compressione radicolare.",
+    "icon": "disc",
+    "riskLevel": "high"
+  },
+  {
+    "raw_index": 6,
+    "id": "spinal_stenosis",
+    "name": "Stenosi Spinale Lombale",
+    "nameEn": "Lumbar Spinal Stenosis",
+    "category": "colonna",
+    "description": "Restringimento del canale vertebrale con claudicatio neurogena durante l'estensione.",
+    "icon": "spine",
+    "riskLevel": "high"
+  },
+  {
+    "raw_index": 7,
+    "id": "sensitive_back",
+    "name": "Schiena Sensibile",
+    "nameEn": "Sensitive Back",
+    "category": "colonna",
+    "description": "Soggetti con episodi recidivanti di lombalgia non specificata.",
+    "icon": "body",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 8,
+    "id": "spondylolysis",
+    "name": "Spondilolisi",
+    "nameEn": "Spondylolysis",
+    "category": "colonna",
+    "description": "Difetto o frattura della pars interarticularis (tipicamente L5) con potenziale instabilità.",
+    "icon": "spine",
+    "riskLevel": "high"
+  },
+  {
+    "raw_index": 9,
+    "id": "posture_chronic",
+    "name": "Problemi Posturali",
+    "nameEn": "Postural Issues",
+    "category": "colonna",
+    "description": "Rounded shoulders, anterior pelvic tilt o ipercifosi toracica disfunzionale.",
+    "icon": "body",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 10,
+    "id": "scoliosi_idiopatica",
+    "name": "Scoliosi Idiopatica",
+    "nameEn": "Idiopathic Scoliosis",
+    "category": "colonna",
+    "description": "Deviazione laterale e rotatoria tridimensionale della colonna superiore a 10 gradi cobb.",
+    "icon": "spine",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 11,
+    "id": "spondilite_anchilosante",
+    "name": "Spondilite Anchilosante",
+    "nameEn": "Ankylosing Spondylitis",
+    "category": "colonna",
+    "description": "Artrite infiammatoria cronica che colpisce la colonna e le articolazioni sacroiliache, portando a rigidità.",
+    "icon": "spine",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 12,
+    "id": "faccette_articolari",
+    "name": "Sindrome Faccette Articolari",
+    "nameEn": "Facet Joint Syndrome",
+    "category": "colonna",
+    "description": "Infiammazione o artrosi delle articolazioni intervertebrali posteriori, aggravata dall'estensione.",
+    "icon": "spine",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 13,
+    "id": "mielopatia_cervicale",
+    "name": "Mielopatia Cervicale",
+    "nameEn": "Cervical Myelopathy",
+    "category": "colonna",
+    "description": "Sindrome clinica da compressione del midollo spinale cervicale con deficit neurologici potenziali.",
+    "icon": "neck",
+    "riskLevel": "high"
+  },
+  {
+    "raw_index": 14,
+    "id": "frattura_compressione",
+    "name": "Frattura da Compressione",
+    "nameEn": "Vertebral Compression Fracture",
+    "category": "colonna",
+    "description": "Cedimento vertebrale da osteoporosi o trauma. Richiede rigorosa prevenzione della flessione anteriore.",
+    "icon": "spine",
+    "riskLevel": "high"
+  },
+  {
+    "raw_index": 15,
+    "id": "hip_problem",
+    "name": "Anca Problematica",
+    "nameEn": "Hip Pain",
+    "category": "arti_inferiori",
+    "description": "Dolore, rigidità o limitazione del movimento coxofemorale generica.",
+    "icon": "hip",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 16,
+    "id": "coxarthrosis",
+    "name": "Artrosi dell'Anca / Coxartrosi",
+    "nameEn": "Hip Osteoarthritis",
+    "category": "arti_inferiori",
+    "description": "Degenerazione progressiva della cartilagine dell'articolazione dell'anca.",
+    "icon": "hip",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 17,
+    "id": "fai",
+    "name": "Conflitto Femoro-Acetabolare",
+    "nameEn": "Femoroacetabular Impingement (FAI)",
+    "category": "arti_inferiori",
+    "description": "Anomalia morfologica dell'anca che provoca attrito tra testa femorale e acetabolo in flessione interna.",
+    "icon": "hip",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 18,
+    "id": "hamstring_strain",
+    "name": "Ischio-Crurali Tesi",
+    "nameEn": "Tight Hamstrings",
+    "category": "arti_inferiori",
+    "description": "Accorciamento o sovraccarico cronico dei muscoli posteriori della coscia.",
+    "icon": "muscle",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 19,
+    "id": "knee_generic",
+    "name": "Ginocchio Problematico",
+    "nameEn": "Knee Pain",
+    "category": "arti_inferiori",
+    "description": "Stati algici non specifici dell'articolazione del ginocchio.",
+    "icon": "knee",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 20,
+    "id": "itbs",
+    "name": "Sindrome Banda Ileotibiale",
+    "nameEn": "Iliotibial Band Syndrome",
+    "category": "arti_inferiori",
+    "description": "Infiammazione da frizione della bandelletta ileotibiale sul condilo femorale esterno.",
+    "icon": "ligament",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 21,
+    "id": "gonarthrosis",
+    "name": "Artrosi Ginocchio / Gonartrosi",
+    "nameEn": "Knee Osteoarthritis",
+    "category": "arti_inferiori",
+    "description": "Patologia degenerativa della cartilagine del ginocchio con rigidità e dolore da carico.",
+    "icon": "knee",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 22,
+    "id": "meniscus",
+    "name": "Lesione Meniscale",
+    "nameEn": "Meniscus Tear",
+    "category": "arti_inferiori",
+    "description": "Lacerazione o trauma a carico dei menischi (interno/esterno) con potenziale blocco articolare.",
+    "icon": "knee",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 23,
+    "id": "patellar_tendonitis",
+    "name": "Tendinopatia Rotulea",
+    "nameEn": "Patellar Tendonitis",
+    "category": "arti_inferiori",
+    "description": "Infiammazione o tendinosi del tendine rotuleo, comune nei saltatori (Jumper's Knee).",
+    "icon": "knee",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 24,
+    "id": "weak_ankle",
+    "name": "Caviglia Debole/Instabile",
+    "nameEn": "Weak Ankle",
+    "category": "arti_inferiori",
+    "description": "Instabilità cronica e deficit propriocettivo dopo distorsioni ricorrenti.",
+    "icon": "foot",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 25,
+    "id": "plantar_fasciitis",
+    "name": "Fasciite Plantare",
+    "nameEn": "Plantar Fasciitis",
+    "category": "arti_inferiori",
+    "description": "Infiammazione dolorosa dell'aponeurosi plantare che unisce il tallone alle dita.",
+    "icon": "foot",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 26,
+    "id": "achilles_tendonitis",
+    "name": "Tendinopatia Achillea",
+    "nameEn": "Achilles Tendonitis",
+    "category": "arti_inferiori",
+    "description": "Dolore e infiammazione del tendine d'Achille associato a sovraccarico ciclico.",
+    "icon": "foot",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 27,
+    "id": "lesione_lca",
+    "name": "Lesione LCA non operata",
+    "nameEn": "ACL Tear (Conservative)",
+    "category": "arti_inferiori",
+    "description": "Instabilità articolare da rottura completa o parziale del Legamento Crociato Anteriore gestita senza chirurgia.",
+    "icon": "knee",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 28,
+    "id": "lesione_lcp",
+    "name": "Lesione LCP",
+    "nameEn": "PCL Tear",
+    "category": "arti_inferiori",
+    "description": "Lesione del Legamento Crociato Posteriore che limita la stabilità alla traslazione posteriore della tibia.",
+    "icon": "knee",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 29,
+    "id": "condromalacia_rotulea",
+    "name": "Condromalacia Rotulea",
+    "nameEn": "Chondromalacia Patellae",
+    "category": "arti_inferiori",
+    "description": "Rammollimento e usura della cartilagine rotulea, aggravata dal carico in flessione profonda.",
+    "icon": "knee",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 30,
+    "id": "periostite_tibiale",
+    "name": "Periostite Tibiale",
+    "nameEn": "Shin Splints",
+    "category": "arti_inferiori",
+    "description": "Infiammazione del periostio lungo la tibia, comune in corridori e saltatori.",
+    "icon": "leg",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 31,
+    "id": "frattura_stress_tibiale",
+    "name": "Frattura da Stress Tibiale",
+    "nameEn": "Tibial Stress Fracture",
+    "category": "arti_inferiori",
+    "description": "Microfrattura dell'osso tibiale causata da microtraumi ripetuti e scarso riposo.",
+    "icon": "leg",
+    "riskLevel": "high"
+  },
+  {
+    "raw_index": 32,
+    "id": "pubalgia_sportiva",
+    "name": "Pubalgia Sportiva",
+    "nameEn": "Athletic Pubalgia",
+    "category": "arti_inferiori",
+    "description": "Sindrome dolorosa dell'inguine e del pube che coinvolge adduttori e muscoli addominali.",
+    "icon": "hip",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 33,
+    "id": "borsite_trocanterica",
+    "name": "Borsite Trocanterica",
+    "nameEn": "Trochanteric Bursitis",
+    "category": "arti_inferiori",
+    "description": "Infiammazione della borsa sierosa sopra il grande trocantere del femore.",
+    "icon": "hip",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 34,
+    "id": "distorsione_caviglia_cronica",
+    "name": "Distorsione Caviglia Cronica",
+    "nameEn": "Chronic Ankle Sprain",
+    "category": "arti_inferiori",
+    "description": "Instabilità da lesioni ripetute dei legamenti della caviglia con lasso articolare.",
+    "icon": "foot",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 35,
+    "id": "lesione_collaterale",
+    "name": "Lesione Legamento Collaterale",
+    "nameEn": "MCL/LCL Knee Sprain",
+    "category": "arti_inferiori",
+    "description": "Distorsione o rottura parziale dei legamenti collaterali (mediale o laterale) del ginocchio.",
+    "icon": "knee",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 36,
+    "id": "sindrome_patellofemorale",
+    "name": "Sindrome Patellofemorale",
+    "nameEn": "Patellofemoral Pain Syndrome (PFPS)",
+    "category": "arti_inferiori",
+    "description": "Sindrome da mal-allineamento rotuleo con dolore retro o peri-rotuleo.",
+    "icon": "knee",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 37,
+    "id": "shoulder_generic",
+    "name": "Spalla Problematica",
+    "nameEn": "Shoulder Pain",
+    "category": "arti_superiori",
+    "description": "Fastidi articolari diffusi alla spalla senza diagnosi patologica specifica.",
+    "icon": "shoulder",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 38,
+    "id": "impingement",
+    "name": "Sindrome Impingement",
+    "nameEn": "Subacromial Impingement",
+    "category": "arti_superiori",
+    "description": "Compressione dei tendini della cuffia nello spazio sottoacromiale durante l'abduzione.",
+    "icon": "shoulder",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 39,
+    "id": "instability_shoulder",
+    "name": "Instabilità Gleno-Omerale",
+    "nameEn": "Glenohumeral Instability",
+    "category": "arti_superiori",
+    "description": "Lassità capsulo-legamentosa con tendenza alla sublussazione o lussazione della spalla.",
+    "icon": "shoulder",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 40,
+    "id": "supraspinatus",
+    "name": "Tendinopatia del Sovraspinato",
+    "nameEn": "Supraspinatus Tendinitis",
+    "category": "arti_superiori",
+    "description": "Infiammazione o degenerazione del tendine del muscolo sovraspinato.",
+    "icon": "shoulder",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 41,
+    "id": "frozen_shoulder",
+    "name": "Spalla Congelata",
+    "nameEn": "Frozen Shoulder",
+    "category": "arti_superiori",
+    "description": "Capsulite adesiva caratterizzata da forte dolore iniziale e progressiva perdita quasi totale del ROM.",
+    "icon": "shoulder",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 42,
+    "id": "bursitis_shoulder",
+    "name": "Borsite Sottoacromiale",
+    "nameEn": "Subacromial Bursitis",
+    "category": "arti_superiori",
+    "description": "Infiammazione acuta o cronica della borsa sottoacromiale con forte dolore alla spalla.",
+    "icon": "shoulder",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 43,
+    "id": "cuffia_rotatori_parziale",
+    "name": "Lesione Parziale della Cuffia",
+    "nameEn": "Partial Rotator Cuff Tear",
+    "category": "arti_superiori",
+    "description": "Fessurazione o lacerazione incompleta di uno o più tendini della cuffia dei rotatori.",
+    "icon": "shoulder",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 44,
+    "id": "tendinite_bicipite_lungo",
+    "name": "Tendinopatia Capo Lungo Bicipite",
+    "nameEn": "Long Head Biceps Tendinitis",
+    "category": "arti_superiori",
+    "description": "Infiammazione del tendine del capo lungo del bicipite brachiale nel solco bicipitale dell'omero.",
+    "icon": "arm",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 45,
+    "id": "slap_lesion",
+    "name": "Lesione SLAP",
+    "nameEn": "SLAP Tear",
+    "category": "arti_superiori",
+    "description": "Lesione del labbro glenoideo superiore da anteriore a posteriore, comune nei lanciatori.",
+    "icon": "shoulder",
+    "riskLevel": "high"
+  },
+  {
+    "raw_index": 46,
+    "id": "lesione_acromioclaveare",
+    "name": "Distorsione Acromioclaveare",
+    "nameEn": "AC Joint Sprain",
+    "category": "arti_superiori",
+    "description": "Trauma o instabilità dell'articolazione acromioclaveare dovuto a cadute o impatti.",
+    "icon": "shoulder",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 47,
+    "id": "instabilita_polso",
+    "name": "Instabilità di Polso",
+    "nameEn": "Wrist Instability",
+    "category": "arti_superiori",
+    "description": "Lassità legamentosa carpale con dolore sotto carico in flessione/estensione.",
+    "icon": "hand",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 48,
+    "id": "de_quervain",
+    "name": "Sindrome di De Quervain",
+    "nameEn": "De Quervain's Tenosynovitis",
+    "category": "arti_superiori",
+    "description": "Tenosinite stenosante del pollice (abduttore lungo ed estensore breve).",
+    "icon": "hand",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 49,
+    "id": "epicondilite_mediale",
+    "name": "Epitrocleite / Epicondilite Mediale",
+    "nameEn": "Medial Epicondylitis",
+    "category": "arti_superiori",
+    "description": "Infiammazione dei tendini flessori dell'avambraccio inseriti sull'epitroclea (Gomito del Golfista).",
+    "icon": "arm",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 50,
+    "id": "neuropatia_ulnare",
+    "name": "Compressione Nervo Ulnare",
+    "nameEn": "Cubital Tunnel Syndrome",
+    "category": "arti_superiori",
+    "description": "Sofferenza o compressione del nervo ulnare nel canale cubitale del gomito.",
+    "icon": "arm",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 51,
+    "id": "tennis_elbow",
+    "name": "Epicondilite (Gomito)",
+    "nameEn": "Lateral Epicondylitis",
+    "category": "altri_distretti",
+    "description": "Tennis Elbow. Tendinopatia degli estensori del polso all'inserzione sull'epicondilo laterale.",
+    "icon": "arm",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 52,
+    "id": "golfer_elbow",
+    "name": "Epitrocleite (Gomito)",
+    "nameEn": "Medial Epicondylitis",
+    "category": "altri_distretti",
+    "description": "Golfer Elbow. Tendinopatia dei flessori del polso all'inserzione sull'epitroclea mediale.",
+    "icon": "arm",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 53,
+    "id": "weak_wrist",
+    "name": "Polso Debole",
+    "nameEn": "Weak Wrist",
+    "category": "altri_distretti",
+    "description": "Deficit di stabilità e dolore generico del compartimento carpale.",
+    "icon": "hand",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 54,
+    "id": "carpal_tunnel",
+    "name": "Sindrome Tunnel Carpale",
+    "nameEn": "Carpal Tunnel Syndrome",
+    "category": "altri_distretti",
+    "description": "Neuropatia compressiva del nervo mediano nel canale del carpo.",
+    "icon": "hand",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 55,
+    "id": "de_quervain_altri",
+    "name": "Sindrome di De Quervain (Polso)",
+    "nameEn": "De Quervain Syndrome",
+    "category": "altri_distretti",
+    "description": "Tenosinite infiammatoria della guaina del pollice.",
+    "icon": "hand",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 56,
+    "id": "hypertension",
+    "name": "Ipertensione Arteriosa",
+    "nameEn": "Hypertension",
+    "category": "sistemiche",
+    "description": "Pressione arteriosa sistolica e diastolica cronicamente elevata (>140/90 mmHg).",
+    "icon": "heart",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 57,
+    "id": "ischemic_heart",
+    "name": "Cardiopatia Ischemica Stabile",
+    "nameEn": "Ischemic Heart Disease",
+    "category": "sistemiche",
+    "description": "Riduzione cronica del flusso ematico al miocardio controllata farmacologicamente.",
+    "icon": "heart",
+    "riskLevel": "high"
+  },
+  {
+    "raw_index": 58,
+    "id": "diabetes",
+    "name": "Diabete Mellito Tipo 2",
+    "nameEn": "Type 2 Diabetes",
+    "category": "sistemiche",
+    "description": "Insulino-resistenza cronica con iperglicemia sistemica.",
+    "icon": "drop",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 59,
+    "id": "asthma",
+    "name": "Asma Bronchiale",
+    "nameEn": "Bronchial Asthma",
+    "category": "sistemiche",
+    "description": "Broncocostrizione e infiammazione delle vie aeree indotta anche da sforzo fisico intenso.",
+    "icon": "lungs",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 60,
+    "id": "obesity",
+    "name": "Obesità di Grado I/II",
+    "nameEn": "Obesity",
+    "category": "sistemiche",
+    "description": "Elevato indice di massa corporea (BMI > 30) con forte sovraccarico su colonna, anche e ginocchia.",
+    "icon": "body",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 61,
+    "id": "osteoporosi",
+    "name": "Osteoporosi",
+    "nameEn": "Osteoporosis",
+    "category": "sistemiche",
+    "description": "Forte riduzione della densità minerale ossea con elevato rischio fratturativo vertebrale e femorale.",
+    "icon": "spine",
+    "riskLevel": "high"
+  },
+  {
+    "raw_index": 62,
+    "id": "fibromialgia",
+    "name": "Sindrome Fibromialgica",
+    "nameEn": "Fibromyalgia",
+    "category": "sistemiche",
+    "description": "Dolore muscoloscheletrico diffuso associato ad affaticabilità estrema e disturbi del sonno.",
+    "icon": "body",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 63,
+    "id": "diabete_tipo_1",
+    "name": "Diabete Mellito Tipo 1",
+    "nameEn": "Type 1 Diabetes",
+    "category": "sistemiche",
+    "description": "Carenza assoluta di insulina endogena con forte rischio di ipoglicemia improvvisa da sforzo.",
+    "icon": "drop",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 64,
+    "id": "sindrome_metabolica",
+    "name": "Sindrome Metabolica",
+    "nameEn": "Metabolic Syndrome",
+    "category": "sistemiche",
+    "description": "Coesistenza di obesità viscerale, dislipidemia, ipertensione e alterata glicemia con alto rischio cardiovascolare.",
+    "icon": "heart",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 65,
+    "id": "aritmia_cardiaca",
+    "name": "Aritmia Cardiaca Controllata",
+    "nameEn": "Cardiac Arrhythmia",
+    "category": "sistemiche",
+    "description": "Anomalia stabile del ritmo cardiaco controllata farmacologicamente e da cardioversore/pacemaker.",
+    "icon": "heart",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 66,
+    "id": "scompenso_cardiaco_lieve",
+    "name": "Scompenso Cardiaco Lieve",
+    "nameEn": "Mild Heart Failure",
+    "category": "sistemiche",
+    "description": "Inefficienza lieve della pompa cardiaca (NYHA Classe I/II), tolleranza allo sforzo ridotta.",
+    "icon": "heart",
+    "riskLevel": "high"
+  },
+  {
+    "raw_index": 67,
+    "id": "ipotiroidismo_grave",
+    "name": "Ipotiroidismo Clinico",
+    "nameEn": "Hypothyroidism",
+    "category": "sistemiche",
+    "description": "Deficit di ormoni tiroidei con metabolismo basale fortemente ridotto, letargia e bradicardia.",
+    "icon": "body",
+    "riskLevel": "low"
+  },
+  {
+    "raw_index": 68,
+    "id": "anemia",
+    "name": "Anemia Moderata",
+    "nameEn": "Anemia",
+    "category": "sistemiche",
+    "description": "Bassi livelli di emoglobina circolante con ridotto trasporto di ossigeno e frequente tachicardia.",
+    "icon": "drop",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 69,
+    "id": "sciatalgia",
+    "name": "Sciatalgia / Radicolopatia",
+    "nameEn": "Sciatica / Lumbar Radiculopathy",
+    "category": "neurologiche",
+    "description": "Dolore urente, formicolio o intorpidimento lungo il decorso del nervo sciatico (da compressione L4-S1).",
+    "icon": "brain",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 70,
+    "id": "neuropatia_diabetica",
+    "name": "Neuropatia Diabetica",
+    "nameEn": "Diabetic Neuropathy",
+    "category": "neurologiche",
+    "description": "Danno ai nervi periferici indotto dal diabete, con frequente perdita di sensibilità plantare e deficit di equilibrio.",
+    "icon": "brain",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 71,
+    "id": "parkinson_lieve",
+    "name": "Morbo di Parkinson Stabile",
+    "nameEn": "Mild Parkinson's Disease",
+    "category": "neurologiche",
+    "description": "Disordine neurodegenerativo del movimento che provoca tremore a riposo, rigidità e instabilità posturale.",
+    "icon": "brain",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 72,
+    "id": "sclerosi_multipla_lieve",
+    "name": "Sclerosi Multipla Stabile",
+    "nameEn": "Stable Multiple Sclerosis",
+    "category": "neurologiche",
+    "description": "Malattia demielinizzante autoimmune. Caratterizzata da fatica, debolezza muscolare e potenziale intolleranza al calore.",
+    "icon": "brain",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 73,
+    "id": "post_ictus_stabilizzato",
+    "name": "Emiparesi Post-Ictus",
+    "nameEn": "Post-Stroke Emiparesis",
+    "category": "neurologiche",
+    "description": "Deficit motorio e spasticità monolaterale residua dopo ictus cerebrale stabilizzato da almeno 12 mesi.",
+    "icon": "brain",
+    "riskLevel": "high"
+  },
+  {
+    "raw_index": 74,
+    "id": "cervicobrachialgia",
+    "name": "Cervicobrachialgia",
+    "nameEn": "Cervicobrachial Neuralgia",
+    "category": "neurologiche",
+    "description": "Dolore che si irradia dal tratto cervicale al braccio lungo il decorso del plesso brachiale.",
+    "icon": "brain",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 75,
+    "id": "artrite_reumatoide",
+    "name": "Artrite Reumatoide",
+    "nameEn": "Rheumatoid Arthritis",
+    "category": "reumatologiche",
+    "description": "Patologia infiammatoria autoimmune cronica sistemica che distrugge le membrane sinoviali articolari.",
+    "icon": "joint",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 76,
+    "id": "lupus_les",
+    "name": "Lupus Eritematoso Sistemico",
+    "nameEn": "Systemic Lupus (SLE)",
+    "category": "reumatologiche",
+    "description": "Malattia connettivale autoimmune sistemica che causa dolori articolari (artralgie) e forte astenia.",
+    "icon": "joint",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 77,
+    "id": "artrosi_generalizzata",
+    "name": "Artrosi Generalizzata",
+    "nameEn": "Generalized Osteoarthritis",
+    "category": "reumatologiche",
+    "description": "Invecchiamento articolare diffuso con usura della cartilagine e formazione di osteofiti in più distretti.",
+    "icon": "joint",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 78,
+    "id": "artrite_psoriasica",
+    "name": "Artrite Psoriasica",
+    "nameEn": "Psoriatic Arthritis",
+    "category": "reumatologiche",
+    "description": "Associazione di psoriasi cutanea e artrite infiammatoria con frequente coinvolgimento di tendini e dita.",
+    "icon": "joint",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 79,
+    "id": "post_op_lca",
+    "name": "Ricostruzione LCA Post-Op",
+    "nameEn": "Post-ACL Reconstruction (>6m)",
+    "category": "post_chirurgiche",
+    "description": "Esiti di ricostruzione chirurgica del Legamento Crociato Anteriore (da oltre 6 mesi) stabilizzata.",
+    "icon": "surgery",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 80,
+    "id": "post_op_protesi_anca",
+    "name": "Protesi Totale Anca Post-Op",
+    "nameEn": "Post-Total Hip Replacement (>6m)",
+    "category": "post_chirurgiche",
+    "description": "Presenza di protesi d'anca stabilizzata da oltre 6-12 mesi. Rischio di lussazione articolare in determinati angoli.",
+    "icon": "surgery",
+    "riskLevel": "high"
+  },
+  {
+    "raw_index": 81,
+    "id": "post_op_protesi_ginocchio",
+    "name": "Protesi Totale Ginocchio Post-Op",
+    "nameEn": "Post-Total Knee Replacement (>6m)",
+    "category": "post_chirurgiche",
+    "description": "Presenza di artroprotesi totale di ginocchio da oltre 6 mesi con limitazioni biomeccaniche di ROM residuo.",
+    "icon": "surgery",
+    "riskLevel": "high"
+  },
+  {
+    "raw_index": 82,
+    "id": "post_op_cuffia_rotatori",
+    "name": "Riparazione Cuffia Spalla Post-Op",
+    "nameEn": "Post-Rotator Cuff Repair (>6m)",
+    "category": "post_chirurgiche",
+    "description": "Esiti di sutura/riparazione della cuffia dei rotatori da oltre 6-9 mesi, con iniziale recupero del ROM attivo.",
+    "icon": "surgery",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 83,
+    "id": "post_op_colonna",
+    "name": "Chirurgia Vertebrale Post-Op",
+    "nameEn": "Post-Spine Surgery (>6m)",
+    "category": "post_chirurgiche",
+    "description": "Esiti di discectomia o artrodesi spinale stabilizzata da oltre 6-12 mesi. Colonna vulnerabile a carichi rotatori e compressione.",
+    "icon": "surgery",
+    "riskLevel": "high"
+  },
+  {
+    "raw_index": 84,
+    "id": "post_op_mastectomia",
+    "name": "Mastectomia Post-Op",
+    "nameEn": "Post-Mastectomy (>6m)",
+    "category": "post_chirurgiche",
+    "description": "Esiti di asportazione chirurgica della ghiandola mammaria con potenziale alterazione linfatica del braccio.",
+    "icon": "surgery",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 85,
+    "id": "gravidanza_secondo_trimestre",
+    "name": "Gravidanza (II Trimestre)",
+    "nameEn": "Pregnancy (2nd Trimester)",
+    "category": "speciali",
+    "description": "Stato di gravidanza controllato. Presenza di lassità legamentosa indotta da relaxina e aumento peso anteriore.",
+    "icon": "sport",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 86,
+    "id": "triade_atleta",
+    "name": "Triade dell'Atleta / RED-S",
+    "nameEn": "Relative Energy Deficiency (RED-S)",
+    "category": "speciali",
+    "description": "Deficit energetico relativo nello sport con compromissione metabolica, amenorrea e bassa densità ossea.",
+    "icon": "sport",
+    "riskLevel": "high"
+  },
+  {
+    "raw_index": 87,
+    "id": "overtraining_syndrome",
+    "name": "Sindrome da Overtraining",
+    "nameEn": "Overtraining Syndrome",
+    "category": "speciali",
+    "description": "Accumulo di stress da allenamento accoppiato a scarso recupero, con calo prestazionale e alterazione neuroendocrina.",
+    "icon": "sport",
+    "riskLevel": "medium"
+  },
+  {
+    "raw_index": 88,
+    "id": "spondilolisi_sportiva",
+    "name": "Spondilolisi Sportiva Attiva",
+    "nameEn": "Active Athletic Spondylolysis",
+    "category": "speciali",
+    "description": "Lesione da stress attiva dell'arco vertebrale frequente in ginnasti, sollevatori e calciatori dovuta a ipereccentrici ripetuti.",
+    "icon": "sport",
+    "riskLevel": "high"
+  }
+]

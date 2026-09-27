@@ -1,0 +1,53 @@
+[
+  {
+    "status": "PASS",
+    "file": "js/app.js"
+  },
+  {
+    "status": "PASS",
+    "file": "js/clinical.js"
+  },
+  {
+    "status": "PASS",
+    "file": "js/data-analysis.js"
+  },
+  {
+    "status": "FAIL",
+    "file": "js/data.js",
+    "msg": "Uncaught SyntaxError: Unexpected identifier 'Addome'",
+    "line": 1532,
+    "col": 36
+  },
+  {
+    "status": "PASS",
+    "file": "js/data.js"
+  },
+  {
+    "status": "PASS",
+    "file": "js/knowledge-base.js"
+  },
+  {
+    "status": "PASS",
+    "file": "js/knowledge-base.js"
+  },
+  {
+    "status": "TIMEOUT",
+    "file": "js\\media.js"
+  },
+  {
+    "status": "PASS",
+    "file": "js/parser.js"
+  },
+  {
+    "status": "PASS",
+    "file": "js/parser.js"
+  },
+  {
+    "status": "TIMEOUT",
+    "file": "js\\ui.js"
+  },
+  {
+    "status": "TIMEOUT",
+    "file": "sw.js"
+  }
+]

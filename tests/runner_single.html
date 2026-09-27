@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T7 Workout - Test Suite AI & Physics</title>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"> -->
+    <style>
+        :root {
+            --bg-primary: #0a0f1d;
+            --bg-secondary: #131a30;
+            --bg-tertiary: #1b2440;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.3);
+            --success: #10b981;
+            --success-glow: rgba(16, 185, 129, 0.2);
+            --error: #ef4444;
+            --error-glow: rgba(239, 68, 68, 0.2);
+            --warning: #f59e0b;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #2a3554;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 40px 20px;
+            overflow-y: scroll;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #1d4ed8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: -0.05em;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Dashboard summary card */
+        .dashboard-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--success) 50%, var(--error) 100%);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .stat-value.success { color: var(--success); }
+        .stat-value.error { color: var(--error); }
+        .stat-value.accent { color: var(--accent); }
+
+        .progress-container {
+            background: var(--bg-tertiary);
+            height: 10px;
+            border-radius: 9999px;
+            overflow: hidden;
+            width: 100%;
+            border: 1px solid var(--border-color);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent), var(--success));
+            border-radius: 9999px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Test items */
+        .test-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .test-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .test-item.running {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .test-item.passed {
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .test-item.failed {
+            border-color: rgba(239, 68, 68, 0.3);
+            box-shadow: 0 0 15px var(--error-glow);
+        }
+
+        .test-header {
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .test-header:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .test-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .test-icon {
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .test-name {
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .test-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-pending { background: #374151; color: #d1d5db; }
+        .badge-running { background: #2563eb; color: #eff6ff; animation: pulse 1.5s infinite; }
+        .badge-passed { background: #065f46; color: #a7f3d0; }
+        .badge-failed { background: #991b1b; color: #fca5a5; }
+
+        .test-duration {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .test-details {
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .test-details.open {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .log-container {
+            padding: 16px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .log-line {
+            margin-bottom: 4px;
+            white-space: pre-wrap;
+        }
+
+        .log-line.error {
+            color: #fca5a5;
+            background: rgba(220, 38, 38, 0.15);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border-left: 3px solid var(--error);
+        }
+
+        .log-line.log {
+            color: #e2e8f0;
+        }
+
+        /* Embedded iframes container (hidden) */
+        #iframes-container {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Top Bar control button */
+        .controls {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: var(--accent);
+            color: var(--text-main);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔬 T7 Workout Test Suite Dashboard</h1>
+            <p>Automated Verification of Physics Formulas, VBT Calculations, and Periodization Logic</p>
+        </header>
+
+        <div class="controls">
+            <button id="run-btn" class="btn" onclick="startTestSuite()">Esegui Nuovamente i Test</button>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="dashboard-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Stato Generale</div>
+                    <div id="suite-status" class="stat-value accent">In Attesa</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Test Totali</div>
+                    <div id="stat-total" class="stat-value">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Superati</div>
+                    <div id="stat-passed" class="stat-value success">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Falliti</div>
+                    <div id="stat-failed" class="stat-value error">0</div>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div id="suite-progress" class="progress-bar"></div>
+            </div>
+        </div>
+
+        <div id="test-list-container" class="test-list">
+            <!-- Test items will be dynamically rendered here -->
+        </div>
+    </div>
+
+    <!-- Container for running tests in iframes -->
+    <div id="iframes-container"></div>
+
+    <script>
+        const testFiles = [
+            'test_views_modular.js'
+        ];
+
+        let testResults = {};
+        let activeTestIndex = -1;
+
+        function initUI() {
+            const container = document.getElementById('test-list-container');
+            container.innerHTML = '';
+            
+            document.getElementById('stat-total').innerText = testFiles.length;
+            document.getElementById('stat-passed').innerText = '0';
+            document.getElementById('stat-failed').innerText = '0';
+            document.getElementById('suite-status').innerText = 'In Attesa';
+            document.getElementById('suite-status').className = 'stat-value accent';
+            document.getElementById('suite-progress').style.width = '0%';
+
+            testFiles.forEach((file, index) => {
+                const item = document.createElement('div');
+                item.className = 'test-item';
+                item.id = `test-item-${index}`;
+                item.innerHTML = `
+                    <div class="test-header" onclick="toggleDetails(${index})">
+                        <div class="test-info">
+                            <div class="test-icon" id="test-icon-${index}">⚪</div>
+                            <div>
+                                <span class="test-name">${file}</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <span class="test-duration" id="test-duration-${index}">-- ms</span>
+                            <span class="test-badge badge-pending" id="test-badge-${index}">In Coda</span>
+                        </div>
+                    </div>
+                    <div class="test-details" id="test-details-${index}">
+                        <div class="log-container" id="log-container-${index}">
+                            <div class="log-line">In attesa dell'inizio del test...</div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(item);
+                testResults[file] = { status: 'PENDING', logs: [], duration: 0 };
+            });
+        }
+
+        function toggleDetails(index) {
+            const details = document.getElementById(`test-details-${index}`);
+            details.classList.toggle('open');
+        }
+
+        function updateTestStatus(index, status, duration = null, logs = null) {
+            const file = testFiles[index];
+            const item = document.getElementById(`test-item-${index}`);
+            const badge = document.getElementById(`test-badge-${index}`);
+            const icon = document.getElementById(`test-icon-${index}`);
+            const durationEl = document.getElementById(`test-duration-${index}`);
+            const logsContainer = document.getElementById(`log-container-${index}`);
+
+            item.classList.remove('running', 'passed', 'failed');
+            badge.classList.remove('badge-pending', 'badge-running', 'badge-passed', 'badge-failed');
+
+            if (duration !== null) {
+                durationEl.innerText = `${duration.toFixed(0)} ms`;
+            }
+
+            if (logs !== null && logs.length > 0) {
+                logsContainer.innerHTML = '';
+                logs.forEach(l => {
+                    const line = document.createElement('div');
+                    line.className = `log-line ${l.type}`;
+                    line.innerText = l.text;
+                    logsContainer.appendChild(line);
+                });
+            }
+
+            switch(status) {
+                case 'RUNNING':
+                    item.classList.add('running');
+                    badge.innerText = 'In Corso';
+                    badge.classList.add('badge-running');
+                    icon.innerText = '⚡';
+                    logsContainer.innerHTML = '<div class="log-line">Esecuzione test...</div>';
+                    break;
+                case 'PASS':
+                    item.classList.add('passed');
+                    badge.innerText = 'Superato';
+                    badge.classList.add('badge-passed');
+                    icon.innerText = '✅';
+                    break;
+                case 'FAIL':
+                    item.classList.add('failed');
+                    badge.innerText = 'Fallito';
+                    badge.classList.add('badge-failed');
+                    icon.innerText = '❌';
+                    // Auto-open failures
+                    document.getElementById(`test-details-${index}`).classList.add('open');
+                    break;
+            }
+        }
+
+        let suiteStartTime = 0;
+
+        function startTestSuite() {
+            initUI();
+            document.getElementById('suite-status').innerText = 'In Corso';
+            document.getElementById('suite-status').className = 'stat-value accent';
+            activeTestIndex = 0;
+            suiteStartTime = performance.now();
+            runNextTest();
+        }
+
+        let testStartTime = 0;
+
+        function runNextTest() {
+            if (activeTestIndex >= testFiles.length) {
+                finishTestSuite();
+                return;
+            }
+
+            const file = testFiles[activeTestIndex];
+            updateTestStatus(activeTestIndex, 'RUNNING');
+            
+            // Create iframe to run test in isolation
+            const container = document.getElementById('iframes-container');
+            container.innerHTML = '';
+            
+            const iframe = document.createElement('iframe');
+            iframe.src = `iframe_runner.html?test=${encodeURIComponent(file)}&t=${Date.now()}`;
+            testStartTime = performance.now();
+            container.appendChild(iframe);
+        }
+
+        // Listen for test results from iframes
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.type === 'test_result') {
+                const result = event.data;
+                const file = result.testFile || testFiles[activeTestIndex];
+                const fileIndex = testFiles.indexOf(file);
+                if (fileIndex === -1) return;
+
+                // Ignore duplicate/late messages for already resolved tests
+                if (testResults[file] && testResults[file].status !== 'PENDING') {
+                    return;
+                }
+
+                const duration = performance.now() - testStartTime;
+                updateTestStatus(fileIndex, result.status, duration, result.logs);
+                testResults[file] = {
+                    status: result.status,
+                    logs: result.logs,
+                    duration: duration
+                };
+
+                // Update summary stats
+                let passed = 0;
+                let failed = 0;
+                Object.values(testResults).forEach(res => {
+                    if (res.status === 'PASS') passed++;
+                    if (res.status === 'FAIL') failed++;
+                });
+
+                document.getElementById('stat-passed').innerText = passed;
+                document.getElementById('stat-failed').innerText = failed;
+                
+                const progress = ((activeTestIndex + 1) / testFiles.length) * 100;
+                document.getElementById('suite-progress').style.width = `${progress}%`;
+
+                // Next test
+                activeTestIndex++;
+                setTimeout(runNextTest, 100);
+            }
+        });
+
+        function finishTestSuite() {
+            let totalPassed = 0;
+            let totalFailed = 0;
+            Object.values(testResults).forEach(res => {
+                if (res.status === 'PASS') totalPassed++;
+                if (res.status === 'FAIL') totalFailed++;
+            });
+
+            const statusVal = document.getElementById('suite-status');
+            const duration = performance.now() - suiteStartTime;
+
+            if (totalFailed === 0) {
+                statusVal.innerText = 'SUPERATO';
+                statusVal.className = 'stat-value success';
+            } else {
+                statusVal.innerText = 'FALLITO';
+                statusVal.className = 'stat-value error';
+            }
+
+            console.log(`Suite complete. Passed: ${totalPassed}, Failed: ${totalFailed}. Time: ${duration.toFixed(0)}ms`);
+
+            // Send results to Python server
+            fetch('/test-results', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    status: totalFailed === 0 ? 'PASS' : 'FAIL',
+                    message: `Suite complete. Passed: ${totalPassed}, Failed: ${totalFailed}. Time: ${duration.toFixed(0)}ms`,
+                    results: testResults
+                })
+            }).catch(err => {
+                console.error("Failed to post results to server:", err);
+            });
+        }
+
+        // Auto start on page load
+        window.onload = function() {
+            startTestSuite();
+        };
+    </script>
+</body>
+</html>

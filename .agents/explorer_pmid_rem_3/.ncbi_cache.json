@@ -1,0 +1,1561 @@
+{
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%22Technical+ability+of+elite+sprinters%3A+ground+force+application+orientation%22%5BTitle%5D+AND+Morin%5BAuthor%5D&retmode=json&retmax=5&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esearch",
+      "version": "0.3"
+    },
+    "esearchresult": {
+      "count": "0",
+      "retmax": "0",
+      "retstart": "0",
+      "idlist": [],
+      "translationset": [],
+      "querytranslation": "\"Technical ability of elite sprinters: ground force application orientation\"[Title] AND Morin[Author]",
+      "warninglist": {
+        "phrasesignored": [],
+        "quotedphrasesnotfound": [
+          "\"Technical ability of elite sprinters: ground force application orientation\"[Title]"
+        ],
+        "outputmessages": [
+          "No items found."
+        ]
+      }
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%22Technical+ability+of+elite+sprinters%22%5BTitle%5D+AND+Morin%5BAuthor%5D&retmode=json&retmax=5&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esearch",
+      "version": "0.3"
+    },
+    "esearchresult": {
+      "count": "0",
+      "retmax": "0",
+      "retstart": "0",
+      "idlist": [],
+      "translationset": [],
+      "querytranslation": "\"Technical ability of elite sprinters\"[Title] AND Morin[Author]",
+      "warninglist": {
+        "phrasesignored": [],
+        "quotedphrasesnotfound": [
+          "\"Technical ability of elite sprinters\"[Title]"
+        ],
+        "outputmessages": [
+          "No items found."
+        ]
+      }
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=Technical+ability+of+elite+sprinters%5BTitle%5D+AND+Morin%5BAuthor%5D&retmode=json&retmax=5&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esearch",
+      "version": "0.3"
+    },
+    "esearchresult": {
+      "count": "0",
+      "retmax": "0",
+      "retstart": "0",
+      "idlist": [],
+      "translationset": [
+        {
+          "from": "Technical",
+          "to": "\"methods\"[MeSH Terms] OR \"methods\"[All Fields] OR \"technical\"[All Fields] OR \"technicalities\"[All Fields] OR \"technicality\"[All Fields] OR \"technically\"[All Fields]"
+        },
+        {
+          "from": "ability",
+          "to": "\"aptitude\"[MeSH Terms] OR \"aptitude\"[All Fields] OR \"abilities\"[All Fields] OR \"ability\"[All Fields]"
+        }
+      ],
+      "querytranslation": "((\"methods\"[MeSH Terms] OR \"methods\"[All Fields] OR \"technical\"[All Fields] OR \"technicalities\"[All Fields] OR \"technicality\"[All Fields] OR \"technically\"[All Fields]) AND (\"aptitude\"[MeSH Terms] OR \"aptitude\"[All Fields] OR \"abilities\"[All Fields] OR \"ability\"[All Fields])) AND \"elite sprinters\"[Title] AND Morin[Author]",
+      "warninglist": {
+        "phrasesignored": [
+          "of"
+        ],
+        "quotedphrasesnotfound": [],
+        "outputmessages": [
+          "No items found."
+        ]
+      }
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=Technical+ability+elite+sprinters%5BTitle%5D+AND+Morin%5BAuthor%5D&retmode=json&retmax=5&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esearch",
+      "version": "0.3"
+    },
+    "esearchresult": {
+      "count": "0",
+      "retmax": "0",
+      "retstart": "0",
+      "idlist": [],
+      "translationset": [
+        {
+          "from": "Technical",
+          "to": "\"methods\"[MeSH Terms] OR \"methods\"[All Fields] OR \"technical\"[All Fields] OR \"technicalities\"[All Fields] OR \"technicality\"[All Fields] OR \"technically\"[All Fields]"
+        },
+        {
+          "from": "ability",
+          "to": "\"aptitude\"[MeSH Terms] OR \"aptitude\"[All Fields] OR \"abilities\"[All Fields] OR \"ability\"[All Fields]"
+        }
+      ],
+      "querytranslation": "((\"methods\"[MeSH Terms] OR \"methods\"[All Fields] OR \"technical\"[All Fields] OR \"technicalities\"[All Fields] OR \"technicality\"[All Fields] OR \"technically\"[All Fields]) AND (\"aptitude\"[MeSH Terms] OR \"aptitude\"[All Fields] OR \"abilities\"[All Fields] OR \"ability\"[All Fields])) AND \"elite sprinters\"[Title] AND Morin[Author]",
+      "warninglist": {
+        "phrasesignored": [],
+        "quotedphrasesnotfound": [],
+        "outputmessages": [
+          "No items found."
+        ]
+      }
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=Morin%5BAuthor%5D+AND+2011%5BDate+-+Publication%5D+AND+Technical%5BTitle%5D&retmode=json&retmax=5&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esearch",
+      "version": "0.3"
+    },
+    "esearchresult": {
+      "count": "1",
+      "retmax": "1",
+      "retstart": "0",
+      "idlist": [
+        "21364480"
+      ],
+      "translationset": [],
+      "querytranslation": "Morin[Author] AND 2011/01/01:2011/12/31[Date - Publication] AND \"Technical\"[Title]"
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=21364480&retmode=json&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esummary",
+      "version": "0.3"
+    },
+    "result": {
+      "uids": [
+        "21364480"
+      ],
+      "21364480": {
+        "uid": "21364480",
+        "pubdate": "2011 Sep",
+        "epubdate": "",
+        "source": "Med Sci Sports Exerc",
+        "authors": [
+          {
+            "name": "Morin JB",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Edouard P",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Samozino P",
+            "authtype": "Author",
+            "clusterid": ""
+          }
+        ],
+        "lastauthor": "Samozino P",
+        "title": "Technical ability of force application as a determinant factor of sprint performance.",
+        "sorttitle": "technical ability of force application as a determinant factor of sprint performance",
+        "volume": "43",
+        "issue": "9",
+        "pages": "1680-8",
+        "lang": [
+          "eng"
+        ],
+        "nlmuniqueid": "8005433",
+        "issn": "0195-9131",
+        "essn": "1530-0315",
+        "pubtype": [
+          "Journal Article"
+        ],
+        "recordstatus": "PubMed - indexed for MEDLINE",
+        "pubstatus": "4",
+        "articleids": [
+          {
+            "idtype": "pubmed",
+            "idtypen": 1,
+            "value": "21364480"
+          },
+          {
+            "idtype": "doi",
+            "idtypen": 3,
+            "value": "10.1249/MSS.0b013e318216ea37"
+          }
+        ],
+        "history": [
+          {
+            "pubstatus": "entrez",
+            "date": "2011/03/03 06:00"
+          },
+          {
+            "pubstatus": "pubmed",
+            "date": "2011/03/03 06:00"
+          },
+          {
+            "pubstatus": "medline",
+            "date": "2012/03/29 06:00"
+          }
+        ],
+        "references": [],
+        "attributes": [
+          "Has Abstract"
+        ],
+        "pmcrefcount": "",
+        "fulljournalname": "Medicine and science in sports and exercise",
+        "elocationid": "doi: 10.1249/MSS.0b013e318216ea37",
+        "doctype": "citation",
+        "srccontriblist": [],
+        "booktitle": "",
+        "medium": "",
+        "edition": "",
+        "publisherlocation": "",
+        "publishername": "",
+        "srcdate": "",
+        "reportnumber": "",
+        "availablefromurl": "",
+        "locationlabel": "",
+        "doccontriblist": [],
+        "docdate": "",
+        "bookname": "",
+        "chapter": "",
+        "sortpubdate": "2011/09/01 00:00",
+        "sortfirstauthor": "Morin JB",
+        "vernaculartitle": ""
+      }
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%22Faster+top+speeds+of+human+sprinters+are+achieved+with+greater+ground+forces%2C+not+rapid+leg+movements%22%5BTitle%5D+AND+Weyand%5BAuthor%5D&retmode=json&retmax=5&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esearch",
+      "version": "0.3"
+    },
+    "esearchresult": {
+      "count": "0",
+      "retmax": "0",
+      "retstart": "0",
+      "idlist": [],
+      "translationset": [],
+      "querytranslation": "\"Faster top speeds of human sprinters are achieved with greater ground forces, not rapid leg movements\"[Title] AND Weyand[Author]",
+      "warninglist": {
+        "phrasesignored": [],
+        "quotedphrasesnotfound": [
+          "\"Faster top speeds of human sprinters are achieved with greater ground forces, not rapid leg movements\"[Title]"
+        ],
+        "outputmessages": [
+          "No items found."
+        ]
+      }
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=Faster+speeds+sprinters+achieved%5BTitle%5D+AND+Weyand%5BAuthor%5D&retmode=json&retmax=5&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esearch",
+      "version": "0.3"
+    },
+    "esearchresult": {
+      "count": "0",
+      "retmax": "0",
+      "retstart": "0",
+      "idlist": [],
+      "translationset": [
+        {
+          "from": "speeds",
+          "to": "\"speed\"[All Fields] OR \"speeded\"[All Fields] OR \"speeding\"[All Fields] OR \"speeds\"[All Fields]"
+        },
+        {
+          "from": "sprinters",
+          "to": "\"sprinter\"[All Fields] OR \"sprinter's\"[All Fields] OR \"sprinters\"[All Fields]"
+        }
+      ],
+      "querytranslation": "(\"Faster\"[All Fields] AND (\"speed\"[All Fields] OR \"speeded\"[All Fields] OR \"speeding\"[All Fields] OR \"speeds\"[All Fields]) AND (\"sprinter\"[All Fields] OR \"sprinter s\"[All Fields] OR \"sprinters\"[All Fields])) AND \"achieved\"[Title] AND Weyand[Author]",
+      "warninglist": {
+        "phrasesignored": [],
+        "quotedphrasesnotfound": [],
+        "outputmessages": [
+          "No items found."
+        ]
+      }
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=Weyand%5BAuthor%5D+AND+2000%5BDate+-+Publication%5D+AND+Faster%5BTitle%5D&retmode=json&retmax=5&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esearch",
+      "version": "0.3"
+    },
+    "esearchresult": {
+      "count": "1",
+      "retmax": "1",
+      "retstart": "0",
+      "idlist": [
+        "11053354"
+      ],
+      "translationset": [],
+      "querytranslation": "Weyand[Author] AND 2000/01/01:2000/12/31[Date - Publication] AND \"Faster\"[Title]"
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=11053354&retmode=json&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esummary",
+      "version": "0.3"
+    },
+    "result": {
+      "uids": [
+        "11053354"
+      ],
+      "11053354": {
+        "uid": "11053354",
+        "pubdate": "2000 Nov",
+        "epubdate": "",
+        "source": "J Appl Physiol (1985)",
+        "authors": [
+          {
+            "name": "Weyand PG",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Sternlight DB",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Bellizzi MJ",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Wright S",
+            "authtype": "Author",
+            "clusterid": ""
+          }
+        ],
+        "lastauthor": "Wright S",
+        "title": "Faster top running speeds are achieved with greater ground forces not more rapid leg movements.",
+        "sorttitle": "faster top running speeds are achieved with greater ground forces not more rapid leg movements",
+        "volume": "89",
+        "issue": "5",
+        "pages": "1991-9",
+        "lang": [
+          "eng"
+        ],
+        "nlmuniqueid": "8502536",
+        "issn": "8750-7587",
+        "essn": "0161-7567",
+        "pubtype": [
+          "Journal Article",
+          "Research Support, Non-U.S. Gov't",
+          "Research Support, U.S. Gov't, P.H.S."
+        ],
+        "recordstatus": "PubMed - indexed for MEDLINE",
+        "pubstatus": "4",
+        "articleids": [
+          {
+            "idtype": "pubmed",
+            "idtypen": 1,
+            "value": "11053354"
+          },
+          {
+            "idtype": "doi",
+            "idtypen": 3,
+            "value": "10.1152/jappl.2000.89.5.1991"
+          }
+        ],
+        "history": [
+          {
+            "pubstatus": "pubmed",
+            "date": "2000/10/29 11:00"
+          },
+          {
+            "pubstatus": "medline",
+            "date": "2001/02/28 10:01"
+          },
+          {
+            "pubstatus": "entrez",
+            "date": "2000/10/29 11:00"
+          }
+        ],
+        "references": [],
+        "attributes": [
+          "Has Abstract"
+        ],
+        "pmcrefcount": "",
+        "fulljournalname": "Journal of applied physiology (Bethesda, Md. : 1985)",
+        "elocationid": "",
+        "doctype": "citation",
+        "srccontriblist": [],
+        "booktitle": "",
+        "medium": "",
+        "edition": "",
+        "publisherlocation": "",
+        "publishername": "",
+        "srcdate": "",
+        "reportnumber": "",
+        "availablefromurl": "",
+        "locationlabel": "",
+        "doccontriblist": [],
+        "docdate": "",
+        "bookname": "",
+        "chapter": "",
+        "sortpubdate": "2000/11/01 00:00",
+        "sortfirstauthor": "Weyand PG",
+        "vernaculartitle": ""
+      }
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%22Stretch-shortening+cycle%3A+a+powerful+model+to+study+normal+and+fatigued+muscle%22%5BTitle%5D+AND+Komi%5BAuthor%5D&retmode=json&retmax=5&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esearch",
+      "version": "0.3"
+    },
+    "esearchresult": {
+      "count": "0",
+      "retmax": "0",
+      "retstart": "0",
+      "idlist": [],
+      "translationset": [],
+      "querytranslation": "\"Stretch-shortening cycle: a powerful model to study normal and fatigued muscle\"[Title] AND Komi[Author]",
+      "warninglist": {
+        "phrasesignored": [],
+        "quotedphrasesnotfound": [
+          "\"Stretch-shortening cycle: a powerful model to study normal and fatigued muscle\"[Title]"
+        ],
+        "outputmessages": [
+          "No items found."
+        ]
+      }
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%22Stretch-shortening+cycle%22%5BTitle%5D+AND+Komi%5BAuthor%5D&retmode=json&retmax=5&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esearch",
+      "version": "0.3"
+    },
+    "esearchresult": {
+      "count": "34",
+      "retmax": "5",
+      "retstart": "0",
+      "idlist": [
+        "18208422",
+        "17473771",
+        "17305941",
+        "17052133",
+        "16770465"
+      ],
+      "translationset": [],
+      "querytranslation": "\"Stretch-shortening cycle\"[Title] AND Komi[Author]"
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=18208422%2C17473771%2C17305941%2C17052133%2C16770465&retmode=json&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esummary",
+      "version": "0.3"
+    },
+    "result": {
+      "uids": [
+        "18208422",
+        "17473771",
+        "17305941",
+        "17052133",
+        "16770465"
+      ],
+      "18208422": {
+        "uid": "18208422",
+        "pubdate": "2008 Oct",
+        "epubdate": "2008 Jan 14",
+        "source": "Scand J Med Sci Sports",
+        "authors": [
+          {
+            "name": "Piitulainen H",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Kivel\u00e4 R",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Komi P",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Kainulainen H",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Kyr\u00f6l\u00e4inen H",
+            "authtype": "Author",
+            "clusterid": ""
+          }
+        ],
+        "lastauthor": "Kyr\u00f6l\u00e4inen H",
+        "title": "Molecular adaptations of voltage-gated sodium ion channel related proteins after fatiguing stretch-shortening cycle exercise.",
+        "sorttitle": "molecular adaptations of voltage gated sodium ion channel related proteins after fatiguing stretch shortening cycle exercise",
+        "volume": "18",
+        "issue": "5",
+        "pages": "636-42",
+        "lang": [
+          "eng"
+        ],
+        "nlmuniqueid": "9111504",
+        "issn": "0905-7188",
+        "essn": "1600-0838",
+        "pubtype": [
+          "Journal Article"
+        ],
+        "recordstatus": "PubMed - indexed for MEDLINE",
+        "pubstatus": "256",
+        "articleids": [
+          {
+            "idtype": "pubmed",
+            "idtypen": 1,
+            "value": "18208422"
+          },
+          {
+            "idtype": "doi",
+            "idtypen": 3,
+            "value": "10.1111/j.1600-0838.2007.00731.x"
+          },
+          {
+            "idtype": "pii",
+            "idtypen": 4,
+            "value": "SMS731"
+          }
+        ],
+        "history": [
+          {
+            "pubstatus": "pubmed",
+            "date": "2008/01/23 09:00"
+          },
+          {
+            "pubstatus": "medline",
+            "date": "2009/07/25 09:00"
+          },
+          {
+            "pubstatus": "entrez",
+            "date": "2008/01/23 09:00"
+          }
+        ],
+        "references": [],
+        "attributes": [
+          "Has Abstract"
+        ],
+        "pmcrefcount": "",
+        "fulljournalname": "Scandinavian journal of medicine & science in sports",
+        "elocationid": "doi: 10.1111/j.1600-0838.2007.00731.x",
+        "doctype": "citation",
+        "srccontriblist": [],
+        "booktitle": "",
+        "medium": "",
+        "edition": "",
+        "publisherlocation": "",
+        "publishername": "",
+        "srcdate": "",
+        "reportnumber": "",
+        "availablefromurl": "",
+        "locationlabel": "",
+        "doccontriblist": [],
+        "docdate": "",
+        "bookname": "",
+        "chapter": "",
+        "sortpubdate": "2008/10/01 00:00",
+        "sortfirstauthor": "Piitulainen H",
+        "vernaculartitle": ""
+      },
+      "17473771": {
+        "uid": "17473771",
+        "pubdate": "2007 Mar",
+        "epubdate": "",
+        "source": "Med Sci Sports Exerc",
+        "authors": [
+          {
+            "name": "Dousset E",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Avela J",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Ishikawa M",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Kallio J",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Kuitunen S",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Kyr\u00f6l\u00e1inen H",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Linnamo V",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Komi PV",
+            "authtype": "Author",
+            "clusterid": ""
+          }
+        ],
+        "lastauthor": "Komi PV",
+        "title": "Bimodal recovery pattern in human skeletal muscle induced by exhaustive stretch-shortening cycle exercise.",
+        "sorttitle": "bimodal recovery pattern in human skeletal muscle induced by exhaustive stretch shortening cycle exercise",
+        "volume": "39",
+        "issue": "3",
+        "pages": "453-60",
+        "lang": [
+          "eng"
+        ],
+        "nlmuniqueid": "8005433",
+        "issn": "0195-9131",
+        "essn": "",
+        "pubtype": [
+          "Journal Article"
+        ],
+        "recordstatus": "PubMed - indexed for MEDLINE",
+        "pubstatus": "4",
+        "articleids": [
+          {
+            "idtype": "pubmed",
+            "idtypen": 1,
+            "value": "17473771"
+          },
+          {
+            "idtype": "doi",
+            "idtypen": 3,
+            "value": "10.1249/mss.0b013e31802dd74e"
+          },
+          {
+            "idtype": "pii",
+            "idtypen": 4,
+            "value": "00005768-200703000-00008"
+          }
+        ],
+        "history": [
+          {
+            "pubstatus": "pubmed",
+            "date": "2007/05/03 09:00"
+          },
+          {
+            "pubstatus": "medline",
+            "date": "2007/06/15 09:00"
+          },
+          {
+            "pubstatus": "entrez",
+            "date": "2007/05/03 09:00"
+          }
+        ],
+        "references": [],
+        "attributes": [
+          "Has Abstract"
+        ],
+        "pmcrefcount": "",
+        "fulljournalname": "Medicine and science in sports and exercise",
+        "elocationid": "",
+        "doctype": "citation",
+        "srccontriblist": [],
+        "booktitle": "",
+        "medium": "",
+        "edition": "",
+        "publisherlocation": "",
+        "publishername": "",
+        "srcdate": "",
+        "reportnumber": "",
+        "availablefromurl": "",
+        "locationlabel": "",
+        "doccontriblist": [],
+        "docdate": "",
+        "bookname": "",
+        "chapter": "",
+        "sortpubdate": "2007/03/01 00:00",
+        "sortfirstauthor": "Dousset E",
+        "vernaculartitle": ""
+      },
+      "17305941": {
+        "uid": "17305941",
+        "pubdate": "2007 Feb",
+        "epubdate": "",
+        "source": "Scand J Med Sci Sports",
+        "authors": [
+          {
+            "name": "Kuitunen S",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Kyr\u00f6l\u00e4inen H",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Avela J",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Komi PV",
+            "authtype": "Author",
+            "clusterid": ""
+          }
+        ],
+        "lastauthor": "Komi PV",
+        "title": "Leg stiffness modulation during exhaustive stretch-shortening cycle exercise.",
+        "sorttitle": "leg stiffness modulation during exhaustive stretch shortening cycle exercise",
+        "volume": "17",
+        "issue": "1",
+        "pages": "67-75",
+        "lang": [
+          "eng"
+        ],
+        "nlmuniqueid": "9111504",
+        "issn": "0905-7188",
+        "essn": "",
+        "pubtype": [
+          "Journal Article",
+          "Research Support, Non-U.S. Gov't"
+        ],
+        "recordstatus": "PubMed - indexed for MEDLINE",
+        "pubstatus": "4",
+        "articleids": [
+          {
+            "idtype": "pubmed",
+            "idtypen": 1,
+            "value": "17305941"
+          },
+          {
+            "idtype": "doi",
+            "idtypen": 3,
+            "value": "10.1111/j.1600-0838.2005.00506.x"
+          },
+          {
+            "idtype": "pii",
+            "idtypen": 4,
+            "value": "SMS506"
+          }
+        ],
+        "history": [
+          {
+            "pubstatus": "pubmed",
+            "date": "2007/02/20 09:00"
+          },
+          {
+            "pubstatus": "medline",
+            "date": "2007/04/04 09:00"
+          },
+          {
+            "pubstatus": "entrez",
+            "date": "2007/02/20 09:00"
+          }
+        ],
+        "references": [],
+        "attributes": [
+          "Has Abstract"
+        ],
+        "pmcrefcount": "",
+        "fulljournalname": "Scandinavian journal of medicine & science in sports",
+        "elocationid": "",
+        "doctype": "citation",
+        "srccontriblist": [],
+        "booktitle": "",
+        "medium": "",
+        "edition": "",
+        "publisherlocation": "",
+        "publishername": "",
+        "srcdate": "",
+        "reportnumber": "",
+        "availablefromurl": "",
+        "locationlabel": "",
+        "doccontriblist": [],
+        "docdate": "",
+        "bookname": "",
+        "chapter": "",
+        "sortpubdate": "2007/02/01 00:00",
+        "sortfirstauthor": "Kuitunen S",
+        "vernaculartitle": ""
+      },
+      "17052133": {
+        "uid": "17052133",
+        "pubdate": "2006",
+        "epubdate": "",
+        "source": "Sports Med",
+        "authors": [
+          {
+            "name": "Nicol C",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Avela J",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Komi PV",
+            "authtype": "Author",
+            "clusterid": ""
+          }
+        ],
+        "lastauthor": "Komi PV",
+        "title": "The stretch-shortening cycle : a model to study naturally occurring neuromuscular fatigue.",
+        "sorttitle": "stretch shortening cycle a model to study naturally occurring neuromuscular fatigue",
+        "volume": "36",
+        "issue": "11",
+        "pages": "977-99",
+        "lang": [
+          "eng"
+        ],
+        "nlmuniqueid": "8412297",
+        "issn": "0112-1642",
+        "essn": "",
+        "pubtype": [
+          "Journal Article",
+          "Review"
+        ],
+        "recordstatus": "PubMed - indexed for MEDLINE",
+        "pubstatus": "4",
+        "articleids": [
+          {
+            "idtype": "pubmed",
+            "idtypen": 1,
+            "value": "17052133"
+          },
+          {
+            "idtype": "doi",
+            "idtypen": 3,
+            "value": "10.2165/00007256-200636110-00004"
+          },
+          {
+            "idtype": "pii",
+            "idtypen": 4,
+            "value": "36114"
+          }
+        ],
+        "history": [
+          {
+            "pubstatus": "pubmed",
+            "date": "2006/10/21 09:00"
+          },
+          {
+            "pubstatus": "medline",
+            "date": "2007/02/14 09:00"
+          },
+          {
+            "pubstatus": "entrez",
+            "date": "2006/10/21 09:00"
+          }
+        ],
+        "references": [],
+        "attributes": [
+          "Has Abstract"
+        ],
+        "pmcrefcount": "",
+        "fulljournalname": "Sports medicine (Auckland, N.Z.)",
+        "elocationid": "",
+        "doctype": "citation",
+        "srccontriblist": [],
+        "booktitle": "",
+        "medium": "",
+        "edition": "",
+        "publisherlocation": "",
+        "publishername": "",
+        "srcdate": "",
+        "reportnumber": "",
+        "availablefromurl": "",
+        "locationlabel": "",
+        "doccontriblist": [],
+        "docdate": "",
+        "bookname": "",
+        "chapter": "",
+        "sortpubdate": "2006/01/01 00:00",
+        "sortfirstauthor": "Nicol C",
+        "vernaculartitle": ""
+      },
+      "16770465": {
+        "uid": "16770465",
+        "pubdate": "2006 Jun",
+        "epubdate": "2006 Apr 21",
+        "source": "Eur J Appl Physiol",
+        "authors": [
+          {
+            "name": "Ishikawa M",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Dousset E",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Avela J",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Kyr\u00f6l\u00e4inen H",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Kallio J",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Linnamo V",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Kuitunen S",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Nicol C",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Komi PV",
+            "authtype": "Author",
+            "clusterid": ""
+          }
+        ],
+        "lastauthor": "Komi PV",
+        "title": "Changes in the soleus muscle architecture after exhausting stretch-shortening cycle exercise in humans.",
+        "sorttitle": "changes in the soleus muscle architecture after exhausting stretch shortening cycle exercise in humans",
+        "volume": "97",
+        "issue": "3",
+        "pages": "298-306",
+        "lang": [
+          "eng"
+        ],
+        "nlmuniqueid": "100954790",
+        "issn": "1439-6319",
+        "essn": "",
+        "pubtype": [
+          "Comparative Study",
+          "Journal Article"
+        ],
+        "recordstatus": "PubMed - indexed for MEDLINE",
+        "pubstatus": "256",
+        "articleids": [
+          {
+            "idtype": "pubmed",
+            "idtypen": 1,
+            "value": "16770465"
+          },
+          {
+            "idtype": "doi",
+            "idtypen": 3,
+            "value": "10.1007/s00421-006-0180-2"
+          }
+        ],
+        "history": [
+          {
+            "pubstatus": "accepted",
+            "date": "2006/03/14 00:00"
+          },
+          {
+            "pubstatus": "pubmed",
+            "date": "2006/06/14 09:00"
+          },
+          {
+            "pubstatus": "medline",
+            "date": "2006/09/22 09:00"
+          },
+          {
+            "pubstatus": "entrez",
+            "date": "2006/06/14 09:00"
+          }
+        ],
+        "references": [],
+        "attributes": [
+          "Has Abstract"
+        ],
+        "pmcrefcount": "",
+        "fulljournalname": "European journal of applied physiology",
+        "elocationid": "",
+        "doctype": "citation",
+        "srccontriblist": [],
+        "booktitle": "",
+        "medium": "",
+        "edition": "",
+        "publisherlocation": "",
+        "publishername": "",
+        "srcdate": "",
+        "reportnumber": "",
+        "availablefromurl": "",
+        "locationlabel": "",
+        "doccontriblist": [],
+        "docdate": "",
+        "bookname": "",
+        "chapter": "",
+        "sortpubdate": "2006/06/01 00:00",
+        "sortfirstauthor": "Ishikawa M",
+        "vernaculartitle": ""
+      }
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%22Developing+maximal+neuromuscular+power%3A+Part+1+-+Biological+basis+of+maximal+power+production%22%5BTitle%5D+AND+Cormie%5BAuthor%5D&retmode=json&retmax=5&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esearch",
+      "version": "0.3"
+    },
+    "esearchresult": {
+      "count": "0",
+      "retmax": "0",
+      "retstart": "0",
+      "idlist": [],
+      "translationset": [],
+      "querytranslation": "\"Developing maximal neuromuscular power: Part 1 - Biological basis of maximal power production\"[Title] AND Cormie[Author]",
+      "warninglist": {
+        "phrasesignored": [],
+        "quotedphrasesnotfound": [
+          "\"Developing maximal neuromuscular power: Part 1 - Biological basis of maximal power production\"[Title]"
+        ],
+        "outputmessages": [
+          "No items found."
+        ]
+      }
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%22Developing+maximal+neuromuscular+power%22%5BTitle%5D+AND+Cormie%5BAuthor%5D&retmode=json&retmax=5&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esearch",
+      "version": "0.3"
+    },
+    "esearchresult": {
+      "count": "0",
+      "retmax": "0",
+      "retstart": "0",
+      "idlist": [],
+      "translationset": [],
+      "querytranslation": "\"Developing maximal neuromuscular power\"[Title] AND Cormie[Author]",
+      "warninglist": {
+        "phrasesignored": [],
+        "quotedphrasesnotfound": [
+          "\"Developing maximal neuromuscular power\"[Title]"
+        ],
+        "outputmessages": [
+          "No items found."
+        ]
+      }
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=Developing+maximal+neuromuscular+power%5BTitle%5D+AND+Cormie%5BAuthor%5D&retmode=json&retmax=5&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esearch",
+      "version": "0.3"
+    },
+    "esearchresult": {
+      "count": "2",
+      "retmax": "2",
+      "retstart": "0",
+      "idlist": [
+        "21244105",
+        "21142282"
+      ],
+      "translationset": [
+        {
+          "from": "Developing",
+          "to": "\"develop\"[All Fields] OR \"develope\"[All Fields] OR \"developed\"[All Fields] OR \"developer\"[All Fields] OR \"developer's\"[All Fields] OR \"developers\"[All Fields] OR \"developing\"[All Fields] OR \"developments\"[All Fields] OR \"develops\"[All Fields] OR \"growth and development\"[Subheading] OR (\"growth\"[All Fields] AND \"development\"[All Fields]) OR \"growth and development\"[All Fields] OR \"development\"[All Fields]"
+        }
+      ],
+      "querytranslation": "(\"develop\"[All Fields] OR \"develope\"[All Fields] OR \"developed\"[All Fields] OR \"developer\"[All Fields] OR \"developer s\"[All Fields] OR \"developers\"[All Fields] OR \"developing\"[All Fields] OR \"developments\"[All Fields] OR \"develops\"[All Fields] OR \"growth and development\"[MeSH Subheading] OR (\"growth\"[All Fields] AND \"development\"[All Fields]) OR \"growth and development\"[All Fields] OR \"development\"[All Fields]) AND \"maximal neuromuscular power\"[Title] AND Cormie[Author]"
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=21244105%2C21142282&retmode=json&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esummary",
+      "version": "0.3"
+    },
+    "result": {
+      "uids": [
+        "21244105",
+        "21142282"
+      ],
+      "21244105": {
+        "uid": "21244105",
+        "pubdate": "2011 Feb 1",
+        "epubdate": "",
+        "source": "Sports Med",
+        "authors": [
+          {
+            "name": "Cormie P",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "McGuigan MR",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Newton RU",
+            "authtype": "Author",
+            "clusterid": ""
+          }
+        ],
+        "lastauthor": "Newton RU",
+        "title": "Developing maximal neuromuscular power: part 2 - training considerations for improving maximal power production.",
+        "sorttitle": "developing maximal neuromuscular power part 2 training considerations for improving maximal power production",
+        "volume": "41",
+        "issue": "2",
+        "pages": "125-46",
+        "lang": [
+          "eng"
+        ],
+        "nlmuniqueid": "8412297",
+        "issn": "0112-1642",
+        "essn": "1179-2035",
+        "pubtype": [
+          "Journal Article",
+          "Review"
+        ],
+        "recordstatus": "PubMed - indexed for MEDLINE",
+        "pubstatus": "4",
+        "articleids": [
+          {
+            "idtype": "pubmed",
+            "idtypen": 1,
+            "value": "21244105"
+          },
+          {
+            "idtype": "doi",
+            "idtypen": 3,
+            "value": "10.2165/11538500-000000000-00000"
+          },
+          {
+            "idtype": "pii",
+            "idtypen": 4,
+            "value": "2"
+          }
+        ],
+        "history": [
+          {
+            "pubstatus": "entrez",
+            "date": "2011/01/20 06:00"
+          },
+          {
+            "pubstatus": "pubmed",
+            "date": "2011/01/20 06:00"
+          },
+          {
+            "pubstatus": "medline",
+            "date": "2011/06/07 06:00"
+          }
+        ],
+        "references": [],
+        "attributes": [
+          "Has Abstract"
+        ],
+        "pmcrefcount": "",
+        "fulljournalname": "Sports medicine (Auckland, N.Z.)",
+        "elocationid": "doi: 10.2165/11538500-000000000-00000",
+        "doctype": "citation",
+        "srccontriblist": [],
+        "booktitle": "",
+        "medium": "",
+        "edition": "",
+        "publisherlocation": "",
+        "publishername": "",
+        "srcdate": "",
+        "reportnumber": "",
+        "availablefromurl": "",
+        "locationlabel": "",
+        "doccontriblist": [],
+        "docdate": "",
+        "bookname": "",
+        "chapter": "",
+        "sortpubdate": "2011/02/01 00:00",
+        "sortfirstauthor": "Cormie P",
+        "vernaculartitle": ""
+      },
+      "21142282": {
+        "uid": "21142282",
+        "pubdate": "2011 Jan 1",
+        "epubdate": "",
+        "source": "Sports Med",
+        "authors": [
+          {
+            "name": "Cormie P",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "McGuigan MR",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Newton RU",
+            "authtype": "Author",
+            "clusterid": ""
+          }
+        ],
+        "lastauthor": "Newton RU",
+        "title": "Developing maximal neuromuscular power: Part 1--biological basis of maximal power production.",
+        "sorttitle": "developing maximal neuromuscular power part 1 biological basis of maximal power production",
+        "volume": "41",
+        "issue": "1",
+        "pages": "17-38",
+        "lang": [
+          "eng"
+        ],
+        "nlmuniqueid": "8412297",
+        "issn": "0112-1642",
+        "essn": "1179-2035",
+        "pubtype": [
+          "Journal Article",
+          "Review"
+        ],
+        "recordstatus": "PubMed - indexed for MEDLINE",
+        "pubstatus": "4",
+        "articleids": [
+          {
+            "idtype": "pubmed",
+            "idtypen": 1,
+            "value": "21142282"
+          },
+          {
+            "idtype": "doi",
+            "idtypen": 3,
+            "value": "10.2165/11537690-000000000-00000"
+          },
+          {
+            "idtype": "pii",
+            "idtypen": 4,
+            "value": "2"
+          }
+        ],
+        "history": [
+          {
+            "pubstatus": "entrez",
+            "date": "2010/12/15 06:00"
+          },
+          {
+            "pubstatus": "pubmed",
+            "date": "2010/12/15 06:00"
+          },
+          {
+            "pubstatus": "medline",
+            "date": "2011/03/23 06:00"
+          }
+        ],
+        "references": [],
+        "attributes": [
+          "Has Abstract"
+        ],
+        "pmcrefcount": "",
+        "fulljournalname": "Sports medicine (Auckland, N.Z.)",
+        "elocationid": "doi: 10.2165/11537690-000000000-00000",
+        "doctype": "citation",
+        "srccontriblist": [],
+        "booktitle": "",
+        "medium": "",
+        "edition": "",
+        "publisherlocation": "",
+        "publishername": "",
+        "srcdate": "",
+        "reportnumber": "",
+        "availablefromurl": "",
+        "locationlabel": "",
+        "doccontriblist": [],
+        "docdate": "",
+        "bookname": "",
+        "chapter": "",
+        "sortpubdate": "2011/01/01 00:00",
+        "sortfirstauthor": "Cormie P",
+        "vernaculartitle": ""
+      }
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=%22The+reliability+of+individualized+load-velocity+profiles+in+the+free-weight+back+squat%22%5BTitle%5D+AND+Banyard%5BAuthor%5D&retmode=json&retmax=5&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esearch",
+      "version": "0.3"
+    },
+    "esearchresult": {
+      "count": "0",
+      "retmax": "0",
+      "retstart": "0",
+      "idlist": [],
+      "translationset": [],
+      "querytranslation": "\"The reliability of individualized load-velocity profiles in the free-weight back squat\"[Title] AND Banyard[Author]",
+      "warninglist": {
+        "phrasesignored": [],
+        "quotedphrasesnotfound": [
+          "\"The reliability of individualized load-velocity profiles in the free-weight back squat\"[Title]"
+        ],
+        "outputmessages": [
+          "No items found."
+        ]
+      }
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=reliability+individualized+load+velocity%5BTitle%5D+AND+Banyard%5BAuthor%5D&retmode=json&retmax=5&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esearch",
+      "version": "0.3"
+    },
+    "esearchresult": {
+      "count": "2",
+      "retmax": "2",
+      "retstart": "0",
+      "idlist": [
+        "33547259",
+        "29140148"
+      ],
+      "translationset": [
+        {
+          "from": "reliability",
+          "to": "\"reliabilities\"[All Fields] OR \"reliability\"[All Fields] OR \"reliable\"[All Fields] OR \"reliablity\"[All Fields] OR \"reliably\"[All Fields]"
+        }
+      ],
+      "querytranslation": "(\"reliabilities\"[All Fields] OR \"reliability\"[All Fields] OR \"reliable\"[All Fields] OR \"reliablity\"[All Fields] OR \"reliably\"[All Fields]) AND \"individualized load velocity\"[Title] AND Banyard[Author]"
+    }
+  },
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=33547259%2C29140148&retmode=json&tool=T7WorkoutPMIDResolver&email=integrity-audit%40t7workout.org": {
+    "header": {
+      "type": "esummary",
+      "version": "0.3"
+    },
+    "result": {
+      "uids": [
+        "33547259",
+        "29140148"
+      ],
+      "33547259": {
+        "uid": "33547259",
+        "pubdate": "2021 Jun 1",
+        "epubdate": "2021 Feb 4",
+        "source": "Int J Sports Physiol Perform",
+        "authors": [
+          {
+            "name": "Thompson SW",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Rogerson D",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Ruddock A",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Banyard HG",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Barnes A",
+            "authtype": "Author",
+            "clusterid": ""
+          }
+        ],
+        "lastauthor": "Barnes A",
+        "title": "Pooled Versus Individualized Load-Velocity Profiling in the Free-Weight Back Squat and Power Clean.",
+        "sorttitle": "pooled versus individualized load velocity profiling in the free weight back squat and power clean",
+        "volume": "16",
+        "issue": "6",
+        "pages": "825-833",
+        "lang": [
+          "eng"
+        ],
+        "nlmuniqueid": "101276430",
+        "issn": "1555-0265",
+        "essn": "1555-0273",
+        "pubtype": [
+          "Journal Article"
+        ],
+        "recordstatus": "PubMed - indexed for MEDLINE",
+        "pubstatus": "256",
+        "articleids": [
+          {
+            "idtype": "pubmed",
+            "idtypen": 1,
+            "value": "33547259"
+          },
+          {
+            "idtype": "doi",
+            "idtypen": 3,
+            "value": "10.1123/ijspp.2020-0534"
+          },
+          {
+            "idtype": "pii",
+            "idtypen": 4,
+            "value": "ijspp.2020-0534"
+          }
+        ],
+        "history": [
+          {
+            "pubstatus": "received",
+            "date": "2020/05/27 00:00"
+          },
+          {
+            "pubstatus": "revised",
+            "date": "2020/07/06 00:00"
+          },
+          {
+            "pubstatus": "accepted",
+            "date": "2020/07/11 00:00"
+          },
+          {
+            "pubstatus": "pubmed",
+            "date": "2021/02/07 06:00"
+          },
+          {
+            "pubstatus": "medline",
+            "date": "2021/06/25 06:00"
+          },
+          {
+            "pubstatus": "entrez",
+            "date": "2021/02/06 05:35"
+          }
+        ],
+        "references": [],
+        "attributes": [
+          "Has Abstract"
+        ],
+        "pmcrefcount": "",
+        "fulljournalname": "International journal of sports physiology and performance",
+        "elocationid": "doi: 10.1123/ijspp.2020-0534",
+        "doctype": "citation",
+        "srccontriblist": [],
+        "booktitle": "",
+        "medium": "",
+        "edition": "",
+        "publisherlocation": "",
+        "publishername": "",
+        "srcdate": "",
+        "reportnumber": "",
+        "availablefromurl": "",
+        "locationlabel": "",
+        "doccontriblist": [],
+        "docdate": "",
+        "bookname": "",
+        "chapter": "",
+        "sortpubdate": "2021/06/01 00:00",
+        "sortfirstauthor": "Thompson SW",
+        "vernaculartitle": ""
+      },
+      "29140148": {
+        "uid": "29140148",
+        "pubdate": "2018 Jul 1",
+        "epubdate": "2018 Jul 10",
+        "source": "Int J Sports Physiol Perform",
+        "authors": [
+          {
+            "name": "Banyard HG",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Nosaka K",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Vernon AD",
+            "authtype": "Author",
+            "clusterid": ""
+          },
+          {
+            "name": "Haff GG",
+            "authtype": "Author",
+            "clusterid": ""
+          }
+        ],
+        "lastauthor": "Haff GG",
+        "title": "The Reliability of Individualized Load-Velocity Profiles.",
+        "sorttitle": "reliability of individualized load velocity profiles",
+        "volume": "13",
+        "issue": "6",
+        "pages": "763-769",
+        "lang": [
+          "eng"
+        ],
+        "nlmuniqueid": "101276430",
+        "issn": "1555-0265",
+        "essn": "1555-0273",
+        "pubtype": [
+          "Journal Article"
+        ],
+        "recordstatus": "PubMed - indexed for MEDLINE",
+        "pubstatus": "256",
+        "articleids": [
+          {
+            "idtype": "pubmed",
+            "idtypen": 1,
+            "value": "29140148"
+          },
+          {
+            "idtype": "doi",
+            "idtypen": 3,
+            "value": "10.1123/ijspp.2017-0610"
+          }
+        ],
+        "history": [
+          {
+            "pubstatus": "pubmed",
+            "date": "2017/11/16 06:00"
+          },
+          {
+            "pubstatus": "medline",
+            "date": "2018/08/09 06:00"
+          },
+          {
+            "pubstatus": "entrez",
+            "date": "2017/11/16 06:00"
+          }
+        ],
+        "references": [],
+        "attributes": [
+          "Has Abstract"
+        ],
+        "pmcrefcount": "",
+        "fulljournalname": "International journal of sports physiology and performance",
+        "elocationid": "doi: 10.1123/ijspp.2017-0610",
+        "doctype": "citation",
+        "srccontriblist": [],
+        "booktitle": "",
+        "medium": "",
+        "edition": "",
+        "publisherlocation": "",
+        "publishername": "",
+        "srcdate": "",
+        "reportnumber": "",
+        "availablefromurl": "",
+        "locationlabel": "",
+        "doccontriblist": [],
+        "docdate": "",
+        "bookname": "",
+        "chapter": "",
+        "sortpubdate": "2018/07/01 00:00",
+        "sortfirstauthor": "Banyard HG",
+        "vernaculartitle": ""
+      }
+    }
+  }
+}

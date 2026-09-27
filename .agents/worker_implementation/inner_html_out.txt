@@ -1,0 +1,17 @@
+Line 73:             tooltipEl.innerHTML = innerHtml;
+Line 122:             this.container.innerHTML = `
+Line 384:                 tr.innerHTML = `
+Line 495:                 dashboard.innerHTML = `<div style="padding: 2rem; border: 1px dashed var(--border); border-radius: 12px; text-align: center; color: var(--text-muted);">Elaborazione in corso...</div>`;
+Line 500:             if (quickActions) quickActions.innerHTML = '';
+Line 505:             p.innerHTML = `<span style="color:var(--accent)">Elaborazione file in corso...</span>`;
+Line 526:                 p.innerHTML = `<span style="color:var(--accent)">✅ Estratte ${this.parseResult.rawData.length} righe dati${aggInfo ? ' (aggregate per carico)' : ''}.</span>${aggBadge}`;
+Line 543:                         vbtTbody.innerHTML = '';
+Line 548:                             tr.innerHTML = `
+Line 573:                 p.innerHTML = `<span style="color:#ef4444">Errore di lettura file. Riprova.</span>`;
+Line 594:             modal.innerHTML = `
+Line 637:             container.innerHTML = '<small style="color:var(--text-muted); display:block; margin-bottom:6px; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.04em;">Analisi rapide:</small>';
+Line 781:                 dashboard.innerHTML = `<div style="padding: 2rem; border: 1px solid red; color: red;">Dati VBT insufficienti (servono almeno 2 punti Carico-Velocità).</div>`;
+Line 803:                 dashboard.innerHTML = `<div style="padding: 2rem; border: 1px solid red; color: red;">Errore nel calcolo della regressione. Verificare i dati.</div>`;
+Line 973:             dashboard.innerHTML = html;
+Line 1183:             dashboard.innerHTML = `
+Line 1347:             dashboard.innerHTML = html;

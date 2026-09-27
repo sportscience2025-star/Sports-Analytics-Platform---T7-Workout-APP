@@ -1,0 +1,170 @@
+--- js/logic.js
++++ js/logic.js
+@@ -814,54 +814,94 @@
+         _generateTechnicalExplanations(params) {
+             const explanations = [];
+             const isClinical = params.patientType === 'Clinico';
+             const sport = params.sportPraticato || params.sport;
+             const goal = params.goal;
+             const injuries = params.injuries || [];
+ 
+-            explanations.push({
+-                category: 'Periodizzazione',
+-                title: 'Struttura Mesocicli 3+1 (Carico & Scarico)',
+-                text: 'Il programma segue un modello di periodizzazione ondulata con blocchi di 4 settimane (3 di carico progressivo e 1 di scarico). Lo scarico sistematico permette il ripristino delle riserve di glicogeno, la rigenerazione del sistema nervoso centrale (SNC) e il rimodellamento dei tessuti connettivi, prevenendo il sovrallenamento e promuovendo la supercompensazione.'
+-            });
+- 
+-            if (!isClinical && sport === 'Endurance') {
+-                explanations.push({
+-                    category: 'Sport: Endurance',
+-                    title: 'Allenamento della Forza Submassimale ad Alta Intensità',
+-                    text: 'Per gli atleti di endurance, l\'uso di carichi submassimali (>85% 1RM) con basse ripetizioni (3-6) e recuperi completi (2-3 min) migliora l\'economia del gesto atletico (running/cycling economy) e la rigidità tendinea (tendon stiffness) senza indurre ipertrofia sarcoplasmatica disfunzionale. La scelta di soli esercizi multiarticolari massimizza il transfer motorio.'
+-                });
+-            }
+- 
+-            if (!isClinical && sport === 'Sport di Squadra') {
+-                explanations.push({
+-                    category: 'Sport: Sport di Squadra',
+-                    title: 'Rate of Force Development (RFD) & Lavoro Unilaterale',
+-                    text: 'Nei giochi di squadra, la priorità è lo sviluppo del Rate of Force Development (tasso di sviluppo della forza) tramite tempi esplosivi (es. X-0-1). Il focus su esercizi pliometrici e monolaterali rispecchia le richieste bio-meccaniche dello sport (accelerazioni, decelerazioni, cambi di direzione) e riduce i deficit di forza bilaterali.'
+-                });
+-            }
+- 
+-            if (!isClinical && sport === 'Bodybuilding') {
+-                explanations.push({
+-                    category: 'Sport: Bodybuilding',
+-                    title: 'Tensione Meccanica & Stress Metabolico',
+-                    text: 'Il protocollo per il bodybuilding si focalizza sul range ipertrofico classico (8-12 rep, 70-80% 1RM) con tempi sotto tensione controllati (2-0-2) e pause ridotte (60-90s). Questo approccio ottimizza i due stimoli primari dell\'ipertrofia muscolare: la tensione meccanica sulle fibre e lo stress metabolico locale (accumulo di idrogenioni e lattato).'
+-                });
+-            }
+- 
+-            const hasKneePathology = injuries.some(id => 
+-                ['post_op_lca', 'lesione_lca', 'knee_generic', 'gonarthrosis', 'patellar_tendonitis', 'condromalacia_rotulea', 'meniscus'].includes(id)
+-            );
+-            if (isClinical && hasKneePathology) {
+-                explanations.push({
+-                    category: 'Clinico: Ginocchio',
+-                    title: 'Isometria ad Angolo Specifico per Tendinopatie e Post-Chirurgia',
+-                    text: 'Nelle prime fasi cliniche del ginocchio, l\'uso di contrazioni isometriche (es. Wall Sit a 60°) ha un documentato effetto analgesico sul tendine rotuleo e attiva il quadricipite (in particolare il vasto mediale obliquo) senza indurre stress da taglio articolare o compressione femoro-rotulea eccessiva.'
+-                });
+-                explanations.push({
+-                    category: 'Clinico: Ginocchio',
+-                    title: 'Lavoro Eccentrico Controllato e Rimodellamento del Collagene',
+-                    text: 'La transizione al lavoro eccentrico controllato (Fase 3, tempo 4-0-1) promuove il allineamento corretto delle fibre di collagene nel tendine/legamento in via di guarigione, aumenta la lunghezza dei fascicoli muscolari (prevenendo recidive) e migliora la capacità di decelerazione dell\'arto.'
+-                });
+-            }
+- 
+-            return explanations;
++            // Fallback static data in case the dynamic database is not loaded
++            if (!window.App || !window.App.scientificSources) {
++                console.warn("[WorkoutGeneratorAI] Scientific sources database not found. Falling back to static explanations.");
++                return this._getStaticExplanationsFallback(params);
++            }
++
++            // Filter and map scientific sources dynamically based on rules
++            window.App.scientificSources.forEach(source => {
++                let matches = true;
++
++                if (source.rules) {
++                    // 1. Filter by Patient Type (Atleta vs Clinico)
++                    if (source.rules.patientTypes && source.rules.patientTypes.length > 0) {
++                        const currentType = isClinical ? 'Clinico' : 'Atleta';
++                        if (!source.rules.patientTypes.includes(currentType)) {
++                            matches = false;
++                        }
++                    }
++
++                    // 2. Filter by Sport
++                    if (matches && source.rules.sports && source.rules.sports.length > 0) {
++                        if (!source.rules.sports.includes(sport)) {
++                            matches = false;
++                        }
++                    }
++
++                    // 3. Filter by Goal
++                    if (matches && source.rules.goals && source.rules.goals.length > 0) {
++                        if (!source.rules.goals.includes(goal)) {
++                            matches = false;
++                        }
++                    }
++
++                    // 4. Filter by Injuries/Pathologies (Matches if at least one active injury matches rules)
++                    if (matches && source.rules.injuries && source.rules.injuries.length > 0) {
++                        const hasMatchingInjury = injuries.some(id => source.rules.injuries.includes(id));
++                        if (!hasMatchingInjury) {
++                            matches = false;
++                        }
++                    }
++                }
++
++                if (matches) {
++                    explanations.push({
++                        category: source.scientificArea,
++                        title: source.title,
++                        text: `${source.abstractTakeaway}\n\nRiferimento: ${source.authorsJournalYear} (${source.pubmedDoiLink})`,
++                        sourceMetadata: {
++                            id: source.id,
++                            authorsJournalYear: source.authorsJournalYear,
++                            pubmedDoiLink: source.pubmedDoiLink
++                        }
++                    });
++                }
++            });
++
++            return explanations;
++        }
++
++        _getStaticExplanationsFallback(params) {
++            const explanations = [];
++            const isClinical = params.patientType === 'Clinico';
++            const sport = params.sportPraticato || params.sport;
++            const injuries = params.injuries || [];
++
++            explanations.push({
++                category: 'Periodizzazione',
++                title: 'Struttura Mesocicli 3+1 (Carico & Scarico)',
++                text: 'Il programma segue un modello di periodizzazione ondulata con blocchi di 4 settimane (3 di carico progressivo e 1 di scarico). Lo scarico sistematico permette il ripristino delle riserve di glicogeno, la rigenerazione del sistema nervoso centrale (SNC) e il rimodellamento dei tessuti connettivi, prevenendo il sovrallenamento e promuovendo la supercompensazione.'
++            });
++
++            if (!isClinical && sport === 'Endurance') {
++                explanations.push({
++                    category: 'Sport: Endurance',
++                    title: 'Allenamento della Forza Submassimale ad Alta Intensità',
++                    text: 'Per gli atleti di endurance, l\'uso di carichi submassimali (>85% 1RM) con basse ripetizioni (3-6) e recuperi completi (2-3 min) migliora l\'economia del gesto atletico (running/cycling economy) e la rigidità tendinea (tendon stiffness) senza indurre ipertrofia sarcoplasmatica disfunzionale. La scelta di soli esercizi multiarticolari massimizza il transfer motorio.'
++                });
++            }
++
++            if (!isClinical && sport === 'Sport di Squadra') {
++                explanations.push({
++                    category: 'Sport: Sport di Squadra',
++                    title: 'Rate of Force Development (RFD) & Lavoro Unilaterale',
++                    text: 'Nei giochi di squadra, la priorità è lo sviluppo del Rate of Force Development (tasso di sviluppo della forza) tramite tempi esplosivi (es. X-0-1). Il focus su esercizi pliometrici e monolaterali rispecchia le richieste bio-meccaniche dello sport (accelerazioni, decelerazioni, cambi di direzione) e riduce i deficit di forza bilaterali.'
++                });
++            }
++
++            if (!isClinical && sport === 'Bodybuilding') {
++                explanations.push({
++                    category: 'Sport: Bodybuilding',
++                    title: 'Tensione Meccanica & Stress Metabolico',
++                    text: 'Il protocollo per il bodybuilding si focalizza sul range ipertrofico classico (8-12 rep, 70-80% 1RM) con tempi sotto tensione controllati (2-0-2) e pause ridotte (60-90s). Questo approccio ottimizza i due stimoli primari dell\'ipertrofia muscolare: la tensione meccanica sulle fibre e lo stress metabolico locale (accumulo di idrogenioni e lattato).'
++                });
++            }
++
++            const hasKneePathology = injuries.some(id => 
++                ['post_op_lca', 'lesione_lca', 'knee_generic', 'gonarthrosis', 'patellar_tendonitis', 'condromalacia_rotulea', 'meniscus'].includes(id)
++            );
++            if (isClinical && hasKneePathology) {
++                explanations.push({
++                    category: 'Clinico: Ginocchio',
++                    title: 'Isometria ad Angolo Specifico per Tendinopatie e Post-Chirurgia',
++                    text: 'Nelle prime fasi cliniche del ginocchio, l\'uso di contrazioni isometriche (es. Wall Sit a 60°) ha un documentato effetto analgesico sul tendine rotuleo e attiva il quadricipite (in particolare il vasto mediale obliquo) senza indurre stress da taglio articolare o compressione femoro-rotulea eccessiva.'
++                });
++                explanations.push({
++                    category: 'Clinico: Ginocchio',
++                    title: 'Lavoro Eccentrico Controllato e Rimodellamento del Collagene',
++                    text: 'La transizione al lavoro eccentrico controllato (Fase 3, tempo 4-0-1) promuove il allineamento corretto delle fibre di collagene nel tendine/legamento in via di guarigione, aumenta la lunghezza dei fascicoli muscolari (prevenendo recidive) e migliora la capacità di decelerazione dell\'arto.'
++                });
++            }
++
++            return explanations;
+         }
