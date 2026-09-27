@@ -509,15 +509,18 @@
 
     /**
      * Genera l'HTML dei pulsanti di esportazione Excel, PDF e reset scheda
+     * @param {string} [position='bottom'] - Posizione ('top' o 'bottom')
      * @returns {string} Frammento HTML del blocco azioni report
      */
-    window.App.ResultBuilder.buildActionsHtml = function () {
+    window.App.ResultBuilder.buildActionsHtml = function (position = 'bottom') {
+        const idSuffix = position === 'top' ? '-top' : '';
+        const positionClass = position === 'top' ? 'report-actions-top' : 'report-actions-bottom';
         return `
-            <div class="report-actions-v3">
+            <div class="report-actions-v3 ${positionClass}">
                 <div class="export-group">
                     <span class="export-label">Esporta Programma</span>
                     <div class="export-btns">
-                        <button type="button" class="btn-excel-export" id="btn-export-excel">
+                        <button type="button" class="btn-excel-export" id="btn-export-excel${idSuffix}">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                                 <polyline points="14 2 14 8 20 8"/>
@@ -527,7 +530,7 @@
                             </svg>
                             Excel (.xlsx)
                         </button>
-                        <button type="button" class="btn-pdf-export" id="btn-export-pdf">
+                        <button type="button" class="btn-pdf-export" id="btn-export-pdf${idSuffix}">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                                 <polyline points="14 2 14 8 20 8"/>
@@ -538,7 +541,7 @@
                         </button>
                     </div>
                 </div>
-                <button type="button" class="btn-close-report" id="btn-close-report">
+                <button type="button" class="btn-close-report" id="btn-close-report${idSuffix}">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="19" y1="12" x2="5" y2="12"/>
                         <polyline points="12 19 5 12 12 5"/>

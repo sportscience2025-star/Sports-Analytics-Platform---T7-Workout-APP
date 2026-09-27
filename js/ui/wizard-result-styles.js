@@ -1176,6 +1176,10 @@
                 border: 1px solid rgba(255, 255, 255, 0.05);
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             }
+            .report-actions-v3.report-actions-top {
+                margin-top: 1.25rem;
+                margin-bottom: 2rem;
+            }
             .export-group {
                 display: flex;
                 flex-direction: column;

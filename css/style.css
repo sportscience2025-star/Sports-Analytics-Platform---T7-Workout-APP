@@ -2821,6 +2821,13 @@ button {
     justify-content: flex-end;
 }
 
+.report-actions-v3.report-actions-top {
+    margin-top: 1.25rem;
+    margin-bottom: 2rem;
+    padding-top: 0;
+    border-top: none;
+}
+
 @media (max-width: 600px) {
     .report-actions-v3 {
         flex-direction: column;

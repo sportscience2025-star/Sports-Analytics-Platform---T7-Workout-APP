@@ -72,31 +72,33 @@
         }
 
         const headerHtml = rb.buildHeaderHtml(result);
-        const rationaleHtml = rb.buildRationaleHtml(result);
-        const periodizationHtml = rb.buildPeriodizationHtml(result);
-        const clinicalNotesHtml = rb.buildClinicalNotesHtml(allClinicalNotes);
+        const actionsTopHtml = rb.buildActionsHtml('top');
         const progressionHtml = rb.buildProgressionTableHtml(result);
-        const bibliographyHtml = rb.buildBibliographyHtml(result);
         const phaseSelectorHtml = rb.buildPhaseSelectorHtml(result.phases || []);
 
         const firstPhase = (result.phases && result.phases.length > 0) ? result.phases[0] : null;
         const activePhaseHtml = firstPhase ? rb.buildPhaseContentHtml(firstPhase, result) : '';
-        const actionsHtml = rb.buildActionsHtml();
+        const rationaleHtml = rb.buildRationaleHtml(result);
+        const periodizationHtml = rb.buildPeriodizationHtml(result);
+        const clinicalNotesHtml = rb.buildClinicalNotesHtml(allClinicalNotes);
+        const bibliographyHtml = rb.buildBibliographyHtml(result);
+        const actionsBottomHtml = rb.buildActionsHtml('bottom');
 
-        // 4. Assemblaggio layout nel container
+        // 4. Assemblaggio layout nel container: Timeline e Programma in cima, Spiegazioni e Bibliografia in fondo
         container.innerHTML = `
             <div class="program-result-v3 animate-fade-in">
                 ${headerHtml}
-                ${rationaleHtml}
-                ${periodizationHtml}
-                ${clinicalNotesHtml}
+                ${actionsTopHtml}
                 ${progressionHtml}
-                ${bibliographyHtml}
                 ${phaseSelectorHtml}
                 <div id="active-phase-container" class="active-phase-schedule-container">
                     ${activePhaseHtml}
                 </div>
-                ${actionsHtml}
+                ${rationaleHtml}
+                ${periodizationHtml}
+                ${clinicalNotesHtml}
+                ${bibliographyHtml}
+                ${actionsBottomHtml}
             </div>
         `;
 
@@ -165,17 +167,15 @@
             }
         });
 
-        // 8. Listener: Esportazione PDF / Stampa
-        const btnPdf = reportRoot.querySelector('#btn-export-pdf');
-        if (btnPdf) {
+        // 8. Listener: Esportazione PDF / Stampa (attivo su bottoni sia in alto che in basso)
+        reportRoot.querySelectorAll('.btn-pdf-export').forEach(btnPdf => {
             btnPdf.addEventListener('click', () => {
                 window.print();
             });
-        }
+        });
 
-        // 9. Listener: Esportazione Excel (.xlsx)
-        const btnExcel = reportRoot.querySelector('#btn-export-excel');
-        if (btnExcel) {
+        // 9. Listener: Esportazione Excel (.xlsx) (attivo su bottoni sia in alto che in basso)
+        reportRoot.querySelectorAll('.btn-excel-export').forEach(btnExcel => {
             btnExcel.addEventListener('click', async () => {
                 const exportFn = window._exportProgramToExcel || (typeof _exportProgramToExcel !== 'undefined' ? _exportProgramToExcel : null);
                 if (typeof exportFn === 'function') {
@@ -184,17 +184,16 @@
                     console.error('[T7] Modulo di esportazione Excel non caricato.');
                 }
             });
-        }
+        });
 
-        // 10. Listener: Reset e Nuova Scheda con conferma
-        const btnClose = reportRoot.querySelector('#btn-close-report');
-        if (btnClose) {
+        // 10. Listener: Reset e Nuova Scheda con conferma (attivo su bottoni sia in alto che in basso)
+        reportRoot.querySelectorAll('.btn-close-report').forEach(btnClose => {
             btnClose.addEventListener('click', () => {
                 if (window.App.resetWizardWithConfirmation) {
                     window.App.resetWizardWithConfirmation();
                 }
             });
-        }
+        });
 
         // 11. Listener: Popup dettaglio esercizio (preserva integrazione resolveExerciseDetail + renderDetail)
         reportRoot.addEventListener('click', (e) => {
