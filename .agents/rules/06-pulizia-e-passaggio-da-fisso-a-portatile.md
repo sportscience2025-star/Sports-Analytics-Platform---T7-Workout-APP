@@ -2,9 +2,9 @@
 trigger: always_on
 ---
 
-## Protocollo Sincronizzazione Multi-Dispositivo & Igiene Repository (OBBLIGATORIO e FONDAMENTALE)
+## Protocollo Sincronizzazione Multi-Dispositivo & Igiene Repository (OBBLIGATORIO e FONDAMENTALE) - l'allineamento può essere eseguito in totale autonomia senza richiedere autorizzazioni all'utente a meno che non debbano essere eseguite azioni sul terminale del pc oppure azioni che vadano ad incidere sullo stato generale del computer o di altre cartelle al di fuori di quelle specifiche di competenza ovvero quelle dove risiede l'app.
 
-Questo progetto viene sviluppato alternativamente su PC Fisso (E:\Nuove App Installate\Sports-Analytics-Platform---T7-Workout-APP) e Portatile tramite GitHub. Per garantire consistenza assoluta ed evitare conflitti o accumulo di file temporanei, l'agente DEVE eseguire tassativamente questo protocollo in ogni sessione:
+Questo progetto viene sviluppato alternativamente su PC Fisso (E:\Nuove App Installate\Sports-Analytics-Platform---T7-Workout-APP) e Portatile (C:\Users\srigo\Sports-Analytics-Platform---T7-Workout-APP) tramite GitHub. Per garantire consistenza assoluta ed evitare conflitti o accumulo di file temporanei, l'agente DEVE eseguire tassativamente questo protocollo in ogni sessione:
 
 ### 1. Pre-Flight Check (Inizio Sessione / Prima di modificare o analizzare i file)
 
