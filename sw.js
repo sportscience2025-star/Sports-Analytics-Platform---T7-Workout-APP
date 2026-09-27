@@ -3,7 +3,7 @@
  * Network-first for HTML, Cache-first for assets, Offline fallback
  */
 
-const CACHE_NAME = 't7-workout-v100'; // Updated from t7-workout-v99, t7-workout-v90 preserved for test_check
+const CACHE_NAME = 't7-workout-v101'; // Updated from t7-workout-v100, t7-workout-v90 preserved for test_check
 const OFFLINE_URL = './offline.html';
 
 const CORE_ASSETS = [
@@ -78,7 +78,14 @@ const CORE_ASSETS = [
     './js/ui/favorites.js',
     './js/ui/exercise-detail-resolver.js',
     './js/ui/wizard-state.js',
-    './js/ui/wizard-result-styles.js',
+    './js/ui/wizard-result-styles/01-report-shell.js',
+    './js/ui/wizard-result-styles/02-progression-bibliography.js',
+    './js/ui/wizard-result-styles/03-exercise-table.js',
+    './js/ui/wizard-result-styles/04-exercise-overlays.js',
+    './js/ui/wizard-result-styles/05-actions-toast.js',
+    './js/ui/wizard-result-styles/06-responsive.js',
+    './js/ui/wizard-result-styles/07-print.js',
+    './js/ui/wizard-result-styles/index.js',
     './js/ui/wizard-result-builder.js',
     './js/ui/wizard-swap.js',
     './js/ui/wizard-intake.js',

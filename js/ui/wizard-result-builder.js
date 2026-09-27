@@ -6,7 +6,7 @@
  * una stringa HTML pronta per l'inserimento nel DOM.
  *
  * RESPONSABILITA': Separazione netta tra dati (logic.js) e presentazione (UI).
- *                  Qui si definisce COSA viene mostrato, non COME appare (stili in wizard-result-styles.js).
+ *                  Qui si definisce COSA viene mostrato, non COME appare (stili in wizard-result-styles/).
  *
  * FUNZIONI ESPOSTE (via window.App.ResultBuilder):
  *   .buildHeaderHtml(result)              -> Header con titolo, badge, indicatore rischio

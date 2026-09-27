@@ -14,7 +14,7 @@
  *
  * DIPENDENZE:
  *   - wizard-state.js          (gestione stato programma e persistenza)
- *   - wizard-result-styles.js  (stili CSS report, responsive e print)
+ *   - wizard-result-styles/    (moduli stili CSS report, responsive e print)
  *   - wizard-result-builder.js (generatori HTML per sezioni report)
  *   - wizard-swap.js           (sistema interattivo di modifica/sostituzione)
  *   - wizard-intake.js         (wizard 5 step di creazione profilo)
