@@ -2886,7 +2886,12 @@ button {
     #generator-form, 
     .prog-header-v3, 
     .report-actions-v3,
-    .impact-summary {
+    .impact-summary,
+    .bottom-nav,
+    #bottom-nav,
+    .main-nav,
+    .phase-selector-section,
+    .screen-only-phase-container {
         display: none !important;
     }
 

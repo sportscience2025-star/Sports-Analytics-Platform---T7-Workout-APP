@@ -78,6 +78,7 @@
 
         const firstPhase = (result.phases && result.phases.length > 0) ? result.phases[0] : null;
         const activePhaseHtml = firstPhase ? rb.buildPhaseContentHtml(firstPhase, result) : '';
+        const allPhasesPrintHtml = rb.buildAllPhasesPrintHtml ? rb.buildAllPhasesPrintHtml(result) : '';
         const rationaleHtml = rb.buildRationaleHtml(result);
         const periodizationHtml = rb.buildPeriodizationHtml(result);
         const clinicalNotesHtml = rb.buildClinicalNotesHtml(allClinicalNotes);
@@ -91,9 +92,10 @@
                 ${actionsTopHtml}
                 ${progressionHtml}
                 ${phaseSelectorHtml}
-                <div id="active-phase-container" class="active-phase-schedule-container">
+                <div id="active-phase-container" class="active-phase-schedule-container screen-only-phase-container">
                     ${activePhaseHtml}
                 </div>
+                ${allPhasesPrintHtml}
                 ${rationaleHtml}
                 ${periodizationHtml}
                 ${clinicalNotesHtml}
@@ -170,6 +172,11 @@
         // 8. Listener: Esportazione PDF / Stampa (attivo su bottoni sia in alto che in basso)
         reportRoot.querySelectorAll('.btn-pdf-export').forEach(btnPdf => {
             btnPdf.addEventListener('click', () => {
+                // Sincronizza il contenitore di stampa multi-fase con gli ultimi dati aggiornati
+                const printContainer = reportRoot.querySelector('.print-all-phases-container');
+                if (printContainer && rb.buildAllPhasesPrintHtml) {
+                    printContainer.outerHTML = rb.buildAllPhasesPrintHtml(result);
+                }
                 window.print();
             });
         });

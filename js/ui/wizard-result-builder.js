@@ -260,7 +260,13 @@
                         const area = cit.area || 'Scienza dello Sport';
                         const year = cit.year || '';
                         const title = cit.title || '';
-                        const authors = cit.authors || '';
+                        let authors = cit.authors || '';
+                        // Pulizia metadati di debug RAG per veste editoriale pulita nel report/PDF
+                        authors = authors.replace(/•?\s*Similarity Score:\s*[\d.]+/gi, '').trim();
+                        if (authors.endsWith('•')) authors = authors.slice(0, -1).trim();
+                        if (!authors && String(area).toUpperCase().includes('RAG')) {
+                            authors = 'Archivio Metodologico Interno T7';
+                        }
                         const journal = cit.journal || '';
                         const url = cit.url || '';
 
@@ -393,6 +399,7 @@
                                                 <th>Rest</th>
                                                 <th>Tempo</th>
                                                 <th class="col-actions"></th>
+                                                <th class="col-print-log">Carico Effettivo</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -434,6 +441,9 @@
                                                                     <circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/>
                                                                 </svg>
                                                             </button>
+                                                        </td>
+                                                        <td class="col-print-log">
+                                                            <span class="print-log-box">[ &nbsp; &nbsp; &nbsp; &nbsp; kg ]</span>
                                                         </td>
                                                     </tr>
                                                 `;
@@ -548,6 +558,40 @@
                     </svg>
                     Nuova Scheda
                 </button>
+            </div>
+        `;
+    };
+
+    /**
+     * Genera l'HTML di tutte le fasi sequenziali del programma per il rendering di stampa A4
+     * @param {Object} result - Oggetto programma completo
+     * @returns {string} Frammento HTML di tutte le fasi
+     */
+    window.App.ResultBuilder.buildAllPhasesPrintHtml = function (result) {
+        const phases = result.phases || [];
+        if (phases.length === 0) return '';
+
+        return `
+            <div class="print-all-phases-container">
+                ${phases.map((phase, idx) => {
+                    const phaseContent = window.App.ResultBuilder.buildPhaseContentHtml(phase, result);
+                    const progItem = (result.progression && result.progression[phase.id - 1]) || {};
+                    return `
+                        <div class="print-phase-block">
+                            <div class="print-phase-header">
+                                <span class="print-phase-kicker">FASE ${idx + 1} DI ${phases.length}</span>
+                                <h3>${safeEscape(phase.name || '')}</h3>
+                                <div class="print-phase-meta">
+                                    <span><strong>Settimane:</strong> ${safeEscape(phase.weeks || '')}</span>
+                                    <span><strong>Volume:</strong> ${safeEscape(progItem.vol || 'N/A')}</span>
+                                    <span><strong>Intensità:</strong> ${safeEscape(progItem.int || 'N/A')}</span>
+                                    <span><strong>Focus:</strong> ${safeEscape(phase.focus || '')}</span>
+                                </div>
+                            </div>
+                            ${phaseContent}
+                        </div>
+                    `;
+                }).join('')}
             </div>
         `;
     };
