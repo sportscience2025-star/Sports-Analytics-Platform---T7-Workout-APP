@@ -226,6 +226,36 @@ async function runAdversarialTests() {
     assert(highlighted.includes("color: var(--accent)"), "Keyword is highlighted with accent color style");
     assert(highlighted.includes("squat"), "Keyword text is preserved");
 
+    // Test classifyTopicDomain method
+    assert(ui.classifyTopicDomain("Il metabolismo anaerobico produce accumulo di lattato.") === "mechanism", "Topic mechanism classified correctly (IT)");
+    assert(ui.classifyTopicDomain("The neuromuscular adaptation increases maximal force-velocity output.") === "mechanism", "Topic mechanism classified correctly (EN)");
+    assert(ui.classifyTopicDomain("Durante la fase di scarico è consigliato ridurre il volume e aumentare il recupero.") === "takeaway", "Topic takeaway classified correctly (IT)");
+    assert(ui.classifyTopicDomain("The training progression protocol recommends adjusting sets and repetitions.") === "takeaway", "Topic takeaway classified correctly (EN)");
+    assert(ui.classifyTopicDomain("Questa grandezza si definisce come il rapporto tra spazio e tempo.") === "definition", "Topic definition classified correctly");
+    assert(ui.classifyTopicDomain("La velocità target è di 0.75 m/s con 120kg.") === "data", "Topic data classified correctly via metrics");
+    assert(ui.classifyTopicDomain("Una giornata soleggiata per la preparazione atletica.") === "other", "Topic other classified correctly");
+
+    // Test buildExecutiveSummary method (MMR)
+    const testCandidates = [
+        "Lo squat è un esercizio fondamentale per sviluppare forza neuromuscolare.",
+        "Il carico ottimale per lo squat dipende dalla velocità di esecuzione.",
+        "Il recupero tra le serie garantisce il ripristino dei fosfageni muscolari.",
+        "Una corretta progressione del carico riduce il rischio di sovraccarico."
+    ];
+    const execSummary = ui.buildExecutiveSummary(testCandidates, ["squat", "carico"], 2);
+    assert(typeof execSummary === "string" && execSummary.length > 0, "Executive summary returned non-empty string");
+    const summarySentences = execSummary.split(/(?<=\.)\s+/);
+    assert(summarySentences.length <= 2, "Executive summary respected maxSentences limit");
+
+    // Test quality score filtering (>= 2 chunks above threshold vs fallback)
+    const chunksWithLowScores = [
+        { text: "Frammento con score elevato sulla forza.", docName: "Doc1", score: 0.8 },
+        { text: "Frammento rilevante con score medio-alto.", docName: "Doc2", score: 0.5 },
+        { text: "Frammento irrilevante con score basso.", docName: "Doc3", score: 0.05 }
+    ];
+    const synthesisFiltered = ui.synthesizeOfflineResponse("forza", chunksWithLowScores);
+    assert(synthesisFiltered.documents.length === 2, "Synthesis filtered out chunk with score < 0.15 when >= 2 chunks exceed threshold");
+
     // Mock semanticSearch on RAGEngine
     const originalSemanticSearch = win.RAGEngine.semanticSearch;
     win.RAGEngine.semanticSearch = async (q, limit) => {

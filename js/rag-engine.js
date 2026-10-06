@@ -218,6 +218,13 @@
         return chunks;
     }
 
+    // Constants for Hybrid Search and Contextual Chunking
+    const HYBRID_ALPHA = 0.75;            // Peso embedding (75%) vs lexical (25%) nel reranking
+    const MIN_QUALITY_THRESHOLD = 0.18;   // Soglia minima qualita chunk per filtro adattivo
+    const MAX_CANDIDATE_PRE_FILTER = 200; // Limite chunk prima di applicare pre-filtro RAM / CPU
+    const CONTEXT_PREFIX_MAX_CHARS = 120; // Limite caratteri prefisso Anthropic Contextual Retrieval
+    const MAX_FALLBACK_DOC_NAME_CHARS = 40; // Caratteri massimi per nome documento nel fallback prefisso
+
     class RAGEngineClass {
         constructor(workerPath = 'js/rag-worker.js') {
             this.workerPath = workerPath;
@@ -417,7 +424,15 @@
         }
 
         /**
-         * Parses and imports a document, chunking and computing vector embeddings.
+         * Parses and imports a document, splitting it into chunks, enriching each chunk
+         * with Anthropic Contextual Retrieval prefixes, and computing vector embeddings via Web Worker.
+         * The original un-prefixed text is stored for UI display while the embedding captures contextual cues.
+         *
+         * @param {string} name - Document filename or display name
+         * @param {string} fileType - File extension/format ('PDF', 'XLSX', 'DOCX', 'TXT')
+         * @param {ArrayBuffer} arrayBuffer - Raw binary buffer of document file
+         * @param {Function} [onProgress] - Optional callback (percentage: number, stage: string) => void
+         * @returns {Promise<string>} Promise resolving to generated document ID (e.g. 'doc_123456_abc')
          */
         async addDocument(name, fileType, arrayBuffer, onProgress) {
             const db = await this.dbPromise;
@@ -451,8 +466,18 @@
                 throw new Error("Document text resulted in zero chunks.");
             }
 
-            // Generate embeddings via worker in optimized batches
-            const response = await this.sendToWorker('GENERATE_EMBEDDINGS', { texts: chunks });
+            // Contextual Chunking (Anthropic Contextual Retrieval):
+            // Prepends document context and section hierarchy to each chunk for richer semantic embeddings
+            const CONTEXT_PREFIX_MAX_CHARS = 120;
+            const docSummaryPrefix = `[Documento: ${name}] `;
+            const contextualChunks = chunks.map((chunk, idx) => {
+                const prefix = `${docSummaryPrefix}[Sezione ${idx + 1}/${chunks.length}]: `;
+                const safePrefix = prefix.length <= CONTEXT_PREFIX_MAX_CHARS ? prefix : `[${name.substring(0, 40)}] `;
+                return safePrefix + chunk;
+            });
+
+            // Generate embeddings via worker using the contextualized chunk texts
+            const response = await this.sendToWorker('GENERATE_EMBEDDINGS', { texts: contextualChunks });
             const { embeddings } = response;
 
             if (typeof onProgress === 'function') onProgress(85, 'save');
@@ -479,8 +504,8 @@
                     chunkStore.add({
                         documentId: documentId,
                         docName: name,
-                        text: chunks[i],
-                        embedding: embeddings[i],
+                        text: chunks[i], // Testo puro originale per display nella UI
+                        embedding: embeddings[i], // Vettore calcolato sul chunk contestualizzato
                         sourceType: 'user_document'
                     });
                 }
@@ -614,6 +639,9 @@
 
         /**
          * Semantic search query across all chunks or filtered by source type.
+         * Combines neural embedding similarity with BM25/lexical coverage (Hybrid Scoring),
+         * pre-filters candidate sets when large, and applies adaptive thresholding.
+         *
          * @param {string} queryText - Query string
          * @param {number} [limit=5] - Max number of results
          * @param {string|null} [filterSourceType=null] - 'builtin_kb' | 'user_document' | null
@@ -641,6 +669,20 @@
 
             if (candidateChunks.length === 0) return [];
 
+            // Tokenize query into search terms (ignoring short stopwords <= 2 chars)
+            const queryTokens = queryText.toLowerCase().split(/\s+/).filter(t => t.length > 2);
+
+            // Pre-filtro lessicale ante-embedding per ridurre l'impatto su memoria e worker su grandi volumi
+            if (queryTokens.length > 0 && candidateChunks.length > MAX_CANDIDATE_PRE_FILTER) {
+                const preFiltered = candidateChunks.filter(c => {
+                    const textLower = (c.text || '').toLowerCase();
+                    return queryTokens.some(tok => textLower.includes(tok));
+                });
+                if (preFiltered.length >= limit) {
+                    candidateChunks = preFiltered;
+                }
+            }
+
             try {
                 // Get embedding for query
                 const response = await this.sendToWorker('GENERATE_EMBEDDINGS', { texts: [queryText] });
@@ -655,26 +697,41 @@
                     });
                     const { results } = searchResponse;
                     if (results && results.length > 0) {
-                        return results.slice(0, limit);
+                        // Reranking ibrido post worker: combina cosine similarity + normalized lexical score
+                        const reranked = results.map(r => {
+                            let lexScore = 0;
+                            const textLower = (r.text || '').toLowerCase();
+                            queryTokens.forEach(tok => { if (textLower.includes(tok)) lexScore++; });
+                            const normalizedLex = queryTokens.length > 0 ? lexScore / queryTokens.length : 0;
+                            const hybridScore = HYBRID_ALPHA * r.score + (1 - HYBRID_ALPHA) * normalizedLex;
+                            return { ...r, score: hybridScore, cosineSimilarity: r.score };
+                        });
+                        reranked.sort((a, b) => b.score - a.score);
+
+                        // Filtro qualita adattivo: rimuove chunk chiaramente irrilevanti se restano abbastanza risultati
+                        const qualityFiltered = reranked.filter(r => r.score >= MIN_QUALITY_THRESHOLD);
+                        const finalResults = qualityFiltered.length >= limit ? qualityFiltered : reranked;
+                        return finalResults.slice(0, limit);
                     }
                 }
             } catch (err) {
                 console.warn('[RAG Engine] Neural semantic search error, falling back to lexical TF-IDF matching:', err);
             }
 
-            // Lexical / Keyword matching fallback
-            const tokens = queryText.toLowerCase().split(/\s+/).filter(t => t.length > 2);
+            // Fallback lessicale (quando worker fallisce o non ci sono embeddings):
+            // Calcola score con boost x2 per match nel titolo documento (docName)
             const scored = candidateChunks.map(c => {
                 const textLower = (c.text || '').toLowerCase();
+                const docNameLower = (c.docName || '').toLowerCase();
                 let score = 0;
-                tokens.forEach(tok => {
+                queryTokens.forEach(tok => {
                     if (textLower.includes(tok)) score += 1;
+                    if (docNameLower.includes(tok)) score += 2;
                 });
-                return { ...c, similarity: score > 0 ? (score / (tokens.length + 2)) : 0 };
+                return { ...c, score: score > 0 ? (score / (queryTokens.length + 1)) : 0 };
             });
-
-            scored.sort((a, b) => (b.similarity || 0) - (a.similarity || 0));
-            return scored.filter(s => s.similarity > 0).slice(0, limit);
+            scored.sort((a, b) => (b.score || 0) - (a.score || 0));
+            return scored.filter(s => (s.score || 0) > 0).slice(0, limit);
         }
     }
 

@@ -10,7 +10,7 @@
 
     window.App.Views['rag'] = {
         name: 'rag',
-        title: 'RAG Assistant',
+        title: 'Knowledge',
 
         render: function (appContainer, state) {
             appContainer.innerHTML = `

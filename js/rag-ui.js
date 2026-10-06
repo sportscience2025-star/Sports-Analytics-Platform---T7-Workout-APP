@@ -4,6 +4,16 @@
  */
 
 (function () {
+    const SYNTHESIS_MIN_SCORE = 0.15;
+    const MMR_RELEVANCE_WEIGHT = 0.6;
+    const MMR_DIVERSITY_WEIGHT = 0.4;
+    const MAX_EXECUTIVE_SUMMARY_SENTENCES = 3;
+    const MAX_COLLECTED_MECHANISMS = 4;
+    const MAX_COLLECTED_TAKEAWAYS = 4;
+    const MIN_PROPOSITION_LENGTH = 20;
+    const FALLBACK_CHUNK_THRESHOLD = 2;
+    const DEFAULT_RELEVANCE_SCORE = 0.5;
+
     class RAGUI {
         constructor(containerId) {
             this.container = document.getElementById(containerId);
@@ -91,13 +101,13 @@
                     <!-- Top Action Header -->
                     <div class="rag-header-bar">
                         <div class="rag-header-info">
-                            <h2 class="rag-page-title">🧠 Assistente RAG & Knowledge Base</h2>
+                            <h2 class="rag-page-title">Knowledge</h2>
                             <p class="rag-page-subtitle">Interroga i tuoi protocolli e documenti scientifici con l'intelligenza artificiale locale offline.</p>
                         </div>
                         <div class="rag-header-actions">
-                            <button id="rag-info-btn" class="rag-info-btn" title="Cos'è il RAG e come funziona?">
+                            <button id="rag-info-btn" class="rag-info-btn" title="Come funziona la Knowledge?">
                                 <span class="rag-info-icon">ℹ️</span>
-                                <span>Info RAG</span>
+                                <span>Info</span>
                             </button>
                             <div class="rag-view-toggle-container">
                                 <span class="rag-toggle-label">Dev Mode</span>
@@ -115,12 +125,12 @@
                             <div class="rag-modal-header">
                                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                                     <span style="font-size: 1.25rem;">ℹ️</span>
-                                    <h3 style="margin: 0; font-size: 1.1rem; color: var(--text-primary);">Cos'è il RAG e come funziona?</h3>
+                                    <h3 style="margin: 0; font-size: 1.1rem; color: var(--text-primary);">Come funziona la Knowledge?</h3>
                                 </div>
                                 <button id="rag-modal-close" class="rag-modal-close-btn">&times;</button>
                             </div>
                             <div class="rag-modal-body" style="font-size: 0.92rem; line-height: 1.6; color: var(--text-secondary); margin-top: 0.75rem;">
-                                <p>La tecnologia <strong>RAG (Retrieval-Augmented Generation)</strong> potenzia l'intelligenza artificiale locale del tuo dispositivo. Quando fai una domanda, il sistema cerca le informazioni più rilevanti tra i documenti caricati e le fornisce all'assistente per formulare risposte precise, personalizzate e scientificamente fondate, garantendo la massima <strong>privacy offline</strong> senza inviare dati a server esterni.</p>
+                                <p>Il modulo <strong>Knowledge</strong> potenzia l'intelligenza artificiale locale del tuo dispositivo. Quando fai una domanda, il sistema cerca le informazioni più rilevanti tra i documenti caricati e le fonti scientifiche per formulare risposte precise, personalizzate e scientificamente fondate, garantendo la massima <strong>privacy offline</strong> senza inviare dati a server esterni.</p>
                             </div>
                         </div>
                     </div>
@@ -514,6 +524,9 @@
         /**
          * Clean text, split it into coherent propositions, and synthesize structured responses.
          * Generates executive summary, physiological/biomechanical mechanisms, practical takeaways, and metrics.
+         * @param {string} query - Ricerca o domanda dell'utente
+         * @param {Array<Object>} chunks - Frammenti recuperati dalla ricerca semantica
+         * @returns {Object} Risultato strutturato della sintesi
          */
         synthesizeOfflineResponse(query, chunks) {
             const keywords = this.extractKeywords(query);
@@ -522,8 +535,14 @@
             const allSentencesList = [];
             
             const validChunks = Array.isArray(chunks) ? chunks : [];
+            const scoredChunks = validChunks.filter(c => {
+                const s = typeof c.score === 'number' ? c.score : (typeof c.similarity === 'number' ? c.similarity : 0);
+                return s >= SYNTHESIS_MIN_SCORE;
+            });
+            // Fallback: se la soglia è troppo restrittiva e lascia meno di 2 chunk, usa validChunks
+            const chunksToSynthesize = scoredChunks.length >= FALLBACK_CHUNK_THRESHOLD ? scoredChunks : validChunks;
             
-            for (const chunk of validChunks) {
+            for (const chunk of chunksToSynthesize) {
                 if (!chunk) continue;
                 const docName = chunk.docName || 'Documentazione scientifica';
                 if (!docGroups[docName]) {
@@ -573,45 +592,21 @@
 
                 // Analyze concepts inside sentences for mechanisms and takeaways
                 for (const s of uniqueSentences) {
-                    const sLower = s.toLowerCase();
-                    
-                    // Physiological & Metabolic Mechanisms
-                    if (
-                        sLower.includes('anaerobic') || sLower.includes('aerobic') ||
-                        sLower.includes('lattat') || sLower.includes('energia') ||
-                        sLower.includes('metabol') || sLower.includes('atp') ||
-                        sLower.includes('fosfagen') || sLower.includes('glicolis') ||
-                        sLower.includes('neuromuscolar') || sLower.includes('fibra') ||
-                        sLower.includes('reclutamento') || sLower.includes('forza-velocit') ||
-                        sLower.includes('potenza') || sLower.includes('vo2') ||
-                        sLower.includes('soglia') || sLower.includes('tensione') ||
-                        sLower.includes('meccanic') || sLower.includes('ipertrofi') ||
-                        sLower.includes('adattamento')
-                    ) {
-                        const cleanMechanism = this.cleanSentenceProposition(s);
-                        if (cleanMechanism.length > 20 && !collectedMechanisms.includes(cleanMechanism)) {
-                            collectedMechanisms.push(cleanMechanism);
+                    const topic = this.classifyTopicDomain(s);
+                    const cleanSentence = this.cleanSentenceProposition(s);
+
+                    if (topic === 'mechanism') {
+                        if (cleanSentence.length > MIN_PROPOSITION_LENGTH && !collectedMechanisms.includes(cleanSentence)) {
+                            collectedMechanisms.push(cleanSentence);
+                        }
+                    } else if (topic === 'takeaway') {
+                        if (cleanSentence.length > MIN_PROPOSITION_LENGTH && !collectedTakeaways.includes(cleanSentence)) {
+                            collectedTakeaways.push(cleanSentence);
                         }
                     }
 
-                    // Practical Guidelines & Protocols
-                    if (
-                        sLower.includes('scarico') || sLower.includes('recupero') ||
-                        sLower.includes('consigli') || sLower.includes('ripetizioni') ||
-                        sLower.includes('serie') || sLower.includes('volume') ||
-                        sLower.includes('intensit') || sLower.includes('progressione') ||
-                        sLower.includes('protocollo') || sLower.includes('allenamento') ||
-                        sLower.includes('esecuzion') || sLower.includes('frequenza') ||
-                        sLower.includes('pacing') || sLower.includes('strategia')
-                    ) {
-                        const cleanTakeaway = this.cleanSentenceProposition(s);
-                        if (cleanTakeaway.length > 20 && !collectedTakeaways.includes(cleanTakeaway)) {
-                            collectedTakeaways.push(cleanTakeaway);
-                        }
-                    }
-
-                    if (this.containsQueryKeywords(s, keywords)) {
-                        keyExplanations.push(this.cleanSentenceProposition(s));
+                    if (this.containsQueryKeywords(s, keywords) && cleanSentence.length > MIN_PROPOSITION_LENGTH && !keyExplanations.includes(cleanSentence)) {
+                        keyExplanations.push(cleanSentence);
                     }
                 }
                 
@@ -621,26 +616,118 @@
                 });
             }
 
-            // Build a cohesive Executive Summary paragraph
-            let executiveSummary = "";
-            if (keyExplanations.length > 0) {
-                // Combine up to 3 core explanatory propositions smoothly
-                const primarySentences = keyExplanations.slice(0, 3);
-                executiveSummary = primarySentences.join(' ');
-            } else if (allSentencesList.length > 0) {
-                executiveSummary = allSentencesList.slice(0, 2).map(x => this.cleanSentenceProposition(x.sentence)).join(' ');
-            } else {
-                executiveSummary = "Le evidenze scientifiche estratte forniscono linee guida e parametri per la query selezionata.";
-            }
+            // Build a cohesive Executive Summary paragraph using MMR
+            const candidateSentences = keyExplanations.length > 0
+                ? keyExplanations
+                : allSentencesList.map(x => this.cleanSentenceProposition(x.sentence));
+            const executiveSummary = this.buildExecutiveSummary(candidateSentences, keywords, MAX_EXECUTIVE_SUMMARY_SENTENCES);
             
             return {
                 documents: synthesizedDocs,
                 executiveSummary: executiveSummary,
-                mechanisms: collectedMechanisms.slice(0, 4),
-                takeaways: collectedTakeaways.slice(0, 4),
+                mechanisms: collectedMechanisms.slice(0, MAX_COLLECTED_MECHANISMS),
+                takeaways: collectedTakeaways.slice(0, MAX_COLLECTED_TAKEAWAYS),
                 metrics: Array.from(allMetrics),
                 keywords: keywords
             };
+        }
+
+        /**
+         * Classifica una frase in un dominio tematico (meccanismo, takeaway, definizione, dato, altro)
+         * mediante dizionario bilingue IT/EN strutturato.
+         * @param {string} sentence - Frase da classificare
+         * @returns {'mechanism'|'takeaway'|'definition'|'data'|'other'} Dominio tematico identificato
+         */
+        classifyTopicDomain(sentence) {
+            if (!sentence) return 'other';
+            const s = sentence.toLowerCase();
+
+            const MECHANISM_TERMS = [
+                // IT
+                'anaerob', 'aerob', 'lattat', 'energia', 'metabol', 'atp', 'fosfagen',
+                'glicolis', 'neuromuscolar', 'fibra', 'reclutamento', 'forza-velocit',
+                'potenza', 'vo2', 'soglia', 'meccanic', 'ipertrofi', 'adattamento', 'tensione',
+                // EN
+                'anaerobic', 'aerobic', 'lactate', 'energy', 'metabolic', 'phosphagen',
+                'glycolysis', 'neuromuscular', 'fiber', 'recruitment', 'force-velocity',
+                'power', 'threshold', 'mechanism', 'hypertrophy', 'adaptation', 'tension'
+            ];
+
+            const TAKEAWAY_TERMS = [
+                // IT
+                'scarico', 'recupero', 'consigli', 'ripetizioni', 'serie', 'volume',
+                'intensit', 'progressione', 'protocollo', 'allenamento', 'esecuzion',
+                'frequenza', 'pacing', 'strategia', 'raccomand',
+                // EN
+                'rest', 'recovery', 'recommendation', 'repetitions', 'sets', 'volume',
+                'intensity', 'progression', 'protocol', 'training', 'execution', 'frequency',
+                'pacing', 'strategy', 'guideline'
+            ];
+
+            const DEFINITION_TERMS = [
+                // IT & EN
+                'definiz', 'è un', 'si definisce', 'consiste', 'indica', 'riferisce',
+                'is defined', 'refers to', 'consists of', 'means', 'describes'
+            ];
+
+            if (MECHANISM_TERMS.some(t => s.includes(t))) return 'mechanism';
+            if (TAKEAWAY_TERMS.some(t => s.includes(t))) return 'takeaway';
+            if (DEFINITION_TERMS.some(t => s.includes(t))) return 'definition';
+            if (this.containsMetrics(sentence)) return 'data';
+            return 'other';
+        }
+
+        /**
+         * Seleziona proposizioni usando MMR (Maximal Marginal Relevance) semplificata:
+         * massimizza la rilevanza rispetto alle parole chiave e la diversità lessicale tra frasi.
+         * @param {string[]} candidates - Frasi candidate per il sommario
+         * @param {string[]} keywords - Parole chiave estratte dalla query
+         * @param {number} [maxSentences=MAX_EXECUTIVE_SUMMARY_SENTENCES] - Numero massimo di frasi nel sommario
+         * @returns {string} Paragrafo esecutivo coerente
+         */
+        buildExecutiveSummary(candidates, keywords = [], maxSentences = MAX_EXECUTIVE_SUMMARY_SENTENCES) {
+            if (!candidates || candidates.length === 0) {
+                return 'Le evidenze scientifiche estratte forniscono linee guida per la query selezionata.';
+            }
+
+            const selected = [];
+            const remaining = [...candidates].filter(s => typeof s === 'string' && s.trim().length > 0);
+            if (remaining.length === 0) {
+                return 'Le evidenze scientifiche estratte forniscono linee guida per la query selezionata.';
+            }
+
+            const kwList = Array.isArray(keywords) ? keywords : [];
+
+            while (selected.length < maxSentences && remaining.length > 0) {
+                let bestIdx = 0;
+                let bestScore = -Infinity;
+
+                remaining.forEach((sentence, idx) => {
+                    const sLower = sentence.toLowerCase();
+
+                    // Rilevanza rispetto alle keyword
+                    const kwMatchCount = kwList.filter(kw => sLower.includes(kw)).length;
+                    const relevanceScore = kwList.length > 0 ? (kwMatchCount / kwList.length) : DEFAULT_RELEVANCE_SCORE;
+
+                    // Diversità lessicale rispetto alle frasi già selezionate
+                    const selectedWords = new Set(selected.flatMap(s => s.toLowerCase().split(/\s+/)));
+                    const candidateWords = sLower.split(/\s+/);
+                    const newWords = candidateWords.filter(w => !selectedWords.has(w)).length;
+                    const diversityScore = candidateWords.length > 0 ? (newWords / candidateWords.length) : 1;
+
+                    // Score combinato MMR
+                    const combinedScore = (MMR_RELEVANCE_WEIGHT * relevanceScore) + (MMR_DIVERSITY_WEIGHT * diversityScore);
+                    if (combinedScore > bestScore) {
+                        bestScore = combinedScore;
+                        bestIdx = idx;
+                    }
+                });
+
+                selected.push(remaining[bestIdx]);
+                remaining.splice(bestIdx, 1);
+            }
+
+            return selected.join(' ');
         }
 
         /**

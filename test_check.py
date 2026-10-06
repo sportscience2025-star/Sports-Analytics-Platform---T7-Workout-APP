@@ -250,5 +250,30 @@ for af in analysis_files:
         print(f"FAILED: Cannot read {af}: {e}")
         sys.exit(1)
 
+# Check RAG core files exist and have balanced delimiters
+rag_files = [
+    "js/rag-engine.js",
+    "js/rag-worker.js",
+    "js/rag-knowledge-bridge.js",
+    "js/rag-ui.js"
+]
+
+for rf in rag_files:
+    try:
+        with open(rf, "r", encoding="utf-8") as f:
+            c = f.read()
+            if c.count('{') != c.count('}'):
+                print(f"FAILED: Mismatched braces in {rf}")
+                sys.exit(1)
+            if c.count('(') != c.count(')'):
+                print(f"FAILED: Mismatched parentheses in {rf}")
+                sys.exit(1)
+            if c.count('[') != c.count(']'):
+                print(f"FAILED: Mismatched brackets in {rf}")
+                sys.exit(1)
+    except Exception as e:
+        print(f"FAILED: Cannot read {rf}: {e}")
+        sys.exit(1)
+
 print("All syntax checks passed.")
 sys.exit(0)
