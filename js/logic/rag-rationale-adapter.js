@@ -112,7 +112,7 @@
          * @param {number} [limit=4] - Max items to return
          * @returns {Array<Object>} Array of relevant study records
          */
-        getEvidenceForDataAnalysis(datasetContext, limit = MAX_ANALVIDENCE_ITEMS || MAX_ANALYSIS_EVIDENCE_ITEMS) {
+        getEvidenceForDataAnalysis(datasetContext, limit = MAX_ANALYSIS_EVIDENCE_ITEMS) {
             const bridge = (root.App && root.App.RAGBridge) || (typeof window !== 'undefined' && window.App && window.App.RAGBridge);
             if (!bridge || typeof bridge.searchInMemory !== 'function') return [];
 

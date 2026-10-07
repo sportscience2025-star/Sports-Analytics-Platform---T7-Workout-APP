@@ -775,7 +775,7 @@
                 'qual è', 'quanti', 'quante', 'quanto', 'quanta'
             ]);
             return (query || '').toLowerCase()
-                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "")
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_\x60~()?]/g, "")
                 .split(/\s+/)
                 .filter(word => word.length > 1 && !stopWords.has(word));
         }

@@ -24,6 +24,7 @@
                 totalExercisesInCatalog: (window.App.getExercises ? window.App.getExercises().length : null)
             },
             t7_favorites:          JSON.parse(localStorage.getItem('t7_favorites'))          || [],
+            t7_current_program:    JSON.parse(localStorage.getItem('t7_current_program'))    || null,
             t7_prog_params:        JSON.parse(localStorage.getItem('t7_prog_params'))        || {},
             t7_temp_pathologies:   JSON.parse(localStorage.getItem('t7_temp_pathologies'))   || [],
             t7_last_export:        localStorage.getItem('t7_last_export')                    || null
@@ -80,6 +81,7 @@
                 // Ripristina ciascuna chiave (escludendo __meta)
                 const RESTORABLE_KEYS = [
                     't7_favorites',
+                    't7_current_program',
                     't7_prog_params',
                     't7_temp_pathologies',
                     't7_last_export'

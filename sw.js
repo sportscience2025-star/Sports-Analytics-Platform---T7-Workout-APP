@@ -3,7 +3,7 @@
  * Network-first for HTML, Cache-first for assets, Offline fallback
  */
 
-const CACHE_NAME = 't7-workout-v102'; // Updated from t7-workout-v101, t7-workout-v90 preserved for test_check
+const CACHE_NAME = 't7-workout-v103';
 const OFFLINE_URL = './offline.html';
 
 const CORE_ASSETS = [
@@ -111,8 +111,10 @@ const CORE_ASSETS = [
     './js/impact-calculator.js',
     './js/clinical.js',
     // Icons
+    './icons/icon-180.png',
     './icons/icon-192.png',
-    './icons/icon-512.png'
+    './icons/icon-512.png',
+    './icons/icon-maskable-512.png'
 ];
 
 // ── INSTALL ──────────────────────────────────────────────────────

@@ -38,11 +38,12 @@ if missing:
     sys.exit(1)
 
 # Check sw.js cache name
+import re
 with open("sw.js", "r", encoding="utf-8") as f:
     sw_code = f.read()
 
-if "t7-workout-v90" not in sw_code:
-    print("FAILED: sw.js does not contain expected CACHE_NAME")
+if not re.search(r"t7-workout-v\d+", sw_code):
+    print("FAILED: sw.js does not contain expected CACHE_NAME pattern (t7-workout-v...)")
     sys.exit(1)
 
 # Check data files
