@@ -65,3 +65,101 @@ export interface PAPCohortSummary {
   responderPercent: number;
   dominantTrend: string;
 }
+
+export type PotentiationClassification = 'Responder' | 'Non-Responder' | 'Negative Responder';
+
+export interface PotentiationResponse {
+  baseline: number;
+  post: number;
+  deltaAbsolute: number;
+  deltaPercent: number;
+  classification: PotentiationClassification;
+  isResponder: boolean;
+  cohenD?: number;
+  effectSize?: string;
+}
+
+export interface PairedTTestResult {
+  tStat: number;
+  df: number;
+  pValue: number;
+  meanDiff: number;
+  sdDiff: number;
+  isSignificant: boolean;
+  cohenD: number;
+}
+
+export interface TwoSampleTTestResult {
+  tStat: number;
+  df: number;
+  pValue: number;
+  meanPre: number;
+  meanPost: number;
+  deltaPercent: number;
+  isSignificant: boolean;
+}
+
+export interface HedgesGResult {
+  g: number;
+  d: number;
+  correctionJ: number;
+  pooledSD: number;
+  effectSizeLabel?: 'Trascurabile' | 'Piccolo' | 'Medio' | 'Grande';
+}
+
+export interface PearsonCorrelationResult {
+  r: number;
+  rSquared: number;
+  pValue: number;
+  tStat: number;
+  ci95: [number, number];
+  isSignificant: boolean;
+  n: number;
+}
+
+export interface LinearRegressionSimpleResult {
+  slope: number;
+  intercept: number;
+  rSquared: number;
+  tStat: number;
+  pValue: number;
+  n: number;
+}
+
+export interface CVResult {
+  mean: number;
+  sd: number;
+  cvPercent: number;
+  n: number;
+}
+
+export interface IntraSetDynamicsResult {
+  cvRsi: number;
+  cvTc: number;
+  cvH: number;
+  slopeRsi: number;
+  pSlope: number;
+  pattern: 'METRONOMICO' | 'ACCENSIONE_TARDIVA' | 'DECADIMENTO_FATICA' | 'DISPERSIVO' | 'NON_VALUTABILE';
+  couplingR: number;
+  couplingP: number;
+  strategy: 'ELASTICA_REATTIVA' | 'STRATEGIA_DI_SPINTA' | 'NEUTRA';
+  reboundCount: number;
+}
+
+export interface NeuromuscularProfileResult {
+  eurRatio: number;
+  eurPercent: number;
+  classification: 'ELASTICO_DIPENDENTE' | 'FORZA_DIPENDENTE' | 'MISTO_BILANCIATO' | 'NON_DETERMINATO';
+  hasConcentricDeficit: boolean;
+  armsContributionCm: number;
+  armsTransferQuality: 'ECCELLENTE_COORDINATIVO' | 'BUONO' | 'RIDOTTO_LIMITATO' | 'INVARIATO' | 'NON_DETERMINATO';
+}
+
+export interface PowerVsRsiMatrixResult {
+  efficiencyMean: number;
+  efficiencyPeak: number;
+  relativePowerWkg: number;
+  classification: string;
+  rfdDeficitLevel: string;
+  rationale: string;
+}

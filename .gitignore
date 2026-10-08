@@ -12,5 +12,8 @@ Thumbs.db
 Desktop.ini
 .DS_Store
 
+# Build output
+dist/
+
 # Log files
 *.log
