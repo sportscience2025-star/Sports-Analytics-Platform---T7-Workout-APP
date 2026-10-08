@@ -8,6 +8,7 @@ export interface ScientificSourceRules {
   patientTypes?: string[];
   sports?: string[];
   goals?: string[];
+  injuries?: string[];
 }
 
 export interface ScientificSource {

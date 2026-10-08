@@ -163,3 +163,20 @@ export interface PowerVsRsiMatrixResult {
   rfdDeficitLevel: string;
   rationale: string;
 }
+
+export type PAPJumpType = 'SJ' | 'CMJ' | 'ABK' | 'DJ';
+
+export interface PAPTrial {
+  id: string;
+  heightCm: number;
+  contactTimeSec?: number;
+}
+
+export interface PAPPreset {
+  id: string;
+  name: string;
+  description: string;
+  jumpType: PAPJumpType;
+  preTrials: Array<{ heightCm: number; contactTimeSec?: number }>;
+  postTrials: Array<{ heightCm: number; contactTimeSec?: number }>;
+}

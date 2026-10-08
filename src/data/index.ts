@@ -4,3 +4,5 @@
  */
 
 export * from './exercises';
+export * from './conditions';
+export * from './sources';
