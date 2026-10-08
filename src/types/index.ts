@@ -7,3 +7,6 @@
 export * from './exercise';
 export * from './clinical';
 export * from './physics';
+export * from './pap';
+export * from './program';
+export * from './rag';
