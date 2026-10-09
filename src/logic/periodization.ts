@@ -478,10 +478,13 @@ export function generateWorkoutProgram(
     sport,
     goal,
     durationWeeks,
+    totalWeeks: durationWeeks,
+    daysPerWeek,
     periodizationMethod: method,
     riskProfile,
     phases,
     rationale,
-    createdAt: new Date().toISOString()
+    createdAt: new Date().toISOString(),
+    generatedAt: new Date().toISOString()
   };
 }

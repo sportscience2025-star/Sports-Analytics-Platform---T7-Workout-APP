@@ -36,6 +36,8 @@ export interface RSIDecomposition {
     | 'Compensazione di spinta'
     | 'Stabile';
   interpretation: string;
+  stiffnessDeficitPct?: number;
+  contractileFatiguePct?: number;
 }
 
 export interface StudentTTestResult {
@@ -84,9 +86,11 @@ export interface PairedTTestResult {
   df: number;
   pValue: number;
   meanDiff: number;
+  meanDifference?: number;
   sdDiff: number;
   isSignificant: boolean;
   cohenD: number;
+  mdc95?: number;
 }
 
 export interface TwoSampleTTestResult {

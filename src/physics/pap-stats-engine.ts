@@ -512,9 +512,11 @@ export function calculatePairedTTest(samplePre: number[], samplePost: number[]):
       df: 0,
       pValue: 1.0,
       meanDiff: 0,
+      meanDifference: 0,
       sdDiff: 0,
       isSignificant: false,
-      cohenD: 0
+      cohenD: 0,
+      mdc95: 0
     };
   }
 
@@ -538,15 +540,18 @@ export function calculatePairedTTest(samplePre: number[], samplePost: number[]):
 
   const cohenD = sdDiff > 1e-9 ? meanDiff / sdDiff : 0;
   const isSignificant = pValue < SIGNIFICANCE_ALPHA;
+  const mdc95 = parseFloat((1.96 * Math.SQRT2 * seDiff).toFixed(4));
 
   return {
     tStat: parseFloat(tStat.toFixed(4)),
     df,
     pValue,
     meanDiff: parseFloat(meanDiff.toFixed(4)),
+    meanDifference: parseFloat(meanDiff.toFixed(4)),
     sdDiff: parseFloat(sdDiff.toFixed(4)),
     isSignificant,
-    cohenD: parseFloat(cohenD.toFixed(4))
+    cohenD: parseFloat(cohenD.toFixed(4)),
+    mdc95
   };
 }
 
@@ -788,12 +793,17 @@ export function decomposeRSI(
       "Compensazione per spinta concentrica: l'atleta baratta la reattività rapida allungando il tempo a terra per saltare più in alto.";
   }
 
+  const stiffnessDeficitPct = deltaTcPercent > 0 ? parseFloat(deltaTcPercent.toFixed(2)) : 0;
+  const contractileFatiguePct = deltaHPercent < 0 ? parseFloat(Math.abs(deltaHPercent).toFixed(2)) : 0;
+
   return {
     deltaRsiPct: parseFloat(deltaRsiPercent.toFixed(2)),
     deltaTcPct: parseFloat(deltaTcPercent.toFixed(2)),
     deltaHeightPct: parseFloat(deltaHPercent.toFixed(2)),
     mechanism,
-    interpretation
+    interpretation,
+    stiffnessDeficitPct,
+    contractileFatiguePct
   };
 }
 

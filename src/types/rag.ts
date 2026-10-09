@@ -25,7 +25,7 @@ export interface ScientificSource {
 }
 
 export interface DocumentChunk {
-  id?: number;
+  id?: number | string;
   documentId: string;
   chunkIndex: number;
   totalChunks: number;
@@ -45,6 +45,18 @@ export interface RAGSearchResult {
   lexicalScore: number;
   documentName: string;
   highlightedText?: string;
+  chunkId?: string;
+  content?: string;
+  similarity?: number;
+  source?: {
+    title: string;
+    authors: string;
+    year: number;
+    journal: string;
+    discipline: string;
+    studyDesign: string;
+    keyFindings: string[];
+  };
 }
 
 export interface ExecutiveSummary {

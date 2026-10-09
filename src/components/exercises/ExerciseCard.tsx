@@ -12,9 +12,17 @@ import { Exercise } from '../../types/exercise';
 
 export interface ExerciseCardProps {
   exercise: Exercise;
+  isFavorite?: boolean;
+  onToggleFavorite?: (id: string) => void;
+  onOpenDetailModal?: (exercise: Exercise) => void;
 }
 
-export const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise }) => {
+export const ExerciseCard: React.FC<ExerciseCardProps> = ({
+  exercise,
+  isFavorite = false,
+  onToggleFavorite,
+  onOpenDetailModal,
+}) => {
   const [showDetails, setShowDetails] = useState<boolean>(false);
 
   const getQualityColor = (quality: string): string => {
@@ -124,27 +132,69 @@ export const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise }) => {
         </p>
       </div>
 
-      {/* Dettagli Espandibili (Cues, Passaggi ed Errori) */}
-      <div style={{ borderTop: '1px solid #1e293b', paddingTop: '0.75rem' }}>
-        <button
-          type="button"
-          onClick={() => setShowDetails(!showDetails)}
-          aria-expanded={showDetails}
-          style={{
-            background: 'transparent',
-            border: 'none',
-            color: '#6366f1',
-            fontSize: '0.8rem',
-            fontWeight: 600,
-            cursor: 'pointer',
-            padding: 0,
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.35rem'
-          }}
-        >
-          {showDetails ? 'Nascondi Protocollo Esecutivo' : 'Mostra Protocollo & Errori Comuni'}
-        </button>
+      {/* Azioni Card */}
+      <div style={{ borderTop: '1px solid #1e293b', paddingTop: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
+          <button
+            type="button"
+            onClick={() => setShowDetails(!showDetails)}
+            aria-expanded={showDetails}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              color: '#6366f1',
+              fontSize: '0.8rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              padding: 0,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.35rem'
+            }}
+          >
+            {showDetails ? 'Nascondi Protocollo' : 'Mostra Protocollo'}
+          </button>
+
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            {onOpenDetailModal && (
+              <button
+                type="button"
+                onClick={() => onOpenDetailModal(exercise)}
+                style={{
+                  background: '#1e293b',
+                  color: '#38bdf8',
+                  border: '1px solid #334155',
+                  borderRadius: '0.25rem',
+                  padding: '0.25rem 0.5rem',
+                  fontSize: '0.75rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                }}
+              >
+                Scheda Tecnica
+              </button>
+            )}
+
+            {onToggleFavorite && (
+              <button
+                type="button"
+                onClick={() => onToggleFavorite(exercise.id)}
+                style={{
+                  background: isFavorite ? '#eab308' : '#1e293b',
+                  color: isFavorite ? '#000000' : '#94a3b8',
+                  border: '1px solid #334155',
+                  borderRadius: '0.25rem',
+                  padding: '0.25rem 0.5rem',
+                  fontSize: '0.75rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                }}
+              >
+                {isFavorite ? 'Preferito' : 'Salva'}
+              </button>
+            )}
+          </div>
+        </div>
 
         {showDetails && (
           <div style={{ marginTop: '0.85rem', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>

@@ -7,9 +7,13 @@
  * - Regola R1: Zero any, tipizzazione con Exercise.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useExerciseCatalog } from '../../hooks/useExerciseCatalog';
+import { useFavorites } from '../../hooks/useFavorites';
 import { ExerciseCard } from './ExerciseCard';
+import { ExerciseDetailModal } from './ExerciseDetailModal';
+import { AddExerciseModal } from './AddExerciseModal';
+import type { Exercise } from '../../types/exercise';
 
 export const ExerciseCatalogView: React.FC = () => {
   const {
@@ -32,16 +36,70 @@ export const ExerciseCatalogView: React.FC = () => {
     resetFilters
   } = useExerciseCatalog({ initialPageSize: 6 });
 
+  const {
+    favoriteIds,
+    favoritesCount,
+    isFavorite,
+    toggleFavorite,
+    addCustomExercise,
+  } = useFavorites();
+
+  const [modalExercise, setModalExercise] = useState<Exercise | null>(null);
+  const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState<boolean>(false);
+
+  const displayedExercises = showFavoritesOnly
+    ? paginatedExercises.filter((ex) => favoriteIds.includes(ex.id))
+    : paginatedExercises;
+
   return (
     <div className="exercise-catalog-container" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       {/* Header Catalogo */}
-      <section className="catalog-header" style={{ borderBottom: '1px solid #1e293b', paddingBottom: '1rem' }}>
-        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
-          Catalogo Esercizi Scientifico
-        </h2>
-        <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginTop: '0.25rem', marginBottom: 0 }}>
-          Repository biomeccanico degli esercizi con classificazione anatomica, cues motori ed analisi degli errori.
-        </p>
+      <section className="catalog-header" style={{ borderBottom: '1px solid #1e293b', paddingBottom: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
+        <div>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
+            Catalogo Esercizi Scientifico
+          </h2>
+          <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginTop: '0.25rem', marginBottom: 0 }}>
+            Repository biomeccanico degli esercizi con classificazione anatomica, cues motori ed analisi degli errori.
+          </p>
+        </div>
+
+        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+          <button
+            type="button"
+            onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
+            style={{
+              background: showFavoritesOnly ? '#eab308' : '#1e293b',
+              color: showFavoritesOnly ? '#000000' : '#f8fafc',
+              border: '1px solid #334155',
+              borderRadius: '0.375rem',
+              padding: '0.5rem 0.875rem',
+              fontSize: '0.85rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+            }}
+          >
+            {showFavoritesOnly ? `Tutti gli Esercizi` : `Solo Preferiti (${favoritesCount})`}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setIsAddModalOpen(true)}
+            style={{
+              background: '#2563eb',
+              color: '#ffffff',
+              border: 'none',
+              borderRadius: '0.375rem',
+              padding: '0.5rem 1rem',
+              fontSize: '0.85rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+            }}
+          >
+            + Nuovo Esercizio Custom
+          </button>
+        </div>
       </section>
 
       {/* Sezione Filtri e Ricerca */}
@@ -215,7 +273,7 @@ export const ExerciseCatalogView: React.FC = () => {
       </section>
 
       {/* Griglia delle Card Esercizio */}
-      {paginatedExercises.length > 0 ? (
+      {displayedExercises.length > 0 ? (
         <section
           className="exercises-grid"
           style={{
@@ -224,8 +282,14 @@ export const ExerciseCatalogView: React.FC = () => {
             gap: '1.25rem'
           }}
         >
-          {paginatedExercises.map((exercise) => (
-            <ExerciseCard key={exercise.id} exercise={exercise} />
+          {displayedExercises.map((exercise) => (
+            <ExerciseCard
+              key={exercise.id}
+              exercise={exercise}
+              isFavorite={isFavorite(exercise.id)}
+              onToggleFavorite={toggleFavorite}
+              onOpenDetailModal={setModalExercise}
+            />
           ))}
         </section>
       ) : (
@@ -240,10 +304,12 @@ export const ExerciseCatalogView: React.FC = () => {
           }}
         >
           <div style={{ fontSize: '1rem', fontWeight: 600, color: '#f8fafc', marginBottom: '0.5rem' }}>
-            Nessun esercizio corrispondente ai filtri impostati
+            {showFavoritesOnly ? 'Nessun esercizio salvato nei preferiti' : 'Nessun esercizio corrispondente ai filtri impostati'}
           </div>
           <p style={{ fontSize: '0.85rem', margin: 0 }}>
-            Prova a modificare il termine di ricerca o azzera i filtri muscolari e qualitativi.
+            {showFavoritesOnly
+              ? 'Clicca sul pulsante Salva presente sulle card degli esercizi per aggiungerli alla tua lista personale.'
+              : 'Prova a modificare il termine di ricerca o azzera i filtri muscolari e qualitativi.'}
           </p>
         </div>
       )}
@@ -316,6 +382,25 @@ export const ExerciseCatalogView: React.FC = () => {
           </button>
         </nav>
       )}
+
+      {/* Modale Dettagli Esercizio */}
+      <ExerciseDetailModal
+        exercise={modalExercise}
+        isOpen={modalExercise !== null}
+        onClose={() => setModalExercise(null)}
+        isFavorite={modalExercise ? isFavorite(modalExercise.id) : false}
+        onToggleFavorite={toggleFavorite}
+      />
+
+      {/* Modale Nuovo Esercizio Personalizzato */}
+      <AddExerciseModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onSave={(newEx) => {
+          addCustomExercise(newEx);
+          setIsAddModalOpen(false);
+        }}
+      />
     </div>
   );
 };

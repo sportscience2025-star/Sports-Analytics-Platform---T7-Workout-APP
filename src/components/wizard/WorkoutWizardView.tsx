@@ -11,6 +11,11 @@
 import React, { useState } from 'react';
 import { useWorkoutWizard } from '../../hooks/useWorkoutWizard';
 import type { ClinicalCategory } from '../../types/clinical';
+import type { Exercise } from '../../types/exercise';
+import { ExerciseSwapModal } from '../exercises/ExerciseSwapModal';
+import { downloadProgramSpreadsheet } from '../../logic/excel-exporter';
+import { printWorkoutProgram } from '../../logic/pdf-exporter';
+import { downloadBackupFile } from '../../logic/data-persistence';
 
 export const WorkoutWizardView: React.FC = () => {
   const {
@@ -43,6 +48,12 @@ export const WorkoutWizardView: React.FC = () => {
   const [activeCategoryFilter, setActiveCategoryFilter] = useState<string>('Tutte');
   const [conditionSearchText, setConditionSearchText] = useState<string>('');
   const [activePhaseIndex, setActivePhaseIndex] = useState<number>(1);
+  const [swapTarget, setSwapTarget] = useState<{
+    phaseIndex: number;
+    sessionDay: string;
+    exerciseIndex: number;
+    exerciseName: string;
+  } | null>(null);
 
   // Filtraggio delle condizioni cliniche per il selettore
   const filteredConditions = allConditions.filter((c) => {
@@ -619,21 +630,74 @@ export const WorkoutWizardView: React.FC = () => {
               </div>
             </div>
 
-            <button
-              type="button"
-              onClick={resetProgram}
-              style={{
-                padding: '0.45rem 0.85rem',
-                background: '#1e293b',
-                color: '#94a3b8',
-                border: '1px solid #334155',
-                borderRadius: '0.375rem',
-                fontSize: '0.8rem',
-                cursor: 'pointer'
-              }}
-            >
-              Chiudi Programma
-            </button>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+              <button
+                type="button"
+                onClick={() => downloadProgramSpreadsheet(program)}
+                style={{
+                  padding: '0.45rem 0.85rem',
+                  background: '#047857',
+                  color: '#ffffff',
+                  border: 'none',
+                  borderRadius: '0.375rem',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  cursor: 'pointer'
+                }}
+              >
+                Esporta Excel (CSV)
+              </button>
+
+              <button
+                type="button"
+                onClick={() => printWorkoutProgram(program)}
+                style={{
+                  padding: '0.45rem 0.85rem',
+                  background: '#0284c7',
+                  color: '#ffffff',
+                  border: 'none',
+                  borderRadius: '0.375rem',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  cursor: 'pointer'
+                }}
+              >
+                Stampa / PDF
+              </button>
+
+              <button
+                type="button"
+                onClick={downloadBackupFile}
+                style={{
+                  padding: '0.45rem 0.85rem',
+                  background: '#475569',
+                  color: '#ffffff',
+                  border: 'none',
+                  borderRadius: '0.375rem',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  cursor: 'pointer'
+                }}
+              >
+                Backup JSON
+              </button>
+
+              <button
+                type="button"
+                onClick={resetProgram}
+                style={{
+                  padding: '0.45rem 0.85rem',
+                  background: '#1e293b',
+                  color: '#94a3b8',
+                  border: '1px solid #334155',
+                  borderRadius: '0.375rem',
+                  fontSize: '0.8rem',
+                  cursor: 'pointer'
+                }}
+              >
+                Chiudi
+              </button>
+            </div>
           </div>
 
           {/* Rationale Scientifico - 4 Pilastri */}
@@ -799,9 +863,34 @@ export const WorkoutWizardView: React.FC = () => {
                           >
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                               <strong style={{ color: '#f8fafc' }}>{ex.name}</strong>
-                              <span style={{ fontSize: '0.7rem', color: '#38bdf8', fontWeight: 600 }}>
-                                {ex.sets} x {ex.reps} @ {ex.loadPct1RM}%
-                              </span>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <span style={{ fontSize: '0.7rem', color: '#38bdf8', fontWeight: 600 }}>
+                                  {ex.sets} x {ex.reps} @ {ex.loadPct1RM}%
+                                </span>
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    setSwapTarget({
+                                      phaseIndex: currentPhase.phaseIndex,
+                                      sessionDay: sess.dayName,
+                                      exerciseIndex: eIdx,
+                                      exerciseName: ex.name,
+                                    })
+                                  }
+                                  style={{
+                                    background: '#334155',
+                                    color: '#38bdf8',
+                                    border: 'none',
+                                    borderRadius: '0.25rem',
+                                    padding: '0.2rem 0.45rem',
+                                    fontSize: '0.7rem',
+                                    fontWeight: 600,
+                                    cursor: 'pointer',
+                                  }}
+                                >
+                                  Sostituisci
+                                </button>
+                              </div>
                             </div>
                             <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.25rem', color: '#94a3b8', fontSize: '0.75rem' }}>
                               <span>RPE: {ex.rpe}</span>
@@ -823,6 +912,29 @@ export const WorkoutWizardView: React.FC = () => {
             );
           })()}
         </section>
+      )}
+
+      {/* Modale Sostituzione Esercizio */}
+      {swapTarget && (
+        <ExerciseSwapModal
+          isOpen={true}
+          targetExerciseName={swapTarget.exerciseName}
+          onClose={() => setSwapTarget(null)}
+          onSelectReplacement={(replacement: Exercise) => {
+            if (program) {
+              const targetPhase = program.phases.find((p) => p.phaseIndex === swapTarget.phaseIndex);
+              if (targetPhase) {
+                const targetSession = targetPhase.sessions.find((s) => s.dayName === swapTarget.sessionDay);
+                if (targetSession && targetSession.exercises[swapTarget.exerciseIndex]) {
+                  targetSession.exercises[swapTarget.exerciseIndex].name = replacement.name;
+                  targetSession.exercises[swapTarget.exerciseIndex].id = replacement.id;
+                  targetSession.exercises[swapTarget.exerciseIndex].exerciseRef = replacement;
+                }
+              }
+            }
+            setSwapTarget(null);
+          }}
+        />
       )}
     </div>
   );

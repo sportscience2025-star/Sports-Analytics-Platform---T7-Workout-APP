@@ -8,9 +8,10 @@
  * - Regola 01: Zero emoji spontanee.
  */
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import type { ScientificSource, ExecutiveSummary } from '../types/rag';
 import { scientificSources } from '../data/sources';
+import { ingestDocumentAsync, getAllDocumentsFromStore, type ParsedDocument } from '../rag';
 
 export interface UseRAGKnowledgeProps {
   initialPageSize?: number;
@@ -34,6 +35,10 @@ export interface UseRAGKnowledgeReturn {
   totalCount: number;
   totalPages: number;
 
+  localDocuments: ParsedDocument[];
+  isIngesting: boolean;
+  ingestDocument: (content: string, fileName: string) => Promise<boolean>;
+
   executiveSummary: ExecutiveSummary | null;
   resetFilters: () => void;
 }
@@ -43,7 +48,35 @@ export function useRAGKnowledge({ initialPageSize = 8 }: UseRAGKnowledgeProps = 
   const [selectedArea, setSelectedArea] = useState<string>('Tutte');
   const [selectedStudyType, setSelectedStudyType] = useState<string>('Tutti');
   const [page, setPage] = useState<number>(1);
+  const [localDocuments, setLocalDocuments] = useState<ParsedDocument[]>([]);
+  const [isIngesting, setIsIngesting] = useState<boolean>(false);
   const pageSize = initialPageSize;
+
+  const refreshDocuments = useCallback(async () => {
+    try {
+      const docs = await getAllDocumentsFromStore();
+      setLocalDocuments(docs);
+    } catch {
+      // Ignora errori
+    }
+  }, []);
+
+  useEffect(() => {
+    refreshDocuments();
+  }, [refreshDocuments]);
+
+  const ingestDocument = useCallback(async (content: string, fileName: string): Promise<boolean> => {
+    setIsIngesting(true);
+    try {
+      await ingestDocumentAsync({ content, fileName });
+      await refreshDocuments();
+      return true;
+    } catch {
+      return false;
+    } finally {
+      setIsIngesting(false);
+    }
+  }, [refreshDocuments]);
 
   // Aree tematiche uniche disponibili
   const areas = useMemo(() => {
@@ -152,7 +185,11 @@ export function useRAGKnowledge({ initialPageSize = 8 }: UseRAGKnowledgeProps = 
     totalCount,
     totalPages,
 
+    localDocuments,
+    isIngesting,
+    ingestDocument,
+
     executiveSummary,
     resetFilters
   };
-}
+};

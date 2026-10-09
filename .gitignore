@@ -17,3 +17,6 @@ dist/
 
 # Log files
 *.log
+
+# Scratch directory
+scratch/

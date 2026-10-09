@@ -26,6 +26,9 @@ export const RAGKnowledgeView: React.FC = () => {
     paginatedSources,
     totalCount,
     totalPages,
+    localDocuments,
+    isIngesting,
+    ingestDocument,
     executiveSummary,
     resetFilters
   } = useRAGKnowledge({ initialPageSize: 6 });
@@ -33,13 +36,55 @@ export const RAGKnowledgeView: React.FC = () => {
   return (
     <div className="rag-knowledge-container" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       {/* Intestazione del Modulo */}
-      <section className="section-header" style={{ borderBottom: '1px solid #1e293b', paddingBottom: '1rem' }}>
-        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
-          Knowledge Hub Scientifico &amp; Consultazione RAG
-        </h2>
-        <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginTop: '0.25rem', marginBottom: 0 }}>
-          Archivio peer-reviewed di 320+ studi scientifici indicizzati per fisiologia, biomeccanica, VBT e riabilitazione.
-        </p>
+      <section className="section-header" style={{ borderBottom: '1px solid #1e293b', paddingBottom: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
+        <div>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
+            Knowledge Hub Scientifico &amp; Consultazione RAG
+          </h2>
+          <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginTop: '0.25rem', marginBottom: 0 }}>
+            Archivio peer-reviewed di 320+ studi scientifici indicizzati per fisiologia, biomeccanica, VBT e riabilitazione.
+          </p>
+        </div>
+
+        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+          {localDocuments.length > 0 && (
+            <span style={{ fontSize: '0.8rem', color: '#38bdf8', background: '#0f172a', padding: '0.4rem 0.6rem', borderRadius: '0.375rem', border: '1px solid #1e293b' }}>
+              Documenti Locali: {localDocuments.length}
+            </span>
+          )}
+
+          <label
+            style={{
+              padding: '0.5rem 1rem',
+              background: isIngesting ? '#475569' : '#2563eb',
+              color: '#ffffff',
+              borderRadius: '0.375rem',
+              fontSize: '0.85rem',
+              fontWeight: 600,
+              cursor: isIngesting ? 'wait' : 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+            }}
+          >
+            {isIngesting ? 'Indicizzazione...' : '+ Carica Documento'}
+            <input
+              type="file"
+              accept=".txt,.md,.csv,.tsv,.json"
+              style={{ display: 'none' }}
+              disabled={isIngesting}
+              onChange={async (e) => {
+                const file = e.target.files?.[0];
+                if (!file) return;
+                try {
+                  const text = await file.text();
+                  await ingestDocument(text, file.name);
+                } catch {
+                  // Ignora errore
+                }
+              }}
+            />
+          </label>
+        </div>
       </section>
 
       {/* Pannello Ricerca & Filtri */}

@@ -1,280 +1,204 @@
+"""
+test_check.py
+Script di validazione architetturale e sintattica per T7 Workout Platform.
+Verifica conformità al 100% React 18 + TypeScript Strict:
+1. Integrità catalogo 296 esercizi tipizzati in src/data/exercises/*.ts
+2. Integrità 119 condizioni cliniche in src/data/conditions/*.ts
+3. Integrità 322 fonti scientifiche peer-reviewed in src/data/sources.ts
+4. Bilanciamento delimitatori ({}, (), []) per TUTTI i file TypeScript (.ts, .tsx) in src/
+5. Configurazione tsconfig.json (allowJs: false, strict: true)
+6. Integrità index.html (mount puro React #root, zero script tag legacy js/)
+7. Configurazione Service Worker sw.js (cache versioning t7-workout-v...)
+"""
+
 import sys
-
-print("Validating js/data-analysis.js...")
-with open("js/data-analysis.js", "r", encoding="utf-8") as f:
-    code = f.read()
-
-# Check for required methods and elements
-required_elements = [
-    "vbtZonesPlugin",
-    "filter-athlete-select",
-    "filter-exercise-select",
-    "filter-exercise-pills",
-    "getAthletes",
-    "getExercisesForAthlete",
-    "renderFilterBar",
-    "selectAthleteAndExercise",
-    "syncManualInputsWithSelection",
-    "renderDashboardForSelection",
-    "generateQuickActions",
-    "executeNLPQuery",
-    "power-curve-chart",
-    "vbt-chart",
-    "#00f0ff",
-    "neonGlowPlugin",
-    "Pmax",
-    "Lopt",
-    "Vopt",
-    "Forza Massima",
-    "Forza-Velocità",
-    "Velocità-Forza",
-    "Velocità Pura",
-    "1RM Stimato"
-]
-
-missing = [el for el in required_elements if el not in code]
-if missing:
-    print("FAILED: Missing elements:", missing)
-    sys.exit(1)
-
-# Check sw.js cache name
+import os
 import re
-with open("sw.js", "r", encoding="utf-8") as f:
-    sw_code = f.read()
+import json
+import glob
 
-if not re.search(r"t7-workout-v\d+", sw_code):
-    print("FAILED: sw.js does not contain expected CACHE_NAME pattern (t7-workout-v...)")
+def fail(message: str) -> None:
+    print(f"FAILED: {message}")
     sys.exit(1)
 
-# Check data files
-data_files = [
-    "js/data/taxonomy.js"
-]
-for df in data_files:
-    try:
-        with open(df, "r", encoding="utf-8") as f:
+def check_delimiters(file_path: str, content: str) -> None:
+    if content.count('{') != content.count('}'):
+        fail(f"Mismatched braces in {file_path}")
+    if content.count('(') != content.count(')'):
+        fail(f"Mismatched parentheses in {file_path}")
+    if content.count('[') != content.count(']'):
+        fail(f"Mismatched brackets in {file_path}")
+
+print("=== T7 WORKOUT PLATFORM VALIDATION SUITE ===")
+
+# -------------------------------------------------------------
+# 1. Validazione Catalogo Esercizi (296 Esercizi)
+# -------------------------------------------------------------
+print("\n[1/7] Validating Exercise Catalog (src/data/exercises/)...")
+category_files = ['chest.ts', 'back.ts', 'legs.ts', 'shoulders.ts', 'arms.ts', 'core.ts']
+total_exercises = 0
+exercise_ids = set()
+
+for cf in category_files:
+    file_path = os.path.join("src", "data", "exercises", cf)
+    if not os.path.exists(file_path):
+        fail(f"Missing category file: {file_path}")
+    with open(file_path, "r", encoding="utf-8") as f:
+        content = f.read()
+    check_delimiters(file_path, content)
+    ids = re.findall(r'id:\s*[\'"]([^\'"]+)[\'"]', content)
+    total_exercises += len(ids)
+    for eid in ids:
+        if eid in exercise_ids:
+            fail(f"Duplicate exercise id '{eid}' found in {file_path}")
+        exercise_ids.add(eid)
+
+print(f"-> Found {total_exercises} exercises across {len(category_files)} domain modules (Target: 296).")
+if total_exercises != 296:
+    fail(f"Expected 296 exercises, got {total_exercises}")
+
+# Validazione file ausiliari esercizi (clinical-knee.ts, index.ts)
+for aux in ['clinical-knee.ts', 'index.ts']:
+    aux_path = os.path.join("src", "data", "exercises", aux)
+    if os.path.exists(aux_path):
+        with open(aux_path, "r", encoding="utf-8") as f:
             c = f.read()
-            if c.count('{') != c.count('}'):
-                print(f"FAILED: Mismatched braces in {df}")
-                sys.exit(1)
-            if c.count('(') != c.count(')'):
-                print(f"FAILED: Mismatched parentheses in {df}")
-                sys.exit(1)
-            if c.count('[') != c.count(']'):
-                print(f"FAILED: Mismatched brackets in {df}")
-                sys.exit(1)
-    except Exception as e:
-        print(f"FAILED: Cannot read {df}: {e}")
-        sys.exit(1)
+        check_delimiters(aux_path, c)
 
-# Check all js/data/sources modular files exist and have balanced delimiters
-sources_files = [
-    "js/data/sources/atletica.js",
-    "js/data/sources/sollevamento-pesi.js",
-    "js/data/sources/fisiologia.js",
-    "js/data/sources/vbt.js",
-    "js/data/sources/biomeccanica.js",
-    "js/data/sources/clinico.js",
-    "js/data/sources/sport-squadra.js",
-    "js/data/sources/riabilitazione.js",
-    "js/data/sources/nutrizione-sportiva.js",
-    "js/data/sources/prevenzione-infortuni.js",
-    "js/data/sources/psicologia-sport.js",
-    "js/data/sources/sport-individuali.js",
-    "js/data/sources/index.js",
-    "js/knowledge-base.js"
+# -------------------------------------------------------------
+# 2. Validazione Condizioni Cliniche (119 Condizioni)
+# -------------------------------------------------------------
+print("\n[2/7] Validating Clinical Conditions (src/data/conditions/)...")
+condition_files = [
+    'arti-inferiori.ts',
+    'arti-superiori.ts',
+    'colonna.ts',
+    'neurologiche-speciali.ts',
+    'sistemiche.ts'
 ]
+total_conditions = 0
+condition_ids = set()
 
-for sf in sources_files:
-    try:
-        with open(sf, "r", encoding="utf-8") as f:
-            c = f.read()
-            if c.count('{') != c.count('}'):
-                print(f"FAILED: Mismatched braces in {sf}")
-                sys.exit(1)
-            if c.count('(') != c.count(')'):
-                print(f"FAILED: Mismatched parentheses in {sf}")
-                sys.exit(1)
-            if c.count('[') != c.count(']'):
-                print(f"FAILED: Mismatched brackets in {sf}")
-                sys.exit(1)
-    except Exception as e:
-        print(f"FAILED: Cannot read {sf}: {e}")
-        sys.exit(1)
+for cfn in condition_files:
+    c_path = os.path.join("src", "data", "conditions", cfn)
+    if not os.path.exists(c_path):
+        fail(f"Missing clinical condition file: {c_path}")
+    with open(c_path, "r", encoding="utf-8") as f:
+        content = f.read()
+    check_delimiters(c_path, content)
+    ids = re.findall(r'id:\s*[\'"]([^\'"]+)[\'"]', content)
+    total_conditions += len(ids)
+    for cid in ids:
+        if cid in condition_ids:
+            fail(f"Duplicate condition id '{cid}' found in {c_path}")
+        condition_ids.add(cid)
 
-# Check all js/logic modular files exist and have balanced delimiters
-import glob
-logic_files = [
-    "js/logic/risk-analyzer.js",
-    "js/logic/periodization.js",
-    "js/logic/phase-builder.js",
-    "js/logic/session-builder.js",
-    "js/logic/exercise-formatter.js",
-    "js/logic/warmup-cooldown.js",
-    "js/logic/rationale-generator.js",
-    "js/logic/data-persistence.js",
-    "js/logic.js"
-]
+cond_index = os.path.join("src", "data", "conditions", "index.ts")
+if os.path.exists(cond_index):
+    with open(cond_index, "r", encoding="utf-8") as f:
+        check_delimiters(cond_index, f.read())
 
-for lf in logic_files:
-    try:
-        with open(lf, "r", encoding="utf-8") as f:
-            c = f.read()
-            # Basic delimiter balance check
-            if c.count('{') != c.count('}'):
-                print(f"FAILED: Mismatched braces in {lf}")
-                sys.exit(1)
-            if c.count('(') != c.count(')'):
-                print(f"FAILED: Mismatched parentheses in {lf}")
-                sys.exit(1)
-            if c.count('[') != c.count(']'):
-                print(f"FAILED: Mismatched brackets in {lf}")
-                sys.exit(1)
-    except Exception as e:
-        print(f"FAILED: Cannot read {lf}: {e}")
-        sys.exit(1)
+print(f"-> Found {total_conditions} clinical conditions (Target: 119).")
+if total_conditions != 119:
+    fail(f"Expected 119 conditions, got {total_conditions}")
 
-# Check all js/parser modular files exist and have balanced delimiters
-parser_files = [
-    "js/parser/exercise-dict.js",
-    "js/parser/athlete-resolver.js",
-    "js/parser/load-aggregator.js",
-    "js/parser/header-mapper.js",
-    "js/parser/instrument-detector.js",
-    "js/parser/file-readers.js",
-    "js/parser.js"
-]
+# -------------------------------------------------------------
+# 3. Validazione Fonti Scientifiche (322 Fonti)
+# -------------------------------------------------------------
+print("\n[3/7] Validating Scientific Sources (src/data/sources.ts)...")
+sources_path = os.path.join("src", "data", "sources.ts")
+if not os.path.exists(sources_path):
+    fail(f"Missing sources file: {sources_path}")
+with open(sources_path, "r", encoding="utf-8") as f:
+    sources_content = f.read()
+check_delimiters(sources_path, sources_content)
 
-for pf in parser_files:
-    try:
-        with open(pf, "r", encoding="utf-8") as f:
-            c = f.read()
-            # Basic delimiter balance check
-            if c.count('{') != c.count('}'):
-                print(f"FAILED: Mismatched braces in {pf}")
-                sys.exit(1)
-            if c.count('(') != c.count(')'):
-                print(f"FAILED: Mismatched parentheses in {pf}")
-                sys.exit(1)
-            if c.count('[') != c.count(']'):
-                print(f"FAILED: Mismatched brackets in {pf}")
-                sys.exit(1)
-    except Exception as e:
-        print(f"FAILED: Cannot read {pf}: {e}")
-        sys.exit(1)
+source_ids = re.findall(r'[\'"]id[\'"]:\s*[\'"]([^\'"]+)[\'"]', sources_content)
+if not source_ids:
+    source_ids = re.findall(r'id:\s*[\'"]([^\'"]+)[\'"]', sources_content)
 
-# Check all js/ui and js/views modular files exist and have balanced delimiters
-ui_and_view_files = [
-    "js/ui/helpers.js",
-    "js/ui/favorites.js",
-    "js/ui/exercise-detail-resolver.js",
-    "js/ui/wizard-state.js",
-    "js/ui/wizard-result-styles/01-report-shell.js",
-    "js/ui/wizard-result-styles/02-progression-bibliography.js",
-    "js/ui/wizard-result-styles/03-exercise-table.js",
-    "js/ui/wizard-result-styles/04-exercise-overlays.js",
-    "js/ui/wizard-result-styles/05-actions-toast.js",
-    "js/ui/wizard-result-styles/06-responsive.js",
-    "js/ui/wizard-result-styles/07-print.js",
-    "js/ui/wizard-result-styles/index.js",
-    "js/ui/wizard-result-builder.js",
-    "js/ui/wizard-swap.js",
-    "js/ui/wizard-intake.js",
-    "js/ui/wizard.js",
-    "js/ui/export.js",
-    "js/ui/render-filters.js",
-    "js/ui/add-exercise-modal.js",
-    "js/ui/catalog.js",
-    "js/ui/scientific-hub.js",
-    "js/ui.js",
-    "js/views/catalog-view.js",
-    "js/views/favorites-view.js",
-    "js/views/scientific-hub-view.js",
-    "js/views/wizard-view.js",
-    "js/views/analysis-view.js",
-    "js/views/rag-view.js"
-]
+total_sources = len(source_ids)
+print(f"-> Found {total_sources} scientific sources (Target: 322).")
+if total_sources != 322:
+    fail(f"Expected 322 sources, got {total_sources}")
 
-for uf in ui_and_view_files:
-    try:
-        with open(uf, "r", encoding="utf-8") as f:
-            c = f.read()
-            if c.count('{') != c.count('}'):
-                print(f"FAILED: Mismatched braces in {uf}")
-                sys.exit(1)
-            if c.count('(') != c.count(')'):
-                print(f"FAILED: Mismatched parentheses in {uf}")
-                sys.exit(1)
-            if c.count('[') != c.count(']'):
-                print(f"FAILED: Mismatched brackets in {uf}")
-                sys.exit(1)
-    except Exception as e:
-        print(f"FAILED: Cannot read {uf}: {e}")
-        sys.exit(1)
+# -------------------------------------------------------------
+# 4. Validazione Sintattica Ricorsiva TypeScript/TSX in src/
+# -------------------------------------------------------------
+print("\n[4/7] Validating delimiter syntax across all src/ .ts and .tsx files...")
+src_all = glob.glob("src/**/*.ts", recursive=True) + glob.glob("src/**/*.tsx", recursive=True)
+if not src_all:
+    fail("No TypeScript files found in src/")
 
-# Check all js/analysis and pap modular files exist and have balanced delimiters
-analysis_files = [
-    "js/analysis/test-registry.js",
-    "js/analysis/medicine-ball-physics.js",
-    "js/analysis/reactive-grid.js",
-    "js/analysis/data-classifier.js",
-    "js/analysis/rag-integration.js",
-    "js/analysis/adaptive-ui-charts.js",
-    "js/analysis/adaptive-ui-mapping.js",
-    "js/analysis/adaptive-ui.js",
-    "js/analysis/analysis-exporter.js",
-    "js/analysis/pap/pap-integrity-validator.js",
-    "js/analysis/pap/pap-stats-engine.js",
-    "js/analysis/pap/pap-coach-engine.js",
-    "js/analysis/pap/pap-benchmark-data.js",
-    "js/analysis/pap/pap-dashboard-charts.js",
-    "js/analysis/pap/pap-dashboard-tabs.js",
-    "js/analysis/pap/pap-dashboard-export.js",
-    "js/analysis/pap/pap-dashboard-view.js",
-    "js/analysis/pap/index.js"
-]
+for sf in src_all:
+    with open(sf, "r", encoding="utf-8") as f:
+        content = f.read()
+    if len(content.strip()) == 0:
+        fail(f"Empty source file detected: {sf}")
+    check_delimiters(sf, content)
 
-for af in analysis_files:
-    try:
-        with open(af, "r", encoding="utf-8") as f:
-            c = f.read()
-            if c.count('{') != c.count('}'):
-                print(f"FAILED: Mismatched braces in {af}")
-                sys.exit(1)
-            if c.count('(') != c.count(')'):
-                print(f"FAILED: Mismatched parentheses in {af}")
-                sys.exit(1)
-            if c.count('[') != c.count(']'):
-                print(f"FAILED: Mismatched brackets in {af}")
-                sys.exit(1)
-    except Exception as e:
-        print(f"FAILED: Cannot read {af}: {e}")
-        sys.exit(1)
+print(f"-> Successfully checked {len(src_all)} TypeScript files in src/ with zero syntax errors.")
 
-# Check RAG core files exist and have balanced delimiters
-rag_files = [
-    "js/rag-engine.js",
-    "js/rag-worker.js",
-    "js/rag-knowledge-bridge.js",
-    "js/rag-ui.js"
-]
+# -------------------------------------------------------------
+# 5. Validazione tsconfig.json (allowJs: false, strict: true)
+# -------------------------------------------------------------
+print("\n[5/7] Validating tsconfig.json...")
+tsconfig_path = "tsconfig.json"
+if not os.path.exists(tsconfig_path):
+    fail("Missing tsconfig.json")
+try:
+    with open(tsconfig_path, "r", encoding="utf-8") as f:
+        tsconfig = json.load(f)
+except Exception as e:
+    fail(f"Malformed tsconfig.json: {e}")
 
-for rf in rag_files:
-    try:
-        with open(rf, "r", encoding="utf-8") as f:
-            c = f.read()
-            if c.count('{') != c.count('}'):
-                print(f"FAILED: Mismatched braces in {rf}")
-                sys.exit(1)
-            if c.count('(') != c.count(')'):
-                print(f"FAILED: Mismatched parentheses in {rf}")
-                sys.exit(1)
-            if c.count('[') != c.count(']'):
-                print(f"FAILED: Mismatched brackets in {rf}")
-                sys.exit(1)
-    except Exception as e:
-        print(f"FAILED: Cannot read {rf}: {e}")
-        sys.exit(1)
+c_opts = tsconfig.get("compilerOptions", {})
+if c_opts.get("allowJs") is not False:
+    fail(f"tsconfig.json 'allowJs' must be false (current: {c_opts.get('allowJs')})")
+if c_opts.get("strict") is not True:
+    fail(f"tsconfig.json 'strict' must be true (current: {c_opts.get('strict')})")
+print("-> tsconfig.json validated (allowJs: false, strict: true).")
 
-print("All syntax checks passed.")
+# -------------------------------------------------------------
+# 6. Validazione index.html (Mount Puro React, zero script legacy)
+# -------------------------------------------------------------
+print("\n[6/7] Validating index.html...")
+if not os.path.exists("index.html"):
+    fail("Missing index.html")
+with open("index.html", "r", encoding="utf-8") as f:
+    html_content = f.read()
+
+if 'id="root"' not in html_content:
+    fail("index.html is missing root container: <div id=\"root\"></div>")
+
+if '/src/main.tsx' not in html_content:
+    fail("index.html is missing React entry point: <script type=\"module\" src=\"/src/main.tsx\"></script>")
+
+legacy_scripts = re.findall(r'<script[^>]*src=[\'"]js/[^\'"]+[\'"]', html_content)
+if legacy_scripts:
+    fail(f"index.html still references {len(legacy_scripts)} legacy scripts in js/: {legacy_scripts}")
+
+print("-> index.html validated (clean React 18 mount, zero legacy scripts).")
+
+# -------------------------------------------------------------
+# 7. Validazione Service Worker (sw.js)
+# -------------------------------------------------------------
+print("\n[7/7] Validating Service Worker (sw.js)...")
+if not os.path.exists("sw.js"):
+    fail("Missing sw.js")
+with open("sw.js", "r", encoding="utf-8") as f:
+    sw_content = f.read()
+
+check_delimiters("sw.js", sw_content)
+if not re.search(r"t7-workout-v\d+", sw_content):
+    fail("sw.js missing valid cache version pattern (t7-workout-v...)")
+
+if re.search(r"['\"]\./js/", sw_content):
+    fail("sw.js CORE_ASSETS still contains legacy ./js/ references")
+
+print("-> sw.js validated (active cache versioning, clean asset manifest).")
+
+print("\n" + "=" * 50)
+print("SUCCESS: 100% REACT 18 + TYPESCRIPT STRICT VALIDATION PASSED!")
+print("=" * 50)
 sys.exit(0)

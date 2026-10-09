@@ -9,6 +9,7 @@
 
 import React, { useState } from 'react';
 import { useVBTAnalysis } from '../../hooks/useVBTAnalysis';
+import { parseMeasurementFile } from '../../parser';
 
 export const VBTAnalysisView: React.FC = () => {
   const {
@@ -211,6 +212,40 @@ export const VBTAnalysisView: React.FC = () => {
               >
                 Panca 4 Punti (50-105kg)
               </button>
+
+              <label
+                style={{
+                  fontSize: '0.75rem',
+                  padding: '0.35rem 0.6rem',
+                  background: '#047857',
+                  color: '#ffffff',
+                  border: '1px solid #059669',
+                  borderRadius: '0.25rem',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                }}
+              >
+                Carica File Encoder (CSV/TSV)
+                <input
+                  type="file"
+                  accept=".csv,.tsv,.txt"
+                  style={{ display: 'none' }}
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+                    try {
+                      const text = await file.text();
+                      const parsed = parseMeasurementFile(text, file.name);
+                      if (parsed.points.length > 0) {
+                        setPoints(parsed.points);
+                      }
+                    } catch {
+                      // Ignora errori di parsing
+                    }
+                  }}
+                />
+              </label>
             </div>
           </div>
 

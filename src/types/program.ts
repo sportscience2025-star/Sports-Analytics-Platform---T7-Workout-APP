@@ -65,10 +65,14 @@ export interface WorkoutProgram {
   sport: string;
   goal: string;
   durationWeeks: number;
+  totalWeeks?: number;
+  daysPerWeek?: number;
   periodizationMethod: PeriodizationMethod;
   riskProfile: RiskAnalysisProfile;
   phases: PhaseBlueprint[];
   rationale: ScientificRationale;
   createdAt: string;
+  generatedAt?: string;
   updatedAt?: string;
 }
+
