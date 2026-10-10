@@ -159,6 +159,14 @@ button {
     border-radius: 9999px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.main-nav::-webkit-scrollbar {
+    display: none;
 }
 
 .nav-btn {
@@ -177,6 +185,7 @@ button {
     gap: 0.5rem;
     text-decoration: none;
     user-select: none;
+    white-space: nowrap;
 }
 
 .nav-btn:hover {
@@ -3951,11 +3960,11 @@ html {
     position: absolute;
     top: 0;
     right: 0.25rem;
-    background: var(--primary);
+    background: #ef4444;
     color: white;
-    font-size: 0.6rem;
-    font-weight: 700;
-    padding: 0 4px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 0 5px;
     border-radius: 99px;
     min-width: 16px;
     height: 16px;
@@ -3963,6 +3972,7 @@ html {
     align-items: center;
     justify-content: center;
     line-height: 1;
+    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
 }
 
 /* Show bottom nav on mobile, hide top nav */

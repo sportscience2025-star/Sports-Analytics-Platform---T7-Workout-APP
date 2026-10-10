@@ -1,11 +1,11 @@
 /**
  * T7 Workout - Service Worker
- * Versione: t7-workout-v120
+ * Versione: t7-workout-v121
  * Network-first per HTML, Cache-first resiliente per asset statici, Offline fallback.
  * Supporta bypass completo in ambiente di sviluppo Vite locale.
  */
 
-const CACHE_NAME = 't7-workout-v120';
+const CACHE_NAME = 't7-workout-v121';
 const OFFLINE_URL = './offline.html';
 
 const CORE_ASSETS = [
@@ -83,18 +83,9 @@ self.addEventListener('fetch', (event) => {
         self.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
     );
 
-    // Bypass categorico della cache su localhost per file di sviluppo Vite HMR
+    // Bypass categorico della cache su localhost per garantire asset sempre freschi in sviluppo
     if (isLocalhost) {
-        if (
-            request.url.includes('/@vite/') ||
-            request.url.includes('/src/') ||
-            request.url.includes('/node_modules/') ||
-            request.url.includes('?t=') ||
-            request.url.includes('/@fs/') ||
-            request.url.includes('/@id/')
-        ) {
-            return;
-        }
+        return;
     }
 
     // Pagine HTML: Network-first con fallback a cache e pagina offline

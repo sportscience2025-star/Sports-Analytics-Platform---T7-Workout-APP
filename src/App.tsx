@@ -96,7 +96,7 @@ export const App: React.FC = () => {
     }
   }, []);
 
-  // Ascolto eventi back/forward della cronologia browser
+  // Ascolto eventi back/forward della cronologia browser (hashchange e popstate)
   useEffect(() => {
     const handleHashChange = () => {
       const resolved = resolveTabFromHash(window.location.hash);
@@ -104,7 +104,11 @@ export const App: React.FC = () => {
     };
 
     window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handleHashChange);
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('popstate', handleHashChange);
+    };
   }, []);
 
   return (
@@ -118,7 +122,7 @@ export const App: React.FC = () => {
           <span className="logo-badge">SPORTS ANALYTICS</span>
         </div>
 
-        {/* Navigazione Principale a 6 Schede con Indicatore Attivo e Badge Preferiti */}
+        {/* Navigazione Principale Desktop a 6 Schede con Indicatore Attivo e Badge Preferiti */}
         <nav className="main-nav" aria-label="Navigazione principale">
           {TABS.map((tab) => {
             const isActive = activeTab === tab.id;
@@ -151,6 +155,68 @@ export const App: React.FC = () => {
         {activeTab === 'rag' && <RagView />}
         {activeTab === 'favorites' && <FavoritesView />}
       </main>
+
+      {/* Barra di Navigazione Mobile Inferiore (visibile sotto 768px via media query) */}
+      <nav className="bottom-nav" aria-label="Navigazione mobile">
+        {TABS.map((tab) => {
+          const isActive = activeTab === tab.id;
+          return (
+            <button
+              key={`bottom-${tab.id}`}
+              type="button"
+              className={`bottom-nav-item ${isActive ? 'active' : ''}`}
+              onClick={() => handleSelectTab(tab.id)}
+              aria-current={isActive ? 'page' : undefined}
+              title={tab.label}
+            >
+              {tab.id === 'catalog' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="7" height="7" />
+                  <rect x="14" y="3" width="7" height="7" />
+                  <rect x="14" y="14" width="7" height="7" />
+                  <rect x="3" y="14" width="7" height="7" />
+                </svg>
+              )}
+              {tab.id === 'wizard' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                  <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+                  <path d="M9 12h6" />
+                  <path d="M9 16h6" />
+                </svg>
+              )}
+              {tab.id === 'analysis' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>
+              )}
+              {tab.id === 'sources' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
+              )}
+              {tab.id === 'rag' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.04" />
+                  <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.04" />
+                </svg>
+              )}
+              {tab.id === 'favorites' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+              )}
+              <span>{tab.label}</span>
+              {tab.id === 'favorites' && favoritesCount > 0 && (
+                <span className="bottom-nav-badge" aria-label={`${favoritesCount} preferiti salvati`}>
+                  {favoritesCount}
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </nav>
     </div>
   );
 };
