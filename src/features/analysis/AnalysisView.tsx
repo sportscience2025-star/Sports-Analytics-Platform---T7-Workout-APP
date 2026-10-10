@@ -35,6 +35,7 @@ export const AnalysisView: React.FC = () => {
     removePoint,
     clearPoints,
     loadDemoData,
+    handleFileUpload,
     results,
     isValid,
   } = useVbtAnalysis();
@@ -118,6 +119,7 @@ export const AnalysisView: React.FC = () => {
             onRemovePoint={removePoint}
             onClearPoints={clearPoints}
             onLoadDemo={loadDemoData}
+            onFileDrop={handleFileUpload}
           />
         </aside>
 

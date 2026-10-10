@@ -9,6 +9,7 @@
  */
 
 import { useState, useMemo, useCallback } from 'react';
+import ExcelJS from 'exceljs';
 import type { LoadVelocityPoint, BryanMannZoneRow } from '../../types/physics';
 
 export const GRAVITY_MPS2 = 9.81;
@@ -84,6 +85,7 @@ export interface UseVbtAnalysisReturn {
   clearPoints: () => void;
   loadDemoData: () => void;
   setPoints: (points: LoadVelocityPoint[]) => void;
+  handleFileUpload: (file: File) => Promise<{ success: boolean; message: string; count?: number }>;
   results: VbtCalculatedResults | null;
   isValid: boolean;
 }
@@ -140,6 +142,136 @@ export function useVbtAnalysis(): UseVbtAnalysisReturn {
   const loadDemoData = useCallback(() => {
     setPoints(DEMO_VBT_POINTS);
   }, []);
+
+  /**
+   * Effettua l'ingestione e il parsing di file Excel (.xlsx/.xls) o CSV/TSV/TXT da encoder/pedane.
+   * Riconosce automaticamente le colonne Carico/Load (kg) e Velocità/Velocity (m/s).
+   *
+   * @param file - File caricato dall'utente
+   * @returns Oggetto con esito e messaggio di notifica
+   */
+  const handleFileUpload = useCallback(
+    async (file: File): Promise<{ success: boolean; message: string; count?: number }> => {
+      try {
+        const fileNameLower = file.name.toLowerCase();
+        const extractedPoints: LoadVelocityPoint[] = [];
+
+        if (fileNameLower.endsWith('.xlsx') || fileNameLower.endsWith('.xls')) {
+          const buffer = await file.arrayBuffer();
+          const workbook = new ExcelJS.Workbook();
+          await workbook.xlsx.load(buffer);
+          const worksheet = workbook.worksheets[0];
+          if (!worksheet) {
+            return { success: false, message: 'Nessun foglio di lavoro trovato nel file Excel.' };
+          }
+
+          let loadColIdx = -1;
+          let velColIdx = -1;
+
+          worksheet.eachRow((row, rowNumber) => {
+            if (rowNumber === 1 || (loadColIdx === -1 && velColIdx === -1)) {
+              row.eachCell((cell, colNumber) => {
+                const text = String(cell.value || '').toLowerCase();
+                if (text.includes('load') || text.includes('carico') || text.includes('peso') || text.includes('kg')) {
+                  loadColIdx = colNumber;
+                } else if (
+                  text.includes('vel') ||
+                  text.includes('speed') ||
+                  text.includes('v_mean') ||
+                  text.includes('vmean') ||
+                  text.includes('m/s')
+                ) {
+                  velColIdx = colNumber;
+                }
+              });
+            } else {
+              const loadCell = row.getCell(loadColIdx >= 1 ? loadColIdx : 1).value;
+              const velCell = row.getCell(velColIdx >= 1 ? velColIdx : 2).value;
+              const l = typeof loadCell === 'number' ? loadCell : parseFloat(String(loadCell || '').replace(',', '.'));
+              const v = typeof velCell === 'number' ? velCell : parseFloat(String(velCell || '').replace(',', '.'));
+              if (!isNaN(l) && !isNaN(v) && l > 0 && l <= 500 && v > 0.05 && v <= 3.5) {
+                extractedPoints.push({ load: l, velocity: v });
+              }
+            }
+          });
+        } else {
+          // File di testo CSV, TSV o TXT
+          const text = await file.text();
+          const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0);
+          if (lines.length < 2) {
+            return { success: false, message: 'File vuoto o privo di righe dati.' };
+          }
+
+          const delimiter = lines[0].includes(';') ? ';' : lines[0].includes('\t') ? '\t' : ',';
+          const headers = lines[0].split(delimiter).map((h) => h.trim().toLowerCase());
+
+          let loadIdx = headers.findIndex(
+            (h) => h.includes('load') || h.includes('carico') || h.includes('peso') || h.includes('kg')
+          );
+          let velIdx = headers.findIndex(
+            (h) => h.includes('vel') || h.includes('speed') || h.includes('v_mean') || h.includes('vmean') || h.includes('m/s')
+          );
+
+          const startRow = loadIdx >= 0 && velIdx >= 0 ? 1 : 0;
+          if (loadIdx < 0 || velIdx < 0) {
+            loadIdx = 0;
+            velIdx = 1;
+          }
+
+          for (let i = startRow; i < lines.length; i++) {
+            const cols = lines[i].split(delimiter).map((c) => c.trim().replace(/"/g, ''));
+            if (cols.length > Math.max(loadIdx, velIdx)) {
+              const l = parseFloat(cols[loadIdx].replace(',', '.'));
+              const v = parseFloat(cols[velIdx].replace(',', '.'));
+              if (!isNaN(l) && !isNaN(v) && l > 0 && l <= 500 && v > 0.05 && v <= 3.5) {
+                extractedPoints.push({ load: l, velocity: v });
+              }
+            }
+          }
+        }
+
+        if (extractedPoints.length < MIN_POINTS_OLS) {
+          return {
+            success: false,
+            message:
+              'Trovati meno di 2 punti validi nel file. Assicurati che contenga colonne per Carico (kg) e Velocità (m/s).',
+          };
+        }
+
+        extractedPoints.sort((a, b) => a.load - b.load);
+        setPoints(extractedPoints);
+
+        if (fileNameLower.includes('squat')) {
+          setExerciseName('Squat');
+        } else if (fileNameLower.includes('panca') || fileNameLower.includes('bench')) {
+          setExerciseName('Panca Piana');
+        } else if (fileNameLower.includes('stacco') || fileNameLower.includes('deadlift')) {
+          setExerciseName('Stacco da Terra');
+        }
+
+        const cleanFileName = file.name.replace(/\.[^/.]+$/, '').replace(/[-_]+/g, ' ');
+        if (
+          cleanFileName.length > 3 &&
+          !cleanFileName.toLowerCase().includes('data') &&
+          !cleanFileName.toLowerCase().includes('test')
+        ) {
+          setAthleteName(cleanFileName);
+        }
+
+        return {
+          success: true,
+          message: `Acquisiti con successo ${extractedPoints.length} punti Carico-Velocità da "${file.name}".`,
+          count: extractedPoints.length,
+        };
+      } catch (err) {
+        return {
+          success: false,
+          message: `Errore durante il parsing del file: ${err instanceof Error ? err.message : 'formato non supportato'}`,
+        };
+      }
+    },
+    [setExerciseName, setAthleteName]
+  );
 
   // Calcolo matematico biomeccanico OLS puro
   const results = useMemo<VbtCalculatedResults | null>(() => {
@@ -359,6 +491,7 @@ export function useVbtAnalysis(): UseVbtAnalysisReturn {
     clearPoints,
     loadDemoData,
     setPoints,
+    handleFileUpload,
     results,
     isValid: results !== null,
   };

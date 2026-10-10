@@ -3,7 +3,7 @@
  * Network-first for HTML, Cache-first for assets, Offline fallback
  */
 
-const CACHE_NAME = 't7-workout-v114';
+const CACHE_NAME = 't7-workout-v115';
 const OFFLINE_URL = './offline.html';
 
 const CORE_ASSETS = [

@@ -14,11 +14,9 @@ import { useFavorites } from './useFavorites';
 import { getAllExercises } from '../../data/exercises';
 import { ExerciseCard } from '../catalog/ExerciseCard';
 import { ExerciseBiomechanicsModal } from '../catalog/ExerciseBiomechanicsModal';
+import { MultiParamFilterBar } from '../catalog/MultiParamFilterBar';
+import { matchExerciseMuscle } from '../../hooks/useExerciseCatalog';
 import type { Exercise } from '../../types/exercise';
-
-const CANONICAL_LEVELS = ['Tutti', 'Principiante', 'Intermedio', 'Avanzato', 'Elite/Pro'];
-const CANONICAL_EQUIPMENTS = ['Tutta', 'Bilanciere', 'Manubri', 'Corpo Libero', 'Macchine', 'Cavi', 'Altri Attrezzi'];
-const CANONICAL_QUALITIES = ['Tutte', 'Forza', 'Ipertrofia', 'Potenza', 'Stabilità', 'Resistenza'];
 
 /**
  * View del modulo Preferiti.
@@ -38,20 +36,11 @@ export const FavoritesView: React.FC = () => {
     return all.filter((ex) => favoriteIds.includes(ex.id));
   }, [favoriteIds]);
 
-  // Lista muscoli disponibili tra i preferiti
-  const availableMuscles = useMemo<string[]>(() => {
-    const set = new Set<string>();
-    allFavExercises.forEach((ex) => {
-      if (ex.primaryMuscle) set.add(ex.primaryMuscle);
-    });
-    return ['Tutti', ...Array.from(set).sort()];
-  }, [allFavExercises]);
-
-  // Filtra per ricerca e parametri
+  // Filtra per ricerca e parametri con logica avanzata identica al catalogo
   const filteredFavorites = useMemo<Exercise[]>(() => {
     const q = searchQuery.trim().toLowerCase();
     return allFavExercises.filter((ex) => {
-      if (selectedMuscle !== 'Tutti' && ex.primaryMuscle !== selectedMuscle) return false;
+      if (selectedMuscle !== 'Tutti' && !matchExerciseMuscle(ex, selectedMuscle)) return false;
       if (selectedLevel !== 'Tutti' && ex.level !== selectedLevel) return false;
       if (selectedQuality !== 'Tutte' && ex.quality !== selectedQuality) return false;
       if (selectedEquipment !== 'Tutta' && !ex.equipment.toLowerCase().includes(selectedEquipment.toLowerCase())) return false;
@@ -60,7 +49,8 @@ export const FavoritesView: React.FC = () => {
       const matchName = ex.name.toLowerCase().includes(q);
       const matchDesc = ex.description.toLowerCase().includes(q);
       const matchEquip = ex.equipment.toLowerCase().includes(q);
-      return matchName || matchDesc || matchEquip;
+      const matchMuscles = ex.muscles ? ex.muscles.some((m) => m.toLowerCase().includes(q)) : false;
+      return matchName || matchDesc || matchEquip || matchMuscles;
     });
   }, [allFavExercises, searchQuery, selectedMuscle, selectedLevel, selectedEquipment, selectedQuality]);
 
@@ -135,166 +125,20 @@ export const FavoritesView: React.FC = () => {
 
       {/* Toolbar Ricerca & Filtri (visibile quando ci sono preferiti) */}
       {favoritesCount > 0 && (
-        <section
-          style={{
-            background: 'var(--bg-surface, #111827)',
-            border: '1px solid var(--border, #1f293d)',
-            borderRadius: '0.5rem',
-            padding: '0.875rem 1rem',
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '0.75rem',
-            alignItems: 'center',
-          }}
-        >
-          {/* Cerca */}
-          <div style={{ position: 'relative', flex: '1 1 220px', minWidth: '180px' }}>
-            <span
-              style={{
-                position: 'absolute',
-                left: '0.75rem',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                color: '#64748b',
-                display: 'flex',
-                alignItems: 'center',
-                pointerEvents: 'none',
-              }}
-            >
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-            </span>
-            <input
-              type="text"
-              placeholder="Cerca tra i tuoi preferiti..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              style={{
-                width: '100%',
-                background: 'var(--bg-body, #0b0e14)',
-                border: '1px solid var(--border, #1f293d)',
-                borderRadius: '0.375rem',
-                padding: '0.55rem 0.75rem 0.55rem 2.25rem',
-                color: 'var(--text-primary, #f1f5f9)',
-                fontSize: '0.85rem',
-                outline: 'none',
-              }}
-            />
-          </div>
-
-          {/* Muscolo */}
-          <select
-            value={selectedMuscle}
-            onChange={(e) => setSelectedMuscle(e.target.value)}
-            style={{
-              flex: '0 1 140px',
-              background: 'var(--bg-body, #0b0e14)',
-              border: '1px solid var(--border, #1f293d)',
-              borderRadius: '0.375rem',
-              padding: '0.55rem 0.75rem',
-              color: 'var(--text-primary, #f1f5f9)',
-              fontSize: '0.85rem',
-              outline: 'none',
-              cursor: 'pointer',
-            }}
-          >
-            {availableMuscles.map((m) => (
-              <option key={m} value={m}>
-                {m === 'Tutti' ? 'Tutti i Muscoli' : m}
-              </option>
-            ))}
-          </select>
-
-          {/* Livello */}
-          <select
-            value={selectedLevel}
-            onChange={(e) => setSelectedLevel(e.target.value)}
-            style={{
-              flex: '0 1 125px',
-              background: 'var(--bg-body, #0b0e14)',
-              border: '1px solid var(--border, #1f293d)',
-              borderRadius: '0.375rem',
-              padding: '0.55rem 0.75rem',
-              color: 'var(--text-primary, #f1f5f9)',
-              fontSize: '0.85rem',
-              outline: 'none',
-              cursor: 'pointer',
-            }}
-          >
-            {CANONICAL_LEVELS.map((lvl) => (
-              <option key={lvl} value={lvl}>
-                {lvl === 'Tutti' ? 'Tutti i Livelli' : lvl}
-              </option>
-            ))}
-          </select>
-
-          {/* Attrezzatura */}
-          <select
-            value={selectedEquipment}
-            onChange={(e) => setSelectedEquipment(e.target.value)}
-            style={{
-              flex: '0 1 135px',
-              background: 'var(--bg-body, #0b0e14)',
-              border: '1px solid var(--border, #1f293d)',
-              borderRadius: '0.375rem',
-              padding: '0.55rem 0.75rem',
-              color: 'var(--text-primary, #f1f5f9)',
-              fontSize: '0.85rem',
-              outline: 'none',
-              cursor: 'pointer',
-            }}
-          >
-            {CANONICAL_EQUIPMENTS.map((eq) => (
-              <option key={eq} value={eq}>
-                {eq === 'Tutta' ? 'Tutta Attrezzatura' : eq}
-              </option>
-            ))}
-          </select>
-
-          {/* Qualità */}
-          <select
-            value={selectedQuality}
-            onChange={(e) => setSelectedQuality(e.target.value)}
-            style={{
-              flex: '0 1 130px',
-              background: 'var(--bg-body, #0b0e14)',
-              border: '1px solid var(--border, #1f293d)',
-              borderRadius: '0.375rem',
-              padding: '0.55rem 0.75rem',
-              color: 'var(--text-primary, #f1f5f9)',
-              fontSize: '0.85rem',
-              outline: 'none',
-              cursor: 'pointer',
-            }}
-          >
-            {CANONICAL_QUALITIES.map((q) => (
-              <option key={q} value={q}>
-                {q === 'Tutte' ? 'Tutte le Qualità' : q}
-              </option>
-            ))}
-          </select>
-
-          {isFilterActive && (
-            <button
-              type="button"
-              onClick={handleResetFilters}
-              style={{
-                background: 'rgba(239, 68, 68, 0.12)',
-                border: '1px solid rgba(239, 68, 68, 0.3)',
-                borderRadius: '0.375rem',
-                padding: '0.55rem 0.75rem',
-                color: '#f87171',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                cursor: 'pointer',
-              }}
-            >
-              Reset
-            </button>
-          )}
-        </section>
+        <MultiParamFilterBar
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          selectedMuscle={selectedMuscle}
+          onMuscleChange={setSelectedMuscle}
+          selectedLevel={selectedLevel}
+          onLevelChange={setSelectedLevel}
+          selectedEquipment={selectedEquipment}
+          onEquipmentChange={setSelectedEquipment}
+          selectedQuality={selectedQuality}
+          onQualityChange={setSelectedQuality}
+          onResetFilters={handleResetFilters}
+          isFilterActive={isFilterActive}
+        />
       )}
 
       {/* Griglia Esercizi Preferiti oppure Empty State (Foto 5) */}

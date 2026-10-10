@@ -75,7 +75,20 @@ const INITIAL_FORM_DATA: AthleteFormData = {
 export function useWorkoutWizard(): UseWorkoutWizardReturn {
   const [formData, setFormData] = useState<AthleteFormData>(INITIAL_FORM_DATA);
   const [selectedConditionIds, setSelectedConditionIds] = useState<string[]>([]);
-  const [program, setProgram] = useState<WorkoutProgram | null>(null);
+  const [program, setProgram] = useState<WorkoutProgram | null>(() => {
+    return generateWorkoutProgram(
+      {
+        athleteName: INITIAL_FORM_DATA.athleteName,
+        patientType: INITIAL_FORM_DATA.patientType,
+        sport: INITIAL_FORM_DATA.sport,
+        level: INITIAL_FORM_DATA.level,
+        goal: INITIAL_FORM_DATA.goal,
+        weeks: INITIAL_FORM_DATA.durationWeeks,
+        days: INITIAL_FORM_DATA.daysPerWeek
+      },
+      analyzeRiskProfile([])
+    );
+  });
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
 
   // Setters dedicati

@@ -17,7 +17,7 @@ import {
   searchChunksInStore,
 } from '../../rag/vector-store';
 import { chunkText } from '../../rag/chunker';
-import { parseTextDocument, type ParsedDocument } from '../../rag/document-parser';
+import { parseUploadedFile, type ParsedDocument } from '../../rag/document-parser';
 import { scientificSources } from '../../data/sources';
 
 const CHARS_PER_TOKEN = 4.0;
@@ -99,9 +99,8 @@ export function useRag(): UseRagReturn {
     async (file: File): Promise<boolean> => {
       setIsIngesting(true);
       try {
-        const text = await file.text();
-        const parsedDoc = parseTextDocument(text, file.name);
-        const chunks = chunkText(text, parsedDoc.id);
+        const parsedDoc = await parseUploadedFile(file);
+        const chunks = chunkText(parsedDoc.rawText, parsedDoc.id);
 
         await saveDocumentToStore(parsedDoc, chunks);
         await refreshDocuments();

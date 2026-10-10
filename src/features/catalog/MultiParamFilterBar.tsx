@@ -9,7 +9,7 @@
  * - Regola R1: Strict TypeScript, zero any.
  */
 
-import React from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import type { ExerciseLevel, ExerciseQuality } from '../../types/exercise';
 
 export interface MultiParamFilterBarProps {
@@ -102,6 +102,35 @@ export const MultiParamFilterBar: React.FC<MultiParamFilterBarProps> = ({
   onResetFilters,
   isFilterActive,
 }) => {
+  const [isMuscleOpen, setIsMuscleOpen] = useState<boolean>(false);
+  const [muscleSearch, setMuscleSearch] = useState<string>('');
+  const muscleDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (muscleDropdownRef.current && !muscleDropdownRef.current.contains(event.target as Node)) {
+        setIsMuscleOpen(false);
+      }
+    };
+    if (isMuscleOpen) {
+      document.addEventListener('mousedown', handleOutsideClick);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [isMuscleOpen]);
+
+  const filteredMuscleGroups = useMemo(() => {
+    const q = muscleSearch.trim().toLowerCase();
+    if (!q) return MUSCLE_GROUPS_NESTED;
+    return MUSCLE_GROUPS_NESTED.map((group) => {
+      const groupMatches = group.group.toLowerCase().includes(q);
+      const items = groupMatches
+        ? group.items
+        : group.items.filter((item) => item.toLowerCase().includes(q));
+      return { group: group.group, items };
+    }).filter((group) => group.items.length > 0);
+  }, [muscleSearch]);
   return (
     <div
       className="catalog-toolbar"
@@ -161,35 +190,219 @@ export const MultiParamFilterBar: React.FC<MultiParamFilterBarProps> = ({
         />
       </div>
 
-      {/* Dropdown Muscolo Target con Categorie Annidate */}
-      <select
-        className="filter-select"
-        value={selectedMuscle}
-        onChange={(e) => onMuscleChange(e.target.value)}
-        title="Filtra per muscolo target o distretto anatomico"
+      {/* Dropdown Muscolo Target con Categorie Annidate e Ricerca Testuale Interna */}
+      <div
+        ref={muscleDropdownRef}
         style={{
-          flex: '1 1 150px',
-          background: 'var(--bg-body, #0b0e14)',
-          border: '1px solid var(--border, #1f293d)',
-          borderRadius: '0.375rem',
-          padding: '0.55rem 0.75rem',
-          color: 'var(--text-primary, #f1f5f9)',
-          fontSize: '0.85rem',
-          outline: 'none',
-          cursor: 'pointer',
+          position: 'relative',
+          flex: '1 1 180px',
         }}
       >
-        <option value="Tutti">Tutti i Muscoli</option>
-        {MUSCLE_GROUPS_NESTED.map((group) => (
-          <optgroup key={group.group} label={group.group}>
-            {group.items.map((m) => (
-              <option key={m} value={m}>
-                {m}
-              </option>
-            ))}
-          </optgroup>
-        ))}
-      </select>
+        <button
+          type="button"
+          onClick={() => setIsMuscleOpen((prev) => !prev)}
+          title="Filtra per muscolo target o distretto anatomico con ricerca interna"
+          style={{
+            width: '100%',
+            background: 'var(--bg-body, #0b0e14)',
+            border: isMuscleOpen ? '1px solid #6366f1' : '1px solid var(--border, #1f293d)',
+            borderRadius: '0.375rem',
+            padding: '0.55rem 0.75rem',
+            color: selectedMuscle !== 'Tutti' ? '#a5b4fc' : 'var(--text-primary, #f1f5f9)',
+            fontSize: '0.85rem',
+            outline: 'none',
+            cursor: 'pointer',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            textAlign: 'left',
+            fontWeight: selectedMuscle !== 'Tutti' ? 600 : 400,
+          }}
+        >
+          <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            {selectedMuscle === 'Tutti' ? 'Tutti i Muscoli' : selectedMuscle}
+          </span>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{
+              transform: isMuscleOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+              transition: 'transform 0.15s ease',
+              flexShrink: 0,
+              marginLeft: '0.5rem',
+              color: '#94a3b8',
+            }}
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+
+        {isMuscleOpen && (
+          <div
+            style={{
+              position: 'absolute',
+              top: 'calc(100% + 4px)',
+              left: 0,
+              width: '280px',
+              maxWidth: '90vw',
+              background: 'var(--bg-surface, #111827)',
+              border: '1px solid var(--border, #1f293d)',
+              borderRadius: '0.5rem',
+              boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.4)',
+              zIndex: 100,
+              display: 'flex',
+              flexDirection: 'column',
+              maxHeight: '340px',
+              overflow: 'hidden',
+            }}
+          >
+            {/* Ricerca Testuale Interna */}
+            <div
+              style={{
+                padding: '0.5rem',
+                borderBottom: '1px solid var(--border, #1f293d)',
+                background: 'var(--bg-body, #0b0e14)',
+              }}
+            >
+              <div style={{ position: 'relative' }}>
+                <input
+                  type="text"
+                  autoFocus
+                  placeholder="Cerca distretto o capo..."
+                  value={muscleSearch}
+                  onChange={(e) => setMuscleSearch(e.target.value)}
+                  style={{
+                    width: '100%',
+                    background: '#1e293b',
+                    border: '1px solid #334155',
+                    borderRadius: '0.25rem',
+                    padding: '0.35rem 0.5rem 0.35rem 1.85rem',
+                    color: '#f8fafc',
+                    fontSize: '0.8rem',
+                    outline: 'none',
+                  }}
+                />
+                <span
+                  style={{
+                    position: 'absolute',
+                    left: '0.5rem',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    color: '#94a3b8',
+                    pointerEvents: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+
+            {/* Lista Opzioni con Categorie Annidate */}
+            <div style={{ overflowY: 'auto', padding: '0.35rem 0' }}>
+              <button
+                type="button"
+                onClick={() => {
+                  onMuscleChange('Tutti');
+                  setIsMuscleOpen(false);
+                  setMuscleSearch('');
+                }}
+                style={{
+                  width: '100%',
+                  textAlign: 'left',
+                  background: selectedMuscle === 'Tutti' ? 'rgba(99, 102, 241, 0.15)' : 'transparent',
+                  color: selectedMuscle === 'Tutti' ? '#a5b4fc' : '#e2e8f0',
+                  border: 'none',
+                  padding: '0.45rem 0.75rem',
+                  fontSize: '0.825rem',
+                  fontWeight: selectedMuscle === 'Tutti' ? 700 : 500,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
+                <span>Tutti i Muscoli</span>
+                {selectedMuscle === 'Tutti' && (
+                  <span style={{ fontSize: '0.75rem', color: '#818cf8' }}>✓</span>
+                )}
+              </button>
+
+              {filteredMuscleGroups.map((group) => (
+                <div key={group.group} style={{ marginTop: '0.35rem' }}>
+                  <div
+                    style={{
+                      fontSize: '0.68rem',
+                      fontWeight: 800,
+                      letterSpacing: '0.05em',
+                      textTransform: 'uppercase',
+                      color: '#64748b',
+                      padding: '0.25rem 0.75rem 0.15rem 0.75rem',
+                    }}
+                  >
+                    {group.group}
+                  </div>
+                  {group.items.map((item) => {
+                    const isSelected = selectedMuscle === item;
+                    return (
+                      <button
+                        key={item}
+                        type="button"
+                        onClick={() => {
+                          onMuscleChange(item);
+                          setIsMuscleOpen(false);
+                          setMuscleSearch('');
+                        }}
+                        style={{
+                          width: '100%',
+                          textAlign: 'left',
+                          background: isSelected ? 'rgba(99, 102, 241, 0.15)' : 'transparent',
+                          color: isSelected ? '#a5b4fc' : '#cbd5e1',
+                          border: 'none',
+                          padding: '0.35rem 0.75rem 0.35rem 1.15rem',
+                          fontSize: '0.8rem',
+                          fontWeight: isSelected ? 700 : 400,
+                          cursor: 'pointer',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                        }}
+                        onMouseEnter={(e) => {
+                          if (!isSelected) e.currentTarget.style.background = '#1e293b';
+                        }}
+                        onMouseLeave={(e) => {
+                          if (!isSelected) e.currentTarget.style.background = 'transparent';
+                        }}
+                      >
+                        <span>{item}</span>
+                        {isSelected && (
+                          <span style={{ fontSize: '0.75rem', color: '#818cf8' }}>✓</span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              ))}
+
+              {filteredMuscleGroups.length === 0 && (
+                <div style={{ padding: '0.75rem', textAlign: 'center', fontSize: '0.75rem', color: '#64748b' }}>
+                  Nessun muscolo o capo corrispondente
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* Dropdown Livello */}
       <select

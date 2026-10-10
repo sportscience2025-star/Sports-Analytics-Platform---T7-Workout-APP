@@ -65,15 +65,8 @@ export const App: React.FC = () => {
               <button
                 key={tab.id}
                 type="button"
-                className={`nav-item ${isActive ? 'active' : ''}`}
+                className={`nav-btn ${isActive ? 'active' : ''}`}
                 onClick={() => setActiveTab(tab.id)}
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  cursor: 'pointer',
-                  fontFamily: 'inherit',
-                  position: 'relative',
-                }}
               >
                 {tab.label}
                 {tab.id === 'favorites' && favoritesCount > 0 && (

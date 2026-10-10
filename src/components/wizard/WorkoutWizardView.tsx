@@ -82,6 +82,7 @@ export const WorkoutWizardView: React.FC = () => {
 
   // Stato per Undo Toast (5 secondi)
   const [deletedItem, setDeletedItem] = useState<DeletedItem | null>(null);
+  const [isConfigOpen, setIsConfigOpen] = useState<boolean>(false);
   const undoTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Filtraggio delle condizioni cliniche per il selettore
@@ -255,17 +256,54 @@ export const WorkoutWizardView: React.FC = () => {
   return (
     <div className="workout-wizard-container" style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
       {/* Intestazione modulo */}
-      <section className="section-header" style={{ borderBottom: '1px solid #1e293b', paddingBottom: '1rem' }}>
-        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
-          Generatore Allenamenti AI &amp; Periodizzazione Scientifica
-        </h2>
-        <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginTop: '0.25rem', marginBottom: 0 }}>
-          Architettura deterministica di programmazione sportiva e riabilitazione clinica evidence-based.
-        </p>
+      <section
+        className="section-header"
+        style={{
+          borderBottom: '1px solid #1e293b',
+          paddingBottom: '1rem',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '1rem',
+        }}
+      >
+        <div>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
+            Programmazione &amp; Periodizzazione Macrociclo
+          </h2>
+          <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginTop: '0.25rem', marginBottom: 0 }}>
+            Architettura deterministica DUP/VBT con evidenze scientifiche, timeline a 6 fasi ed esportazione multi-foglio.
+          </p>
+        </div>
+        {program && (
+          <button
+            type="button"
+            onClick={() => setIsConfigOpen((prev) => !prev)}
+            style={{
+              background: isConfigOpen ? '#334155' : 'rgba(99, 102, 241, 0.15)',
+              border: isConfigOpen ? '1px solid #475569' : '1px solid rgba(99, 102, 241, 0.4)',
+              color: isConfigOpen ? '#e2e8f0' : '#818cf8',
+              padding: '0.55rem 1rem',
+              borderRadius: '0.375rem',
+              fontSize: '0.85rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            {isConfigOpen ? 'Chiudi Configurazione Parametri' : '+ Nuova Scheda / Configura Parametri'}
+          </button>
+        )}
       </section>
 
-      {/* Pannello Superiore: Parametri Atleta & Configurazione */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
+      {/* Pannello Configurazione Atleta & Periodizzazione (visibile su richiesta o se non c'è programma) */}
+      {(!program || isConfigOpen) && (
+        <>
+          {/* Pannello Superiore: Parametri Atleta & Configurazione */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
         {/* Form Anagrafica e Obiettivi */}
         <section
           style={{
@@ -589,7 +627,10 @@ export const WorkoutWizardView: React.FC = () => {
           {/* Pulsante Genera Programma */}
           <button
             type="button"
-            onClick={generateProgram}
+            onClick={() => {
+              generateProgram();
+              setIsConfigOpen(false);
+            }}
             disabled={isGenerating}
             style={{
               marginTop: 'auto',
@@ -741,6 +782,8 @@ export const WorkoutWizardView: React.FC = () => {
           })}
         </div>
       </section>
+        </>
+      )}
 
       {/* Programma di Allenamento Generato */}
       {program && (
@@ -788,7 +831,10 @@ export const WorkoutWizardView: React.FC = () => {
                 onExportExcel={() => downloadProgramSpreadsheet(program)}
                 onExportPdf={() => printWorkoutProgram(program)}
                 onBackupJson={downloadBackupFile}
-                onReset={resetProgram}
+                onReset={() => {
+                  resetProgram();
+                  setIsConfigOpen(true);
+                }}
               />
             </div>
 
@@ -1296,7 +1342,10 @@ export const WorkoutWizardView: React.FC = () => {
               onExportExcel={() => downloadProgramSpreadsheet(program)}
               onExportPdf={() => printWorkoutProgram(program)}
               onBackupJson={downloadBackupFile}
-              onReset={resetProgram}
+              onReset={() => {
+                resetProgram();
+                setIsConfigOpen(true);
+              }}
             />
           </div>
 

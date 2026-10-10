@@ -29,7 +29,7 @@ export interface ManualInputFormProps {
   onRemovePoint: (index: number) => void;
   onClearPoints: () => void;
   onLoadDemo: () => void;
-  onFileDrop?: (file: File) => void;
+  onFileDrop?: (file: File) => Promise<{ success: boolean; message: string; count?: number }> | void;
 }
 
 const MVT_STEP = 0.05;
@@ -57,6 +57,22 @@ export const ManualInputForm: React.FC<ManualInputFormProps> = ({
   const [newLoad, setNewLoad] = useState<string>('');
   const [newVelocity, setNewVelocity] = useState<string>('');
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [uploadStatus, setUploadStatus] = useState<{ success: boolean; message: string } | null>(null);
+
+  const handleProcessFile = async (file: File) => {
+    if (!onFileDrop) return;
+    try {
+      const res = await onFileDrop(file);
+      if (res) {
+        setUploadStatus(res);
+      }
+    } catch (err) {
+      setUploadStatus({
+        success: false,
+        message: err instanceof Error ? err.message : 'Errore nel caricamento file',
+      });
+    }
+  };
 
   const handleAddSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -139,59 +155,77 @@ export const ManualInputForm: React.FC<ManualInputFormProps> = ({
 
       {activeTab === 'file' ? (
         /* Sezione Carica File Drag & Drop */
-        <div
-          onDragOver={(e) => e.preventDefault()}
-          onDrop={(e) => {
-            e.preventDefault();
-            const file = e.dataTransfer.files[0];
-            if (file && onFileDrop) onFileDrop(file);
-          }}
-          style={{
-            border: '2px dashed #334155',
-            borderRadius: '0.5rem',
-            padding: '2.5rem 1rem',
-            textAlign: 'center',
-            background: 'var(--bg-body, #0b0e14)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '0.75rem',
-          }}
-        >
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6366f1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-            <polyline points="17 8 12 3 7 8" />
-            <line x1="12" y1="3" x2="12" y2="15" />
-          </svg>
-          <span style={{ fontSize: '0.9rem', color: '#cbd5e1', fontWeight: 600 }}>
-            Trascina file CSV, TSV o Excel di encoder
-          </span>
-          <span style={{ fontSize: '0.75rem', color: '#64748b' }}>
-            Riconoscimento automatico colonne Carico e Velocità
-          </span>
-          <label
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+          <div
+            onDragOver={(e) => e.preventDefault()}
+            onDrop={(e) => {
+              e.preventDefault();
+              const file = e.dataTransfer.files[0];
+              if (file) handleProcessFile(file);
+            }}
             style={{
-              marginTop: '0.5rem',
-              background: '#6366f1',
-              color: '#ffffff',
-              padding: '0.45rem 0.85rem',
-              borderRadius: '0.375rem',
-              fontSize: '0.8rem',
-              fontWeight: 600,
-              cursor: 'pointer',
+              border: '2px dashed #334155',
+              borderRadius: '0.5rem',
+              padding: '2.5rem 1rem',
+              textAlign: 'center',
+              background: 'var(--bg-body, #0b0e14)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '0.75rem',
             }}
           >
-            Seleziona File
-            <input
-              type="file"
-              accept=".csv,.tsv,.txt,.xlsx,.xls"
-              style={{ display: 'none' }}
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file && onFileDrop) onFileDrop(file);
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6366f1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
+            <span style={{ fontSize: '0.9rem', color: '#cbd5e1', fontWeight: 600 }}>
+              Trascina file CSV, TSV o Excel di encoder
+            </span>
+            <span style={{ fontSize: '0.75rem', color: '#64748b' }}>
+              Riconoscimento automatico colonne Carico e Velocità
+            </span>
+            <label
+              style={{
+                marginTop: '0.5rem',
+                background: '#6366f1',
+                color: '#ffffff',
+                padding: '0.45rem 0.85rem',
+                borderRadius: '0.375rem',
+                fontSize: '0.8rem',
+                fontWeight: 600,
+                cursor: 'pointer',
               }}
-            />
-          </label>
+            >
+              Seleziona File
+              <input
+                type="file"
+                accept=".csv,.tsv,.txt,.xlsx,.xls"
+                style={{ display: 'none' }}
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) handleProcessFile(file);
+                }}
+              />
+            </label>
+          </div>
+
+          {uploadStatus && (
+            <div
+              style={{
+                padding: '0.65rem 0.85rem',
+                borderRadius: '0.375rem',
+                fontSize: '0.8rem',
+                lineHeight: 1.4,
+                background: uploadStatus.success ? 'rgba(16, 185, 129, 0.12)' : 'rgba(239, 68, 68, 0.12)',
+                border: uploadStatus.success ? '1px solid rgba(16, 185, 129, 0.3)' : '1px solid rgba(239, 68, 68, 0.3)',
+                color: uploadStatus.success ? '#34d399' : '#f87171',
+              }}
+            >
+              {uploadStatus.message}
+            </div>
+          )}
         </div>
       ) : (
         /* Inserimento Manuale */
