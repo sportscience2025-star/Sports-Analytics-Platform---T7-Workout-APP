@@ -8,22 +8,29 @@ Questa guida è stata creata appositamente per spiegare in modo chiaro e immedia
 
 ---
 
-## 1. Come Avviare l'Applicazione (1 Clic)
+## 1. Come Avviare l'Applicazione (I 3 Modi Semplicissimi)
 
-Nella cartella principale del progetto troverai ora il file:
-👉 **`AVVIA_APP.bat`**
+> [!NOTE]
+> **Attenzione**: Cliccare su `AVVIA_APP.bat` con il tasto sinistro dentro VS Code apre il file come testo per leggerlo. Per **eseguirlo**, usa uno dei seguenti 3 metodi:
 
-### Istruzioni rapide:
-1. Fai **doppio clic** su `AVVIA_APP.bat`.
-2. Si aprirà una finestra del terminale che avvia il server locale Vite e **aprirà automaticamente il browser** all'indirizzo:
+### Metodo A: Da Esplora File di Windows (Doppio Clic Diretto)
+1. Apri la normale cartella di Windows: `E:\Nuove App Installate\Sports-Analytics-Platform---T7-Workout-APP`.
+2. Trova il file **`AVVIA_APP.bat`** (ha l'icona con gli ingranaggi di Windows).
+3. Fai **doppio clic con il tasto sinistro** sull'icona.
+4. Si aprirà una finestra nera del prompt dei comandi e **il tuo browser si aprirà automaticamente** su:
    `http://localhost:5173`
-3. L'applicazione apparirà immediatamente funzionante a schermo intero con tutte le 5 sezioni operative:
-   - **Catalogo Esercizi**
-   - **Programmazione (Wizard Schede)**
-   - **Analisi VBT**
-   - **Analisi PAP (Salti)**
-   - **Libreria Scientifica & RAG**
-4. **Per chiudere l'app**: chiudi semplicemente la finestra nera del terminale.
+5. Per chiudere l'app: chiudi semplicemente la finestra nera del prompt.
+
+### Metodo B: Direttamente da dentro VS Code (Scorciatoia a 1-Clic)
+1. In qualsiasi momento dentro VS Code, premi sulla tastiera:
+   `Ctrl + Shift + B`
+   *(oppure menu in alto: **Terminale** -> **Esegui task di compilazione...** -> seleziona **Avvia T7 Workout Platform**)*.
+2. L'app si avvia in background e il browser si apre da solo.
+
+### Metodo C: Dal Terminale Integrato di VS Code
+1. Premi `Ctrl + \`` (oppure menu **Terminale** -> **Nuovo Terminale**).
+2. Digita: `npm run dev` e premi Invio.
+3. Il browser si aprirà automaticamente all'indirizzo dell'app.
 
 ---
 

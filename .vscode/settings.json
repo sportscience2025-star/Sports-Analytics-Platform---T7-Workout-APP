@@ -6,5 +6,18 @@
   "files.associations": {
     "*.tsx": "typescriptreact",
     "*.ts": "typescript"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/__pycache__": true,
+    "**/dist": true,
+    "**/tmp_edge_user_data*": true,
+    "**/*.log": true,
+    "**/challenger2*.json": true,
+    "**/single_test_results.json": true,
+    "**/all_js_syntax_results.json": true,
+    "**/verify_results.json": true,
+    "**/test_results_output.json": true,
+    "**/test_out.txt": true
   }
 }
