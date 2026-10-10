@@ -1,0 +1,50 @@
+{
+  "name": "T7 Workout – Assistente Allenamento",
+  "short_name": "T7 Workout",
+  "description": "Il tuo assistente di allenamento intelligente. Crea programmi personalizzati con supporto clinico.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#080c16",
+  "theme_color": "#080c16",
+  "lang": "it-IT",
+  "categories": ["health", "fitness", "lifestyle"],
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Crea Programma",
+      "short_name": "Programma",
+      "description": "Genera un nuovo programma di allenamento",
+      "url": "./index.html#wizard",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Catalogo Esercizi",
+      "short_name": "Catalogo",
+      "description": "Esplora il catalogo completo",
+      "url": "./index.html#catalog",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

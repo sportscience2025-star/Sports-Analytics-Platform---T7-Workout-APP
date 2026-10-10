@@ -45,9 +45,33 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
-    <!-- Service Worker Registration -->
+    <!-- Service Worker Registration & Localhost Defensive Cache Cleaner -->
     <script>
-        if ('serviceWorker' in navigator) {
+        const isLocalDev = Boolean(
+            window.location.hostname === 'localhost' ||
+            window.location.hostname === '[::1]' ||
+            window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
+        );
+
+        if (isLocalDev && 'serviceWorker' in navigator) {
+            // In sviluppo locale, deregistra SW esistenti e pulisce le vecchie cache stantìe
+            navigator.serviceWorker.getRegistrations().then(registrations => {
+                for (const reg of registrations) {
+                    reg.unregister().then(unregistered => {
+                        if (unregistered) console.log('[T7 Dev] SW deregistrato su localhost:', reg.scope);
+                    });
+                }
+            });
+            if ('caches' in window) {
+                caches.keys().then(keys => {
+                    keys.forEach(key => {
+                        if (key !== 't7-workout-v120') {
+                            caches.delete(key);
+                        }
+                    });
+                });
+            }
+        } else if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js')
                     .then(reg => console.log('[App] SW registered:', reg.scope))

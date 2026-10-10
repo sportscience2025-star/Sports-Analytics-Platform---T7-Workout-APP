@@ -1,9 +1,11 @@
 /**
  * T7 Workout - Service Worker
- * Network-first for HTML, Cache-first for assets, Offline fallback
+ * Versione: t7-workout-v120
+ * Network-first per HTML, Cache-first resiliente per asset statici, Offline fallback.
+ * Supporta bypass completo in ambiente di sviluppo Vite locale.
  */
 
-const CACHE_NAME = 't7-workout-v115';
+const CACHE_NAME = 't7-workout-v120';
 const OFFLINE_URL = './offline.html';
 
 const CORE_ASSETS = [
@@ -26,10 +28,19 @@ self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(cache => {
-                console.log('[SW] Pre-caching core assets');
-                return cache.addAll(CORE_ASSETS);
+                console.log('[SW] Pre-caching core assets with resilient error handling...');
+                // Caricamento tollerante: un singolo asset mancante non abortisce l'intera installazione
+                const cachePromises = CORE_ASSETS.map(asset => {
+                    return cache.add(asset).catch(err => {
+                        console.warn(`[SW] Warning: asset non pre-caricato (${asset}):`, err);
+                    });
+                });
+                return Promise.allSettled(cachePromises);
             })
-            .then(() => self.skipWaiting())
+            .then(() => {
+                console.log('[SW] Skip waiting attivato');
+                return self.skipWaiting();
+            })
     );
 });
 
@@ -41,11 +52,14 @@ self.addEventListener('activate', (event) => {
             return Promise.all(
                 keys.filter(key => key !== CACHE_NAME)
                     .map(key => {
-                        console.log('[SW] Removing old cache:', key);
+                        console.log('[SW] Eliminazione vecchia cache stantìa:', key);
                         return caches.delete(key);
                     })
             );
-        }).then(() => self.clients.claim())
+        }).then(() => {
+            console.log('[SW] Clients claim completato');
+            return self.clients.claim();
+        })
     );
 });
 
@@ -53,21 +67,41 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
     const { request } = event;
 
-    // Skip non-GET requests
+    // Salta richieste non GET
     if (request.method !== 'GET') return;
 
-    // Skip cross-origin requests (Google Fonts will be fetched naturally)
+    // Salta richieste cross-origin
     if (!request.url.startsWith(self.location.origin)) return;
 
-    // Skip test suite files to prevent caching test scripts
+    // Salta suite di test
     if (request.url.includes('/tests/')) return;
 
-    // HTML pages: Network-first (always get latest), fallback to cache, then offline page
+    // Rileva se siamo su localhost / 127.0.0.1
+    const isLocalhost = Boolean(
+        self.location.hostname === 'localhost' ||
+        self.location.hostname === '[::1]' ||
+        self.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
+    );
+
+    // Bypass categorico della cache su localhost per file di sviluppo Vite HMR
+    if (isLocalhost) {
+        if (
+            request.url.includes('/@vite/') ||
+            request.url.includes('/src/') ||
+            request.url.includes('/node_modules/') ||
+            request.url.includes('?t=') ||
+            request.url.includes('/@fs/') ||
+            request.url.includes('/@id/')
+        ) {
+            return;
+        }
+    }
+
+    // Pagine HTML: Network-first con fallback a cache e pagina offline
     if (request.mode === 'navigate' || request.headers.get('accept')?.includes('text/html')) {
         event.respondWith(
             fetch(request)
                 .then(response => {
-                    // Cache the fresh version
                     const clone = response.clone();
                     caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
                     return response;
@@ -80,13 +114,12 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    // Static assets (JS, CSS, images): Cache-first, network fallback
+    // Asset statici (JS, CSS, immagini): Cache-first con fallback di rete
     event.respondWith(
         caches.match(request).then(cached => {
             if (cached) return cached;
 
             return fetch(request).then(response => {
-                // Only cache successful responses from our origin
                 if (response.ok) {
                     const clone = response.clone();
                     caches.open(CACHE_NAME).then(cache => cache.put(request, clone));

@@ -128,9 +128,10 @@ export const CatalogView: React.FC = () => {
       {/* Griglia Esercizi (Responsive 3 colonne) */}
       {paginatedExercises.length > 0 ? (
         <section
+          className="catalog-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
             gap: '1.25rem',
           }}
         >

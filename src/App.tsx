@@ -15,7 +15,7 @@
  * - Regola R1: Zero any, tipizzazione TypeScript strict.
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { CatalogView } from './features/catalog';
 import { ProgrammingView } from './features/programming';
 import { AnalysisView } from './features/analysis';
@@ -29,23 +29,83 @@ export type ActiveTab = 'catalog' | 'wizard' | 'analysis' | 'sources' | 'rag' | 
 interface TabDefinition {
   id: ActiveTab;
   label: string;
+  hash: string;
 }
 
 const TABS: TabDefinition[] = [
-  { id: 'catalog', label: 'Catalogo' },
-  { id: 'wizard', label: 'Programmazione' },
-  { id: 'analysis', label: 'Data Analisi' },
-  { id: 'sources', label: 'Libreria Fonti' },
-  { id: 'rag', label: 'RAG' },
-  { id: 'favorites', label: 'Preferiti' },
+  { id: 'catalog', label: 'Catalogo', hash: '#catalogo' },
+  { id: 'wizard', label: 'Programmazione', hash: '#programmazione' },
+  { id: 'analysis', label: 'Data Analisi', hash: '#analisi' },
+  { id: 'sources', label: 'Libreria Fonti', hash: '#fonti' },
+  { id: 'rag', label: 'RAG', hash: '#rag' },
+  { id: 'favorites', label: 'Preferiti', hash: '#preferiti' },
 ];
+
+/**
+ * Mappa un hash URL nella rispettiva scheda attiva con supporto a sinonimi italiani e inglesi.
+ */
+function resolveTabFromHash(hash: string): ActiveTab {
+  const cleanHash = hash.replace(/^#/, '').toLowerCase().trim();
+  switch (cleanHash) {
+    case 'programmazione':
+    case 'wizard':
+    case 'scheda':
+      return 'wizard';
+    case 'analisi':
+    case 'analysis':
+    case 'vbt':
+      return 'analysis';
+    case 'fonti':
+    case 'sources':
+    case 'paper':
+      return 'sources';
+    case 'rag':
+    case 'chat':
+    case 'ai':
+      return 'rag';
+    case 'preferiti':
+    case 'favorites':
+    case 'fav':
+      return 'favorites';
+    case 'catalogo':
+    case 'catalog':
+    default:
+      return 'catalog';
+  }
+}
 
 /**
  * Componente radice dell'applicazione T7 Workout PWA.
  */
 export const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<ActiveTab>('catalog');
+  const [activeTab, setActiveTabState] = useState<ActiveTab>(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      return resolveTabFromHash(window.location.hash);
+    }
+    return 'catalog';
+  });
+
   const { favoritesCount } = useFavorites();
+
+  // Sincronizzazione cambio tab con URL Hash per navigazione diretta e cronologia
+  const handleSelectTab = useCallback((tabId: ActiveTab) => {
+    setActiveTabState(tabId);
+    const tabDef = TABS.find((t) => t.id === tabId);
+    if (tabDef && typeof window !== 'undefined' && window.location.hash !== tabDef.hash) {
+      window.history.pushState(null, '', tabDef.hash);
+    }
+  }, []);
+
+  // Ascolto eventi back/forward della cronologia browser
+  useEffect(() => {
+    const handleHashChange = () => {
+      const resolved = resolveTabFromHash(window.location.hash);
+      setActiveTabState(resolved);
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   return (
     <div className="t7-app-root">
@@ -55,6 +115,7 @@ export const App: React.FC = () => {
           <h1>
             T7 <span className="highlight">Workout</span>
           </h1>
+          <span className="logo-badge">SPORTS ANALYTICS</span>
         </div>
 
         {/* Navigazione Principale a 6 Schede con Indicatore Attivo e Badge Preferiti */}
@@ -66,9 +127,10 @@ export const App: React.FC = () => {
                 key={tab.id}
                 type="button"
                 className={`nav-btn ${isActive ? 'active' : ''}`}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => handleSelectTab(tab.id)}
+                aria-current={isActive ? 'page' : undefined}
               >
-                {tab.label}
+                <span>{tab.label}</span>
                 {tab.id === 'favorites' && favoritesCount > 0 && (
                   <span className="nav-badge" aria-label={`${favoritesCount} preferiti salvati`}>
                     {favoritesCount}

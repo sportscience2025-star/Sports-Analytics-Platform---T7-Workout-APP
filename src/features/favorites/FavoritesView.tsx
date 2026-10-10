@@ -198,9 +198,10 @@ export const FavoritesView: React.FC = () => {
         </div>
       ) : (
         <section
+          className="catalog-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
             gap: '1.25rem',
           }}
         >
