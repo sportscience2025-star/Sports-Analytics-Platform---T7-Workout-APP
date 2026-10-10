@@ -6,8 +6,8 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import '../css/style.css';
 import App from './App';
+import { ErrorBoundary } from './components/common/ErrorBoundary';
 
 const container = document.getElementById('root');
 
@@ -15,7 +15,9 @@ if (container) {
   const root = ReactDOM.createRoot(container);
   root.render(
     <React.StrictMode>
-      <App />
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
     </React.StrictMode>
   );
 } else {
@@ -25,7 +27,9 @@ if (container) {
     const root = ReactDOM.createRoot(fallbackContainer);
     root.render(
       <React.StrictMode>
-        <App />
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
       </React.StrictMode>
     );
   } else {
