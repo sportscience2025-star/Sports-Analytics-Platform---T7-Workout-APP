@@ -83,11 +83,13 @@ export const ProgramActionsBar: React.FC<ProgramActionsBarProps> = ({
         className="btn-excel-export"
         style={{
           ...BASE_BTN_STYLE,
-          background: '#047857',
-          color: '#ffffff'
+          background: '#10b981',
+          color: '#ffffff',
+          fontWeight: 700,
+          boxShadow: '0 2px 8px rgba(16, 185, 129, 0.3)',
         }}
       >
-        Esporta Excel (CSV)
+        Excel (.xlsx)
       </button>
 
       <button
@@ -97,7 +99,8 @@ export const ProgramActionsBar: React.FC<ProgramActionsBarProps> = ({
         style={{
           ...BASE_BTN_STYLE,
           background: '#0284c7',
-          color: '#ffffff'
+          color: '#ffffff',
+          fontWeight: 600,
         }}
       >
         PDF / Stampa
@@ -109,8 +112,8 @@ export const ProgramActionsBar: React.FC<ProgramActionsBarProps> = ({
         className="btn-backup-json"
         style={{
           ...BASE_BTN_STYLE,
-          background: '#475569',
-          color: '#ffffff'
+          background: '#334155',
+          color: '#cbd5e1',
         }}
       >
         Backup JSON
@@ -124,10 +127,10 @@ export const ProgramActionsBar: React.FC<ProgramActionsBarProps> = ({
           ...BASE_BTN_STYLE,
           background: '#1e293b',
           color: '#cbd5e1',
-          border: '1px solid #334155'
+          border: '1px solid #334155',
         }}
       >
-        Nuova Scheda
+        &lt;- Nuova Scheda
       </button>
     </div>
   );

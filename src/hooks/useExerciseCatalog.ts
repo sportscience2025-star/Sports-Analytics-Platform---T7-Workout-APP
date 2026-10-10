@@ -11,7 +11,7 @@ import {
   getAllExercises,
   getMuscleGroups,
   getQualities,
-  getLevels
+  getLevels,
 } from '../data/exercises/index';
 
 export interface UseExerciseCatalogOptions {
@@ -19,6 +19,7 @@ export interface UseExerciseCatalogOptions {
   initialMuscle?: string;
   initialQuality?: string;
   initialLevel?: string;
+  initialEquipment?: string;
 }
 
 export interface UseExerciseCatalogReturn {
@@ -30,6 +31,8 @@ export interface UseExerciseCatalogReturn {
   setSelectedQuality: (quality: string) => void;
   selectedLevel: string;
   setSelectedLevel: (level: string) => void;
+  selectedEquipment: string;
+  setSelectedEquipment: (equipment: string) => void;
   page: number;
   setPage: (page: number) => void;
   pageSize: number;
@@ -41,8 +44,21 @@ export interface UseExerciseCatalogReturn {
   muscles: string[];
   qualities: ExerciseQuality[];
   levels: ExerciseLevel[];
+  equipments: string[];
   resetFilters: () => void;
 }
+
+const CANONICAL_EQUIPMENTS = [
+  'Tutta',
+  'Bilanciere',
+  'Manubri',
+  'Corpo Libero',
+  'Macchine',
+  'Cavi',
+  'Sbarra / Trazioni',
+  'Panca',
+  'Altri Attrezzi',
+];
 
 export function useExerciseCatalog(
   options: UseExerciseCatalogOptions = {}
@@ -57,13 +73,17 @@ export function useExerciseCatalog(
   const [selectedLevel, setSelectedLevelState] = useState<string>(
     options.initialLevel ?? 'Tutti'
   );
+  const [selectedEquipment, setSelectedEquipmentState] = useState<string>(
+    options.initialEquipment ?? 'Tutta'
+  );
   const [page, setPageState] = useState<number>(1);
-  const [pageSize, setPageSizeState] = useState<number>(options.initialPageSize ?? 6);
+  const [pageSize, setPageSizeState] = useState<number>(options.initialPageSize ?? 12);
 
   const allExercises = useMemo<Exercise[]>(() => getAllExercises(), []);
   const muscles = useMemo<string[]>(() => ['Tutti', ...getMuscleGroups()], []);
   const qualities = useMemo<ExerciseQuality[]>(() => getQualities(), []);
   const levels = useMemo<ExerciseLevel[]>(() => getLevels(), []);
+  const equipments = useMemo<string[]>(() => CANONICAL_EQUIPMENTS, []);
 
   const setSearchQuery = useCallback((query: string) => {
     setSearchQueryState(query);
@@ -85,6 +105,11 @@ export function useExerciseCatalog(
     setPageState(1);
   }, []);
 
+  const setSelectedEquipment = useCallback((equipment: string) => {
+    setSelectedEquipmentState(equipment);
+    setPageState(1);
+  }, []);
+
   const setPage = useCallback((newPage: number) => {
     setPageState(newPage);
   }, []);
@@ -99,6 +124,7 @@ export function useExerciseCatalog(
     setSelectedMuscleState('Tutti');
     setSelectedQualityState('Tutte');
     setSelectedLevelState('Tutti');
+    setSelectedEquipmentState('Tutta');
     setPageState(1);
   }, []);
 
@@ -140,9 +166,18 @@ export function useExerciseCatalog(
         return false;
       }
 
+      // Filtro attrezzatura
+      if (selectedEquipment !== 'Tutta') {
+        const eqNorm = exercise.equipment.toLowerCase();
+        const targetNorm = selectedEquipment.toLowerCase();
+        if (!eqNorm.includes(targetNorm)) {
+          return false;
+        }
+      }
+
       return true;
     });
-  }, [allExercises, searchQuery, selectedMuscle, selectedQuality, selectedLevel]);
+  }, [allExercises, searchQuery, selectedMuscle, selectedQuality, selectedLevel, selectedEquipment]);
 
   const totalCount = filteredExercises.length;
   const totalPages = Math.max(1, Math.ceil(totalCount / pageSize));
@@ -161,6 +196,8 @@ export function useExerciseCatalog(
     setSelectedQuality,
     selectedLevel,
     setSelectedLevel,
+    selectedEquipment,
+    setSelectedEquipment,
     page,
     setPage,
     pageSize,
@@ -172,6 +209,7 @@ export function useExerciseCatalog(
     muscles,
     qualities,
     levels,
-    resetFilters
+    equipments,
+    resetFilters,
   };
 }

@@ -11,3 +11,4 @@ export * from './power-curve';
 export * from './medicine-ball-physics';
 export * from './pap-benchmark-data';
 export * from './pap-coach-engine';
+export * from './test-registry';

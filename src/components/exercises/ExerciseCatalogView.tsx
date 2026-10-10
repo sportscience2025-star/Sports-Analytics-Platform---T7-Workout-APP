@@ -1,9 +1,14 @@
 /**
  * src/components/exercises/ExerciseCatalogView.tsx
- * Visualizzatore del catalogo scientifico con barra di ricerca, filtri combinati e paginazione.
+ * Visualizzatore fedele al 100% del Catalogo Esercizi (Foto 1 & Foto 2).
+ * Include:
+ * - Badge "LIBRERIA COMPLETA", Titolo "Catalogo Esercizi", Contatore pill dinamico.
+ * - Toolbar orizzontale compatta con: Cerca, Muscolo, Livello, Attrezzatura, Qualità (Foto 2) e pulsante verde "+ Aggiungi".
+ * - Griglia responsive di ExerciseCard con modale di dettaglio e inserimento custom.
+ *
  * Conforme a:
- * - Regola R3: Componente snello; logica delegata a useExerciseCatalog.
  * - Regola 01: Zero emoji spontanee.
+ * - Regola R3: Componente snello; logica delegata a useExerciseCatalog.
  * - Regola R1: Zero any, tipizzazione con Exercise.
  */
 
@@ -25,6 +30,8 @@ export const ExerciseCatalogView: React.FC = () => {
     setSelectedQuality,
     selectedLevel,
     setSelectedLevel,
+    selectedEquipment,
+    setSelectedEquipment,
     page,
     setPage,
     paginatedExercises,
@@ -33,12 +40,12 @@ export const ExerciseCatalogView: React.FC = () => {
     muscles,
     qualities,
     levels,
-    resetFilters
-  } = useExerciseCatalog({ initialPageSize: 6 });
+    equipments,
+    resetFilters,
+  } = useExerciseCatalog({ initialPageSize: 12 });
 
   const {
     favoriteIds,
-    favoritesCount,
     isFavorite,
     toggleFavorite,
     addCustomExercise,
@@ -46,284 +53,284 @@ export const ExerciseCatalogView: React.FC = () => {
 
   const [modalExercise, setModalExercise] = useState<Exercise | null>(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
-  const [showFavoritesOnly, setShowFavoritesOnly] = useState<boolean>(false);
 
-  const displayedExercises = showFavoritesOnly
-    ? paginatedExercises.filter((ex) => favoriteIds.includes(ex.id))
-    : paginatedExercises;
+  const isFilterActive =
+    searchQuery.trim().length > 0 ||
+    selectedMuscle !== 'Tutti' ||
+    selectedQuality !== 'Tutte' ||
+    selectedLevel !== 'Tutti' ||
+    selectedEquipment !== 'Tutta';
 
   return (
     <div className="exercise-catalog-container" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      {/* Header Catalogo */}
-      <section className="catalog-header" style={{ borderBottom: '1px solid #1e293b', paddingBottom: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
-        <div>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
-            Catalogo Esercizi Scientifico
-          </h2>
-          <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginTop: '0.25rem', marginBottom: 0 }}>
-            Repository biomeccanico degli esercizi con classificazione anatomica, cues motori ed analisi degli errori.
-          </p>
-        </div>
-
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-          <button
-            type="button"
-            onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
-            style={{
-              background: showFavoritesOnly ? '#eab308' : '#1e293b',
-              color: showFavoritesOnly ? '#000000' : '#f8fafc',
-              border: '1px solid #334155',
-              borderRadius: '0.375rem',
-              padding: '0.5rem 0.875rem',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-            }}
-          >
-            {showFavoritesOnly ? `Tutti gli Esercizi` : `Solo Preferiti (${favoritesCount})`}
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setIsAddModalOpen(true)}
-            style={{
-              background: '#2563eb',
-              color: '#ffffff',
-              border: 'none',
-              borderRadius: '0.375rem',
-              padding: '0.5rem 1rem',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-            }}
-          >
-            + Nuovo Esercizio Custom
-          </button>
-        </div>
-      </section>
-
-      {/* Sezione Filtri e Ricerca */}
+      {/* Intestazione Catalogo (Foto 1) */}
       <section
-        className="filters-panel"
         style={{
-          background: '#0f172a',
-          border: '1px solid #1e293b',
-          borderRadius: '0.5rem',
-          padding: '1.25rem',
           display: 'flex',
-          flexDirection: 'column',
-          gap: '1rem'
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '1rem',
+          borderBottom: '1px solid var(--border, rgba(255,255,255,0.08))',
+          paddingBottom: '1rem',
         }}
       >
-        {/* Barra di ricerca principale */}
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-          <div style={{ flex: 1, position: 'relative' }}>
-            <input
-              type="text"
-              aria-label="Cerca esercizio per nome, muscolo o tag"
-              placeholder="Cerca esercizio per nome, muscolo, tag (es. panca, squat, glutei)..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+            <span
               style={{
-                width: '100%',
-                padding: '0.6rem 0.85rem',
-                background: '#1e293b',
-                border: '1px solid #334155',
-                borderRadius: '0.375rem',
-                color: '#f8fafc',
-                fontSize: '0.9rem',
-                boxSizing: 'border-box'
-              }}
-            />
-          </div>
-
-          {(searchQuery || selectedMuscle !== 'Tutti' || selectedQuality !== 'Tutte' || selectedLevel !== 'Tutti') && (
-            <button
-              type="button"
-              onClick={resetFilters}
-              style={{
-                padding: '0.6rem 0.9rem',
-                background: '#334155',
-                color: '#cbd5e1',
-                border: 'none',
-                borderRadius: '0.375rem',
-                fontSize: '0.85rem',
-                fontWeight: 600,
-                cursor: 'pointer',
-                whiteSpace: 'nowrap'
+                fontSize: '0.7rem',
+                fontWeight: 800,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                padding: '0.2rem 0.6rem',
+                borderRadius: '999px',
+                background: 'rgba(99, 102, 241, 0.15)',
+                color: 'var(--primary, #6366f1)',
+                border: '1px solid rgba(99, 102, 241, 0.3)',
               }}
             >
-              Ripristina Filtri
-            </button>
-          )}
-        </div>
-
-        {/* Dropdown Filtri Multipli */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '0.85rem'
-          }}
-        >
-          {/* Gruppo Muscolare */}
-          <div>
-            <label
-              htmlFor="filter-muscle"
-              style={{ display: 'block', fontSize: '0.75rem', color: '#94a3b8', marginBottom: '0.3rem', textTransform: 'uppercase' }}
-            >
-              Gruppo Muscolare
-            </label>
-            <select
-              id="filter-muscle"
-              value={selectedMuscle}
-              onChange={(e) => setSelectedMuscle(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '0.5rem 0.75rem',
-                background: '#1e293b',
-                border: '1px solid #334155',
-                borderRadius: '0.375rem',
-                color: '#f8fafc',
-                fontSize: '0.85rem'
-              }}
-            >
-              {muscles.map((muscle) => (
-                <option key={muscle} value={muscle}>
-                  {muscle}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Qualità Atletica */}
-          <div>
-            <label
-              htmlFor="filter-quality"
-              style={{ display: 'block', fontSize: '0.75rem', color: '#94a3b8', marginBottom: '0.3rem', textTransform: 'uppercase' }}
-            >
-              Qualità Atletica
-            </label>
-            <select
-              id="filter-quality"
-              value={selectedQuality}
-              onChange={(e) => setSelectedQuality(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '0.5rem 0.75rem',
-                background: '#1e293b',
-                border: '1px solid #334155',
-                borderRadius: '0.375rem',
-                color: '#f8fafc',
-                fontSize: '0.85rem'
-              }}
-            >
-              <option value="Tutte">Tutte le Qualità</option>
-              {qualities.map((quality) => (
-                <option key={quality} value={quality}>
-                  {quality}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Livello Tecnico */}
-          <div>
-            <label
-              htmlFor="filter-level"
-              style={{ display: 'block', fontSize: '0.75rem', color: '#94a3b8', marginBottom: '0.3rem', textTransform: 'uppercase' }}
-            >
-              Livello Tecnico
-            </label>
-            <select
-              id="filter-level"
-              value={selectedLevel}
-              onChange={(e) => setSelectedLevel(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '0.5rem 0.75rem',
-                background: '#1e293b',
-                border: '1px solid #334155',
-                borderRadius: '0.375rem',
-                color: '#f8fafc',
-                fontSize: '0.85rem'
-              }}
-            >
-              <option value="Tutti">Tutti i Livelli</option>
-              {levels.map((level) => (
-                <option key={level} value={level}>
-                  {level}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        {/* Barra contatore risultati */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8rem', color: '#94a3b8' }}>
-          <span>
-            Risultati trovati: <strong style={{ color: '#f8fafc' }}>{totalCount}</strong>
-          </span>
-          {totalPages > 1 && (
-            <span>
-              Pagina {page} di {totalPages}
+              LIBRERIA COMPLETA
             </span>
-          )}
+            <span
+              className="results-counter-pill"
+              style={{
+                fontSize: '0.8rem',
+                color: 'var(--text-secondary, #94a3b8)',
+                background: 'rgba(255,255,255,0.04)',
+                padding: '0.2rem 0.65rem',
+                borderRadius: '999px',
+                border: '1px solid rgba(255,255,255,0.06)',
+              }}
+            >
+              <strong style={{ color: 'var(--text-primary, #ffffff)' }}>{totalCount}</strong> esercizi disponibili
+            </span>
+          </div>
+          <h2 style={{ fontSize: '1.65rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
+            Catalogo Esercizi
+          </h2>
         </div>
       </section>
 
-      {/* Griglia delle Card Esercizio */}
-      {displayedExercises.length > 0 ? (
-        <section
-          className="exercises-grid"
+      {/* Toolbar Orizzontale Compatta (Foto 1 & Foto 2) */}
+      <section
+        className="filter-bar-main"
+        style={{
+          background: 'rgba(17, 24, 39, 0.75)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          borderRadius: '12px',
+          padding: '0.85rem 1rem',
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '0.75rem',
+          alignItems: 'center',
+        }}
+      >
+        {/* Campo Cerca con Lente SVG */}
+        <div style={{ flex: '1 1 240px', position: 'relative', minWidth: '200px' }}>
+          <span
+            style={{
+              position: 'absolute',
+              left: '0.75rem',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              color: '#64748b',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </span>
+          <input
+            type="text"
+            placeholder="Cerca esercizi (es. Squat, Panc)..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '0.55rem 0.75rem 0.55rem 2.25rem',
+              background: '#090d16',
+              border: '1px solid #334155',
+              borderRadius: '8px',
+              color: '#f8fafc',
+              fontSize: '0.85rem',
+              boxSizing: 'border-box',
+            }}
+          />
+        </div>
+
+        {/* Dropdown Muscolo */}
+        <select
+          value={selectedMuscle}
+          onChange={(e) => setSelectedMuscle(e.target.value)}
+          aria-label="Filtro distretto muscolare"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))',
-            gap: '1.25rem'
+            padding: '0.55rem 0.75rem',
+            background: '#090d16',
+            border: '1px solid #334155',
+            borderRadius: '8px',
+            color: '#f8fafc',
+            fontSize: '0.85rem',
+            cursor: 'pointer',
           }}
         >
-          {displayedExercises.map((exercise) => (
+          {muscles.map((m) => (
+            <option key={m} value={m}>
+              Muscolo: {m}
+            </option>
+          ))}
+        </select>
+
+        {/* Dropdown Livello */}
+        <select
+          value={selectedLevel}
+          onChange={(e) => setSelectedLevel(e.target.value)}
+          aria-label="Filtro livello atletico"
+          style={{
+            padding: '0.55rem 0.75rem',
+            background: '#090d16',
+            border: '1px solid #334155',
+            borderRadius: '8px',
+            color: '#f8fafc',
+            fontSize: '0.85rem',
+            cursor: 'pointer',
+          }}
+        >
+          <option value="Tutti">Livello: Tutti</option>
+          {levels.map((lvl) => (
+            <option key={lvl} value={lvl}>
+              {lvl}
+            </option>
+          ))}
+        </select>
+
+        {/* Dropdown Attrezzatura */}
+        <select
+          value={selectedEquipment}
+          onChange={(e) => setSelectedEquipment(e.target.value)}
+          aria-label="Filtro attrezzatura"
+          style={{
+            padding: '0.55rem 0.75rem',
+            background: '#090d16',
+            border: '1px solid #334155',
+            borderRadius: '8px',
+            color: '#f8fafc',
+            fontSize: '0.85rem',
+            cursor: 'pointer',
+          }}
+        >
+          {equipments.map((eq) => (
+            <option key={eq} value={eq}>
+              Attrezzatura: {eq}
+            </option>
+          ))}
+        </select>
+
+        {/* Dropdown Qualità (Foto 2) */}
+        <select
+          value={selectedQuality}
+          onChange={(e) => setSelectedQuality(e.target.value)}
+          aria-label="Filtro qualità allenata"
+          style={{
+            padding: '0.55rem 0.75rem',
+            background: '#090d16',
+            border: '1px solid #334155',
+            borderRadius: '8px',
+            color: '#f8fafc',
+            fontSize: '0.85rem',
+            cursor: 'pointer',
+          }}
+        >
+          <option value="Tutte">Tutte le Qualità</option>
+          {qualities.map((q) => (
+            <option key={q} value={q}>
+              {q}
+            </option>
+          ))}
+        </select>
+
+        {/* Pulsante verde in evidenza: + Aggiungi (Foto 2) */}
+        <button
+          type="button"
+          onClick={() => setIsAddModalOpen(true)}
+          style={{
+            padding: '0.55rem 1.15rem',
+            background: '#10b981',
+            color: '#ffffff',
+            border: 'none',
+            borderRadius: '8px',
+            fontSize: '0.875rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            whiteSpace: 'nowrap',
+            boxShadow: '0 2px 8px rgba(16, 185, 129, 0.3)',
+          }}
+        >
+          + Aggiungi
+        </button>
+
+        {/* Reset Filtri */}
+        {isFilterActive && (
+          <button
+            type="button"
+            onClick={resetFilters}
+            style={{
+              padding: '0.55rem 0.85rem',
+              background: 'transparent',
+              color: '#94a3b8',
+              border: '1px solid #334155',
+              borderRadius: '8px',
+              fontSize: '0.85rem',
+              cursor: 'pointer',
+            }}
+          >
+            Reset
+          </button>
+        )}
+      </section>
+
+      {/* Griglia Esercizi (Foto 1) */}
+      {paginatedExercises.length === 0 ? (
+        <div
+          style={{
+            padding: '3rem 1rem',
+            textAlign: 'center',
+            color: '#64748b',
+            background: '#090d16',
+            borderRadius: '0.5rem',
+            border: '1px solid #1e293b',
+          }}
+        >
+          Nessun esercizio trovato. Prova a modificare i filtri di ricerca.
+        </div>
+      ) : (
+        <div className="catalog-grid">
+          {paginatedExercises.map((exercise) => (
             <ExerciseCard
               key={exercise.id}
               exercise={exercise}
               isFavorite={isFavorite(exercise.id)}
-              onToggleFavorite={toggleFavorite}
-              onOpenDetailModal={setModalExercise}
+              onToggleFavorite={() => toggleFavorite(exercise.id)}
+              onOpenDetailModal={(ex) => setModalExercise(ex)}
             />
           ))}
-        </section>
-      ) : (
-        <div
-          style={{
-            padding: '2.5rem',
-            background: '#0f172a',
-            border: '1px dashed #334155',
-            borderRadius: '0.5rem',
-            textAlign: 'center',
-            color: '#94a3b8'
-          }}
-        >
-          <div style={{ fontSize: '1rem', fontWeight: 600, color: '#f8fafc', marginBottom: '0.5rem' }}>
-            {showFavoritesOnly ? 'Nessun esercizio salvato nei preferiti' : 'Nessun esercizio corrispondente ai filtri impostati'}
-          </div>
-          <p style={{ fontSize: '0.85rem', margin: 0 }}>
-            {showFavoritesOnly
-              ? 'Clicca sul pulsante Salva presente sulle card degli esercizi per aggiungerli alla tua lista personale.'
-              : 'Prova a modificare il termine di ricerca o azzera i filtri muscolari e qualitativi.'}
-          </p>
         </div>
       )}
 
       {/* Paginazione */}
       {totalPages > 1 && (
-        <nav
-          aria-label="Navigazione pagine catalogo"
+        <div
           style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             gap: '0.5rem',
-            marginTop: '1rem'
+            marginTop: '1rem',
           }}
         >
           <button
@@ -332,37 +339,20 @@ export const ExerciseCatalogView: React.FC = () => {
             onClick={() => setPage(page - 1)}
             style={{
               padding: '0.45rem 0.85rem',
-              background: page <= 1 ? '#1e293b' : '#334155',
-              color: page <= 1 ? '#64748b' : '#f8fafc',
-              border: 'none',
-              borderRadius: '0.375rem',
+              background: page <= 1 ? '#090d16' : '#1e293b',
+              color: page <= 1 ? '#475569' : '#f8fafc',
+              border: '1px solid #334155',
+              borderRadius: '6px',
               fontSize: '0.85rem',
-              cursor: page <= 1 ? 'not-allowed' : 'pointer'
+              cursor: page <= 1 ? 'not-allowed' : 'pointer',
             }}
           >
-            Precedente
+            &lt;- Precedente
           </button>
 
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((pNum) => (
-            <button
-              key={pNum}
-              type="button"
-              onClick={() => setPage(pNum)}
-              style={{
-                width: '36px',
-                height: '36px',
-                background: pNum === page ? '#6366f1' : '#1e293b',
-                color: pNum === page ? '#ffffff' : '#94a3b8',
-                border: '1px solid #334155',
-                borderRadius: '0.375rem',
-                fontSize: '0.85rem',
-                fontWeight: pNum === page ? 700 : 400,
-                cursor: 'pointer'
-              }}
-            >
-              {pNum}
-            </button>
-          ))}
+          <span style={{ fontSize: '0.85rem', color: '#94a3b8', padding: '0 0.5rem' }}>
+            Pagina <strong>{page}</strong> di <strong>{totalPages}</strong>
+          </span>
 
           <button
             type="button"
@@ -370,37 +360,41 @@ export const ExerciseCatalogView: React.FC = () => {
             onClick={() => setPage(page + 1)}
             style={{
               padding: '0.45rem 0.85rem',
-              background: page >= totalPages ? '#1e293b' : '#334155',
-              color: page >= totalPages ? '#64748b' : '#f8fafc',
-              border: 'none',
-              borderRadius: '0.375rem',
+              background: page >= totalPages ? '#090d16' : '#1e293b',
+              color: page >= totalPages ? '#475569' : '#f8fafc',
+              border: '1px solid #334155',
+              borderRadius: '6px',
               fontSize: '0.85rem',
-              cursor: page >= totalPages ? 'not-allowed' : 'pointer'
+              cursor: page >= totalPages ? 'not-allowed' : 'pointer',
             }}
           >
-            Successivo
+            Successiva -&gt;
           </button>
-        </nav>
+        </div>
       )}
 
-      {/* Modale Dettagli Esercizio */}
-      <ExerciseDetailModal
-        exercise={modalExercise}
-        isOpen={modalExercise !== null}
-        onClose={() => setModalExercise(null)}
-        isFavorite={modalExercise ? isFavorite(modalExercise.id) : false}
-        onToggleFavorite={toggleFavorite}
-      />
+      {/* Modale Dettaglio Esercizio */}
+      {modalExercise && (
+        <ExerciseDetailModal
+          isOpen={true}
+          exercise={modalExercise}
+          onClose={() => setModalExercise(null)}
+          isFavorite={isFavorite(modalExercise.id)}
+          onToggleFavorite={() => toggleFavorite(modalExercise.id)}
+        />
+      )}
 
-      {/* Modale Nuovo Esercizio Personalizzato */}
-      <AddExerciseModal
-        isOpen={isAddModalOpen}
-        onClose={() => setIsAddModalOpen(false)}
-        onSave={(newEx) => {
-          addCustomExercise(newEx);
-          setIsAddModalOpen(false);
-        }}
-      />
+      {/* Modale Aggiungi Esercizio Custom */}
+      {isAddModalOpen && (
+        <AddExerciseModal
+          isOpen={isAddModalOpen}
+          onClose={() => setIsAddModalOpen(false)}
+          onSave={(newEx: Exercise) => {
+            addCustomExercise(newEx);
+            setIsAddModalOpen(false);
+          }}
+        />
+      )}
     </div>
   );
 };

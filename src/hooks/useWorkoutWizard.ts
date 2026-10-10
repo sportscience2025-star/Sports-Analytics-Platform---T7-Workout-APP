@@ -59,6 +59,7 @@ export interface UseWorkoutWizardReturn {
   isGenerating: boolean;
   generateProgram: () => void;
   resetProgram: () => void;
+  updateProgram: (updated: WorkoutProgram | ((prev: WorkoutProgram | null) => WorkoutProgram | null)) => void;
 }
 
 const INITIAL_FORM_DATA: AthleteFormData = {
@@ -197,6 +198,13 @@ export function useWorkoutWizard(): UseWorkoutWizardReturn {
     setProgram(null);
   }, []);
 
+  const updateProgram = useCallback(
+    (updated: WorkoutProgram | ((prev: WorkoutProgram | null) => WorkoutProgram | null)) => {
+      setProgram(updated);
+    },
+    []
+  );
+
   return {
     formData,
     setAthleteName,
@@ -221,6 +229,7 @@ export function useWorkoutWizard(): UseWorkoutWizardReturn {
     program,
     isGenerating,
     generateProgram,
-    resetProgram
+    resetProgram,
+    updateProgram
   };
 }
