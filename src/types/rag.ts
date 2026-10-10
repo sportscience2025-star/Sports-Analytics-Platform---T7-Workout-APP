@@ -66,3 +66,16 @@ export interface ExecutiveSummary {
   extractedMetrics: Array<{ label: string; value: string }>;
   sourceCount: number;
 }
+
+export interface RagDocument {
+  id: string;
+  name: string;
+  sizeBytes: number;
+  tokenCount: number;
+  uploadedAt: string;
+  status: 'processing' | 'ready' | 'error';
+  fileType: 'pdf' | 'docx' | 'xlsx' | 'txt' | 'csv' | 'md' | 'json';
+  rawText: string;
+  chunksCount: number;
+}
+

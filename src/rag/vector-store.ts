@@ -207,6 +207,31 @@ export async function searchChunksInStore(
 }
 
 /**
+ * Elimina un documento e tutti i relativi chunk dall'archivio locale.
+ */
+export async function deleteDocumentFromStore(documentId: string): Promise<void> {
+  try {
+    const db = await openLocalDB();
+    const tx = db.transaction(['documents', 'chunks'], 'readwrite');
+    tx.objectStore('documents').delete(documentId);
+    const chunkStore = tx.objectStore('chunks');
+    const index = chunkStore.index('documentId');
+    const req = index.getAllKeys(documentId);
+    req.onsuccess = () => {
+      const keys = req.result;
+      keys.forEach((key) => chunkStore.delete(key));
+    };
+  } catch {
+    memoryDocuments.delete(documentId);
+    for (const [id, chunk] of memoryChunks.entries()) {
+      if (chunk.documentId === documentId) {
+        memoryChunks.delete(id);
+      }
+    }
+  }
+}
+
+/**
  * Svuota completamente l'archivio locale.
  */
 export async function clearStore(): Promise<void> {
@@ -220,3 +245,4 @@ export async function clearStore(): Promise<void> {
     memoryChunks.clear();
   }
 }
+

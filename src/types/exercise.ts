@@ -4,7 +4,7 @@
  * Rispetta la Regola R1 (Divieto di any) e Regola R2 (Interfacce condivise).
  */
 
-export type ExerciseLevel = 'Principiante' | 'Intermedio' | 'Avanzato';
+export type ExerciseLevel = 'Principiante' | 'Intermedio' | 'Avanzato' | 'Elite/Pro';
 export type ExerciseType = 'Multiarticolare' | 'Isolamento' | 'Isometrico';
 export type ExerciseQuality = 'Forza' | 'Ipertrofia' | 'Stabilità' | 'Potenza' | 'Resistenza';
 

@@ -1,28 +1,28 @@
 /**
  * src/App.tsx
  * Contenitore principale dell'applicazione React per T7 Workout Platform.
- * Gestisce l'architettura a 6 schede canoniche:
- * 1. Catalogo (Catalogo Esercizi Completo)
- * 2. Programmazione (Generatore Allenamenti AI & Periodizzazione)
- * 3. Data Analisi (Cruscotto Biomeccanico Polimorfico per 8 Strumenti)
- * 4. Libreria Fonti (Scientific Hub con 322 fonti peer-reviewed)
- * 5. Knowledge (Knowledge Base Semantica RAG)
- * 6. Preferiti (Gestione Integrata Esercizi Salvati)
+ * Gestisce l'architettura Feature-Driven a 6 schede canoniche in Dark Cockpit:
+ * 1. Catalogo (src/features/catalog/)
+ * 2. Programmazione (src/features/programming/)
+ * 3. Data Analisi (src/features/analysis/)
+ * 4. Libreria Fonti (src/features/sources/)
+ * 5. Knowledge RAG (src/features/rag/)
+ * 6. Preferiti (src/features/favorites/)
  *
  * Conforme a:
  * - Regola 01: Zero emoji spontanee.
- * - Regola R3: Modularità e separazione delle responsabilità.
+ * - Regola R3: Architettura Feature-Driven.
  * - Regola R1: Zero any, tipizzazione TypeScript strict.
  */
 
 import React, { useState } from 'react';
-import { ExerciseCatalogView } from './components/exercises/ExerciseCatalogView';
-import { WorkoutWizardView } from './components/wizard/WorkoutWizardView';
-import { DataAnalysisView } from './components/analysis/DataAnalysisView';
-import { ScientificSourcesView } from './components/sources/ScientificSourcesView';
-import { RAGKnowledgeView } from './components/rag/RAGKnowledgeView';
-import { FavoritesView } from './components/favorites/FavoritesView';
-import { useFavorites } from './hooks/useFavorites';
+import { CatalogView } from './features/catalog';
+import { ProgrammingView } from './features/programming';
+import { AnalysisView } from './features/analysis';
+import { SourcesView } from './features/sources';
+import { RagView } from './features/rag';
+import { FavoritesView } from './features/favorites';
+import { useFavorites } from './features/favorites';
 
 export type ActiveTab = 'catalog' | 'wizard' | 'analysis' | 'sources' | 'rag' | 'favorites';
 
@@ -87,13 +87,13 @@ export const App: React.FC = () => {
         </nav>
       </header>
 
-      {/* Contenitore Principale con Switcher di Rendering */}
+      {/* Contenitore Principale con Switcher di Rendering Feature-Driven */}
       <main className="app-container" id="app-container">
-        {activeTab === 'catalog' && <ExerciseCatalogView />}
-        {activeTab === 'wizard' && <WorkoutWizardView />}
-        {activeTab === 'analysis' && <DataAnalysisView />}
-        {activeTab === 'sources' && <ScientificSourcesView />}
-        {activeTab === 'rag' && <RAGKnowledgeView />}
+        {activeTab === 'catalog' && <CatalogView />}
+        {activeTab === 'wizard' && <ProgrammingView />}
+        {activeTab === 'analysis' && <AnalysisView />}
+        {activeTab === 'sources' && <SourcesView />}
+        {activeTab === 'rag' && <RagView />}
         {activeTab === 'favorites' && <FavoritesView />}
       </main>
     </div>

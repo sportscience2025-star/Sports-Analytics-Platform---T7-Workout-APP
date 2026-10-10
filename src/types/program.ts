@@ -71,6 +71,7 @@ export interface WorkoutProgram {
   riskProfile: RiskAnalysisProfile;
   phases: PhaseBlueprint[];
   rationale: ScientificRationale;
+  ragMatchScore?: number;
   createdAt: string;
   generatedAt?: string;
   updatedAt?: string;

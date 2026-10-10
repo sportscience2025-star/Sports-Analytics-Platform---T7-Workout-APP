@@ -168,3 +168,46 @@ export interface VelocityStepTableRow {
   load2_5kg: number;
   pct: string;
 }
+
+export interface VbtAnalysisData {
+  athleteName: string;
+  testType: string;
+  mvt: number;
+  regressionModel: 'auto_linear' | 'linear' | 'polynomial';
+  points: Array<{
+    load: number;
+    velocity: number;
+    reps?: number;
+  }>;
+  results?: {
+    oneRM: {
+      value: number;
+      ci95Min: number;
+      ci95Max: number;
+      margin: number;
+    };
+    f0: number;
+    f0_kg: number;
+    v0: number;
+    pmax: number;
+    pmaxLoad: number;
+    pmaxVelocity: number;
+    rSquared: number;
+    qualityLabel: string;
+    see: number;
+    equation: string;
+    sfvPercent: number;
+    imbalanceLabel: string;
+    mannZones: Array<{
+      zone: string;
+      pctRange: string;
+      targetVelocity: string;
+      loadRaw: number;
+      velocity: number;
+      forceN: number;
+      powerW: number;
+      color: string;
+    }>;
+  };
+}
+
