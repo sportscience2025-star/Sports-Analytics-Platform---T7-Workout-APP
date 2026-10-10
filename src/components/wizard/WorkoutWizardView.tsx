@@ -1253,7 +1253,7 @@ export const WorkoutWizardView: React.FC = () => {
                         {sess.cooldown && sess.cooldown.length > 0 && (
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                             <h5 style={{ fontSize: '0.72rem', textTransform: 'uppercase', color: '#94a3b8', letterSpacing: '0.08em', margin: '0 0 0.25rem 0', borderLeft: '2px solid #10b981', paddingLeft: '0.4rem', fontWeight: 700 }}>
-                              🫁 DEFATICAMENTO &amp; CARDIO
+                              DEFATICAMENTO &amp; CARDIO
                             </h5>
                             {sess.cooldown.map((c, cIdx) => (
                               <div

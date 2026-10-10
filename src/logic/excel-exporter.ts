@@ -788,5 +788,22 @@ export function downloadProgramSpreadsheet(
   program: WorkoutProgram,
   fileName?: string
 ): void {
-  void exportProgramToExcel(program, fileName);
+  exportProgramToExcel(program, fileName).catch((err: unknown) => {
+    console.error('Errore durante esportazione Excel XLSX:', err);
+    try {
+      const csvContent = exportProgramToCSV(program);
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      const athleteSlug = (program.athleteName || 'Atleta').replace(/\s+/g, '_');
+      a.download = `Programma_T7_${athleteSlug}_fallback.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (fallbackErr: unknown) {
+      console.error('Errore durante fallback CSV:', fallbackErr);
+    }
+  });
 }

@@ -36,7 +36,7 @@ const TABS: TabDefinition[] = [
   { id: 'wizard', label: 'Programmazione' },
   { id: 'analysis', label: 'Data Analisi' },
   { id: 'sources', label: 'Libreria Fonti' },
-  { id: 'rag', label: 'Knowledge' },
+  { id: 'rag', label: 'RAG' },
   { id: 'favorites', label: 'Preferiti' },
 ];
 

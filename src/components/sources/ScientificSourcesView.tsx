@@ -28,10 +28,13 @@ const CATEGORIES: string[] = [
   'Sport Individuali',
 ];
 
+const PAGE_SIZE = 24;
+
 export const ScientificSourcesView: React.FC = () => {
   const [selectedArea, setSelectedArea] = useState<string>('Tutti');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedSource, setSelectedSource] = useState<ScientificSource | null>(null);
+  const [page, setPage] = useState<number>(1);
 
   const filteredSources = useMemo<ScientificSource[]>(() => {
     const q = searchQuery.trim().toLowerCase();
@@ -49,6 +52,22 @@ export const ScientificSourcesView: React.FC = () => {
       return matchTitle || matchAuthors || matchJournal || matchAbstract || matchYear;
     });
   }, [selectedArea, searchQuery]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredSources.length / PAGE_SIZE));
+  const paginatedSources = useMemo(() => {
+    const start = (page - 1) * PAGE_SIZE;
+    return filteredSources.slice(start, start + PAGE_SIZE);
+  }, [filteredSources, page]);
+
+  const handleAreaChange = (cat: string) => {
+    setSelectedArea(cat);
+    setPage(1);
+  };
+
+  const handleSearchChange = (val: string) => {
+    setSearchQuery(val);
+    setPage(1);
+  };
 
   return (
     <div className="scientific-sources-container" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -107,7 +126,7 @@ export const ScientificSourcesView: React.FC = () => {
             type="text"
             placeholder="Cerca per autore, titolo studio, rivista o parola chiave..."
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => handleSearchChange(e.target.value)}
             style={{
               width: '100%',
               padding: '0.65rem 1rem',
@@ -129,7 +148,7 @@ export const ScientificSourcesView: React.FC = () => {
               <button
                 key={cat}
                 type="button"
-                onClick={() => setSelectedArea(cat)}
+                onClick={() => handleAreaChange(cat)}
                 style={{
                   padding: '0.4rem 0.75rem',
                   borderRadius: '0.25rem',
@@ -171,7 +190,7 @@ export const ScientificSourcesView: React.FC = () => {
             gap: '1.25rem',
           }}
         >
-          {filteredSources.slice(0, 48).map((source) => (
+          {paginatedSources.map((source) => (
             <article
               key={source.id}
               onClick={() => setSelectedSource(source)}
@@ -277,6 +296,55 @@ export const ScientificSourcesView: React.FC = () => {
               </div>
             </article>
           ))}
+        </div>
+      )}
+
+      {/* Controlli Paginazione Fonti Scientifiche */}
+      {totalPages > 1 && (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '0.75rem',
+            marginTop: '0.5rem',
+          }}
+        >
+          <button
+            type="button"
+            disabled={page <= 1}
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            style={{
+              padding: '0.45rem 0.85rem',
+              background: page <= 1 ? '#090d16' : '#1e293b',
+              color: page <= 1 ? '#475569' : '#f8fafc',
+              border: '1px solid #334155',
+              borderRadius: '6px',
+              fontSize: '0.85rem',
+              cursor: page <= 1 ? 'not-allowed' : 'pointer',
+            }}
+          >
+            &lt;- Precedente
+          </button>
+          <span style={{ fontSize: '0.85rem', color: '#94a3b8' }}>
+            Pagina <strong style={{ color: '#f8fafc' }}>{page}</strong> di {totalPages}
+          </span>
+          <button
+            type="button"
+            disabled={page >= totalPages}
+            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+            style={{
+              padding: '0.45rem 0.85rem',
+              background: page >= totalPages ? '#090d16' : '#1e293b',
+              color: page >= totalPages ? '#475569' : '#f8fafc',
+              border: '1px solid #334155',
+              borderRadius: '6px',
+              fontSize: '0.85rem',
+              cursor: page >= totalPages ? 'not-allowed' : 'pointer',
+            }}
+          >
+            Successiva -&gt;
+          </button>
         </div>
       )}
 

@@ -15,14 +15,50 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import ExcelJS from 'exceljs';
 import {
+  Chart as ChartJS,
+  registerables,
+  type Plugin,
+} from 'chart.js';
+import {
   TestRegistry,
   type BiomechanicalTestId,
   type ColumnDefinition,
 } from '../../physics/test-registry';
 import { calculateMedicineBallThrow, type MedicineBallResult } from '../../physics/medicine-ball-physics';
 import { analyzeLoadVelocity, generateBryanMannVBTTable } from '../../physics/physics-engine';
+import { analyzePowerCurve } from '../../physics/power-curve';
 import type { BryanMannZoneRow } from '../../types/physics';
 import { parseMeasurementFile, readDelimitedText } from '../../parser';
+
+ChartJS.register(...registerables);
+
+const neonGlowPlugin: Plugin = {
+  id: 'neonGlow',
+  beforeDatasetDraw(chart, args) {
+    const { ctx } = chart;
+    const dataset = chart.data.datasets[args.index] as unknown as {
+      glow?: boolean;
+      glowColor?: string;
+      glowBlur?: number;
+      borderColor?: string;
+      backgroundColor?: string;
+    };
+    if (dataset && dataset.glow !== false) {
+      ctx.save();
+      const glowColor = dataset.glowColor || dataset.borderColor || dataset.backgroundColor || '#00f0ff';
+      const glowBlur = dataset.glowBlur !== undefined ? dataset.glowBlur : 15;
+      if (typeof glowColor === 'string') {
+        ctx.shadowColor = glowColor;
+        ctx.shadowBlur = glowBlur;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+      }
+    }
+  },
+  afterDatasetDraw(chart) {
+    chart.ctx.restore();
+  },
+};
 
 const DEBOUNCE_DELAY_MS = 250;
 
@@ -179,6 +215,259 @@ export const DataAnalysisView: React.FC = () => {
     if (!vbtProfile?.rm1?.value) return [];
     return generateBryanMannVBTTable(vbtProfile.rm1.value, vbtProfile.regression, exerciseName);
   }, [vbtProfile, exerciseName]);
+
+  const fvCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const powerCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const fvChartInstanceRef = useRef<ChartJS | null>(null);
+  const powerChartInstanceRef = useRef<ChartJS | null>(null);
+
+  useEffect(() => {
+    if (selectedTestId !== 'VBT' || !vbtProfile) {
+      if (fvChartInstanceRef.current) {
+        fvChartInstanceRef.current.destroy();
+        fvChartInstanceRef.current = null;
+      }
+      if (powerChartInstanceRef.current) {
+        powerChartInstanceRef.current.destroy();
+        powerChartInstanceRef.current = null;
+      }
+      return;
+    }
+
+    const validPoints = records
+      .map((r) => ({ load: Number(r.load), velocity: Number(r.velocity) }))
+      .filter((p) => !isNaN(p.load) && p.load > 0 && !isNaN(p.velocity) && p.velocity > 0);
+
+    if (validPoints.length < 2) return;
+
+    // --- CHART 1: Load-Velocity Scatter & Regression Line ---
+    if (fvCanvasRef.current) {
+      if (fvChartInstanceRef.current) {
+        fvChartInstanceRef.current.destroy();
+        fvChartInstanceRef.current = null;
+      }
+
+      const scatterData = validPoints.map((p) => ({ x: p.load, y: p.velocity }));
+      const loads = validPoints.map((p) => p.load);
+      const minL = Math.max(0, Math.min(...loads) * 0.85);
+      const oneRMVal = vbtProfile.rm1?.value || Math.max(...loads) * 1.2;
+      const maxL = Math.max(oneRMVal * 1.08, Math.max(...loads) * 1.05);
+      const steps = 60;
+      const lineData: { x: number; y: number }[] = [];
+
+      for (let i = 0; i <= steps; i++) {
+        const L = minL + (maxL - minL) * (i / steps);
+        const V = vbtProfile.regression.predictVelocity(L);
+        if (V >= 0) {
+          lineData.push({ x: parseFloat(L.toFixed(1)), y: parseFloat(V.toFixed(3)) });
+        }
+      }
+
+      const mvtLine = [
+        { x: minL, y: mvtValue },
+        { x: maxL, y: mvtValue },
+      ];
+
+      const oneRMPoint = [{ x: parseFloat(oneRMVal.toFixed(1)), y: mvtValue }];
+
+      const ctx1 = fvCanvasRef.current.getContext('2d');
+      if (ctx1) {
+        fvChartInstanceRef.current = new ChartJS(ctx1, {
+          type: 'scatter',
+          plugins: [neonGlowPlugin],
+          data: {
+            datasets: [
+              {
+                label: `1RM Stimato: ${oneRMVal.toFixed(1)} kg`,
+                data: oneRMPoint,
+                type: 'scatter',
+                backgroundColor: '#10b981',
+                borderColor: '#ffffff',
+                borderWidth: 2,
+                pointStyle: 'rectRot',
+                pointRadius: 8,
+                pointHoverRadius: 11,
+                order: 0,
+              },
+              {
+                label: 'Dati Sperimentali',
+                data: scatterData,
+                type: 'scatter',
+                backgroundColor: '#00f0ff',
+                borderColor: '#00f0ff',
+                borderWidth: 1,
+                pointRadius: 6,
+                pointHoverRadius: 9,
+                order: 1,
+              },
+              {
+                label: `Regressione (${vbtProfile.regression.equation})`,
+                data: lineData,
+                type: 'line',
+                borderColor: '#38bdf8',
+                backgroundColor: 'transparent',
+                borderWidth: 2.5,
+                pointRadius: 0,
+                fill: false,
+                order: 2,
+              },
+              {
+                label: `Soglia MVT (${mvtValue} m/s)`,
+                data: mvtLine,
+                type: 'line',
+                borderColor: '#f59e0b',
+                backgroundColor: 'transparent',
+                borderWidth: 1.5,
+                borderDash: [5, 5],
+                pointRadius: 0,
+                fill: false,
+                order: 3,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: false,
+            plugins: {
+              legend: {
+                labels: { color: '#cbd5e1', font: { size: 11 } },
+              },
+              tooltip: {
+                backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                borderColor: 'rgba(255, 255, 255, 0.1)',
+                borderWidth: 1,
+                callbacks: {
+                  label: (context) => {
+                    const raw = context.raw as { x: number; y: number };
+                    return `${context.dataset.label}: ${raw.x} kg @ ${raw.y} m/s`;
+                  },
+                },
+              },
+            },
+            scales: {
+              x: {
+                title: { display: true, text: 'Carico (kg)', color: '#94a3b8' },
+                ticks: { color: '#94a3b8' },
+                grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              },
+              y: {
+                title: { display: true, text: 'Velocità Media (m/s)', color: '#94a3b8' },
+                ticks: { color: '#94a3b8' },
+                grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                min: 0,
+              },
+            },
+          },
+        });
+      }
+    }
+
+    // --- CHART 2: Parabolic Power Curve P(L) = F * V ---
+    if (powerCanvasRef.current) {
+      if (powerChartInstanceRef.current) {
+        powerChartInstanceRef.current.destroy();
+        powerChartInstanceRef.current = null;
+      }
+
+      const f0 = vbtProfile.f0 || (validPoints.length ? Math.max(...validPoints.map((p) => p.load)) * 1.3 : 100);
+      const v0 = vbtProfile.v0 || (validPoints.length ? Math.max(...validPoints.map((p) => p.velocity)) * 1.2 : 1.5);
+      const powerAnalysis = analyzePowerCurve(validPoints, f0, v0);
+
+      const curveData = powerAnalysis.curvePoints.map((p) => ({ x: p.load, y: p.power }));
+      const empiricalData = powerAnalysis.empiricalPoints.map((p) => ({ x: p.load, y: p.power }));
+      const pmaxPoint = [{ x: powerAnalysis.optimalLoad, y: powerAnalysis.pmax }];
+
+      const ctx2 = powerCanvasRef.current.getContext('2d');
+      if (ctx2) {
+        powerChartInstanceRef.current = new ChartJS(ctx2, {
+          type: 'line',
+          plugins: [neonGlowPlugin],
+          data: {
+            datasets: [
+              {
+                label: `Vertice Pmax: ${powerAnalysis.pmax} W (Lopt: ${powerAnalysis.optimalLoad} kg, Vopt: ${powerAnalysis.optimalVelocity} m/s)`,
+                data: pmaxPoint,
+                type: 'scatter',
+                backgroundColor: '#ffe600',
+                borderColor: '#ffffff',
+                borderWidth: 2,
+                pointRadius: 8,
+                pointHoverRadius: 11,
+                order: 0,
+              },
+              {
+                label: 'Prove Empiriche (P = F·V)',
+                data: empiricalData,
+                type: 'scatter',
+                backgroundColor: '#38bdf8',
+                borderColor: '#38bdf8',
+                pointRadius: 5,
+                order: 1,
+              },
+              {
+                label: 'Curva di Potenza Parabolica',
+                data: curveData,
+                type: 'line',
+                borderColor: '#d946ef',
+                backgroundColor: 'rgba(217, 70, 239, 0.15)',
+                borderWidth: 2.5,
+                fill: true,
+                tension: 0.3,
+                pointRadius: 0,
+                order: 2,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: false,
+            plugins: {
+              legend: {
+                labels: { color: '#cbd5e1', font: { size: 11 } },
+              },
+              tooltip: {
+                backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                borderColor: 'rgba(255, 255, 255, 0.1)',
+                borderWidth: 1,
+                callbacks: {
+                  label: (context) => {
+                    const raw = context.raw as { x: number; y: number };
+                    return `${context.dataset.label}: ${raw.x} kg @ ${raw.y} W`;
+                  },
+                },
+              },
+            },
+            scales: {
+              x: {
+                title: { display: true, text: 'Carico (kg)', color: '#94a3b8' },
+                ticks: { color: '#94a3b8' },
+                grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              },
+              y: {
+                title: { display: true, text: 'Potenza Meccanica (W)', color: '#94a3b8' },
+                ticks: { color: '#94a3b8' },
+                grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                min: 0,
+              },
+            },
+          },
+        });
+      }
+    }
+
+    return () => {
+      if (fvChartInstanceRef.current) {
+        fvChartInstanceRef.current.destroy();
+        fvChartInstanceRef.current = null;
+      }
+      if (powerChartInstanceRef.current) {
+        powerChartInstanceRef.current.destroy();
+        powerChartInstanceRef.current = null;
+      }
+    };
+  }, [selectedTestId, vbtProfile, records, mvtValue, exerciseName]);
 
   // Calcolo Palla Medica (sul primo record o media)
   const medBallResult: MedicineBallResult | null = useMemo(() => {
@@ -726,6 +1015,80 @@ export const DataAnalysisView: React.FC = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Grafici Interattivi Neon Glow Chart.js */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '1.25rem', marginTop: '0.5rem' }}>
+            {/* Grafico 1: Curva F-V */}
+            <div
+              style={{
+                background: '#090d16',
+                border: '1px solid #1e293b',
+                borderRadius: '0.5rem',
+                padding: '1.15rem',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.75rem',
+              }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <strong style={{ fontSize: '0.95rem', color: '#f8fafc' }}>
+                  Profilo Carico-Velocità (F-V)
+                </strong>
+                <span
+                  style={{
+                    background: 'rgba(56, 189, 248, 0.1)',
+                    border: '1px solid rgba(56, 189, 248, 0.3)',
+                    color: '#38bdf8',
+                    padding: '0.2rem 0.5rem',
+                    borderRadius: '4px',
+                    fontSize: '0.75rem',
+                    fontFamily: 'monospace',
+                    fontWeight: 700,
+                  }}
+                >
+                  {vbtProfile.regression.equation}
+                </span>
+              </div>
+              <div style={{ position: 'relative', height: '280px', width: '100%' }}>
+                <canvas ref={fvCanvasRef} />
+              </div>
+            </div>
+
+            {/* Grafico 2: Curva di Potenza Parabolica */}
+            <div
+              style={{
+                background: '#090d16',
+                border: '1px solid #1e293b',
+                borderRadius: '0.5rem',
+                padding: '1.15rem',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.75rem',
+              }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <strong style={{ fontSize: '0.95rem', color: '#f8fafc' }}>
+                  Curva di Potenza Parabolica P(L) = F·V
+                </strong>
+                <span
+                  style={{
+                    background: 'rgba(217, 70, 239, 0.1)',
+                    border: '1px solid rgba(217, 70, 239, 0.3)',
+                    color: '#d946ef',
+                    padding: '0.2rem 0.5rem',
+                    borderRadius: '4px',
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
+                  }}
+                >
+                  Picco Pmax: {Math.round(vbtProfile.pmax || 0)} W
+                </span>
+              </div>
+              <div style={{ position: 'relative', height: '280px', width: '100%' }}>
+                <canvas ref={powerCanvasRef} />
+              </div>
             </div>
           </div>
         </section>

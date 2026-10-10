@@ -55,9 +55,6 @@ const CANONICAL_EQUIPMENTS = [
   'Corpo Libero',
   'Macchine',
   'Cavi',
-  'Sbarra / Trazioni',
-  'Panca',
-  'Altri Attrezzi',
 ];
 
 export function useExerciseCatalog(
@@ -170,7 +167,15 @@ export function useExerciseCatalog(
       if (selectedEquipment !== 'Tutta') {
         const eqNorm = exercise.equipment.toLowerCase();
         const targetNorm = selectedEquipment.toLowerCase();
-        if (!eqNorm.includes(targetNorm)) {
+        let matches = eqNorm.includes(targetNorm);
+        if (!matches) {
+          if (targetNorm === 'corpo libero' && (eqNorm.includes('corpo') || eqNorm.includes('libero'))) {
+            matches = true;
+          } else if (targetNorm === 'macchine' && eqNorm.includes('macchin')) {
+            matches = true;
+          }
+        }
+        if (!matches) {
           return false;
         }
       }
