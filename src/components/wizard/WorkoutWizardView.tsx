@@ -302,6 +302,46 @@ export const WorkoutWizardView: React.FC = () => {
       {/* Pannello Configurazione Atleta & Periodizzazione (visibile su richiesta o se non c'è programma) */}
       {(!program || isConfigOpen) && (
         <>
+          {program && isConfigOpen && (
+            <div
+              style={{
+                background: 'rgba(99, 102, 241, 0.1)',
+                border: '1px solid rgba(99, 102, 241, 0.3)',
+                borderRadius: '0.5rem',
+                padding: '0.85rem 1.25rem',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                gap: '0.75rem',
+              }}
+            >
+              <div>
+                <strong style={{ color: '#818cf8', fontSize: '0.9rem' }}>
+                  Configurazione Parametri Attiva
+                </strong>
+                <p style={{ color: '#cbd5e1', fontSize: '0.8rem', margin: '0.2rem 0 0' }}>
+                  Modifica i parametri dell&apos;atleta, gli obiettivi o le condizioni cliniche e clicca su &ldquo;Genera Programma di Allenamento&rdquo; per ricalcolare tutte le 6 fasi.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsConfigOpen(false)}
+                style={{
+                  background: '#1e293b',
+                  color: '#94a3b8',
+                  border: '1px solid #334155',
+                  padding: '0.4rem 0.8rem',
+                  borderRadius: '0.25rem',
+                  fontSize: '0.8rem',
+                  cursor: 'pointer',
+                }}
+              >
+                Annulla e Torna alla Scheda
+              </button>
+            </div>
+          )}
+
           {/* Pannello Superiore: Parametri Atleta & Configurazione */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
         {/* Form Anagrafica e Obiettivi */}
@@ -629,6 +669,7 @@ export const WorkoutWizardView: React.FC = () => {
             type="button"
             onClick={() => {
               generateProgram();
+              setActivePhaseIndex(1);
               setIsConfigOpen(false);
             }}
             disabled={isGenerating}
@@ -906,48 +947,52 @@ export const WorkoutWizardView: React.FC = () => {
 
               {/* Navigazione Fasi (Tab Selettori a Pillola Foto 3) */}
               <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                {program.phases.map((phase) => {
-                  const isActive = activePhaseIndex === phase.phaseIndex;
-                  const isDeload = phase.name.toLowerCase().includes('scarico') || phase.name.toLowerCase().includes('taper');
-                  const weekStart = (phase.phaseIndex - 1) * phase.durationWeeks + 1;
-                  const weekEnd = weekStart + phase.durationWeeks - 1;
-                  const weeksLabel = phase.durationWeeks > 1 ? `SETTIMANE ${weekStart}-${weekEnd}` : `SETTIMANA ${weekStart}`;
+                {(() => {
+                  let cumulativeWeek = 1;
+                  return program.phases.map((phase) => {
+                    const isActive = activePhaseIndex === phase.phaseIndex;
+                    const isDeload = phase.name.toLowerCase().includes('scarico') || phase.name.toLowerCase().includes('taper');
+                    const weekStart = cumulativeWeek;
+                    const weekEnd = cumulativeWeek + phase.durationWeeks - 1;
+                    cumulativeWeek = weekEnd + 1;
+                    const weeksLabel = phase.durationWeeks > 1 ? `SETTIMANE ${weekStart}-${weekEnd}` : `SETTIMANA ${weekStart}`;
 
-                  return (
-                    <button
-                      key={phase.phaseIndex}
-                      type="button"
-                      onClick={() => setActivePhaseIndex(phase.phaseIndex)}
-                      style={{
-                        padding: '0.65rem 1rem',
-                        borderRadius: '0.5rem',
-                        border: isActive
-                          ? isDeload
-                            ? '1px solid #34d399'
-                            : '1px solid #10b981'
-                          : '1px solid #334155',
-                        background: isActive
-                          ? 'linear-gradient(135deg, #059669 0%, #047857 100%)'
-                          : '#1e293b',
-                        color: isActive ? '#ffffff' : '#94a3b8',
-                        boxShadow: isActive ? '0 4px 12px rgba(16, 185, 129, 0.3)' : 'none',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'flex-start',
-                        cursor: 'pointer',
-                        transition: 'all 0.15s ease',
-                        minWidth: '150px',
-                      }}
-                    >
-                      <span style={{ fontSize: '0.68rem', opacity: 0.85, fontWeight: 700, letterSpacing: '0.05em' }}>
-                        {weeksLabel} | Fase {phase.phaseIndex}
-                      </span>
-                      <span style={{ fontSize: '0.85rem', fontWeight: 700, marginTop: '0.15rem' }}>
-                        {phase.name}
-                      </span>
-                    </button>
-                  );
-                })}
+                    return (
+                      <button
+                        key={phase.phaseIndex}
+                        type="button"
+                        onClick={() => setActivePhaseIndex(phase.phaseIndex)}
+                        style={{
+                          padding: '0.65rem 1rem',
+                          borderRadius: '0.5rem',
+                          border: isActive
+                            ? isDeload
+                              ? '1px solid #34d399'
+                              : '1px solid #10b981'
+                            : '1px solid #334155',
+                          background: isActive
+                            ? 'linear-gradient(135deg, #059669 0%, #047857 100%)'
+                            : '#1e293b',
+                          color: isActive ? '#ffffff' : '#94a3b8',
+                          boxShadow: isActive ? '0 4px 12px rgba(16, 185, 129, 0.3)' : 'none',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'flex-start',
+                          cursor: 'pointer',
+                          transition: 'all 0.15s ease',
+                          minWidth: '150px',
+                        }}
+                      >
+                        <span style={{ fontSize: '0.68rem', opacity: 0.85, fontWeight: 700, letterSpacing: '0.05em' }}>
+                          {weeksLabel} | Fase {phase.phaseIndex}
+                        </span>
+                        <span style={{ fontSize: '0.85rem', fontWeight: 700, marginTop: '0.15rem' }}>
+                          {phase.name}
+                        </span>
+                      </button>
+                    );
+                  });
+                })()}
               </div>
             </div>
 
@@ -1345,6 +1390,7 @@ export const WorkoutWizardView: React.FC = () => {
               onReset={() => {
                 resetProgram();
                 setIsConfigOpen(true);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             />
           </div>

@@ -21,6 +21,8 @@ import type { RiskAnalysisProfile } from '../types/clinical';
 import type { Exercise } from '../types/exercise';
 import { allExercises } from '../data/exercises';
 import { classifyExercises } from './risk-analyzer';
+import { buildWorkoutSession } from './session-builder';
+import { selectMatchingScientificSources } from './scientific-sources-matcher';
 
 export interface PeriodizationSelectionParams {
   patientType?: 'Atleta' | 'Clinico' | 'Clinico_Anziano' | string;
@@ -230,16 +232,17 @@ export function generateScientificRationale(
   riskProfile: RiskAnalysisProfile
 ): ScientificRationale {
   const isClinical = params.patientType === 'Clinico' || params.patientType === 'Clinico_Anziano';
-  const sport = params.sportPraticato || params.sport || 'Generale';
+  const athleteName = params.athleteName && params.athleteName.trim().length > 0 ? params.athleteName.trim() : 'Atleta T7';
+  const sport = params.sportPraticato || params.sport || 'Preparazione Atletica Generale';
   const goal = params.goal || 'Forza';
   const level = params.level || 'Intermedio';
 
-  // Pilastro 1: Profilo e contesto
+  // Pilastro 1: Profilo e contesto con nome atleta dinamico
   let athleteProfile = '';
   if (isClinical) {
-    athleteProfile = `Paziente in regime di tutela clinica (score rischio: ${riskProfile.score}, livello: ${riskProfile.level}). La programmazione e calibrata per garantire la riparazione connettivale e il controllo delle forze di taglio articolari.`;
+    athleteProfile = `Paziente "${athleteName}" in regime di tutela clinica (score rischio: ${riskProfile.score}, livello: ${riskProfile.level.toUpperCase()}). Programmazione calibrata per stimolare la rigenerazione tissutale e il controllo delle forze articolari.`;
   } else {
-    athleteProfile = `Atleta praticante ${sport} con obiettivo prioritario "${goal}" e livello prestativo "${level}". Architettura formulata per stimolare adattamenti neuromuscolari mirati evitando sovrallenamento sistemico.`;
+    athleteProfile = `Atleta "${athleteName}" praticante ${sport} con obiettivo primario "${goal}" e livello prestativo "${level}". Architettura deterministica formulata per stimolare adattamenti neuromuscolari mirati evitando sovrallenamento sistemico.`;
   }
 
   // Pilastro 2: Architettura di periodizzazione
@@ -251,6 +254,12 @@ export function generateScientificRationale(
   if (isClinical) {
     biomechanicalPrescriptions =
       'Prescrizione biomeccanica con limitazione rigorosa del ROM nei gradi critici (Escamilla et al. 2001), enfasi sulle contrazioni isometriche ed eccentriche e divieto di cedimento muscolare concentrico.';
+  } else if (goal.toLowerCase().includes('potenza') || sport.toLowerCase().includes('squadra') || sport.toLowerCase().includes('atletica')) {
+    biomechanicalPrescriptions =
+      'Focus sul Rate of Force Development (RFD) con accoppiamento di esercizi balistici e multiarticolari pesanti per massimizzare il reclutamento delle unità motorie a soglia elevata.';
+  } else if (goal.toLowerCase().includes('ipertrofia')) {
+    biomechanicalPrescriptions =
+      'Distribuzione del volume per gruppi muscolari target con enfasi sulla tensione meccanica attraverso l arco di movimento completo e varietà negli angoli di lavoro anatomici (Schoenfeld 2016).';
   } else {
     biomechanicalPrescriptions =
       'Selezione degli esercizi secondo i piani di movimento e catene cinetiche principali. Distribuzione bilanciata del volume per i pattern di spinta, tirata, accosciata e cerniera d anca per minimizzare gli squilibri articolari.';
@@ -261,10 +270,21 @@ export function generateScientificRationale(
   if (isClinical) {
     vbtStrategy =
       'Controllo del tempo sotto tensione (TUT) con cadenza rallentata (3-0-1 o 4-0-1) per stimolare la meccanotrasduzione tenocitaria riducendo la velocita di picco.';
+  } else if (goal.toLowerCase().includes('potenza')) {
+    vbtStrategy =
+      'Monitoraggio della Mean Propulsive Velocity (MPV) con arresto serie a una perdita di velocità <= 10% per garantire stimoli puramente neuromuscolari ed evitare ogni accumulo di metaboliti.';
   } else {
     vbtStrategy =
       'Autoregolazione mediante Velocity-Based Training (González-Badillo & Sánchez-Medina 2010): arresto delle serie al raggiungimento della soglia del 10-20% di velocity loss per massimizzare la potenza senza affaticamento neurale residuo.';
   }
+
+  // Matching dinamico delle evidenze scientifiche dalla banca dati delle 322 fonti
+  const matchedEvidence = selectMatchingScientificSources({
+    isClinical,
+    sport,
+    goal,
+    level,
+  });
 
   // Citazioni accademiche
   const citations = [
@@ -279,7 +299,8 @@ export function generateScientificRationale(
     periodizationArchitecture,
     biomechanicalPrescriptions,
     vbtStrategy,
-    citations
+    citations,
+    matchedEvidence,
   };
 }
 
@@ -376,97 +397,205 @@ export function generateWorkoutProgram(
   const classified = classifyExercises(allExercises, []);
   const availablePool = classified.available;
 
-  // Costruzione delle fasi
-  const numPhases = isClinical ? 4 : method === 'BLOCK' ? 3 : 4;
-  const weeksPerPhase = Math.max(1, Math.floor(durationWeeks / numPhases));
+  // Definizione dei blueprint delle fasi: 6 fasi per il macrociclo a 12 settimane
+  interface PhaseConfig {
+    name: string;
+    weeks: number;
+    volume: 'Alto' | 'Medio' | 'Basso';
+    intensity: [number, number];
+    rpeCap: number;
+    isDeload: boolean;
+    focus: string;
+    kneeRom?: number;
+  }
+
+  let phaseConfigs: PhaseConfig[] = [];
+
+  if (isClinical) {
+    phaseConfigs = [
+      {
+        name: 'Fase 1: Mobilità & Isometria Protetta (ROM 60°)',
+        weeks: 3,
+        volume: 'Basso',
+        intensity: [40, 50],
+        rpeCap: 6,
+        isDeload: false,
+        focus: 'Controllo del ROM articolare (60°) e attivazione stabilizzatori senza sovraccarico.',
+        kneeRom: 60,
+      },
+      {
+        name: 'Fase 2: Scarico Funzionale & Allungamento',
+        weeks: 1,
+        volume: 'Basso',
+        intensity: [35, 45],
+        rpeCap: 5,
+        isDeload: true,
+        focus: 'Scarico rigenerativo attivo, decompressione e allungamento fasciale.',
+        kneeRom: 60,
+      },
+      {
+        name: 'Fase 3: Forza Eccentrica Controllata (ROM 80°)',
+        weeks: 3,
+        volume: 'Medio',
+        intensity: [50, 60],
+        rpeCap: 7,
+        isDeload: false,
+        focus: 'Condizionamento eccentrico tissutale e propriocezione con ROM esteso a 80°.',
+        kneeRom: 80,
+      },
+      {
+        name: 'Fase 4: Scarico Clinico & Propriocezione',
+        weeks: 1,
+        volume: 'Basso',
+        intensity: [45, 55],
+        rpeCap: 5.5,
+        isDeload: true,
+        focus: 'Scarico clinico profondo post-eccentrico e stabilità articolare fine.',
+        kneeRom: 80,
+      },
+      {
+        name: 'Fase 5: Potenziamento Dinamico Funzionale (ROM 90°)',
+        weeks: 3,
+        volume: 'Medio',
+        intensity: [60, 70],
+        rpeCap: 7.5,
+        isDeload: false,
+        focus: 'Ripristino della forza dinamica bilaterale e monolaterale fino al parallelo (90°).',
+        kneeRom: 90,
+      },
+      {
+        name: 'Fase 6: Test di Dimissione & Ritorno all Attività',
+        weeks: 1,
+        volume: 'Basso',
+        intensity: [50, 65],
+        rpeCap: 6.5,
+        isDeload: true,
+        focus: 'Tapering finale e test submassimali di simmetria per il ritorno in sicurezza.',
+        kneeRom: 90,
+      },
+    ];
+  } else {
+    // Macrociclo 12 Settimane DUP / Sportivo / Forza a 6 Fasi (Accumulo, Scarico, Intensificazione, Scarico, Picco, Tapering)
+    phaseConfigs = [
+      {
+        name: 'Fase 1: Adattamento Anatomico & Accumulo',
+        weeks: 3,
+        volume: 'Alto',
+        intensity: [60, 70],
+        rpeCap: 7.5,
+        isDeload: false,
+        focus: 'Costruzione di volume di lavoro, ipertrofia funzionale e condizionamento connettivale.',
+      },
+      {
+        name: 'Fase 2: Scarico Attivo & Rigenerazione Neurale',
+        weeks: 1,
+        volume: 'Basso',
+        intensity: [50, 60],
+        rpeCap: 6,
+        isDeload: true,
+        focus: 'Dissipazione della fatica accumulata, ripristino del SNC e mobilità articolare.',
+      },
+      {
+        name: 'Fase 3: Intensificazione della Forza Base',
+        weeks: 3,
+        volume: 'Medio',
+        intensity: [70, 80],
+        rpeCap: 8,
+        isDeload: false,
+        focus: 'Incremento progressivo del carico medio ed efficienza nel reclutamento neuromuscolare.',
+      },
+      {
+        name: 'Fase 4: Scarico Rigenerativo & Ricalibrazione',
+        weeks: 1,
+        volume: 'Basso',
+        intensity: [50, 60],
+        rpeCap: 6,
+        isDeload: true,
+        focus: 'Scarico rigenerativo per articolazioni e colonna prima del blocco di picco massimale.',
+      },
+      {
+        name: 'Fase 5: Realizzazione & Picco Massimale',
+        weeks: 3,
+        volume: 'Basso',
+        intensity: [80, 90],
+        rpeCap: 8.5,
+        isDeload: false,
+        focus: 'Espressione della massima forza neurale, carichi elevati e conversione in potenza.',
+      },
+      {
+        name: 'Fase 6: Test 1RM & Tapering Finale',
+        weeks: 1,
+        volume: 'Basso',
+        intensity: [85, 95],
+        rpeCap: 7,
+        isDeload: true,
+        focus: 'Tapering del volume, supercompensazione e verifica dei massimali sulle alzate target.',
+      },
+    ];
+  }
+
   const phases: PhaseBlueprint[] = [];
 
-  for (let pIdx = 1; pIdx <= numPhases; pIdx++) {
-    const isDeload = pIdx === numPhases && !isClinical;
+  for (let pIdx = 1; pIdx <= phaseConfigs.length; pIdx++) {
+    const cfg = phaseConfigs[pIdx - 1];
     const sessions: WorkoutSession[] = [];
 
     for (let day = 1; day <= daysPerWeek; day++) {
-      const { warmup, exercises, cooldown } = buildSampleSessionExercises(
-        isClinical,
-        method,
-        pIdx,
-        availablePool
-      );
-
-      sessions.push({
-        dayName: `Giorno ${day}`,
-        focus: isClinical
-          ? `Seduta ${day} - Controllo Neuromuscolare & ROM Limitato`
-          : `Seduta ${day} - ${getPhaseSplitName(pIdx, daysPerWeek, isClinical, method)}`,
-        warmup,
-        exercises,
-        cooldown,
-        estimatedDurationMin: isClinical ? 45 : 60
-      });
-    }
-
-    let phaseName = '';
-    let weeklyFocus = '';
-    let intensityRange: [number, number] = [60, 70];
-    let rpeCap = 7;
-    let kneeRomLimitDeg: number | undefined = undefined;
-
-    if (isClinical) {
-      kneeRomLimitDeg = pIdx === 1 ? 60 : pIdx === 2 ? 80 : 90;
-      phaseName = `Fase ${pIdx}: ${
-        pIdx === 1
-          ? 'Mobilita & Isometria Protetta'
-          : pIdx === 2
-          ? 'Forza Eccentrica Controllata'
-          : pIdx === 3
-          ? 'Potenziamento Dinamico Funzionale'
-          : 'Transizione & Ritorno all Attivita'
-      }`;
-      weeklyFocus = `Controllo del ROM articolare (${kneeRomLimitDeg} deg) e attivazione senza sovraccarico.`;
-      intensityRange = [45, 60];
-      rpeCap = pIdx === 1 ? 6 : pIdx === 2 ? 7 : 7.5;
-    } else {
-      if (method === 'BLOCK') {
-        phaseName =
-          pIdx === 1
-            ? 'Blocco 1: Accumulazione (Volume)'
-            : pIdx === 2
-            ? 'Blocco 2: Intensificazione (Carico)'
-            : 'Blocco 3: Realizzazione & Tapering';
-        intensityRange = pIdx === 1 ? [65, 75] : pIdx === 2 ? [80, 90] : [90, 97];
-        weeklyFocus =
-          pIdx === 1
-            ? 'Accumulo di volume di lavoro ed ipertrofia specifica.'
-            : pIdx === 2
-            ? 'Conversione neurale ad alta intensita di carico.'
-            : 'Picco di potenza e supercompensazione prestazionale.';
-        rpeCap = pIdx === 3 ? 9 : 8.5;
+      let dayFocus = '';
+      if (isClinical) {
+        dayFocus = `Controllo Neuromuscolare (ROM ${cfg.kneeRom || 60}°)`;
+      } else if (cfg.isDeload) {
+        dayFocus = day === 1
+          ? 'Scarico Tecnico Spinta & Gambe'
+          : day === 2
+          ? 'Scarico Mobilità Tirata & Dorso'
+          : 'Scarico Attivo & Core Rigenerativo';
+      } else if (daysPerWeek === 3) {
+        dayFocus = day === 1
+          ? 'Forza & Multiarticolari (Spinta / Gambe)'
+          : day === 2
+          ? 'Ipertrofia & Volume (Tirata / Braccia)'
+          : 'Potenza & Velocità (Full Body Dynamic)';
+      } else if (daysPerWeek === 4) {
+        dayFocus = day === 1
+          ? 'Upper Body Forza (Spinta / Tirata)'
+          : day === 2
+          ? 'Lower Body Forza (Squat / Catena Posteriore)'
+          : day === 3
+          ? 'Upper Body Ipertrofia & Accessori'
+          : 'Lower Body Potenza & Core';
       } else {
-        phaseName = `Fase ${pIdx}: ${
-          pIdx === 1
-            ? 'Adattamento Anatomico & GPP'
-            : pIdx === 2
-            ? 'Sviluppo Ipertrofico & Forza Base'
-            : pIdx === 3
-            ? 'Intensificazione della Forza Massima'
-            : 'Picco Prestazionale & Scarico'
-        }`;
-        intensityRange = pIdx === 1 ? [60, 70] : pIdx === 2 ? [70, 80] : pIdx === 3 ? [80, 87] : [60, 92];
-        weeklyFocus = `Progressione secondo ${method} con focus su intensita e recupero neurale.`;
-        rpeCap = isDeload ? 6 : 8.5;
+        dayFocus = day % 2 === 1
+          ? 'Full Body Forza & Spinta'
+          : 'Full Body Ipertrofia & Tirata';
       }
+
+      const session = buildWorkoutSession({
+        phaseIndex: pIdx,
+        dayIndex: day,
+        totalDays: daysPerWeek,
+        focus: dayFocus,
+        isClinical,
+        patientType: params.patientType,
+        sport,
+        intensityRange: cfg.intensity,
+        rpeCap: cfg.rpeCap,
+        availableExercises: availablePool.length > 0 ? availablePool : allExercises,
+      });
+
+      sessions.push(session);
     }
 
     phases.push({
       phaseIndex: pIdx,
-      name: phaseName,
-      durationWeeks: weeksPerPhase,
-      volumeTier: pIdx === 1 ? 'Alto' : pIdx === 2 ? 'Medio' : 'Basso',
-      intensityPctRange: intensityRange,
-      rpeCap,
-      kneeRomLimitDeg,
+      name: cfg.name,
+      durationWeeks: cfg.weeks,
+      volumeTier: cfg.volume,
+      intensityPctRange: cfg.intensity,
+      rpeCap: cfg.rpeCap,
+      kneeRomLimitDeg: cfg.kneeRom,
       sessions,
-      weeklyFocus
+      weeklyFocus: cfg.focus,
     });
   }
 

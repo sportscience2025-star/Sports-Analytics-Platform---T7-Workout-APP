@@ -103,22 +103,37 @@ export const MultiParamFilterBar: React.FC<MultiParamFilterBarProps> = ({
   isFilterActive,
 }) => {
   const [isMuscleOpen, setIsMuscleOpen] = useState<boolean>(false);
+  const [isLevelOpen, setIsLevelOpen] = useState<boolean>(false);
+  const [isEquipmentOpen, setIsEquipmentOpen] = useState<boolean>(false);
+  const [isQualityOpen, setIsQualityOpen] = useState<boolean>(false);
+
   const [muscleSearch, setMuscleSearch] = useState<string>('');
   const muscleDropdownRef = useRef<HTMLDivElement>(null);
+  const levelDropdownRef = useRef<HTMLDivElement>(null);
+  const equipmentDropdownRef = useRef<HTMLDivElement>(null);
+  const qualityDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
-      if (muscleDropdownRef.current && !muscleDropdownRef.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      if (muscleDropdownRef.current && !muscleDropdownRef.current.contains(target)) {
         setIsMuscleOpen(false);
       }
+      if (levelDropdownRef.current && !levelDropdownRef.current.contains(target)) {
+        setIsLevelOpen(false);
+      }
+      if (equipmentDropdownRef.current && !equipmentDropdownRef.current.contains(target)) {
+        setIsEquipmentOpen(false);
+      }
+      if (qualityDropdownRef.current && !qualityDropdownRef.current.contains(target)) {
+        setIsQualityOpen(false);
+      }
     };
-    if (isMuscleOpen) {
-      document.addEventListener('mousedown', handleOutsideClick);
-    }
+    document.addEventListener('mousedown', handleOutsideClick);
     return () => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
-  }, [isMuscleOpen]);
+  }, []);
 
   const filteredMuscleGroups = useMemo(() => {
     const q = muscleSearch.trim().toLowerCase();
@@ -404,80 +419,328 @@ export const MultiParamFilterBar: React.FC<MultiParamFilterBarProps> = ({
         )}
       </div>
 
-      {/* Dropdown Livello */}
-      <select
-        className="filter-select"
-        value={selectedLevel}
-        onChange={(e) => onLevelChange(e.target.value)}
-        title="Filtra per livello atletico"
-        style={{
-          flex: '0 1 125px',
-          background: 'var(--bg-body, #0b0e14)',
-          border: '1px solid var(--border, #1f293d)',
-          borderRadius: '0.375rem',
-          padding: '0.55rem 0.75rem',
-          color: 'var(--text-primary, #f1f5f9)',
-          fontSize: '0.85rem',
-          outline: 'none',
-          cursor: 'pointer',
-        }}
-      >
-        {CANONICAL_LEVELS.map((lvl) => (
-          <option key={lvl} value={lvl}>
-            {lvl === 'Tutti' ? 'Tutti i Livelli' : lvl}
-          </option>
-        ))}
-      </select>
+      {/* Dropdown Livello Personalizzato Dark Cockpit */}
+      <div ref={levelDropdownRef} style={{ position: 'relative', flex: '0 1 140px', minWidth: '130px' }}>
+        <button
+          type="button"
+          onClick={() => {
+            setIsLevelOpen((prev) => !prev);
+            setIsMuscleOpen(false);
+            setIsEquipmentOpen(false);
+            setIsQualityOpen(false);
+          }}
+          title="Filtra per livello atletico"
+          style={{
+            width: '100%',
+            background: 'var(--bg-body, #0b0e14)',
+            border: isLevelOpen ? '1px solid #6366f1' : '1px solid var(--border, #1f293d)',
+            borderRadius: '0.375rem',
+            padding: '0.55rem 0.75rem',
+            color: 'var(--text-primary, #f1f5f9)',
+            fontSize: '0.85rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '0.35rem',
+            cursor: 'pointer',
+            outline: 'none',
+          }}
+        >
+          <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            {selectedLevel === 'Tutti' ? 'Tutti i Livelli' : selectedLevel}
+          </span>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{
+              flexShrink: 0,
+              transform: isLevelOpen ? 'rotate(180deg)' : 'none',
+              transition: 'transform 0.15s ease',
+              color: '#94a3b8',
+            }}
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
 
-      {/* Dropdown Attrezzatura */}
-      <select
-        className="filter-select"
-        value={selectedEquipment}
-        onChange={(e) => onEquipmentChange(e.target.value)}
-        title="Filtra per attrezzatura disponibile"
-        style={{
-          flex: '0 1 135px',
-          background: 'var(--bg-body, #0b0e14)',
-          border: '1px solid var(--border, #1f293d)',
-          borderRadius: '0.375rem',
-          padding: '0.55rem 0.75rem',
-          color: 'var(--text-primary, #f1f5f9)',
-          fontSize: '0.85rem',
-          outline: 'none',
-          cursor: 'pointer',
-        }}
-      >
-        {CANONICAL_EQUIPMENTS.map((eq) => (
-          <option key={eq} value={eq}>
-            {eq === 'Tutta' ? 'Tutta Attrezzatura' : eq}
-          </option>
-        ))}
-      </select>
+        {isLevelOpen && (
+          <div
+            style={{
+              position: 'absolute',
+              top: 'calc(100% + 4px)',
+              left: 0,
+              minWidth: '100%',
+              width: 'max-content',
+              background: '#111827',
+              border: '1px solid #1f293d',
+              borderRadius: '0.5rem',
+              boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.7)',
+              zIndex: 60,
+              padding: '0.35rem 0',
+            }}
+          >
+            {CANONICAL_LEVELS.map((lvl) => {
+              const isSelected = selectedLevel === lvl;
+              return (
+                <button
+                  key={lvl}
+                  type="button"
+                  onClick={() => {
+                    onLevelChange(lvl);
+                    setIsLevelOpen(false);
+                  }}
+                  style={{
+                    width: '100%',
+                    textAlign: 'left',
+                    background: isSelected ? 'rgba(99, 102, 241, 0.15)' : 'transparent',
+                    color: isSelected ? '#a5b4fc' : '#e2e8f0',
+                    border: 'none',
+                    padding: '0.45rem 0.85rem',
+                    fontSize: '0.825rem',
+                    fontWeight: isSelected ? 700 : 400,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '0.75rem',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isSelected) e.currentTarget.style.background = '#1e293b';
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isSelected) e.currentTarget.style.background = 'transparent';
+                  }}
+                >
+                  <span>{lvl === 'Tutti' ? 'Tutti i Livelli' : lvl}</span>
+                  {isSelected && <span style={{ fontSize: '0.75rem', color: '#818cf8' }}>✓</span>}
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
 
-      {/* Dropdown Qualità Neuromuscolare */}
-      <select
-        className="filter-select"
-        value={selectedQuality}
-        onChange={(e) => onQualityChange(e.target.value)}
-        title="Filtra per qualità neuromuscolare"
-        style={{
-          flex: '0 1 130px',
-          background: 'var(--bg-body, #0b0e14)',
-          border: '1px solid var(--border, #1f293d)',
-          borderRadius: '0.375rem',
-          padding: '0.55rem 0.75rem',
-          color: 'var(--text-primary, #f1f5f9)',
-          fontSize: '0.85rem',
-          outline: 'none',
-          cursor: 'pointer',
-        }}
-      >
-        {CANONICAL_QUALITIES.map((q) => (
-          <option key={q} value={q}>
-            {q === 'Tutte' ? 'Tutte le Qualità' : q}
-          </option>
-        ))}
-      </select>
+      {/* Dropdown Attrezzatura Personalizzato Dark Cockpit */}
+      <div ref={equipmentDropdownRef} style={{ position: 'relative', flex: '0 1 155px', minWidth: '145px' }}>
+        <button
+          type="button"
+          onClick={() => {
+            setIsEquipmentOpen((prev) => !prev);
+            setIsMuscleOpen(false);
+            setIsLevelOpen(false);
+            setIsQualityOpen(false);
+          }}
+          title="Filtra per attrezzatura disponibile"
+          style={{
+            width: '100%',
+            background: 'var(--bg-body, #0b0e14)',
+            border: isEquipmentOpen ? '1px solid #6366f1' : '1px solid var(--border, #1f293d)',
+            borderRadius: '0.375rem',
+            padding: '0.55rem 0.75rem',
+            color: 'var(--text-primary, #f1f5f9)',
+            fontSize: '0.85rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '0.35rem',
+            cursor: 'pointer',
+            outline: 'none',
+          }}
+        >
+          <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            {selectedEquipment === 'Tutta' ? 'Tutta Attrezzatura' : selectedEquipment}
+          </span>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{
+              flexShrink: 0,
+              transform: isEquipmentOpen ? 'rotate(180deg)' : 'none',
+              transition: 'transform 0.15s ease',
+              color: '#94a3b8',
+            }}
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+
+        {isEquipmentOpen && (
+          <div
+            style={{
+              position: 'absolute',
+              top: 'calc(100% + 4px)',
+              left: 0,
+              minWidth: '100%',
+              width: 'max-content',
+              background: '#111827',
+              border: '1px solid #1f293d',
+              borderRadius: '0.5rem',
+              boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.7)',
+              zIndex: 60,
+              padding: '0.35rem 0',
+              maxHeight: '260px',
+              overflowY: 'auto',
+            }}
+          >
+            {CANONICAL_EQUIPMENTS.map((eq) => {
+              const isSelected = selectedEquipment === eq;
+              return (
+                <button
+                  key={eq}
+                  type="button"
+                  onClick={() => {
+                    onEquipmentChange(eq);
+                    setIsEquipmentOpen(false);
+                  }}
+                  style={{
+                    width: '100%',
+                    textAlign: 'left',
+                    background: isSelected ? 'rgba(99, 102, 241, 0.15)' : 'transparent',
+                    color: isSelected ? '#a5b4fc' : '#e2e8f0',
+                    border: 'none',
+                    padding: '0.45rem 0.85rem',
+                    fontSize: '0.825rem',
+                    fontWeight: isSelected ? 700 : 400,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '0.75rem',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isSelected) e.currentTarget.style.background = '#1e293b';
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isSelected) e.currentTarget.style.background = 'transparent';
+                  }}
+                >
+                  <span>{eq === 'Tutta' ? 'Tutta Attrezzatura' : eq}</span>
+                  {isSelected && <span style={{ fontSize: '0.75rem', color: '#818cf8' }}>✓</span>}
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {/* Dropdown Qualità Neuromuscolare Personalizzato Dark Cockpit */}
+      <div ref={qualityDropdownRef} style={{ position: 'relative', flex: '0 1 145px', minWidth: '135px' }}>
+        <button
+          type="button"
+          onClick={() => {
+            setIsQualityOpen((prev) => !prev);
+            setIsMuscleOpen(false);
+            setIsLevelOpen(false);
+            setIsEquipmentOpen(false);
+          }}
+          title="Filtra per qualità neuromuscolare"
+          style={{
+            width: '100%',
+            background: 'var(--bg-body, #0b0e14)',
+            border: isQualityOpen ? '1px solid #6366f1' : '1px solid var(--border, #1f293d)',
+            borderRadius: '0.375rem',
+            padding: '0.55rem 0.75rem',
+            color: 'var(--text-primary, #f1f5f9)',
+            fontSize: '0.85rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '0.35rem',
+            cursor: 'pointer',
+            outline: 'none',
+          }}
+        >
+          <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            {selectedQuality === 'Tutte' ? 'Tutte le Qualità' : selectedQuality}
+          </span>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{
+              flexShrink: 0,
+              transform: isQualityOpen ? 'rotate(180deg)' : 'none',
+              transition: 'transform 0.15s ease',
+              color: '#94a3b8',
+            }}
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+
+        {isQualityOpen && (
+          <div
+            style={{
+              position: 'absolute',
+              top: 'calc(100% + 4px)',
+              left: 0,
+              minWidth: '100%',
+              width: 'max-content',
+              background: '#111827',
+              border: '1px solid #1f293d',
+              borderRadius: '0.5rem',
+              boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.7)',
+              zIndex: 60,
+              padding: '0.35rem 0',
+            }}
+          >
+            {CANONICAL_QUALITIES.map((q) => {
+              const isSelected = selectedQuality === q;
+              return (
+                <button
+                  key={q}
+                  type="button"
+                  onClick={() => {
+                    onQualityChange(q);
+                    setIsQualityOpen(false);
+                  }}
+                  style={{
+                    width: '100%',
+                    textAlign: 'left',
+                    background: isSelected ? 'rgba(99, 102, 241, 0.15)' : 'transparent',
+                    color: isSelected ? '#a5b4fc' : '#e2e8f0',
+                    border: 'none',
+                    padding: '0.45rem 0.85rem',
+                    fontSize: '0.825rem',
+                    fontWeight: isSelected ? 700 : 400,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '0.75rem',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isSelected) e.currentTarget.style.background = '#1e293b';
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isSelected) e.currentTarget.style.background = 'transparent';
+                  }}
+                >
+                  <span>{q === 'Tutte' ? 'Tutte le Qualità' : q}</span>
+                  {isSelected && <span style={{ fontSize: '0.75rem', color: '#818cf8' }}>✓</span>}
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
 
       {/* Pulsante Reset Filtri (visibile solo se attivi) */}
       {isFilterActive && (

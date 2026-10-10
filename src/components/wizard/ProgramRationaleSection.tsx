@@ -139,6 +139,100 @@ export const ProgramRationaleSection: React.FC<ProgramRationaleSectionProps> = (
         </div>
       )}
 
+      {/* Evidenze Scientifiche Pertinenti dalla Letteratura Peer-Reviewed */}
+      {rationale.matchedEvidence && rationale.matchedEvidence.length > 0 && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '0.25rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Evidenze Scientifiche Peer-Reviewed Correlate ({rationale.matchedEvidence.length})
+            </span>
+            <span style={{ fontSize: '0.75rem', color: '#64748b' }}>
+              Banca Dati Indicizzata PubMed / DOI
+            </span>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '0.85rem'
+            }}
+          >
+            {rationale.matchedEvidence.map((ev) => (
+              <div
+                key={ev.id}
+                style={{
+                  background: '#0f172a',
+                  border: '1px solid #1e293b',
+                  borderRadius: '0.5rem',
+                  padding: '1rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.5rem',
+                  justifyContent: 'space-between'
+                }}
+              >
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
+                    <span
+                      style={{
+                        background: 'rgba(99, 102, 241, 0.15)',
+                        color: '#818cf8',
+                        padding: '0.2rem 0.5rem',
+                        borderRadius: '0.25rem',
+                        fontSize: '0.68rem',
+                        fontWeight: 700,
+                        textTransform: 'uppercase'
+                      }}
+                    >
+                      {ev.category}
+                    </span>
+                    <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600 }}>
+                      {ev.year}
+                    </span>
+                  </div>
+
+                  <h5 style={{ margin: 0, fontSize: '0.85rem', fontWeight: 700, color: '#f8fafc', lineHeight: 1.35 }}>
+                    {ev.title}
+                  </h5>
+                  <p style={{ margin: '0.25rem 0 0', fontSize: '0.75rem', color: '#94a3b8' }}>
+                    {ev.authors} — <em>{ev.journal}</em>
+                  </p>
+                  <p style={{ margin: '0.5rem 0 0', fontSize: '0.78rem', color: '#cbd5e1', lineHeight: 1.45 }}>
+                    {ev.takeaway}
+                  </p>
+                </div>
+
+                {ev.url && (
+                  <a
+                    href={ev.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.35rem',
+                      fontSize: '0.75rem',
+                      color: '#38bdf8',
+                      textDecoration: 'none',
+                      fontWeight: 600,
+                      marginTop: '0.5rem'
+                    }}
+                  >
+                    <span>Leggi evidenza su PubMed</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Prescrizioni di Sicurezza Clinica */}
       {clinicalNotes.length > 0 && (
         <div

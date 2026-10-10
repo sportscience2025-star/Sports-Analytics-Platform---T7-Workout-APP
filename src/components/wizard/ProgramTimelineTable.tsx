@@ -110,7 +110,9 @@ export const ProgramTimelineTable: React.FC<ProgramTimelineTableProps> = ({ phas
                 </td>
                 <td style={TABLE_CELL_STYLE}>
                   <div style={{ fontWeight: 600, color: '#f8fafc' }}>
-                    Fase {phase.phaseIndex}: {phase.name}
+                    {phase.name.startsWith('Fase') || phase.name.startsWith('Blocco')
+                      ? phase.name
+                      : `Fase ${phase.phaseIndex}: ${phase.name}`}
                   </div>
                   {phase.kneeRomLimitDeg && (
                     <span

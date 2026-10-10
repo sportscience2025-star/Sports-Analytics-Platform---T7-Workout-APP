@@ -149,9 +149,12 @@ export const VbtCharts: React.FC<VbtChartsProps> = ({ points, results, mvt }) =>
             },
             scales: {
               x: {
+                type: 'linear',
+                min: 0,
+                max: Math.ceil(maxLoad / 20) * 20,
                 title: { display: true, text: 'Carico (kg)', color: '#94a3b8' },
                 grid: { color: 'rgba(255, 255, 255, 0.05)' },
-                ticks: { color: '#94a3b8' },
+                ticks: { color: '#94a3b8', stepSize: 20 },
               },
               y: {
                 title: { display: true, text: 'Velocità Media (m/s)', color: '#94a3b8' },
@@ -191,8 +194,12 @@ export const VbtCharts: React.FC<VbtChartsProps> = ({ points, results, mvt }) =>
 
       const ctx2 = powerCanvasRef.current.getContext('2d');
       if (ctx2) {
+        const gradient = ctx2.createLinearGradient(0, 0, 0, 240);
+        gradient.addColorStop(0, 'rgba(217, 70, 239, 0.35)');
+        gradient.addColorStop(1, 'rgba(217, 70, 239, 0.02)');
+
         powerChartRef.current = new ChartJS(ctx2, {
-          type: 'line',
+          type: 'scatter',
           data: {
             datasets: [
               {
@@ -211,11 +218,11 @@ export const VbtCharts: React.FC<VbtChartsProps> = ({ points, results, mvt }) =>
                 data: powerLineData,
                 type: 'line',
                 borderColor: '#d946ef',
-                backgroundColor: 'rgba(217, 70, 239, 0.1)',
+                backgroundColor: gradient,
                 borderWidth: 2.5,
                 fill: true,
                 pointRadius: 0,
-                tension: 0.3,
+                tension: 0.35,
                 order: 1,
               },
             ],
@@ -236,9 +243,12 @@ export const VbtCharts: React.FC<VbtChartsProps> = ({ points, results, mvt }) =>
             },
             scales: {
               x: {
+                type: 'linear',
+                min: 0,
+                max: Math.ceil(maxLoad / 20) * 20,
                 title: { display: true, text: 'Carico (kg)', color: '#94a3b8' },
                 grid: { color: 'rgba(255, 255, 255, 0.05)' },
-                ticks: { color: '#94a3b8' },
+                ticks: { color: '#94a3b8', stepSize: 20 },
               },
               y: {
                 title: { display: true, text: 'Potenza Meccanica (Watt)', color: '#94a3b8' },

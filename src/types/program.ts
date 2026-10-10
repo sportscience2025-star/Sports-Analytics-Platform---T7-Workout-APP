@@ -51,12 +51,24 @@ export interface PhaseBlueprint {
   weeklyFocus: string;
 }
 
+export interface ScientificEvidenceCard {
+  id: string;
+  category: string;
+  title: string;
+  authors: string;
+  journal: string;
+  year: number;
+  takeaway: string;
+  url: string;
+}
+
 export interface ScientificRationale {
   athleteProfile: string;
   periodizationArchitecture: string;
   biomechanicalPrescriptions: string;
   vbtStrategy: string;
   citations: string[];
+  matchedEvidence?: ScientificEvidenceCard[];
 }
 
 export interface WorkoutProgram {

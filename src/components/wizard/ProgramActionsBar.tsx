@@ -46,14 +46,6 @@ export const ProgramActionsBar: React.FC<ProgramActionsBarProps> = ({
   onReset,
   position
 }) => {
-  const handleResetWithConfirmation = () => {
-    const confirmed = window.confirm(
-      'Sei sicuro di voler chiudere la scheda corrente e avviare una nuova programmazione? Le modifiche non salvate andranno perse.'
-    );
-    if (confirmed) {
-      onReset();
-    }
-  };
 
   const containerStyle: React.CSSProperties = {
     display: 'flex',
@@ -121,7 +113,7 @@ export const ProgramActionsBar: React.FC<ProgramActionsBarProps> = ({
 
       <button
         type="button"
-        onClick={handleResetWithConfirmation}
+        onClick={onReset}
         className="btn-close-report"
         style={{
           ...BASE_BTN_STYLE,
@@ -130,7 +122,7 @@ export const ProgramActionsBar: React.FC<ProgramActionsBarProps> = ({
           border: '1px solid #334155',
         }}
       >
-        &lt;- Nuova Scheda
+        + Nuova Scheda
       </button>
     </div>
   );

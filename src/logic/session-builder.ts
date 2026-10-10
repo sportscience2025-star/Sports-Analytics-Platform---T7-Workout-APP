@@ -173,7 +173,8 @@ function pickExercisesForFocus(
   catalog: Exercise[],
   focus: string,
   userEquipment: string = '',
-  count: number = 4
+  count: number = 4,
+  dayOffset: number = 0
 ): Exercise[] {
   const normalizedFocus = focus.toLowerCase();
 
@@ -189,51 +190,49 @@ function pickExercisesForFocus(
   const matched = catalog.filter((ex) => {
     if (!isEquipmentOk(ex)) return false;
     const pm = ex.primaryMuscle.toLowerCase();
-    const muscles = ex.muscles.map((m) => m.toLowerCase());
 
-    if (normalizedFocus.includes('upper') || normalizedFocus.includes('petto') || normalizedFocus.includes('dorso') || normalizedFocus.includes('spalle')) {
-      return (
-        pm.includes('dorsale') ||
-        pm.includes('petto') ||
-        pm.includes('deltoide') ||
-        pm.includes('trapezio') ||
-        pm.includes('bicipite') ||
-        pm.includes('tricipite')
-      );
+    if (normalizedFocus.includes('spinta') || normalizedFocus.includes('push') || normalizedFocus.includes('petto')) {
+      return pm.includes('petto') || pm.includes('deltoide') || pm.includes('tricipite');
     }
 
-    if (normalizedFocus.includes('lower') || normalizedFocus.includes('gambe') || normalizedFocus.includes('glutei')) {
-      return (
-        pm.includes('vasto') ||
-        pm.includes('gluteo') ||
-        pm.includes('femorale') ||
-        pm.includes('gastrocnemio') ||
-        pm.includes('adduttori')
-      );
+    if (normalizedFocus.includes('tirata') || normalizedFocus.includes('pull') || normalizedFocus.includes('dorso')) {
+      return pm.includes('dorsale') || pm.includes('trapezio') || pm.includes('bicipite');
     }
 
-    // Full Body o Generale
+    if (normalizedFocus.includes('lower') || normalizedFocus.includes('gambe') || normalizedFocus.includes('squat')) {
+      return pm.includes('vasto') || pm.includes('gluteo') || pm.includes('femorale') || pm.includes('gastrocnemio');
+    }
+
+    if (normalizedFocus.includes('potenza')) {
+      return ex.type === 'Multiarticolare' && (ex.quality === 'Potenza' || ex.quality === 'Forza');
+    }
+
+    // Default Full Body / Rotazione per dayOffset
     return true;
   });
 
-  if (matched.length === 0) {
-    return catalog.slice(0, count);
-  }
+  const pool = matched.length >= count ? matched : catalog;
 
-  // Seleziona un subset bilanciato tra multiarticolari e isolamento
-  const multi = matched.filter((ex) => ex.type === 'Multiarticolare');
-  const iso = matched.filter((ex) => ex.type === 'Isolamento' || ex.type === 'Isometrico');
+  // Seleziona un subset bilanciato tra multiarticolari e isolamento, ruotando con dayOffset
+  const multi = pool.filter((ex) => ex.type === 'Multiarticolare');
+  const iso = pool.filter((ex) => ex.type === 'Isolamento' || ex.type === 'Isometrico');
 
   const selected: Exercise[] = [];
-  if (multi.length > 0) selected.push(multi[0]);
-  if (multi.length > 1) selected.push(multi[1]);
-  if (iso.length > 0) selected.push(iso[0]);
-  if (iso.length > 1) selected.push(iso[1]);
+  const multiStart = multi.length > 0 ? (dayOffset * 2) % multi.length : 0;
+  const isoStart = iso.length > 0 ? (dayOffset * 2) % iso.length : 0;
 
-  while (selected.length < count && matched.length > selected.length) {
-    const next = matched.find((ex) => !selected.includes(ex));
-    if (next) selected.push(next);
-    else break;
+  if (multi.length > 0) selected.push(multi[multiStart]);
+  if (multi.length > 1) selected.push(multi[(multiStart + 1) % multi.length]);
+  if (iso.length > 0) selected.push(iso[isoStart]);
+  if (iso.length > 1) selected.push(iso[(isoStart + 1) % iso.length]);
+
+  let fallbackIdx = (dayOffset * count) % pool.length;
+  while (selected.length < count && selected.length < pool.length) {
+    const candidate = pool[fallbackIdx % pool.length];
+    if (!selected.some((s) => s.id === candidate.id)) {
+      selected.push(candidate);
+    }
+    fallbackIdx++;
   }
 
   return selected;
@@ -259,7 +258,7 @@ export function buildWorkoutSession(options: BuildSessionOptions): WorkoutSessio
     availableExercises,
   } = options;
 
-  const dayName = DAY_NAMES[dayIndex % DAY_NAMES.length];
+  const dayName = DAY_NAMES[(dayIndex - 1) % DAY_NAMES.length];
 
   // 1. Riscaldamento
   const warmup = buildWarmupProtocol({
@@ -279,21 +278,52 @@ export function buildWorkoutSession(options: BuildSessionOptions): WorkoutSessio
   if (isClinical && patientType !== 'Atleta') {
     exercises = buildClinicalKneeExercises(phaseIndex, focus);
   } else {
-    const rawExercises = pickExercisesForFocus(availableExercises, focus, equipment, 4);
+    const rawExercises = pickExercisesForFocus(availableExercises, focus, equipment, 4, dayIndex);
+    const isStrengthFocus = focus.toLowerCase().includes('forza');
+    const isHypertrophyFocus = focus.toLowerCase().includes('ipertrofia');
+    const isPowerFocus = focus.toLowerCase().includes('potenza');
+    const isDeload = focus.toLowerCase().includes('scarico') || rpeCap <= 6;
 
     exercises = rawExercises.map((ex, idx) => {
       const isMain = idx < 2 && ex.type === 'Multiarticolare';
-      const sets = isMain ? 4 : DEFAULT_SETS;
-      const reps = isMain ? 6 : 10;
-      const loadPct = Math.round(intensityRange[0] + (intensityRange[1] - intensityRange[0]) * 0.5);
-      const rpe = Math.min(rpeCap, isMain ? rpeCap : Math.max(5, rpeCap - 1));
-      const restSec = isMain ? 120 : DEFAULT_REST_SEC;
-      const tempo = isMain ? '2-0-1' : '2-1-2';
+      let sets = isMain ? 4 : DEFAULT_SETS;
+      let reps: string | number = isMain ? 6 : 10;
+      let loadPct = Math.round(intensityRange[0] + (intensityRange[1] - intensityRange[0]) * 0.5);
+      let rpe = Math.min(rpeCap, isMain ? rpeCap : Math.max(5, rpeCap - 1));
+      let restSec = isMain ? 120 : DEFAULT_REST_SEC;
+      let tempo = isMain ? '2-0-1' : '2-1-2';
+
+      if (isDeload) {
+        sets = isMain ? 3 : 2;
+        reps = '8-10';
+        loadPct = Math.max(45, Math.round(intensityRange[0] * 0.9));
+        rpe = 5.5;
+        restSec = 60;
+        tempo = '2-0-2';
+      } else if (isStrengthFocus) {
+        sets = isMain ? 4 : 3;
+        reps = isMain ? '3-5' : '6-8';
+        loadPct = isMain ? Math.max(intensityRange[1] - 3, 78) : Math.max(intensityRange[0], 68);
+        restSec = isMain ? 150 : 90;
+        tempo = isMain ? '2-0-1' : '2-1-1';
+      } else if (isHypertrophyFocus) {
+        sets = isMain ? 4 : 3;
+        reps = isMain ? '8-10' : '10-12';
+        loadPct = isMain ? 72 : 65;
+        restSec = isMain ? 90 : 60;
+        tempo = '3-1-2';
+      } else if (isPowerFocus) {
+        sets = isMain ? 4 : 3;
+        reps = isMain ? '3-5' : '5-6';
+        loadPct = isMain ? 58 : 50;
+        restSec = isMain ? 120 : 90;
+        tempo = 'X-0-1';
+      }
 
       return {
         id: ex.id,
         name: ex.name,
-        category: isMain ? 'Main' : 'Accessory',
+        category: (isMain ? 'Main' : 'Accessory') as FormattedExercise['category'],
         sets,
         reps,
         loadPct1RM: loadPct,
@@ -301,7 +331,7 @@ export function buildWorkoutSession(options: BuildSessionOptions): WorkoutSessio
         restSec,
         tempo,
         exerciseRef: ex,
-        notes: ex.execution.cues ? ex.execution.cues[0] : undefined,
+        notes: ex.execution.cues ? ex.execution.cues[0] : `Focus su traiettoria e stabilità (${ex.primaryMuscle}).`,
       };
     });
   }
