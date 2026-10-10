@@ -2875,71 +2875,139 @@ button {
     border-color: #6b7280;
 }
 
-/* --- PRINT OPTIMIZATION --- */
+/* --- PRINT OPTIMIZATION (A4 High-Density Dossier) --- */
+@page {
+    size: A4 portrait;
+    margin: 10mm 12mm 12mm 12mm;
+}
+
 @media print {
-    body, html {
-        background-color: #ffffff !important;
-        color: #000000 !important;
+    *, *::before, *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
     }
-    
-    .app-header, 
-    #generator-form, 
-    .prog-header-v3, 
-    .report-actions-v3,
-    .impact-summary,
+
+    body, html, .t7-app-root {
+        background-color: #ffffff !important;
+        color: #0f172a !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Soppressione di tutti gli elementi di interfaccia, controlli e navigazione */
+    header,
+    nav,
+    .app-header,
+    .main-nav,
     .bottom-nav,
     #bottom-nav,
-    .main-nav,
+    #generator-form,
+    .report-actions-v3,
+    .report-actions-top,
+    .report-actions-bottom,
     .phase-selector-section,
-    .screen-only-phase-container {
+    .screen-only-phase-container,
+    .impact-summary,
+    .btn-ex-detail,
+    .ex-action-btn,
+    .ca-chevron,
+    .bib-chevron,
+    button,
+    input,
+    select,
+    .workout-wizard-container > .section-header,
+    .workout-wizard-container > div:first-of-type,
+    .workout-wizard-container > section:nth-of-type(2) {
         display: none !important;
     }
 
-    .app-container, .programming-container, .program-result-v3 {
+    .app-container,
+    .programming-container,
+    .program-result-v3,
+    .workout-wizard-container {
         margin: 0 !important;
         padding: 0 !important;
         background: transparent !important;
         box-shadow: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
-    .program-result-v3 {
-        animation: none !important;
+    /* Reset forzato a layout tabellare puro */
+    .prog-table,
+    .ex-interactive-table,
+    table {
+        display: table !important;
+        width: 100% !important;
+        border-collapse: collapse !important;
+        margin-bottom: 8pt !important;
     }
 
-    .day-card {
-        page-break-inside: avoid;
-        border: 1px solid #ddd !important;
-        background: #fff !important;
-        box-shadow: none !important;
+    .prog-table thead,
+    .ex-interactive-table thead,
+    thead {
+        display: table-header-group !important;
     }
 
-    .exercise-card {
-        page-break-inside: avoid;
-        border: 1px solid #eee !important;
-        background: #fafafa !important;
+    .prog-table tbody,
+    .ex-interactive-table tbody,
+    tbody {
+        display: table-row-group !important;
     }
 
-    .rh-val, .day-card h4, .ex-name, .ex-meta div {
-        color: #000 !important;
+    .prog-table tr,
+    .ex-row-interactive,
+    tr {
+        display: table-row !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
     }
 
-    .ex-detail {
-        color: #333 !important;
+    .prog-table td,
+    .prog-table th,
+    .ex-interactive-table td,
+    .ex-interactive-table th,
+    td,
+    th {
+        display: table-cell !important;
+        padding: 4pt 6pt !important;
+        border: 0.75pt solid #cbd5e1 !important;
+        vertical-align: middle !important;
+        color: #0f172a !important;
     }
 
-    .prog-table th, .prog-table td {
-        border-color: #ddd !important;
-        color: #000 !important;
+    th {
+        background-color: #f1f5f9 !important;
+        font-weight: 700 !important;
     }
 
-    /* Print all elements in black to save ink */
-    * {
-        color: #000 !important;
-        text-shadow: none !important;
+    .prog-table td::before,
+    .ex-interactive-table td::before,
+    td::before {
+        content: none !important;
+        display: none !important;
     }
-    
-    .ex-meta {
-        background: transparent !important;
+
+    /* Controllo salti pagina */
+    .day-card,
+    .rc-block,
+    .periodization-card-v3,
+    .clinical-alerts-v2,
+    .bib-item,
+    .rationale-box,
+    .master-block {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        margin-bottom: 8pt !important;
+        border: 0.75pt solid #cbd5e1 !important;
+        background: #ffffff !important;
+    }
+
+    .page-break {
+        break-after: page !important;
+        page-break-after: always !important;
     }
 }
 

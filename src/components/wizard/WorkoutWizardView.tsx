@@ -16,6 +16,9 @@ import { ExerciseSwapModal } from '../exercises/ExerciseSwapModal';
 import { downloadProgramSpreadsheet } from '../../logic/excel-exporter';
 import { printWorkoutProgram } from '../../logic/pdf-exporter';
 import { downloadBackupFile } from '../../logic/data-persistence';
+import { ProgramTimelineTable } from './ProgramTimelineTable';
+import { ProgramActionsBar } from './ProgramActionsBar';
+import { ProgramRationaleSection } from './ProgramRationaleSection';
 
 export const WorkoutWizardView: React.FC = () => {
   const {
@@ -614,8 +617,18 @@ export const WorkoutWizardView: React.FC = () => {
             gap: '1.25rem'
           }}
         >
-          {/* Header Programma */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
+          {/* Header Programma & Barra Azioni Superiore */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'flex-start',
+              flexWrap: 'wrap',
+              gap: '1rem',
+              borderBottom: '1px solid #1e293b',
+              paddingBottom: '1rem'
+            }}
+          >
             <div>
               <span style={{ fontSize: '0.75rem', color: '#6366f1', fontWeight: 700, textTransform: 'uppercase' }}>
                 Scheda Generata con Successo
@@ -630,161 +643,51 @@ export const WorkoutWizardView: React.FC = () => {
               </div>
             </div>
 
+            <ProgramActionsBar
+              position="top"
+              onExportExcel={() => downloadProgramSpreadsheet(program)}
+              onExportPdf={() => printWorkoutProgram(program)}
+              onBackupJson={downloadBackupFile}
+              onReset={resetProgram}
+            />
+          </div>
+
+          {/* 1. Timeline Settimane & Suddivisione Macrociclo (In Cima) */}
+          <ProgramTimelineTable phases={program.phases} />
+
+          {/* 2. Esplora Fasi del Programma (Schede Operative) */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
+              <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
+                Esplora Fasi del Programma
+              </h4>
+              <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>
+                Seleziona una fase per visualizzare le sedute operative e personalizzare gli esercizi.
+              </span>
+            </div>
+
+            {/* Navigazione Fasi (Tab Selettori) */}
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-              <button
-                type="button"
-                onClick={() => downloadProgramSpreadsheet(program)}
-                style={{
-                  padding: '0.45rem 0.85rem',
-                  background: '#047857',
-                  color: '#ffffff',
-                  border: 'none',
-                  borderRadius: '0.375rem',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
-                  cursor: 'pointer'
-                }}
-              >
-                Esporta Excel (CSV)
-              </button>
-
-              <button
-                type="button"
-                onClick={() => printWorkoutProgram(program)}
-                style={{
-                  padding: '0.45rem 0.85rem',
-                  background: '#0284c7',
-                  color: '#ffffff',
-                  border: 'none',
-                  borderRadius: '0.375rem',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
-                  cursor: 'pointer'
-                }}
-              >
-                Stampa / PDF
-              </button>
-
-              <button
-                type="button"
-                onClick={downloadBackupFile}
-                style={{
-                  padding: '0.45rem 0.85rem',
-                  background: '#475569',
-                  color: '#ffffff',
-                  border: 'none',
-                  borderRadius: '0.375rem',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
-                  cursor: 'pointer'
-                }}
-              >
-                Backup JSON
-              </button>
-
-              <button
-                type="button"
-                onClick={resetProgram}
-                style={{
-                  padding: '0.45rem 0.85rem',
-                  background: '#1e293b',
-                  color: '#94a3b8',
-                  border: '1px solid #334155',
-                  borderRadius: '0.375rem',
-                  fontSize: '0.8rem',
-                  cursor: 'pointer'
-                }}
-              >
-                Chiudi
-              </button>
+              {program.phases.map((phase) => (
+                <button
+                  key={phase.phaseIndex}
+                  type="button"
+                  onClick={() => setActivePhaseIndex(phase.phaseIndex)}
+                  style={{
+                    padding: '0.5rem 0.85rem',
+                    borderRadius: '0.375rem',
+                    border: 'none',
+                    background: activePhaseIndex === phase.phaseIndex ? '#6366f1' : '#1e293b',
+                    color: activePhaseIndex === phase.phaseIndex ? '#ffffff' : '#94a3b8',
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                    cursor: 'pointer'
+                  }}
+                >
+                  {phase.name} ({phase.durationWeeks} sett.)
+                </button>
+              ))}
             </div>
-          </div>
-
-          {/* Rationale Scientifico - 4 Pilastri */}
-          <div
-            style={{
-              background: '#090d16',
-              border: '1px solid #1e293b',
-              borderRadius: '0.5rem',
-              padding: '1rem',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '0.75rem'
-            }}
-          >
-            <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
-              Rationale Scientifico &amp; Evidenze di Riferimento
-            </h4>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.85rem' }}>
-              <div style={{ background: '#1e293b', padding: '0.75rem', borderRadius: '0.375rem' }}>
-                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#38bdf8', display: 'block' }}>
-                  1. Profilo &amp; Contesto
-                </span>
-                <p style={{ fontSize: '0.8rem', color: '#cbd5e1', margin: '0.25rem 0 0' }}>
-                  {program.rationale.athleteProfile}
-                </p>
-              </div>
-
-              <div style={{ background: '#1e293b', padding: '0.75rem', borderRadius: '0.375rem' }}>
-                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#a78bfa', display: 'block' }}>
-                  2. Architettura di Periodizzazione
-                </span>
-                <p style={{ fontSize: '0.8rem', color: '#cbd5e1', margin: '0.25rem 0 0' }}>
-                  {program.rationale.periodizationArchitecture}
-                </p>
-              </div>
-
-              <div style={{ background: '#1e293b', padding: '0.75rem', borderRadius: '0.375rem' }}>
-                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#34d399', display: 'block' }}>
-                  3. Prescrizioni Biomeccaniche
-                </span>
-                <p style={{ fontSize: '0.8rem', color: '#cbd5e1', margin: '0.25rem 0 0' }}>
-                  {program.rationale.biomechanicalPrescriptions}
-                </p>
-              </div>
-
-              <div style={{ background: '#1e293b', padding: '0.75rem', borderRadius: '0.375rem' }}>
-                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#f472b6', display: 'block' }}>
-                  4. Strategia Velocity-Based Training
-                </span>
-                <p style={{ fontSize: '0.8rem', color: '#cbd5e1', margin: '0.25rem 0 0' }}>
-                  {program.rationale.vbtStrategy}
-                </p>
-              </div>
-            </div>
-
-            <div style={{ borderTop: '1px solid #1e293b', paddingTop: '0.5rem' }}>
-              <span style={{ fontSize: '0.75rem', color: '#64748b', display: 'block' }}>Bibliografia:</span>
-              <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.75rem', color: '#94a3b8' }}>
-                {program.rationale.citations.map((c, idx) => (
-                  <li key={idx}>{c}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Navigazione Fasi */}
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-            {program.phases.map((phase) => (
-              <button
-                key={phase.phaseIndex}
-                type="button"
-                onClick={() => setActivePhaseIndex(phase.phaseIndex)}
-                style={{
-                  padding: '0.5rem 0.85rem',
-                  borderRadius: '0.375rem',
-                  border: 'none',
-                  background: activePhaseIndex === phase.phaseIndex ? '#6366f1' : '#1e293b',
-                  color: activePhaseIndex === phase.phaseIndex ? '#ffffff' : '#94a3b8',
-                  fontSize: '0.85rem',
-                  fontWeight: 600,
-                  cursor: 'pointer'
-                }}
-              >
-                {phase.name} ({phase.durationWeeks} sett.)
-              </button>
-            ))}
           </div>
 
           {/* Dettagli Fase Selezionata */}
@@ -849,6 +752,22 @@ export const WorkoutWizardView: React.FC = () => {
                         </span>
                       </div>
 
+                      {/* Riscaldamento (se presente) */}
+                      {sess.warmup && sess.warmup.length > 0 && (
+                        <div
+                          style={{
+                            background: '#1e293b',
+                            borderRadius: '0.25rem',
+                            padding: '0.45rem 0.6rem',
+                            fontSize: '0.75rem',
+                            color: '#94a3b8'
+                          }}
+                        >
+                          <strong style={{ color: '#38bdf8' }}>Riscaldamento: </strong>
+                          {sess.warmup.map((w) => `${w.name} (${w.sets}x${w.reps})`).join(' • ')}
+                        </div>
+                      )}
+
                       {/* Esercizi della Seduta */}
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                         {sess.exercises.map((ex, eIdx) => (
@@ -905,12 +824,45 @@ export const WorkoutWizardView: React.FC = () => {
                           </div>
                         ))}
                       </div>
+
+                      {/* Defaticamento (se presente) */}
+                      {sess.cooldown && sess.cooldown.length > 0 && (
+                        <div
+                          style={{
+                            background: '#1e293b',
+                            borderRadius: '0.25rem',
+                            padding: '0.45rem 0.6rem',
+                            fontSize: '0.75rem',
+                            color: '#94a3b8'
+                          }}
+                        >
+                          <strong style={{ color: '#a78bfa' }}>Defaticamento: </strong>
+                          {sess.cooldown.map((c) => `${c.name} (${c.sets}x${c.reps})`).join(' • ')}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
               </div>
             );
           })()}
+
+          {/* 3. Rationale Scientifico, Periodizzazione, Note Cliniche & Bibliografia (In Fondo) */}
+          <ProgramRationaleSection
+            rationale={program.rationale}
+            periodizationMethod={program.periodizationMethod}
+            periodizationDetail={periodizationDetail}
+            clinicalNotes={program.riskProfile.notes}
+          />
+
+          {/* 4. Barra Azioni Inferiore (In Calce) */}
+          <ProgramActionsBar
+            position="bottom"
+            onExportExcel={() => downloadProgramSpreadsheet(program)}
+            onExportPdf={() => printWorkoutProgram(program)}
+            onBackupJson={downloadBackupFile}
+            onReset={resetProgram}
+          />
         </section>
       )}
 
