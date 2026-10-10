@@ -19,6 +19,7 @@ import { downloadBackupFile } from '../../logic/data-persistence';
 import { ProgramTimelineTable } from './ProgramTimelineTable';
 import { ProgramActionsBar } from './ProgramActionsBar';
 import { ProgramRationaleSection } from './ProgramRationaleSection';
+import { ProgramPrintDossier } from './ProgramPrintDossier';
 
 export const WorkoutWizardView: React.FC = () => {
   const {
@@ -617,7 +618,9 @@ export const WorkoutWizardView: React.FC = () => {
             gap: '1.25rem'
           }}
         >
-          {/* Header Programma & Barra Azioni Superiore */}
+          {/* Vista Interattiva a Schermo (Esclusa in fase di stampa da .screen-only-program-view) */}
+          <div className="screen-only-program-view" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            {/* Header Programma & Barra Azioni Superiore */}
           <div
             style={{
               display: 'flex',
@@ -863,7 +866,14 @@ export const WorkoutWizardView: React.FC = () => {
             onBackupJson={downloadBackupFile}
             onReset={resetProgram}
           />
-        </section>
+        </div>
+
+        {/* Dossier Completo A4 per Stampa (Tutte le Fasi 1..N - Visibile SOLO in Stampa) */}
+        <ProgramPrintDossier
+          program={program}
+          periodizationDetail={periodizationDetail}
+        />
+      </section>
       )}
 
       {/* Modale Sostituzione Esercizio */}

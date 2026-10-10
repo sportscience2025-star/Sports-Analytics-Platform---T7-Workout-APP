@@ -9,12 +9,12 @@
  * - Regola R1: Zero any, TypeScript strict.
  */
 
-// Pattern di debug da rimuovere dalle fonti scientifiche
-const RAG_DEBUG_SCORE_PATTERN = /\s*\(?\b(?:similarity\s+score|score)\s*:\s*[\d.]+\)?/gi;
-const RAG_PREFIX_PATTERN = /\bEvidenza\s+RAG\s*:\s*/gi;
-const DOC_EXT_PATTERN = /\.(?:docx|pdf|txt|md)\b/gi;
+// Pattern di debug da rimuovere dalle fonti scientifiche (supporta parentesi tonde e quadre, cosine similarity, score, ecc.)
+const RAG_DEBUG_SCORE_PATTERN = /[\[\(]?\s*\b(?:similarity\s+score|cosine\s+similarity|similarity|rag\s+score|score)\s*:\s*[\d.]+\s*[\]\)]?/gi;
+const RAG_PREFIX_PATTERN = /^\s*(?:\[\s*RAG\s*\]\s*|(?:\b(?:Evidenza\s+RAG|Fonte\s+RAG|RAG\s+Evidence|RAG|Evidenza)\s*:\s*))/gi;
+const DOC_EXT_PATTERN = /\.(?:docx|pdf|txt|md|doc|rtf)\b/gi;
 const MULTI_SPACE_PATTERN = /\s{2,}/g;
-const TRAILING_PUNCT_PATTERN = /[-:,;]\s*$/;
+const LEADING_TRAILING_PUNCT_PATTERN = /^[-:,;\[\]\s]+|[-:,;\[\]\s]+$/g;
 
 /**
  * Pulisce una singola citazione bibliografica rimuovendo artefatti di debug RAG.
@@ -30,11 +30,18 @@ export function cleanCitation(rawCitation: string): string {
   let cleaned = rawCitation
     .replace(RAG_DEBUG_SCORE_PATTERN, '')
     .replace(RAG_PREFIX_PATTERN, '')
-    .replace(DOC_EXT_PATTERN, '')
-    .replace(MULTI_SPACE_PATTERN, ' ')
-    .trim();
+    .replace(DOC_EXT_PATTERN, '');
 
-  cleaned = cleaned.replace(TRAILING_PUNCT_PATTERN, '').trim();
+  // Se la stringa contiene trattini bassi (es. nome file tipo 400_METRI_PIANI), converti in spazi
+  if (cleaned.includes('_')) {
+    cleaned = cleaned.replace(/_/g, ' ');
+  }
+
+  cleaned = cleaned
+    .replace(MULTI_SPACE_PATTERN, ' ')
+    .trim()
+    .replace(LEADING_TRAILING_PUNCT_PATTERN, '')
+    .trim();
 
   return cleaned;
 }

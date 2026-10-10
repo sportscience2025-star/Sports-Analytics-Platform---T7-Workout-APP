@@ -59,7 +59,7 @@ export const ProgramTimelineTable: React.FC<ProgramTimelineTableProps> = ({ phas
       phase,
       startWeek,
       endWeek,
-      weekLabel: `Sett. ${startWeek} - ${endWeek}`
+      weekLabel: startWeek === endWeek ? `Sett. ${startWeek}` : `Sett. ${startWeek} - ${endWeek}`
     };
   });
 
@@ -88,7 +88,7 @@ export const ProgramTimelineTable: React.FC<ProgramTimelineTableProps> = ({ phas
       </div>
 
       <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+        <table className="prog-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead>
             <tr>
               <th style={TABLE_HEADER_STYLE}>Settimane</th>

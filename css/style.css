@@ -2876,6 +2876,10 @@ button {
 }
 
 /* --- PRINT OPTIMIZATION (A4 High-Density Dossier) --- */
+.print-only-dossier {
+    display: none !important;
+}
+
 @page {
     size: A4 portrait;
     margin: 10mm 12mm 12mm 12mm;
@@ -2909,6 +2913,7 @@ button {
     .report-actions-bottom,
     .phase-selector-section,
     .screen-only-phase-container,
+    .screen-only-program-view,
     .impact-summary,
     .btn-ex-detail,
     .ex-action-btn,
@@ -2933,6 +2938,12 @@ button {
         box-shadow: none !important;
         width: 100% !important;
         max-width: 100% !important;
+    }
+
+    /* Visualizzazione forzata del dossier A4 in stampa */
+    .print-only-dossier {
+        display: block !important;
+        width: 100% !important;
     }
 
     /* Reset forzato a layout tabellare puro */
@@ -2990,19 +3001,228 @@ button {
         display: none !important;
     }
 
-    /* Controllo salti pagina */
+    /* Struttura Dossier Master Header e Passaporto */
+    .master-header {
+        border-bottom: 2pt solid #0f172a !important;
+        padding-bottom: 6pt !important;
+        margin-bottom: 10pt !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: flex-end !important;
+    }
+
+    .master-header h1 {
+        font-size: 15pt !important;
+        font-weight: 800 !important;
+        margin: 0 !important;
+        color: #0f172a !important;
+        letter-spacing: -0.02em !important;
+    }
+
+    .master-header .sub-title {
+        font-size: 8.5pt !important;
+        color: #475569 !important;
+        margin-top: 2pt !important;
+    }
+
+    .master-header .doc-meta {
+        font-size: 8pt !important;
+        color: #64748b !important;
+        text-align: right !important;
+    }
+
+    .passport-card {
+        background: #f8fafc !important;
+        border: 1pt solid #cbd5e1 !important;
+        border-radius: 3pt !important;
+        padding: 7pt 9pt !important;
+        margin-bottom: 10pt !important;
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 5pt 10pt !important;
+        font-size: 8.5pt !important;
+        break-inside: avoid !important;
+    }
+
+    .passport-item strong {
+        color: #334155 !important;
+    }
+
+    .section-title {
+        font-size: 10pt !important;
+        font-weight: 700 !important;
+        color: #0f172a !important;
+        border-bottom: 1pt solid #cbd5e1 !important;
+        padding-bottom: 2pt !important;
+        margin: 9pt 0 5pt 0 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.03em !important;
+    }
+
+    .rationale-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 6pt !important;
+        margin-bottom: 8pt !important;
+    }
+
+    .rationale-box {
+        border: 0.75pt solid #cbd5e1 !important;
+        border-radius: 3pt !important;
+        background: #f8fafc !important;
+        padding: 5pt 7pt !important;
+        font-size: 8pt !important;
+        break-inside: avoid !important;
+    }
+
+    .rationale-box .r-title {
+        font-size: 7.5pt !important;
+        font-weight: 700 !important;
+        color: #1e40af !important;
+        text-transform: uppercase !important;
+        display: block !important;
+        margin-bottom: 2pt !important;
+    }
+
+    .clinical-alert-box {
+        border: 1pt solid #d97706 !important;
+        background: #fffbeb !important;
+        border-radius: 3pt !important;
+        padding: 6pt 8pt !important;
+        margin-bottom: 8pt !important;
+        font-size: 8pt !important;
+        color: #92400e !important;
+        break-inside: avoid !important;
+    }
+
+    .phase-banner {
+        background: #0f172a !important;
+        color: #ffffff !important;
+        padding: 5pt 8pt !important;
+        border-radius: 3pt !important;
+        margin: 10pt 0 7pt 0 !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+    }
+
+    .phase-banner h2 {
+        font-size: 9.5pt !important;
+        font-weight: 800 !important;
+        margin: 0 !important;
+        letter-spacing: 0.02em !important;
+        color: #ffffff !important;
+    }
+
+    .phase-banner .phase-meta {
+        font-size: 8pt !important;
+        color: #93c5fd !important;
+    }
+
+    /* Controllo salti pagina e schede seduta */
     .day-card,
     .rc-block,
     .periodization-card-v3,
     .clinical-alerts-v2,
     .bib-item,
-    .rationale-box,
     .master-block {
         break-inside: avoid !important;
         page-break-inside: avoid !important;
         margin-bottom: 8pt !important;
         border: 0.75pt solid #cbd5e1 !important;
         background: #ffffff !important;
+    }
+
+    .day-card {
+        padding: 6pt 8pt 4pt 8pt !important;
+        border-radius: 3pt !important;
+    }
+
+    .day-header {
+        border-bottom: 0.75pt solid #e2e8f0 !important;
+        padding-bottom: 3pt !important;
+        margin-bottom: 4pt !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: baseline !important;
+    }
+
+    .day-title {
+        font-size: 9pt !important;
+        font-weight: 700 !important;
+        color: #0f172a !important;
+    }
+
+    .day-focus {
+        font-size: 8pt !important;
+        color: #475569 !important;
+    }
+
+    .aux-routine {
+        font-size: 7.5pt !important;
+        color: #475569 !important;
+        background: #f8fafc !important;
+        border: 0.5pt solid #e2e8f0 !important;
+        border-radius: 2pt !important;
+        padding: 2.5pt 5pt !important;
+        margin-bottom: 4pt !important;
+    }
+
+    .badge-cat {
+        display: inline-block !important;
+        font-size: 7pt !important;
+        font-weight: 600 !important;
+        padding: 1pt 3pt !important;
+        border-radius: 2pt !important;
+        background: #e2e8f0 !important;
+        color: #334155 !important;
+    }
+
+    .ex-note {
+        font-size: 7pt !important;
+        color: #64748b !important;
+        margin-top: 1pt !important;
+    }
+
+    .log-box {
+        font-family: monospace !important;
+        font-size: 7.5pt !important;
+        color: #64748b !important;
+        background: #f8fafc !important;
+        border: 0.5pt dashed #cbd5e1 !important;
+        border-radius: 2pt !important;
+        padding: 2pt 4pt !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+    }
+
+    .bib-section {
+        margin-top: 8pt !important;
+        border-top: 1pt solid #cbd5e1 !important;
+        padding-top: 6pt !important;
+        break-inside: avoid !important;
+    }
+
+    .bib-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 3pt 8pt !important;
+        font-size: 7.25pt !important;
+        color: #475569 !important;
+        margin-top: 4pt !important;
+        line-height: 1.3 !important;
+    }
+
+    .dossier-footer {
+        border-top: 0.75pt solid #cbd5e1 !important;
+        padding-top: 4pt !important;
+        margin-top: 10pt !important;
+        font-size: 7pt !important;
+        color: #94a3b8 !important;
+        display: flex !important;
+        justify-content: space-between !important;
     }
 
     .page-break {

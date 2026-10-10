@@ -37,7 +37,7 @@ export function buildPrintDossierHtml(program: WorkoutProgram): string {
       phase,
       startWeek,
       endWeek,
-      weekLabel: `Sett. ${startWeek} - ${endWeek}`
+      weekLabel: startWeek === endWeek ? `Sett. ${startWeek}` : `Sett. ${startWeek} - ${endWeek}`
     };
   });
 
@@ -345,9 +345,69 @@ export function buildPrintDossierHtml(program: WorkoutProgram): string {
       display: flex;
       justify-content: space-between;
     }
+
+    /* Barra di controllo su schermo (nascosta in stampa) */
+    .no-print {
+      display: flex;
+    }
+
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+    }
+
+    .screen-preview-bar {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 7pt 14pt;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      box-shadow: 0 2pt 8pt rgba(0,0,0,0.25);
+      font-size: 8.5pt;
+      border-bottom: 1pt solid #334155;
+      margin-bottom: 10pt;
+    }
+
+    .btn-preview-print {
+      background: #0284c7;
+      color: #ffffff;
+      border: none;
+      padding: 4.5pt 10pt;
+      border-radius: 3pt;
+      font-weight: 700;
+      font-size: 8pt;
+      cursor: pointer;
+      margin-right: 6pt;
+    }
+
+    .btn-preview-close {
+      background: #334155;
+      color: #cbd5e1;
+      border: none;
+      padding: 4.5pt 9pt;
+      border-radius: 3pt;
+      font-size: 8pt;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Barra di Controllo Schermo (Esclusa dal PDF stampato) -->
+  <div class="screen-preview-bar no-print">
+    <div>
+      <strong>T7 WORKOUT PLATFORM</strong> &bull; Anteprima Dossier A4 &bull; ${program.athleteName || 'Atleta'}
+    </div>
+    <div>
+      <button type="button" onclick="triggerPrintNow()" class="btn-preview-print">Stampa / Salva in PDF</button>
+      <button type="button" onclick="window.close()" class="btn-preview-close">Chiudi</button>
+    </div>
+  </div>
 
   <!-- ============================================================ -->
   <!-- PAGINA 1: SCHEDA MASTER & ARCHITETTURA MACROCICLO           -->
@@ -371,9 +431,9 @@ export function buildPrintDossierHtml(program: WorkoutProgram): string {
     <div class="passport-item"><strong>Metodo:</strong> ${program.periodizationMethod}</div>
     <div class="passport-item"><strong>Durata:</strong> ${durationWeeks} Settimane (${program.phases.length} Fasi)</div>
     <div class="passport-item"><strong>Frequenza:</strong> ${daysPerWeek} Sedute / Settimana</div>
-    <div class="passport-item"><strong>Rischio Clinico:</strong> ${program.riskProfile.level.toUpperCase()} (${program.riskProfile.score} pt)</div>
-    <div class="passport-item"><strong>Condizioni:</strong> ${program.riskProfile.activePathologyCount} attive</div>
-    <div class="passport-item"><strong>Stato Clinico:</strong> ${program.riskProfile.criticalCategoryPresent ? 'Monitoraggio Alto' : 'Idoneo'}</div>
+    <div class="passport-item"><strong>Rischio Clinico:</strong> ${(program.riskProfile?.level || 'low').toUpperCase()} (${program.riskProfile?.score ?? 0} pt)</div>
+    <div class="passport-item"><strong>Condizioni:</strong> ${program.riskProfile?.activePathologyCount ?? 0} attive</div>
+    <div class="passport-item"><strong>Stato Clinico:</strong> ${program.riskProfile?.criticalCategoryPresent ? 'Monitoraggio Alto' : 'Idoneo'}</div>
   </div>
 
   <!-- Timeline Macrociclo a Settimane -->
@@ -559,9 +619,26 @@ export function buildPrintDossierHtml(program: WorkoutProgram): string {
   </div>
 
   <script>
-    window.onload = function() {
-      window.print();
-    };
+    function triggerPrintNow() {
+      window.focus();
+      try {
+        window.print();
+      } catch (e) {
+        console.warn('Auto-print prompt error:', e);
+      }
+    }
+
+    // Esegui la stampa in automatico dopo che il DOM e i font sono pronti (gestione readyState per popup)
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      setTimeout(triggerPrintNow, 300);
+    } else {
+      window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(triggerPrintNow, 300);
+      });
+      window.addEventListener('load', function() {
+        setTimeout(triggerPrintNow, 300);
+      });
+    }
   </script>
 </body>
 </html>`;
@@ -586,4 +663,15 @@ export function printWorkoutProgram(program: WorkoutProgram): void {
   printWindow.document.open();
   printWindow.document.write(html);
   printWindow.document.close();
+  printWindow.focus();
+
+  // Fallback trigger da contesto chiamante per browser che inibiscono script inline in popup document.write
+  setTimeout(() => {
+    try {
+      printWindow.focus();
+      printWindow.print();
+    } catch {
+      // Ignorato se la finestra e gia stata chiusa o ha gia avviato la stampa
+    }
+  }, 400);
 }
