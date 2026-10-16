@@ -5,6 +5,7 @@ Questa guida è stata creata appositamente per spiegare in modo chiaro e immedia
 2. **Perché l'app richiede Vite e come funziona il meccanismo**.
 3. **La mappa completa dei file (corrispondenza tra vecchio codice `js/` e nuovo codice `src/`)**.
 4. **Come leggere e modificare i file TypeScript senza perdersi**.
+5. **Il Flowchart ufficiale dell'architettura e dei flussi su Miro** ([FLOWCHART_MIRO.md](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/FLOWCHART_MIRO.md)).
 
 ---
 
@@ -135,3 +136,12 @@ Grazie al file `.vscode/settings.json` appena configurato:
 - L'IDE utilizza automaticamente il compilatore TypeScript integrato nella cartella del progetto.
 - I file `.ts` e `.tsx` vengono colorati ed evidenziati con la sintassi corretta.
 - Quando apri VS Code, clicca su **"Install All"** nel pop-up delle estensioni consigliate (`Prettier`, `ESLint`, `TypeScript`) per avere il supporto grafico completo.
+
+---
+
+## 6. Flowchart Ufficiale su Miro (Mappa Visuale Interattiva)
+
+La mappa visuale completa dell'applicazione T7 Workout, con l'intero flusso di Onboarding (Welcome, Login vs Registrazione con codice fiscale e anamnesi clinica su 119 patologie), la Dashboard e i workflow algoritmici (VBT, PAP, Periodizzazione), è consultabile sulla board ufficiale:
+- **Board Miro**: [FITNESS APP FLOWCHART](https://miro.com/app/board/uXjVEbo6L2o=)
+- **Documento di Sintesi nel Repository**: consultare [FLOWCHART_MIRO.md](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/FLOWCHART_MIRO.md) per l'indice dettagliato dei 4 macro-blocchi.
+
