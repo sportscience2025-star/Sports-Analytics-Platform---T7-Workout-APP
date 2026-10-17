@@ -1,4 +1,4 @@
-﻿---
+---
 name: project-skill-policy
 description: >
   Policy di selezione delle skill per il progetto T7 Workout PWA.
@@ -37,6 +37,8 @@ description: >
 | accidental-data-loss-prevention | Prima di qualsiasi operazione distruttiva |
 | managing-python-dependencies | Quando si usano script Python (test_check.py, run_single_test.py) |
 | workflow-skill-creator | Quando l utente vuole trasformare un workflow in una nuova skill |
+| ui-ux-pattern-extractor | Replicazione stile/UX, ispezione siti web esterni, estrazione CSS/layout |
+| app-navigation-integrator | Unificazione navigazione interna, routing fluido, coerenza moduli PWA |
 
 ### Condizionalmente utili (solo se task specifica lo richiede)
 

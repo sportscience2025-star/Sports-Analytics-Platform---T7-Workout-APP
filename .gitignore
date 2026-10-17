@@ -20,3 +20,7 @@ dist/
 
 # Scratch directory
 scratch/
+
+# Browser environment (profiles, caches, temp)
+.browser-env/
+

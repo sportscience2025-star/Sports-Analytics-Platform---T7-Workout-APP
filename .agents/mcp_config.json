@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx.cmd",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest",
+        "--user-data-dir",
+        "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\playwright-profile"
+      ],
+      "env": {
+        "PLAYWRIGHT_BROWSERS_PATH": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\playwright-browsers",
+        "npm_config_cache": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\npm-cache",
+        "TEMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp",
+        "TMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp"
+      }
+    },
+    "chrome-devtools": {
+      "command": "npx.cmd",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--no-usage-statistics",
+        "--user-data-dir=E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\chrome-devtools-profile"
+      ],
+      "env": {
+        "npm_config_cache": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\npm-cache",
+        "TEMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp",
+        "TMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp"
+      }
+    }
+  }
+}
