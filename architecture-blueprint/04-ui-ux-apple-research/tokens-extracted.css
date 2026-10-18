@@ -1,0 +1,68 @@
+/**
+ * T7 Workout — Sports Analytics Platform
+ * Design Tokens & CSS Custom Properties (Apple-Inspired Dark Cockpit)
+ */
+
+:root {
+  /* Surfaces & Backgrounds */
+  --t7-bg-canvas: #090d16;
+  --t7-bg-surface: #0f172a;
+  --t7-bg-surface-elevated: #1e293b;
+  --t7-bg-glass: rgba(15, 23, 42, 0.82);
+  --t7-bg-glass-card: rgba(30, 41, 59, 0.65);
+
+  /* Borders & Dividers */
+  --t7-border-subtle: rgba(255, 255, 255, 0.08);
+  --t7-border-focus: #38bdf8;
+  --t7-border-alert: #f43f5e;
+
+  /* Typography */
+  --t7-font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  --t7-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Text Colors */
+  --t7-text-primary: #f8fafc;
+  --t7-text-secondary: #94a3b8;
+  --t7-text-muted: #64748b;
+  --t7-text-inverse: #090d16;
+
+  /* Neon Accent System */
+  --t7-neon-cyan: #38bdf8;
+  --t7-neon-cyan-glow: rgba(56, 189, 248, 0.35);
+  --t7-neon-emerald: #10b981;
+  --t7-neon-emerald-glow: rgba(16, 185, 129, 0.35);
+  --t7-neon-amber: #f59e0b;
+  --t7-neon-amber-glow: rgba(245, 158, 11, 0.35);
+  --t7-neon-rose: #f43f5e;
+  --t7-neon-rose-glow: rgba(244, 63, 94, 0.35);
+  --t7-neon-purple: #a855f7;
+  --t7-neon-purple-glow: rgba(168, 85, 247, 0.35);
+
+  /* Layout Spacing */
+  --t7-header-height: 64px;
+  --t7-sidebar-width: 260px;
+  --t7-sidebar-width-collapsed: 72px;
+  --t7-radius-sm: 6px;
+  --t7-radius-md: 10px;
+  --t7-radius-lg: 16px;
+  --t7-radius-full: 9999px;
+
+  /* Transitions */
+  --t7-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --t7-transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glassmorphism Utility */
+.t7-glass {
+  background: var(--t7-bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--t7-border-subtle);
+}
+
+/* Numeric alignment utility for sports metrics */
+.t7-metric-num {
+  font-family: var(--t7-font-sans);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}

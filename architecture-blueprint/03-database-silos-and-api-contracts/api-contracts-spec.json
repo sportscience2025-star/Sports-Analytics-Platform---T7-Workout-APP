@@ -1,0 +1,299 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "T7 Workout — Sports Analytics Platform API Contracts",
+    "version": "1.0.0",
+    "description": "Specifiche OpenAPI formali dei contratti di scambio dati tra Thin Client (React 18) e Server Scatola Nera (Cloud Run Microservices)."
+  },
+  "basePath": "/api/v1",
+  "schemes": ["https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/vbt/calculate-profile": {
+      "post": {
+        "summary": "Calcolo Profilo VBT, Regressione OLS, Curve F-v e Stima 1RM",
+        "description": "Elabora le serie caricate dall'encoder BLE, applica filtro IQR sui residui ed emette parametri fisici.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["athleteId", "exerciseId", "series"],
+              "properties": {
+                "athleteId": { "type": "string", "example": "ath_7702" },
+                "exerciseId": { "type": "string", "example": "sq_back_01" },
+                "customMvt": { "type": "number", "example": 0.30 },
+                "series": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["loadKg", "meanVelocity"],
+                    "properties": {
+                      "loadKg": { "type": "number", "example": 80.0 },
+                      "meanVelocity": { "type": "number", "example": 0.78 },
+                      "peakVelocity": { "type": "number", "example": 1.05 },
+                      "romMeters": { "type": "number", "example": 0.58 }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profilo VBT calcolato con successo",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "rSquared": { "type": "number", "example": 0.992 },
+                "slope": { "type": "number", "example": -0.0083 },
+                "intercept": { "type": "number", "example": 1.448 },
+                "f0Newtons": { "type": "number", "example": 1710.5 },
+                "v0Mps": { "type": "number", "example": 1.45 },
+                "pMaxWatts": { "type": "number", "example": 620.3 },
+                "estimated1RMKg": { "type": "number", "example": 138.3 },
+                "confidenceInterval95": {
+                  "type": "array",
+                  "items": { "type": "number" },
+                  "example": [134.1, 142.5]
+                },
+                "bryanMannZone": { "type": "string", "example": "Strength-Speed (0.75 - 1.00 m/s)" },
+                "outliersDetected": { "type": "integer", "example": 0 }
+              }
+            }
+          },
+          "422": { "description": "Unita di misura fisiche o valori non validi (violazione ADR-03)" }
+        }
+      }
+    },
+    "/clinical/triage-impact": {
+      "post": {
+        "summary": "Triage Clinico Patologie & ImpactCalculator",
+        "description": "Filtra la lista di esercizi pianificati rispetto alle 119 patologie attive applicando cutoff binari.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["athleteId", "activeConditions", "requestedExerciseIds"],
+              "properties": {
+                "athleteId": { "type": "string", "example": "ath_7702" },
+                "activeConditions": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "example": ["col_01_lombalgia_acuta", "gin_04_lesione_lca_ricostruito"]
+                },
+                "requestedExerciseIds": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "example": ["sq_back_01", "leg_press_01", "leg_ext_01", "bulgarian_sq_01"]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Esito triage con audit e routine correttiva",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "overallRiskLevel": { "type": "string", "example": "HIGH" },
+                "auditResults": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "exerciseId": { "type": "string", "example": "sq_back_01" },
+                      "status": { "type": "string", "enum": ["EXCLUDED", "ADAPTED", "AVAILABLE"], "example": "EXCLUDED" },
+                      "reason": { "type": "string", "example": "Carico assiale diretto vietato per discopatia lombare attiva" },
+                      "suggestedAlternatives": { "type": "array", "items": { "type": "string" }, "example": ["hip_thrust_barbell_01"] }
+                    }
+                  }
+                },
+                "preActivationRoutine": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "protocolCode": { "type": "string", "example": "cli_01" },
+                      "sets": { "type": "integer", "example": 2 },
+                      "reps": { "type": "integer", "example": 15 },
+                      "videoUrl": { "type": "string", "example": "https://cdn.t7workout.com/video/cli_01.mp4" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/team/z-score-microcycle": {
+      "post": {
+        "summary": "Calcolo Z-Score Microciclo con Gestione Doppio Ruolo e Fallback",
+        "description": "Incrocia carico esterno GPS e carico interno HRV RMSSD con ponderazione frazionaria.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["clubId", "athleteId", "currentMicrocycleMetrics"],
+              "properties": {
+                "clubId": { "type": "string", "example": "club_juve_pro" },
+                "athleteId": { "type": "string", "example": "ath_7702" },
+                "isNewTransferWithout6MonthBaseline": { "type": "boolean", "example": true },
+                "tacticalRolesMinutes": {
+                  "type": "object",
+                  "additionalProperties": { "type": "number" },
+                  "example": { "TERZINO_FLUIDIFICANTE": 75, "ALA_ATTACCO": 15 }
+                },
+                "currentMicrocycleMetrics": {
+                  "type": "object",
+                  "properties": {
+                    "hrvRmssd": { "type": "number", "example": 48.5 },
+                    "pvtReactionTimeMs": { "type": "number", "example": 245.0 },
+                    "totalGpsDistanceM": { "type": "number", "example": 28400 },
+                    "highSpeedRunningDistanceM": { "type": "number", "example": 3200 },
+                    "sprintDistanceM": { "type": "number", "example": 850 }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Z-Score composito calcolato",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "compositeReadinessZ": { "type": "number", "example": -1.45 },
+                "baselineMode": { "type": "string", "example": "ROLE_COHORT_WEIGHTED_MEDIAN" },
+                "roleWeightsApplied": { "type": "object", "example": { "TERZINO_FLUIDIFICANTE": 0.833, "ALA_ATTACCO": 0.167 } },
+                "alertFlag": { "type": "string", "example": "HIGH_FATIGUE_RISK" },
+                "recommendedAction": { "type": "string", "example": "Riduzione 30% volume sprint ad alta intensita nel Microciclo G-3" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/programming/generate-macrocycle": {
+      "post": {
+        "summary": "Generatore Macrocicli DUP / Blocchi 12-16 Settimane",
+        "description": "Elabora macrociclo periodizzato con scarico automatico del 40% e razionale scientifico RAG.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["athleteId", "modelType", "durationWeeks"],
+              "properties": {
+                "athleteId": { "type": "string", "example": "ath_7702" },
+                "modelType": { "type": "string", "enum": ["DUP", "BLOCKS", "LINEAR", "CONJUGATE"], "example": "DUP" },
+                "durationWeeks": { "type": "integer", "minimum": 4, "maximum": 16, "example": 16 },
+                "sessionsPerWeek": { "type": "integer", "example": 4 },
+                "targetGoal": { "type": "string", "example": "STRENGTH_HYPERTROPHY" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Macrociclo generato",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "planId": { "type": "string", "example": "plan_dup_16w_991" },
+                "durationWeeks": { "type": "integer", "example": 16 },
+                "deloadWeeks": { "type": "array", "items": { "type": "integer" }, "example": [4, 8, 12, 16] },
+                "scientificRationale": { "type": "string", "example": "Programmazione DUP conformemente a Rhea et al. (PMID:12423180) con modulazione ondulata del carico." },
+                "citations": { "type": "array", "items": { "type": "string" }, "example": ["PMID:12423180", "PMID:28834797"] }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/video/analyze-biomechanics": {
+      "post": {
+        "summary": "Analisi Biomeccanica Video & Calcolo Angoli Articolari",
+        "description": "Esegue pose estimation su GPU Cloud Run ed estrae angoli cinematici di valgismo/varismo.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["athleteId", "videoStorageUri", "exerciseType"],
+              "properties": {
+                "athleteId": { "type": "string", "example": "ath_7702" },
+                "videoStorageUri": { "type": "string", "example": "gs://t7-bunkers-prod/videos/cod_01.mp4" },
+                "exerciseType": { "type": "string", "example": "CHANGE_OF_DIRECTION" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cinematica estratta e alert",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "maxKneeValgusDeg": { "type": "number", "example": 18.2 },
+                "bilateralAsymmetryPercent": { "type": "number", "example": 16.4 },
+                "deficitDetected": { "type": "boolean", "example": true },
+                "prescribedKneeProtocol": { "type": "string", "example": "cli_12" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/export/excel-unlocked": {
+      "post": {
+        "summary": "Esportazione Fogli Excel (.xlsx) Totalmente Sbloccati",
+        "description": "Genera file XLSX editabili senza password con colonne feedback per il preparatore sul campo.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["planId"],
+              "properties": {
+                "planId": { "type": "string", "example": "plan_dup_16w_991" },
+                "includeVideoQrCodes": { "type": "boolean", "example": true }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "URL di download diretto del file XLSX sbloccato",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "downloadUrl": { "type": "string", "example": "https://storage.googleapis.com/t7-exports/plan_dup_16w_991_unlocked.xlsx" },
+                "isProtected": { "type": "boolean", "example": false }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

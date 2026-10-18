@@ -1,0 +1,75 @@
+// ==============================================================================
+// SILO 3: DE-IDENTIFIED RESEARCH WAREHOUSE DATABASE SCHEMA
+// Provider: PostgreSQL / Neon (Read-Heavy Analytics Store)
+// Target: Istituti di Ricerca, Universita, Docenti e Data Scientist accademici
+// Vincolo: ZERO Personally Identifiable Information (PII), solo Synthetic Hashes
+// ==============================================================================
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL_SILO3_RESEARCH")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/silo3-client"
+}
+
+model ResearchCohort {
+  id              String                    @id @default(uuid())
+  cohortCode      String                    @unique // Es. "COHORT_SERIE_A_SOCCER_2025_2026"
+  sportDiscipline String                    // Es. "Calcio", "Basket", "Rugby", "Atletica"
+  competitiveTier String                    // Es. "Tier 1 Elite Professional", "Division 1 NCAA"
+  ageBracket      String                    // Es. "18-21", "22-26", "27-32"
+  sampleSize      Int                       @default(0)
+  createdAt       DateTime                  @default(now())
+  updatedAt       DateTime                  @updatedAt
+  seriesRecords   AnonymizedAthleteSeries[]
+
+  @@map("research_cohorts")
+}
+
+model AnonymizedAthleteSeries {
+  id                   String         @id @default(uuid())
+  cohortId             String
+  cohort               ResearchCohort @relation(fields: [cohortId], references: [id], onDelete: Cascade)
+  syntheticHash        String         @unique // SHA-256 HMAC non reversibile di PII + Salt segreto
+  sportDiscipline      String
+  tacticalRoleGroup    String         // Aggregato generico (es. "DEFENDER_WIDE", "MIDFIELD_CENTRAL")
+  ageBracket           String
+  anonymizedVbtData    Json           // Vettori F-v (Forza N, Velocita m/s) e stime 1RM normalizzate per massa corporea
+  anonymizedZScores    Json           // Serie storiche normalizzate Z-Score microciclo
+  anonymizedGpsLoads   Json           // Rapporti Acute:Chronic Workload Ratio e percentuali HSR
+  anonymizedKneeAngles Json?          // Statistiche descrittive asimmetrie e angoli articolari
+  exportedAt           DateTime       @default(now())
+
+  @@index([sportDiscipline, tacticalRoleGroup])
+  @@map("anonymized_athlete_series")
+}
+
+model ResearchPublicationReference {
+  id             String    @id @default(uuid())
+  pmid           Int       @unique // PubMed ID univoco
+  doi            String?   @unique
+  title          String
+  authors        String
+  journal        String
+  year           Int
+  evidenceWeight Float     @default(1.0) // 1.3 per Meta-analisi, 1.1 per RCT, 1.0 per studi osservazionali
+  relevanceTags  String[]
+  abstractText   String?   @db.Text
+  createdAt      DateTime  @default(now())
+
+  @@map("research_publication_references")
+}
+
+model AcademicAccessLog {
+  id                    String   @id @default(uuid())
+  researcherUserId      String
+  researcherInstitution String   // Es. "Universita degli Studi di Milano - Scienze Motorie"
+  queryFilterApplied    Json
+  recordsRetrievedCount Int
+  executedAt            DateTime @default(now())
+
+  @@map("academic_access_logs")
+}

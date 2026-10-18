@@ -1,0 +1,65 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef process fill:#1e293b,stroke:#38bdf8,stroke-width:1px,color:#f8fafc;
+    classDef decision fill:#78350f,stroke:#f59e0b,stroke-width:2px,color:#ffffff;
+    classDef db fill:#4c0519,stroke:#f43f5e,stroke-width:2px,color:#ffe4e6;
+
+    TITLE["ZONA 4 - SCHEMA 8C: PIPELINE VBT OLS, TEST PAP & Z-SCORE MICROCICLO SQUADRA (4 SWIMLANES)"]
+
+    subgraph LANE_CLIENT["CORSIA 1: APP UTENTE (THIN CLIENT UI/UX)"]
+        START_TEST(["Inizio: Atleta/Coach avvia test VBT o monitoraggio squadra"]):::startend
+        ACT_STREAM["Streaming ripetizioni via BLE (Carico kg, Tempi, Spostamento)"]:::process
+        ACT_GPS_INPUT["Inserimento dati GPS partita e questionari HRV / PVT mattutini"]:::process
+        DISP_CHARTS["Rendering grafico neon: Retta OLS, Curva F-v, Istogramma Z-Score squadra"]:::process
+        DISP_ALERT["Visualizzazione Alert Sovraccarico con raccomandazione scarico -30%"]:::process
+        END_TEST(["Fine: Sessione Validata e Grafici Renderizzati"]):::startend
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & CONTROLLO VALIDITA UNITA SI"]
+        GW_RECV_TEST["Ricezione POST /api/v1/vbt/calculate-profile e /api/v1/team/z-score"]:::process
+        DEC_SI_UNITS{"Validazione rigida unita SI: F in N, P in W, v in m/s, L in kg?"}:::decision
+        GW_ERR_SI["HTTP 422 Unprocessable Entity: Unita di misura o valori non conformi SI"]:::process
+        GW_RET_DATA["Invio payload elaborato al client per la visualizzazione"]:::process
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (BIOMECHANICS & Z-SCORE ENGINES)"]
+        SRV_OLS_PRELIM["Calcolo regressione lineare preliminare Ordinary Least Squares (OLS)"]:::process
+        SRV_IQR_RESIDUALS["Analisi residui di velocita e scarto outlier statistici con filtro IQR"]:::process
+        SRV_FIT_FINAL["Fitting finale OLS e polinomiale: Calcolo R2, F0 (N), v0 (m/s) e Pmax (W)"]:::process
+        SRV_1RM_EST["Stima 1RM al punto MVT (0.30 m/s) con Intervallo di Confidenza al 95% (IC 95%)"]:::process
+        SRV_PAP_STATS["Esecuzione t-Student, Cohen d, correzione Hedges g e verifica soglia MDC 95%"]:::process
+        DEC_BASELINE{"Atleta possiede almeno 6 mesi di baseline storica?"}:::decision
+        SRV_FALLBACK["Attivazione Algoritmo Fallback: Calcolo Mediana Ponderata di Ruolo della Squadra"]:::process
+        SRV_STD_Z["Calcolo Z-Score individuale standard: z = (x - mu) / sigma"]:::process
+        DEC_DUAL_ROLE{"Atleta impiegato in doppio ruolo tattico nello stesso microciclo?"}:::decision
+        SRV_WEIGHT_ROLE["Applicazione ponderazione frazionaria sui minuti giocati per ruolo"]:::process
+        SRV_COMPOSITE_Z["Incrocio Carico Esterno (GPS/HSR) e Interno (HRV): Calcolo Composite Z-Score"]:::process
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE CENTRALE A 3 SILOS"]
+        DB_LOAD_HIST[("Interrogazione storico test e baseline da Silo 2 (Club Bunker KMS)")]:::db
+        DB_SAVE_RESULTS[("Archiviazione test VBT, 1RM e Z-Score in Silo 2 (Club Bunker KMS)")]:::db
+    end
+
+    START_TEST --> ACT_STREAM --> GW_RECV_TEST
+    ACT_GPS_INPUT --> GW_RECV_TEST
+
+    GW_RECV_TEST --> DEC_SI_UNITS
+    DEC_SI_UNITS -- NO --> GW_ERR_SI
+    DEC_SI_UNITS -- SI --> SRV_OLS_PRELIM
+
+    SRV_OLS_PRELIM --> SRV_IQR_RESIDUALS --> SRV_FIT_FINAL --> SRV_1RM_EST --> SRV_PAP_STATS
+
+    SRV_PAP_STATS --> DB_LOAD_HIST --> DEC_BASELINE
+
+    DEC_BASELINE -- NO --> SRV_FALLBACK --> DEC_DUAL_ROLE
+    DEC_BASELINE -- SI --> SRV_STD_Z --> DEC_DUAL_ROLE
+
+    DEC_DUAL_ROLE -- SI --> SRV_WEIGHT_ROLE --> SRV_COMPOSITE_Z
+    DEC_DUAL_ROLE -- NO --> SRV_COMPOSITE_Z
+
+    SRV_COMPOSITE_Z --> DB_SAVE_RESULTS
+    DB_SAVE_RESULTS --> GW_RET_DATA
+
+    GW_RET_DATA --> DISP_CHARTS
+    DISP_CHARTS --> DISP_ALERT --> END_TEST

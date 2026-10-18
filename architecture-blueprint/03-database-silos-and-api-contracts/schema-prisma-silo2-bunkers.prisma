@@ -1,0 +1,221 @@
+// ==============================================================================
+// SILO 2: ENCRYPTED CLUB BUNKERS (MULTI-TENANT TIER 3) DATABASE SCHEMA
+// Provider: PostgreSQL / Neon with per-tenant Row Level Security & Cloud KMS Encryption
+// Target: Club professionistici, Staff Medico, Preparatori S&C, Match Analyst
+// ==============================================================================
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL_SILO2_BUNKERS")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/silo2-client"
+}
+
+enum ClubStaffRole {
+  HEAD_COACH
+  STRENGTH_CONDITIONING_HEAD
+  CLUB_DOCTOR
+  CLUB_PHYSIOTHERAPIST
+  TACTICAL_MATCH_ANALYST
+  DATA_SCIENTIST
+}
+
+enum RtpPhase {
+  ACUTE_PROTECTION
+  SUBACUTE_RECONDITIONING
+  RETURN_TO_RUN
+  RETURN_TO_TRAINING
+  RETURN_TO_COMPETITION
+}
+
+enum AlertLevel {
+  OPTIMAL
+  MODERATE_MONITOR
+  HIGH_FATIGUE_OVERLOAD
+  CLINICAL_RESTRICTION
+}
+
+model ClubTenant {
+  id               String        @id @default(uuid())
+  name             String
+  legalEntity      String
+  country          String        @default("IT")
+  encryptionKeyRef String        // Riferimento univoco alla chiave crittografica Google Cloud KMS
+  isActive         Boolean       @default(true)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  staffMembers     ClubStaff[]
+  athletes         ClubAthlete[]
+  sessions         TeamTacticalSession[]
+
+  @@map("club_tenants")
+}
+
+model ClubStaff {
+  id          String        @id @default(uuid())
+  clubId      String
+  club        ClubTenant    @relation(fields: [clubId], references: [id], onDelete: Cascade)
+  userId      String        // Mapping ad account utente autenticato
+  role        ClubStaffRole
+  firstName   String
+  lastName    String
+  email       String
+  licenseCode String?       // Es. Iscrizione Albo Medici / Fisioterapisti / Patentino FIGC
+  createdAt   DateTime      @default(now())
+
+  @@unique([clubId, userId])
+  @@map("club_staff")
+}
+
+model ClubAthlete {
+  id                             String             @id @default(uuid())
+  clubId                         String
+  club                           ClubTenant         @relation(fields: [clubId], references: [id], onDelete: Cascade)
+  firstName                      String
+  lastName                       String
+  dateOfBirth                    DateTime
+  jerseyNumber                   Int?
+  primaryPosition                String             // Es. "TERZINO_FLUIDIFICANTE", "CENTROCAMPISTA_BOX_TO_BOX"
+  secondaryPosition              String?            // Es. "ALA_ATTACCO"
+  dualRoleWeight                 Float              @default(1.0)
+  marketArrivalDate              DateTime
+  isTransferWithout6MonthBaseline Boolean            @default(false)
+  optInResearchWarehouse         Boolean            @default(false) // Consenso GDPR per invio a Silo 3
+  createdAt                      DateTime           @default(now())
+  updatedAt                      DateTime           @updatedAt
+  medicalRecords                 MedicalRecord[]
+  kneeProtocols                  ClinicalKneePrescription[]
+  vbtTests                       VbtTestRecord[]
+  papTests                       PapTestRecord[]
+  zScores                        MicrocycleZScore[]
+  videoAnalyses                  VideoAnalysisRecord[]
+
+  @@index([clubId, primaryPosition])
+  @@map("club_athletes")
+}
+
+model MedicalRecord {
+  id                String       @id @default(uuid())
+  athleteId         String
+  athlete           ClubAthlete  @relation(fields: [athleteId], references: [id], onDelete: Cascade)
+  conditionIcd11    String       // Codice o chiave patologia da catalogo 119 condizioni
+  conditionName     String
+  severityLevel     Int          // 1..5
+  contraindications String[]
+  rtpPhase          RtpPhase     @default(ACUTE_PROTECTION)
+  notes             String?      @db.Text
+  diagnosedByStaffId String
+  createdAt         DateTime     @default(now())
+  resolvedAt        DateTime?
+
+  @@map("medical_records")
+}
+
+model ClinicalKneePrescription {
+  id              String       @id @default(uuid())
+  athleteId       String
+  athlete         ClubAthlete  @relation(fields: [athleteId], references: [id], onDelete: Cascade)
+  protocolCode    String       // Identificativo univoco cli_01..cli_32
+  protocolTitle   String
+  targetRomMinDeg Int          @default(45)
+  targetRomMaxDeg Int          @default(90)
+  sets            Int          @default(3)
+  reps            Int          @default(12)
+  videoCdnUrl     String
+  prescribedAt    DateTime     @default(now())
+
+  @@map("clinical_knee_prescriptions")
+}
+
+model VbtTestRecord {
+  id                   String       @id @default(uuid())
+  athleteId            String
+  athlete              ClubAthlete  @relation(fields: [athleteId], references: [id], onDelete: Cascade)
+  exerciseId           String       // Riferimento a catalogo esercizi (es. sq_back_01)
+  exerciseName         String
+  seriesRawData        Json         // Array di oggetti { loadKg, meanVelocity, peakVelocity, rom, durationMs }
+  rSquared             Float        // Coefficiente di determinazione R2
+  slope                Float        // Pendenza retta OLS
+  intercept            Float        // Intercetta retta OLS
+  f0Newtons            Float        // Forza teorica a velocita zero in Newton (N)
+  v0Mps                Float        // Velocita teorica a carico zero in m/s
+  pMaxWatts            Float        // Potenza massima di picco in Watt (W)
+  estimated1RMKg       Float        // Massimale stimato a MVT in chilogrammi (kg)
+  ci95LowerKg          Float        // Limite inferiore intervallo di confidenza al 95%
+  ci95UpperKg          Float        // Limite superiore intervallo di confidenza al 95%
+  bryanMannZone        String       // Classificazione Bryan Mann (es. "Strength-Speed")
+  outliersFiltered     Int          @default(0)
+  encoderModel         String?      // "Vitruve", "GymAware", "Beast"
+  testedAt             DateTime     @default(now())
+
+  @@index([athleteId, exerciseId])
+  @@map("vbt_test_records")
+}
+
+model PapTestRecord {
+  id              String       @id @default(uuid())
+  athleteId       String
+  athlete         ClubAthlete  @relation(fields: [athleteId], references: [id], onDelete: Cascade)
+  testType        String       // "CMJ", "ABALAKOV", "DROP_JUMP_RSI"
+  baselineScore   Float
+  postActivationScore Float
+  percentageDelta Float
+  cohenD          Float
+  hedgesG         Float
+  mdc95Passed     Boolean
+  testedAt        DateTime     @default(now())
+
+  @@map("pap_test_records")
+}
+
+model MicrocycleZScore {
+  id                   String       @id @default(uuid())
+  athleteId            String
+  athlete              ClubAthlete  @relation(fields: [athleteId], references: [id], onDelete: Cascade)
+  microcycleWeek       Int
+  hrvRmssdMs           Float
+  pvtReactionTimeMs    Float
+  totalGpsDistanceM    Float
+  highSpeedRunningDistM Float
+  sprintDistanceM      Float
+  compositeZ           Float
+  baselineModeApplied  String       // "INDIVIDUAL_HISTORICAL" o "ROLE_COHORT_WEIGHTED_MEDIAN"
+  roleWeightsApplied   Json         // es. { "TERZINO": 0.83, "ALA": 0.17 }
+  alertFlag            AlertLevel   @default(OPTIMAL)
+  actionPrescribed     String?
+  recordedAt           DateTime     @default(now())
+
+  @@index([athleteId, recordedAt])
+  @@map("microcycle_z_scores")
+}
+
+model VideoAnalysisRecord {
+  id               String       @id @default(uuid())
+  athleteId        String
+  athlete          ClubAthlete  @relation(fields: [athleteId], references: [id], onDelete: Cascade)
+  videoGcsUri      String       // Percorso su bucket Cloud Storage protetto
+  eventTag         String       // "CHANGE_OF_DIRECTION", "SQUAT_EXECUTION", "MATCH_SPRINT"
+  kneeValgusDeg    Float
+  kneeVarusDeg     Float
+  asymmetryIndex   Float
+  deficitFlag      Boolean      @default(false)
+  notes            String?
+  analyzedAt       DateTime     @default(now())
+
+  @@map("video_analysis_records")
+}
+
+model TeamTacticalSession {
+  id          String      @id @default(uuid())
+  clubId      String
+  club        ClubTenant  @relation(fields: [clubId], references: [id], onDelete: Cascade)
+  sessionDate DateTime
+  sessionType String      // "MD-4_STRENGTH", "MD-3_TACTICAL", "MD-2_SPEED", "MD-1_ACTIVATION", "MATCH_DAY"
+  rpeAverage  Float?
+  notes       String?
+
+  @@map("team_tactical_sessions")
+}

@@ -1,0 +1,66 @@
+flowchart TB
+    classDef client fill:#0369a1,stroke:#38bdf8,stroke-width:2px,color:#ffffff;
+    classDef gateway fill:#475569,stroke:#94a3b8,stroke-width:2px,color:#ffffff;
+    classDef engine fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#e0e7ff;
+    classDef silo1 fill:#064e3b,stroke:#34d399,stroke-width:2px,color:#d1fae5;
+    classDef silo2 fill:#4c0519,stroke:#f43f5e,stroke-width:2px,color:#ffe4e6;
+    classDef silo3 fill:#3b0764,stroke:#c084fc,stroke-width:2px,color:#f3e8ff;
+    classDef etl fill:#78350f,stroke:#f59e0b,stroke-width:2px,color:#fef3c7;
+
+    TITLE["ZONA 2 - SCHEMA 3: ARCHITETTURA C4 CONTENITORI & COMPONENTI (THIN CLIENT vs SERVER SCATOLA NERA & 3 SILOS)"]
+
+    subgraph CLIENT_LAYER["1. THIN CLIENT LAYER (React 18 PWA & Mobile App) - ZERO FORMULE PROPRIETARIE"]
+        direction TB
+        C_UI["UI Cockpit Presenter: Rendering viste, Dark Mode, Grafici Chart.js neon"]:::client
+        C_NAV["Global Navigation Shell: Selettore permanente Atleta/Squadra in memoria"]:::client
+        C_BLE["BLE Hardware Client: Connessione Bluetooth a encoder e cardiofrequenzimetri"]:::client
+        C_CACHE["Cache Ottimistica Locale: IndexedDB & Service Worker per operativita offline"]:::client
+    end
+
+    subgraph PERIMETER_LAYER["2. GATEWAY DI SICUREZZA, RATE LIMITING & TIER ENFORCEMENT"]
+        direction TB
+        GW_WAF["Cloud Armor WAF: Protezione anti-DDoS, IP Reputation, anti-scraping"]:::gateway
+        GW_INGRESS["API Gateway Ingress (Envoy): Routing HTTPS / mTLS, TLS Termination"]:::gateway
+        GW_AUTH["OAuth2 / JWT Token Validator: Decodifica claims, scadenza e ruoli RBAC"]:::gateway
+        GW_GATE["Tier Enforcement Gatekeeper: Filtro permessi (Tier 1 Base | Tier 2 Pro | Tier 3 Elite)"]:::gateway
+    end
+
+    subgraph SERVER_LAYER["3. SERVER CENTRALE SCATOLA NERA (Microservizi Cloud Run)"]
+        direction TB
+        E1["ENGINE 1: Biomechanics & VBT OLS Service<br/>Regressione lineare/quadratica, filtro residui IQR, stima 1RM a MVT, zone Bryan Mann, test t-Student, Cohen d, MDC 95%"]:::engine
+        E2["ENGINE 2: Periodization & ImpactCalculator Service<br/>Wizard DUP/Blocchi 12-16 sett., deload -40%, triage 119 patologie (ESCLUSO/ADATTATO/DISPONIBILE), 32 protocolli ginocchio"]:::engine
+        E3["ENGINE 3: Team Microcycle, GPS & Z-Score Service<br/>Z-Score composito, pesatura frazionaria doppio ruolo tattico, algoritmo fallback nuovi acquisti senza baseline (<6 mesi)"]:::engine
+        E4["ENGINE 4: RAG & Evidence Hierarchy Service<br/>Ingestione lessico proprietario coach, vector search su 322 paper PubMed, moltiplicatori (Meta-analisi x1.3, RCT x1.1)"]:::engine
+        E5["ENGINE 5: Document I/O & Unlocked Excel Exporter<br/>Esportazione fogli XLSX sbloccati (protected: false) con colonne feedback campo, generazione PDF vettoriali con QR video"]:::engine
+    end
+
+    subgraph STORAGE_LAYER["4. DATABASE CENTRALE A 3 SILOS ISOLATI (PostgreSQL / Neon)"]
+        direction TB
+        DB_S1[("SILO 1: Public, Social & Movely DB<br/>Profili atleti Tier 1, bacheca feed, contratti B2B/B2C, pagamenti Stripe")]:::silo1
+        DB_S2[("SILO 2: Encrypted Club Bunkers (Multi-Tenant Tier 3)<br/>Partizioni isolate per club, chiavi per-tenant Cloud KMS, dati sanitari, GPS, video, VBT")]:::silo2
+        PIPE_ETL["ETL DE-IDENTIFICATION PIPELINE<br/>Batch notturno: rimozione PII, generazione synthetic hash non reversibile, aggregazione per coorti"]:::etl
+        DB_S3[("SILO 3: De-identified Research Warehouse<br/>Serie temporali anonimizzate, metriche biomeccaniche per universita e ricercatori accademici")]:::silo3
+    end
+
+    C_UI -->|Payload JSON grezzo es. loadKg, times| GW_WAF
+    C_NAV --> GW_WAF
+    C_BLE --> C_UI
+    C_CACHE <--> C_UI
+
+    GW_WAF --> GW_INGRESS --> GW_AUTH --> GW_GATE
+    GW_GATE -->|Route autorizzata /api/v1/vbt/*| E1
+    GW_GATE -->|Route autorizzata /api/v1/programming/*| E2
+    GW_GATE -->|Route autorizzata /api/v1/team/*| E3
+    GW_GATE -->|Route autorizzata /api/v1/rag/*| E4
+    GW_GATE -->|Route autorizzata /api/v1/export/*| E5
+
+    E1 <-->|Lettura/Scrittura test VBT| DB_S2
+    E2 <-->|Lettura/Scrittura schede e cartelle cliniche| DB_S2
+    E2 <-->|Lettura/Scrittura schede atleti Tier 1| DB_S1
+    E3 <-->|Lettura GPS e scrittura Z-Score squadra| DB_S2
+    E4 <-->|Vector search su paper e prompt| DB_S2
+    E5 <-->|Lettura dati per export| DB_S2
+    E5 <-->|Lettura profili marketplace| DB_S1
+
+    DB_S2 -.->|Dati grezzi da anonimizzare| PIPE_ETL
+    PIPE_ETL -.->|Dataset ripuliti da PII| DB_S3

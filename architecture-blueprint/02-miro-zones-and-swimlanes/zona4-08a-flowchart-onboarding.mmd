@@ -1,0 +1,55 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef process fill:#1e293b,stroke:#38bdf8,stroke-width:1px,color:#f8fafc;
+    classDef decision fill:#78350f,stroke:#f59e0b,stroke-width:2px,color:#ffffff;
+    classDef db fill:#4c0519,stroke:#f43f5e,stroke-width:2px,color:#ffe4e6;
+
+    TITLE["ZONA 4 - SCHEMA 8A: FLOWCHART ONBOARDING, VERIFICA RUOLO & FEATURE GATING (4 SWIMLANES)"]
+
+    subgraph LANE_CLIENT["CORSIA 1: APP UTENTE (THIN CLIENT UI/UX)"]
+        START(["Inizio: Utente apre applicazione"]):::startend
+        ACT_INPUT["Inserimento dati: Email, Password, Dati Anagrafici, Codice Fiscale"]:::process
+        ACT_CONSENT["Accettazione Consensi GDPR, Trattamento Dati Sanitari e Privacy"]:::process
+        ACT_TIER_SELECT["Selezione Piano: Tier 1 Base | Tier 2 Pro | Tier 3 Elite Club"]:::process
+        DISP_COCKPIT["Visualizzazione Cockpit Dashboard con moduli abilitati per il Tier"]:::process
+        ERR_SHOW["Mostra messaggio d'errore su UI (Credenziali non valide o CF errato)"]:::process
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & CONTROLLO ACCESSO"]
+        GW_RECV["Ricezione richiesta POST /api/v1/auth/register"]:::process
+        DEC_CF{"Verifica validita formale Codice Fiscale e formato dati?"}:::decision
+        DEC_AUTH{"Autenticazione & Validita Token JWT?"}:::decision
+        GW_TOKEN["Emissione Token JWT firmato con Claims Ruolo e Tier di appartenenza"]:::process
+        GW_REJECT["Rifiuto richiesta con HTTP 400 Bad Request o 401 Unauthorized"]:::process
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (AUTH & RBAC ENGINE)"]
+        SRV_HASH["Hashing password con bcrypt / argon2id"]:::process
+        SRV_PROVISION["Provisioning utente e associazione ruolo RBAC corrispondente"]:::process
+        SRV_ROUTING["Configurazione filtri di accesso e quote API per il Tier acquistato"]:::process
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE CENTRALE A 3 SILOS"]
+        DB_CHECK{"Email o Utente gia registrato nel database?"}:::decision
+        DB_WRITE[("Salvataggio Record Utente in Silo 1 (Social) o Silo 2 (Club Bunker KMS)")]:::db
+        END_SUCCESS(["Fine: Sessione Utente Attiva e Autenticata"]):::startend
+    end
+
+    START --> ACT_INPUT --> ACT_CONSENT --> ACT_TIER_SELECT
+    ACT_TIER_SELECT -->|Invia payload registrazione| GW_RECV
+
+    GW_RECV --> DEC_CF
+    DEC_CF -- NO --> GW_REJECT --> ERR_SHOW
+    DEC_CF -- SI --> DB_CHECK
+
+    DB_CHECK -- GIA PRESENTE --> GW_REJECT
+    DB_CHECK -- NON PRESENTE --> SRV_HASH
+
+    SRV_HASH --> SRV_PROVISION --> SRV_ROUTING
+    SRV_ROUTING --> DB_WRITE
+
+    DB_WRITE --> GW_TOKEN
+    GW_TOKEN --> DEC_AUTH
+
+    DEC_AUTH -- SI --> DISP_COCKPIT --> END_SUCCESS
+    DEC_AUTH -- NO --> GW_REJECT

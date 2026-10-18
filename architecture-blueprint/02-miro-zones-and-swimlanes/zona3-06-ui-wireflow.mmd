@@ -1,0 +1,46 @@
+flowchart TD
+    classDef screen fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
+    classDef modal fill:#1e1b4b,stroke:#a855f7,stroke-width:2px,color:#f3e8ff;
+    classDef action fill:#047857,stroke:#10b981,stroke-width:1px,color:#ecfdf5;
+
+    TITLE["ZONA 3 - SCHEMA 6: UI WIREFLOW VISUALE SCHERMATA PER SCHERMATA (POST-LOGIN)"]
+
+    subgraph WIREFLOW["FLUSSO APPLICATIVO E TRANSIZIONI INTERFACCIA UTENTE"]
+        direction TB
+
+        S1["W01: COCKPIT DASHBOARD<br/>- Gauge Readiness Team / Atleta<br/>- Widget Meteo & Calendario<br/>- Elenco atleti ad alto rischio fatica<br/>- Pulsanti Quick-Action: Avvia VBT / Crea Scheda"]:::screen
+
+        S2["W02: VISTA ATLETI & CLINICA<br/>- Griglia schede atleti con badge infortunio<br/>- Drawer laterale cartella medica<br/>- Checklist anamnesi 119 patologie<br/>- Selettore 32 protocolli ginocchio"]:::screen
+
+        S3["W03: WIZARD PROGRAMMAZIONE DUP<br/>- Selettore modello (DUP / Blocchi / Coniugata)<br/>- Slider durata (12-16 settimane)<br/>- Calcolo automatico settimane scarico (-40%)<br/>- Tabella serie/ripetizioni/RPE<br/>- Pulsante Export Excel sbloccato (.xlsx)"]:::screen
+
+        S4["W04: CONSOLE LIVE VBT & ENCODER<br/>- Modale accoppiamento sensore BLE<br/>- Tachimetro velocita live rep per rep (m/s)<br/>- Grafico real-time Curva F-v e Potenza (W)<br/>- Card stima 1RM a MVT con IC 95%<br/>- Tabella verifica MDC 95% pre-post PAP"]:::screen
+
+        S5["W05: HEATMAP MICROCICLO SQUADRA Z-SCORE<br/>- Matrice Atleti x Metriche (HRV, PVT, GPS, HSR)<br/>- Toggle ponderazione doppio ruolo tattico<br/>- Badge nuovi acquisti senza baseline (<6 mesi)<br/>- Alert box raccomandazioni per lo staff"]:::screen
+
+        S6["W06: VIDEO ANALISI BIOMECCANICA<br/>- Video player con frame-by-frame 60/120 fps<br/>- Overlay scheletro pose estimation server-side<br/>- Misuratore angoli articolari (valgo/varo dinamico)<br/>- Pannello tagging eventi partita"]:::screen
+
+        S7["W07: EVIDENCE RAG & LIBRERIA PUBMED<br/>- Motore di ricerca lessico scientifico<br/>- Uploader dispense PDF/DOCX del coach<br/>- Card risposte RAG con badge PMID e link DOI<br/>- Inserimento citazioni nella scheda"]:::screen
+
+        S8["W08: MOVELY SOCIAL & MARKETPLACE<br/>- Feed post comunitari e video workout<br/>- Vetrina professionisti P.IVA con tariffe orarie<br/>- Modale ingaggio consulenza e pagamento<br/>- Sincronizzazione scheda nel diario"]:::screen
+
+        M_DRAWER["MODALE: Drawer Dettaglio Clinico & Vincoli ROM"]:::modal
+        M_BLE["MODALE: Connessione Bluetooth Encoder (Vitruve/GymAware)"]:::modal
+        M_EXPORT["MODALE: Generazione & Download Fogli Excel / PDF"]:::modal
+
+        S1 -->|Click su card atleta| S2
+        S2 -->|Apri anamnesi patologie| M_DRAWER
+        M_DRAWER -->|Invia diagnosi a ImpactCalculator| S3
+
+        S1 -->|Click su Nuovo Macrociclo| S3
+        S3 -->|Click Esporta Scheda| M_EXPORT
+
+        S1 -->|Click su Test VBT / PAP| S4
+        S4 -->|Accoppia hardware| M_BLE
+
+        S1 -->|Click su Monitoraggio Squadra| S5
+        S5 -->|Seleziona video atleta correlato| S6
+
+        S3 -->|Richiedi supporto scientifico RAG| S7
+        S1 -->|Passa a Social Network| S8
+    end

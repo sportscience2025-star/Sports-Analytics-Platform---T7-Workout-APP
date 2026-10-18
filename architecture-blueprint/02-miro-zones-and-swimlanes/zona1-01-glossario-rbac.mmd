@@ -1,0 +1,66 @@
+flowchart TD
+    classDef title fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc,font-weight:bold;
+    classDef tier1 fill:#0f172a,stroke:#64748b,stroke-width:1px,color:#cbd5e1;
+    classDef tier2 fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#e0e7ff;
+    classDef tier3 fill:#31104b,stroke:#c084fc,stroke-width:2px,color:#f3e8ff;
+    classDef role fill:#022c22,stroke:#34d399,stroke-width:1px,color:#d1fae5;
+    classDef term fill:#18181b,stroke:#a1a1aa,stroke-width:1px,color:#fafafa;
+
+    TITLE["ZONA 1 - SCHEMA 1: GLOSSARIO UBIQUITOUS LANGUAGE & MATRICE RBAC (3 TIERS x 8 RUOLI)"]:::title
+
+    subgraph GLOSSARIO["1. GLOSSARIO TECNICO UBIQUITOUS LANGUAGE"]
+        direction TB
+        G1["VBT (Velocity Based Training): Metodologia basata sulla misura della velocita d'esecuzione della barra con encoder lineare. Parametri: Velocita Media Propulsiva (m/s), 1RM stimato a MVT, Curva F-v, Zone Bryan Mann."]:::term
+        G2["PAP (Post-Activation Potentiation): Fenomeno acuto di incremento della prestazione muscolare esplosiva dopo pre-condizionamento ad alto carico. Metriche: t-Student, Cohen d, Hedges g, MDC 95%."]:::term
+        G3["READINESS & Z-SCORE: Indice integrato di preparazione neuromuscolare e metabolica. Normalizzazione statistica z = (x - mu) / sigma incrociata con HRV RMSSD, PVT e distanze GPS ad alta intensita."]:::term
+        G4["TRIAGE CLINICO & IMPACT CALCULATOR: Algoritmo di screening patologico su 119 condizioni mediche con cutoff binari (ESCLUSO, ADATTATO con limiti ROM, DISPONIBILE) e 32 protocolli specifici per il ginocchio."]:::term
+        G5["3 SILOS DATABASE: Architettura a compartimenti stagni: Silo 1 (Social & Movely B2B/B2C), Silo 2 (Bunkers Club Pro crittografati con Cloud KMS), Silo 3 (Research Warehouse de-identificato per accademia)."]:::term
+    end
+
+    subgraph TIERS["2. I 3 TIER COMMERCIALI DELLA PIATTAFORMA"]
+        direction TB
+        T1["TIER 1: BASE / AMATORIALE (B2C Free)<br/>Target: Atleta singolo amatoriale, utente fitness.<br/>Funzionalita: Diario di base, visualizzazione scheda, feed social Movely, consultazione catalogo standard."]:::tier1
+        T2["TIER 2: PRO COACH & CLINIC (B2B Freelance)<br/>Target: Personal Trainer, Fisioterapisti indipendenti, Centri riabilitativi.<br/>Funzionalita: Wizard periodizzazione 12-16 settimane, triage clinico 119 patologie, VBT OLS 1RM, export Excel sbloccato, RAG su 322 paper PubMed."]:::tier2
+        T3["TIER 3: ELITE CLUB & RESEARCH (B2B Enterprise)<br/>Target: Club professionistici, leghe sportive, universita, federazioni.<br/>Funzionalita: Bunker crittografati dedicati, Microciclo Squadra Z-Score con pesatura doppio ruolo tattico, fallback nuovi acquisti senza baseline, Video Analisi biomeccanica, pipeline ETL ricerca."]:::tier3
+    end
+
+    subgraph RBAC_MATRIX["3. MATRICE DEI PERMESSI RBAC (3 TIERS x 8 RUOLI)"]
+        direction TB
+        subgraph RUOLI["Gli 8 Ruoli Formali di Piattaforma"]
+            R1["R1: Atleta Base (Amatoriale)"]:::role
+            R2["R2: Coach Professionista (P.IVA / Freelance)"]:::role
+            R3["R3: Fisioterapista / Clinico Riabilitatore"]:::role
+            R4["R4: Medico Sociale di Squadra (Club Staff)"]:::role
+            R5["R5: Preparatore Atletico (S&C Head Coach)"]:::role
+            R6["R6: Match Analyst / Video Biomeccanico"]:::role
+            R7["R7: Ricercatore Accademico / Data Scientist"]:::role
+            R8["R8: Amministratore di Sistema (Platform SuperAdmin)"]:::role
+        end
+
+        subgraph ACCESSO_TIER1["Accesso Abilitato su TIER 1 (Base)"]
+            A1["R1 (Atleta): Diario personale, workout player, marketplace Movely, feed social"]
+            A8_1["R8 (Admin): Manutenzione piattaforma e monitoraggio telemetry"]
+        end
+
+        subgraph ACCESSO_TIER2["Accesso Abilitato su TIER 2 (Pro)"]
+            A2["R2 (Coach): Fino a 50 atleti, Generatore schede DUP/Blocchi, VBT OLS, Export Excel"]
+            A3["R3 (Fisioterapista): Cartella clinica 119 patologie, 32 protocolli ginocchio, prescrizione RTP"]
+            A1_2["R1 (Atleta Seguito): Compilazione RPE, diario avanzato, upload test eseguiti"]
+        end
+
+        subgraph ACCESSO_TIER3["Accesso Abilitato su TIER 3 (Elite Club & Research)"]
+            A4["R4 (Medico Sociale): Gestione bunker sanitario KMS, idoneita sportiva, blocco carichi squadra"]
+            A5["R5 (Prep. Atletico): Microciclo Z-Score squadra, gestione doppio ruolo, allarmi fatica GPS"]
+            A6["R6 (Match Analyst): Upload video MP4, tracking biomeccanico varo/valgo, tagging eventi"]
+            A7["R7 (Ricercatore): Query anonime su Silo 3, esportazione serie temporali per paper scientifici"]
+            A8_3["R8 (Admin Enterprise): Provisioning chiavi KMS, audit log ISO/IEC 27001, tenant routing"]
+        end
+    end
+
+    TITLE --> GLOSSARIO
+    TITLE --> TIERS
+    TITLE --> RBAC_MATRIX
+
+    T1 --> ACCESSO_TIER1
+    T2 --> ACCESSO_TIER2
+    T3 --> ACCESSO_TIER3

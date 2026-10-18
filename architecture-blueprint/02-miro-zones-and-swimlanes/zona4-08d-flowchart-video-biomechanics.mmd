@@ -1,0 +1,53 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef process fill:#1e293b,stroke:#38bdf8,stroke-width:1px,color:#f8fafc;
+    classDef decision fill:#78350f,stroke:#f59e0b,stroke-width:2px,color:#ffffff;
+    classDef db fill:#4c0519,stroke:#f43f5e,stroke-width:2px,color:#ffe4e6;
+
+    TITLE["ZONA 4 - SCHEMA 8D: PIPELINE VIDEO ANALISI BIOMECCANICA & MATCH ANALYSIS (4 SWIMLANES)"]
+
+    subgraph LANE_CLIENT["CORSIA 1: APP UTENTE (THIN CLIENT UI/UX)"]
+        START_VID(["Inizio: Match Analyst avvia video analisi"]):::startend
+        ACT_VID_UPLOAD["Upload file video MP4/MOV (60/120 fps) da smartphone o telecamera"]:::process
+        ACT_SET_TAGS["Tagging evento (Cambio di Direzione, Salto CMJ, Azione Partita)"]:::process
+        DISP_VID_PLAYER["Riproduzione video con overlay scheletro articolare e angoli dinamici"]:::process
+        DISP_ALERT_VALGUS["Visualizzazione Allarme Biomeccanico: Valgismo dinamico eccessivo"]:::process
+        END_VID(["Fine: Report Video e Tagging Salvati"]):::startend
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & SIGNED URL STORAGE"]
+        GW_RECV_VID["Ricezione richiesta POST /api/v1/video/upload-session"]:::process
+        DEC_TIER_VID{"Verifica licenza Tier 3 Elite Club attiva?"}:::decision
+        GW_REJECT_VID["HTTP 403 Forbidden: Modulo Video Analisi riservato a Tier 3"]:::process
+        GW_SIGNED_URL["Generazione URL firmato (Signed URL) per upload diretto su bucket sicuro"]:::process
+        GW_SEND_RESULT["Invio vettori angolari e coordinate scheletro JSON al client"]:::process
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (GPU WORKER & POSE ESTIMATION ENGINE)"]
+        SRV_DECODE_FRAMES["Decodifica stream video frame-by-frame a 60/120 fps su nodi GPU Cloud Run"]:::process
+        SRV_POSE_EST["Esecuzione modello Pose Estimation: Rilevamento landmark articolari 2D/3D"]:::process
+        SRV_CALC_ANGLES["Calcolo cinematico angoli articolari: Valgo/Varo ginocchio in gradi e flessione anca"]:::process
+        SRV_ASYMMETRY["Calcolo indice di asimmetria bilaterale tra arto dominante e non dominante"]:::process
+        DEC_DEFICIT{"Angolo valgismo > 15 deg o asimmetria > 15%?"}:::decision
+        SRV_TRIGGER_ALERT["Generazione automatica alert medico e associazione protocollo preventivo cli_12"]:::process
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE CENTRALE A 3 SILOS"]
+        DB_STORE_VID[("Archiviazione metadati video, timecode e tracking in Silo 2 (Club Bunker KMS)")]:::db
+    end
+
+    START_VID --> ACT_VID_UPLOAD --> GW_RECV_VID
+    GW_RECV_VID --> DEC_TIER_VID
+
+    DEC_TIER_VID -- NO --> GW_REJECT_VID
+    DEC_TIER_VID -- SI --> GW_SIGNED_URL
+
+    GW_SIGNED_URL --> ACT_SET_TAGS --> SRV_DECODE_FRAMES
+    SRV_DECODE_FRAMES --> SRV_POSE_EST --> SRV_CALC_ANGLES --> SRV_ASYMMETRY
+    SRV_ASYMMETRY --> DEC_DEFICIT
+
+    DEC_DEFICIT -- SI --> SRV_TRIGGER_ALERT --> DB_STORE_VID
+    DEC_DEFICIT -- NO --> DB_STORE_VID
+
+    DB_STORE_VID --> GW_SEND_RESULT --> DISP_VID_PLAYER
+    DISP_VID_PLAYER --> DISP_ALERT_VALGUS --> END_VID

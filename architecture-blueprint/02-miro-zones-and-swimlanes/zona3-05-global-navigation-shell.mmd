@@ -1,0 +1,45 @@
+flowchart TD
+    classDef shell fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#f8fafc,font-weight:bold;
+    classDef context fill:#0369a1,stroke:#7dd3fc,stroke-width:2px,color:#ffffff;
+    classDef view fill:#1e293b,stroke:#64748b,stroke-width:1px,color:#f1f5f9;
+    classDef tier fill:#4c1d95,stroke:#c084fc,stroke-width:1px,color:#faf5ff;
+
+    TITLE["ZONA 3 - SCHEMA 5: GLOBAL NAVIGATION SHELL STILE APPLE & SELETTORE PERMANENTE ATLETA/SQUADRA"]
+
+    subgraph GLOBAL_SHELL["GLOBAL NAVIGATION SHELL (LAYOUT ADATTIVO DESKTOP / MOBILE PWA)"]
+        direction TB
+
+        subgraph TOP_BAR["TOP FIXED HEADER: SELETTORE CONTESTO & STATO HARDWARE"]
+            direction LR
+            BRAND["T7 Workout Cockpit"]:::shell
+            TIER_BADGE["Tier Badge: TIER 1 / TIER 2 / TIER 3"]:::tier
+            SELECTOR["SELETTORE GLOBALE PERMANENTE ATLETA / SQUADRA<br/>[Dropdown reattivo]: Squadra Intera | Atleta Singolo (Ricerca veloce, status clinico)"]:::context
+            BLE_STATUS["BLE Status: Connesso Vitruve / Polar H10"]:::shell
+            USER_MENU["Menu Profilo & Impostazioni"]:::shell
+
+            BRAND --- TIER_BADGE --- SELECTOR --- BLE_STATUS --- USER_MENU
+        end
+
+        subgraph NAV_ITEMS["ALBERO NAVIGAZIONE PRINCIPALE (SIDEBAR DESKTOP / BOTTOM TAB MOBILE)"]
+            direction TB
+            N1["1. COCKPIT DASHBOARD (Panoramica Readiness, alert prioritari)"]:::view
+            N2["2. ATLETI & CLINICA (Anamnesi, Triage 119 patologie, 32 protocolli ginocchio)"]:::view
+            N3["3. PROGRAMMAZIONE & ESERCIZI (Wizard DUP 12-16 sett, catalogo 296 esercizi, export Excel)"]:::view
+            N4["4. DATA ANALISI & VBT (Curva F-v, stima 1RM a MVT, test PAP, MDC 95%)"]:::view
+            N5["5. MICROCICLO SQUADRA (Z-Score composito, pesatura doppio ruolo, carico GPS)"]:::view
+            N6["6. VIDEO BIOMECCANICA (Pose estimation, angoli varo/valgo, match analysis)"]:::view
+            N7["7. KNOWLEDGE RAG (322 paper PubMed, prompt coach, sintesi evidence-based)"]:::view
+            N8["8. SOCIAL MOVELY (Marketplace B2B/B2C, feed professionale, diario condiviso)"]:::view
+            N9["9. RESEARCH HUB (Estrazione serie temporali de-identificate per accademia)"]:::view
+        end
+
+        subgraph TIER_GATING["VISIBILITA ADATTIVA DEI MODULI IN BASE AL TIER"]
+            direction TB
+            V_T1["TIER 1 (Base): Moduli N1 (Diario personale), N8 (Social Movely). Altri moduli bloccati con CTA Upgrade"]:::tier
+            V_T2["TIER 2 (Pro): Moduli N1, N2, N3, N4, N7, N8 abilitati. Fino a 50 atleti gestibili"]:::tier
+            V_T3["TIER 3 (Elite Club): Tutti i moduli abilitati (N1-N9), gestione illimitata squadre e staff multi-disciplinare"]:::tier
+        end
+    end
+
+    SELECTOR -->|Inietta contesto atleta/squadra globale| NAV_ITEMS
+    NAV_ITEMS --> TIER_GATING

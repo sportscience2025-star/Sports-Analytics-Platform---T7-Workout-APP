@@ -1,0 +1,51 @@
+flowchart TB
+    classDef system fill:#0284c7,stroke:#0369a1,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef external fill:#334155,stroke:#475569,stroke-width:1px,color:#f8fafc;
+    classDef actor fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff;
+    classDef adr fill:#431407,stroke:#ea580c,stroke-width:2px,color:#fed7aa;
+    classDef boundary fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0;
+
+    TITLE["ZONA 1 - SCHEMA 2: C4 SYSTEM CONTEXT (LIVELLO 1) & SCHEDE DECISIONALI ADR"]
+
+    subgraph ACTORS["UTENTI E STAKEHOLDER DEL SISTEMA"]
+        U_ATH["Atleta (Tier 1/2/3): Compila readiness, esegue workout, consulta progressi"]:::actor
+        U_COACH["Coach / Trainer (Tier 2): Programma macrocicli, analizza VBT, esporta Excel"]:::actor
+        U_MED["Staff Sanitario Club (Tier 3): Gestisce cartella clinica, triage patologie, RTP"]:::actor
+        U_SC["Preparatore S&C (Tier 3): Monitora Z-Score microciclo, carico GPS, doppio ruolo"]:::actor
+        U_MA["Match Analyst (Tier 3): Carica video partita, valuta angoli articolari varo/valgo"]:::actor
+        U_RES["Ricercatore Accademico (Tier 3): Conduce analisi inferenziali su dati anonimizzati"]:::actor
+    end
+
+    subgraph SYSTEM_BOUNDARY["PERIMETRO PIATTAFORMA T7 WORKOUT"]
+        T7_SYS["T7 WORKOUT SPORTS ANALYTICS PLATFORM<br/>Thin Client React 18 + API Gateway + Server Scatola Nera + 3 Silos DB"]:::system
+    end
+
+    subgraph EXT_INPUTS["SISTEMI E SENSORI ESTERNI (INGRESSO DATI)"]
+        EXT_HEALTH["Wearable Consumer (Apple HealthKit / Health Connect): HRV RMSSD, Sonno, Passi"]:::external
+        EXT_BLE["Linear Encoders BLE (Vitruve, GymAware, Beast): Velocita, Spostamento, Tempi"]:::external
+        EXT_GPS["Wearable GPS Squadra (Catapult, Wimu, STATSports): Distanza totale, sprint, accelerazioni"]:::external
+        EXT_CAM["Camere Video (60/120 fps): File video MP4/MOV per biomeccanica e match analysis"]:::external
+        EXT_PUBMED["NCBI PubMed API: Sincronizzazione metadati e abstract paper evidence-based"]:::external
+    end
+
+    subgraph EXT_SECURITY_OUTPUTS["INFRASTRUTTURA DI SICUREZZA ED OUTPUT ESTERNI"]
+        KMS["Google Cloud KMS: Gestione chiavi crittografiche per-tenant Silo 2"]:::external
+        OUT_XLS["Fogli Excel (.xlsx) Sbloccati: Modificabili senza password per lavoro sul campo"]:::external
+        OUT_PDF["Report PDF Vettoriali con QR Code video per esecuzione esercizi"]:::external
+        OUT_S3["Research Hub Data Export: Dataset CSV/Parquet conformi GDPR per universita"]:::external
+    end
+
+    subgraph ADR_SECTION["SCHEDE ARCHITECTURAL DECISION RECORD (ADR)"]
+        direction TB
+        ADR01["ADR-01: TUTELA PROPRIETA INTELLETTUALE (IP)<br/>Decisione: Thin Client di sola visualizzazione + Server Scatola Nera.<br/>Contesto: Tutelare algoritmi VBT OLS, euristica DUP e logiche RAG da reverse-engineering.<br/>Vincolo: Nessuna formula matematica presente nel bundle JavaScript client scaricato."]:::adr
+        ADR02["ADR-02: ISOLAMENTO MULTI-TENANT A 3 SILOS<br/>Decisione: Partizione stagna del database in Silo 1 (Social), Silo 2 (Bunkers KMS), Silo 3 (Research).<br/>Contesto: Riservatezza dati sanitari e tattici delle societa sportive professionistiche.<br/>Vincolo: Chiavi crittografiche distinte per club, nessun incrocio dati non de-identificato."]:::adr
+        ADR03["ADR-03: RIGORE DIMENSIONALE UNITA FISICHE SI<br/>Decisione: Validazione runtime rigorosa delle grandezze del Sistema Internazionale.<br/>Contesto: Eliminare incongruenze fisiche nei grafici di forza, potenza e velocita.<br/>Vincolo: Forza in Newton (N), Potenza in Watt (W), Carico in kg, Velocita in m/s."]:::adr
+    end
+
+    ACTORS -->|Interazione HTTPS / WebApp| T7_SYS
+    EXT_INPUTS -->|Dati Sensori / API Rest| T7_SYS
+    T7_SYS -->|Crittografia a riposo| KMS
+    T7_SYS -->|Generazione documenti| OUT_XLS
+    T7_SYS -->|Stampa protocolli| OUT_PDF
+    T7_SYS -->|Pipeline ETL anonima| OUT_S3
+    T7_SYS -.->|Applicazione dei vincoli| ADR_SECTION

@@ -1,0 +1,53 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef process fill:#1e293b,stroke:#38bdf8,stroke-width:1px,color:#f8fafc;
+    classDef decision fill:#78350f,stroke:#f59e0b,stroke-width:2px,color:#ffffff;
+    classDef db fill:#4c0519,stroke:#f43f5e,stroke-width:2px,color:#ffe4e6;
+
+    TITLE["ZONA 4 - SCHEMA 8E: FLOWCHART SOCIAL MOVELY & PIPELINE ETL ANONIMIZZAZIONE RICERCA (4 SWIMLANES)"]
+
+    subgraph LANE_CLIENT["CORSIA 1: APP UTENTE (THIN CLIENT & RICERCATORE)"]
+        START_SOC(["Inizio: Utente accede a Movely o Ricercatore accede a Research Hub"]):::startend
+        ACT_POST["Pubblicazione post / video workout su feed comunitario Movely"]:::process
+        ACT_HIRE["Ingaggio professionista P.IVA (Coach/Fisio) e pagamento pacchetto schede"]:::process
+        ACT_CONSENT_RES["Flag consenso esplicito opt-in contributo ricerca accademica"]:::process
+        ACT_QUERY_RES["Ricercatore esegue query aggregate su coorti atletiche anonime"]:::process
+        DISP_RESEARCH_EXPORT["Download dataset accademico conforme GDPR (CSV/Parquet)"]:::process
+        END_SOC(["Fine: Transazione Conclusa / Dataset Ricerca Scaricato"]):::startend
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & GATEWAY PAGAMENTI"]
+        GW_RECV_SOC["Ricezione POST /api/v1/movely/* e GET /api/v1/research/*"]:::process
+        GW_STRIPE["Inoltro pagamento a Stripe Gateway e verifica token di avvenuta transazione"]:::process
+        DEC_RES_ROLE{"Utente possiede ruolo formale R7: Ricercatore Accademico?"}:::decision
+        GW_REJECT_RES["HTTP 403 Forbidden: Accesso a Silo 3 riservato ad enti accreditati"]:::process
+        GW_SEND_QUERY_RES["Invio dataset aggregato e statistiche descrittive"]:::process
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (MOVELY ENGINE & DE-IDENTIFICATION ETL)"]
+        SRV_PROVISION_PLAN["Iniezione automatica della scheda acquistata nel diario dell'atleta cliente"]:::process
+        SRV_NIGHTLY_CRON["Trigger batch notturno schedulato (Nightly ETL Pipeline)"]:::process
+        SRV_STRIP_PII["Rimozione rigorosa PII (Nome, Cognome, Data di nascita, Club di provenienza)"]:::process
+        SRV_HASH_ID["Generazione Synthetic Hash unidirezionale crittografico non reversibile"]:::process
+        SRV_NORM_VECTORS["Normalizzazione e aggregazione grandezze fisiche (Curve F-v, Z-Scores per coorte)"]:::process
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE CENTRALE A 3 SILOS"]
+        DB_WRITE_S1[("Archiviazione Post, Recensioni e Transazioni in Silo 1 (Social & Movely)")]:::db
+        DB_EXTRACT_S2[("Estrazione dati grezzi atleti con opt-in da Silo 2 (Club Bunker KMS)")]:::db
+        DB_WRITE_S3[("Scrittura serie temporali anonimizzate in Silo 3 (Research Warehouse)")]:::db
+    end
+
+    START_SOC --> ACT_POST --> GW_RECV_SOC --> DB_WRITE_S1
+    START_SOC --> ACT_HIRE --> GW_STRIPE
+    GW_STRIPE --> SRV_PROVISION_PLAN --> DB_WRITE_S1
+
+    ACT_CONSENT_RES --> DB_EXTRACT_S2
+    SRV_NIGHTLY_CRON --> DB_EXTRACT_S2
+
+    DB_EXTRACT_S2 --> SRV_STRIP_PII --> SRV_HASH_ID --> SRV_NORM_VECTORS
+    SRV_NORM_VECTORS --> DB_WRITE_S3
+
+    ACT_QUERY_RES --> GW_RECV_SOC --> DEC_RES_ROLE
+    DEC_RES_ROLE -- NO --> GW_REJECT_RES
+    DEC_RES_ROLE -- SI --> DB_WRITE_S3 --> GW_SEND_QUERY_RES --> DISP_RESEARCH_EXPORT --> END_SOC

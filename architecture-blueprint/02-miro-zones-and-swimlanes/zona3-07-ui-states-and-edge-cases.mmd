@@ -1,0 +1,42 @@
+flowchart TD
+    classDef stateEmpty fill:#1e293b,stroke:#64748b,stroke-width:2px,color:#94a3b8;
+    classDef stateLoading fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#c7d2fe;
+    classDef statePopulated fill:#064e3b,stroke:#10b981,stroke-width:2px,color:#ecfdf5;
+    classDef stateError fill:#450a0a,stroke:#ef4444,stroke-width:2px,color:#fee2e2;
+    classDef edgeCase fill:#7c2d12,stroke:#f97316,stroke-width:2px,color:#ffedd5;
+
+    TITLE["ZONA 3 - SCHEMA 7: MATRICE DEI 4 STATI UI & GESTIONE CASI LIMITE (EDGE CASES)"]
+
+    subgraph QUADRO_STATI["I 4 STATI VISUALI FORMALI PER OGNI VISTA"]
+        direction TB
+
+        subgraph EMPTY["1. EMPTY STATE (Stato Iniziale / Dati Assenti)"]
+            E_DESC["- Skeleton vuoto con messaggi esplicativi e orientamento<br/>- Onboarding guidato con checklist a passi progressivi<br/>- Pulsanti CTA primari ('Collega Encoder BLE', 'Aggiungi Primo Atleta', 'Importa GPS')<br/>- Zero tabelle grigie mute o pagine bianche disorientanti"]:::stateEmpty
+        end
+
+        subgraph LOADING["2. LOADING STATE (Elaborazione Server / Transizione)"]
+            L_DESC["- Skeleton screens ad effetto shimmer pulsante al neon<br/>- Barra di avanzamento percentuale per elaborazioni lunghe (OLS, Video Pose)<br/>- Controlli utente disabilitati per prevenire submit doppi<br/>- Feedback visivo 'Calcolo Scatola Nera in corso...'"]:::stateLoading
+        end
+
+        subgraph POPULATED["3. POPULATED STATE (Stato a Regime con Dati Completi)"]
+            P_DESC["- Dashboard Dark Cockpit completamente popolata<br/>- Grafici Chart.js neon reattivi con tooltip interattivi<br/>- Matrici di calore Z-Score e curve F-v complete<br/>- Filtri per atleta, ruolo tattico e periodo temporale"]:::statePopulated
+        end
+
+        subgraph ERROR["4. ERROR / FALLBACK STATE (Anomalie di Sistema & Rete)"]
+            ERR_DESC["- Banner descrittivi dell'errore comprensibili all'utente<br/>- Nessun dump di stack trace o schermata rossa non gestita<br/>- Pulsante di ripristino 'Riprova' con exponential backoff<br/>- Modalita Offline automatica (Service Worker) con badge giallo"]:::stateError
+        end
+    end
+
+    subgraph EDGE_CASES["GESTIONE RIGOROSA DEI CASI LIMITE & ANOMALIE SUL CAMPO"]
+        direction TB
+
+        EC_NEW["EDGE CASE 1: NUOVO ACQUISTO SENZA BASELINE STORICA (<6 MESI)<br/>- Problema: Impossibile calcolare Z-Score su media/deviazione standard storica.<br/>- Soluzione: Attivazione automatica algoritmo di fallback su mediana di ruolo della squadra.<br/>- UI: Badge informativo 'Baseline Stimata da Mediana di Ruolo'."]:::edgeCase
+
+        EC_ROLE["EDGE CASE 2: ATLETA CON DOPPIO RUOLO TATTICO NELLO STESSO MICROCICLO<br/>- Problema: Richieste metaboliche disomogenee (es. 75 min Terzino + 15 min Ala).<br/>- Soluzione: Calcolo Z-Score con pesatura frazionaria dei minuti di gioco.<br/>- UI: Pill bi-colore con percentuali applicate (es. 'Terzino 83% | Ala 17%')."]:::edgeCase
+
+        EC_XLS["EDGE CASE 3: FILE EXCEL / CSV ENCODER MALFORMATO O CON COLONNE SPOSTATE<br/>- Problema: Encoder di marche diverse usano intestazioni differenti o lingue diverse.<br/>- Soluzione: Motore euristico di auto-mapping intestazioni dal legacy JS.<br/>- UI: Se mapping fallisce, apertura modale interattiva di assegnazione colonne con anteprima."]:::edgeCase
+
+        EC_NAN["EDGE CASE 4: PREVENZIONE ASSOLUTA DI NaN, INFINITY E UNDEFINED<br/>- Problema: Divisioni per zero in formule fisiche (es. tempo contatto = 0 in RSI).<br/>- Soluzione: Sanitizer runtime server-side e client-side con valore neutro o zero.<br/>- UI: Sostituzione di ogni valore invalido con trattino 'N/D' o '0.00' prima del render."]:::edgeCase
+    end
+
+    QUADRO_STATI --> EDGE_CASES

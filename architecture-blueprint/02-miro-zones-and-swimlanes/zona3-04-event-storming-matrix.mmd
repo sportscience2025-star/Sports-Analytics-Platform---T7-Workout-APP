@@ -1,0 +1,76 @@
+flowchart TD
+    classDef event fill:#b45309,stroke:#f59e0b,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef module fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
+    classDef reaction fill:#064e3b,stroke:#10b981,stroke-width:1px,color:#ecfdf5;
+
+    TITLE["ZONA 3 - SCHEMA 4: EVENT STORMING MATRIX & CATENE REATTIVE CROSS-MODULO"]
+
+    subgraph CATENA1["CATENA 1: TRIAGE CLINICO -> PROGRAMMAZIONE & CATALOGO"]
+        M04_A["M04: Clinica, Infortuni & RTP"]:::module
+        E_CLINIC["EVENTO: ATHLETE_PATHOLOGY_UPDATED<br/>Payload: athleteId, conditionId: col_01_lombalgia, severity: 4"]:::event
+        R_CLINIC["REAZIONE: ImpactCalculator esclude Squat/Stacco assiale, limita ROM Leg Extension 45-90 deg, inietta 2 esercizi di pre-attivazione glutei"]:::reaction
+        M02_A["M02: Catalogo Esercizi"]:::module
+        M03_A["M03: Programmazione Macrociclo"]:::module
+
+        M04_A -->|Diagnosi medica inserita| E_CLINIC
+        E_CLINIC --> R_CLINIC
+        R_CLINIC -->|Filtra esercizi disponibili| M02_A
+        R_CLINIC -->|Ricalcola scheda senza carichi compressivi| M03_A
+    end
+
+    subgraph CATENA2["CATENA 2: VBT TEST -> AGGIORNAMENTO DINAMICO CARICHI"]
+        M05_B["M05: Data Analisi & VBT"]:::module
+        E_VBT["EVENTO: VBT_1RM_RECALCULATED<br/>Payload: athleteId, exerciseId: sq_01, estimated1RMKg: 138.3, rSquared: 0.992"]:::event
+        R_VBT["REAZIONE: Ricalcolo dinamico delle serie di lavoro a %1RM in kg effettivi per le prossime 4 settimane"]:::reaction
+        M03_B["M03: Programmazione Macrociclo"]:::module
+
+        M05_B -->|Fine serie encoder BLE| E_VBT
+        E_VBT --> R_VBT
+        R_VBT -->|Aggiorna carichi target| M03_B
+    end
+
+    subgraph CATENA3["CATENA 3: WEARABLE & GPS -> Z-SCORE & SCARICO AUTOMATICO"]
+        M01_C["M01: Readiness & Wearables"]:::module
+        M06_C["M06: Microciclo Squadra & GPS"]:::module
+        E_LOAD["EVENTO: COMPOSITE_FATIGUE_OVERLOAD<br/>Payload: athleteId, compositeZ: -1.62, hrvRmssdDrop: -28%"]:::event
+        R_LOAD["REAZIONE: Alert staff tecnico, riduzione automatica -30% sprint ad alta intensita e carichi eccentrici"]:::reaction
+        M03_C["M03: Diario & Scheda Atleta"]:::module
+
+        M01_C -->|HRV e PVT mattutini| E_LOAD
+        M06_C -->|Distanza GPS partita| E_LOAD
+        E_LOAD --> R_LOAD
+        R_LOAD -->|Modula volume seduta G-3| M03_C
+    end
+
+    subgraph CATENA4["CATENA 4: VIDEO BIOMECCANICA -> ALLARME PREVENZIONE INFORTUNI"]
+        M07_D["M07: Video Biomeccanica"]:::module
+        E_VIDEO["EVENTO: KNEE_VALGUS_DEFICIT_DETECTED<br/>Payload: athleteId, kneeAngleValgusDeg: 18.5, symmetryRatio: 0.76"]:::event
+        R_VIDEO["REAZIONE: Generazione protocollo preventivo 'cli_12' ginocchio con video QR code e notifica al fisioterapista"]:::reaction
+        M04_D["M04: Clinica & Fisioterapia"]:::module
+
+        M07_D -->|Pose estimation server-side| E_VIDEO
+        E_VIDEO --> R_VIDEO
+        R_VIDEO -->|Assegna protocollo correttivo| M04_D
+    end
+
+    subgraph CATENA5["CATENA 5: KNOWLEDGE RAG -> RAZIONALE SCHEDA PERSONALIZZATA"]
+        M08_E["M08: Motore RAG & Paper"]:::module
+        E_RAG["EVENTO: COACH_LEXICON_INGESTED<br/>Payload: coachId, topic: DUP_Hypertrophy, pubmedCitations: [PMID:31287680]"]:::event
+        R_RAG["REAZIONE: Iniezione del razionale scientifico formattato e terminologia del coach nella scheda tecnica"]:::reaction
+        M03_E["M03: Programmazione Macrociclo"]:::module
+
+        M08_E -->|Upload documenti PDF/DOCX| E_RAG
+        E_RAG --> R_RAG
+        R_RAG -->|Allega note scientifiche evidence-based| M03_E
+    end
+
+    subgraph CATENA6["CATENA 6: MARKETPLACE MOVELY -> SINCRONIZZAZIONE DIARIO CLIENTE"]
+        M09_F["M09: Social & Movely"]:::module
+        E_MOVELY["EVENTO: COACHING_PACKAGE_PURCHASED<br/>Payload: clientId, coachId, planId: macro_16w_dup, amount: 250.00"]:::event
+        R_MOVELY["REAZIONE: Abilitazione automatica del piano nel diario cliente Tier 1 e notifica al Coach Tier 2"]:::reaction
+        M01_F["M01: Diario & Profilo Cliente"]:::module
+
+        M09_F -->|Transazione completata con successo| E_MOVELY
+        E_MOVELY --> R_MOVELY
+        R_MOVELY -->|Sincronizza scheda nel diario cliente| M01_F
+    end

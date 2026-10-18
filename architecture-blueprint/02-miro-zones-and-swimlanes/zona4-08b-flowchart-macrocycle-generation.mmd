@@ -1,0 +1,59 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef process fill:#1e293b,stroke:#38bdf8,stroke-width:1px,color:#f8fafc;
+    classDef decision fill:#78350f,stroke:#f59e0b,stroke-width:2px,color:#ffffff;
+    classDef db fill:#4c0519,stroke:#f43f5e,stroke-width:2px,color:#ffe4e6;
+
+    TITLE["ZONA 4 - SCHEMA 8B: GENERAZIONE MACROCICLO IPER-PERSONALIZZATO & PRE-ATTIVAZIONE (4 SWIMLANES)"]
+
+    subgraph LANE_CLIENT["CORSIA 1: APP UTENTE (THIN CLIENT UI/UX)"]
+        START_PLAN(["Inizio: Coach avvia wizard programmazione"]):::startend
+        ACT_SEL_ATH["Selezione Atleta dal Selettore Globale Permanente"]:::process
+        ACT_CONFIG["Impostazione parametri: Modello DUP, Durata 12-16 settimane, Target Forza/Ipertrofia"]:::process
+        ACT_GEN_CLICK["Click su 'Elabora Scheda Scatola Nera'"]:::process
+        DISP_PLAN["Rendering a video del Macrociclo: Tabelle serie, carichi kg, RPE e note scientifiche"]:::process
+        ACT_EXPORT["Click su 'Esporta Fogli Excel Sbloccati (.xlsx)' e 'Scarica PDF con QR Code'"]:::process
+        END_PLAN(["Fine: Macrociclo Attivo nel Diario e File Scaricati"]):::startend
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & TIER ENFORCEMENT"]
+        GW_RECV_PLAN["Ricezione POST /api/v1/programming/generate-macrocycle"]:::process
+        DEC_TIER_PLAN{"Abbonamento attivo Tier 2 o Tier 3?"}:::decision
+        GW_REJECT_PLAN["Errore HTTP 403 Forbidden: Richiesto upgrade a Tier Pro o Elite"]:::process
+        GW_RETURN_PLAN["Restituzione Payload JSON finito della scheda al client"]:::process
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (PERIODIZATION & TRIAGE ENGINES)"]
+        SRV_FETCH_MED["Interrogazione anamnesi patologica atleta su 119 condizioni"]:::process
+        SRV_IMPACT["Esecuzione ImpactCalculator: Applicazione cutoff binari (ESCLUSO, ADATTATO, DISPONIBILE)"]:::process
+        DEC_PATHOLOGY{"Rilevate patologie articolari attive (es. ernia discale o neoligamento LCA)?"}:::decision
+        SRV_EXCLUDE["Esclusione esercizi con carico assiale diretto e applicazione limiti ROM (45-90 deg)"]:::process
+        SRV_PREACT["Generazione routine pre-attivazione con link video (es. cli_01..cli_32 ginocchio)"]:::process
+        SRV_DUP["Esecuzione Periodization Wizard: Calcolo volume, intensita e settimane di scarico (-40%)"]:::process
+        SRV_RAG["Query RAG su 322 fonti PubMed: Iniezione evidenze scientifiche con PMID"]:::process
+        SRV_EXCEL["Esecuzione Document I/O: Generazione foglio Excel sbloccato (protected: false) e PDF"]:::process
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE CENTRALE A 3 SILOS"]
+        DB_READ_MED[("Lettura Cartella Clinica da Silo 2 (Club Bunker) o Silo 1")]:::db
+        DB_WRITE_PLAN[("Archiviazione Macrociclo approvato in Silo 2 o Silo 1")]:::db
+    end
+
+    START_PLAN --> ACT_SEL_ATH --> ACT_CONFIG --> ACT_GEN_CLICK
+    ACT_GEN_CLICK --> GW_RECV_PLAN
+
+    GW_RECV_PLAN --> DEC_TIER_PLAN
+    DEC_TIER_PLAN -- NO --> GW_REJECT_PLAN
+    DEC_TIER_PLAN -- SI --> SRV_FETCH_MED
+
+    SRV_FETCH_MED --> DB_READ_MED --> SRV_IMPACT
+    SRV_IMPACT --> DEC_PATHOLOGY
+
+    DEC_PATHOLOGY -- SI --> SRV_EXCLUDE --> SRV_PREACT --> SRV_DUP
+    DEC_PATHOLOGY -- NO --> SRV_DUP
+
+    SRV_DUP --> SRV_RAG --> SRV_EXCEL
+    SRV_EXCEL --> DB_WRITE_PLAN
+
+    DB_WRITE_PLAN --> GW_RETURN_PLAN --> DISP_PLAN
+    DISP_PLAN --> ACT_EXPORT --> END_PLAN
