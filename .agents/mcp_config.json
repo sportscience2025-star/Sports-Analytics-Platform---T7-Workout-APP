@@ -36,7 +36,7 @@
         "@aditya.mishra/miro-mcp"
       ],
       "env": {
-        "MIRO_OAUTH_TOKEN": "eyJtaXJvLm9yaWdpbi6ImV1MDEifQ_mghYrRqWP0QxsUPugZjmpbTjEoM",
+        "MIRO_OAUTH_TOKEN": "eyJtaXJvLm9yaWdpbiI6ImV1MDEifQ_e8i4xJ8gI38ajk5VyKGgsy8dd2U",
         "npm_config_cache": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\npm-cache",
         "TEMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp",
         "TMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp"
