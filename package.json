@@ -16,10 +16,13 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^12.0.0",
     "@types/chart.js": "^2.9.41",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.0",
+    "dependency-cruiser": "^18.6.0",
+    "repomix": "^1.18.1",
     "typescript": "^5.4.5",
     "vite": "^5.2.11",
     "vite-plugin-pwa": "^0.20.0"

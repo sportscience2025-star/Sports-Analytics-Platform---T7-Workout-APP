@@ -21,6 +21,11 @@ dist/
 # Scratch directory
 scratch/
 
-# Browser environment (profiles, caches, temp)
+# Browser environment and local tooling (profiles, caches, temp)
 .browser-env/
+.local-tooling/
 
+# Ensure critical architecture and agent sync files are explicitly tracked
+!.agents/
+!.vscode/extensions.json
+!architecture-blueprint/

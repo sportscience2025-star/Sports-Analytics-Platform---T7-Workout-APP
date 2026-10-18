@@ -8,6 +8,10 @@
     "formulahendry.auto-close-tag",
     "yoavbls.pretty-ts-errors",
     "usernamehw.errorlens",
-    "christian-kohler.path-intellisense"
+    "christian-kohler.path-intellisense",
+    "bierner.markdown-mermaid",
+    "vstirbu.vscode-mermaid-preview",
+    "hediet.vscode-drawio",
+    "Prisma.prisma"
   ]
 }

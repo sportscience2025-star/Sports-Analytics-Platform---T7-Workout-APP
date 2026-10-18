@@ -39,6 +39,10 @@ description: >
 | workflow-skill-creator | Quando l utente vuole trasformare un workflow in una nuova skill |
 | ui-ux-pattern-extractor | Replicazione stile/UX, ispezione siti web esterni, estrazione CSS/layout |
 | app-navigation-integrator | Unificazione navigazione interna, routing fluido, coerenza moduli PWA |
+| react-ts-reverse-architect | Reverse engineering Beta React/TS, Gap Analysis, mappa dipendenze |
+| miro-software-house-blueprint | Diagrammi e flowchart Miro a 5 Zone e 4 Swimlanes per la Software House |
+| client-server-ip-isolation | Tutela IP algoritmi proprietari, Thin Client vs Server, 3 Silos DB |
+| sports-science-biometrics-guard | Validazione grandezze fisiche SI, doppio ruolo, fallback atleti, export Excel |
 
 ### Condizionalmente utili (solo se task specifica lo richiede)
 

@@ -28,6 +28,55 @@
         "TEMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp",
         "TMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp"
       }
+    },
+    "miro": {
+      "command": "npx.cmd",
+      "args": [
+        "-y",
+        "@aditya.mishra/miro-mcp"
+      ],
+      "env": {
+        "MIRO_OAUTH_TOKEN": "eyJtaXJvLm9yaWdpbi6ImV1MDEifQ_mghYrRqWP0QxsUPugZjmpbTjEoM",
+        "npm_config_cache": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\npm-cache",
+        "TEMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp",
+        "TMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp"
+      }
+    },
+    "sequential-thinking": {
+      "command": "npx.cmd",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "env": {
+        "npm_config_cache": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\npm-cache",
+        "TEMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp",
+        "TMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp"
+      }
+    },
+    "prisma": {
+      "command": "npx.cmd",
+      "args": [
+        "-y",
+        "@prisma/mcp"
+      ],
+      "env": {
+        "npm_config_cache": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\npm-cache",
+        "TEMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp",
+        "TMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp"
+      }
+    },
+    "github": {
+      "command": "npx.cmd",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "npm_config_cache": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\npm-cache",
+        "TEMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp",
+        "TMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp"
+      }
     }
   }
 }
