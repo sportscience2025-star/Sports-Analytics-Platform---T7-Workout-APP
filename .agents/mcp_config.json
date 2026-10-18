@@ -58,7 +58,8 @@
       "command": "npx.cmd",
       "args": [
         "-y",
-        "@prisma/mcp"
+        "prisma",
+        "mcp"
       ],
       "env": {
         "npm_config_cache": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\npm-cache",
