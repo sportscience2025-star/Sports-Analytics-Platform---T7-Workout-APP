@@ -29,3 +29,7 @@ scratch/
 !.agents/
 !.vscode/extensions.json
 !architecture-blueprint/
+
+# Mermaid compiled vector renders (regenerable on-demand via npm run build:diagrams)
+architecture-blueprint/**/*.svg
+
