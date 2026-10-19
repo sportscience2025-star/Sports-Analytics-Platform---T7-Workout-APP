@@ -37,6 +37,9 @@
       ],
       "env": {
         "MIRO_OAUTH_TOKEN": "eyJtaXJvLm9yaWdpbiI6ImV1MDEifQ_e8i4xJ8gI38ajk5VyKGgsy8dd2U",
+        "MIRO_ACCESS_TOKEN": "eyJtaXJvLm9yaWdpbiI6ImV1MDEifQ_e8i4xJ8gI38ajk5VyKGgsy8dd2U",
+        "MIRO_API_TOKEN": "eyJtaXJvLm9yaWdpbiI6ImV1MDEifQ_e8i4xJ8gI38ajk5VyKGgsy8dd2U",
+        "MIRO_REFRESH_TOKEN": "eyJtaXJvLm9yaWdpbiI6ImV1MDEifQ_epAnQoF0MroD2__Yyhl5aLrUDkc",
         "npm_config_cache": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\npm-cache",
         "TEMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp",
         "TMP": "E:\\Nuove App Installate\\Sports-Analytics-Platform---T7-Workout-APP\\.browser-env\\temp"
