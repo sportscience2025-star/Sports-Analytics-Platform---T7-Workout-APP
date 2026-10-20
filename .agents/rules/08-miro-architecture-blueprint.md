@@ -57,9 +57,10 @@ Per garantire leggibilità immediata agli ingegneri della Software House ed evit
 
 ---
 
-## 4. Organizzazione della Lavagna Miro (Le 5 Zone Architetturali)
+## 4. Organizzazione della Lavagna Miro (Le Zone Architetturali)
 
-Mantieni la board Miro ordinata da sinistra verso destra secondo questa griglia a 5 Zone:
+Mantieni la board Miro ordinata da sinistra verso destra secondo questa griglia modulare:
+- **ZONA 0 (Glossario Tecnico Evolutivo & Terminology Board):** Area separata e dedicata, collocata a monte degli schemi architetturali, concepita come una board enciclopedica evolutiva. Raccoglie in modo ordinato per categorie tutti i termini tecnici, gli acronimi, le metriche biomeccaniche e i concetti architetturali complessi, con definizioni chiare e semplificate per facilitare la lettura degli schemi a chiunque (sviluppatori Software House, staff tecnico, clinici, nuovi agenti).
 - **ZONA 1 (Contesto, Tiers & ADR):** Matrice permessi Tier 1/2/3, Mappa Ecosistema esterno (Input/Output file, Wearable Apple Health/Health Connect) e schede ADR (*Architecture Decision Records*).
 - **ZONA 2 (Architettura C4: Client, Server & DB):** Schema dell'infrastruttura Thin Client + API Gateway + i 5 Motori Server-Side (*Biomechanics/VBT, Periodization/Clinical Triage, Team Microcycle/Z-Score, RAG/Scientific Evidence, Document I/O Excel/PDF*) + i 3 Silos Database.
 - **ZONA 3 (Navigazione Stile Apple & Matrice Interconnessione Moduli):**
@@ -70,13 +71,40 @@ Mantieni la board Miro ordinata da sinistra verso destra secondo questa griglia 
 
 ---
 
-## 5. Protocollo Operativo: Board Miro Online e Sincronizzazione
+## 5. Regola del Glossario Tecnico Evolutivo (Living Terminology Board)
+
+La complessità del progetto T7 unisce due domini altamente specialistici: l'ingegneria software distribuita e le scienze motorie/biomeccaniche avanzate. Per evitare fraintendimenti, disallineamenti con la Software House o blocchi di lettura degli schemi, vige questa regola obbligatoria:
+
+1. **Board / Frame Dedicato nella Stessa Board Miro:**
+   - Nella stessa board Miro di progetto (`uXjVEbo6L2o=`), a parte rispetto ai flussi operativi, è istituita una sezione dedicata e autonoma denominata **"Living Technical Glossary & Terminology Board"** (ZONA 0).
+   - Questa sezione funge da dizionario vivo e consultabile con una sola occhiata mentre si naviga tra gli schemi di sistema.
+2. **Aggiornamento Continuo e Incrementale (Obbligo Vincolante):**
+   - Ogni volta che un agente o un collaboratore progetta, modifica o espande uno schema e introduce un termine tecnico, un acronimo, una metrica o una logica non banale, ha il **dovere tassativo di aggiungere o aggiornare la relativa scheda/card di definizione** nel Glossario Tecnico su Miro prima di considerare chiusa la task.
+   - È vietato lasciare negli schemi sigle oscure o non spiegate (es. VBT, DUP, OLS, PAP, Z-Score, RAG, Thin Client, Silos Multi-Tenant, ImpactCalculator, RBAC, Feature Gating).
+3. **Struttura della Scheda di Definizione (Template Standard Card):**
+   Ogni elemento inserito nel Glossario deve contenere:
+   - **Termine Ufficiale & Acronimo:** Denominazione e forma estesa.
+   - **Spiegazione Chiara e Semplificata:** Definizione concettuale priva di tecnicismi inutili, comprensibile anche da chi non è specialista di quel settore.
+   - **Ruolo Operativo nel Progetto T7:** Spiegazione del motivo per cui quel concetto esiste nell'applicazione, dove interviene e quale problema risolve (es. "Calcolato lato server per proteggere l'algoritmo", "Formula di normalizzazione del carico per evitare infortuni").
+   - **Zona / Flusso di Riferimento:** Indicazione visiva di dove il termine viene impiegato (es. Zona 2 - Motore Biomeccanico, o Corsia 3 del Flowchart VBT).
+4. **Tassonomia per Categorie Tematiche:**
+   Le definizioni devono essere suddivise visivamente in 4 aree cromatiche/tematiche ben distinte:
+   - *Ingegneria Software & Architettura Cloud:* Thin Client, API Gateway, Cloud KMS, Multi-Tenant Isolation, RBAC, Feature Gating, Silos DB, Swimlanes, C4 Model.
+   - *Biomeccanica & Valutazione Funzionale:* VBT (Velocity Based Training), MVT, Curva Forza-Velocità, PAP (Post-Activation Potentiation), CMJ, Abalakov, Valgismo Dinamico.
+   - *Statistica, Algoritmi & AI:* Z-Score Adattivo, Z-Weighting, RAG Gerarchico Scientifico (moltiplicatori $\times 1.3, \times 1.1, \times 1.0$), Regressione OLS, Filtro Outlier IQR.
+   - *Metodologia d'Allenamento & Clinica Sportiva:* DUP, Periodizzazione a Blocchi, Coniugata, Triage 119 Patologie, Return To Play (RTP), ImpactCalculator.
+
+---
+
+## 6. Protocollo Operativo: Board Miro Online e Sincronizzazione
 
 Ogni volta che si introducono o aggiornano diagrammi, funzionalità o flussi:
 
 1. **Azione Primaria su Miro Online (MCP miro):**
    - Interroga ed elabora direttamente gli elementi sulla lavagna Miro online (`uXjVEbo6L2o=`) via MCP (`get-items-on-board`, `create-shape-item`, `create-connector`, `update-shape-item`, `create-frame`).
    - Assicura che le forme rispettino le 4 swimlanes, la corretta attribuzione dei colori (Arancione per moduli nuovi, Verde solo per codice pronto) e i testi chiari senza nodi ridondanti.
+   - **Aggiornamento Glossario:** Se la modifica o l'aggiunta contiene termini o concetti tecnici nuovi, inserisci o aggiorna contestualmente la scheda corrispondente nella Zona 0 (Glossario Tecnico).
 2. **Azione Secondaria di Allineamento Locale & Git (Passaggio Portatile $\leftrightarrow$ Fisso):**
    - Salva o aggiorna in parallelo il codice `.mmd` (Mermaid.js) e le specifiche Markdown nella cartella di lavoro `architecture-blueprint/`.
+   - Mantieni allineato il file di glossario Markdown locale (`architecture-blueprint/00-GLOSSARIO-TERMINI-TECNICI.md`).
    - Esegui commit e push su GitHub (`git add`, `git commit`, `git push origin main`), in modo che il lavoro effettuato sul portatile sia immediatamente disponibile per il riallineamento (`git pull origin main`) sul PC fisso (e viceversa), preservando la piena continuità del lavoro tra dispositivi.
