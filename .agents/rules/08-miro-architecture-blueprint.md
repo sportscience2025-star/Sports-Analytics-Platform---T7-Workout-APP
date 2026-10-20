@@ -2,109 +2,97 @@
 trigger: manual
 ---
 
-# Regola: Progettazione Architetturale Miro Online, Flowchart & Specifiche Software House (PRIORITÀ BOARD MIRO ONLINE)
+# Regola: Progettazione Architetturale Miro Online, Flowchart & Specifiche Software House
 
-## 1. Principio Fondamentale: Priorità Operativa sulla Board Miro Online
+## 1. Principio Fondamentale: Priorità Operativa Miro Online
 
-- **Priorità Assoluta Board Miro Online:** Quando si lavora su schemi, flowchart, flussi UI/UX, logiche architetturali o diagrammi, **la priorità operativa è lavorare DIRETTAMENTE sulla Board di Miro online** (Board ID: `uXjVEbo6L2o=`, URL: `https://miro.com/app/board/uXjVEbo6L2o=`) tramite il server MCP `miro` (utilizzando il token di accesso e gli strumenti dedicati: lettura elementi, creazione forme, connettori, frame e testi).
-- **Ruolo della Sincronizzazione Locale & GitHub (Secondario):** La generazione dei file locali (codice Mermaid `.mmd` e documentazione Markdown in `architecture-blueprint/`) e il salvataggio su GitHub (`git add`, `git commit`, `git push`) sono un'attività di **backup e sincronizzazione secondaria**. Servono a garantire che, quando si passa dal Portatile (`C:\Users\srigo\Sports-Analytics-Platform---T7-Workout-APP`) al PC Fisso (`E:\Nuove App Installate\Sports-Analytics-Platform---T7-Workout-APP`), il repository contenga lo storico completo e aggiornato di tutto ciò che è stato realizzato sulla board online.
-- **Autorizzazione Utente & Autonomia Operativa:** L'agente ha autorizzazione esplicita ad agire come **Principal Solution Architect e Product Manager** direttamente sulla board Miro online. Può ispezionare gli elementi esistenti (`get-items-on-board`), aggiungere nuovi nodi, aggiornare testi e creare collegamenti in piena autonomia tecnica.
-- **Integrazione Non-Distruttiva e Ordinata:** Prima di intervenire sulla board Miro, ispeziona lo stato attuale dei frame e degli elementi per non cancellare o sovrascrivere diagrammi validati. Integra, collega o aggiorna in modo incrementale e pulito, mantenendo spaziature adeguate ed evitando sovrapposizioni visive.
+- **Priorità Assoluta Board Miro:** Ogni flowchart, logica architetturale o diagramma si progetta e modifica **DIRETTAMENTE sulla Board Miro online** (Board ID: `uXjVEbo6L2o=`, URL: `https://miro.com/app/board/uXjVEbo6L2o=`) tramite il server MCP `miro` (`get-items-on-board`, `create-shape-item`, `create-connector`, `update-shape-item`, `create-frame`, `create-text-item`).
+- **Sincronizzazione Locale & Git (Secondaria/Backup):** Il salvataggio del codice Mermaid (`.mmd`) e Markdown in `architecture-blueprint/`, con commit e push su GitHub, garantisce il passaggio allineato e trasparente tra Portatile (`C:\...`) e PC Fisso (`E:\...`).
+- **Autonomia & Integrazione Non-Distruttiva:** L'agente opera come **Principal Solution Architect & Product Manager** in piena autonomia tecnica. Prima di modificare, ispeziona gli elementi esistenti per preservare i diagrammi validati, integrando in modo ordinato senza sovrapposizioni visive.
 
 ---
 
-## 2. Visione del Prodotto e Architettura Inviolabile (Anti-Copia & Privacy)
+## 2. Visione Prodotto & Architettura Inviolabile (Tutela IP & Privacy)
 
-Ogni schema progettato o aggiornato su Miro online deve rispettare e riflettere rigorosamente questi 3 pilastri strutturali:
+Ogni schema deve rispettare rigorosamente questi 3 pilastri non negoziabili:
 
 ### A. Modello a 3 Fasce d'Abbonamento (RBAC & Feature Gating)
-1. **Tier 1 – Base (€0 / Low-Cost - Utenti Palestra & Amatori):** Diario allenamento, catalogo esercizi base, sincronizzazione salute/wearable base, **Social Network** (condivisione esperienze allenamento/nutrizione) e **Marketplace B2C (Movely)** per cercare e collaborare con Nutrizionisti, Fisioterapisti e Preparatori.
-2. **Tier 2 – Pro / Partite IVA (Preparatori, Fisioterapisti, Nutrizionisti, Squadre Dilettanti):** Sblocca Generatore Macrocicli IA (DUP, Blocchi, Lineare, Polarizzata, Coniugata), Triage clinico patologie (`ImpactCalculator`), Schede di Pre-Attivazione con esercizi custom e video dimostrativi allegati, Data Analisi VBT e test di salto (CMJ, Abalakov, PAP), Motore RAG personale (che apprende lo stile del professionista), Export Excel `.xlsx` totalmente sbloccato e PDF interattivo, Vetrina B2B/B2C.
-3. **Tier 3 – Elite Teams & Ricerca Scientifica (Società Sportive Pro & Università):** Sblocca ambiente Multi-Staff collaborativo (Allenatore, Preparatore, Medico, Fisioterapista, Match Analyst), Analisi Microciclo Squadra & Z-Score adattivo (carico interno HRV/RPE/HRR + carico esterno GPS/Sprint con gestione doppio ruolo tattico e fallback nuovi acquisti senza baseline), Video Analisi Biomeccanica e Match/Tactical Analysis, Bunker Privacy isolato per singolo Club e **Research Hub** per studi accademici.
+1. **Tier 1 – Base (Free/Low-Cost - Amatori & Fitness):** Diario allenamento base, catalogo esercizi, sync wearable base, **Social Network** e **Marketplace Movely B2C** (collaborazione con preparatori, fisio, nutrizionisti).
+2. **Tier 2 – Pro (P.IVA, Coach, Fisioterapisti, Squadre Dilettanti):** Generatore Macrocicli IA (DUP, Blocchi, Coniugata, Lineare, Polarizzata), Triage Clinico 119 patologie (`ImpactCalculator`), Schede Pre-Attivazione con video allegati, Analisi VBT (OLS 1RM, MVT) e salti (CMJ, Abalakov, PAP), Motore RAG scientifico personale, Export Excel `.xlsx` sbloccato e PDF interattivo.
+3. **Tier 3 – Elite Club & Ricerca (Società Sportive Pro & Università):** Multi-Staff collaborativo (Coach, S&C, Medico, Fisio, Match Analyst), Microciclo Squadra & Z-Score Adattivo (HRV/RPE + GPS con gestione doppio ruolo e fallback cold-start nuovi acquisti), Video Analisi Biomeccanica/Tattica, Bunker Privacy dedicato e **Research Hub** accademico de-identificato.
 
-### B. Separazione "Thin Client" vs Server Esterno "Scatola Nera" (Tutela IP)
-- **Divieto di Logica sul Client:** L'applicazione scaricata sullo smartphone (iOS/Android) o aperta via Web (React/TS) deve essere progettata nei diagrammi esclusivamente come **Thin Client (Guscio Visivo)**. Non deve contenere formule matematiche, algoritmi di periodizzazione, pesature RAG o database completi.
-- **Server Centrale "Scatola Nera" (Backend API):** Tutti gli algoritmi proprietari (regressione OLS VBT, calcolo Z-Score, `ImpactCalculator`, selettore periodizzazione, RAG con moltiplicatori gerarchici delle fonti scientifiche Tier 1 $\times 1.3$, Tier 2 $\times 1.1$, Tier 3 $\times 1.0$, Video/Match Analysis) devono risiedere sul Server Cloud esterno e comunicare con l'app solo tramite chiamate API criptate di Input/Output ("botta e risposta").
+### B. Separazione "Thin Client" vs Server "Scatola Nera" (Tutela IP)
+- **Thin Client (Client Guscio Visivo):** L'app mobile (iOS/Android) e Web (React/TS) gestisce solo UI/UX e input utente. **Divieto assoluto** di includere nel client formule matematiche, pesature RAG o logiche proprietarie.
+- **Server Cloud Centrale (Scatola Nera):** Tutti gli algoritmi (regressione OLS VBT, calcolo Z-Score, triage clinico, RAG gerarchico moltiplicatori 1.3 / 1.1 / 1.0, video tracking) risiedono sul server e comunicano via API criptate I/O.
 
-### C. Database Centralizzato a 3 Camere Stagne (Multi-Tenant Isolation)
-Nei diagrammi dati e infrastrutturali, la persistenza deve essere sempre tripartita:
-1. **Silo 1 – Public, Social & Movely B2B/B2C DB:** Dati utenti Tier 1/2, post social, rete professionale e collaborazioni.
-2. **Silo 2 – Encrypted Club Bunkers (Tier 3):** Partizioni isolate (Tenant Isolation) e criptate per ciascuna società sportiva professionistica. Nessun dato medico, biometrico, GPS o tattico di un club può avere punti di contatto con il Social Network o con altri club.
-3. **Silo 3 – De-identified Research Warehouse:** Pipeline con filtro di anonimizzazione automatica che rimuove qualsiasi dato identificativo prima di rendere disponibili i dataset biometrici/statistici ai ricercatori nel Research Hub.
+### C. Database a 3 Camere Stagne (Multi-Tenant Isolation)
+1. **Silo 1 – Public, Social & Movely B2B/B2C:** Dati utenti Tier 1/2, feed social, networking professionale.
+2. **Silo 2 – Encrypted Club Bunkers (Tier 3):** Partizioni isolate e criptate per singolo club (Cloud KMS). Nessuna commistione con dati social o di altre squadre.
+3. **Silo 3 – De-identified Research Warehouse:** Pipeline ETL con anonimizzazione automatica irreversibile per studi accademici nel Research Hub.
 
 ---
 
-## 3. Standard Visivi, Notazione ISO, Swimlanes e Codice Colore su Miro
+## 3. Standard Visivi, Notazione ISO, Swimlanes & Codice Colore
 
-Per garantire leggibilità immediata agli ingegneri della Software House ed evitare disordine visivo sulla board:
-
-1. **Forme Standardizzate Obbligatorie:**
-   - **Rettangolo arrotondato:** Inizio / Fine del flusso (Start / End) o Trigger utente.
-   - **Rettangolo standard:** Schermata UI (nella corsia Client) o Processo/Calcolo (nella corsia Server).
-   - **Rombo:** Nodo decisionale (`SE / ALLORA`) con frecce obbligatoriamente etichettate (`SÌ` / `NO` o condizione esplicita).
-   - **Cilindro:** Lettura/Scrittura nel Database (specificando sempre quale dei 3 Silos è coinvolto).
-2. **Struttura a 4 Corsie (Swimlanes) per ogni Flowchart Operativo:**
-   Ogni flusso funzionale deve mostrare il passaggio attraverso 4 corsie distinte:
-   - *Corsia 1: App Utente (Thin Client UI/UX)* -> *Corsia 2: API Gateway & Controllo Tier/Permessi* -> *Corsia 3: Server Segreto (Motori di Calcolo)* -> *Corsia 4: Database Tripartito (Silo 1, 2 o 3)*.
-3. **Codice Colore Obbligatorio (Gap Analysis per Preventivo Software House):**
-   - **VERDE (`AS-IS Pronto`):** Funzionalità o logica già presente e validata nella Beta React/TypeScript (da migrare sul server).
-   - **GIALLO (`Parziale / Refactor`):** Funzionalità abbozzata nella Beta o presente nello storico Git JS, da completare, tipizzare o collegare.
-   - **ARANCIONE (`TO-BE Nuovo`):** Modulo, flusso o infrastruttura non ancora esistente, da sviluppare ex novo dalla Software House.
-   - **ROSSO / VIOLA (`Vincolo Critico / ADR`):** Regola non negoziabile di sicurezza, privacy, validazione dimensionale fisica ($F$ in N, $P$ in W, Carico in kg) o requisito scientifico.
-4. **Gestione Stati UI e Casi Limite (Edge Cases):**
-   Non progettare mai solo il percorso ideale (*Happy Path*). Includi sempre nei flussi:
-   - I 4 stati di ogni schermata principale: **Empty State** (nessun dato/primo avvio), **Loading State** (elaborazione server in corso), **Populated State** (vista normale), **Error/Fallback State** (dato mancante, credenziali errate, assenza di baseline storica, prevenzione assoluta di `NaN`/`undefined`).
+1. **Forme ISO Standard:**
+   - *Rettangolo arrotondato:* Start / End o Trigger utente.
+   - *Rettangolo standard:* Schermata UI (corsia Client) o Processo/Calcolo (corsia Server).
+   - *Rombo:* Decisione condizionale (`SE/ALLORA`) con frecce etichettate (`SÌ`/`NO`).
+   - *Cilindro:* Persistenza DB (con indicazione esplicita del Silo 1, 2 o 3).
+2. **Struttura a 4 Swimlanes (Corsie Obbligatorie per ogni Flowchart):**
+   - *Corsia 1: App Utente (Thin Client UI/UX)* ->
+   - *Corsia 2: API Gateway & Controllo Tier/RBAC* ->
+   - *Corsia 3: Server Segreto (Motori di Calcolo Proprietà Intellettuale)* ->
+   - *Corsia 4: Database Tripartito (Silo 1, 2 o 3)*.
+3. **Codice Colore Gap Analysis (Capitolato Software House):**
+   - **VERDE (`AS-IS Pronto`):** Già implementato e validato nella Beta React/TS (da migrare su server).
+   - **GIALLO (`Parziale / Refactor`):** Abbozzato o presente nel legacy JS, da completare/tipizzare.
+   - **ARANCIONE (`TO-BE Nuovo`):** Da sviluppare ex novo dalla Software House.
+   - **ROSSO/VIOLA (`ADR / Vincolo Critico`):** Requisito non negoziabile di sicurezza, privacy o validazione fisica ($F$ in N, $P$ in W, Carico in kg).
+4. **Gestione dei 4 Stati UI & Edge Cases:**
+   Includere sempre in ogni flusso: **Empty State** (nessun dato), **Loading State** (chiamata server), **Populated State** (vista ordinaria), **Error/Fallback State** (dati mancanti, credenziali errate, cold-start senza baseline, prevenzione tassativa di `NaN`/`undefined`).
 
 ---
 
 ## 4. Organizzazione della Lavagna Miro (Le Zone Architetturali)
 
-Mantieni la board Miro ordinata da sinistra verso destra secondo questa griglia modulare:
-- **ZONA 0 (Glossario Tecnico Evolutivo & Terminology Board):** Area separata e dedicata, collocata a monte degli schemi architetturali, concepita come una board enciclopedica evolutiva. Raccoglie in modo ordinato per categorie tutti i termini tecnici, gli acronimi, le metriche biomeccaniche e i concetti architetturali complessi, con definizioni chiare e semplificate per facilitare la lettura degli schemi a chiunque (sviluppatori Software House, staff tecnico, clinici, nuovi agenti).
-- **ZONA 1 (Contesto, Tiers & ADR):** Matrice permessi Tier 1/2/3, Mappa Ecosistema esterno (Input/Output file, Wearable Apple Health/Health Connect) e schede ADR (*Architecture Decision Records*).
-- **ZONA 2 (Architettura C4: Client, Server & DB):** Schema dell'infrastruttura Thin Client + API Gateway + i 5 Motori Server-Side (*Biomechanics/VBT, Periodization/Clinical Triage, Team Microcycle/Z-Score, RAG/Scientific Evidence, Document I/O Excel/PDF*) + i 3 Silos Database.
-- **ZONA 3 (Navigazione Stile Apple & Matrice Interconnessione Moduli):**
-  - *Global Navigation Shell:* Barra di navigazione pulita e adattiva con **Selettore di Contesto Globale** (Atleta attivo / Squadra attiva) che aggiorna istantaneamente tutti i moduli senza ricaricamenti o perdita di stato.
-  - *Event Storming Cross-Modulo:* Frecce parlanti che mostrano come un'azione in un modulo aggiorna automaticamente gli altri (es. Infortunio/Readiness in *Clinica* -> filtra esercizi in *Programmazione*; Test in *VBT* -> aggiorna `%1RM` nella *Scheda*; *Match Analysis/GPS* -> aggiorna *Z-Score* e avvisa *Fisio/Coach*; collaborazione in *Social/Movely* -> invia scheda/dieta nel diario cliente).
-- **ZONA 4 (Flowchart Operativi a Swimlanes):** Diagrammi passo-passo dei processi core dell'applicazione.
-- **ZONA 5 (Database ERD & Roadmap Software House):** Schema Entità-Relazione completo di tutte le tabelle dati e matrice riassuntiva Verde/Giallo/Arancione per il capitolato tecnico.
+Griglia ordinata da sinistra a destra sulla board Miro:
+- **ZONA 0 (Living Technical Glossary & Terminology Board):** Area enciclopedica evolutiva a monte dei flussi. Contiene le definizioni semplificate e il contesto d'uso di tutti i termini tecnici per facilitare la lettura degli schemi.
+- **ZONA 1 (Contesto, Tiers & ADR):** Matrice permessi RBAC (3 Tier $\times$ 8 Ruoli), Mappa Ecosistema esterno (Wearable Apple Health/Google Health Connect) e schede ADR.
+- **ZONA 2 (Architettura C4: Client, Server & DB):** Diagramma C4 Thin Client + API Gateway + 5 Motori di Calcolo Server (VBT, Periodizzazione/Triage, Z-Score Microciclo, RAG Scientifico, Document I/O) + 3 Silos DB.
+- **ZONA 3 (Navigazione Apple & Matrice Interconnessione):** Global Shell con Selettore di Contesto Globale (Atleta/Squadra attiva) ed Event Storming cross-modulo (Fisio -> Scheda; VBT -> 1RM; Match Analysis -> Z-Score).
+- **ZONA 4 (Flowchart Operativi a 4 Swimlanes):** Flussi passo-passo dei processi applicativi core con i 4 stati UI.
+- **ZONA 5 (Database ERD & Roadmap Software House):** Schema Entità-Relazione completo e matrice consuntiva Verde/Giallo/Arancione.
 
 ---
 
-## 5. Regola del Glossario Tecnico Evolutivo (Living Terminology Board)
+## 5. Regola del Glossario Tecnico Evolutivo (ZONA 0 - Living Glossary)
 
-La complessità del progetto T7 unisce due domini altamente specialistici: l'ingegneria software distribuita e le scienze motorie/biomeccaniche avanzate. Per evitare fraintendimenti, disallineamenti con la Software House o blocchi di lettura degli schemi, vige questa regola obbligatoria:
+Per eliminare ambiguità e permettere a chiunque (Software House, preparatori, medici, nuovi agenti) di comprendere istantaneamente gli schemi:
 
-1. **Board / Frame Dedicato nella Stessa Board Miro:**
-   - Nella stessa board Miro di progetto (`uXjVEbo6L2o=`), a parte rispetto ai flussi operativi, è istituita una sezione dedicata e autonoma denominata **"Living Technical Glossary & Terminology Board"** (ZONA 0).
-   - Questa sezione funge da dizionario vivo e consultabile con una sola occhiata mentre si naviga tra gli schemi di sistema.
-2. **Aggiornamento Continuo e Incrementale (Obbligo Vincolante):**
-   - Ogni volta che un agente o un collaboratore progetta, modifica o espande uno schema e introduce un termine tecnico, un acronimo, una metrica o una logica non banale, ha il **dovere tassativo di aggiungere o aggiornare la relativa scheda/card di definizione** nel Glossario Tecnico su Miro prima di considerare chiusa la task.
-   - È vietato lasciare negli schemi sigle oscure o non spiegate (es. VBT, DUP, OLS, PAP, Z-Score, RAG, Thin Client, Silos Multi-Tenant, ImpactCalculator, RBAC, Feature Gating).
-3. **Struttura della Scheda di Definizione (Template Standard Card):**
-   Ogni elemento inserito nel Glossario deve contenere:
-   - **Termine Ufficiale & Acronimo:** Denominazione e forma estesa.
-   - **Spiegazione Chiara e Semplificata:** Definizione concettuale priva di tecnicismi inutili, comprensibile anche da chi non è specialista di quel settore.
-   - **Ruolo Operativo nel Progetto T7:** Spiegazione del motivo per cui quel concetto esiste nell'applicazione, dove interviene e quale problema risolve (es. "Calcolato lato server per proteggere l'algoritmo", "Formula di normalizzazione del carico per evitare infortuni").
-   - **Zona / Flusso di Riferimento:** Indicazione visiva di dove il termine viene impiegato (es. Zona 2 - Motore Biomeccanico, o Corsia 3 del Flowchart VBT).
-4. **Tassonomia per Categorie Tematiche:**
-   Le definizioni devono essere suddivise visivamente in 4 aree cromatiche/tematiche ben distinte:
-   - *Ingegneria Software & Architettura Cloud:* Thin Client, API Gateway, Cloud KMS, Multi-Tenant Isolation, RBAC, Feature Gating, Silos DB, Swimlanes, C4 Model.
-   - *Biomeccanica & Valutazione Funzionale:* VBT (Velocity Based Training), MVT, Curva Forza-Velocità, PAP (Post-Activation Potentiation), CMJ, Abalakov, Valgismo Dinamico.
-   - *Statistica, Algoritmi & AI:* Z-Score Adattivo, Z-Weighting, RAG Gerarchico Scientifico (moltiplicatori $\times 1.3, \times 1.1, \times 1.0$), Regressione OLS, Filtro Outlier IQR.
-   - *Metodologia d'Allenamento & Clinica Sportiva:* DUP, Periodizzazione a Blocchi, Coniugata, Triage 119 Patologie, Return To Play (RTP), ImpactCalculator.
+1. **Collocazione Dedicata:** Un frame separato e visibile sulla board Miro (`uXjVEbo6L2o=`), a monte degli schemi operativi.
+2. **Aggiornamento Incrementale Obbligatorio:** Ad ogni introduzione o modifica di schemi che contengono concetti specialistici, acronimi o formule, l'agente o lo sviluppatore **DEVE contestualmente creare o aggiornare la relativa scheda/card** nel Glossario Tecnico prima di concludere il lavoro. Vietate sigle non spiegate.
+3. **Template Standard Card:**
+   - *Termine Ufficiale & Acronimo:* Nome esteso e sigla.
+   - *Spiegazione Semplificata:* Definizione concettuale chiara, senza tecnicismi oscuri.
+   - *Ruolo Operativo in T7:* Dove interviene e perché è cruciale (es. "Protegge l'algoritmo lato server", "Previene infortuni normalizzando il carico").
+   - *Zona/Diagramma di Riferimento:* Dove compare negli schemi.
+4. **4 Categorie Visive nel Glossario:**
+   - *Architettura Software & Cloud:* Thin Client, API Gateway, Cloud KMS, Multi-Tenant Isolation, RBAC, Feature Gating, Silos DB, Swimlanes, C4.
+   - *Biomeccanica & Valutazione:* VBT, MVT, PAP, Curva Forza-Velocità, CMJ, Abalakov, Valgismo Dinamico.
+   - *Statistica, Algoritmi & AI:* Z-Score Adattivo, Z-Weighting, RAG Scientifico ($\times 1.3 / \times 1.1 / \times 1.0$), Regressione OLS, Filtro Outlier IQR, Cold-Start Fallback.
+   - *Metodologia & Clinica:* DUP, Periodizzazione a Blocchi/Coniugata, Triage 119 Patologie, Return To Play, ImpactCalculator.
 
 ---
 
-## 6. Protocollo Operativo: Board Miro Online e Sincronizzazione
+## 6. Protocollo Operativo: Board Miro Online & Sincronizzazione
 
-Ogni volta che si introducono o aggiornano diagrammi, funzionalità o flussi:
+Per ogni intervento:
 
 1. **Azione Primaria su Miro Online (MCP miro):**
-   - Interroga ed elabora direttamente gli elementi sulla lavagna Miro online (`uXjVEbo6L2o=`) via MCP (`get-items-on-board`, `create-shape-item`, `create-connector`, `update-shape-item`, `create-frame`).
-   - Assicura che le forme rispettino le 4 swimlanes, la corretta attribuzione dei colori (Arancione per moduli nuovi, Verde solo per codice pronto) e i testi chiari senza nodi ridondanti.
-   - **Aggiornamento Glossario:** Se la modifica o l'aggiunta contiene termini o concetti tecnici nuovi, inserisci o aggiorna contestualmente la scheda corrispondente nella Zona 0 (Glossario Tecnico).
-2. **Azione Secondaria di Allineamento Locale & Git (Passaggio Portatile $\leftrightarrow$ Fisso):**
-   - Salva o aggiorna in parallelo il codice `.mmd` (Mermaid.js) e le specifiche Markdown nella cartella di lavoro `architecture-blueprint/`.
-   - Mantieni allineato il file di glossario Markdown locale (`architecture-blueprint/00-GLOSSARIO-TERMINI-TECNICI.md`).
-   - Esegui commit e push su GitHub (`git add`, `git commit`, `git push origin main`), in modo che il lavoro effettuato sul portatile sia immediatamente disponibile per il riallineamento (`git pull origin main`) sul PC fisso (e viceversa), preservando la piena continuità del lavoro tra dispositivi.
+   - Opera direttamente sulla board `uXjVEbo6L2o=` (`get-items-on-board`, `create-shape-item`, `create-connector`, `update-shape-item`, `create-frame`, `create-text-item`).
+   - Rispetta le 4 swimlanes, i codici colore (Verde/Giallo/Arancione/Rosso) e le forme ISO.
+   - **Check Glossario Obbligatorio:** Aggiorna la Zona 0 per ogni nuovo termine o metrica introdotta.
+2. **Azione Secondaria Sync Locale & Git (Portatile $\leftrightarrow$ Fisso):**
+   - Aggiorna i file Mermaid `.mmd` e documentazione Markdown in `architecture-blueprint/` (incluso `architecture-blueprint/00-GLOSSARIO-TERMINI-TECNICI.md`).
+   - Esegui commit e push su GitHub (`git add`, `git commit`, `git push origin main`) per garantire allineamento istantaneo su entrambi i PC.
