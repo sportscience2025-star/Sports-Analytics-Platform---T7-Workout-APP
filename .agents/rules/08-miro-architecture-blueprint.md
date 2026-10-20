@@ -2,22 +2,20 @@
 trigger: manual
 ---
 
-# Regola: Progettazione Architetturale Miro, Flowchart & Specifiche Software House (DA USARE SOLO QUANDO SI LAVORA SU MIRO E NON IN NESSUN ALTRO CASO)
+# Regola: Progettazione Architetturale Miro Online, Flowchart & Specifiche Software House (PRIORITÀ BOARD MIRO ONLINE)
 
-## 1. Principio Fondamentale, Non-Distruttività e Autonomia Architetturale
+## 1. Principio Fondamentale: Priorità Operativa sulla Board Miro Online
 
-- **Ruolo dell'Agente:** Quando l'utente richiede di creare, aggiornare o espandere flowchart, schemi, flussi UI/UX, logiche o architetture dati per Miro e per la Software House, agisci come **Principal Solution Architect e Product Manager**. Traduci anche richieste discorsive o ad alto livello in schemi ingegneristici completi, deducendo autonomamente i dettagli tecnici mancanti (input/output API, tabelle DB, stati di errore, sicurezza e interconnessioni tra moduli).
-- **Ispezione Preventiva e Zero Sovrascritture:** Prima di generare qualsiasi elemento su Miro o file architetturale:
-  1. Verifica lo stato attuale della board Miro (tramite server MCP `miro`) e dei file già presenti nella cartella locale `E:\Nuove App Installate\Sports-Analytics-Platform---T7-Workout-APP\architecture-blueprint\`.
-  2. Verifica il codice esistente della Beta (React + TypeScript) e lo storico Git per distinguere ciò che esiste già da ciò che va progettato ex novo.
-  3. **NON sovrascrivere né cancellare mai** diagrammi, Frame o nodi già creati sulla board Miro: integra, collega o aggiorna in modo incrementale e ordinato.
-- **Vincolo Assoluto Disco E:** Qualsiasi file di schema, codice Mermaid (`.mmd`), documentazione Markdown o cache deve essere salvato esclusivamente dentro `E:\Nuove App Installate\Sports-Analytics-Platform---T7-Workout-APP\`.
+- **Priorità Assoluta Board Miro Online:** Quando si lavora su schemi, flowchart, flussi UI/UX, logiche architetturali o diagrammi, **la priorità operativa è lavorare DIRETTAMENTE sulla Board di Miro online** (Board ID: `uXjVEbo6L2o=`, URL: `https://miro.com/app/board/uXjVEbo6L2o=`) tramite il server MCP `miro` (utilizzando il token di accesso e gli strumenti dedicati: lettura elementi, creazione forme, connettori, frame e testi).
+- **Ruolo della Sincronizzazione Locale & GitHub (Secondario):** La generazione dei file locali (codice Mermaid `.mmd` e documentazione Markdown in `architecture-blueprint/`) e il salvataggio su GitHub (`git add`, `git commit`, `git push`) sono un'attività di **backup e sincronizzazione secondaria**. Servono a garantire che, quando si passa dal Portatile (`C:\Users\srigo\Sports-Analytics-Platform---T7-Workout-APP`) al PC Fisso (`E:\Nuove App Installate\Sports-Analytics-Platform---T7-Workout-APP`), il repository contenga lo storico completo e aggiornato di tutto ciò che è stato realizzato sulla board online.
+- **Autorizzazione Utente & Autonomia Operativa:** L'agente ha autorizzazione esplicita ad agire come **Principal Solution Architect e Product Manager** direttamente sulla board Miro online. Può ispezionare gli elementi esistenti (`get-items-on-board`), aggiungere nuovi nodi, aggiornare testi e creare collegamenti in piena autonomia tecnica.
+- **Integrazione Non-Distruttiva e Ordinata:** Prima di intervenire sulla board Miro, ispeziona lo stato attuale dei frame e degli elementi per non cancellare o sovrascrivere diagrammi validati. Integra, collega o aggiorna in modo incrementale e pulito, mantenendo spaziature adeguate ed evitando sovrapposizioni visive.
 
 ---
 
 ## 2. Visione del Prodotto e Architettura Inviolabile (Anti-Copia & Privacy)
 
-Ogni schema progettato su Miro deve rispettare e riflettere rigorosamente questi 3 pilastri strutturali:
+Ogni schema progettato o aggiornato su Miro online deve rispettare e riflettere rigorosamente questi 3 pilastri strutturali:
 
 ### A. Modello a 3 Fasce d'Abbonamento (RBAC & Feature Gating)
 1. **Tier 1 – Base (€0 / Low-Cost - Utenti Palestra & Amatori):** Diario allenamento, catalogo esercizi base, sincronizzazione salute/wearable base, **Social Network** (condivisione esperienze allenamento/nutrizione) e **Marketplace B2C (Movely)** per cercare e collaborare con Nutrizionisti, Fisioterapisti e Preparatori.
@@ -38,24 +36,24 @@ Nei diagrammi dati e infrastrutturali, la persistenza deve essere sempre tripart
 
 ## 3. Standard Visivi, Notazione ISO, Swimlanes e Codice Colore su Miro
 
-Per garantire leggibilità immediata agli ingegneri della Software House ed evitare disordine visivo:
+Per garantire leggibilità immediata agli ingegneri della Software House ed evitare disordine visivo sulla board:
 
 1. **Forme Standardizzate Obbligatorie:**
    - **Rettangolo arrotondato:** Inizio / Fine del flusso (Start / End) o Trigger utente.
-   - **Rettangolo standard:** Schermata UI ( nella corsia Client) o Processo/Calcolo (nella corsia Server).
+   - **Rettangolo standard:** Schermata UI (nella corsia Client) o Processo/Calcolo (nella corsia Server).
    - **Rombo:** Nodo decisionale (`SE / ALLORA`) con frecce obbligatoriamente etichettate (`SÌ` / `NO` o condizione esplicita).
    - **Cilindro:** Lettura/Scrittura nel Database (specificando sempre quale dei 3 Silos è coinvolto).
 2. **Struttura a 4 Corsie (Swimlanes) per ogni Flowchart Operativo:**
    Ogni flusso funzionale deve mostrare il passaggio attraverso 4 corsie distinte:
    - *Corsia 1: App Utente (Thin Client UI/UX)* -> *Corsia 2: API Gateway & Controllo Tier/Permessi* -> *Corsia 3: Server Segreto (Motori di Calcolo)* -> *Corsia 4: Database Tripartito (Silo 1, 2 o 3)*.
 3. **Codice Colore Obbligatorio (Gap Analysis per Preventivo Software House):**
-   - **VERDE (`AS-IS Pronto`):** Funzionalità o logica già presente e validata nella Beta React/TypeScript su disco `E:` (da migrare sul server).
+   - **VERDE (`AS-IS Pronto`):** Funzionalità o logica già presente e validata nella Beta React/TypeScript (da migrare sul server).
    - **GIALLO (`Parziale / Refactor`):** Funzionalità abbozzata nella Beta o presente nello storico Git JS, da completare, tipizzare o collegare.
    - **ARANCIONE (`TO-BE Nuovo`):** Modulo, flusso o infrastruttura non ancora esistente, da sviluppare ex novo dalla Software House.
    - **ROSSO / VIOLA (`Vincolo Critico / ADR`):** Regola non negoziabile di sicurezza, privacy, validazione dimensionale fisica ($F$ in N, $P$ in W, Carico in kg) o requisito scientifico.
 4. **Gestione Stati UI e Casi Limite (Edge Cases):**
    Non progettare mai solo il percorso ideale (*Happy Path*). Includi sempre nei flussi:
-   - I 4 stati di ogni schermata principale: **Empty State** (nessun dato/primo avvio), **Loading State** (elaborazione server in corso), **Populated State** (vista normale), **Error/Fallback State** (dato mancante, file Excel malformato, assenza di baseline storica, prevenzione assoluta di `NaN`/`undefined`).
+   - I 4 stati di ogni schermata principale: **Empty State** (nessun dato/primo avvio), **Loading State** (elaborazione server in corso), **Populated State** (vista normale), **Error/Fallback State** (dato mancante, credenziali errate, assenza di baseline storica, prevenzione assoluta di `NaN`/`undefined`).
 
 ---
 
@@ -72,15 +70,13 @@ Mantieni la board Miro ordinata da sinistra verso destra secondo questa griglia 
 
 ---
 
-## 5. Protocollo di Evoluzione Continua (Gestione Nuove Idee e Moduli Futuri)
+## 5. Protocollo Operativo: Board Miro Online e Sincronizzazione
 
-Il progetto è in continua evoluzione. Ogni volta che l'utente introduce una **nuova idea, una modifica o una funzionalità non ancora prevista**, l'agente DEVE applicare automaticamente questa checklist di propagazione in 6 punti senza lasciare parti scollegate:
+Ogni volta che si introducono o aggiornano diagrammi, funzionalità o flussi:
 
-1. **Classificazione Tier & Ruoli:** Definisci a quale livello di abbonamento (Tier 1, 2 o 3) appartiene la nuova funzione e quali ruoli possono vederla o modificarla.
-2. **Innesto nella Navigazione (UI/UX):** Stabilisci dove si colloca nella barra di navigazione globale, con quanti click ci si arriva (obiettivo: max 2 click) e come mantiene la pulizia visiva in stile Apple.
-3. **Interconnessione Cross-Modulo:** Identifica subito con quali moduli esistenti questa nuova funzione deve scambiarsi dati in automatico (chi le invia dati in ingresso e a chi invia notifiche o aggiornamenti in uscita).
-4. **Separazione Client/Server:** Separa cosa vede l'utente sul telefono (Input/Output visivo) da quale calcolo o regola deve girare in segreto sul Server centrale.
-5. **Impatto sul Database & Privacy:** Determina quali nuove tabelle o campi servono nell'ERD e in quale dei 3 Silos (Social pubblico, Bunker Club Pro o Ricerca Anonimizzata) devono finire i dati.
-6. **Doppia Sincronizzazione (Miro MCP + File Mermaid Locali):**
-   - Aggiorna o crea i blocchi corrispondenti sulla board di Miro tramite MCP rispettando le coordinate spaziali (per evitare sovrapposizioni di forme e frecce).
-   - Salva o aggiorna sempre in parallelo il codice `.mmd` (Mermaid.js) e la specifica tecnica Markdown dentro `architecture-blueprint\`, così da avere sia la lavagna visiva aggiornata sia i diagrammi vettoriali pronti per la Software House.
+1. **Azione Primaria su Miro Online (MCP miro):**
+   - Interroga ed elabora direttamente gli elementi sulla lavagna Miro online (`uXjVEbo6L2o=`) via MCP (`get-items-on-board`, `create-shape-item`, `create-connector`, `update-shape-item`, `create-frame`).
+   - Assicura che le forme rispettino le 4 swimlanes, la corretta attribuzione dei colori (Arancione per moduli nuovi, Verde solo per codice pronto) e i testi chiari senza nodi ridondanti.
+2. **Azione Secondaria di Allineamento Locale & Git (Passaggio Portatile $\leftrightarrow$ Fisso):**
+   - Salva o aggiorna in parallelo il codice `.mmd` (Mermaid.js) e le specifiche Markdown nella cartella di lavoro `architecture-blueprint/`.
+   - Esegui commit e push su GitHub (`git add`, `git commit`, `git push origin main`), in modo che il lavoro effettuato sul portatile sia immediatamente disponibile per il riallineamento (`git pull origin main`) sul PC fisso (e viceversa), preservando la piena continuità del lavoro tra dispositivi.

@@ -7,13 +7,14 @@ description: >-
 
 # Miro & Software House Blueprint Skill
 
-Questa skill guida la progettazione, generazione e sincronizzazione di diagrammi ingegneristici e flowchart per la board Miro e per il capitolato della Software House, nel pieno rispetto della Regola `08-miro-architecture-blueprint.md`.
+Questa skill guida la progettazione, generazione e aggiornamento di diagrammi ingegneristici e flowchart sulla board Miro online e per il capitolato della Software House, nel pieno rispetto della Regola `08-miro-architecture-blueprint.md`.
 
 ---
 
 ## 1. Principi e Standard Inviolabili
 
-- **Rispetto della Regola 08:** Ogni schema deve conformarsi alla suddivisione in 5 Zone e alla notazione formale descritta in [08-miro-architecture-blueprint.md](file:///E:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/.agents/rules/08-miro-architecture-blueprint.md).
+- **Priorità Assoluta alla Board Miro Online:** Il lavoro operativo primario si svolge **DIRETTAMENTE sulla Board Miro Online** (Board ID: `uXjVEbo6L2o=`) tramite il server MCP `miro` con l'access token configurato.
+- **Sincronizzazione Secondaria su Git (Portatile $\leftrightarrow$ Fisso):** Il salvataggio del codice Mermaid (`.mmd`) e delle note Markdown in `architecture-blueprint/`, seguito dal commit e push su GitHub, è la procedura di salvataggio/backup per consentire il passaggio trasparente e allineato dei dati tra PC Portatile e PC Fisso.
 - **Struttura a 4 Corsie (Swimlanes):**
   1. *Corsia 1:* App Utente (Thin Client UI/UX - React 18 / Mobile)
   2. *Corsia 2:* API Gateway & Auth/RBAC (Feature Gating Tier 1, 2, 3)
@@ -25,14 +26,10 @@ Questa skill guida la progettazione, generazione e sincronizzazione di diagrammi
   - Rombo: Decisione logica condizionale con frecce esplicitamente etichettate (`SÌ` / `NO`).
   - Cilindro: Entità di persistenza Database (specificando il Silo 1, 2 o 3).
 - **Codice Colore Gap Analysis:**
-  - `VERDE (#2ecc71)`: AS-IS Pronto (funzionante nella Beta locale su E:).
+  - `VERDE (#2ecc71)`: AS-IS Pronto (funzionante nella Beta locale).
   - `GIALLO (#f1c40f)`: Parziale / Refactor (abbozzato o legacy JS).
   - `ARANCIONE (#e67e22)`: TO-BE Nuovo (da sviluppare ex novo per la Software House).
   - `ROSSO/VIOLA (#e74c3c / #9b59b6)`: Vincolo Critico ADR / Sicurezza / Dimensione Fisica.
-- **Doppia Sincronizzazione Obbligatoria:**
-  1. Generazione/aggiornamento su Miro via server MCP `miro`.
-  2. Salvataggio simultaneo del codice vettoriale Mermaid in file `.mmd` dentro:
-     `E:\Nuove App Installate\Sports-Analytics-Platform---T7-Workout-APP\architecture-blueprint\02-miro-zones-and-swimlanes\`
 
 ---
 
@@ -55,7 +52,7 @@ flowchart LR
 ---
 
 ## 3. Esportazione Vettoriale con Mermaid CLI
-Per convalidare ed esportare i diagrammi Mermaid prima della consegna:
+Per convalidare ed esportare i diagrammi Mermaid prima della consegna o del passaggio tra dispositivi:
 ```powershell
 npx.cmd mmdc -i "architecture-blueprint\02-miro-zones-and-swimlanes\<diagram_name>.mmd" -o "architecture-blueprint\02-miro-zones-and-swimlanes\<diagram_name>.svg"
 ```
