@@ -34,23 +34,22 @@ Questa skill guida la progettazione, generazione e aggiornamento di diagrammi in
 ---
 
 ## 2. Le Zone della Board Miro & Glossario Tecnico Evolutivo
- 
- ```mermaid
- flowchart LR
-+    Z0["ZONA 0: Living Glossary Board (Dizionario Tecnico)"] --> Z1["ZONA 1: Contesto, Tiers & ADR"]
--    Z1["ZONA 1: Contesto, Tiers & ADR"] --> Z2["ZONA 2: Architettura C4 (Client/Server/DB)"]
-+    Z1 --> Z2["ZONA 2: Architettura C4 (Client/Server/DB)"]
-     Z2 --> Z3["ZONA 3: Navigazione Apple & Event Storming"]
-     Z3 --> Z4["ZONA 4: Flowchart Operativi a 4 Swimlanes"]
-     Z4 --> Z5["ZONA 5: Database ERD & Roadmap Software House"]
- ```
- 
-+0. **ZONA 0 (Living Glossary Board):** Area dedicata enciclopedica posta a monte degli schemi. Raccoglie definizioni chiare e semplificate di ogni termine tecnico, formula o acronimo utilizzato (ingegneria software, biomeccanica, statistica, clinica). **Obbligo vincolante:** aggiornare progressivamente questa board a ogni modifica o aggiunta di schemi.
- 1. **ZONA 1:** Matrice permessi Tier 1 (Base/Social), Tier 2 (Pro/P.IVA), Tier 3 (Elite/Bunker/Ricerca) e schede Architecture Decision Record (ADR).
- 2. **ZONA 2:** Topologia C4. Thin Client + API Gateway + 5 Motori di Calcolo (VBT, Periodizzazione/Triage, Z-Score Microciclo, RAG, Export Excel/PDF) + 3 Silos DB.
- 3. **ZONA 3:** Global Shell stile Apple (Selettore Globale Atleta/Squadra) ed Event Storming tra i moduli (es. Fisioterapia -> aggiorna Programmazione).
- 4. **ZONA 4:** Flowchart dettagliati dei processi core a 4 corsie con gestione dei 4 stati UI (Empty, Loading, Populated, Error/Fallback).
- 5. **ZONA 5:** Schema Entità-Relazione (ERD) e Matrice di Capitolato Tecnico per la Software House.
+
+```mermaid
+flowchart LR
+    Z0["ZONA 0: Living Glossary Board (Dizionario Tecnico)"] --> Z1["ZONA 1: Contesto, Tiers & ADR"]
+    Z1 --> Z2["ZONA 2: Architettura C4 (Client/Server/DB)"]
+    Z2 --> Z3["ZONA 3: Navigazione Apple & Event Storming"]
+    Z3 --> Z4["ZONA 4: Flowchart Operativi a 4 Swimlanes"]
+    Z4 --> Z5["ZONA 5: Database ERD & Roadmap Software House"]
+```
+
+0. **ZONA 0 (Living Glossary Board):** Area dedicata enciclopedica posta a monte degli schemi. Raccoglie definizioni chiare e semplificate di ogni termine tecnico, formula o acronimo utilizzato (ingegneria software, biomeccanica, statistica, clinica). **Obbligo vincolante:** aggiornare progressivamente questa board a ogni modifica o aggiunta di schemi.
+1. **ZONA 1:** Matrice permessi Tier 1 (Base/Social), Tier 2 (Pro/P.IVA), Tier 3 (Elite/Bunker/Ricerca) e schede Architecture Decision Record (ADR).
+2. **ZONA 2:** Topologia C4. Thin Client + API Gateway + 5 Motori di Calcolo (VBT, Periodizzazione/Triage, Z-Score Microciclo, RAG, Export Excel/PDF) + 3 Silos DB.
+3. **ZONA 3:** Global Shell stile Apple (Selettore Globale Atleta/Squadra) ed Event Storming tra i moduli (es. Fisioterapia -> aggiorna Programmazione).
+4. **ZONA 4:** Flowchart dettagliati dei processi core a 4 corsie con gestione dei 4 stati UI (Empty, Loading, Populated, Error/Fallback).
+5. **ZONA 5:** Schema Entità-Relazione (ERD) e Matrice di Capitolato Tecnico per la Software House.
 
 ---
 
