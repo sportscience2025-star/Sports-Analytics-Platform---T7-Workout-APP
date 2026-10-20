@@ -3,53 +3,88 @@ flowchart TD
     classDef process fill:#1e293b,stroke:#38bdf8,stroke-width:1px,color:#f8fafc;
     classDef decision fill:#78350f,stroke:#f59e0b,stroke-width:2px,color:#ffffff;
     classDef db fill:#4c0519,stroke:#f43f5e,stroke-width:2px,color:#ffe4e6;
+    classDef jit fill:#312e81,stroke:#818cf8,stroke-width:2px,color:#e0e7ff;
 
-    TITLE["ZONA 4 - SCHEMA 8A: FLOWCHART ONBOARDING, VERIFICA RUOLO & FEATURE GATING (4 SWIMLANES)"]
+    TITLE["ZONA 4 - SCHEMA 8A: FLOWCHART ONBOARDING PROGRESSIVO, AUTENTICAZIONE MULTI-CANALE & FEATURE GATING (4 SWIMLANES)"]
 
     subgraph LANE_CLIENT["CORSIA 1: APP UTENTE (THIN CLIENT UI/UX)"]
-        START(["Inizio: Utente apre applicazione"]):::startend
-        ACT_INPUT["Inserimento dati: Email, Password, Dati Anagrafici, Codice Fiscale"]:::process
-        ACT_CONSENT["Accettazione Consensi GDPR, Trattamento Dati Sanitari e Privacy"]:::process
-        ACT_TIER_SELECT["Selezione Piano: Tier 1 Base | Tier 2 Pro | Tier 3 Elite Club"]:::process
-        DISP_COCKPIT["Visualizzazione Cockpit Dashboard con moduli abilitati per il Tier"]:::process
-        ERR_SHOW["Mostra messaggio d'errore su UI (Credenziali non valide o CF errato)"]:::process
+        START(["Inizio: Apertura Applicazione T7 Workout"]):::startend
+        SPLASH{"Utente gia registrato o nuovo?"}:::decision
+        
+        %% Ramo Login
+        UI_LOGIN["Form Login: Passkey Biometrica (1-Tap Face/Touch ID), Google/Apple Sign-In o Email/Password"]:::process
+        
+        %% Ramo Registrazione Nuova
+        UI_PERSONA["Bivio Persona: 'Sono un Atleta' vs 'Sono un Professionista / Staff Tecnico'"]:::process
+        UI_REG_ATHLETE["Registrazione Rapida Atleta (30s): Nome, Email, Password / Registra Passkey"]:::process
+        UI_REG_PRO["Registrazione Professionista: Nome, Email, P.IVA / Albo, Selezione Ruolo (R2..R7)"]:::process
+        UI_GDPR_BASIC["Consenso Termini di Servizio & Privacy Base (GDPR Art. 6)"]:::process
+        
+        %% Ramo Invito Club (Tier 3)
+        UI_MAGIC_LINK["Apertura da Invito Riservato Club (Magic Link / QR Code Medico Sociale)"]:::process
+        
+        %% Accesso e Just-in-Time
+        DISP_COCKPIT["Visualizzazione Cockpit Dashboard con moduli abilitati per Ruolo e Tier"]:::process
+        ERR_SHOW["Mostra messaggio d'errore (Credenziali errate, rate-limit o token scaduto)"]:::process
+        UI_JIT_SCREENING["Just-in-Time: Anamnesi 119 Patologie & ROM richiesta prima di generare la prima scheda IA o visita clinica"]:::jit
     end
 
     subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & CONTROLLO ACCESSO"]
-        GW_RECV["Ricezione richiesta POST /api/v1/auth/register"]:::process
-        DEC_CF{"Verifica validita formale Codice Fiscale e formato dati?"}:::decision
-        DEC_AUTH{"Autenticazione & Validita Token JWT?"}:::decision
-        GW_TOKEN["Emissione Token JWT firmato con Claims Ruolo e Tier di appartenenza"]:::process
-        GW_REJECT["Rifiuto richiesta con HTTP 400 Bad Request o 401 Unauthorized"]:::process
+        GW_RECV["Ricezione richiesta POST /api/v1/auth/login o /register o /verify-invite"]:::process
+        GW_VALIDATE{"Validazione Credenziali / WebAuthn Challenge / Token Invito?"}:::decision
+        GW_TOKEN["Emissione Token JWT firmato con Claims Ruolo (R1..R8) e Tier (1..3) + Refresh Token HttpOnly"]:::process
+        GW_REJECT["Rifiuto richiesta con HTTP 400 Bad Request o 401 Unauthorized / Lockout"]:::process
     end
 
     subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (AUTH & RBAC ENGINE)"]
-        SRV_HASH["Hashing password con bcrypt / argon2id"]:::process
-        SRV_PROVISION["Provisioning utente e associazione ruolo RBAC corrispondente"]:::process
-        SRV_ROUTING["Configurazione filtri di accesso e quote API per il Tier acquistato"]:::process
+        SRV_HASH["Verifica crittografica Argon2id / Validazione crittografica FIDO2 WebAuthn"]:::process
+        SRV_PROVISION["Provisioning utente, assegnazione quote e configurazione permessi RBAC"]:::process
+        SRV_ROUTING["Configurazione filtri di accesso moduli e quote API per il Tier"]:::process
+        SRV_IMPACT_CALC["Motore ImpactCalculator: Filtraggio 119 patologie ed esclusione biomeccanica esercizi vietati"]:::jit
     end
 
     subgraph LANE_DB["CORSIA 4: DATABASE CENTRALE A 3 SILOS"]
-        DB_CHECK{"Email o Utente gia registrato nel database?"}:::decision
-        DB_WRITE[("Salvataggio Record Utente in Silo 1 (Social) o Silo 2 (Club Bunker KMS)")]:::db
+        DB_CHECK{"Email o Account gia esistente nel database?"}:::decision
+        DB_WRITE_S1[("Salvataggio Record Utente in Silo 1: Dati Base / Social / Marketplace P.IVA")]:::db
+        DB_WRITE_S2[("Salvataggio Blindato in Silo 2: Bunker Club KMS Isolato (Tier 3 Pro)")]:::db
+        DB_LOAD[("Lettura Profilo, Schede Salvate e Storico Allenamenti")]:::db
         END_SUCCESS(["Fine: Sessione Utente Attiva e Autenticata"]):::startend
     end
 
-    START --> ACT_INPUT --> ACT_CONSENT --> ACT_TIER_SELECT
-    ACT_TIER_SELECT -->|Invia payload registrazione| GW_RECV
-
-    GW_RECV --> DEC_CF
-    DEC_CF -- NO --> GW_REJECT --> ERR_SHOW
-    DEC_CF -- SI --> DB_CHECK
-
+    %% FLUSSI LOGICI
+    START --> SPLASH
+    
+    %% Ramo Login Esistente
+    SPLASH -- UTENTE ESISTENTE --> UI_LOGIN
+    UI_LOGIN -->|Invia credenziali o asserzione WebAuthn| GW_RECV
+    
+    %% Ramo Nuovo Utente
+    SPLASH -- NUOVO UTENTE --> UI_PERSONA
+    UI_PERSONA -- ATLETA (B2C) --> UI_REG_ATHLETE --> UI_GDPR_BASIC --> GW_RECV
+    UI_PERSONA -- PROFESSIONISTA (B2B) --> UI_REG_PRO --> UI_GDPR_BASIC --> GW_RECV
+    
+    %% Ramo Invito Club Tier 3
+    SPLASH -- INVITO CLUB ELITE --> UI_MAGIC_LINK --> GW_RECV
+    
+    %% Gateway e Server
+    GW_RECV --> GW_VALIDATE
+    GW_VALIDATE -- NON VALIDO --> GW_REJECT --> ERR_SHOW
+    GW_VALIDATE -- VALIDO / REGISTRAZIONE --> DB_CHECK
+    
     DB_CHECK -- GIA PRESENTE --> GW_REJECT
-    DB_CHECK -- NON PRESENTE --> SRV_HASH
-
-    SRV_HASH --> SRV_PROVISION --> SRV_ROUTING
-    SRV_ROUTING --> DB_WRITE
-
-    DB_WRITE --> GW_TOKEN
-    GW_TOKEN --> DEC_AUTH
-
-    DEC_AUTH -- SI --> DISP_COCKPIT --> END_SUCCESS
-    DEC_AUTH -- NO --> GW_REJECT
+    DB_CHECK -- PROCEDI --> SRV_HASH --> SRV_PROVISION --> SRV_ROUTING
+    
+    %% Scrittura su Database Tripartito
+    SRV_ROUTING -- Tier 1 o Tier 2 --> DB_WRITE_S1
+    SRV_ROUTING -- Tier 3 Club Pro --> DB_WRITE_S2
+    
+    DB_WRITE_S1 --> GW_TOKEN
+    DB_WRITE_S2 --> GW_TOKEN
+    DB_LOAD --> GW_TOKEN
+    
+    %% Accesso alla Dashboard
+    GW_TOKEN -->|Auto-Login / Sessione Avviata| DISP_COCKPIT --> END_SUCCESS
+    
+    %% Flusso Just-in-Time (Differito alla prima scheda)
+    DISP_COCKPIT -.->|Atleta clicca su 'Genera Scheda'| UI_JIT_SCREENING
+    UI_JIT_SCREENING -.->|Invio 119 patologie & ROM| SRV_IMPACT_CALC

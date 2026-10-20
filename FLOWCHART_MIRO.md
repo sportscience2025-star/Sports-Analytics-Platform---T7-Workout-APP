@@ -11,19 +11,19 @@ Questo documento traccia e collega il diagramma visuale completo dell'applicazio
 
 ## Mappa delle 4 Macro-Sezioni nel Flowchart
 
-### 1. Flusso di Accesso, Onboarding & Anamnesi Utente
+### 1. Flusso di Accesso, Onboarding & Anamnesi Utente (Architettura Progressiva Just-in-Time)
 - **Welcome / Splash Screen**: Accesso all'applicazione T7 Workout PWA.
 - **Bivio Decisionale**: Selezione tra utente già registrato o nuova utenza.
 - **Percorso Login**:
-  - Inserimento credenziali (Email/Username + Password cifrata).
-  - Validazione token di sessione e opzione di recupero password (OTP/Email).
-  - Caricamento profilo atleta esistente e reindirizzamento alla Dashboard.
-- **Percorso Registrazione (Processo Guidato a 4 Step)**:
-  - **Step 1 - Dati Anagrafici & Identificativi**: Nome, Cognome, Data e Luogo di Nascita, Residenza, Codice Fiscale (CF) obbligatorio, Email e Telefono.
-  - **Step 2 - Credenziali & Compliance**: Password complessa, conferma password, consensi Privacy GDPR e trattamento dati sensibili sanitari.
-  - **Step 3 - Anamnesi Clinico-Sportiva**: Parametri antropometrici (peso, altezza, BMI), screening approfondito su 119 patologie (rachide, spalla, ginocchio, sistemiche), infortuni pregressi, dolori articolari (scala VAS), livello atletico e obiettivi primari (Forza, Ipertrofia, Riabilitazione).
-  - **Step 4 - Creazione Profilo & Auto-Login**: Creazione cartella clinica digitale, salvataggio locale e auto-login.
-- **Convergenza**: Ingresso comune alla Dashboard principale.
+  - Inserimento credenziali multi-canale: Passkey Biometrica (Face ID / Touch ID / FIDO2), 1-Tap Google/Apple Sign-In o classica Email/Password.
+  - Validazione crittografica (Argon2id / WebAuthn challenge), emissione token JWT con claims (Ruolo R1..R8 e Tier) e gestione Silent Refresh Token in cookie sicuro `HttpOnly; SameSite=Strict`.
+  - Caricamento profilo atleta esistente e reindirizzamento immediato al Cockpit.
+- **Percorso Registrazione Progressiva (Zero-Friction)**:
+  - **Bivio Persona (Step 0)**: Scelta tra *"Sono un Atleta / Sportivo"* (percorso B2C rapido) vs *"Sono un Professionista / Staff Tecnico"* (P.IVA, albo, ruoli R2..R7).
+  - **Registrazione Rapida (Step 1)**: Nome, Email, Password o registrazione Passkey in 30 secondi. Consenso Termini di Servizio base (GDPR Art. 6). Codice Fiscale opzionale (richiesto solo in fatturazione Tier 2/3 o cartella clinica formale, garantendo fruibilità internazionale).
+  - **Canale Riservato Club Elite (Tier 3)**: Onboarding via Invito protetto (Magic Link / QR Code generato dal Medico Sociale nel Bunker KMS Silo 2); l'atleta attiva l'account in 1 tocco biometrico con cartella clinica già predisposta.
+  - **Anamnesi Clinico-Sportiva Differita (Just-in-Time)**: Lo screening sulle 119 patologie (rachide, spalla, ginocchio, sistemiche), i gradi di mobilità (ROM) e i 32 protocolli clinici non bloccano il primo accesso all'app. Vengono richiesti *Just-in-Time* solo quando l'atleta richiede la generazione della prima scheda di allenamento con IA o accede al modulo clinico/physio.
+- **Convergenza**: Ingresso unico unificato alla Dashboard principale (Cockpit) con profilo in memoria e Auto-Login.
 
 ---
 

@@ -6,9 +6,15 @@
     "description": "Specifiche OpenAPI formali dei contratti di scambio dati tra Thin Client (React 18) e Server Scatola Nera (Cloud Run Microservices)."
   },
   "basePath": "/api/v1",
-  "schemes": ["https"],
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/vbt/calculate-profile": {
       "post": {
@@ -21,21 +27,49 @@
             "required": true,
             "schema": {
               "type": "object",
-              "required": ["athleteId", "exerciseId", "series"],
+              "required": [
+                "athleteId",
+                "exerciseId",
+                "series"
+              ],
               "properties": {
-                "athleteId": { "type": "string", "example": "ath_7702" },
-                "exerciseId": { "type": "string", "example": "sq_back_01" },
-                "customMvt": { "type": "number", "example": 0.30 },
+                "athleteId": {
+                  "type": "string",
+                  "example": "ath_7702"
+                },
+                "exerciseId": {
+                  "type": "string",
+                  "example": "sq_back_01"
+                },
+                "customMvt": {
+                  "type": "number",
+                  "example": 0.3
+                },
                 "series": {
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "required": ["loadKg", "meanVelocity"],
+                    "required": [
+                      "loadKg",
+                      "meanVelocity"
+                    ],
                     "properties": {
-                      "loadKg": { "type": "number", "example": 80.0 },
-                      "meanVelocity": { "type": "number", "example": 0.78 },
-                      "peakVelocity": { "type": "number", "example": 1.05 },
-                      "romMeters": { "type": "number", "example": 0.58 }
+                      "loadKg": {
+                        "type": "number",
+                        "example": 80.0
+                      },
+                      "meanVelocity": {
+                        "type": "number",
+                        "example": 0.78
+                      },
+                      "peakVelocity": {
+                        "type": "number",
+                        "example": 1.05
+                      },
+                      "romMeters": {
+                        "type": "number",
+                        "example": 0.58
+                      }
                     }
                   }
                 }
@@ -49,24 +83,58 @@
             "schema": {
               "type": "object",
               "properties": {
-                "rSquared": { "type": "number", "example": 0.992 },
-                "slope": { "type": "number", "example": -0.0083 },
-                "intercept": { "type": "number", "example": 1.448 },
-                "f0Newtons": { "type": "number", "example": 1710.5 },
-                "v0Mps": { "type": "number", "example": 1.45 },
-                "pMaxWatts": { "type": "number", "example": 620.3 },
-                "estimated1RMKg": { "type": "number", "example": 138.3 },
+                "rSquared": {
+                  "type": "number",
+                  "example": 0.992
+                },
+                "slope": {
+                  "type": "number",
+                  "example": -0.0083
+                },
+                "intercept": {
+                  "type": "number",
+                  "example": 1.448
+                },
+                "f0Newtons": {
+                  "type": "number",
+                  "example": 1710.5
+                },
+                "v0Mps": {
+                  "type": "number",
+                  "example": 1.45
+                },
+                "pMaxWatts": {
+                  "type": "number",
+                  "example": 620.3
+                },
+                "estimated1RMKg": {
+                  "type": "number",
+                  "example": 138.3
+                },
                 "confidenceInterval95": {
                   "type": "array",
-                  "items": { "type": "number" },
-                  "example": [134.1, 142.5]
+                  "items": {
+                    "type": "number"
+                  },
+                  "example": [
+                    134.1,
+                    142.5
+                  ]
                 },
-                "bryanMannZone": { "type": "string", "example": "Strength-Speed (0.75 - 1.00 m/s)" },
-                "outliersDetected": { "type": "integer", "example": 0 }
+                "bryanMannZone": {
+                  "type": "string",
+                  "example": "Strength-Speed (0.75 - 1.00 m/s)"
+                },
+                "outliersDetected": {
+                  "type": "integer",
+                  "example": 0
+                }
               }
             }
           },
-          "422": { "description": "Unita di misura fisiche o valori non validi (violazione ADR-03)" }
+          "422": {
+            "description": "Unita di misura fisiche o valori non validi (violazione ADR-03)"
+          }
         }
       }
     },
@@ -81,18 +149,37 @@
             "required": true,
             "schema": {
               "type": "object",
-              "required": ["athleteId", "activeConditions", "requestedExerciseIds"],
+              "required": [
+                "athleteId",
+                "activeConditions",
+                "requestedExerciseIds"
+              ],
               "properties": {
-                "athleteId": { "type": "string", "example": "ath_7702" },
+                "athleteId": {
+                  "type": "string",
+                  "example": "ath_7702"
+                },
                 "activeConditions": {
                   "type": "array",
-                  "items": { "type": "string" },
-                  "example": ["col_01_lombalgia_acuta", "gin_04_lesione_lca_ricostruito"]
+                  "items": {
+                    "type": "string"
+                  },
+                  "example": [
+                    "col_01_lombalgia_acuta",
+                    "gin_04_lesione_lca_ricostruito"
+                  ]
                 },
                 "requestedExerciseIds": {
                   "type": "array",
-                  "items": { "type": "string" },
-                  "example": ["sq_back_01", "leg_press_01", "leg_ext_01", "bulgarian_sq_01"]
+                  "items": {
+                    "type": "string"
+                  },
+                  "example": [
+                    "sq_back_01",
+                    "leg_press_01",
+                    "leg_ext_01",
+                    "bulgarian_sq_01"
+                  ]
                 }
               }
             }
@@ -104,16 +191,41 @@
             "schema": {
               "type": "object",
               "properties": {
-                "overallRiskLevel": { "type": "string", "example": "HIGH" },
+                "overallRiskLevel": {
+                  "type": "string",
+                  "example": "HIGH"
+                },
                 "auditResults": {
                   "type": "array",
                   "items": {
                     "type": "object",
                     "properties": {
-                      "exerciseId": { "type": "string", "example": "sq_back_01" },
-                      "status": { "type": "string", "enum": ["EXCLUDED", "ADAPTED", "AVAILABLE"], "example": "EXCLUDED" },
-                      "reason": { "type": "string", "example": "Carico assiale diretto vietato per discopatia lombare attiva" },
-                      "suggestedAlternatives": { "type": "array", "items": { "type": "string" }, "example": ["hip_thrust_barbell_01"] }
+                      "exerciseId": {
+                        "type": "string",
+                        "example": "sq_back_01"
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "EXCLUDED",
+                          "ADAPTED",
+                          "AVAILABLE"
+                        ],
+                        "example": "EXCLUDED"
+                      },
+                      "reason": {
+                        "type": "string",
+                        "example": "Carico assiale diretto vietato per discopatia lombare attiva"
+                      },
+                      "suggestedAlternatives": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "example": [
+                          "hip_thrust_barbell_01"
+                        ]
+                      }
                     }
                   }
                 },
@@ -122,10 +234,22 @@
                   "items": {
                     "type": "object",
                     "properties": {
-                      "protocolCode": { "type": "string", "example": "cli_01" },
-                      "sets": { "type": "integer", "example": 2 },
-                      "reps": { "type": "integer", "example": 15 },
-                      "videoUrl": { "type": "string", "example": "https://cdn.t7workout.com/video/cli_01.mp4" }
+                      "protocolCode": {
+                        "type": "string",
+                        "example": "cli_01"
+                      },
+                      "sets": {
+                        "type": "integer",
+                        "example": 2
+                      },
+                      "reps": {
+                        "type": "integer",
+                        "example": 15
+                      },
+                      "videoUrl": {
+                        "type": "string",
+                        "example": "https://cdn.t7workout.com/video/cli_01.mp4"
+                      }
                     }
                   }
                 }
@@ -146,24 +270,57 @@
             "required": true,
             "schema": {
               "type": "object",
-              "required": ["clubId", "athleteId", "currentMicrocycleMetrics"],
+              "required": [
+                "clubId",
+                "athleteId",
+                "currentMicrocycleMetrics"
+              ],
               "properties": {
-                "clubId": { "type": "string", "example": "club_juve_pro" },
-                "athleteId": { "type": "string", "example": "ath_7702" },
-                "isNewTransferWithout6MonthBaseline": { "type": "boolean", "example": true },
+                "clubId": {
+                  "type": "string",
+                  "example": "club_juve_pro"
+                },
+                "athleteId": {
+                  "type": "string",
+                  "example": "ath_7702"
+                },
+                "isNewTransferWithout6MonthBaseline": {
+                  "type": "boolean",
+                  "example": true
+                },
                 "tacticalRolesMinutes": {
                   "type": "object",
-                  "additionalProperties": { "type": "number" },
-                  "example": { "TERZINO_FLUIDIFICANTE": 75, "ALA_ATTACCO": 15 }
+                  "additionalProperties": {
+                    "type": "number"
+                  },
+                  "example": {
+                    "TERZINO_FLUIDIFICANTE": 75,
+                    "ALA_ATTACCO": 15
+                  }
                 },
                 "currentMicrocycleMetrics": {
                   "type": "object",
                   "properties": {
-                    "hrvRmssd": { "type": "number", "example": 48.5 },
-                    "pvtReactionTimeMs": { "type": "number", "example": 245.0 },
-                    "totalGpsDistanceM": { "type": "number", "example": 28400 },
-                    "highSpeedRunningDistanceM": { "type": "number", "example": 3200 },
-                    "sprintDistanceM": { "type": "number", "example": 850 }
+                    "hrvRmssd": {
+                      "type": "number",
+                      "example": 48.5
+                    },
+                    "pvtReactionTimeMs": {
+                      "type": "number",
+                      "example": 245.0
+                    },
+                    "totalGpsDistanceM": {
+                      "type": "number",
+                      "example": 28400
+                    },
+                    "highSpeedRunningDistanceM": {
+                      "type": "number",
+                      "example": 3200
+                    },
+                    "sprintDistanceM": {
+                      "type": "number",
+                      "example": 850
+                    }
                   }
                 }
               }
@@ -176,11 +333,29 @@
             "schema": {
               "type": "object",
               "properties": {
-                "compositeReadinessZ": { "type": "number", "example": -1.45 },
-                "baselineMode": { "type": "string", "example": "ROLE_COHORT_WEIGHTED_MEDIAN" },
-                "roleWeightsApplied": { "type": "object", "example": { "TERZINO_FLUIDIFICANTE": 0.833, "ALA_ATTACCO": 0.167 } },
-                "alertFlag": { "type": "string", "example": "HIGH_FATIGUE_RISK" },
-                "recommendedAction": { "type": "string", "example": "Riduzione 30% volume sprint ad alta intensita nel Microciclo G-3" }
+                "compositeReadinessZ": {
+                  "type": "number",
+                  "example": -1.45
+                },
+                "baselineMode": {
+                  "type": "string",
+                  "example": "ROLE_COHORT_WEIGHTED_MEDIAN"
+                },
+                "roleWeightsApplied": {
+                  "type": "object",
+                  "example": {
+                    "TERZINO_FLUIDIFICANTE": 0.833,
+                    "ALA_ATTACCO": 0.167
+                  }
+                },
+                "alertFlag": {
+                  "type": "string",
+                  "example": "HIGH_FATIGUE_RISK"
+                },
+                "recommendedAction": {
+                  "type": "string",
+                  "example": "Riduzione 30% volume sprint ad alta intensita nel Microciclo G-3"
+                }
               }
             }
           }
@@ -198,13 +373,40 @@
             "required": true,
             "schema": {
               "type": "object",
-              "required": ["athleteId", "modelType", "durationWeeks"],
+              "required": [
+                "athleteId",
+                "modelType",
+                "durationWeeks"
+              ],
               "properties": {
-                "athleteId": { "type": "string", "example": "ath_7702" },
-                "modelType": { "type": "string", "enum": ["DUP", "BLOCKS", "LINEAR", "CONJUGATE"], "example": "DUP" },
-                "durationWeeks": { "type": "integer", "minimum": 4, "maximum": 16, "example": 16 },
-                "sessionsPerWeek": { "type": "integer", "example": 4 },
-                "targetGoal": { "type": "string", "example": "STRENGTH_HYPERTROPHY" }
+                "athleteId": {
+                  "type": "string",
+                  "example": "ath_7702"
+                },
+                "modelType": {
+                  "type": "string",
+                  "enum": [
+                    "DUP",
+                    "BLOCKS",
+                    "LINEAR",
+                    "CONJUGATE"
+                  ],
+                  "example": "DUP"
+                },
+                "durationWeeks": {
+                  "type": "integer",
+                  "minimum": 4,
+                  "maximum": 16,
+                  "example": 16
+                },
+                "sessionsPerWeek": {
+                  "type": "integer",
+                  "example": 4
+                },
+                "targetGoal": {
+                  "type": "string",
+                  "example": "STRENGTH_HYPERTROPHY"
+                }
               }
             }
           }
@@ -215,11 +417,40 @@
             "schema": {
               "type": "object",
               "properties": {
-                "planId": { "type": "string", "example": "plan_dup_16w_991" },
-                "durationWeeks": { "type": "integer", "example": 16 },
-                "deloadWeeks": { "type": "array", "items": { "type": "integer" }, "example": [4, 8, 12, 16] },
-                "scientificRationale": { "type": "string", "example": "Programmazione DUP conformemente a Rhea et al. (PMID:12423180) con modulazione ondulata del carico." },
-                "citations": { "type": "array", "items": { "type": "string" }, "example": ["PMID:12423180", "PMID:28834797"] }
+                "planId": {
+                  "type": "string",
+                  "example": "plan_dup_16w_991"
+                },
+                "durationWeeks": {
+                  "type": "integer",
+                  "example": 16
+                },
+                "deloadWeeks": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "example": [
+                    4,
+                    8,
+                    12,
+                    16
+                  ]
+                },
+                "scientificRationale": {
+                  "type": "string",
+                  "example": "Programmazione DUP conformemente a Rhea et al. (PMID:12423180) con modulazione ondulata del carico."
+                },
+                "citations": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "example": [
+                    "PMID:12423180",
+                    "PMID:28834797"
+                  ]
+                }
               }
             }
           }
@@ -237,11 +468,24 @@
             "required": true,
             "schema": {
               "type": "object",
-              "required": ["athleteId", "videoStorageUri", "exerciseType"],
+              "required": [
+                "athleteId",
+                "videoStorageUri",
+                "exerciseType"
+              ],
               "properties": {
-                "athleteId": { "type": "string", "example": "ath_7702" },
-                "videoStorageUri": { "type": "string", "example": "gs://t7-bunkers-prod/videos/cod_01.mp4" },
-                "exerciseType": { "type": "string", "example": "CHANGE_OF_DIRECTION" }
+                "athleteId": {
+                  "type": "string",
+                  "example": "ath_7702"
+                },
+                "videoStorageUri": {
+                  "type": "string",
+                  "example": "gs://t7-bunkers-prod/videos/cod_01.mp4"
+                },
+                "exerciseType": {
+                  "type": "string",
+                  "example": "CHANGE_OF_DIRECTION"
+                }
               }
             }
           }
@@ -252,10 +496,22 @@
             "schema": {
               "type": "object",
               "properties": {
-                "maxKneeValgusDeg": { "type": "number", "example": 18.2 },
-                "bilateralAsymmetryPercent": { "type": "number", "example": 16.4 },
-                "deficitDetected": { "type": "boolean", "example": true },
-                "prescribedKneeProtocol": { "type": "string", "example": "cli_12" }
+                "maxKneeValgusDeg": {
+                  "type": "number",
+                  "example": 18.2
+                },
+                "bilateralAsymmetryPercent": {
+                  "type": "number",
+                  "example": 16.4
+                },
+                "deficitDetected": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "prescribedKneeProtocol": {
+                  "type": "string",
+                  "example": "cli_12"
+                }
               }
             }
           }
@@ -273,10 +529,18 @@
             "required": true,
             "schema": {
               "type": "object",
-              "required": ["planId"],
+              "required": [
+                "planId"
+              ],
               "properties": {
-                "planId": { "type": "string", "example": "plan_dup_16w_991" },
-                "includeVideoQrCodes": { "type": "boolean", "example": true }
+                "planId": {
+                  "type": "string",
+                  "example": "plan_dup_16w_991"
+                },
+                "includeVideoQrCodes": {
+                  "type": "boolean",
+                  "example": true
+                }
               }
             }
           }
@@ -287,8 +551,211 @@
             "schema": {
               "type": "object",
               "properties": {
-                "downloadUrl": { "type": "string", "example": "https://storage.googleapis.com/t7-exports/plan_dup_16w_991_unlocked.xlsx" },
-                "isProtected": { "type": "boolean", "example": false }
+                "downloadUrl": {
+                  "type": "string",
+                  "example": "https://storage.googleapis.com/t7-exports/plan_dup_16w_991_unlocked.xlsx"
+                },
+                "isProtected": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "summary": "Registrazione Utente Rapida (Zero-Friction)",
+        "description": "Crea account per Atleta (B2C) o Professionista (B2B). Rilascia JWT con claims Ruolo e Tier.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "email",
+                "fullName",
+                "personaType"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "atleta@example.com"
+                },
+                "fullName": {
+                  "type": "string",
+                  "example": "Marco Rossi"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "SuperSecretPass123!"
+                },
+                "passkeyCredential": {
+                  "type": "object",
+                  "description": "Attestazione FIDO2/WebAuthn per registrazione biometrica"
+                },
+                "personaType": {
+                  "type": "string",
+                  "enum": [
+                    "athlete",
+                    "professional",
+                    "club_invite"
+                  ],
+                  "example": "athlete"
+                },
+                "vatNumber": {
+                  "type": "string",
+                  "description": "Opzionale: P.IVA per ruoli professionali R2..R7"
+                },
+                "fiscalCode": {
+                  "type": "string",
+                  "description": "Opzionale al primo avvio"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Utente registrato con successo e sessione avviata (Auto-Login)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accessToken": {
+                  "type": "string"
+                },
+                "tokenType": {
+                  "type": "string",
+                  "example": "Bearer"
+                },
+                "expiresIn": {
+                  "type": "integer",
+                  "example": 900
+                },
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "usr_9921"
+                    },
+                    "role": {
+                      "type": "string",
+                      "example": "R1_ATHLETE"
+                    },
+                    "tier": {
+                      "type": "integer",
+                      "example": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Autenticazione Multi-Canale (Passkeys / Social / Password)",
+        "description": "Effettua login tramite credenziali classiche o asserzione biometrica WebAuthn (Face/Touch ID).",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "atleta@example.com"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "webAuthnAssertion": {
+                  "type": "object",
+                  "description": "Firma crittografica hardware del dispositivo"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login confermato e token rilasciato",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accessToken": {
+                  "type": "string"
+                },
+                "tokenType": {
+                  "type": "string",
+                  "example": "Bearer"
+                },
+                "expiresIn": {
+                  "type": "integer",
+                  "example": 900
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Credenziali errate o asserzione biometrica non valida"
+          }
+        }
+      }
+    },
+    "/auth/club-invite": {
+      "post": {
+        "summary": "Attivazione Account Club Professionistico (Tier 3 Bunker KMS)",
+        "description": "Verifica il token monouso inviato dallo staff medico ed effettua l'onboarding rapido dell'atleta nel Silo 2 Bunker.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "inviteToken"
+              ],
+              "properties": {
+                "inviteToken": {
+                  "type": "string",
+                  "example": "inv_club_bunker_abc123"
+                },
+                "setupPasskey": {
+                  "type": "boolean",
+                  "example": true
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Atleta attivato nel bunker KMS del club con cartella clinica precaricata",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accessToken": {
+                  "type": "string"
+                },
+                "clubId": {
+                  "type": "string",
+                  "example": "club_serie_a_01"
+                },
+                "tenantSilo": {
+                  "type": "string",
+                  "example": "SILO_2_BUNKER"
+                }
               }
             }
           }
