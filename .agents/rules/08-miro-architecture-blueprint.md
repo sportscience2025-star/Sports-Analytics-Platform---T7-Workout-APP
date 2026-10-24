@@ -51,6 +51,10 @@ Ogni schema deve rispettare rigorosamente questi 3 pilastri non negoziabili:
    - **ROSSO/VIOLA (`ADR / Vincolo Critico`):** Requisito non negoziabile di sicurezza, privacy o validazione fisica ($F$ in N, $P$ in W, Carico in kg).
 4. **Gestione dei 4 Stati UI & Edge Cases:**
    Includere sempre in ogni flusso: **Empty State** (nessun dato), **Loading State** (chiamata server), **Populated State** (vista ordinaria), **Error/Fallback State** (dati mancanti, credenziali errate, cold-start senza baseline, prevenzione tassativa di `NaN`/`undefined`).
+5. **Standard di Tipografia, Spaziatura & Leggibilità Aurea (FONDAMENTALE):**
+   - **Zero Testo Tagliato o Compresso**: All'interno di qualsiasi riquadro (rettangolo arrotondato) o rombo decisionale, il testo deve essere visibile al 100% senza alcuna riga tagliata, troncata o collassata. I rombi, a causa degli angoli inclinati, richiedono una superficie utile interna maggiore: dimensionarli sempre con larghezza abbondante (W >= 280-340px) e altezza adeguata (H >= 110-130px), oppure sintetizzare il testo centrale mantenendo font leggibile (12-14px).
+   - **Etichette dei Connettori Orizzontali e con Spazio Libero**: Le scritte sulle frecce e sui connettori non devono MAI essere posizionate in verticale o sovrapporsi al bordo o al testo delle card sottostanti o sovrastanti. Garantire una distanza verticale minima di 70-90px tra i nodi collegati in modo che le didascalie abbiano ampio respiro visivo orizzontale.
+   - **Respiro Visivo e Larghezza Generosa**: Ispirarsi sempre allo standard ad alto respiro dei riquadri viola dell'Hub Centrale (Screenshot approvato): forme larghe e spaziose (width 400-500px) per consentire al testo di andare a capo con naturalezza. Se necessario per far respirare il diagramma, espandere l'asse X o Y mantenendo allineamento simmetrico, ordine e facilità istantanea di lettura per chiunque consulti lo schema.
 
 ---
 

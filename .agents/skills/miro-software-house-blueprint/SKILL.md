@@ -31,6 +31,10 @@ Questa skill guida la progettazione, generazione e aggiornamento di diagrammi in
   - `ARANCIONE (#e67e22)`: TO-BE Nuovo (da sviluppare ex novo per la Software House).
   - `ROSSO/VIOLA (#e74c3c / #9b59b6)`: Vincolo Critico ADR / Sicurezza / Dimensione Fisica.
 
+- **Standard di Tipografia, Spaziatura & Leggibilita Aurea (FONDAMENTALE):**
+  - *Zero Testo Tagliato*: Nei riquadri e soprattutto nei rombi (decisioni), il testo deve vedersi per intero senza tagli. Dimensionare i rombi con  \ge 280\text{-}340\text{px}$ e  \ge 110\text{-}130\text{px}$ per garantire ampia superficie interna.
+  - *Etichette Connettori Orizzontali*: Le didascalie sulle frecce devono stare in orizzontale e non devono MAI accavallarsi ai bordi o al testo delle forme. Mantenere uno spazio minimo di \text{-}90\text{px}$ tra i nodi collegati.
+  - *Respiro e Larghezza Generosa*: Ispirarsi ai riquadri viola dell'Hub Centrale (width \text{-}500\text{px}$), favorendo ordine, simmetria e massima facilita di lettura immediata per chiunque consulti lo schema.
 ---
 
 ## 2. Le Zone della Board Miro & Glossario Tecnico Evolutivo
