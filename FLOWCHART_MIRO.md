@@ -5,116 +5,89 @@ Questo documento traccia e collega il diagramma visuale completo dell'ecosistema
 ## Link Diretto alla Board Miro
 - **Board URL**: [FITNESS APP FLOWCHART](https://miro.com/app/board/uXjVEbo6L2o=)
 - **ID Board**: `uXjVEbo6L2o=`
-- **Stile Visivo**: Design ad alto contrasto conforme ISO 5807 (sfondi categorizzati per corsia, testo scuro `#0f172a`, bordi colorati netti, connettori smart con etichette chiare).
+- **Stile Visivo**: Design ad alto contrasto conforme agli standard della Software House (header superiori categorizzati per colore, card con bordo colorato a contrasto, losanghe decisionali, connettori smart direzionali, e struttura a 3 sotto-colonne parallele per i workflow e i moduli complessi).
 
 ---
 
-## Architettura Multi-Software a 18 Flowchart (3 Prodotti $\times$ 6 Pilastri)
+## Architettura a 3 Righe Sovrapposte (18 Flowchart Totali)
 
-La board online è organizzata in una matrice ortogonale cartesiana con una colonna introduttiva (**Zona 0**) e 3 macro-righe orizzontali corrispondenti ai **3 Software distinti per 3 mercati target differenti**, sviluppati lungo i medesimi **6 Pilastri Funzionali**:
+La board online è organizzata in una griglia ortogonale su 6 colonne fisse (lungo l'asse X) disposte su 3 righe orizzontali sovrapposte:
 
 ```
-[ ZONA 0: Living Glossary & RBAC Matrix (X: -2600, Y: 5200) ]
-
-RIGA 1 (Y = 2600): SOFTWARE 1 — CONSUMER EDITION (B2C)
+RIGA 1 (Y = 350..1850): I 6 FLOWCHART ORIGINALI (PRESERVATI)
 ┌──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┐
-│  Flow 1A     │  Flow 2A     │  Flow 3A     │  Flow 4A     │  Flow 5A     │  Flow 6A     │
-│  Onboarding  │  Cockpit     │  Workout     │  Wearables   │  Social B2C  │  Desk-Care   │
-│  X: 0        │  X: 2200     │  X: 4400     │  X: 6600     │  X: 8800     │  X: 11000    │
+│ Colonna 1    │ Colonna 2    │ Colonna 3    │ Colonna 4    │ Colonna 5    │ Colonna 6    │
+│ Onboarding   │ Hub Cockpit  │ Architettura │ Workflow VBT │ Together     │ Movely       │
+│ X: -2200     │ X: -800      │ X: 600       │ X: 2150      │ X: 3799      │ X: 5448      │
 └──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┘
 
-RIGA 2 (Y = 5200): SOFTWARE 2 — PRO / SPECIALIST EDITION (B2B P.IVA)
+RIGA 2 (Y = 2100..3600): SOFTWARE 2 — PARTITA IVA / PRO SPECIALIST (COACH / FISIO)
 ┌──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┐
-│  Flow 1B     │  Flow 2B     │  Flow 3B     │  Flow 4B     │  Flow 5B     │  Flow 6B     │
-│  Onboarding  │  Coach Hub   │  Macrocicli  │  VBT & PAP   │  Pro Biz     │  Physio Rehab│
-│  X: 0        │  X: 2200     │  X: 4400     │  X: 6600     │  X: 8800     │  X: 11000    │
+│ 1. Onboarding│ 2. Coach Hub │ 3. Archit.   │ 4. Workflow  │ 5. Together  │ 6. Physio    │
+│ P.IVA & Albo │ Multi-Atleta │ B2B & Silo 1 │ DUP, VBT, PAP│ Pro Business │ Rehab & ROM  │
+│ X: -2200     │ X: -800      │ X: 600       │ X: 2150      │ X: 3799      │ X: 5448      │
 └──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┘
 
-RIGA 3 (Y = 7800): SOFTWARE 3 — ELITE CLUB & RESEARCH (B2B ENTERPRISE)
+RIGA 3 (Y = 3850..5350): SOFTWARE 3 — TEAM DI ALTO LIVELLO / B2B ENTERPRISE (PRO CLUBS)
 ┌──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┐
-│  Flow 1C     │  Flow 2C     │  Flow 3C     │  Flow 4C     │  Flow 5C     │  Flow 6C     │
-│  Bunker Auth │  Team Staff  │  MD-X Squad  │  GPS Z-Score │  Tactical CV │  Medical EMR │
-│  X: 0        │  X: 2200     │  X: 4400     │  X: 6600     │  X: 8800     │  X: 11000    │
+│ 1. Accesso   │ 2. Cockpit   │ 3. Bunker    │ 4. Workflow  │ 5. Tactical  │ 6. Medical   │
+│ Bunker KMS   │ Multi-Staff  │ Silo 2 & 3   │ MD-X, GPS, CV│ Vision Campo │ Room EMR RTP │
+│ X: -2200     │ X: -800      │ X: 600       │ X: 2150      │ X: 3799      │ X: 5448      │
 └──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┘
 ```
 
 ---
 
-## Standard a 4 Corsie (Swimlanes ISO 5807)
+## Dettaglio dei 18 Flowchart sulla Board
 
-Ciascuno dei 18 flowchart è suddiviso verticalmente in 4 corsie architetturali standardizzate:
-1. **Lane 1: Thin Client UI/UX Layer** (`#f0f9ff` / `#0284c7`): Interfaccia utente PWA / Mobile, form reattivi, player di allenamento, grafici Chart.js e canvas interattivi.
-2. **Lane 2: API Gateway & Feature Gating** (`#faf5ff` / `#7c3aed`): Autenticazione, validazione WebAuthn/OAuth, rate-limiting, controllo quote e claim JWT (Ruoli R1..R8, Tier 1..3).
-3. **Lane 3: Server Black Box / IP Algorithms** (`#ecfdf5` / `#059669`): Motori di calcolo biomeccanico proprietario, regressione ibrida VBT, triage clinico 119 patologie, ACWR EWMA, Z-Score rolling 28gg e pipeline Computer Vision.
-4. **Lane 4: Multi-Tenant Database Layer** (`#fff1f2` / `#e11d48`): Segregazione in 3 Silos:
-   - **Silo 1**: Dati relazionali, profili utenti, anagrafiche P.IVA e social.
-   - **Silo 2**: Bunker KMS crittografato AES-256-GCM isolato per i club professionistici.
-   - **Silo 3**: Research Data Warehouse anonimizzato per la ricerca scientifica.
-
----
-
-## Indice Dettagliato dei 18 Flowchart
-
-### Software 1: Consumer Edition (B2C - Amatori & Sportivi)
-- **Flow 1A: Fast Consumer Onboarding (30s)**:
-  - Accesso rapido biometrico (Passkey FIDO2) o Social (Apple/Google). Zero attriti, nessuna richiesta di Codice Fiscale, anamnesi clinica differita al primo workout (Just-in-Time). Emissione JWT Tier 1 e scrittura su Silo 1.
-  - File sorgente: [flow-1a-consumer-onboarding.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-1-consumer-b2c/flow-1a-consumer-onboarding.mmd)
-- **Flow 2A: Personal Athlete Cockpit & Diary**:
-  - Home dashboard personale con scheda allenamento odierna, calcolo readiness giornaliera (RPE + sonno), contatore streak di costanza e calendario storico mensile.
-  - File sorgente: [flow-2a-personal-cockpit.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-1-consumer-b2c/flow-2a-personal-cockpit.mmd)
-- **Flow 3A: Interactive Workout Player & Logging**:
-  - Esecuzione interattiva dell'allenamento con target serie/reps/kg, countdown timer di recupero con beep e vibrazione, salvataggio locale IndexedDB offline-first e calcolo automatico volume totale e record personali (PR).
-  - File sorgente: [flow-3a-workout-player.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-1-consumer-b2c/flow-3a-workout-player.mmd)
-- **Flow 4A: Wearable Health Sync & Trends**:
-  - Connessione con Apple HealthKit / Google Health Connect. Aggregazione sonno, passi e frequenza cardiaca a riposo con correlazione sul carico di allenamento.
-  - File sorgente: [flow-4a-wearable-sync.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-1-consumer-b2c/flow-4a-wearable-sync.mmd)
-- **Flow 5A: Together Social Community & Coach Marketplace**:
-  - Feed social per condivisione record PR, badge di traguardo e commenti con moderazione anti-spam. Sezione Marketplace per ingaggiare Personal Trainer certificati.
-  - File sorgente: [flow-5a-together-social-b2c.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-1-consumer-b2c/flow-5a-together-social-b2c.mmd)
-- **Flow 6A: Movely Desk-Care & Active Micro-Pauses**:
-  - Rilevamento sedentarieta lavorativa (>50 min), notifica micro-pause attive di 2 minuti con esercizi mirati di scarico posturale per cervicale, spalle e lombare.
-  - File sorgente: [flow-6a-movely-desk-care.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-1-consumer-b2c/flow-6a-movely-desk-care.mmd)
+### RIGA 1: I 6 Flowchart Originali (Top, Y = 350..1850)
+1. **Colonna 1 (X = -2200)**: `1. FLUSSO ACCESSO, ONBOARDING E ANAMNESI UTENTE (T7 WORKOUT)` (Blu `#0284c7`)
+2. **Colonna 2 (X = -800)**: `2. HUB CENTRALE (DASHBOARD COCKPIT E NAVIGAZIONE VISTE)` (Viola `#7c3aed`)
+3. **Colonna 3 (X = 600)**: `3. ARCHITETTURA DI SISTEMA E DATA REPOSITORY SCIENTIFICO` (Verde `#059669`)
+4. **Colonna 4 (X = 2150)**: `4. WORKFLOW FUNZIONALI ALGORITMICI (VBT, PAP, WORKOUT BUILDER)` (Arancio `#d97706`)
+5. **Colonna 5 (X = 3799)**: `Together app - funzione di social network per B2B e B2C` (Giallo `#fff6b6`)
+6. **Colonna 6 (X = 5448)**: `Movely - iniziativa per i corsi agli impiegati aziendali in collaborazione per le aziende` (Celeste `#c6dcff`)
 
 ---
 
-### Software 2: Pro Specialist Edition (B2B - Partite IVA / Coach / Fisioterapisti)
-- **Flow 1B: Professional Onboarding & Stripe Connect**:
-  - Onboarding professionale con validazione P.IVA (VIES/AdE), verifica certificazioni/albo, setup conto incassi Stripe Connect per pagamenti clienti e personalizzazione branding dello studio.
-  - File sorgente: [flow-1b-pro-onboarding.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-1b-pro-onboarding.mmd)
-- **Flow 2B: Coach Multi-Athlete Roster & Adherence Hub**:
-  - Gestione del parco clienti/atleti con indice di aderenza percentuale, allarmi clinici per dolori o RPE elevato imprevisto e inviti atleti con token sicuro.
-  - File sorgente: [flow-2b-coach-hub.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-2b-coach-hub.mmd)
-- **Flow 3B: AI Macrocycle Generator with 119 Clinical Triage**:
-  - Generatore di programmazione avanzata a 5 fasi con triage automatico delle 119 patologie cliniche, modelli DUP 12-16 settimane ed esportazione della scheda in Excel `.xlsx` non protetto e PDF.
-  - File sorgente: [flow-3b-macrocycle-ai-triage119.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-3b-macrocycle-ai-triage119.mmd)
-- **Flow 4B: Biomechanical VBT & PAP Jump Analysis**:
-  - Connessione Web Bluetooth con encoder lineare (Vitruve BLE) o pedana salti. Filtraggio outlier MAD, regressione ibrida VBT con selezione automatica AIC/$R^2_{adj}$, stima 1RM con IC 95% e statistica PAP con Minimal Detectable Change (MDC 95%).
-  - File sorgente: [flow-4b-vbt-pap-biomechanics.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-4b-vbt-pap-biomechanics.mmd)
-- **Flow 5B: Together Pro Business & Remote Client Review**:
-  - Vetrina pubblica del professionista con pacchetti di coaching e gestione lead in entrata. Player di revisione video asincrona con tool per disegnare angoli articolari ed evidenziare cues tecnici.
-  - File sorgente: [flow-5b-together-pro-business.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-5b-together-pro-business.mmd)
-- **Flow 6B: Physio Rehab Protocols & ROM Tracking**:
-  - Modulo sanitario fisioterapico con protocolli specifici `cli_01`..`cli_32` (LCA, spalla, colonna), misurazione ROM goniometrica, monitoraggio dolore su scala VAS con allarme di de-escalation automatica se VAS > 4.
-  - File sorgente: [flow-6b-physio-rehab-rom.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-6b-physio-rehab-rom.mmd)
+### RIGA 2: Software 2 — Partita IVA / Pro Specialist (Middle, Y = 2100..3600)
+1. **Colonna 1 (X = -2200)**: `1. ONBOARDING PROFESSIONALE & SETUP FISCALE P.IVA (T7 PRO)`
+   - Welcome Pro Studio $\rightarrow$ Bivio P.IVA $\rightarrow$ Validazione VIES / AdE $\rightarrow$ Setup Stripe Connect $\rightarrow$ Quota 30 atleti $\rightarrow$ Coach Hub.
+2. **Colonna 2 (X = -800)**: `2. COACH HUB MULTI-CLIENTE & GESTIONE ADERENZA`
+   - Coach Cockpit $\rightarrow$ Selettore Rapido Atleti $\rightarrow$ 6 Viste Pro (Roster, DUP, VBT/PAP, PubMed, AI Kinesiologist, Export XLSX) $\rightarrow$ Alert Aderenza & RPE.
+3. **Colonna 3 (X = 600)**: `3. ARCHITETTURA DI SISTEMA B2B & DATA REPOSITORY PRO`
+   - Thin Client React 18 + BLE Vitruve $\rightarrow$ Feature-Driven $\rightarrow$ Motori Server: Physics VBT Hybrid, PAP Stats, 119 Triage, DUP Openpyxl $\rightarrow$ Catalogo 296 e 119 Patologie.
+4. **Colonna 4 (X = 2150)**: `4. WORKFLOW FUNZIONALI SPECIALISTICI (TRIAGE 119, VBT OLS, PAP)`
+   - *Workflow 1*: Generatore Macrocicli DUP 12-16 sett. con esclusione patologie ed export Excel `.xlsx` non protetto.
+   - *Workflow 2*: Pipeline VBT da Encoder Lineare BLE (Vitruve), filtro outlier MAD, regressione ibrida AIC/$R^2_{adj}$, stima 1RM IC 95%.
+   - *Workflow 3*: Analisi Salti PAP (CMJ/SJ), calcolo reattività RSI, $t$-test e soglia clinica MDC 95%.
+5. **Colonna 5 (X = 3799)**: `Together Pro - Vetrina Professionale, Lead Generation & Video Review`
+   - *Sub 1*: Profilo vetrina pubblico, pacchetti coaching e pricing.
+   - *Sub 2*: Ingestion richieste clienti, preventivi Stripe e attivazione contratto.
+   - *Sub 3*: Video revisione tecnica esecuzioni atleti con drawing tool per angoli articolari e note vocali.
+6. **Colonna 6 (X = 5448)**: `Physio Rehab - Protocolli Riabilitativi, Misurazione ROM & Scala VAS`
+   - *Sub 1*: Protocolli clinici riabilitativi `cli_01..32` (LCA, spalla, colonna).
+   - *Sub 2*: Misurazione goniometrica ROM (gradi attiva/passiva) e Limb Symmetry Index (LSI > 90%).
+   - *Sub 3*: Monitoraggio dolore scala VAS (0-10) con allarme de-escalation automatica se VAS > 4.
 
 ---
 
-### Software 3: Elite Club & Research (B2B Enterprise - Squadre Professionistiche)
-- **Flow 1C: Bunker Club Onboarding & KMS Silo 2 Enclave**:
-  - Accesso blindato per società di Serie A / Leghe Pro tramite Magic Link o QR biometrico generato dal Medico Sociale nel Bunker KMS, certificati mTLS, IP whitelist societaria e crittografia AES-256 a riposo.
-  - File sorgente: [flow-1c-bunker-onboarding-kms.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-1c-bunker-onboarding-kms.mmd)
-- **Flow 2C: Multi-Staff Squad Cockpit & Role Segregation**:
-  - Cockpit unificato con proiezioni di vista segregate per ruolo (Vista Tattica per Allenatore, Vista Carichi per Preparatore, Cartella Clinica per Medico Sociale, Vista Video per Match Analyst), con oscuramento automatico dei dati sanitari al personale non medico.
-  - File sorgente: [flow-2c-multi-staff-cockpit.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-2c-multi-staff-cockpit.mmd)
-- **Flow 3C: Squad Microcycle Planning & Match Day Loads (MD-X -> MD+X)**:
-  - Pianificazione del microciclo settimanale di squadra orientato alla partita, compensazione carichi per i panchinari non impiegati, gestione del doppio ruolo tattico e monitoraggio dell'indice ACWR tramite EWMA con soglia di allerta spike > 1.5.
-  - File sorgente: [flow-3c-team-microcycle-mdx.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-3c-team-microcycle-mdx.mmd)
-- **Flow 4C: GPS Telemetry & Adaptive Z-Score Fatigue Profiling**:
-  - Ingestion batch ad alto rendimento di dati GPS da campo (Distanza Totale, High Speed Running >19.8 km/h, Sprint >25.2 km/h). Normalizzazione con Z-Score adattivo su finestra mobile a 28 giorni e fusione con HRV cardiaco mattutino.
-  - File sorgente: [flow-4c-gps-adaptive-zscore.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-4c-gps-adaptive-zscore.mmd)
-- **Flow 5C: Confidential Tactical Video Computer Vision**:
-  - Video analisi sul campo basata su Computer Vision (YOLO e Pose Estimation). Trasformazione omografica delle coordinate sul campo 2D, diagrammi di Voronoi per il controllo degli spazi e compattezza della squadra. Riservatezza assoluta, zero canali social.
-  - File sorgente: [flow-5c-tactical-video-cv.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-5c-tactical-video-cv.mmd)
-- **Flow 6C: Medical Room EMR & Research Warehouse (Silo 3)**:
-  - Gestione della cartella clinica elettronica riservata della squadra, protocollo Return-to-Play a 6 stadi con firma digitale del Medico Sociale, e pipeline ETL di de-identificazione ($k$-anonimato $\ge 5$, $\ell$-diversità) per alimentare il data lake di ricerca universitaria in Silo 3.
-  - File sorgente: [flow-6c-medical-room-research-silo3.mmd](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-6c-medical-room-research-silo3.mmd)
+### RIGA 3: Software 3 — Team di Alto Livello / Elite Club (Bottom, Y = 3850..5350)
+1. **Colonna 1 (X = -2200)**: `1. ACCESSO BLINDATO BUNKER CLUB & KMS SILO 2 (PRO TEAMS)`
+   - Portale Bunker Serie A $\rightarrow$ Magic Link / QR Medico Sociale $\rightarrow$ Hardware FIDO2 Level 3 societaria $\rightarrow$ mTLS & IP Whitelist $\rightarrow$ Cockpit di Squadra.
+2. **Colonna 2 (X = -800)**: `2. COCKPIT MULTI-STAFF INTEGRATO CON SEGREGAZIONE DEI RUOLI`
+   - Team Cockpit $\rightarrow$ Selettore Ruoli R1..R8 $\rightarrow$ 6 Viste Squadra (Tattica Allenatore, Preparatore MD-X, Z-Score GPS, Match Analyst Video, Medico Sociale EMR, Ricerca Silo 3) $\rightarrow$ Oscuramento automatico dati sanitari ai non medici.
+3. **Colonna 3 (X = 600)**: `3. ARCHITETTURA BUNKER ISOLATA (KMS SILO 2) & RESEARCH LAKE (SILO 3)`
+   - Thin Client Staff $\rightarrow$ Cloud KMS Enclave $\rightarrow$ Motori Server: Team ACWR EWMA, Z-Score 28gg, Pitch Computer Vision (YOLO/Voronoi), Return-to-Play $\rightarrow$ Silo 2 (Bunker AES-256) + Silo 3 (Research Warehouse Anonimizzato).
+4. **Colonna 4 (X = 2150)**: `4. WORKFLOW TATTICI & TELEMETRICI SQUADRA (MD-X, GPS, VIDEO CV)`
+   - *Workflow 1*: Microciclo Gara MD-X ($MD-4 \rightarrow MD+1$), bilanciamento doppio ruolo, compensazione panchina e ACWR EWMA.
+   - *Workflow 2*: Telemetria GPS campo (TD, HSR, Sprint), Z-Score rolling 28 giorni e fusione HRV mattutino.
+   - *Workflow 3*: Video Computer Vision tattica (tracciamento coordinate giocatori 2D, diagrammi di Voronoi e spazi dominati).
+5. **Colonna 5 (X = 3799)**: `Tactical Vision - Computer Vision Campo, Densità & Voronoi (Zero Social)`
+   - *Sub 1*: Rilevamento coordinate giocatori (X,Y), baricentro medio e densità posizionale.
+   - *Sub 2*: Proiezione omografica 2D del campo, compattezza squadra (m) e linee di pressione.
+   - *Sub 3*: Dossier tattico confidenziale no-social archiviato in Silo 2 con watermark dinamico.
+6. **Colonna 6 (X = 5448)**: `Medical Room - Cartella Clinica EMR, Return to Play & Research Silo 3`
+   - *Sub 1*: Cartella clinica elettronica riservata con storico lesioni ed esami strumentali.
+   - *Sub 2*: Stepper Return-to-Play a 6 fasi con firma digitale del Medico Sociale per idoneità.
+   - *Sub 3*: Pipeline ETL di de-identificazione ($k$-anonimato $\ge 5$, $\ell$-diversità) per alimentare il data lake universitario Silo 3.

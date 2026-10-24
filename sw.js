@@ -1,11 +1,11 @@
 /**
  * T7 Workout - Service Worker
- * Versione: t7-workout-v124
+ * Versione: t7-workout-v125
  * Network-first per HTML, Cache-first resiliente per asset statici, Offline fallback.
  * Supporta bypass completo in ambiente di sviluppo Vite locale.
  */
 
-const CACHE_NAME = 't7-workout-v124';
+const CACHE_NAME = 't7-workout-v125';
 const OFFLINE_URL = './offline.html';
 
 const CORE_ASSETS = [
