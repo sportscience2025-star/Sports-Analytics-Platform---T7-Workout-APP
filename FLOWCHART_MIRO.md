@@ -40,8 +40,21 @@ RIGA 3 (Y = 3850..5350): SOFTWARE 3 — TEAM DI ALTO LIVELLO / B2B ENTERPRISE (P
 
 ## Dettaglio dei 18 Flowchart sulla Board
 
-### RIGA 1: I 6 Flowchart Originali (Top, Y = 350..1850)
-1. **Colonna 1 (X = -2200)**: `1. FLUSSO ACCESSO, ONBOARDING E ANAMNESI UTENTE (T7 WORKOUT)` (Blu `#0284c7`)
+### RIGA 1: Software 1 — Consumer B2C / Persona Comune (Top, Y = 350..1850)
+1. **Colonna 1 (X = -2200)**: `1. FLUSSO ACCESSO, ONBOARDING E ANAMNESI UTENTE CASUAL (T7 CONSUMER B2C)` (Blu `#0284c7`)
+   - *Header & Welcome Screen*: Portale Atleta & Onboarding Consumer (zero-friction sign-in, screening PAR-Q+ & shield anti-scam).
+   - *Bivio Auth*: Account Esistente vs Nuovo Atleta.
+   - *Ramo Login Multi-Canale*: 1-Tap Passkey FaceID/TouchID, Social Sign-In (Apple/Google), Email+Password $\rightarrow$ Verifica sicurezza & anomalie $\rightarrow$ Accesso confermato Silo 1.
+   - *Ramo Registrazione Anti-Frode B2C (4 Step)*:
+     - **Step 1**: Scudo Cloudflare Turnstile invisibile anti-scraping & 1-Tap Sign-In (blocco domini disposable).
+     - **Step 2**: Parametri Fisiologici (Sesso Biologico per BMR/calorie, Altezza, Peso, Spunta 18+) $\rightarrow$ Bivio Spunta 18+ & Consensi Privacy GDPR (ramo errore blocco immediato).
+     - **Step 3 (Screening Sanitario)**: Questionario PAR-Q+ (7 Red Flags cardiorespiratorie/articolari) & Clickwrap Waiver medico $\rightarrow$ Bivio Red Flags:
+       - *Positivo (Red Flags)*: Avviso Medico Obbligatorio (visita consigliata, adattamento schede a Low-Impact).
+       - *Negativo (Idoneo)*: Idoneità Funzionale Piena (sblocco carichi completi & VBT).
+     - **Step 4**: Provisioning & Rilascio JWT Tier 1 Base $\rightarrow$ Bivio Step-Up Community:
+       - *Accesso Social Together / Movely*: Step-Up SMS OTP sul cellulare per azzerare spam e troll.
+       - *Solo Allenamento Locale*: Ingresso diretto al Cockpit.
+   - *Ingresso Cockpit Dashboard Atleta*: Sessione attiva Silo 1 $\rightarrow$ Connessione diretta a `➔ NAVIGA ALL'HUB CENTRALE (SEZIONE 2)`.
 2. **Colonna 2 (X = -800)**: `2. HUB CENTRALE (DASHBOARD COCKPIT E NAVIGAZIONE VISTE)` (Viola `#7c3aed`)
 3. **Colonna 3 (X = 600)**: `3. ARCHITETTURA DI SISTEMA E DATA REPOSITORY SCIENTIFICO` (Verde `#059669`)
 4. **Colonna 4 (X = 2150)**: `4. WORKFLOW FUNZIONALI ALGORITMICI (VBT, PAP, WORKOUT BUILDER)` (Arancio `#d97706`)

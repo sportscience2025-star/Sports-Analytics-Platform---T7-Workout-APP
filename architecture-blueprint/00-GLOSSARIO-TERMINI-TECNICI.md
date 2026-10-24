@@ -168,3 +168,19 @@ Questo documento costituisce la versione locale e sincronizzata su Git della **L
 - **Spiegazione Semplificata:** Barriera di autorizzazione logica che sblocca determinati moduli diagnostico-riabilitativi solo se l'utente ha fornito evidenza certificata di appartenenza a un ordine professionale abilitante.
 - **Ruolo Operativo nel Progetto T7:** Segrega rigidamente le funzioni sportive (VBT, DUP, PAP accessibili a Personal Trainer e Chinesiologi) dai protocolli terapeutici riabilitativi (`cli_01..32` e cartella EMR), tutelando la piattaforma dal rischio di esercizio abusivo della professione sanitaria (Art. 348 C.P.).
 - **Zona di Riferimento:** Riga 2, Colonna 1 & Colonna 6 (Physio Rehab).
+
+
+### PAR-Q+ (Physical Activity Readiness Questionnaire) & Digital Triage
+- **Spiegazione Semplificata:** Standard internazionale di screening pre-partecipazione all'attività fisica composto da 7 domande mirate a identificare sintomi cardiorespiratori, dolori al torace sotto sforzo, vertigini o problemi ossei/articolari.
+- **Ruolo Operativo nel Progetto T7:** Valuta l'idoneità dell'utente comune prima di autorizzare la generazione di schede ad alta intensità. Se vengono segnalate anomalie (Red Flags), gli algoritmi escludono automaticamente carichi massimali e forzati, limitando la scheda a esercizi a basso impatto (Low-Impact) e raccomandando una visita medica.
+- **Zona di Riferimento:** Riga 1, Colonna 1 (Onboarding Consumer B2C).
+
+### Clickwrap Liability Waiver (Manleva Medico-Legale Digitale)
+- **Spiegazione Semplificata:** Accordo legale non pre-selezionato che richiede un'azione attiva dell'utente per confermare di aver compreso che l'applicazione è uno strumento di supporto al fitness e non un presidio medico o diagnostico.
+- **Ruolo Operativo nel Progetto T7:** Tutela civilmente e penalmente la piattaforma da richieste di risarcimento in caso di infortuni derivanti da patologie pregresse non dichiarate, archiviando un audit trail immutabile con timestamp in Silo 1.
+- **Zona di Riferimento:** Riga 1, Colonna 1 (Onboarding Consumer B2C).
+
+### Step-Up Verification (Verifica Telefono Anti-Troll per Community)
+- **Spiegazione Semplificata:** Meccanismo di sicurezza progressiva che richiede un fattore di autenticazione addizionale (SMS OTP sul numero di cellulare) solo quando l'utente tenta di compiere azioni a rischio o pubbliche.
+- **Ruolo Operativo nel Progetto T7:** Mantiene l'iscrizione base rapida in 30 secondi, ma protegge la community Together e il marketplace Movely da bot farm, spammer e account anonimi molesti.
+- **Zona di Riferimento:** Riga 1, Colonna 1 (Step 4 Social Gate) & Colonna 5 (Together B2C).
