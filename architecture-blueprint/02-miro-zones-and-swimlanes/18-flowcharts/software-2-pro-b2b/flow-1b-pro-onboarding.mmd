@@ -1,0 +1,48 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["SOFTWARE 2 (B2B PRO P.IVA) - FLOW 1B: PROFESSIONAL ONBOARDING & BILLING SETUP"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (PRO WEB & MOBILE)"]
+        START(["Inizio: Registrazione Professionista"]):::startend
+        PRO_FORM["Form Pro: Dati Anagrafici, P.IVA / CF Fiscale, Albo / Certificazioni"]:::client
+        ROLE_SELECT["Selezione Ruolo: Personal Trainer, Chinesiologo, Fisioterapista, S&C Coach"]:::client
+        STRIPE_REDIRECT["Redirect Onboarding Stripe Connect (Conto Incassi Clienti)"]:::client
+        BRANDING_SETUP["Personalizzazione Studio: Logo, Colori, Header Schede"]:::client
+        PRO_DASH_REDIRECT["Accesso al Coach Hub Multi-Atleta"]:::client
+        ERR_VAT["Messaggio: P.IVA Non Valida o Dati Fiscali Incompleti"]:::error
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & PRO VERIFICATION"]
+        GW_SUBMIT["Ricezione POST /api/v1/pro/onboard"]:::gateway
+        GW_VAT_CHECK{"Verifica Validita P.IVA (VIES / Agenzia Entrate)?"}:::decision
+        GW_STRIPE_WEBHOOK["Webhook Ricezione Stato Stripe Connect: Account Abilitato"]:::gateway
+        GW_PRO_JWT["Emissione JWT Tier 2 Pro (Role: R2 Coach / R3 Physio)"]:::gateway
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (PRO TENANT ENGINE)"]
+        SRV_TENANT_PROV["Provisioning Tenant Professionale Isolato"]:::server
+        SRV_QUOTA_INIT["Assegnazione Quota Atleti (es. fino a 30 atleti attivi Tier 2)"]:::server
+        SRV_INVITE_CONFIG["Configurazione Link d'Invito Pubblico per Clienti"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (PRO MULTI-TENANT PARTITION)"]
+        DB_WRITE_PRO[("Salvataggio Record Pro in Silo 1 (pro_tenants, studio_profiles)")]:::db
+        DB_BILLING[("Salvataggio Configurazione Stripe in Silo 1 (stripe_accounts)")]:::db
+        END_PRO_ONBOARDED(["Fine: Professionista Operativo e Abilitato"]):::startend
+    end
+
+    %% Flussi
+    START --> PRO_FORM --> ROLE_SELECT --> GW_SUBMIT
+    GW_SUBMIT --> GW_VAT_CHECK
+    GW_VAT_CHECK -- Non Valida --> ERR_VAT --> PRO_FORM
+    GW_VAT_CHECK -- Valida --> STRIPE_REDIRECT --> GW_STRIPE_WEBHOOK
+    GW_STRIPE_WEBHOOK --> SRV_TENANT_PROV --> SRV_QUOTA_INIT --> DB_WRITE_PRO
+    DB_WRITE_PRO --> DB_BILLING --> GW_PRO_JWT
+    GW_PRO_JWT --> BRANDING_SETUP --> PRO_DASH_REDIRECT --> END_PRO_ONBOARDED

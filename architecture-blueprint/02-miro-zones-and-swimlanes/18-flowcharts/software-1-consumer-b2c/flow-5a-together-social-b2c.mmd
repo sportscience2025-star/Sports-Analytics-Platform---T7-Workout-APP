@@ -1,0 +1,51 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["SOFTWARE 1 (B2C CONSUMER) - FLOW 5A: TOGETHER SOCIAL COMMUNITY & COACH MARKETPLACE"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (SOCIAL & MARKETPLACE)"]
+        START(["Inizio: Accesso Sezione Together"]):::startend
+        FEED_VIEW["Feed Community: Schede condivise, Badge PR amici, Like/Commenti"]:::client
+        SHARE_PR_MODAL["Modale Condividi Record: 'Ho superato il mio PR di Squat!'"]:::client
+        MARKETPLACE_BROWSE["Tab Marketplace Coach: Esplora Personal Trainer certificati per specialita"]:::client
+        HIRE_COACH_BTN["Pulsante 'Invia Richiesta Coaching a Professionista'"]:::client
+        CONFIRM_MODAL["Modale Conferma Inoltro Richiesta a Coach"]:::client
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & SOCIAL ROUTING"]
+        GW_FEED_REQ["Ricezione GET /api/v1/social/feed"]:::gateway
+        GW_SHARE_POST["Ricezione POST /api/v1/social/posts"]:::gateway
+        GW_COACH_LEAD["Ricezione POST /api/v1/marketplace/hire-request"]:::gateway
+        GW_SPAM_CHECK{"Anti-Spam & Content Moderation Passata?"}:::decision
+        GW_BLOCK["Blocco Richiesta HTTP 422 Unprocessable"]:::error
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (SOCIAL & MATCHING ENGINE)"]
+        SRV_FEED_ALG["Algoritmo Ranking Feed: Amici, Attivita Recenti, Traguardi"]:::server
+        SRV_MATCH["Matching Engine: Geolocalizzazione & Specialita Coach"]:::server
+        SRV_DISPATCH["Notifica Push & Email al Coach Selezionato"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (SOCIAL & MARKETPLACE RELATIONAL)"]
+        DB_POSTS[("Scrittura/Lettura Silo 1: social_posts, social_likes, comments")]:::db
+        DB_LEADS[("Creazione Record Lead in Silo 1: coaching_leads (Link Atleta -> Coach)")]:::db
+        END_INTERACTION(["Fine: Post Condiviso o Richiesta Inviata al Coach"]):::startend
+    end
+
+    %% Flussi
+    START --> FEED_VIEW
+    FEED_VIEW --> GW_FEED_REQ --> SRV_FEED_ALG --> DB_POSTS --> FEED_VIEW
+
+    FEED_VIEW --> SHARE_PR_MODAL --> GW_SHARE_POST
+    GW_SHARE_POST --> GW_SPAM_CHECK
+    GW_SPAM_CHECK -- Flag Spam --> GW_BLOCK
+    GW_SPAM_CHECK -- Approvato --> DB_POSTS --> FEED_VIEW
+
+    FEED_VIEW --> MARKETPLACE_BROWSE --> HIRE_COACH_BTN --> CONFIRM_MODAL
+    CONFIRM_MODAL --> GW_COACH_LEAD --> SRV_MATCH --> DB_LEADS --> SRV_DISPATCH --> END_INTERACTION

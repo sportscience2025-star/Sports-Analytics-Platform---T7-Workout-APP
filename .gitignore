@@ -33,3 +33,7 @@ scratch/
 # Mermaid compiled vector renders (regenerable on-demand via npm run build:diagrams)
 architecture-blueprint/**/*.svg
 
+
+# Python cache
+__pycache__/
+*.pyc

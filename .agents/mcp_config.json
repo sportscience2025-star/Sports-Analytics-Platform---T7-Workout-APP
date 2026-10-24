@@ -33,7 +33,9 @@
       "command": "npx.cmd",
       "args": [
         "-y",
-        "@aditya.mishra/miro-mcp"
+        "@aditya.mishra/miro-mcp",
+        "--token",
+        "eyJtaXJvLm9yaWdpbiI6ImV1MDEifQ_e8i4xJ8gI38ajk5VyKGgsy8dd2U"
       ],
       "env": {
         "MIRO_OAUTH_TOKEN": "eyJtaXJvLm9yaWdpbiI6ImV1MDEifQ_e8i4xJ8gI38ajk5VyKGgsy8dd2U",

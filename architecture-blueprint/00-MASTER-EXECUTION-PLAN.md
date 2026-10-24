@@ -511,3 +511,36 @@ flowchart LR
 - **Task 5.2:** Generazione del documento formale di capitolato tecnico `architecture-blueprint/05-software-house-handover/CAPITOLATO_TECNICO_SOFTWARE_HOUSE.md`.
 - **Task 5.3:** Validazione complessiva finale, sincronizzazione Git e notifica utente per la chiusura del lavoro.
 - **Criterio di Verifica:** Completezza di ogni singola specifica contrattuale per la Software House.
+
+
+---
+
+## 8. MATRICE DEI 18 FLOWCHART ARCHITETTURALI MULTI-SOFTWARE (DISTRIBUZIONE MIRO)
+
+In conformità con il piano operativo, l'intera architettura a 18 flowchart (3 Software distinti x 6 Pilastri Funzionali) e la Zona 0 (Living Technical Glossary & RBAC Matrix) è stata formalizzata nei file Mermaid ISO 5807 e distribuita direttamente sulla board online di Miro (Board ID: `uXjVEbo6L2o=`).
+
+### 8.1 Struttura a 3 Software e Griglia Cartesiana
+1. **Zona 0 (X: -2600, Y: 5200)**: Master Index, RBAC Matrix R1..R8, Glossario Biomeccanico VBT/PAP/Z-Score/ACWR/119 Triage e Architettura Database a 3 Silos.
+2. **Software 1: Consumer Edition B2C (Riga 1, Y: 2600)**:
+   - Flow 1A: Fast Consumer Onboarding (30s) (X: 0)
+   - Flow 2A: Personal Athlete Cockpit & Diary (X: 2200)
+   - Flow 3A: Interactive Workout Player & Logging (X: 4400)
+   - Flow 4A: Wearable Health Sync & Trends (X: 6600)
+   - Flow 5A: Together Social Community & Coach Marketplace (X: 8800)
+   - Flow 6A: Movely Desk-Care & Active Micro-Pauses (X: 11000)
+3. **Software 2: Pro Specialist Edition B2B P.IVA (Riga 2, Y: 5200)**:
+   - Flow 1B: Professional Onboarding & Stripe Connect (X: 0)
+   - Flow 2B: Coach Multi-Athlete Roster & Adherence Hub (X: 2200)
+   - Flow 3B: AI Macrocycle Generator with 119 Clinical Triage (X: 4400)
+   - Flow 4B: Biomechanical VBT & PAP Jump Analysis (X: 6600)
+   - Flow 5B: Together Pro Business & Remote Client Review (X: 8800)
+   - Flow 6B: Physio Rehab Protocols & ROM Tracking (X: 11000)
+4. **Software 3: Elite Club & Research B2B Enterprise (Riga 3, Y: 7800)**:
+   - Flow 1C: Bunker Club Onboarding & KMS Silo 2 Enclave (X: 0)
+   - Flow 2C: Multi-Staff Squad Cockpit & Role Segregation (X: 2200)
+   - Flow 3C: Squad Microcycle Planning & Match Day Loads (X: 4400)
+   - Flow 4C: GPS Telemetry & Adaptive Z-Score Fatigue Profiling (X: 6600)
+   - Flow 5C: Confidential Tactical Video Computer Vision (X: 8800)
+   - Flow 6C: Medical Room EMR & Research Warehouse (Silo 3) (X: 11000)
+
+Tutti i diagrammi rispettano rigorosamente le 4 swimlane ISO 5807: Thin Client UI/UX, API Gateway & Feature Gating, Server Scatola Nera (IP Engine), e Multi-Tenant Database Silos 1-2-3.

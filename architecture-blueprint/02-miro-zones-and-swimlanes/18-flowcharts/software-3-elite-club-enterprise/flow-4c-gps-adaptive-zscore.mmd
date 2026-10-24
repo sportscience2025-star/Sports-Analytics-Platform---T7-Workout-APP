@@ -1,0 +1,50 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 4C: GPS TELEMETRY & ADAPTIVE Z-SCORE FATIGUE PROFILING"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (TELEMETRY DASHBOARD)"]
+        START(["Inizio: Ricezione Sessione GPS Campo"]):::startend
+        LIVE_GPS_PANEL["Pannello Telemetria Live / Post-Allenamento: Distanza Totale (TD), HSR (>19.8 km/h), Sprint (>25.2 km/h)"]:::client
+        HEATMAP_CANVAS["Canvas Mappa di Calore Dinamica per Giocatore su Campo da Gioco"]:::client
+        ZSCORE_RADAR["Grafico Radar Z-Score Adattivo Multi-Parametrico (GPS + HRV)"]:::client
+        FATIGUE_ALERT["Alert Visivo Rosso: 'Atleta Y presenta Z-Score Fatica > +2.5 deviazioni standard'"]:::error
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & HIGH-THROUGHPUT INGESTION"]
+        GW_GPS_BATCH["Ricezione Ingestion Batch: POST /api/v1/club/telemetry/gps-batch"]:::gateway
+        GW_VALIDATE_PAYLOAD{"Validazione Formato Dati GPS (10Hz / 18Hz Binario)?"}:::decision
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (Z-SCORE & PHYSIOLOGICAL ENGINE)"]
+        SRV_PARSER["Parser Tracciati GPS: Filtraggio Perdite Segnale Satellitare (DOP < 2)"]:::server
+        SRV_METABOLIC["Calcolo Potenza Metabolica Media (W/kg) ed Eventi di Accelerazione / Decelerazione Intensa"]:::server
+        SRV_ZSCORE_CALC["Algoritmo Z-Score Adattivo: Normalizzazione su Finestra Mobile Rolling 28 Giorni (X - mu) / sigma"]:::server
+        SRV_HRV_MERGE["Fusione con Indici di Recupero Cardiaco HRV (rMSSD mattutino)"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 2 (BUNKER CLUB KMS ENCLAVE)"]
+        DB_WRITE_GPS[("Salvataggio Tracce Grezze GPS e Metriche Derivate in Silo 2 (gps_sessions)")]:::db
+        DB_WRITE_ZSCORE[("Salvataggio Punteggi Z-Score e Matrice Rischio in Silo 2 (fatigue_zscores)")]:::db
+        END_TELEMETRY_DONE(["Fine: Analisi Telemetrica Completa e Profilo Z-Score Aggiornato"]):::startend
+    end
+
+    %% Flussi
+    START --> LIVE_GPS_PANEL --> GW_GPS_BATCH --> GW_VALIDATE_PAYLOAD
+    GW_VALIDATE_PAYLOAD -- Valido --> SRV_PARSER --> SRV_METABOLIC
+    SRV_METABOLIC --> SRV_ZSCORE_CALC --> SRV_HRV_MERGE
+
+    SRV_HRV_MERGE --> DB_WRITE_GPS
+    SRV_HRV_MERGE --> DB_WRITE_ZSCORE
+
+    DB_WRITE_GPS --> HEATMAP_CANVAS
+    DB_WRITE_ZSCORE --> ZSCORE_RADAR
+    SRV_ZSCORE_CALC -. Se Z-Score > 2.0 .-> FATIGUE_ALERT -. Visualizzato in .-> LIVE_GPS_PANEL
+
+    ZSCORE_RADAR --> END_TELEMETRY_DONE

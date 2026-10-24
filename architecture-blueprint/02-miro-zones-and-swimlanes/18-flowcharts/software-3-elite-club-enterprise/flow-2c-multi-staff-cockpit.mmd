@@ -1,0 +1,55 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 2C: MULTI-STAFF SQUAD COCKPIT WITH ROLE SEGREGATION"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (MULTI-STAFF COCKPIT)"]
+        START(["Inizio: Accesso Cockpit Squadra"]):::startend
+        STAFF_SELECTOR{"Ruolo Attivo dell'Utente Staff"}:::decision
+        VIEW_COACH["Vista Tattica Allenatore: Convocati, Schieramento Tattico, Disponibilita"]:::client
+        VIEW_SC["Vista Preparatore Atletico: Carichi GPS, Indici Fatica, Allarmi Sovraccarico"]:::client
+        VIEW_DOC["Vista Medico Sociale: Cartelle Cliniche, Stato Infortuni, Fasi Return to Play"]:::client
+        VIEW_ANALYST["Vista Match Analyst: Code Clip Partita, Tag Eventi, Dati Posizionali"]:::client
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & RBAC CLAIMS ROUTING"]
+        GW_FETCH_COCKPIT["Ricezione GET /api/v1/club/cockpit/data"]:::gateway
+        GW_RBAC_FILTER{"Controllo Claims JWT Ruolo (R1..R8)?"}:::decision
+        GW_REDACT["Oscuramento Dati Sanitari Sensibili per Personale Non Medico (GDPR)"]:::gateway
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (STAFF PROJECTION ENGINE)"]
+        SRV_PROJECTION["Motore Proiezione Dati per Ruolo: Costruzione Payload Personalizzato"]:::server
+        SRV_READINESS_SQUAD["Calcolo Indice Readiness Generale Squadra (Media Ponderata GPS + Wellness)"]:::server
+        SRV_ALERT_DISPATCH["Notifica Cross-Staff: 'Medico ha aggiornato lo status di Atleta X a NON DISPONIBILE'"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 2 (BUNKER CLUB KMS ENCLAVE)"]
+        DB_LOAD_S2[("Lettura Squadra, Parametri GPS e Cartelle Cliniche Crittografate da Silo 2")]:::db
+        END_STAFF_READY(["Fine: Cockpit di Squadra Personalizzato e Conforme RBAC"]):::startend
+    end
+
+    %% Flussi
+    START --> STAFF_SELECTOR
+    STAFF_SELECTOR -- Allenatore (R7) --> VIEW_COACH
+    STAFF_SELECTOR -- Preparatore (R5) --> VIEW_SC
+    STAFF_SELECTOR -- Medico Sociale (R3) --> VIEW_DOC
+    STAFF_SELECTOR -- Match Analyst (R6) --> VIEW_ANALYST
+
+    VIEW_COACH --> GW_FETCH_COCKPIT
+    VIEW_SC --> GW_FETCH_COCKPIT
+    VIEW_DOC --> GW_FETCH_COCKPIT
+    VIEW_ANALYST --> GW_FETCH_COCKPIT
+
+    GW_FETCH_COCKPIT --> GW_RBAC_FILTER
+    GW_RBAC_FILTER -- Personale Non Medico --> GW_REDACT --> SRV_PROJECTION
+    GW_RBAC_FILTER -- Medico Autorizzato --> SRV_PROJECTION
+
+    SRV_PROJECTION --> DB_LOAD_S2
+    DB_LOAD_S2 --> SRV_READINESS_SQUAD --> SRV_ALERT_DISPATCH --> END_STAFF_READY

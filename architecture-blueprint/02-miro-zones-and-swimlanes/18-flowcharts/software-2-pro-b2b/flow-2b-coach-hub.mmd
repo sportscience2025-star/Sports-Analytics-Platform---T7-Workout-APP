@@ -1,0 +1,50 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["SOFTWARE 2 (B2B PRO P.IVA) - FLOW 2B: COACH MULTI-ATHLETE ROSTER & ADHERENCE HUB"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (COACH COCKPIT)"]
+        START(["Inizio: Accesso Coach Hub"]):::startend
+        ROSTER_VIEW["Tabella Roster Atleti: Nome, Status Scheda, Aderenza %, Alert RPE"]:::client
+        ATHLETE_FILTER["Filtro Rapido: 'In Scadenza', 'Infortunati', 'Bassa Aderenza'"]:::client
+        ALERT_BADGE["Badge Alert Rosso: Atleta ha segnalato Dolore o RPE > 9 imprevisto"]:::error
+        INVITE_BTN["Pulsante 'Invita Nuovo Atleta' (Genera Link / Invio Email)"]:::client
+        SELECT_ATHLETE["Selezione Atleta per Gestione Scheda / Modifica Piano"]:::client
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & ACCESS CONTROL"]
+        GW_FETCH_ROSTER["Ricezione GET /api/v1/pro/roster"]:::gateway
+        GW_INVITE_REQ["Ricezione POST /api/v1/pro/roster/invite"]:::gateway
+        GW_CHECK_LIMIT{"Limite Max Atleti Raggiunto per Tier 2?"}:::decision
+        GW_LIMIT_ALERT["Messaggio: Limite Roster Raggiunto - Upgrade Piano Richiesto"]:::error
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (ROSTER ADHERENCE ENGINE)"]
+        SRV_ADHERENCE["Calcolo Indice Aderenza %: Sessioni Pianificate vs Eseguite"]:::server
+        SRV_TRIAGE_ALERT["Scansione Notifiche Cliniche e Alert Affaticamento Anomalo"]:::server
+        SRV_GEN_TOKEN["Generazione Token d'Invito con Scadenza 48h"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (PRO CLIENT TENANT)"]
+        DB_QUERY_CLIENTS[("Query Silo 1: pro_clients WHERE coach_id = current_pro")]:::db
+        DB_WRITE_INVITE[("Salvataggio Record Invito in Silo 1: client_invites")]:::db
+        END_HUB_READY(["Fine: Roster Gestito o Invito Inviato"]):::startend
+    end
+
+    %% Flussi
+    START --> ROSTER_VIEW --> ATHLETE_FILTER
+    ROSTER_VIEW --> GW_FETCH_ROSTER --> DB_QUERY_CLIENTS
+    DB_QUERY_CLIENTS --> SRV_ADHERENCE --> SRV_TRIAGE_ALERT
+    SRV_TRIAGE_ALERT --> ALERT_BADGE --> SELECT_ATHLETE
+
+    ROSTER_VIEW --> INVITE_BTN --> GW_INVITE_REQ
+    GW_INVITE_REQ --> GW_CHECK_LIMIT
+    GW_CHECK_LIMIT -- Limite Superato --> GW_LIMIT_ALERT
+    GW_CHECK_LIMIT -- Quota OK --> SRV_GEN_TOKEN --> DB_WRITE_INVITE --> END_HUB_READY
+    SELECT_ATHLETE --> END_HUB_READY

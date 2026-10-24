@@ -1,0 +1,47 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["SOFTWARE 2 (B2B PRO P.IVA) - FLOW 5B: TOGETHER PRO BUSINESS & REMOTE CLIENT REVIEW"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (PRO BUSINESS SUITE)"]
+        START(["Inizio: Accesso Gestione Business"]):::startend
+        PROFILE_EDITOR["Editor Vetrina Professionale: Bio, Tariffe Pacchetti, Recensioni Clienti"]:::client
+        INBOX_LEADS["Inbox Richieste Coaching: Accetta / Rifiuta Nuovi Clienti"]:::client
+        VIDEO_REVIEW_QUEUE["Coda Revisione Esecuzioni Video inviate dagli Atleti"]:::client
+        VIDEO_CANVAS["Player con Tool Sovrimpressione: Disegno Angoli Articolari & Note Vocali"]:::client
+        SEND_FEEDBACK_BTN["Pulsante 'Invia Feedback Correttivo all'Atleta'"]:::client
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & MEDIA UPLOAD"]
+        GW_SAVE_PROFILE["Ricezione PUT /api/v1/pro/profile/showcase"]:::gateway
+        GW_HANDLE_LEAD["Ricezione POST /api/v1/pro/leads/{id}/respond"]:::gateway
+        GW_MEDIA_FEEDBACK["Ricezione POST /api/v1/pro/video-reviews/{id}/feedback"]:::gateway
+        GW_MEDIA_AUTH{"Autenticazione URL Firmato per Video?"}:::decision
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (CONTRACT & MEDIA ENGINE)"]
+        SRV_CONTRACT_BIND["Attivazione Contratto Coaching & Onboarding Cliente Diretto"]:::server
+        SRV_TRANSCODE["Transcodifica Video con Metadati Angoli e Tracciamento Cues"]:::server
+        SRV_NOTIF_DISPATCH["Notifica Push Istantanea 'Il tuo Coach ha revisionato il tuo video'"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (PRO BUSINESS DATA)"]
+        DB_PRO_PROFILE[("Scrittura/Lettura Silo 1: pro_showcase, coaching_packages")]:::db
+        DB_VIDEO_REVIEWS[("Salvataggio Feedback e Note Tecniche in Silo 1 (video_feedbacks)")]:::db
+        END_BIZ_DONE(["Fine: Feedback Inviato o Profilo Business Aggiornato"]):::startend
+    end
+
+    %% Flussi
+    START --> PROFILE_EDITOR --> GW_SAVE_PROFILE --> DB_PRO_PROFILE
+    START --> INBOX_LEADS --> GW_HANDLE_LEAD --> SRV_CONTRACT_BIND --> DB_PRO_PROFILE
+
+    START --> VIDEO_REVIEW_QUEUE --> VIDEO_CANVAS --> SEND_FEEDBACK_BTN
+    SEND_FEEDBACK_BTN --> GW_MEDIA_FEEDBACK --> GW_MEDIA_AUTH
+    GW_MEDIA_AUTH -- Token OK --> SRV_TRANSCODE --> DB_VIDEO_REVIEWS
+    DB_VIDEO_REVIEWS --> SRV_NOTIF_DISPATCH --> END_BIZ_DONE

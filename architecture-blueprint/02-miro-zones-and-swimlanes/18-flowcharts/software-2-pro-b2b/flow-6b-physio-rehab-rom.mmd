@@ -1,0 +1,50 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["SOFTWARE 2 (B2B PRO P.IVA) - FLOW 6B: PHYSIO REHAB PROTOCOLS & ROM TRACKING"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (CLINIC & PHYSIO MODULE)"]
+        START(["Inizio: Scheda Riabilitativa Fisioterapica"]):::startend
+        SELECT_PATIENT["Selezione Paziente / Atleta da Riabilitare"]:::client
+        PROTOCOL_PICKER["Selettore Protocolli Riabilitativi (cli_01..cli_32: es. LCA, Cuffia dei Rotatori)"]:::client
+        ROM_MEASURE["Misurazione ROM Goniometrica (gradi flesso-estensione / abduzione)"]:::client
+        VAS_SLIDER["Slider Scala del Dolore VAS (0 = Assente, 10 = Insopportabile)"]:::client
+        REHAB_SESSION_SAVE["Pulsante 'Salva Seduta Fisioterapica'"]:::client
+        PROGRESS_GRAPH["Grafico di Recupero: Incremento ROM (deg) vs Riduzione Dolore VAS nel Tempo"]:::client
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & MEDICAL COMPLIANCE"]
+        GW_REHAB_LOG["Ricezione POST /api/v1/pro/physio/rehab-session"]:::gateway
+        GW_ROLE_CHECK{"Utente ha Ruolo Abilitato (Fisioterapista / Medico R3/R4)?"}:::decision
+        GW_ACCESS_DENIED["HTTP 403 Forbidden: Modulo Riservato a Personale Sanitario"]:::error
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (ROM RECOVERY ALGORITHM)"]
+        SRV_ROM_DERIVATIVE["Calcolo Derivata di Recupero ROM (% guadagno articolare per settimana)"]:::server
+        SRV_SAFETY_LIMIT{"Dolore VAS > 4 durante movimento protetto?"}:::decision
+        SRV_DEESCALATE["De-escalation Automatica del Carico / Allerta Clinico"]:::error
+        SRV_MILESTONE_PASS["Validazione Superamento Milestone Fase Riabilitativa"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (PRO CLINICAL RECORDS)"]
+        DB_WRITE_PHYSIO[("Salvataggio Record Clinico in Silo 1 (physio_sessions, rom_logs, vas_scores)")]:::db
+        END_REHAB_SAVED(["Fine: Seduta Clinica Archiviata e Milestone Aggiornata"]):::startend
+    end
+
+    %% Flussi
+    START --> SELECT_PATIENT --> PROTOCOL_PICKER --> ROM_MEASURE --> VAS_SLIDER --> REHAB_SESSION_SAVE
+    REHAB_SESSION_SAVE --> GW_REHAB_LOG --> GW_ROLE_CHECK
+    GW_ROLE_CHECK -- Non Autorizzato --> GW_ACCESS_DENIED
+    GW_ROLE_CHECK -- Autorizzato --> SRV_ROM_DERIVATIVE
+    SRV_ROM_DERIVATIVE --> SRV_SAFETY_LIMIT
+
+    SRV_SAFETY_LIMIT -- Si (VAS Eccessivo) --> SRV_DEESCALATE --> DB_WRITE_PHYSIO
+    SRV_SAFETY_LIMIT -- No (Tollerato) --> SRV_MILESTONE_PASS --> DB_WRITE_PHYSIO
+
+    DB_WRITE_PHYSIO --> PROGRESS_GRAPH --> END_REHAB_SAVED

@@ -1,0 +1,49 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 6C: MEDICAL ROOM EMR, RETURN-TO-PLAY & RESEARCH WAREHOUSE (SILO 3)"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (MEDICAL ROOM & RESEARCH PORTAL)"]
+        START(["Inizio: Accesso Cartella Clinica EMR"]):::startend
+        EMR_VIEW["Cartella Clinica Elettronica Atleta: Storico Lesioni, Esami Strumentali (RMN/Ecografie)"]:::client
+        RTP_STEPPER["Stepper Return to Play (RTP) a 6 Fasi: 1. Riposo -> 2. Terapie -> 3. Lavoro Differenziato -> 4. In Gruppo Senza Contatto -> 5. Con Gruppo -> 6. Idoneita Gara"]:::client
+        DOC_SIGN_BTN["Pulsante 'Firma Digitale Medico Sociale per Passaggio Fase RTP'"]:::client
+        RESEARCH_OPTIN["Toggle: 'Consenso Ricerca Scientifica Universitaria Anonimizzata'"]:::client
+        RTP_BLOCKED["Blocco: Criteri Funzionali non Soddisfatti - Rimani in Fase Attuale"]:::error
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & MEDICAL AUTHORIZATION"]
+        GW_RTP_UPDATE["Ricezione POST /api/v1/club/medical/rtp/advance"]:::gateway
+        GW_RESEARCH_SYNC["Ricezione POST /api/v1/club/research/etl-export"]:::gateway
+        GW_DOC_VERIFY{"Firma Digitale Medico Sociale Valida (R3)?"}:::decision
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (RTP VALIDATOR & ANONYMIZATION ETL)"]
+        SRV_RTP_AUDIT["Audit Clinico: Verifica Parametri Funzionali (LSI Simmetria Arti > 90%, Assenza Dolore)"]:::server
+        SRV_DE_ID_ETL["Pipeline ETL De-Identificazione: K-Anonimato (k >= 5) ed l-Diversita (Rimozione Totale PII)"]:::server
+        SRV_NOTIF_STAFF["Notifica a Head Coach & S&C: 'Atleta autorizzato a Fase 4 (In Gruppo Senza Contatto)'"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE A DOPPIO SILO (SILO 2 BUNKER + SILO 3 RESEARCH WAREHOUSE)"]
+        DB_WRITE_S2[("Salvataggio Cartella Clinica Crittografata in Silo 2 (medical_records, rtp_milestones)")]:::db
+        DB_WRITE_S3[("Export Coorte Dati Anonimizzati in Silo 3 (research_warehouse_lake)")]:::db
+        END_MEDICAL_SYNC(["Fine: Atleta Aggiornato e Dati Ricerca Alimentati"]):::startend
+    end
+
+    %% Flussi
+    START --> EMR_VIEW --> RTP_STEPPER --> DOC_SIGN_BTN
+    DOC_SIGN_BTN --> GW_RTP_UPDATE --> GW_DOC_VERIFY
+    GW_DOC_VERIFY -- No --> RTP_BLOCKED
+    GW_DOC_VERIFY -- Valida --> SRV_RTP_AUDIT
+
+    SRV_RTP_AUDIT --> DB_WRITE_S2 --> SRV_NOTIF_STAFF
+
+    RESEARCH_OPTIN --> GW_RESEARCH_SYNC --> SRV_DE_ID_ETL --> DB_WRITE_S3
+    SRV_NOTIF_STAFF --> END_MEDICAL_SYNC
+    DB_WRITE_S3 --> END_MEDICAL_SYNC

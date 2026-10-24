@@ -1,0 +1,54 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["SOFTWARE 1 (B2C CONSUMER) - FLOW 3A: INTERACTIVE WORKOUT PLAYER & LOGGING"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (WORKOUT PLAYER)"]
+        START(["Inizio: Avvio Sessione"]):::startend
+        PLAYER_VIEW["Schermata Esercizio: Video Miniatura, Target Set/Reps/Kg"]:::client
+        SET_LOG["Input Serie Effettuata (Kg sollevati, Reps fatte)"]:::client
+        BTN_DONE_SET["Pulsante 'Serie Completata'"]:::client
+        REST_TIMER["Avvio Timer Recupero (60s..180s) con Beep Sonoro & Vibrazione"]:::client
+        SESSION_FINISH["Fine Allenamento: Richiesta RPE Sessione (Scala 1-10)"]:::client
+        SUMMARY_CARD["Card Riepilogo: Tonnellaggio Totale, PR Superati, Calorie"]:::client
+        OFFLINE_BADGE["Salvataggio Locale in IndexedDB (Sync al ritorno online)"]:::error
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & LOG SYNC"]
+        GW_LOG_SET["Ricezione POST /api/v1/workouts/session/set-done"]:::gateway
+        GW_LOG_FINISH["Ricezione POST /api/v1/workouts/session/complete"]:::gateway
+        GW_ONLINE{"Connessione Rete Attiva?"}:::decision
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (VOLUME & PR ENGINE)"]
+        SRV_VOLUME["Calcolo Tonnellaggio Totale: Somma (Kg x Reps)"]:::server
+        SRV_PR_DETECT{"Rilevato Nuovo Record Personale (PR) 1RM Stimato?"}:::decision
+        SRV_BADGE["Generazione Badge Condivisibile 'Nuovo PR'"]:::server
+        SRV_FATIGUE["Ricalcolo Fatica Neuromuscolare Cumulata"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (CONSUMER RELATIONAL)"]
+        DB_WRITE_LOG[("Scrittura Log Sessione su Silo 1 (completed_workouts)")]:::db
+        DB_UPDATE_PR[("Aggiornamento Tabella athlete_records")]:::db
+        END_LOGGED(["Fine: Allenamento Registrato con Successo"]):::startend
+    end
+
+    %% Flussi
+    START --> PLAYER_VIEW --> SET_LOG --> BTN_DONE_SET --> REST_TIMER
+    REST_TIMER --> PLAYER_VIEW
+    PLAYER_VIEW --> SESSION_FINISH
+    SESSION_FINISH --> GW_ONLINE
+
+    GW_ONLINE -- Offline --> OFFLINE_BADGE
+    GW_ONLINE -- Online --> GW_LOG_FINISH
+
+    GW_LOG_FINISH --> SRV_VOLUME --> SRV_FATIGUE --> SRV_PR_DETECT
+    SRV_PR_DETECT -- Si --> SRV_BADGE --> DB_UPDATE_PR
+    SRV_PR_DETECT -- No --> DB_WRITE_LOG
+    DB_UPDATE_PR --> DB_WRITE_LOG --> SUMMARY_CARD --> END_LOGGED

@@ -1,0 +1,47 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["SOFTWARE 1 (B2C CONSUMER) - FLOW 4A: WEARABLE HEALTH SYNC & TRENDS"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (WEARABLE INTEGRATION)"]
+        START(["Inizio: Impostazioni Connessione Dispositivi"]):::startend
+        MODAL_SYNC["Modale: Collega Apple Health / Health Connect / Garmin"]:::client
+        PERM_REQUEST{"Autorizzazione Permessi Biometrici concessa?"}:::decision
+        DASH_TRENDS["Card Visualizzazione Trend: Passi Giornalieri, Sonno, FC a Riposo"]:::client
+        INSIGHT_TOAST["Notifica Insight: 'Sonno ottimale: oggi puoi spingere sui carichi'"]:::client
+        PERM_DENIED["Messaggio: Permessi Negati - Funzionalita Wearable Disabilitata"]:::error
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & WEARABLE WEBHOOKS"]
+        GW_INGEST["Ricezione POST /api/v1/integrations/wearables/sync"]:::gateway
+        GW_TOKEN_VALID{"OAuth Token o Firma Valida?"}:::decision
+        GW_REJECT["HTTP 403 Forbidden / Token Scaduto"]:::error
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (WEARABLE BIOMETRIC ENGINE)"]
+        SRV_AGGREGATE["Aggregazione Dati Giornalieri: Media FC Riposo, Ore Sonno profondo/REM"]:::server
+        SRV_CORRELATE["Correlazione Carico/Recupero: Impatto Sonno sulla Performance"]:::server
+        SRV_GEN_INSIGHT["Generazione Testo Insight Algoritmico"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (CONSUMER TIMESERIES)"]
+        DB_STORE[("Salvataggio Metriche Giornaliere in Silo 1 (biometrics_daily)")]:::db
+        END_SYNCED(["Fine: Dashboard Metriche Aggiornata"]):::startend
+    end
+
+    %% Flussi
+    START --> MODAL_SYNC --> PERM_REQUEST
+    PERM_REQUEST -- Negato --> PERM_DENIED
+    PERM_REQUEST -- Concesso --> GW_INGEST
+    GW_INGEST --> GW_TOKEN_VALID
+    GW_TOKEN_VALID -- No --> GW_REJECT --> PERM_DENIED
+    GW_TOKEN_VALID -- Si --> SRV_AGGREGATE
+    SRV_AGGREGATE --> DB_STORE
+    DB_STORE --> SRV_CORRELATE --> SRV_GEN_INSIGHT
+    SRV_GEN_INSIGHT --> DASH_TRENDS --> INSIGHT_TOAST --> END_SYNCED

@@ -1,0 +1,45 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 1C: BUNKER CLUB ONBOARDING & KMS SILO 2 ENCLAVE"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (CLUB SECURE ENCLAVE)"]
+        START(["Inizio: Accesso Portale Bunker Club"]):::startend
+        INVITE_SCAN["Scansione Invito Protetto: Magic Link / QR Biometrico generato dal Medico Sociale"]:::client
+        FIDO2_PROMPT["Autenticazione Hardware FIDO2 / Passkey Livello 3 (Dispositivo Aziendale Verificato)"]:::client
+        DASH_CLUB["Accesso Immediato al Cockpit di Squadra"]:::client
+        ERR_UNAUTHORIZED["Schermata Blocco: Certificato Dispositivo Invalido o Accesso Negato"]:::error
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & SECURITY PERIMETER"]
+        GW_MTLS["Verifica Sicurezza di Rete: mTLS (Mutual TLS) + Controllo IP Whitelist Club"]:::gateway
+        GW_VERIFY_INVITE{"Verifica Crittografica Token Invito e Dispositivo?"}:::decision
+        GW_CLUB_JWT["Emissione JWT Tier 3 con Club Tenant ID, Ruolo Staff (R1..R8) e KMS Key Handle"]:::gateway
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (BUNKER PROVISIONING ENGINE)"]
+        SRV_KMS_BIND["Collegamento Chiave KMS Dedicata del Club (Crittografia Envelope)"]:::server
+        SRV_RBAC_PROV["Provisioning Ruoli Multi-Staff: Medico, Preparatore, Allenatore, Analyst"]:::server
+        SRV_AUDIT_LOG["Scrittura Log Immutabile di Sicurezza (Chi ha fatto accesso, quando, da quale IP)"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 2 (BUNKER CLUB KMS ENCLAVE)"]
+        DB_WRITE_S2[("Salvataggio Record Utente Staff in Silo 2 Crittografato AES-256-GCM")]:::db
+        DB_AUDIT[("Archiviazione Audit Log Immutabile nel Bunker di Sicurezza")]:::db
+        END_CLUB_AUTH(["Fine: Staff Autenticato nel Bunker del Club"]):::startend
+    end
+
+    %% Flussi
+    START --> INVITE_SCAN --> FIDO2_PROMPT
+    FIDO2_PROMPT --> GW_MTLS --> GW_VERIFY_INVITE
+    GW_VERIFY_INVITE -- Rifiutato --> ERR_UNAUTHORIZED
+    GW_VERIFY_INVITE -- Approvato --> SRV_KMS_BIND --> SRV_RBAC_PROV
+    SRV_RBAC_PROV --> DB_WRITE_S2
+    SRV_RBAC_PROV --> SRV_AUDIT_LOG --> DB_AUDIT
+    DB_WRITE_S2 --> GW_CLUB_JWT --> DASH_CLUB --> END_CLUB_AUTH

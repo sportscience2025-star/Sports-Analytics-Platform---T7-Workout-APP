@@ -1,0 +1,46 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 3C: SQUAD MICROCYCLE PLANNING & MATCH DAY LOADS (MD-X TO MD+X)"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (TACTICAL MICROCYCLE PLANNER)"]
+        START(["Inizio: Pianificazione Microciclo Squadra"]):::startend
+        TIMELINE_MD["Timeline Match Day: MD-4 Forza, MD-3 Intensita Tattica, MD-2 Velocita, MD-1 Rifinitura, MD Gara, MD+1 Scarico"]:::client
+        ROLE_MODAL["Configurazione Tattica Doppio Ruolo (es. Terzino / Esterno Alto)"]:::client
+        BENCH_COMPENSATION["Compensazione Carichi Panchina: Ricalcolo Lavoro per Riserve non Impiegate in Partita"]:::client
+        ACWR_CHART["Grafico Rapporto Carico Acuto/Cronico (ACWR) con Finestra Ottimale 0.8 - 1.3"]:::client
+        APPROVE_BTN["Pulsante 'Convalida Piano Microciclo Squadra' (Co-Firma Staff)"]:::client
+        ALERT_SPIKE["Allarme Spike Carico: ACWR > 1.5 - Rischio Infortunio Elevato"]:::error
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & SIGNATURE VERIFICATION"]
+        GW_PLAN_SAVE["Ricezione POST /api/v1/club/microcycles/plan"]:::gateway
+        GW_CO_SIGN{"Verifica Doppia Firma (Preparatore Atletico + Allenatore)?"}:::decision
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (TEAM LOAD ENGINE)"]
+        SRV_ACWR_CALC["Algoritmo Calcolo ACWR (EWMA - Exponentially Weighted Moving Average)"]:::server
+        SRV_BENCH_LOAD["Algoritmo Generazione Lavoro Compensativo Riserve Post-Gara (MD+1)"]:::server
+        SRV_DUAL_ROLE["Bilanciamento Metabolico e Meccanico per Atleti con Doppio Ruolo"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 2 (BUNKER CLUB KMS ENCLAVE)"]
+        DB_SAVE_PLAN[("Salvataggio Microciclo di Squadra in Silo 2 (squad_microcycles, player_loads)")]:::db
+        END_MICROCYCLE_READY(["Fine: Microciclo Distribuito a Tutti i Componenti della Squadra"]):::startend
+    end
+
+    %% Flussi
+    START --> TIMELINE_MD --> ROLE_MODAL --> BENCH_COMPENSATION --> APPROVE_BTN
+    APPROVE_BTN --> GW_PLAN_SAVE --> GW_CO_SIGN
+    GW_CO_SIGN -- Firma Mancante --> TIMELINE_MD
+    GW_CO_SIGN -- Firme Valide --> SRV_ACWR_CALC
+
+    SRV_ACWR_CALC --> SRV_BENCH_LOAD --> SRV_DUAL_ROLE --> DB_SAVE_PLAN
+    SRV_ACWR_CALC -. Se ACWR > 1.5 .-> ALERT_SPIKE -. Mostrato in .-> ACWR_CHART
+    DB_SAVE_PLAN --> ACWR_CHART --> END_MICROCYCLE_READY

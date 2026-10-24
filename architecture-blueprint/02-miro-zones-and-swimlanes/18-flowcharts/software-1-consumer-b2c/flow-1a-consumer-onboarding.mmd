@@ -1,0 +1,61 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["SOFTWARE 1 (B2C CONSUMER) - FLOW 1A: FAST CONSUMER ONBOARDING (30s)"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (MOBILE PWA)"]
+        START(["Inizio: Apertura App Consumer"]):::startend
+        SPLASH["Welcome Screen: 'Inizia subito ad allenarti'"]:::client
+        AUTH_CHOICE{"Scelta Autenticazione"}:::decision
+        UI_PASSKEY["1-Tap Passkey Biometrica (Touch/Face ID)"]:::client
+        UI_SOCIAL["1-Tap Social Sign-In (Apple / Google)"]:::client
+        UI_GOALS["Setup Rapido: Obiettivo (Forza, Massa, Salute) + Livello"]:::client
+        UI_JIT_NOTE["Nota Just-in-Time: Anamnesi clinica rimandata al 1° workout"]:::client
+        HOME_REDIRECT["Reindirizzamento immediato al Cockpit Atleta"]:::client
+        ERR_TOAST["Mostra Notifica Errore / Riprova"]:::error
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & ACCESS CONTROL"]
+        GW_REQ["Ricezione POST /api/v1/auth/consumer/signup"]:::gateway
+        GW_RATE{"Controllo IP & Rate Limiting?"}:::decision
+        GW_VERIFY{"Verifica WebAuthn o OAuth Token?"}:::decision
+        GW_JWT["Emissione JWT Tier 1 (Role: R1 Athlete) + Refresh Cookie HttpOnly"]:::gateway
+        GW_REJECT["HTTP 429 Too Many Requests / 401 Unauthorized"]:::error
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (PROFILE ENGINE)"]
+        SRV_PROVISION["Provisioning Utente Consumer"]:::server
+        SRV_DEFAULTS["Inizializzazione Preferenze, Unita (kg/cm) e Streak = 0"]:::server
+        SRV_ROUTING["Assegnazione Dashboard B2C Standard"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (CONSUMER RELATIONAL)"]
+        DB_CHECK{"Email/Passkey ID gia esistente?"}:::decision
+        DB_WRITE[("Salvataggio Record Utente in Silo 1 (auth_users, user_profiles)")]:::db
+        DB_LOAD[("Caricamento Profilo e Sessione Utente")]:::db
+        END_SUCCESS(["Fine: Atleta Autenticato in Dashboard"]):::startend
+    end
+
+    %% Flussi
+    START --> SPLASH --> AUTH_CHOICE
+    AUTH_CHOICE -- Passkey --> UI_PASSKEY
+    AUTH_CHOICE -- Social --> UI_SOCIAL
+    UI_PASSKEY --> GW_REQ
+    UI_SOCIAL --> GW_REQ
+
+    GW_REQ --> GW_RATE
+    GW_RATE -- Bloccato --> GW_REJECT --> ERR_TOAST
+    GW_RATE -- Consentito --> GW_VERIFY
+    GW_VERIFY -- Token Invalido --> GW_REJECT
+    GW_VERIFY -- Valido --> DB_CHECK
+
+    DB_CHECK -- Esistente --> DB_LOAD --> GW_JWT
+    DB_CHECK -- Nuovo --> SRV_PROVISION --> SRV_DEFAULTS --> DB_WRITE --> GW_JWT
+
+    GW_JWT --> UI_GOALS --> UI_JIT_NOTE --> HOME_REDIRECT --> END_SUCCESS
