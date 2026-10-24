@@ -138,3 +138,33 @@ Questo documento costituisce la versione locale e sincronizzata su Git della **L
 - **Spiegazione Semplificata:** Il percorso a tappe guidato dai criteri clinico-funzionali che un atleta infortunato deve superare per passare dalla riabilitazione passiva al ritorno in campo in sicurezza.
 - **Ruolo Operativo nel Progetto T7:** I fisioterapisti e i medici sociali (Tier 2/3) monitorano le metriche di forza simmetrica (LSI - Limb Symmetry Index) e i test funzionali prima di dare il via libera al rientro.
 - **Zona di Riferimento:** Zona 2 e Zona 3 (Integrazione Clinica $\rightarrow$ Programmazione).
+
+
+---
+
+## Categoria 5: Sicurezza, Anti-Frode & Fiscalità Digitale B2B
+
+### INI-PEC (Indice Nazionale Posta Elettronica Certificata) & Two-Way OTP
+- **Spiegazione Semplificata:** Il registro pubblico telematico istituito dal Ministero delle Imprese e del Made in Italy che raccoglie tutti gli indirizzi di Posta Elettronica Certificata (PEC) ufficiali di imprese e liberi professionisti registrati in Italia.
+- **Ruolo Operativo nel Progetto T7:** Strumento cardine dello scudo anti-spoofing nell'onboarding P.IVA. Quando un utente inserisce una Partita IVA, il server interroga INI-PEC e invia un codice monouso (OTP) a 6 cifre direttamente alla PEC aziendale ufficiale. Se il richiedente non ha accesso alla casella PEC dell'azienda reale, la registrazione viene bloccata istantaneamente, azzerando le truffe di furto d'identità fiscale.
+- **Zona di Riferimento:** Riga 2, Colonna 1 (Onboarding P.IVA Anti-Frode) e Corsia 2 API Gateway.
+
+### VIES & Sistema di Interscambio (SDI)
+- **Spiegazione Semplificata:** VIES (VAT Information Exchange System) è il sistema europeo di validazione in tempo reale delle Partite IVA intracomunitarie. Lo SDI è il nodo telematico dell'Agenzia delle Entrate per la fatturazione elettronica B2B tramite Codice Destinatario a 7 caratteri.
+- **Ruolo Operativo nel Progetto T7:** Convalida la reale esistenza e lo stato attivo della Partita IVA all'atto dell'immatricolazione, bloccando codici fiscali fittizi o partite IVA cessate e garantendo la piena conformità fiscale degli abbonamenti SaaS.
+- **Zona di Riferimento:** Riga 2, Colonna 1 (Setup Fiscale P.IVA).
+
+### Stripe Identity & Biometric Liveness 3D
+- **Spiegazione Semplificata:** Sistema di verifica biometrica avanzata che confronta un documento di riconoscimento ufficiale (CIE o Passaporto) con un selfie dinamico 3D dell'utente, rilevando profondità e micro-movimenti per escludere foto statiche, maschere o deepfake.
+- **Ruolo Operativo nel Progetto T7:** Impedisce a malintenzionati di creare account fittizi intestati a terzi o documenti clonati prima di connettere un conto bancario di incasso su Stripe Connect.
+- **Zona di Riferimento:** Riga 2, Colonna 1 (Step 5 Stripe Connect).
+
+### Rolling Reserve & Escrow Anti-Chargeback
+- **Spiegazione Semplificata:** Meccanismo di sicurezza finanziaria che trattiene in una riserva cautelativa temporanea (7-14 giorni) una percentuale dei primi incassi ricevuti da un nuovo professionista.
+- **Ruolo Operativo nel Progetto T7:** Protegge la piattaforma dal rischio di responsabilità oggettiva (*friendly fraud* o *chargeback rings* con carte di credito rubate), sbloccando i payout completi solo dopo che la telemetria dell'applicazione certifica l'effettiva erogazione dei servizi di allenamento e check-in degli atleti.
+- **Zona di Riferimento:** Riga 2, Colonna 1 e Corsia 3 Server.
+
+### Feature Gating Clinico & Ordine Sanitario (FNOFI / TSRM-PSTRP)
+- **Spiegazione Semplificata:** Barriera di autorizzazione logica che sblocca determinati moduli diagnostico-riabilitativi solo se l'utente ha fornito evidenza certificata di appartenenza a un ordine professionale abilitante.
+- **Ruolo Operativo nel Progetto T7:** Segrega rigidamente le funzioni sportive (VBT, DUP, PAP accessibili a Personal Trainer e Chinesiologi) dai protocolli terapeutici riabilitativi (`cli_01..32` e cartella EMR), tutelando la piattaforma dal rischio di esercizio abusivo della professione sanitaria (Art. 348 C.P.).
+- **Zona di Riferimento:** Riga 2, Colonna 1 & Colonna 6 (Physio Rehab).

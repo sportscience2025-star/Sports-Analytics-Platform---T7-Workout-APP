@@ -52,7 +52,19 @@ RIGA 3 (Y = 3850..5350): SOFTWARE 3 — TEAM DI ALTO LIVELLO / B2B ENTERPRISE (P
 
 ### RIGA 2: Software 2 — Partita IVA / Pro Specialist (Middle, Y = 2100..3600)
 1. **Colonna 1 (X = -2200)**: `1. ONBOARDING PROFESSIONALE & SETUP FISCALE P.IVA (T7 PRO)`
-   - Welcome Pro Studio $\rightarrow$ Bivio P.IVA $\rightarrow$ Validazione VIES / AdE $\rightarrow$ Setup Stripe Connect $\rightarrow$ Quota 30 atleti $\rightarrow$ Coach Hub.
+   - *Top Header & Welcome*: Portale B2B Professionisti (Personal Trainer, Chinesiologi LM-67/L-22, Fisioterapisti).
+   - *Bivio Auth*: Account Esistente vs Nuovo Studio.
+   - *Ramo Login Pro*: Passkey WebAuthn FIDO2 / Email Argon2id $\rightarrow$ 2FA Obbligatoria (TOTP / SMS) & Anomaly Detection $\rightarrow$ Decrittazione Silo 1 & JWT.
+   - *Ramo Registrazione Anti-Frode (5 Step)*:
+     - **Step 1**: Credenziali Studio & Cloudflare Turnstile anti-bot (blocco domini email disposable + OTP email).
+     - **Step 2**: Dati Fiscali (P.IVA 11 cifre, Codice Fiscale, SDI 7 car., Sede Legale) $\rightarrow$ Bivio Check VIES/AdE (ramo errore blocco immediato).
+     - **Step 3 (Anti-Furto P.IVA)**: Interrogazione registro nazionale INI-PEC $\rightarrow$ Invio OTP alla casella PEC ufficiale $\rightarrow$ Bivio Check OTP (blocco anti-spoofing).
+     - **Step 4 (Verifica Qualifica)**: Bivio Fisioterapia vs Chinesiologia/PT:
+       - *4A Fisioterapisti*: Iscrizione Albo FNOFI / TSRM-PSTRP + Polizza RC Sanitaria $\rightarrow$ Sblocco Modulo Clinico `cli_01..32`.
+       - *4B Chinesiologi / PT*: Laurea Scienze Motorie L-22/LM-67 / CONI + RC Sportiva $\rightarrow$ Sblocco DUP, VBT Vitruve, PAP e Prevenzione.
+     - **Step 5**: Stripe Connect Custom & Stripe Identity KYC (Liveness 3D biometrico + Documento CIE/Passaporto) + IBAN Studio con Rolling Reserve anti-chargeback.
+     - *Bivio KYC*: Accesso Sandbox/Bozza (creazione schede e test VBT, inviti atleti bloccati) vs Profilo Studio Verificato con Badge Blu (Full Tier 2 Pro).
+   - *Ingresso Finale*: Coach Hub Cockpit con sessione attiva su Silo 1.
 2. **Colonna 2 (X = -800)**: `2. COACH HUB MULTI-CLIENTE & GESTIONE ADERENZA`
    - Coach Cockpit $\rightarrow$ Selettore Rapido Atleti $\rightarrow$ 6 Viste Pro (Roster, DUP, VBT/PAP, PubMed, AI Kinesiologist, Export XLSX) $\rightarrow$ Alert Aderenza & RPE.
 3. **Colonna 3 (X = 600)**: `3. ARCHITETTURA DI SISTEMA B2B & DATA REPOSITORY PRO`
