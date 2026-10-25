@@ -296,3 +296,32 @@ Questo documento costituisce la versione locale e sincronizzata su Git della **L
 - **Spiegazione Semplificata:** Regola grafica che impone alle linee di collegamento nei diagrammi di muoversi esclusivamente ad angolo retto (orizzontale o verticale) lungo canali dedicati, vietando tassativamente alle frecce di sovrapporsi ai testi o di attraversare diagonalmente i riquadri.
 - **Ruolo Operativo nel Progetto T7:** Garantisce leggibilità immediata e pulizia visiva assoluta sulle board Miro per chiunque debba implementare o consultare i flussi, eliminando la confusione visiva ed evitando fraintendimenti architetturali.
 - **Zona di Riferimento:** Regola 10 (Design ISO, Routing Ortogonale & Zero Crossing).
+
+---
+
+## Categoria 11: Video Analysis In-App, AI Multimodale & Custom Exercise Creator (Tier 2 & Tier 3)
+
+### MediaPipe BlazePose 3D (Edge Pose Estimation su Video Mobile)
+- **Spiegazione Semplificata:** Modello di intelligenza artificiale leggero che traccia 33 punti chiave del corpo umano (spalle, gomiti, bacino, ginocchia, caviglie) in tre dimensioni direttamente dallo smartphone del coach, senza inviare pesanti flussi video grezzi a server esterni.
+- **Ruolo Operativo nel Progetto T7:** Permette al coach di riprendere con la fotocamera un atleta mentre esegue un esercizio personalizzato non presente nel catalogo ufficiale, estraendo istantaneamente angoli articolari, traiettorie e velocità del movimento.
+- **Zona di Riferimento:** Colonna 2 (Catalogo Esercizi), Riga 2 (P.IVA) e Riga 3 (Pro Teams).
+
+### Revisione Coerente AI (Multimodal RAG & Web Biomechanical Audit)
+- **Spiegazione Semplificata:** Funzione attivabile su richiesta dal coach tramite pulsante che analizza sia il video registrato che la descrizione scritta a mano (punti deboli, punti di forza, errori da evitare). L'AI interroga la letteratura scientifica interna (322 paper), banche dati accademiche (PubMed) e il web per verificare se le note sono corrette e suggerire miglioramenti biomeccanici.
+- **Ruolo Operativo nel Progetto T7:** Mostra una schermata comparativa con le proposte migliorative dell'AI; il coach mantiene il controllo assoluto e può accettare, modificare o scartare ogni singolo suggerimento prima del salvataggio.
+- **Zona di Riferimento:** Colonna 2, Riga 2 e Riga 3, Corsia 3 Server.
+
+### Dual-Stream Toggle (Video Reale vs Avatar 3D Stilizzato)
+- **Spiegazione Semplificata:** Un interruttore nell'interfaccia dell'esercizio che permette all'atleta o al coach di scegliere se visualizzare il video originale registrato in palestra oppure l'omino 3D pulito con muscoli colorati e rotazione a 360°.
+- **Ruolo Operativo nel Progetto T7:** Elimina la necessità di rivedere sempre il video reale, offrendo una versione didattica tridimensionale ideale depurata da errori esecutivi, e consentendo opzionalmente la cancellazione del video pesante per tutelare privacy (GDPR) e spazio su disco.
+- **Zona di Riferimento:** Colonna 2, Corsia 1 (Thin Client).
+
+### Text-to-Kinematics 3D Synthesis (Generatore di Esercizi Solo-Testo)
+- **Spiegazione Semplificata:** Motore AI che permette al professionista di aggiungere un nuovo esercizio senza dover registrare un video, compilando solo la descrizione, il gruppo muscolare e i parametri tecnici. L'AI sintetizza automaticamente il movimento cinematico e genera l'avatar 3D corrispondente.
+- **Ruolo Operativo nel Progetto T7:** Funzionalità avanzata riservata esclusivamente a Tier 2 e Tier 3 (rigorosamente preclusa al General User Tier 1 per evitare inquinamento del catalogo con esercizi non verificati).
+- **Zona di Riferimento:** Colonna 2, Riga 2 e Riga 3.
+
+### Libreria Esercizi a Due Livelli di Club (Bozza Atleta vs Ufficiale Societaria)
+- **Spiegazione Semplificata:** Nel software per società sportive (Tier 3), un esercizio custom può essere salvato temporaneamente per un singolo atleta oppure promosso a "Libreria Ufficiale Club" visibile a tutto lo staff tecnico (medici, preparatori, fisioterapisti).
+- **Ruolo Operativo nel Progetto T7:** Consente di testare esercizi riabilitativi o di forza su un singolo giocatore prima di standardizzarli nel microciclo di squadra all'interno del bunker criptato societario (Silo 2 KMS).
+- **Zona di Riferimento:** Colonna 2, Riga 3 (Pro Teams Enterprise).

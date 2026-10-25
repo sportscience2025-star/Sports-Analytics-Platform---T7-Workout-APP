@@ -7,56 +7,91 @@ flowchart TD
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 2C: CATALOGO 3D & TELEMETRIA CINEMATICA SQUADRA"]
+    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 2C: CATALOGO 3D, VIDEO IN-APP & LIBRERIA CLUB A 2 LIVELLI"]
 
     subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (TEAM SQUAD COCKPIT)"]
-        START(["Inizio: Team Cockpit - Accesso Catalogo 3D & Telemetria (Elite Club)"]):::startend
-        DEC_SEARCH{"Modalita Ricerca Staff?"}:::decision
-        UI_FILTERS["Filtri Tattici, Ruolo & Z-Score Acute:Chronic (GPS + HRV)"]:::client
-        UI_SEARCH["Ricerca Markerless Pose & Modelli Cinematica 3D (Computer Vision)"]:::client
-        DEC_RISK{"Stato Readiness & Rischio Squadra?"}:::decision
-        GRID_ELITE["Griglia Catalogo Elite: Mapping Telemetria & Miniature 3D"]:::client
-        UI_ALERT["Gestione Alert Sovraccarico & Protocollo Return to Play (RTP)"]:::error
-        DEC_WEBGL{"Rendering 3D Multi-Stream?"}:::decision
-        FALLBACK_2D["Backup Multi-Angolo 4K & Clip Tattiche Sincronizzate (120fps)"]:::error
-        VIEWER_3D["Visualizzatore 3D Elite: Orbit 360°, Telemetria Vettori & Digital Twin Atleta"]:::client
-        UI_RTP_PROTOCOL["Validazione Congiunta Staff Medico-Tecnico & Criteri RTP 6 Fasi"]:::client
-        DEC_ACTION{"Destinazione Esercizio Validato?"}:::decision
-        ASSIGN_MICROCICLO["Assegnazione a Microciclo Gara Squadra (MD-X)"]:::startend
-        END_READY(["Fine: Telemetria Esercizio Sincronizzata"]):::startend
+        START(["Inizio: Team Cockpit - Accesso Catalogo Esercizi & Telemetria"]):::startend
+        DEC_MODE{"Seleziona Operazione Staff?"}:::decision
+        
+        %% Ramo 1: Consultazione Squadra
+        UI_SEARCH_TEAM["Consultazione Catalogo Club: Telemetria Z-Score, ACWR & Carico Rosa"]:::client
+        DEC_RISK{"Verifica Idoneita Giocatore & Rischio ACWR?"}:::decision
+        GRID_ELITE["Griglia Catalogo Elite: Miniature 3D, Dati GPS & Telemetria Live"]:::client
+        UI_ALERT_RTP["Alert Sovraccarico: Attivazione Protocollo Return to Play (RTP 6 Fasi)"]:::error
+        VIEWER_3D_ELITE["Visualizzatore 3D Elite: Orbit 360°, Digital Twin Atleta & Forze di Taglio (N)"]:::client
+        
+        %% Ramo 2: Video Recording In-App & Custom Creation
+        UI_CAM_CAPTURE["In-App Camera Pro: Ripresa Giocatore su Esercizio Personalizzato / RTP"]:::client
+        UI_MARKERLESS["Edge Computer Vision 3D: Markerless Pose Tracking ad Alta Precisione"]:::client
+        UI_STAFF_DRAFT["Compilazione Bozza Staff: Note Tecniche, Errori Critici & Biomeccanica"]:::client
+        DEC_AI_AUDIT_PRO{"Attivazione Revisione Coerente AI?"}:::decision
+        UI_DIFF_PRO["Modale Revisione Diff Sezione per Sezione: RAG Accademico + Evidenze Web"]:::client
+        DEC_LIBRARY_TIER{"Destinazione Salvataggio nel Club?"}:::decision
+        UI_LEVEL_ATHLETE["Salvataggio Livello 1: Bozza Individuale Vincolata a Singolo Giocatore"]:::client
+        UI_LEVEL_CLUB["Salvataggio Livello 2: Promozione a Libreria Ufficiale Club (Condivisa con Staff)"]:::client
+        VIEWER_TOGGLE_PRO["Scheda Esercizio Custom: Toggle 'Video Reale vs Digital Twin 3D'"]:::client
+        
+        %% Ramo 3: Creazione Solo-Testo
+        UI_TEXT_CREATE_PRO["Creazione Manuale Solo-Testo: Parametri Tassonomici, Setup & Cues Mentali"]:::client
+        
+        DEC_ACTION["Validazione Congiunta Staff: Medico Sociale + Head S&C"]:::decision
+        END_READY(["Fine: Esercizio Integrato nel Sistema Societario"]):::startend
     end
 
     subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & RBAC TIER 3 (mTLS)"]
-        GW_FETCH["API Gateway mTLS: GET /api/v1/club/catalog/exercises?team_id=..."]:::gateway
-        GW_AUTH_STAFF{"Autenticazione mTLS + FIDO2 Hardware Staff?"}:::decision
-        GW_EMR_SAVE["API Gateway: POST /api/v1/club/emr-telemetry (KMS Silo 2)"]:::gateway
+        GW_FETCH_PRO["API Gateway mTLS: GET /api/v1/club/catalog/exercises (Autenticazione FIDO2)"]:::gateway
+        GW_AUTH_CHECK{"Validazione mTLS e Permessi Staff Societario?"}:::decision
+        GW_AUDIT_REQ_PRO["API Gateway: POST /api/v1/club/exercises/ai-audit"]:::gateway
+        GW_SYNTH_PRO["API Gateway: POST /api/v1/club/exercises/synthesize-digital-twin"]:::gateway
+        GW_KMS_SAVE["API Gateway: POST /api/v1/club/exercises/kms-save"]:::gateway
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (DIGITAL TWIN & COMPUTER VISION ENGINE)"]
-        SRV_DIGITAL_TWIN["Server Scatola Nera: Streaming Digital Twin 3D Draco GLB (<50ms)"]:::server
-        SRV_KINEMATICS["Calcolo Traiettorie Ideali vs Reali, Asimmetrie L/R & Potenza (W)"]:::server
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (DIGITAL TWIN & MULTIMODAL RAG)"]
+        SRV_ACWR_ENGINE["Motore ACWR: Calcolo Carico Acuto/Cronico & Rischio Lesione"]:::server
+        SRV_RAG_PRO["Multimodal RAG Accademico: Cross-Check 322 Paper, PubMed, Web & Cartella Clinica EMR"]:::server
+        SRV_TWIN_SYNTH["Sintesi Digital Twin: Mappatura Mesh 3D Draco su Biometria Reale del Calciatore"]:::server
     end
 
     subgraph LANE_DB["CORSIA 4: DATABASE SILO 2 (BUNKER CLUB KMS ENCLAVE)"]
-        DB_QUERY_S2[("Query Silo 2: rosa prima squadra, Z-Score & cartelle cliniche crittografate")]:::db
-        DB_EMR_S2[("Persistenza Silo 2: fascicolo EMR, prescrizioni congiunte e telemetria")]:::db
+        DB_QUERY_PRO[("Query Silo 2: rosa prima squadra, Z-Score e cartella clinica crittografata")]:::db
+        DB_KMS_SAVE[("Persistenza Silo 2: custom_exercises, video criptato KMS, telemetria e audit trail staff")]:::db
     end
 
     %% Connessioni del Flusso
-    START --> DEC_SEARCH
-    DEC_SEARCH -- "Filtro Z-Score Rosa" --> UI_FILTERS
-    DEC_SEARCH -- "Ricerca Markerless" --> UI_SEARCH
-    UI_FILTERS --> GW_FETCH
-    UI_SEARCH --> GW_FETCH
-    GW_FETCH --> GW_AUTH_STAFF
-    GW_AUTH_STAFF -- "Staff Autorizzato" --> DB_QUERY_S2 --> DEC_RISK
-    DEC_RISK -- "Idoneita Convalidata" --> GRID_ELITE
-    DEC_RISK -- "Rischio Sovraccarico" --> UI_ALERT
-    UI_ALERT -. "RTP Selezionato" .-> GRID_ELITE
-    GRID_ELITE --> DEC_WEBGL
-    DEC_WEBGL -- "WebGL SÌ" --> SRV_DIGITAL_TWIN --> SRV_KINEMATICS --> VIEWER_3D
-    DEC_WEBGL -- "Fallback Multi-Angolo" --> FALLBACK_2D --> VIEWER_3D
-    VIEWER_3D --> UI_RTP_PROTOCOL
-    UI_RTP_PROTOCOL --> DEC_ACTION
-    DEC_ACTION -- "Cartella EMR Silo 2" --> GW_EMR_SAVE --> DB_EMR_S2 --> END_READY
-    DEC_ACTION -- "Microciclo Gara" --> ASSIGN_MICROCICLO --> END_READY
+    START --> DEC_MODE
+    
+    %% Ramo Consultazione
+    DEC_MODE -- "1. Catalogo Rosa & RTP" --> UI_SEARCH_TEAM
+    UI_SEARCH_TEAM --> GW_FETCH_PRO --> GW_AUTH_CHECK
+    GW_AUTH_CHECK -- "Staff Autorizzato" --> DB_QUERY_PRO --> DEC_RISK
+    DEC_RISK -- "Idoneita Verificata" --> GRID_ELITE
+    DEC_RISK -- "Rischio Lesione (>1.5)" --> UI_ALERT_RTP -. "Esercizi Adattati" .-> GRID_ELITE
+    GRID_ELITE --> VIEWER_3D_ELITE --> DEC_ACTION
+
+    %% Ramo Registrazione Video In-App
+    DEC_MODE -- "2. Registra Video Atleta" --> UI_CAM_CAPTURE
+    UI_CAM_CAPTURE --> UI_MARKERLESS --> UI_STAFF_DRAFT
+    UI_STAFF_DRAFT --> DEC_AI_AUDIT_PRO
+    
+    DEC_AI_AUDIT_PRO -- "SÌ: Revisione AI" --> GW_AUDIT_REQ_PRO
+    GW_AUDIT_REQ_PRO --> SRV_RAG_PRO --> UI_DIFF_PRO
+    UI_DIFF_PRO --> DEC_LIBRARY_TIER
+    
+    DEC_AI_AUDIT_PRO -- "NO: Procedi con Bozza" --> DEC_LIBRARY_TIER
+    
+    DEC_LIBRARY_TIER -- "Livello 1: Singolo Atleta" --> UI_LEVEL_ATHLETE
+    DEC_LIBRARY_TIER -- "Livello 2: Libreria Club" --> UI_LEVEL_CLUB
+    
+    UI_LEVEL_ATHLETE --> GW_SYNTH_PRO
+    UI_LEVEL_CLUB --> GW_SYNTH_PRO
+    
+    GW_SYNTH_PRO --> SRV_TWIN_SYNTH --> GW_KMS_SAVE --> DB_KMS_SAVE
+    DB_KMS_SAVE --> VIEWER_TOGGLE_PRO --> DEC_ACTION
+
+    %% Ramo Creazione Solo-Testo
+    DEC_MODE -- "3. Nuovo Solo-Testo" --> UI_TEXT_CREATE_PRO
+    UI_TEXT_CREATE_PRO --> GW_AUTH_CHECK
+    GW_AUTH_CHECK -- "Tier 3 Valido" --> GW_SYNTH_PRO
+    
+    %% Conclusione
+    DEC_ACTION -- "Co-Firma Approvata" --> END_READY
