@@ -7,47 +7,57 @@ flowchart TD
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 1 (B2C CONSUMER) - FLOW 2A: PERSONAL ATHLETE COCKPIT & DIARY"]
+    TITLE["SOFTWARE 1 (B2C CONSUMER) - FLOW 2A: CATALOGO ESERCIZI & AVATAR BIOMECCANICO 3D"]
 
-    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (MOBILE PWA)"]
-        START(["Inizio: Accesso alla Home Cockpit"]):::startend
-        COCKPIT_RENDER["Rendering Cockpit: Scheda Allenamento Oggi + Widget Readiness"]:::client
-        WIDGET_STREAK["Visualizzazione Streak Giorni Consecutivi & Badge Costanza"]:::client
-        CALENDAR_VIEW["Calendario Mensile Storico Sessioni Completate"]:::client
-        BTN_START_WORKOUT["Pulsante CTA 'Avvia Allenamento di Oggi'"]:::client
-        ERR_BANNER["Banner Disconnessione: Modalita Offline Attiva (Local Cache)"]:::error
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (REACT 18 & WEBGL)"]
+        START(["Inizio: Home Cockpit - Accesso Sezione Catalogo"]):::startend
+        DEC_SEARCH{"Modalita di Ricerca?"}:::decision
+        UI_FILTERS["Filtri Dinamici Multidistretto (Muscoli, Pattern, Attrezzatura)"]:::client
+        UI_SEARCH["Ricerca Full-Text Istantanea (Debounce 250ms, 328 Esercizi)"]:::client
+        DEC_RESULTS{"Esito Query Catalogo?"}:::decision
+        GRID_POPULATED["Rendering Griglia ExerciseCard: Miniature 3D & Badge Qualita"]:::client
+        UI_EMPTY["Empty State & Offline Fallback: Suggerimenti o Cache IndexedDB"]:::error
+        DEC_WEBGL{"Supporto WebGL & Accelerazione GPU?"}:::decision
+        FALLBACK_2D["Graceful Degradation: Video 2D Pre-renderizzato MP4 60fps & Sprite"]:::error
+        VIEWER_3D["Visualizzatore Biomeccanico 3D Three.js: Orbit 360°, Tilt Zenitale, Layer Muscolari (Rosso/Giallo/Ciano)"]:::client
+        UI_PROTOCOL["Protocollo Tecnico & Contrasto Errori Biomeccanici (Why & Fix)"]:::client
+        DEC_ACTION{"Azione Atleta Post-Consultazione?"}:::decision
+        TRANSITION_PLAYER["Transizione al Player: Inserimento in Scheda o Sessione Attiva"]:::startend
+        END_READY(["Fine: Esercizio Compreso e Pronto per Esecuzione"]):::startend
     end
 
     subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & FEATURE GATING"]
-        GW_FETCH["Ricezione GET /api/v1/cockpit/athlete/today"]:::gateway
-        GW_AUTH{"JWT Tier 1 Valido?"}:::decision
-        GW_CACHE{"Dati in Edge Cache (Redis)?"}:::decision
-        GW_REJECT["HTTP 401 Unauthorized / Re-login"]:::error
+        GW_FETCH["API Gateway: GET /api/v1/catalog/exercises (Validazione JWT Tier 1)"]:::gateway
+        GW_CACHE{"Cache Redis Edge Attiva?"}:::decision
+        GW_FAV["API Gateway: POST /api/v1/user/favorites"]:::gateway
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (READINESS & DIARY ENGINE)"]
-        SRV_SCHEDULE["Risoluzione Scheda Odierna da Piano Attivo"]:::server
-        SRV_READINESS["Algoritmo Calcolo Readiness (basato su RPE ieri + sonno se presente)"]:::server
-        SRV_STREAK["Verifica Continuita Streak e Assegnazione Gamification Points"]:::server
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (CDN 3D & STREAMING CINEMATICO)"]
+        SRV_3D_STREAM["Server Scatola Nera: Asset Streaming Mesh 3D Draco GLB & LOD Progressivo"]:::server
+        SRV_KINEMATICS["Risoluzione Coordinate Articolari & Timeline Concentrica/Eccentrica"]:::server
     end
 
-    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (CONSUMER RELATIONAL)"]
-        DB_QUERY[("Query Silo 1: athlete_workouts, completion_logs, streaks")]:::db
-        END_READY(["Fine: Cockpit Interattivo Pronto per l'Atleta"]):::startend
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (CONSUMER DATA STORE)"]
+        DB_QUERY[("Query Silo 1: catalog_exercises (328 record, indici distretto/qualita)")]:::db
+        DB_FAV_SAVE[("Persistenza Silo 1: user_favorites & note personali")]:::db
     end
 
-    %% Flussi
-    START --> COCKPIT_RENDER
-    COCKPIT_RENDER --> GW_FETCH
-    GW_FETCH --> GW_AUTH
-    GW_AUTH -- No --> GW_REJECT --> ERR_BANNER
-    GW_AUTH -- Si --> GW_CACHE
-    GW_CACHE -- Cache Hit --> COCKPIT_RENDER
-    GW_CACHE -- Cache Miss --> SRV_SCHEDULE
-
-    SRV_SCHEDULE --> DB_QUERY
-    DB_QUERY --> SRV_READINESS --> SRV_STREAK
-    SRV_STREAK --> WIDGET_STREAK
-    SRV_SCHEDULE --> CALENDAR_VIEW
-    SRV_SCHEDULE --> BTN_START_WORKOUT
-    BTN_START_WORKOUT --> END_READY
+    %% Connessioni del Flusso
+    START --> DEC_SEARCH
+    DEC_SEARCH -- "Filtri Dinamici" --> UI_FILTERS
+    DEC_SEARCH -- "Ricerca Testuale" --> UI_SEARCH
+    UI_FILTERS --> GW_FETCH
+    UI_SEARCH --> GW_FETCH
+    GW_FETCH --> GW_CACHE
+    GW_CACHE -- "Cache Hit" --> DEC_RESULTS
+    GW_CACHE -- "Cache Miss" --> DB_QUERY --> DEC_RESULTS
+    DEC_RESULTS -- "Match Trovati" --> GRID_POPULATED
+    DEC_RESULTS -- "Zero Match" --> UI_EMPTY
+    UI_EMPTY -. "Reset Filtri" .-> GRID_POPULATED
+    GRID_POPULATED --> DEC_WEBGL
+    DEC_WEBGL -- "WebGL SÌ" --> SRV_3D_STREAM --> SRV_KINEMATICS --> VIEWER_3D
+    DEC_WEBGL -- "Fallback 2D" --> FALLBACK_2D --> VIEWER_3D
+    VIEWER_3D --> UI_PROTOCOL
+    UI_PROTOCOL --> DEC_ACTION
+    DEC_ACTION -- "Salva nei Preferiti" --> GW_FAV --> DB_FAV_SAVE --> END_READY
+    DEC_ACTION -- "Avvia Workout" --> TRANSITION_PLAYER --> END_READY
