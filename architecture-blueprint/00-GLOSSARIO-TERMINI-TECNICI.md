@@ -184,3 +184,115 @@ Questo documento costituisce la versione locale e sincronizzata su Git della **L
 - **Spiegazione Semplificata:** Meccanismo di sicurezza progressiva che richiede un fattore di autenticazione addizionale (SMS OTP sul numero di cellulare) solo quando l'utente tenta di compiere azioni a rischio o pubbliche.
 - **Ruolo Operativo nel Progetto T7:** Mantiene l'iscrizione base rapida in 30 secondi, ma protegge la community Together e il marketplace Movely da bot farm, spammer e account anonimi molesti.
 - **Zona di Riferimento:** Riga 1, Colonna 1 (Step 4 Social Gate) & Colonna 5 (Together B2C).
+
+---
+
+## Categoria 6: Grafica 3D, WebGL & Rendering Biomeccanico
+
+### glTF / GLB & Compressione Google Draco Mesh
+- **Spiegazione Semplificata:** Il formato standard per i modelli 3D su internet (spesso definito "il JPEG del 3D"). La compressione Draco è un algoritmo open-source di Google che riduce del 70-85% le dimensioni dei file tridimensionali senza perdita visibile di qualità.
+- **Ruolo Operativo nel Progetto T7:** Permette al Catalogo Esercizi di caricare l'avatar umano 3D in meno di 1 secondo anche su connessioni mobili lente 4G/5G, occupando pochissimi megabyte di memoria e riducendo il consumo di batteria dello smartphone.
+- **Zona di Riferimento:** Colonna 2 (Catalogo Esercizi 3D), Riga 1 (Casual B2C).
+
+### Progressive LOD (Level of Detail Dinamico WebGL)
+- **Spiegazione Semplificata:** Tecnica che adatta automaticamente la complessità visiva del modello 3D (numero di poligoni e dettagli muscolari) in base alla potenza del dispositivo dell'utente. Se il telefono scalda o rallenta, il motore abbassa i dettagli per mantenere l'animazione sempre fluida.
+- **Ruolo Operativo nel Progetto T7:** Garantisce che l'omino biomeccanico 3D si muova sempre a 60 frame al secondo (FPS) sia su un iPhone o PC da gaming di ultima generazione, sia su uno smartphone economico datato.
+- **Zona di Riferimento:** Colonna 2 (Catalogo Esercizi 3D), Corsia 1 (Guscio Visivo WebGL).
+
+### OrbitControls (Yaw 360° e Pitch Zenitale/Nadir)
+- **Spiegazione Semplificata:** Sistema di telecamera virtuale interattiva che permette all'utente di ruotare intorno all'omino 3D trascinando il dito o il mouse in qualsiasi direzione: orizzontalmente (Yaw a 360°), dall'alto verso il basso (Pitch zenitale, vista a volo d'uccello) o dal basso (Nadir, vista dal suolo), con zoom avanti e indietro (Pinch-to-zoom).
+- **Ruolo Operativo nel Progetto T7:** Consente all'atleta o al chinesiologo di osservare l'esercizio da qualunque angolazione desiderata (frontale, laterale, posteriore o dall'alto), verificando ad esempio se la schiena curva o se le ginocchia collassano verso l'interno durante uno squat.
+- **Zona di Riferimento:** Colonna 2 (Catalogo Esercizi 3D), Riga 1.
+
+### Color-Coding Neuromuscolare Dinamico (Fasce Muscolari Colorate)
+- **Spiegazione Semplificata:** Colorazione cromatica accesa dei muscoli del corpo 3D che cambia colore e intensità in tempo reale mentre l'omino si muove, evidenziando quali muscoli stanno lavorando e con quale ruolo.
+- **Ruolo Operativo nel Progetto T7:**
+  - *Rosso acceso (Agonista Primario):* Il muscolo motore principale che solleva il carico (es. Gran Pettorale nella panca piana o Quadricipite nello squat).
+  - *Arancione (Sinergista Secondario):* I muscoli che assistono il movimento (es. Deltoide anteriore e Tricipite).
+  - *Giallo / Verde (Stabilizzatore / Core):* I muscoli posturali che mantengono stabile il corpo durante lo sforzo (es. Addominali, Erettori spinali, Glutei).
+- **Zona di Riferimento:** Colonna 2 (Catalogo Esercizi 3D), Riga 1, 2 e 3.
+
+### Fasi Biomeccaniche: Concentrica vs Eccentrica & TUT (Time Under Tension)
+- **Spiegazione Semplificata:** La fase concentrica è quando il muscolo si accorcia sollevando il peso (es. spinta verso l'alto nello squat); la fase eccentrica è quando il muscolo resiste alla gravità allungandosi (es. discesa controllata). Il TUT è il tempo totale (in secondi) in cui il muscolo resta sotto tensione durante ogni ripetizione (es. 3 secondi a scendere, 1 secondo a salire).
+- **Ruolo Operativo nel Progetto T7:** L'avatar 3D scandisce visivamente e con feedback sonoro il tempo di discesa e salita raccomandato, insegnando all'utente la cadenza esatta per massimizzare la crescita muscolare o prevenire strappi tendinei.
+- **Zona di Riferimento:** Colonna 2 (Catalogo Esercizi 3D), Riga 1.
+
+### Cues Propriocettivi Verbali & Criteri Oggettivi di Validità
+- **Spiegazione Semplificata:** I "cues" sono brevi frasi di istruzione mentale che aiutano a posizionare il corpo in modo corretto (es. "spingi il pavimento via coi piedi", "petto in fuori", "gomiti a freccia non aperti a T"). I criteri di validità sono le regole per considerare una ripetizione valida (es. "la coscia deve scendere parallela al pavimento").
+- **Ruolo Operativo nel Progetto T7:** Fornisce indicazioni pedagogiche chiare sia visive che testuali per ciascun esercizio, visualizzando in rosso i punti critici dove si commettono tipicamente errori pericolosi.
+- **Zona di Riferimento:** Colonna 2 (Catalogo Esercizi 3D), Riga 1.
+
+---
+
+## Categoria 7: Prescrizione Clinica & Riabilitazione P.IVA (Tier 2)
+
+### Limitatore Goniometrico di ROM Touch (Range of Motion Lock)
+- **Spiegazione Semplificata:** Uno strumento visivo interattivo sull'avatar 3D che consente al fisioterapista o al preparatore di bloccare l'escursione consentita a un'articolazione (es. "blocca il ginocchio a massimo 60 gradi di flessione").
+- **Ruolo Operativo nel Progetto T7:** Quando il paziente apre la scheda a casa, l'avatar 3D non mostra l'esercizio completo, ma si ferma esattamente all'angolo prescritto dal medico/fisioterapista, proteggendo legamenti appena operati o zone infiammate da sovraccarichi impropri.
+- **Zona di Riferimento:** Colonna 2 (Catalogo Esercizi 3D), Riga 2 (P.IVA Fisio/Coach).
+
+### Confronto Video Side-by-Side (Clip Atleta vs Avatar 3D)
+- **Spiegazione Semplificata:** Schermata divisa in due parti: a sinistra viene riprodotto il video registrato con lo smartphone dall'atleta mentre si allena; a destra viene riprodotto l'omino 3D perfetto che esegue lo stesso identico movimento sincronizzato.
+- **Ruolo Operativo nel Progetto T7:** Permette al coach o al chinesiologo di sovrapporre le due immagini per evidenziare visivamente all'atleta le differenze di traiettoria, postura e velocità, con strumenti goniometrici di disegno a video.
+- **Zona di Riferimento:** Colonna 2 (Catalogo Esercizi 3D), Riga 2.
+
+---
+
+## Categoria 8: Telemetria Pro, Performance Tracking & Carico Rosa (Tier 3)
+
+### Digital Twin Biomeccanico dell'Atleta
+- **Spiegazione Semplificata:** Una replica digitale tridimensionale esatta dell'atleta reale, personalizzata sulle sue specifiche misure corporee (lunghezza di femore, tibia, tronco, braccia) e sul suo storico di infortuni e carichi.
+- **Ruolo Operativo nel Progetto T7:** Simula le forze di taglio, i momenti torcenti sulle ginocchia e i carichi vertebrali specifici per quel singolo giocatore durante ogni esercizio, permettendo allo staff di Serie A o squadre professionistiche di prevenire infortuni prima ancora che si manifestino sul campo.
+- **Zona di Riferimento:** Colonna 2 (Catalogo Esercizi 3D), Riga 3 (Elite Pro Teams).
+
+### Markerless Motion Capture (Computer Vision AI da Campo)
+- **Spiegazione Semplificata:** Tecnologia di intelligenza artificiale che estrae la postura e gli angoli articolari dell'atleta analizzando normali video registrati con smartphone o telecamere da campo, senza bisogno che il giocatore indossi tute speciali con palline riflettenti o sensori invasivi.
+- **Ruolo Operativo nel Progetto T7:** Rileva automaticamente e in tempo reale deviazioni posturali (es. valgismo del ginocchio, asimmetria di spinta) durante allenamenti e partite, inviando i dati cinematici al Digital Twin.
+- **Zona di Riferimento:** Colonna 2 (Catalogo Esercizi 3D), Riga 3 e Motore Video Analysis.
+
+### ACWR (Acute:Chronic Workload Ratio)
+- **Spiegazione Semplificata:** Il rapporto matematico tra il carico di lavoro svolto nell'ultima settimana (carico acuto, ovvero quanto sei stanco oggi) e la media del carico svolto nelle ultime 4 settimane (carico cronico, ovvero quanto sei allenato):
+  $$\text{ACWR} = \frac{\text{Carico Acuto (ultimi 7 giorni)}}{\text{Carico Cronico (ultimi 28 giorni)}}$$
+- **Ruolo Operativo nel Progetto T7:** Quando il rapporto supera la soglia di pericolo (generalmente $> 1.5$, la cosiddetta "zona a rischio infortuni"), il sistema avverte istantaneamente lo staff medico e riduce automaticamente volume e intensità nel catalogo esercizi del giocatore per evitare lesioni muscolari da sovraccarico.
+- **Zona di Riferimento:** Colonna 2 (Catalogo Esercizi 3D), Riga 3 & Motore Periodizzazione.
+
+### Return To Play (RTP) a 6 Fasi Congiunto
+- **Spiegazione Semplificata:** Protocollo multidisciplinare standardizzato diviso in 6 livelli consecutivi (da riabilitazione passiva in clinica, a corsa rettilinea, cambi di direzione, allenamento parziale col gruppo, fino al match ufficiale). Nessuna fase può essere superata senza la doppia firma digitale congiunta del Medico Sociale e del Responsabile Preparazione Fisica (Head S&C).
+- **Ruolo Operativo nel Progetto T7:** Sblocca gli esercizi del catalogo per il giocatore infortunato in modo progressivo e controllato, eliminando discussioni soggettive e azzerando le ricadute premature.
+- **Zona di Riferimento:** Colonna 2 (Catalogo Esercizi 3D), Riga 3.
+
+---
+
+## Categoria 9: Sicurezza Enterprise & Identità Societaria (Tier 3)
+
+### KYB (Know Your Business) & UBO (Ultimate Beneficial Owner)
+- **Spiegazione Semplificata:** Processo di rigorosa verifica dell'identità aziendale di una società sportiva professionistica. Oltre ai dati fiscali, identifica i legali rappresentanti e il "Titolare Effettivo" (UBO), cioè le persone fisiche che controllano o possiedono effettivamente la società sportiva.
+- **Ruolo Operativo nel Progetto T7:** Previene tentativi di truffa, frode societaria, spoofing o riciclaggio, garantendo che solo i dirigenti con effettivi poteri di firma depositati alla Camera di Commercio (REA/Visura) possano vincolare contrattualmente un club a T7 e accedere ai dati sanitari dei tesserati.
+- **Zona di Riferimento:** Riga 3, Colonna 1 (Onboarding Pro Teams).
+
+### mTLS (Mutual Transport Layer Security) & Chiavi Hardware FIDO2
+- **Spiegazione Semplificata:** mTLS è una crittografia avanzata in cui sia il server che il dispositivo client si autenticano a vicenda tramite certificati digitali crittografici (doppia serratura). Le chiavi hardware FIDO2 (es. YubiKey USB/NFC) sono chiavette fisiche che l'utente deve toccare per autorizzare l'accesso, rendendo impossibile il furto di password anche in caso di hackeraggio del computer.
+- **Ruolo Operativo nel Progetto T7:** Protegge il Silo 2 (Club Bunkers) delle squadre professionistiche: nessun computer o tablet dello staff può collegarsi al database societario se non è in possesso del certificato di squadra mTLS e della chiavetta hardware autorizzata.
+- **Zona di Riferimento:** Riga 3, Colonna 1 (Onboarding Pro Teams Security Gate).
+
+### Consenso Esplicito Biometrico Art. 9 GDPR
+- **Spiegazione Semplificata:** L'articolo 9 del Regolamento Europeo sulla Privacy (GDPR) proibisce il trattamento di dati particolari (come parametri biometrici, genetici e sanitari) a meno che non ci sia un consenso esplicito, informato e separato firmato con firma digitale qualificata.
+- **Ruolo Operativo nel Progetto T7:** Assicura che prima di archiviare dati di frequenza cardiaca, test VBT, carichi di forza o video biomeccanici di atleti professionisti, ogni giocatore firmi digitalmente l'informativa speciale, segregando i dati sanitari in partizioni criptate e isolate.
+- **Zona di Riferimento:** Riga 3, Colonna 1 (Onboarding Pro Teams Compliance Gate).
+
+---
+
+## Categoria 10: Principi Architetturali di Prodotto
+
+### Ereditarietà Funzionale a Cascata Top-Down (Tier 1 $\rightarrow$ Tier 2 $\rightarrow$ Tier 3)
+- **Spiegazione Semplificata:** Regola secondo cui i pacchetti di livello superiore contengono sempre e al 100% tutte le funzionalità di base dei pacchetti inferiori, arricchendole con strumenti professionali aggiuntivi.
+  - *Tier 1 (Casual B2C):* Riceve l'esperienza base pulita (Catalogo Esercizi 3D, rotazione 360°, evidenziazione muscoli, cues essenziali).
+  - *Tier 2 (P.IVA B2B):* Riceve tutto il Tier 1 + strumenti per professionisti (limitatore ROM touch, confronto video side-by-side, prescrizione schede pazienti).
+  - *Tier 3 (Pro Teams B2B):* Riceve tutto il Tier 1 + tutto il Tier 2 + strumenti enterprise (Digital Twin su misura, telemetria di squadra, ACWR, mTLS, bunker criptati).
+- **Ruolo Operativo nel Progetto T7:** Ogni modifica o miglioramento introdotto per l'utente casual viene automaticamente ereditato e mantenuto anche per fisioterapisti, coach e club professionistici, mentre le funzioni complesse e costose restano inaccessibili al piano base.
+- **Zona di Riferimento:** Regola Architetturale 08 & 10, applicata a tutte le colonne dei Flowchart.
+
+### Routing Ortogonale & Standard Zero-Crossing (Design Diagrammi ISO)
+- **Spiegazione Semplificata:** Regola grafica che impone alle linee di collegamento nei diagrammi di muoversi esclusivamente ad angolo retto (orizzontale o verticale) lungo canali dedicati, vietando tassativamente alle frecce di sovrapporsi ai testi o di attraversare diagonalmente i riquadri.
+- **Ruolo Operativo nel Progetto T7:** Garantisce leggibilità immediata e pulizia visiva assoluta sulle board Miro per chiunque debba implementare o consultare i flussi, eliminando la confusione visiva ed evitando fraintendimenti architetturali.
+- **Zona di Riferimento:** Regola 10 (Design ISO, Routing Ortogonale & Zero Crossing).
