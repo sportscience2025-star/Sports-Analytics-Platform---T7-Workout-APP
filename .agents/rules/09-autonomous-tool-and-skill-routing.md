@@ -18,6 +18,7 @@ trigger: always_on
 | **Ispirazione esterna, replicazione stile/UX, estrazione CSS da siti web** (es. Apple, Garmin, Linear, Strava) | `ui-ux-pattern-extractor` | `playwright`, `chrome-devtools` (`navigate_page`, `take_snapshot`, `get_css_styles`, `evaluate_script`) | Salva il dossier in `ui-research/<target>_spec.md` prima di modificare il codice dell'app. |
 | **Miglioramento navigazione interna, unificazione layout, fluidità tra moduli, passaggio dati senza perdita di stato** | `app-navigation-integrator` | `chrome-devtools`, `playwright` (`click`, `evaluate_script`, `take_screenshot`) | Audit routing, unificazione top/bottom bar, centralizzazione stato, verifica percorsi di click e viewport. |
 | **Debug interfaccia locale, test reattività, ispezione console e prestazioni PWA** | `modern-web-guidance`, `chrome-devtools` | `chrome-devtools` (`list_console_messages`, `performance_start_trace`, `lighthouse_audit`) | Risoluzione errori runtime JS/CSS, audit LCP e responsive design. |
+| **Diagrammi Miro, architettura C4, flowchart e capitolato Software House** | `miro-software-house-blueprint` | `miro` MCP, `chrome-devtools` | Rispetto assoluto delle Regole 08 (Tiers & Ereditarietà a Cascata) e 10 (Design ISO, Routing Ortogonale & Zero Crossing). |
 | **Operazioni sul codice JavaScript e architettura modulare** | `project-skill-policy`, `agy-customizations` | File tools (`view_file`, `replace_file_content`, `run_command` per `py test_check.py`) | Rispetto assoluto delle Regole 01 (chirurgia precisa) e 02 (modularità, no numeri magici, commenti). |
 
 ---

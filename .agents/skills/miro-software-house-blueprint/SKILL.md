@@ -7,7 +7,9 @@ description: >-
 
 # Miro & Software House Blueprint Skill
 
-Questa skill guida la progettazione, generazione e aggiornamento di diagrammi ingegneristici e flowchart sulla board Miro online e per il capitolato della Software House, nel pieno rispetto della Regola `08-miro-architecture-blueprint.md`.
+Questa skill guida la progettazione, generazione e aggiornamento di diagrammi ingegneristici e flowchart sulla board Miro online e per il capitolato della Software House, nel pieno rispetto delle Regole:
+- `08-miro-architecture-blueprint.md` (Architettura di Prodotto, Tiers ed Ereditarietà a Cascata)
+- `10-miro-design-standards-and-routing.md` (Standard Visivi, Geometria ISO, Routing Ortogonale & Zero Crossing).
 
 ---
 
@@ -31,10 +33,17 @@ Questa skill guida la progettazione, generazione e aggiornamento di diagrammi in
   - `ARANCIONE (#e67e22)`: TO-BE Nuovo (da sviluppare ex novo per la Software House).
   - `ROSSO/VIOLA (#e74c3c / #9b59b6)`: Vincolo Critico ADR / Sicurezza / Dimensione Fisica.
 
-- **Standard di Tipografia, Spaziatura & Leggibilita Aurea (FONDAMENTALE):**
-  - *Zero Testo Tagliato*: Nei riquadri e soprattutto nei rombi (decisioni), il testo deve vedersi per intero senza tagli. Dimensionare i rombi con  \ge 280\text{-}340\text{px}$ e  \ge 110\text{-}130\text{px}$ per garantire ampia superficie interna.
-  - *Etichette Connettori Orizzontali*: Le didascalie sulle frecce devono stare in orizzontale e non devono MAI accavallarsi ai bordi o al testo delle forme. Mantenere uno spazio minimo di \text{-}90\text{px}$ tra i nodi collegati.
-  - *Respiro e Larghezza Generosa*: Ispirarsi ai riquadri viola dell'Hub Centrale (width \text{-}500\text{px}$), favorendo ordine, simmetria e massima facilita di lettura immediata per chiunque consulti lo schema.
+- **Standard di Tipografia, Spaziatura, Routing Ortogonale & Zero Crossing (Regola 10):**
+  - *Zero Testo Tagliato*: Nei riquadri e soprattutto nei rombi (decisioni), il testo deve vedersi per intero senza tagli. Dimensionare i rombi con $W \ge 360\text{px}$ e $H \ge 125\text{px}$ (font 12-14px) per garantire ampia superficie utile interna.
+  - *Connettori Rigorosamente Ortogonali (`shape: 'elbowed'`) & Etichette Orizzontali*: Didascalie orizzontali (`textOrientation: 'horizontal'`), spazio minimo inter-nodo di $70\text{-}90\text{px}$.
+  - *Divieto Assoluto di Linee che Attraversano Riquadri (Zero Line-Box Crossing)*: Connettori instradati esclusivamente nei corridoi vuoti (gutters). Nessuna linea deve tagliare rettangoli o rombi.
+  - *Respiro e Larghezza Generosa*: Ispirarsi ai riquadri dell'Hub Centrale ($W \ge 380\text{-}500\text{px}$), favorendo ordine, simmetria e massima facilità di lettura immediata per chiunque consulti lo schema.
+
+- **Regola di Ereditarietà a Cascata Top-Down dei 3 Livelli (Regola 08):**
+  - Modifiche su Tier 1 (General User) $\to$ Propagazione obbligatoria e automatica su Tier 2 (P.IVA) e Tier 3 (Pro Teams).
+  - Modifiche su Tier 2 (Partita IVA) $\to$ Propagazione automatica verso il basso solo su Tier 3 (Pro Teams).
+  - Modifiche su Tier 3 (Pro Teams) $\to$ Isolate rigidamente in Tier 3 (nessuna risalita).
+
 ---
 
 ## 2. Le Zone della Board Miro & Glossario Tecnico Evolutivo
