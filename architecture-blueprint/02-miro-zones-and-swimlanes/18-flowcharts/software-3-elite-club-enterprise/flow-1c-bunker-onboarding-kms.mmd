@@ -7,39 +7,72 @@ flowchart TD
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 1C: BUNKER CLUB ONBOARDING & KMS SILO 2 ENCLAVE"]
+    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 1C: ONBOARDING ENTERPRISE & BUNKER CLUB ISOLATION (PRO TEAMS & FEDERAZIONI)"]
 
-    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (CLUB SECURE ENCLAVE)"]
-        START(["Inizio: Accesso Portale Bunker Club"]):::startend
-        INVITE_SCAN["Scansione Invito Protetto: Magic Link / QR Biometrico generato dal Medico Sociale"]:::client
-        FIDO2_PROMPT["Autenticazione Hardware FIDO2 / Passkey Livello 3 (Dispositivo Aziendale Verificato)"]:::client
-        DASH_CLUB["Accesso Immediato al Cockpit di Squadra"]:::client
-        ERR_UNAUTHORIZED["Schermata Blocco: Certificato Dispositivo Invalido o Accesso Negato"]:::error
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (PORTALE ISTITUZIONALE & APP ATLETA)"]
+        START(["Inizio: Accesso T7 Elite Club"]):::startend
+        CLUB_PORTAL["T7 Elite Club - Portale Istituzionale Società Sportive"]:::client
+        CHECK_CLUB{"Club già Accreditato su T7?<br/>SÌ (Login) / NO (Nuovo Club)"}:::decision
+
+        %% Ramo Login
+        ROLE_CHECK{"Canale di Accesso Pro?<br/>Staff R1..R6 vs Giocatore"}:::decision
+        STAFF_LOGIN["Accesso Staff: Corporate SSO SAML (Entra ID/Okta) + mTLS + FIDO2"]:::client
+        ATHLETE_LOGIN["Accesso Atleta: App Mobile con Passkey Biometrica (Face ID / Touch ID)"]:::client
+        ATHLETE_ATTEST["Attestazione Hardware & Secure Enclave Personale (Blocco Screenshot & Anti-Intercettazione)"]:::client
+        ATHLETE_READY["Abilitazione Modulo Personale Atleta: Scheda & GPS (Vista Isolata, Zero Visibilità Compagni)"]:::client
+
+        %% Ramo Accreditamento Nuovo Club
+        STEP1_DOMAIN["Step 1: Richiesta Accreditamento Club & Dominio (@club.com + Matricola Federale)"]:::client
+        STEP2_KYB["Step 2: Verifica KYB Telematica & Visura Camerale (ATECO 93.12 + Registro CONI)"]:::client
+        ERR_SPOOFING["Schermata Blocco Anti-Spoofing: P.IVA Non Valida o Falso Club"]:::error
+        STEP3_DNS["Step 3: Verifica DNS TXT & Legale Rappresentante (SPID / CIE / eIDAS Level 3)"]:::client
+        STEP4_CONTRACTS["Step 4: Firma Digitale Contratti Enterprise (MSA, SLA 99.9%, DPA GDPR Art. 28, BAA Sanitario)"]:::client
+        STEP6_DELEGATES["Step 6: Deleghe Multi-Staff R1..R6 & Inviti Atleti Protetti via Medico Sociale"]:::client
+
+        COCKPIT_READY["Ingresso Cockpit di Squadra (Sessione Blindata Silo 2)"]:::client
+        EXIT_SEZ2(["➔ Naviga a Sezione 2: Team Squad Cockpit Hub"]):::startend
     end
 
-    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & SECURITY PERIMETER"]
-        GW_MTLS["Verifica Sicurezza di Rete: mTLS (Mutual TLS) + Controllo IP Whitelist Club"]:::gateway
-        GW_VERIFY_INVITE{"Verifica Crittografica Token Invito e Dispositivo?"}:::decision
-        GW_CLUB_JWT["Emissione JWT Tier 3 con Club Tenant ID, Ruolo Staff (R1..R8) e KMS Key Handle"]:::gateway
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & ENTERPRISE SECURITY PERIMETER"]
+        GW_SAML_PROXY["SAML 2.0 / OIDC Identity Broker (Federazione Microsoft 365 / Google Workspace Enterprise)"]:::gateway
+        GW_KYB_CHECK{"Esito Verifica KYB Federale?"}:::decision
+        GW_MTLS_VALID["Validazione Certificato mTLS + Controllo IP Whitelist Centro Sportivo"]:::gateway
+        GW_JWT_ISSUER["Emissione JWT Tier 3 con Club Tenant ID, Role Claims (R1..R6) e Session Handle"]:::gateway
     end
 
     subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (BUNKER PROVISIONING ENGINE)"]
-        SRV_KMS_BIND["Collegamento Chiave KMS Dedicata del Club (Crittografia Envelope)"]:::server
-        SRV_RBAC_PROV["Provisioning Ruoli Multi-Staff: Medico, Preparatore, Allenatore, Analyst"]:::server
-        SRV_AUDIT_LOG["Scrittura Log Immutabile di Sicurezza (Chi ha fatto accesso, quando, da quale IP)"]:::server
+        SRV_CHALLENGE_DNS["Verifica Record DNS TXT e Corrispondenza MX Dominio Aziendale"]:::server
+        SRV_EIDAS_VERIFY["Verifica Firma Digitale Qualificata & Poteri di Rappresentanza Legale"]:::server
+        SRV_KMS_PROVISION["Provisioning Enclave Criptata: Creazione Customer Managed Key (CMEK) su Cloud KMS"]:::server
+        SRV_KMS_DECRYPT["Aggancio Chiave KMS & Decrittazione Dinamica Partizione Silo 2"]:::server
+        SRV_AUDIT_WORM["Scrittura Registro Audit Immutabile WORM (Logging Accessi & Prevenzione Esfiltrazione)"]:::server
     end
 
     subgraph LANE_DB["CORSIA 4: DATABASE SILO 2 (BUNKER CLUB KMS ENCLAVE)"]
-        DB_WRITE_S2[("Salvataggio Record Utente Staff in Silo 2 Crittografato AES-256-GCM")]:::db
-        DB_AUDIT[("Archiviazione Audit Log Immutabile nel Bunker di Sicurezza")]:::db
-        END_CLUB_AUTH(["Fine: Staff Autenticato nel Bunker del Club"]):::startend
+        DB_ENCLAVE_INIT[("Inizializzazione Partizione Silo 2 Criptata AES-256-GCM per il Club")]:::db
+        DB_EMR_SECURE[("Cartella EMR Cifrata: Gruppo Sanguigno, Infortuni, Idoneità Agonistica (Solo Medico)")]:::db
+        DB_AUDIT_LOG[("Archivio Audit Log Immutabile nel Bunker di Sicurezza")]:::db
+        DB_SESSION_ACTIVE[("Sessione Bunker Attiva: Token Effimero e Diritti di Accesso per Ruolo")]:::db
     end
 
-    %% Flussi
-    START --> INVITE_SCAN --> FIDO2_PROMPT
-    FIDO2_PROMPT --> GW_MTLS --> GW_VERIFY_INVITE
-    GW_VERIFY_INVITE -- Rifiutato --> ERR_UNAUTHORIZED
-    GW_VERIFY_INVITE -- Approvato --> SRV_KMS_BIND --> SRV_RBAC_PROV
-    SRV_RBAC_PROV --> DB_WRITE_S2
-    SRV_RBAC_PROV --> SRV_AUDIT_LOG --> DB_AUDIT
-    DB_WRITE_S2 --> GW_CLUB_JWT --> DASH_CLUB --> END_CLUB_AUTH
+    %% Collegamenti Flusso
+    START --> CLUB_PORTAL --> CHECK_CLUB
+
+    %% Flusso Login Diretto
+    CHECK_CLUB -- "SÌ (Club Attivo)" --> ROLE_CHECK
+    ROLE_CHECK -- "Staff R1..R6" --> STAFF_LOGIN --> GW_MTLS_VALID
+    GW_MTLS_VALID --> SRV_KMS_DECRYPT --> DB_SESSION_ACTIVE --> GW_JWT_ISSUER
+    ROLE_CHECK -- "Giocatore" --> ATHLETE_LOGIN --> ATHLETE_ATTEST --> ATHLETE_READY
+
+    %% Flusso Registrazione Nuovo Club
+    CHECK_CLUB -- "NO (Nuovo Club)" --> STEP1_DOMAIN --> STEP2_KYB --> GW_KYB_CHECK
+    GW_KYB_CHECK -- "Fallita / Spoofing" --> ERR_SPOOFING
+    GW_KYB_CHECK -- "Valida / Conforme" --> STEP3_DNS --> SRV_CHALLENGE_DNS --> SRV_EIDAS_VERIFY
+    SRV_EIDAS_VERIFY --> STEP4_CONTRACTS --> SRV_KMS_PROVISION --> DB_ENCLAVE_INIT
+    DB_ENCLAVE_INIT --> STEP6_DELEGATES --> DB_EMR_SECURE
+
+    %% Confluenza nel Cockpit & Navigazione
+    GW_JWT_ISSUER --> COCKPIT_READY
+    ATHLETE_READY --> COCKPIT_READY
+    STEP6_DELEGATES --> COCKPIT_READY
+    COCKPIT_READY --> EXIT_SEZ2
