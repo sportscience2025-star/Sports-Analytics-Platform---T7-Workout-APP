@@ -7,49 +7,56 @@ flowchart TD
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 2C: MULTI-STAFF SQUAD COCKPIT WITH ROLE SEGREGATION"]
+    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 2C: CATALOGO 3D & TELEMETRIA CINEMATICA SQUADRA"]
 
-    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (MULTI-STAFF COCKPIT)"]
-        START(["Inizio: Accesso Cockpit Squadra"]):::startend
-        STAFF_SELECTOR{"Ruolo Attivo dell'Utente Staff"}:::decision
-        VIEW_COACH["Vista Tattica Allenatore: Convocati, Schieramento Tattico, Disponibilita"]:::client
-        VIEW_SC["Vista Preparatore Atletico: Carichi GPS, Indici Fatica, Allarmi Sovraccarico"]:::client
-        VIEW_DOC["Vista Medico Sociale: Cartelle Cliniche, Stato Infortuni, Fasi Return to Play"]:::client
-        VIEW_ANALYST["Vista Match Analyst: Code Clip Partita, Tag Eventi, Dati Posizionali"]:::client
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (TEAM SQUAD COCKPIT)"]
+        START(["Inizio: Team Cockpit - Accesso Catalogo 3D & Telemetria (Elite Club)"]):::startend
+        DEC_SEARCH{"Modalita Ricerca Staff?"}:::decision
+        UI_FILTERS["Filtri Tattici, Ruolo & Z-Score Acute:Chronic (GPS + HRV)"]:::client
+        UI_SEARCH["Ricerca Markerless Pose & Modelli Cinematica 3D (Computer Vision)"]:::client
+        DEC_RISK{"Stato Readiness & Rischio Squadra?"}:::decision
+        GRID_ELITE["Griglia Catalogo Elite: Mapping Telemetria & Miniature 3D"]:::client
+        UI_ALERT["Gestione Alert Sovraccarico & Protocollo Return to Play (RTP)"]:::error
+        DEC_WEBGL{"Rendering 3D Multi-Stream?"}:::decision
+        FALLBACK_2D["Backup Multi-Angolo 4K & Clip Tattiche Sincronizzate (120fps)"]:::error
+        VIEWER_3D["Visualizzatore 3D Elite: Orbit 360°, Telemetria Vettori & Digital Twin Atleta"]:::client
+        UI_RTP_PROTOCOL["Validazione Congiunta Staff Medico-Tecnico & Criteri RTP 6 Fasi"]:::client
+        DEC_ACTION{"Destinazione Esercizio Validato?"}:::decision
+        ASSIGN_MICROCICLO["Assegnazione a Microciclo Gara Squadra (MD-X)"]:::startend
+        END_READY(["Fine: Telemetria Esercizio Sincronizzata"]):::startend
     end
 
-    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & RBAC CLAIMS ROUTING"]
-        GW_FETCH_COCKPIT["Ricezione GET /api/v1/club/cockpit/data"]:::gateway
-        GW_RBAC_FILTER{"Controllo Claims JWT Ruolo (R1..R8)?"}:::decision
-        GW_REDACT["Oscuramento Dati Sanitari Sensibili per Personale Non Medico (GDPR)"]:::gateway
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & RBAC TIER 3 (mTLS)"]
+        GW_FETCH["API Gateway mTLS: GET /api/v1/club/catalog/exercises?team_id=..."]:::gateway
+        GW_AUTH_STAFF{"Autenticazione mTLS + FIDO2 Hardware Staff?"}:::decision
+        GW_EMR_SAVE["API Gateway: POST /api/v1/club/emr-telemetry (KMS Silo 2)"]:::gateway
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (STAFF PROJECTION ENGINE)"]
-        SRV_PROJECTION["Motore Proiezione Dati per Ruolo: Costruzione Payload Personalizzato"]:::server
-        SRV_READINESS_SQUAD["Calcolo Indice Readiness Generale Squadra (Media Ponderata GPS + Wellness)"]:::server
-        SRV_ALERT_DISPATCH["Notifica Cross-Staff: 'Medico ha aggiornato lo status di Atleta X a NON DISPONIBILE'"]:::server
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (DIGITAL TWIN & COMPUTER VISION ENGINE)"]
+        SRV_DIGITAL_TWIN["Server Scatola Nera: Streaming Digital Twin 3D Draco GLB (<50ms)"]:::server
+        SRV_KINEMATICS["Calcolo Traiettorie Ideali vs Reali, Asimmetrie L/R & Potenza (W)"]:::server
     end
 
     subgraph LANE_DB["CORSIA 4: DATABASE SILO 2 (BUNKER CLUB KMS ENCLAVE)"]
-        DB_LOAD_S2[("Lettura Squadra, Parametri GPS e Cartelle Cliniche Crittografate da Silo 2")]:::db
-        END_STAFF_READY(["Fine: Cockpit di Squadra Personalizzato e Conforme RBAC"]):::startend
+        DB_QUERY_S2[("Query Silo 2: rosa prima squadra, Z-Score & cartelle cliniche crittografate")]:::db
+        DB_EMR_S2[("Persistenza Silo 2: fascicolo EMR, prescrizioni congiunte e telemetria")]:::db
     end
 
-    %% Flussi
-    START --> STAFF_SELECTOR
-    STAFF_SELECTOR -- Allenatore (R7) --> VIEW_COACH
-    STAFF_SELECTOR -- Preparatore (R5) --> VIEW_SC
-    STAFF_SELECTOR -- Medico Sociale (R3) --> VIEW_DOC
-    STAFF_SELECTOR -- Match Analyst (R6) --> VIEW_ANALYST
-
-    VIEW_COACH --> GW_FETCH_COCKPIT
-    VIEW_SC --> GW_FETCH_COCKPIT
-    VIEW_DOC --> GW_FETCH_COCKPIT
-    VIEW_ANALYST --> GW_FETCH_COCKPIT
-
-    GW_FETCH_COCKPIT --> GW_RBAC_FILTER
-    GW_RBAC_FILTER -- Personale Non Medico --> GW_REDACT --> SRV_PROJECTION
-    GW_RBAC_FILTER -- Medico Autorizzato --> SRV_PROJECTION
-
-    SRV_PROJECTION --> DB_LOAD_S2
-    DB_LOAD_S2 --> SRV_READINESS_SQUAD --> SRV_ALERT_DISPATCH --> END_STAFF_READY
+    %% Connessioni del Flusso
+    START --> DEC_SEARCH
+    DEC_SEARCH -- "Filtro Z-Score Rosa" --> UI_FILTERS
+    DEC_SEARCH -- "Ricerca Markerless" --> UI_SEARCH
+    UI_FILTERS --> GW_FETCH
+    UI_SEARCH --> GW_FETCH
+    GW_FETCH --> GW_AUTH_STAFF
+    GW_AUTH_STAFF -- "Staff Autorizzato" --> DB_QUERY_S2 --> DEC_RISK
+    DEC_RISK -- "Idoneita Convalidata" --> GRID_ELITE
+    DEC_RISK -- "Rischio Sovraccarico" --> UI_ALERT
+    UI_ALERT -. "RTP Selezionato" .-> GRID_ELITE
+    GRID_ELITE --> DEC_WEBGL
+    DEC_WEBGL -- "WebGL SÌ" --> SRV_DIGITAL_TWIN --> SRV_KINEMATICS --> VIEWER_3D
+    DEC_WEBGL -- "Fallback Multi-Angolo" --> FALLBACK_2D --> VIEWER_3D
+    VIEWER_3D --> UI_RTP_PROTOCOL
+    UI_RTP_PROTOCOL --> DEC_ACTION
+    DEC_ACTION -- "Cartella EMR Silo 2" --> GW_EMR_SAVE --> DB_EMR_S2 --> END_READY
+    DEC_ACTION -- "Microciclo Gara" --> ASSIGN_MICROCICLO --> END_READY

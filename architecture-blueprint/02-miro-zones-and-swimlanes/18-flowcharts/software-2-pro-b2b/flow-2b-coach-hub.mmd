@@ -7,44 +7,56 @@ flowchart TD
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 2 (B2B PRO P.IVA) - FLOW 2B: COACH MULTI-ATHLETE ROSTER & ADHERENCE HUB"]
+    TITLE["SOFTWARE 2 (B2B PRO P.IVA) - FLOW 2B: CATALOGO 3D & PRESCRIZIONE CLINICA ATLETI"]
 
     subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (COACH COCKPIT)"]
-        START(["Inizio: Accesso Coach Hub"]):::startend
-        ROSTER_VIEW["Tabella Roster Atleti: Nome, Status Scheda, Aderenza %, Alert RPE"]:::client
-        ATHLETE_FILTER["Filtro Rapido: 'In Scadenza', 'Infortunati', 'Bassa Aderenza'"]:::client
-        ALERT_BADGE["Badge Alert Rosso: Atleta ha segnalato Dolore o RPE > 9 imprevisto"]:::error
-        INVITE_BTN["Pulsante 'Invita Nuovo Atleta' (Genera Link / Invio Email)"]:::client
-        SELECT_ATHLETE["Selezione Atleta per Gestione Scheda / Modifica Piano"]:::client
+        START(["Inizio: Coach Cockpit - Accesso Catalogo Esercizi (Pro P.IVA)"]):::startend
+        DEC_SEARCH{"Modalita di Ricerca Coach?"}:::decision
+        UI_FILTERS["Filtri Tassonomici & Triage 119 Patologie (ImpactCalculator)"]:::client
+        UI_SEARCH["Ricerca Full-Text & Codici Clinici (cli_01..32, PubMed RAG)"]:::client
+        DEC_SAFETY{"Verifica Compatibilita Clinica?"}:::decision
+        GRID_PRO["Griglia Esercizi Pro: Badge Idoneita & Miniature 3D"]:::client
+        UI_ALERT["Alert Clinico Sovraccarico: Proposta 3 Alternative Sicure"]:::error
+        DEC_WEBGL{"Supporto WebGL & Accelerazione GPU?"}:::decision
+        FALLBACK_2D["Fallback 2D & Scheda Goniometrica Sintetica"]:::error
+        VIEWER_3D["Visualizzatore 3D Pro: Orbit 360°, Fasce Muscolari & Limitatore ROM Touch"]:::client
+        UI_PRESCRIPTION["Prescrizione Tecnica & Note Personalizzate del Coach"]:::client
+        DEC_ACTION{"Destinazione Prescrizione?"}:::decision
+        EXPORT_DOSSIER["Export Scheda PDF Interattivo / Excel .xlsx con QR 3D"]:::startend
+        END_READY(["Fine: Esercizio Prescritto con Successo"]):::startend
     end
 
-    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & ACCESS CONTROL"]
-        GW_FETCH_ROSTER["Ricezione GET /api/v1/pro/roster"]:::gateway
-        GW_INVITE_REQ["Ricezione POST /api/v1/pro/roster/invite"]:::gateway
-        GW_CHECK_LIMIT{"Limite Max Atleti Raggiunto per Tier 2?"}:::decision
-        GW_LIMIT_ALERT["Messaggio: Limite Roster Raggiunto - Upgrade Piano Richiesto"]:::error
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & RBAC TIER 2"]
+        GW_FETCH["API Gateway: GET /api/v1/pro/catalog/exercises?client_id=..."]:::gateway
+        GW_CHECK_TIER{"Validazione JWT Tier 2 Pro?"}:::decision
+        GW_ASSIGN["API Gateway: POST /api/v1/pro/client-workouts"]:::gateway
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (ROSTER ADHERENCE ENGINE)"]
-        SRV_ADHERENCE["Calcolo Indice Aderenza %: Sessioni Pianificate vs Eseguite"]:::server
-        SRV_TRIAGE_ALERT["Scansione Notifiche Cliniche e Alert Affaticamento Anomalo"]:::server
-        SRV_GEN_TOKEN["Generazione Token d'Invito con Scadenza 48h"]:::server
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (CDN 3D & CLINICAL ENGINE)"]
+        SRV_3D_ROM["Server Scatola Nera: Asset 3D Draco + Iniezione Vincoli Goniometrici ROM"]:::server
+        SRV_TRIAGE["Motore Triage: Analisi Rischi Clinici su Anamnesi Atleta"]:::server
     end
 
-    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (PRO CLIENT TENANT)"]
-        DB_QUERY_CLIENTS[("Query Silo 1: pro_clients WHERE coach_id = current_pro")]:::db
-        DB_WRITE_INVITE[("Salvataggio Record Invito in Silo 1: client_invites")]:::db
-        END_HUB_READY(["Fine: Roster Gestito o Invito Inviato"]):::startend
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (PRO MULTI-TENANT)"]
+        DB_QUERY[("Query Silo 1: catalog_exercises + anamnesi atleta attivo")]:::db
+        DB_ASSIGN[("Persistenza Silo 1: client_workouts & note coach")]:::db
     end
 
-    %% Flussi
-    START --> ROSTER_VIEW --> ATHLETE_FILTER
-    ROSTER_VIEW --> GW_FETCH_ROSTER --> DB_QUERY_CLIENTS
-    DB_QUERY_CLIENTS --> SRV_ADHERENCE --> SRV_TRIAGE_ALERT
-    SRV_TRIAGE_ALERT --> ALERT_BADGE --> SELECT_ATHLETE
-
-    ROSTER_VIEW --> INVITE_BTN --> GW_INVITE_REQ
-    GW_INVITE_REQ --> GW_CHECK_LIMIT
-    GW_CHECK_LIMIT -- Limite Superato --> GW_LIMIT_ALERT
-    GW_CHECK_LIMIT -- Quota OK --> SRV_GEN_TOKEN --> DB_WRITE_INVITE --> END_HUB_READY
-    SELECT_ATHLETE --> END_HUB_READY
+    %% Connessioni del Flusso
+    START --> DEC_SEARCH
+    DEC_SEARCH -- "Filtro & Triage Clinico" --> UI_FILTERS
+    DEC_SEARCH -- "Ricerca Specialistica" --> UI_SEARCH
+    UI_FILTERS --> GW_FETCH
+    UI_SEARCH --> GW_FETCH
+    GW_FETCH --> GW_CHECK_TIER
+    GW_CHECK_TIER -- "Tier 2 Valido" --> SRV_TRIAGE --> DB_QUERY --> DEC_SAFETY
+    DEC_SAFETY -- "Compatibilita Verificata" --> GRID_PRO
+    DEC_SAFETY -- "Rilevato Rischio Clinico" --> UI_ALERT
+    UI_ALERT -. "Alternative Selezionate" .-> GRID_PRO
+    GRID_PRO --> DEC_WEBGL
+    DEC_WEBGL -- "WebGL SÌ" --> SRV_3D_ROM --> VIEWER_3D
+    DEC_WEBGL -- "Fallback 2D" --> FALLBACK_2D --> VIEWER_3D
+    VIEWER_3D --> UI_PRESCRIPTION
+    UI_PRESCRIPTION --> DEC_ACTION
+    DEC_ACTION -- "Scheda Cliente" --> GW_ASSIGN --> DB_ASSIGN --> END_READY
+    DEC_ACTION -- "Export PDF/Excel" --> EXPORT_DOSSIER --> END_READY
