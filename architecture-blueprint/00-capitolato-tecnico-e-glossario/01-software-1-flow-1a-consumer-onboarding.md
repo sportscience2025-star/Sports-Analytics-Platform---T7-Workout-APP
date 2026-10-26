@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 1A – Accesso, Onboarding & Anamnesi Anti-Frode (T7 Consumer)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#01` (Posizione: `X: -2570, Y: 260`)
+- **Badge Miro Board:** `#01` (Posizione: `X: -2570, Y: 260`, Miro Shape ID: `3458764688417722706`)
 - **Codice Univoco:** `FLOW-1A`
 - **Titolo Formale:** SOFTWARE 1 (B2C CONSUMER) - FLOW 1A: ACCESSO, ONBOARDING & ANAMNESI ANTI-FRODE (T7 CONSUMER)
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 1: General User / Casual, Colonna 1: Onboarding & Accesso)
@@ -9,6 +9,8 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Thin Client, WebAuthn, API Gateway, Cloudflare Turnstile, BMR Mifflin-St Jeor, PAR-Q+*).
 
 ---
+
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -24,6 +26,8 @@ Questo modulo rappresenta la "porta d'ingresso" accogliente ma protetta della pi
 
 ---
 
+
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (Mobile React Native / PWA React 18):**
@@ -36,6 +40,43 @@ Questo modulo rappresenta la "porta d'ingresso" accogliente ma protetta della pi
    - Persistenza anagrafica cifrata (password hashate con Argon2id), audit trail medico-legale immutabile con timestamp e hash SHA-256 delle risposte sanitarie (`health_waivers`).
 
 ---
+
+
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-1A)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Utente as Thin Client UI (React 18)
+    participant GW as API Gateway & Envoy (Corsia 2)
+    participant SRV as Server Scatola Nera (Corsia 3)
+    participant DB as Database Silo 1 (Corsia 4)
+
+    Utente->>GW: POST /api/v1/auth/register-b2c (Email, Dati, X-Turnstile-Token)
+    GW->>GW: Convalida Token Cloudflare Turnstile & Filtro Anti-Bot
+    GW->>SRV: Inoltro payload registrazione verificata
+    SRV->>SRV: Hash credenziali Argon2id & verifica maggiorenne (Age Gate)
+    SRV->>DB: Inserimento anagrafica auth_users & athlete_profiles
+    DB-->>SRV: Conferma transazione UUID utente
+    SRV-->>GW: Emissione JWT Bearer (Tier 1) & Refresh Token HttpOnly
+    GW-->>Utente: 201 Created (Redirect a Screening Sanitario)
+    
+    Utente->>GW: POST /api/v1/auth/parq-waiver (7 risposte booleane, firma SHA-256)
+    GW->>SRV: Dispatch valutazione clinica
+    SRV->>SRV: Calcolo BMR (Mifflin-St Jeor) & Valutazione Red Flags PAR-Q+
+    SRV->>DB: Archiviazione immutabile health_waivers (Audit Trail)
+    DB-->>SRV: Commit confermato
+    alt Red Flags = 0 (Idoneità Piena)
+        SRV-->>Utente: 200 OK (FULL_CLEARANCE, cautionMode: false, BMR calcolato)
+    else Red Flags >= 1 (Idoneità Cautelativa)
+        SRV-->>Utente: 200 OK (MEDICAL_CAUTION, cautionMode: true, filtri assiali attivi)
+    end
+```
+
+---
+
+
 
 ## 4. Flusso Operativo Passo-Passo
 
@@ -50,6 +91,21 @@ Questo modulo rappresenta la "porta d'ingresso" accogliente ma protetta della pi
 6. **La Community (Opzionale):** L'app chiede: *"Vuoi condividere i tuoi progressi nella community e chattare con i coach?"*. Se sì, per evitare troll e profili finti, chiede di confermare il numero di cellulare con un codice SMS. Se l'utente vuole solo allenarsi in privato, salta questo passaggio e atterra dritto nel suo Cockpit personale.
 
 ---
+
+
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Conversione Onboarding** | $> 92\%$ utenti completati | $\ge 88\%$ | Trigger A/B test form semplificato |
+| **Latenza Turnstile Challenge** | $< 350\text{ ms}$ | $\le 600\text{ ms}$ | Silent retry su endpoint secondario |
+| **Accuratezza Calcolo BMR** | $100\%$ deterministico | $0\%$ scostamento | Ricalcolo server-side immediato |
+| **Audit Log PAR-Q+ SHA-256** | $100\%$ manleve con hash | $0\%$ omissioni | Blocco emissione token e rollback |
+
+
+---
+
+
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
@@ -84,6 +140,8 @@ Questo modulo rappresenta la "porta d'ingresso" accogliente ma protetta della pi
 
 ---
 
+
+
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
@@ -102,6 +160,8 @@ Questo modulo rappresenta la "porta d'ingresso" accogliente ma protetta della pi
    - *Numero di telefono non valido per step-up:* Evidenziazione bordo campo in rosso con messaggio *"Numero non valido per la ricezione di codici SMS"*.
 
 ---
+
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -149,6 +209,23 @@ Questo modulo rappresenta la "porta d'ingresso" accogliente ma protetta della pi
 - `health_waivers`: `id UUID PK`, `athlete_id UUID FK -> athlete_profiles.id`, `parq_answers JSONB`, `signed_waiver BOOLEAN`, `ip_address INET`, `payload_sha256 VARCHAR(64)`, `created_at TIMESTAMPTZ`.
 
 ---
+
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_INVALID_AGE` | `POST /register-b2c` | Data di nascita con età $< 18$ anni | Modale: *"Richiesta maggiore età per iscriversi"* | Blocco form con evidenziazione campo data |
+| **401** | `ERR_AUTH_EXPIRED` | `POST /parq-waiver` | Token di sessione scaduto o revocato | Banner: *"Sessione scaduta, effettua nuovo accesso"* | Rinnovo automatico via Refresh Token HttpOnly |
+| **403** | `ERR_BOT_DETECTED` | `POST /register-b2c` | Fallimento challenge Cloudflare Turnstile | Alert: *"Rilevata attività anomala. Riprova più tardi"* | Rigenerazione token challenge trasparente |
+| **409** | `ERR_EMAIL_EXISTS` | `POST /register-b2c` | Indirizzo email già presente a sistema | Tooltip: *"Email già registrata. Accedi o recupera"* | Proposta switch a login 1-tap con Passkey |
+| **429** | `ERR_RATE_LIMIT` | `POST /register-b2c` | Più di 5 tentativi di iscrizione/min per IP | Toast: *"Troppi tentativi. Attendi 60 secondi"* | Blocco temporaneo client con countdown timer |
+| **500** | `ERR_BMR_COMPUTE` | `POST /parq-waiver` | Eccezione nel calcolo metabolico server | Banner ambrato: *"Profilo creato, calcolo in corso"* | Assegnazione BMR medio e job asincrono in coda |
+
+
+---
+
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 

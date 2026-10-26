@@ -72,8 +72,35 @@ Griglia ordinata da sinistra a destra sulla board Miro online (`uXjVEbo6L2o=`):
 - **ZONA 1 (Contesto, Tiers & ADR):** Matrice permessi RBAC (3 Tier $\times$ 8 Ruoli), Mappa Ecosistema esterno (Wearable Apple Health/Google Health Connect) e schede Architecture Decision Record (ADR).
 - **ZONA 2 (Architettura C4: Client, Server & DB):** Diagramma C4 Thin Client + API Gateway + 5 Motori Server (VBT, Periodizzazione/Triage, Z-Score, RAG, Export Excel/PDF) + 3 Silos DB.
 - **ZONA 3 (Navigazione Apple & Matrice Interconnessione):** Global Shell con Selettore di Contesto Globale (Atleta/Squadra attiva) ed Event Storming cross-modulo (Fisio $\to$ Scheda; VBT $\to$ 1RM; Match Analysis $\to$ Z-Score).
-- **ZONA 4 (Flowchart Operativi a 4 Swimlanes sui 3 Livelli):** Flussi operativi dei processi applicativi distribuiti sulle 3 righe verticali (General User, Partita IVA, Pro Teams) nel pieno rispetto della Regola 10 per layout e routing.
+- **ZONA 4 (Flowchart Operativi a 4 Swimlanes sui 3 Livelli):** Flussi operativi dei processi applicativi distribuiti sulle 3 righe verticali (General User, Partita IVA, Pro Teams) e strutturati su 6 Colonne Funzionali nel pieno rispetto della Regola 10 per layout e routing.
 - **ZONA 5 (Database ERD & Roadmap Software House):** Schema Entità-Relazione completo e matrice consuntiva di capitolato.
+
+### Matrice delle 6 Colonne Funzionali della ZONA 4
+La Zona 4 organizza i 18 diagrammi di flusso incrociando i 3 Tier applicativi (righe verticali) con 6 Colonne Funzionali tematiche specializzate:
+1. **Colonna 1: Identity, Security & Anti-Frode:**
+   - *Tier 1 (FLOW-1A):* Accesso consumer, onboarding biometrico, anamnesi e verifica bot (WebAuthn/Turnstile).
+   - *Tier 2 (FLOW-1B):* Onboarding Pro, verifica fiscale P.IVA (VIES/AdE) e contrattualistica digitale anti-frode.
+   - *Tier 3 (FLOW-1C):* Onboarding Enterprise Bunker, federazione SAML 2.0 / SSO e crittografia Cloud KMS multi-tenant.
+2. **Colonna 2: 3D Catalog, Kinematics & Computer Vision:**
+   - *Tier 1 (FLOW-2A):* Catalogo interattivo 3D con OrbitControls e animazioni Draco ad alte prestazioni.
+   - *Tier 2 (FLOW-2B):* Coach Hub, revisione esecuzione tramite Optical Bar Path Tracking da video streaming WebRTC.
+   - *Tier 3 (FLOW-2C):* Multi-Staff Cockpit, sincronizzazione multi-camera 4K e Secret Club Vault a tenuta stagna.
+3. **Colonna 3: Periodization, Triage & Workout Execution:**
+   - *Tier 1 (FLOW-3A):* Thin Client Workout Player con timer recupero, audio feedback e caching offline IndexedDB.
+   - *Tier 2 (FLOW-3B):* Macrocicli IA (DUP, Coniugata, Blocchi) e motore di Triage Clinico 119 patologie.
+   - *Tier 3 (FLOW-3C):* Microciclo Squadra MD-X (gestione titolari vs panchinari) integrato su Bunker Silo 2.
+4. **Colonna 4: Telemetry, Wearable Sync, VBT & GPS:**
+   - *Tier 1 (FLOW-4A):* Sync wearable consumer (HealthKit, Health Connect) e Readiness Composite Score.
+   - *Tier 2 (FLOW-4B):* Biomeccanica VBT avanzata (regressione OLS 1RM, MVT), salti CMJ/Abalakov e potenziamento PAP.
+   - *Tier 3 (FLOW-4C):* Telemetria GPS da campo (potenza metabolica Osgnach, filtraggio DOP) e Z-Score Adattivo a 28 giorni.
+5. **Colonna 5: Social Community, Marketplace & Tactical Vision:**
+   - *Tier 1 (FLOW-5A):* Together Social B2C, timeline a ventaglio (Fan-Out on Write) e vetrina coach/fisio.
+   - *Tier 2 (FLOW-5B):* Together Pro Business, pacchetti di consulenza e videocall WebRTC protette.
+   - *Tier 3 (FLOW-5C):* Tactical Vision, tracking YOLOv8, omografia prospettica 2D e diagrammi di Voronoi per il controllo del campo.
+6. **Colonna 6: Rehab ROM, Clinical Desk-Care & Research Lake:**
+   - *Tier 1 (FLOW-6A):* Movely Desk-Care, prevenzione sedentarietà e micro-pause ergonomiche da ufficio.
+   - *Tier 2 (FLOW-6B):* Physio Rehab, goniometro markerless AI, scala VAS 0-10 e 32 protocolli riabilitativi.
+   - *Tier 3 (FLOW-6C):* Medical Room EMR a segreto medico e pipeline ETL de-identificata verso Silo 3 Research Warehouse.
 
 ---
 
@@ -95,51 +122,59 @@ Per eliminare ambiguità e permettere a chiunque (Software House, preparatori, m
 
 Per garantire che la Software House, i programmatori e gli stakeholder ricevano un capitolato applicativo privo di ambiguità e direttamente fruibile in fase di sviluppo, ogni diagramma di flusso della board Miro possiede una documentazione tecnica speculare in formato Markdown (`.md`).
 
-### A. Cartella Ufficiale di Consegna & Struttura
+### A. Cartella Ufficiale di Consegna & Tabella Master dei 18 Flowchart
 Tutti i file di spiegazione e il glossario vivente sono custoditi nella cartella dedicata:
 `architecture-blueprint/00-capitolato-tecnico-e-glossario/`
 
 La cartella contiene tassativamente:
 1. `00-GLOSSARIO-TERMINI-TECNICI.md` (Dizionario enciclopedico delle 11 categorie tecnologiche).
-2. I **18 file markdown di capitolato tecnico esplicativo** (uno per ciascun diagramma Miro dei 3 Software e delle 6 Colonne):
-   - **Software 1 (Tier 1 – Casual Consumer B2C):**
-     - `01-software-1-flow-1a-consumer-onboarding.md`
-     - `02-software-1-flow-2a-personal-cockpit.md`
-     - `03-software-1-flow-3a-workout-player.md`
-     - `04-software-1-flow-4a-wearable-sync.md`
-     - `05-software-1-flow-5a-together-social-b2c.md`
-     - `06-software-1-flow-6a-movely-desk-care.md`
-   - **Software 2 (Tier 2 – Pro B2B Partita IVA Coach & Fisio):**
-     - `07-software-2-flow-1b-pro-onboarding.md`
-     - `08-software-2-flow-2b-coach-hub.md`
-     - `09-software-2-flow-3b-macrocycle-ai-triage119.md`
-     - `10-software-2-flow-4b-vbt-pap-biomechanics.md`
-     - `11-software-2-flow-5b-together-pro-business.md`
-     - `12-software-2-flow-6b-physio-rehab-rom.md`
-   - **Software 3 (Tier 3 – Elite Pro Teams & Federazioni Enterprise):**
-     - `13-software-3-flow-1c-bunker-onboarding-kms.md`
-     - `14-software-3-flow-2c-multi-staff-cockpit.md`
-     - `15-software-3-flow-3c-team-microcycle-mdx.md`
-     - `16-software-3-flow-4c-gps-adaptive-zscore.md`
-     - `17-software-3-flow-5c-tactical-video-cv.md`
-     - `18-software-3-flow-6c-medical-room-research-silo3.md`
+2. I **18 file markdown di capitolato tecnico esplicativo** (uno per ciascun diagramma Miro dei 3 Software e delle 6 Colonne), corrispondenti ai 18 badge ufficiali posizionati sulla board Miro:
 
-### B. Standard Obbligatorio di Ciascun File di Capitolato (.md)
-Ciascuno dei 18 file deve contenere una spiegazione chiara, esaustiva e rigorosa, articolata nelle seguenti 7 sezioni obbligatorie:
-1. **Identificativo & Titolo Ufficiale:** Nome formale, codice univoco del diagramma e coordinate sulla board Miro (`uXjVEbo6L2o=`).
-2. **Obiettivo di Business & Target Utente:** Chi utilizza il modulo, quale problema risolve e perché esiste.
+#### Tabella Master Ufficiale di Corrispondenza (18 Badge Miro Online)
+
+| Badge | Tier | Colonna Funzionale | Codice | Titolo Flowchart | Miro Shape ID | Coordinate Reali (X, Y) | File Capitolato (.md) | Sorgente Mermaid (.mmd) |
+| :---: | :---: | :--- | :---: | :--- | :---: | :---: | :--- | :--- |
+| **#01** | Tier 1 | Col 1: Identity & Anti-Frode | `FLOW-1A` | Accesso, Onboarding & Anamnesi | `3458764688417722706` | `X: -2570, Y: 260` | `01-software-1-flow-1a-consumer-onboarding.md` | `flow-1a-consumer-onboarding.mmd` |
+| **#02** | Tier 1 | Col 2: 3D Catalog & Kinematics | `FLOW-2A` | Catalogo Esercizi & Avatar 3D | `3458764688417722707` | `X: 27.35, Y: 179.87` | `02-software-1-flow-2a-personal-cockpit.md` | `flow-2a-personal-cockpit.mmd` |
+| **#03** | Tier 1 | Col 3: Workout Player Thin Client | `FLOW-3A` | Thin Client & Workout Player | `3458764688417722711` | `X: 2459, Y: 465` | `03-software-1-flow-3a-workout-player.md` | `flow-3a-workout-player.mmd` |
+| **#04** | Tier 1 | Col 4: Wearable Sync & Readiness | `FLOW-4A` | Wearable Health Sync & Readiness | `3458764688417722715` | `X: 4171, Y: 465` | `04-software-1-flow-4a-wearable-sync.md` | `flow-4a-wearable-sync.mmd` |
+| **#05** | Tier 1 | Col 5: Together Social Community | `FLOW-5A` | Together Social & Coach Market | `3458764688417722718` | `X: 6048, Y: 465` | `05-software-1-flow-5a-together-social-b2c.md` | `flow-5a-together-social-b2c.mmd` |
+| **#06** | Tier 1 | Col 6: Movely Desk-Care & Pause | `FLOW-6A` | Movely Desk-Care Ergonomia | `3458764688417722722` | `X: 7937, Y: 465` | `06-software-1-flow-6a-movely-desk-care.md` | `flow-6a-movely-desk-care.mmd` |
+| **#07** | Tier 2 | Col 1: Setup Fiscale P.IVA Anti-Frode | `FLOW-1B` | Onboarding Pro & Setup Fiscale | `3458764688417722731` | `X: -2448, Y: 3090` | `07-software-2-flow-1b-pro-onboarding.md` | `flow-1b-pro-onboarding.mmd` |
+| **#08** | Tier 2 | Col 2: Video AI & Revisione Coach | `FLOW-2B` | Catalogo 3D & Revisione AI | `3458764688417722736` | `X: 251.36, Y: 2940` | `08-software-2-flow-2b-coach-hub.md` | `flow-2b-coach-hub.mmd` |
+| **#09** | Tier 2 | Col 3: Macrocicli IA & Triage 119 | `FLOW-3B` | Macrocicli DUP & Triage 119 | `3458764688417722743` | `X: 2459, Y: 2940` | `09-software-2-flow-3b-macrocycle-ai-triage119.md` | `flow-3b-macrocycle-ai-triage119.mmd` |
+| **#10** | Tier 2 | Col 4: Biomeccanica VBT & Salti PAP | `FLOW-4B` | Biomeccanica VBT & Salti PAP | `3458764688417722745` | `X: 4171, Y: 2940` | `10-software-2-flow-4b-vbt-pap-biomechanics.md` | `flow-4b-vbt-pap-biomechanics.mmd` |
+| **#11** | Tier 2 | Col 5: Together Pro Vetrina Business | `FLOW-5B` | Together Pro Business & Video | `3458764688417722746` | `X: 6048, Y: 2940` | `11-software-2-flow-5b-together-pro-business.md` | `flow-5b-together-pro-business.mmd` |
+| **#12** | Tier 2 | Col 6: Physio Rehab Goniometro ROM | `FLOW-6B` | Physio Rehab ROM & Scala VAS | `3458764688417722770` | `X: 7937, Y: 2940` | `12-software-2-flow-6b-physio-rehab-rom.md` | `flow-6b-physio-rehab-rom.mmd` |
+| **#13** | Tier 3 | Col 1: Onboarding Enterprise KMS | `FLOW-1C` | Onboarding Enterprise KMS | `3458764688417722778` | `X: -2925, Y: 6555` | `13-software-3-flow-1c-bunker-onboarding-kms.md` | `flow-1c-bunker-onboarding-kms.mmd` |
+| **#14** | Tier 3 | Col 2: Multi-Camera 4K & Club Vault | `FLOW-2C` | Catalogo 3D Multi-Camera 4K | `3458764688417722783` | `X: -108, Y: 6235.66` | `14-software-3-flow-2c-multi-staff-cockpit.md` | `flow-2c-multi-staff-cockpit.mmd` |
+| **#15** | Tier 3 | Col 3: Bunker Silo 2 & Microciclo MD-X | `FLOW-3C` | Bunker Silo 2 & Microciclo MD-X | `3458764688417722788` | `X: 2875, Y: 6567.76` | `15-software-3-flow-3c-team-microcycle-mdx.md` | `flow-3c-team-microcycle-mdx.mmd` |
+| **#16** | Tier 3 | Col 4: Telemetria GPS & Z-Score 28gg | `FLOW-4C` | GPS Telemetry & Adaptive Z-Score | `3458764688417722792` | `X: 4587, Y: 6565.57` | `16-software-3-flow-4c-gps-adaptive-zscore.md` | `flow-4c-gps-adaptive-zscore.mmd` |
+| **#17** | Tier 3 | Col 5: Tactical Vision & Voronoi CV | `FLOW-5C` | Tactical Vision & Voronoi CV | `3458764688417722803` | `X: 6464, Y: 6566.88` | `17-software-3-flow-5c-tactical-video-cv.md` | `flow-5c-tactical-video-cv.mmd` |
+| **#18** | Tier 3 | Col 6: Medical Room EMR & Silo 3 Lake | `FLOW-6C` | Medical Room EMR & Silo 3 Lake | `3458764688417722810` | `X: 8353, Y: 6573.44` | `18-software-3-flow-6c-medical-room-research-silo3.md` | `flow-6c-medical-room-research-silo3.mmd` |
+
+### B. Standard Obbligatorio di Ciascun File di Capitolato (.md) — "Doppio Livello di Lettura"
+Ciascuno dei 18 file deve garantire il principio fondamentale del **"Doppio Livello di Lettura"**: chiarezza operativa immediata per stakeholder non tecnici (preparatori atletici, medici sociali, coach) e massimo rigore ingegneristico per la Software House. Ogni file è articolato nelle seguenti 7 sezioni obbligatorie:
+
+1. **Identificativo, Badge & Titolo Ufficiale:** Nome formale, codice univoco del diagramma, Miro Shape ID e coordinate verificate sulla board Miro (`uXjVEbo6L2o=`), con riferimento esplicito alle voci del Glossario.
+2. **Obiettivo di Business & Guida Pratica per Non-Tecnici:** Sintesi chiara e accessibile: chi utilizza il modulo, quale problema concreto risolve sul campo, e guida passo-passo per l'utente finale.
 3. **Attori & Architettura a 4 Corsie (Swimlanes):**
    - *Corsia 1: Thin Client UI/UX (React 18 / Mobile)*
    - *Corsia 2: API Gateway & RBAC (Feature Gating)*
    - *Corsia 3: Server Scatola Nera (Microservizi di Calcolo)*
    - *Corsia 4: Database Tripartito (Silo 1 Social, Silo 2 Club Bunker KMS, Silo 3 Research Warehouse)*
-4. **Flusso Operativo Passo-Passo (Nodi Numerati):** Spiegazione semantica dettagliata di ogni singolo blocco del flowchart in sequenza logica, comprensibile sia da programmatori backend/frontend sia da figure non tecniche (preparatori atletici, medici).
+   - *Sequence Diagram Asincrono (Mermaid):* Diagramma di sequenza asincrono a 4 partecipanti a cavallo tra Sezione 3 e 4 che modella il ciclo di vita della richiesta, handshake, elaborazione server e commit sul DB Silo.
+4. **Flusso Operativo Passo-Passo (Doppio Livello A & B):**
+   - **Livello A — Narrative User Journey & Guida Operativa (Non-Tecnica):** Descrizione narrativa fluida dell'esperienza utente dall'accesso alla schermata finale, con tabella dei KPI di accettazione operativa e clinica.
+   - **Livello B — Engineering & Architectural Deep-Dive (Software House):** Analisi ingegneristica puntuale nodo per nodo con logiche di microservizio, controlli di sicurezza, tolleranza ai guasti e validazione dei parametri.
 5. **Rami Decisionali & Gestione dei 4 Stati UI:**
-   - Dettaglio di tutte le condizioni booleane (`SÌ` / `NO`), cutoff e soglie.
+   - Dettaglio di tutte le condizioni booleane (`SÌ` / `NO`), cutoff e soglie numeriche.
    - Specifiche per Empty State, Loading State, Populated State e Error/Fallback State.
-6. **Contratti Dati, Parametri I/O & Database Silo:** Chiamate API (endpoint, payload JSON grezzo in ingresso, response elaborata in uscita) e tabelle del database coinvolte.
+6. **Contratti Dati, Parametri I/O & Matrice Errori HTTP Normalizzata:**
+   - Specifiche API complete (endpoint, payload JSON di richiesta, response JSON tipizzata).
+   - Matrice di Resilienza ed Errori HTTP standardizzata a 6 colonne (`HTTP Code`, `Codice Interno`, `Endpoint`, `Causa`, `UX Feedback`, `Fallback/Resilienza`).
 7. **Ereditarietà di Tier & Differenziali di Fascia:**
-   - Funzionalità ereditate dai livelli inferiori (per Tier 2 e Tier 3).
+   - Funzionalità ereditate a cascata dai livelli inferiori (per Tier 2 e Tier 3).
    - Elementi esclusivi di fascia e divieto assoluto di retrocessione a livelli inferiori.
 
 ### C. Regola Vincolante di Manutenzione Continua ad Ogni Modifica Futura (FONDAMENTALE)

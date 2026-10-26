@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 2B – Catalogo 3D, Video In-App & Revisione AI (T7 Pro Coach & Fisio)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#08` (Posizione: `X: -181, Y: 2960`)
+- **Badge Miro Board:** `#08` (Posizione: `X: 251.36, Y: 2940`, Miro Shape ID: `3458764688417722736`)
 - **Codice Univoco:** `FLOW-2B`
 - **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 2B: CATALOGO 3D, VIDEO IN-APP & REVISIONE BIOMECCANICA AI (T7 PRO)
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 2: Catalogo Professionale & Video AI)
@@ -9,6 +9,7 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Multimodal RAG, Pose Estimation, WebRTC MediaStream, Digital Twin 3D, GDPR Video Cryptography*).
 
 ---
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -26,6 +27,7 @@ I preparatori atletici e i fisioterapisti insegnano spesso movimenti speciali o 
 
 ---
 
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (React 18 Pro + WebRTC Camera Studio):**
@@ -38,6 +40,39 @@ I preparatori atletici e i fisioterapisti insegnano spesso movimenti speciali o 
    - Tabella `custom_exercises` con binding al professionista creatore e bucket Google Cloud Storage criptato con chiavi AES-256 gestite per singolo studio.
 
 ---
+
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-2B)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Coach as Coach Pro UI (WebRTC & Three.js)
+    participant EDGE as MediaPipe BlazePose 3D (Mobile Edge)
+    participant GW as API Gateway (Corsia 2)
+    participant RAG as Multimodal RAG Engine (Corsia 3)
+    participant DB as Database Silo 1 (Corsia 4)
+
+    Coach->>Coach: Registrazione video esecuzione atleta (WebRTC camera)
+    Coach->>EDGE: Frame video RGB real-time
+    EDGE->>EDGE: Estrazione 33 landmark 3D & Tracciamento ottico bilanciere (Bar Path)
+    EDGE-->>Coach: Coordinate cinematiche & angoli articolari calcolati
+
+    Coach->>GW: POST /api/v1/coach/exercises/audit-ai (Cinematica + Note Coach)
+    GW->>RAG: Inoltro dati per audit scientifico
+    RAG->>RAG: Query su 322 fonti peer-reviewed (PubMed, Scopus)
+    RAG->>RAG: Identificazione compensi biomeccanici (es. estensione lombare precoce)
+    RAG-->>Coach: 200 OK (Report suggerimenti AI: Cues correttivi, muscoli stabilizzatori)
+    
+    Coach->>Coach: Revisione Side-by-Side (Video reale vs Avatar 3D) & Approvazione
+    Coach->>GW: POST /api/v1/coach/exercises/custom (Esercizio validato)
+    GW->>DB: INSERT custom_exercises in Silo 1 (Libreria personale coach)
+    DB-->>GW: Commit completato
+    GW-->>Coach: 201 Created (Esercizio pronto per prescrizione)
+```
+
+---
+
 
 ## 4. Flusso Operativo Passo-Passo
 
@@ -57,6 +92,18 @@ I preparatori atletici e i fisioterapisti insegnano spesso movimenti speciali o 
 6. **L'Assegnazione Immediata:** L'esercizio personalizzato compare subito nell'elenco del coach con l'etichetta *"Personalizzato per Mario Rossi"*, pronto per essere inserito nella scheda con un tocco.
 
 ---
+
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Framerate BlazePose Edge** | $\ge 30\text{ FPS}$ in tempo reale | $\ge 20\text{ FPS}$ | Campionamento a 15 FPS su hardware datato |
+| **Precisione Tracciamento Bar Path** | $\pm 5\text{ mm}$ errore spaziale | $\pm 12\text{ mm}$ | Calibrazione manuale diametro disco bilanciere |
+| **Tempo Risposta RAG Multimodale** | $< 2.5\text{ s}$ per revisione | $\le 5.0\text{ s}$ | Restituzione checklist biomeccanica statica |
+| **Accuratezza Angoli Articolari** | $\pm 2^\circ$ vs goniometro ottico | $\pm 5^\circ$ | Prompt di riposizionamento inquadratura video |
+
+---
+
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
@@ -81,6 +128,7 @@ I preparatori atletici e i fisioterapisti insegnano spesso movimenti speciali o 
 
 ---
 
+
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
@@ -97,6 +145,7 @@ I preparatori atletici e i fisioterapisti insegnano spesso movimenti speciali o 
    - *Upload interrotto per disconnessione:* Ripristino automatico dell'upload dal blocco interrotto grazie al protocollo TUS resumable.
 
 ---
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -131,6 +180,20 @@ I preparatori atletici e i fisioterapisti insegnano spesso movimenti speciali o 
 - `pro_custom_exercises`: `id UUID PK`, `pro_id UUID FK -> pro_profiles.id`, `exercise_name VARCHAR(128)`, `target_muscles TEXT[]`, `kinematics_json JSONB`, `video_vault_ref TEXT`, `twin_glb_ref TEXT`, `is_raw_retained BOOLEAN`, `created_at TIMESTAMPTZ`.
 
 ---
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_BAD_VIDEO_CODEC`| `POST /audit-ai` | Codec video non supportato dal motore CV | Notifica: *"Formato video non valido. Usa MP4/WebM"*| Transcodifica automatica client-side via WebCodecs |
+| **401** | `ERR_TIER2_REQUIRED` | `POST /audit-ai` | Utente con piano Tier 1 tenta uso motore RAG Pro| Modale: *"Funzione riservata ad abbonamento Pro"* | Switch a piano Tier 2 con trial 14 giorni |
+| **413** | `ERR_VIDEO_TOO_LARGE`| `POST /audit-ai` | Dimensione file video $> 100\text{ MB}$ | Alert: *"Video troppo lungo. Limita la clip a 30s"* | Compressione video e trim automatico client-side |
+| **422** | `ERR_POSE_FAILED` | `POST /audit-ai` | Atleta parzialmente fuori dall'inquadratura | Overlay: *"Posiziona l'intero corpo nell'inquadratura"*| Guida grafica visiva a silhouette sullo schermo |
+| **500** | `ERR_RAG_TIMEOUT` | `POST /audit-ai` | Timeout del motore semantico di letteratura | Banner ambrato: *"Analisi AI differita..."* | Notifica asincrona non appena la revisione è pronta |
+| **504** | `ERR_CV_TIMEOUT` | `POST /audit-ai` | Server di inferenza video sovraccarico | Toast: *"Analisi in coda. Riceverai un alert"* | Elaborazione batch differita su Cloud Run |
+
+---
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 

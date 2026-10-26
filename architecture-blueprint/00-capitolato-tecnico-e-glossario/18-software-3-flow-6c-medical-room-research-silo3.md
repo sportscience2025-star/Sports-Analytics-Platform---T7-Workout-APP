@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 6C – Medical Room EMR, Return-to-Play & Research Warehouse (T7 Elite Pro Teams)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#18` (Posizione: `X: 8353, Y: 6580`)
+- **Badge Miro Board:** `#18` (Posizione: `X: 8353, Y: 6573.44`, Miro Shape ID: `3458764688417722810`)
 - **Codice Univoco:** `FLOW-6C`
 - **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 6C: MEDICAL ROOM EMR, RETURN-TO-PLAY 6 FASI & RESEARCH LAKE SILO 3
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 6: Cartella Clinica EMR, RTP & Ricerca Silo 3)
@@ -9,6 +9,7 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Electronic Medical Record EMR, Protocollo Return to Play 6 Fasi, Segreto Medico Oscuramento Diagnosi, Silo 3 Research Warehouse, Pipeline ETL De-Identificazione, K-Anonimato Sanitario*).
 
 ---
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -33,6 +34,7 @@ Quando un calciatore da 50 milioni di euro si infortuna, la pressione è enorme:
 
 ---
 
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (Medical EMR Suite React 18):**
@@ -47,6 +49,37 @@ Quando un calciatore da 50 milioni di euro si infortuna, la pressione è enorme:
    - *Silo 3 (Research Warehouse BigQuery / PostgreSQL):* Archivio aggregato anonimo accessibile ai ricercatori universitari tramite API accademiche protette.
 
 ---
+
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-6C)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Medico as Medico Sociale (Silo 2 Bunker)
+    actor HeadCoach as Responsabile Tecnico (S&C)
+    participant EMR as Electronic Medical Record (Corsia 3)
+    participant ETL as Pipeline De-Identificazione K-Anonimato (Corsia 3)
+    participant SILO2 as Bunker Club Silo 2 (Corsia 4)
+    participant SILO3 as Research Warehouse Silo 3 (Corsia 4)
+
+    Medico->>EMR: Inserimento referto diagnostico protetto da segreto medico
+    EMR->>SILO2: Scrittura criptata cartella sanitaria EMR
+    SILO2-->>HeadCoach: Visualizzazione stato: "INIDONEO" (Diagnosi medica oscurata al 100%)
+
+    Note over Medico,HeadCoach: Progressione riabilitativa Return-to-Play a 6 fasi
+    Medico->>EMR: Firma digitale completamento Fase 6 (Idoneità clinica)
+    HeadCoach->>EMR: Firma digitale tecnica (Test atletico in gruppo superato)
+    EMR->>SILO2: Sblocco stato atleta: "DISPONIBILE PER GARA"
+
+    ETL->>SILO2: Estrazione periodica dati biomeccanici e riabilitativi
+    ETL->>ETL: Pipeline De-Identificazione: Rimozione PII, Hashing sale SHA-256, K-Anonimato
+    ETL->>SILO3: Caricamento dati anonimi nel Research Warehouse universitario
+    SILO3-->>ETL: Validazione ETL completata con successo
+```
+
+---
+
 
 ## 4. Flusso Operativo Passo-Passo
 
@@ -64,6 +97,18 @@ Quando un calciatore da 50 milioni di euro si infortuna, la pressione è enorme:
 6. **Il Contributo alla Ricerca:** A fine stagione, il caso clinico (senza nome, senza squadra e senza date) confluisce nel Silo 3 universitario, aiutando la ricerca a prevenire le lesioni muscolari.
 
 ---
+
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Segreto Medico EMR** | $100\%$ diagnosi oscurate a staff tecnico| $0\%$ leak sanitario | Blocco immediato vista referti non autorizzati |
+| **Validazione RTP 6 Fasi** | Doppia firma digitale obbligatoria | $0\%$ eccezioni consentite | Inidoneità automatica a scendere in campo |
+| **Anonimizzazione Silo 3** | De-identificazione irreversibile HIPAA/GDPR| $0\%$ re-identificazione | Abort spedizione verso Research Data Lake |
+| **Latenza Pipeline ETL Batch**| Conclusione entro $60\text{ min}$ (notturno) | Entro $180\text{ min}$ | Accodamento ritrasmissione a bassa priorità |
+
+---
+
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
@@ -85,6 +130,7 @@ Quando un calciatore da 50 milioni di euro si infortuna, la pressione è enorme:
 
 ---
 
+
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
@@ -101,6 +147,7 @@ Quando un calciatore da 50 milioni di euro si infortuna, la pressione è enorme:
    - *Tentativo di forzatura del rientro da parte dello staff tecnico:* Il sistema rifiuta la convocazione e avvisa l'Head Coach: *"Atleta non convocabile: manca la firma di idoneità clinica del Medico Sociale (Fase 6 non completata)"*.
 
 ---
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -138,6 +185,20 @@ Quando un calciatore da 50 milioni di euro si infortuna, la pressione è enorme:
   - `anonymized_injury_registry`: `record_id STRING PK`, `synthetic_hash STRING`, `sport_discipline STRING`, `age_bracket STRING`, `tactical_role STRING`, `icd11_category STRING`, `days_to_recovery INT`, `gps_load_prior_to_injury JSON`.
 
 ---
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_MALFORMED_EMR` | `POST /emr/records` | Struttura referto medico non conforme allo standard | Alert: *"Campi clinici obbligatori mancanti"* | Evidenziazione campi diagnostici da compilare |
+| **401** | `ERR_DOCTOR_SIGN` | `POST /rtp/sign-off` | Firma digitale del medico non valida o scaduta | Modale: *"Rinnova il certificato di firma medica"* | Richiesta nuovo token di firma qualificato |
+| **403** | `ERR_PRIVACY_VIOLATION`| `GET /emr/diagnosis`| Membro dello staff tecnico tenta di leggere diagnosi| Schermata rossa: *"Accesso negato: Segreto Medico"*| Logging di sicurezza e notifica al DPO societario |
+| **409** | `ERR_RTP_SKIP_PHASE` | `POST /rtp/advance` | Tentativo di saltare una fase del protocollo RTP | Dialog: *"Impossibile avanzare senza completare fase precedente"*| Blocco avanzamento fino a doppia firma dello step |
+| **500** | `ERR_ETL_DEIDENT_FAIL`| `POST /etl/research-sync`| Fallimento processo di hashing e de-identificazione | Nessun impatto clinico sul club | Interruzione trasferimento e isolamento dataset |
+| **503** | `ERR_SILO3_OFFLINE` | `POST /etl/research-sync`| Research Warehouse accademico temporaneamente offline| Icona batch: *"Sincronizzazione ricerca differita"* | Retry automatico programmato nella notte successiva |
+
+---
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 

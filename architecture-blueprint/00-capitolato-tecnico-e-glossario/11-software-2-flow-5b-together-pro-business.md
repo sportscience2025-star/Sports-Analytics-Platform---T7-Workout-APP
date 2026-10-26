@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 5B – Together Pro Business & Remote Client Review (T7 Pro Coach)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#11` (Posizione: `X: 6048, Y: 2940`)
+- **Badge Miro Board:** `#11` (Posizione: `X: 6048, Y: 2940`, Miro Shape ID: `3458764688417722746`)
 - **Codice Univoco:** `FLOW-5B`
 - **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 5B: TOGETHER PRO BUSINESS, LEAD ONBOARDING & VIDEO REVISIONE REMOTA
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 5: Business Pro, Lead & Video Review)
@@ -9,6 +9,7 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Together Pro Marketplace, Video Annotazione Tecnica, Stripe Connect Transfers, Bar Path Tracking, Assegnazione Schede Remota*).
 
 ---
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -27,6 +28,7 @@ I migliori personal trainer e fisioterapisti oggi seguono molti atleti a distanz
 
 ---
 
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (Coach Review Suite React 18):**
@@ -39,6 +41,38 @@ I migliori personal trainer e fisioterapisti oggi seguono molti atleti a distanz
    - Tabelle `coach_packages`, `client_subscriptions`, `video_reviews` (clip originali, metadati delle annotazioni vettoriali e audio allegato).
 
 ---
+
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-5B)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Atleta as Atleta Remoto (Client UI)
+    actor Coach as Coach Pro (Annotation Canvas)
+    participant GW as API Gateway (Corsia 2)
+    participant STRIPE as Stripe Connect Transfers (Corsia 3)
+    participant SRV as Video Processing Engine (Corsia 3)
+    participant DB as Database Silo 1 (Corsia 4)
+
+    Atleta->>GW: POST /api/v1/pro/consultations/request (Upload clip video, Descrizione)
+    GW->>DB: INSERT consultation_requests (Stato: PENDING_REVIEW)
+    DB-->>Coach: Notifica push: "Nuovo video da revisionare"
+
+    Coach->>GW: GET /api/v1/pro/consultations/:id/video
+    GW-->>Coach: Stream WebRTC del video atleta
+    Coach->>Coach: Disegno annotazioni grafiche (Vettori forza, angoli, audio-nota)
+    Coach->>GW: POST /api/v1/pro/consultations/:id/submit-review (Canvas metadata)
+    GW->>SRV: Compositing video con watermark forense e annotazioni
+    SRV->>DB: UPDATE consultation_requests (COMPLETED) & Storage video annotato
+    DB-->>GW: Commit completato
+    GW->>STRIPE: Trigger payout Stripe Connect (Trattenuta commissione T7)
+    STRIPE-->>Coach: Trasferimento fondi su conto bancario coach
+    GW-->>Atleta: Notifica: "Video revisionato pronto con correzioni tecniche"
+```
+
+---
+
 
 ## 4. Flusso Operativo Passo-Passo
 
@@ -56,6 +90,18 @@ I migliori personal trainer e fisioterapisti oggi seguono molti atleti a distanz
 
 ---
 
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Latenza Video WebRTC** | $< 150\text{ ms}$ | $\le 300\text{ ms}$ | Adattamento dinamico bitrate (Adaptive Bitrate) |
+| **Sincronia Tratti Grafici** | $< 33\text{ ms}$ (1 frame @ 30fps) | $\le 66\text{ ms}$ | Interpolazione spline dei tratti a video |
+| **Rendering Video Finale** | $< 15\text{ s}$ per 60s di clip | $\le 30\text{ s}$ | Rendering cloud asincrono con alert push |
+| **Integrità Payout Stripe** | $100\%$ transazioni riconciliate | $0\%$ errore contabile | Blocco fondo e alert a team finance |
+
+---
+
+
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
 1. `START` (Accesso Together Pro Suite): Apertura tab "Vetrina & Clienti" nel Coach Cockpit.
@@ -71,6 +117,7 @@ I migliori personal trainer e fisioterapisti oggi seguono molti atleti a distanz
 8. `FEEDBACK_DELIVERY` (Consegna Feedback nel Player Atleta): Notifica push WebSocket al dispositivo dell'atleta con link al video arricchito visualizzabile nel Workout Player (`FLOW-3A`).
 
 ---
+
 
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
@@ -88,6 +135,7 @@ I migliori personal trainer e fisioterapisti oggi seguono molti atleti a distanz
    - *Video registrato con scarsa luminosità:* L'AI disabilita il bar path automatico e avvisa il coach: *"Tracciamento automatico non disponibile per scarsa luce: usa gli strumenti di disegno manuale"*.
 
 ---
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -117,6 +165,20 @@ I migliori personal trainer e fisioterapisti oggi seguono molti atleti a distanz
 - `video_reviews`: `id UUID PK`, `subscription_id UUID FK -> client_subscriptions.id`, `raw_video_url TEXT`, `feedback_video_url TEXT`, `vector_annotations JSONB`, `audio_notes_url TEXT`, `status VARCHAR(16)`, `created_at TIMESTAMPTZ`.
 
 ---
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_BAD_ANNOTATION` | `POST /submit-review` | Coordinate canvas non valide o fuori video | Toast: *"Tratto grafico fuori dai limiti del video"* | Correzione automatica ai bordi del viewport |
+| **401** | `ERR_SESSION_TIMEOUT` | `POST /submit-review` | Sessione coach scaduta durante il disegno | Modale trasparente di re-autenticazione | Preservazione di tutti i tratti disegnati su canvas |
+| **403** | `ERR_ACCESS_DENIED` | `GET /video` | Coach non assegnato alla specifica consulenza | Schermata: *"Non autorizzato a visionare questo video"*| Blocco accesso e registrazione log di sicurezza |
+| **413** | `ERR_CANVAS_PAYLOAD` | `POST /submit-review` | Troppi metadati vettoriali disegnati ($> 10\text{ MB}$)| Alert: *"Disegno troppo complesso. Semplifica"* | Decimazione punti spline e compressione JSON |
+| **500** | `ERR_TRANSCODE_FAIL` | `POST /submit-review` | Fallimento rendering video annotato | Notifica: *"Rendering in corso in background"* | Riprova asincrona su worker Cloud Tasks |
+| **502** | `ERR_STRIPE_PAYOUT` | `POST /submit-review` | Rifiuto trasferimento bancario da Stripe | Notifica discreta a coach: *"Fondi in riserva"* | Riconciliazione automatica entro 12 ore |
+
+---
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 

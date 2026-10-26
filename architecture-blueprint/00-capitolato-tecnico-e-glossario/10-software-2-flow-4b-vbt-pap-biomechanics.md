@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 4B – Biomechanical VBT & PAP Jump Analysis (T7 Pro Coach & Fisio)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#10` (Posizione: `X: 4171, Y: 2940`)
+- **Badge Miro Board:** `#10` (Posizione: `X: 4171, Y: 2940`, Miro Shape ID: `3458764688417722745`)
 - **Codice Univoco:** `FLOW-4B`
 - **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 4B: BIOMECHANICAL VBT & PAP JUMP ANALYSIS
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 4: VBT & Valutazione Biomeccanica)
@@ -9,6 +9,7 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Velocity Based Training VBT, Mean Propulsive Velocity MPV, Minimum Velocity Threshold MVT, Post-Activation Potentiation PAP, Minimal Detectable Change MDC 95%, Filtro Outlier MAD*).
 
 ---
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -28,6 +29,7 @@ Per decenni, per sapere quanto peso un atleta potesse sollevare al massimo (il f
 
 ---
 
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (Biomechanics Dashboard React 18):**
@@ -43,6 +45,35 @@ Per decenni, per sapere quanto peso un atleta potesse sollevare al massimo (il f
    - Tabelle `vbt_trials` per la memorizzazione dei coefficienti di Hill e dell'equazione di moto, e `pap_jump_tests` per la risposta neuromuscolare temporale.
 
 ---
+
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-4B)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Atleta as Atleta / Coach (Encoder VBT / CV)
+    participant GW as API Gateway (Corsia 2)
+    participant VBT as VBT & Biomechanics Engine (Corsia 3)
+    participant DB as Database Silo 1 (Corsia 4)
+
+    Atleta->>GW: POST /api/v1/vbt/session-stream (Carichi kg, Velocità m/s per rep)
+    GW->>VBT: Inoltro campioni telemetrici
+    VBT->>VBT: Calcolo Mean Propulsive Velocity (MPV) & Scarto Outlier MAD
+    VBT->>VBT: Regressione Lineare OLS Carico-Velocità & Calcolo R²
+    VBT->>VBT: Stima 1RM teorico all'intersezione con MVT (es. 0.15 m/s)
+    VBT->>VBT: Valutazione Potenziamento PAP & Indici Cohen's d / MDC 95%
+    VBT->>DB: INSERT vbt_profiles & pap_evaluations
+    DB-->>VBT: Commit completato
+    VBT-->>Atleta: 200 OK (Stima 1RM: 142.5kg, R²: 0.98, PAP confermato)
+
+    Atleta->>GW: GET /api/v1/vbt/export-excel?sessionId=...
+    GW->>VBT: Generazione foglio Excel sbloccato (protected: false)
+    VBT-->>Atleta: 200 OK (Download file .xlsx con formule native)
+```
+
+---
+
 
 ## 4. Flusso Operativo Passo-Passo
 
@@ -60,6 +91,18 @@ Per decenni, per sapere quanto peso un atleta potesse sollevare al massimo (il f
 6. **Il Test di Salto PAP (Per la Gara):** Se si sceglie il protocollo PAP, l'atleta fa un salto di prova su pedana (es. 40 cm), poi esegue 3 ripetizioni pesanti di squat, e risalta dopo 4, 8 e 12 minuti. L'app scopre che all'8° minuto il salto sale a 43.5 cm: *"L'atleta è un Responder! Finestra ideale per la gara: 8 minuti dopo il riscaldamento"*.
 
 ---
+
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Coefficiente OLS $R^2$** | $R^2 \ge 0.95$ | $R^2 \ge 0.90$ | Richiesta serie aggiuntiva di calibrazione |
+| **Accuratezza Stima 1RM** | $\pm 2.5\text{ kg}$ errore medio | $\pm 5.0\text{ kg}$ | Rendering intervallo di confidenza al 95% |
+| **Validazione Statistica PAP** | $d \ge 0.6$ (Cohen's d) | $d \ge 0.4$ | Notifica di mancato potenziamento acuto |
+| **Generazione Excel Sbloccato**| $< 400\text{ ms}$ | $\le 1.0\text{ s}$ | Invio asincrono link download via email |
+
+---
+
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
@@ -93,6 +136,7 @@ Per decenni, per sapere quanto peso un atleta potesse sollevare al massimo (il f
 
 ---
 
+
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
@@ -110,6 +154,7 @@ Per decenni, per sapere quanto peso un atleta potesse sollevare al massimo (il f
    - *Perdita di connessione Bluetooth a metà serie:* Banner di riconnessione automatica senza perdita delle serie già registrate nella sessione.
 
 ---
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -178,6 +223,20 @@ Per decenni, per sapere quanto peso un atleta potesse sollevare al massimo (il f
 - `pro_pap_trials`: `id UUID PK`, `athlete_id UUID FK -> athlete_profiles.id`, `baseline_cm NUMERIC(4,2)`, `peak_cm NUMERIC(4,2)`, `optimal_minute INT`, `cohens_d NUMERIC(4,3)`, `is_responder BOOLEAN`, `created_at TIMESTAMPTZ`.
 
 ---
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_FEW_VBT_POINTS` | `POST /vbt/session-stream` | Meno di 3 carichi differenti registrati | Notifica: *"Esegui almeno 3 serie con carichi crescenti"*| Guida a schermo con carichi consigliati |
+| **401** | `ERR_PRO_VBT_AUTH` | `POST /vbt/session-stream` | Modulo VBT non accessibile per account Tier 1 | Banner: *"Aggiorna a Pro per la telemetria VBT"* | Mostra demo con dati simulati |
+| **422** | `ERR_POOR_FIT` | `POST /vbt/session-stream` | Correlazione $R^2 < 0.90$ (dati troppo dispersi) | Alert: *"Serie non costanti: tecnica o velocità instabile"*| Scarto automatico outlier e ricalcolo |
+| **429** | `ERR_STREAM_FLOOD` | `POST /vbt/session-stream` | Frequenza campionamento encoder $> 100\text{ Hz}$ | Nessun disturbo all'utente | Downsampling a 50 Hz client-side |
+| **500** | `ERR_EXCEL_ENGINE` | `GET /vbt/export-excel` | Errore libreria generazione Excel | Banner: *"Generazione in corso, riceverai il file"* | Fallback su esportazione immediata CSV |
+| **503** | `ERR_SOLVER_BUSY` | `POST /vbt/session-stream` | Microservizio matematico sovraccarico | Icona ambrata: *"Calcolo in corso..."* | Esecuzione regressione lineare locale in JS |
+
+---
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 

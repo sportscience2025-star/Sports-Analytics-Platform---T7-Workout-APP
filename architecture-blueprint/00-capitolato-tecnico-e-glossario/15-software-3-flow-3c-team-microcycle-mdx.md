@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 3C – Architettura Bunker Silo 2 & Microciclo Squadra MD-X (T7 Elite Pro Teams)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#15` (Posizione: `X: 2875, Y: 6580`)
+- **Badge Miro Board:** `#15` (Posizione: `X: 2875, Y: 6567.76`, Miro Shape ID: `3458764688417722788`)
 - **Codice Univoco:** `FLOW-3C`
 - **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 3C: ARCHITETTURA BUNKER SILO 2 & MICROCICLO SQUADRA MD-X
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 3: Architettura Bunker & Microciclo Gara)
@@ -9,6 +9,7 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Microciclo MD-X, Modello Titolari vs Panchinari, ACWR EWMA, Doppio Ruolo Tattico Ponderato, Silo 2 Bunker KMS, Silo 3 Research Warehouse*).
 
 ---
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -33,6 +34,7 @@ C'è però una trappola enorme che distrugge le squadre: **i giocatori che gioca
 
 ---
 
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (Squad Microcycle Cockpit React 18):**
@@ -49,6 +51,35 @@ C'è però una trappola enorme che distrugge le squadre: **i giocatori che gioca
 
 ---
 
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-3C)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Coach as Head Coach & S&C (Tier 3)
+    participant GW as API Gateway & Bunker Proxy (Corsia 2)
+    participant SRV as Microcycle Engine & EWMA (Corsia 3)
+    participant SILO2 as Bunker Database Silo 2 (Corsia 4)
+
+    Coach->>GW: POST /api/v1/enterprise/microcycle/plan (MatchDay: Sabato, 30 atleti)
+    GW->>SILO2: Query telemetria storica rosa (Carichi GPS, Minutaggio gare, ACWR)
+    SILO2-->>GW: Dataset atleti (Titolari vs Panchinari, Doppi Ruoli)
+    GW->>SRV: Dispatch algoritmo Microciclo MD-X
+    SRV->>SRV: Calcolo giorni a ritroso (MD-4 Forza, MD-3 Velocità, MD-2 Reattività, MD-1 Rifinitura)
+    SRV->>SRV: Calcolo decadimento esponenziale ACWR EWMA per ciascun giocatore
+    SRV->>SRV: Differenziazione automatica: Scarico titolari vs Compensazione panchinari
+    SRV-->>Coach: 200 OK (Planning settimanale rosa completo con alert fatica)
+
+    Coach->>Coach: Assegnazione carichi personalizzati e conferme
+    Coach->>GW: POST /api/v1/enterprise/microcycle/commit (Piani finali approvati)
+    GW->>SILO2: Scrittura crittografata con chiave KMS Silo 2
+    SILO2-->>Coach: 201 Created (Microciclo attivo nel Bunker della squadra)
+```
+
+---
+
+
 ## 4. Flusso Operativo Passo-Passo
 
 ### Livello A: User Journey Narrativo (La Storia dell'Utente)
@@ -64,6 +95,18 @@ C'è però una trappola enorme che distrugge le squadre: **i giocatori che gioca
 5. **Il Controllo del Rischio Infortuni (ACWR):** Una linea verde semaforica segnala se la squadra è in sicurezza (indice tra 0.8 e 1.3). Se un giocatore sale a 1.6 (Zona Rossa Lesiva), compare un allarme visivo: *"Attenzione: rischio stiramento elevato per affaticamento acuto non smaltito"*.
 
 ---
+
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Compensazione Panchinari** | $100\%$ pareggio carico titolari | $\pm 5\%$ | Inserimento seduta metabolica specifica a fine gara |
+| **Precisione ACWR EWMA** | Decadimento esponenziale $\lambda$ continuo| $\pm 0.01$ | Fallback su media mobile ponderata classica |
+| **Isolamento Dati Bunker** | Zero leak verso Silo 1 social | $0\%$ compromissione | Blocco immediato pipeline e isolamento tenant |
+| **Tempo Calcolo Rosa Completa** | $< 1.2\text{ s}$ per 30 atleti | $\le 3.0\text{ s}$ | Elaborazione distribuita parallela per reparto |
+
+---
+
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
@@ -89,6 +132,7 @@ C'è però una trappola enorme che distrugge le squadre: **i giocatori che gioca
 
 ---
 
+
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
@@ -105,6 +149,7 @@ C'è però una trappola enorme che distrugge le squadre: **i giocatori che gioca
    - *Turnover massiccio in settimana di 3 partite:* L'app segnala l'anomalia: *"Attenzione: settimana con turno infrasettimanale. Il sistema attiva il microciclo compresso MD-2 / MD / MD+1"*.
 
 ---
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -141,6 +186,20 @@ C'è però una trappola enorme che distrugge le squadre: **i giocatori che gioca
 - `athlete_workload_acwr`: `id UUID PK`, `athlete_id VARCHAR(64)`, `date DATE`, `acute_load NUMERIC(6,2)`, `chronic_load NUMERIC(6,2)`, `acwr_ewma NUMERIC(4,2)`, `dual_role_weight NUMERIC(3,2)`.
 
 ---
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_BAD_MATCH_DATE` | `POST /microcycle/plan` | Giorno gara non valido o microciclo $< 3$ giorni | Alert: *"Imposta un intervallo di almeno 3 giorni tra i match"*| Adattamento su modello microciclo compresso |
+| **401** | `ERR_STAFF_UNAUTH` | `POST /microcycle/plan` | Credenziali di staff club non riconosciute | Redirect a login SAML 2.0 aziendale | Mantenimento parametri microciclo in bozza |
+| **403** | `ERR_KMS_DENIED` | `POST /microcycle/commit`| Chiave Cloud KMS non autorizzata per la partizione| Modale rosso: *"Accesso al Bunker Silo 2 negato"* | Notifica di sicurezza immediata a IT Dirigenza |
+| **422** | `ERR_ACWR_SPIKE` | `POST /microcycle/plan` | Giocatore con ACWR $> 1.8$ inserito a pieno carico| Dialog ambrato: *"Rischio infortuni elevato per 2 atleti"*| Proposta automatica di scarico personalizzato |
+| **500** | `ERR_OPTIMIZER_CRASH`| `POST /microcycle/plan` | Errore matematico nel solutore di carichi squadra| Banner: *"Generazione standard in corso..."* | Assegnazione template MD-X classico certificato |
+| **503** | `ERR_SILO2_LOCKED` | `POST /microcycle/commit`| Manutenzione ordinaria del database societario | Icona nuvola: *"Dati salvati in cache protetta"* | Accodamento e sincronizzazione appena online |
+
+---
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 

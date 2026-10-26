@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 4A – Workflow Funzionali & Wearable Health Sync (T7 Consumer)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#04` (Posizione: `X: 4171, Y: 465`)
+- **Badge Miro Board:** `#04` (Posizione: `X: 4171, Y: 465`, Miro Shape ID: `3458764688417722715`)
 - **Codice Univoco:** `FLOW-4A`
 - **Titolo Formale:** SOFTWARE 1 (B2C CONSUMER) - FLOW 4A: WORKFLOW FUNZIONALI & WEARABLE HEALTH SYNC
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 1: General User / Casual, Colonna 4: Workflow Funzionali & Wearables)
@@ -9,6 +9,7 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Apple HealthKit, Google Health Connect, Heart Rate Variability HRV, rMSSD, Training Readiness Score, Filtro Outlier*).
 
 ---
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -27,6 +28,7 @@ Questo modulo è il **ponte intelligente tra il tuo orologio e la tua scheda di 
 
 ---
 
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (React Native Health Module / Web Health Connect):**
@@ -41,6 +43,33 @@ Questo modulo è il **ponte intelligente tra il tuo orologio e la tua scheda di 
 
 ---
 
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-4A)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Utente as Thin Client UI / Native Bridge
+    participant WAPI as Apple HealthKit / Google Connect
+    participant GW as API Gateway (Corsia 2)
+    participant SRV as Server Scatola Nera (Corsia 3)
+    participant DB as Database Silo 1 (Corsia 4)
+
+    Utente->>WAPI: Richiesta estrazione dati (HRV rMSSD, FC Riposo, Ore Sonno)
+    WAPI-->>Utente: Array campioni biometrici grezzi
+    Utente->>GW: POST /api/v1/telemetry/wearable-sync (Array campioni + DeviceID)
+    GW->>SRV: Inoltro pipeline telemetrica
+    SRV->>SRV: Applicazione Filtro Outlier MAD (scarto battiti spuri)
+    SRV->>SRV: Calcolo Training Readiness Composite Score (0-100)
+    SRV->>DB: INSERT daily_readiness_logs (score, rMSSD, sleep_hours)
+    DB-->>SRV: Commit completato
+    SRV-->>Utente: 200 OK (readinessScore: 84, recommendation: "HIGH_INTENSITY_CLEAR")
+    Utente->>Utente: Rendering quadrante Readiness & suggerimento carichi
+```
+
+---
+
+
 ## 4. Flusso Operativo Passo-Passo
 
 ### Livello A: User Journey Narrativo (La Storia dell'Utente)
@@ -51,6 +80,19 @@ Questo modulo è il **ponte intelligente tra il tuo orologio e la tua scheda di 
 5. **Cosa succede se sei stanco?** Se l'atleta ha dormito 4 ore o ha la febbre, il punteggio scende ad esempio a **42 / 100 - "Fatica Elevata"**. L'app non blocca l'allenamento, ma suggerisce con dolcezza: *"Oggi il tuo cuore è affaticato. Abbiamo ridotto le serie del 20% e inserito 10 minuti di mobilità per farti recuperare senza stress"*.
 
 ---
+
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Scarto Outlier Sensore (MAD)** | $\ge 98\%$ artefatti rimossi | $\ge 95\%$ | Flagging dato con etichetta "low_confidence" |
+| **Tempo Calcolo Readiness** | $< 120\text{ ms}$ | $\le 300\text{ ms}$ | Assegnazione punteggio medio personale 7gg |
+| **Frequenza Sync Wearable** | Ogni 6 ore (in background) | Entro 12 ore | Invito gentile al sync manuale a schermo |
+| **Privacy Dati Biometrici** | Cifratura AES-256 a riposo | $0\%$ compromissione | Blocco ingestione immediato in caso di anomalie |
+
+
+---
+
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
@@ -78,6 +120,7 @@ Questo modulo è il **ponte intelligente tra il tuo orologio e la tua scheda di 
 
 ---
 
+
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
@@ -94,6 +137,7 @@ Questo modulo è il **ponte intelligente tra il tuo orologio e la tua scheda di 
    - *Utente ha dormito senza smartwatch:* L'app non segnala errore ma mostra: *"Nessun dato del sonno per stanotte. Puoi inserire manualmente come ti senti (da 1 a 5 stelline)"*.
 
 ---
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -133,6 +177,21 @@ Questo modulo è il **ponte intelligente tra il tuo orologio e la tua scheda di 
 - `athlete_daily_biometrics`: `id UUID PK`, `athlete_id UUID FK -> athlete_profiles.id`, `log_date DATE NOT NULL`, `source VARCHAR(32)`, `sleep_minutes INT`, `resting_hr_bpm INT`, `hrv_rmssd_ms NUMERIC(5,2)`, `readiness_score INT`, `created_at TIMESTAMPTZ`, `UNIQUE (athlete_id, log_date)`.
 
 ---
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_UNSUPPORTED_DEV` | `POST /wearable-sync` | Formato dati da smartwatch non supportato | Dialog: *"Dispositivo non compatibile"* | Suggerimento esportazione formato standard Fit/GPX |
+| **401** | `ERR_BRIDGE_AUTH` | `POST /wearable-sync` | Permessi Apple Health / Health Connect revocati | Banner: *"Autorizza l'accesso ai dati sanitari"* | Apertura impostazioni permessi del sistema operativo |
+| **403** | `ERR_BIOMETRIC_DENIED`| `POST /wearable-sync` | Consenso Art. 9 GDPR non presente | Alert: *"Consenso biometrico necessario"* | Reindirizzamento al modulo consensi di profilo |
+| **422** | `ERR_INSUFFICIENT_DATA`| `POST /wearable-sync` | Campioni HRV insufficienti per calcolo affidabile | Quadrante neutro: *"Dati sonno/HRV parziali"* | Utilizzo baseline anamnestica e richiesta RPE soggettivo |
+| **500** | `ERR_MAD_ALGORITHM` | `POST /wearable-sync` | Eccezione nel modulo MAD per varianza nulla | Valore default ambrato: *"Readiness stimata"* | Fallback su media mobile aritmetica semplice |
+| **504** | `ERR_HEALTH_TIMEOUT` | `POST /wearable-sync` | Timeout gateway durante elaborazione massiva | Toast: *"Sincronizzazione in corso in background"* | Elaborazione asincrona e notifica push al termine |
+
+
+---
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 

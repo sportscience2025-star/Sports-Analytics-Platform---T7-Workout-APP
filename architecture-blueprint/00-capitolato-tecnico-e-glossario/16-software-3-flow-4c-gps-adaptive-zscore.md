@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 4C – GPS Telemetry & Adaptive Z-Score Fatigue Profiling (T7 Elite Pro Teams)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#16` (Posizione: `X: 4587, Y: 6580`)
+- **Badge Miro Board:** `#16` (Posizione: `X: 4587, Y: 6565.57`, Miro Shape ID: `3458764688417722792`)
 - **Codice Univoco:** `FLOW-4C`
 - **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 4C: GPS TELEMETRY & ADAPTIVE Z-SCORE FATIGUE PROFILING
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 4: Telemetria GPS & Z-Score Squadra)
@@ -9,6 +9,7 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Adaptive Z-Score 28gg, Telemetria GPS 10-18Hz, Potenza Metabolica Osgnach W/kg, Dilution of Precision DOP, Cold-Start Nuovi Acquisti, HRV Fusion*).
 
 ---
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -29,6 +30,7 @@ Non si possono confrontare numeri grezzi tra atleti diversi: ognuno ha il suo mo
 
 ---
 
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (High-Frequency Telemetry Dashboard React 18):**
@@ -45,6 +47,38 @@ Non si possono confrontare numeri grezzi tra atleti diversi: ognuno ha il suo mo
 
 ---
 
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-4C)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor GPS as Dispositivi GPS Campo (10-18 Hz)
+    participant GW as API Gateway & Telemetry Ingest (Corsia 2)
+    participant MATH as Osgnach & Z-Score Engine (Corsia 3)
+    participant SILO2 as Bunker Database Silo 2 (Corsia 4)
+    actor Analyst as Match Analyst / Preparatore
+
+    GPS->>GW: POST /api/v1/enterprise/telemetry/gps-stream (Campioni raw 10-18Hz)
+    GW->>MATH: Inoltro campioni posizione e accelerazione
+    MATH->>MATH: Filtraggio DOP (Scarto campioni con DOP > 2.0)
+    MATH->>MATH: Calcolo Potenza Metabolica Osgnach (W/kg) & Distanza High Metabolic Load
+    MATH->>MATH: Fusione telemetria interna (HRV ed FC cardiaca)
+    alt Nuovo Acquisto (Assenza Baseline 28 giorni)
+        MATH->>MATH: Fallback Cold-Start: Ponderazione su media ruolo & dati antropometrici
+    else Atleta con Storico Consolidato
+        MATH->>MATH: Calcolo Z-Score Adattivo su media e deviazione standard personale a 28gg
+    end
+    MATH->>SILO2: INSERT gps_sessions & zscore_metrics (Cifratura Silo 2)
+    SILO2-->>Analyst: Visualizzazione Dashboard Live & Allarmi Picchi Z-Score > 2.0
+    Analyst->>GW: GET /api/v1/enterprise/telemetry/export-excel
+    GW->>MATH: Compilazione file Excel senza password di protezione (protected: false)
+    MATH-->>Analyst: 200 OK (Download file .xlsx per staff)
+```
+
+---
+
+
 ## 4. Flusso Operativo Passo-Passo
 
 ### Livello A: User Journey Narrativo (La Storia dell'Utente)
@@ -59,6 +93,18 @@ Non si possono confrontare numeri grezzi tra atleti diversi: ognuno ha il suo mo
 6. **L'Alert allo Staff Tecnico:** Compare la prescrizione automatica: *"Allarme Sovraccarico Critico: si raccomanda di concedere 48 ore di scarico e non schierarlo nella partitella di Martedì per evitare lesioni al bicipite femorale"*.
 
 ---
+
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Filtraggio Satellitare DOP** | Scarto $100\%$ campioni con DOP $> 2.0$ | DOP $\le 2.5$ | Interpolazione spline temporale |
+| **Accuratezza Potenza Osgnach**| Conforme a modello di Prampero-Osgnach | $\pm 1.5\%$ deviazione | Stima basata su sole accelerazioni rettilinee |
+| **Convergenza Cold-Start** | Baseline transitoria attiva da Giorno 1 | Media ruolo $\pm 10\%$ | Assegnazione baseline conservativa al 70% |
+| **Frequenza GPS Supportata** | 10-18 Hz senza perdita di frame | $\ge 10\text{ Hz}$ | Ricampionamento lineare automatico a 10 Hz |
+
+---
+
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
@@ -87,6 +133,7 @@ Non si possono confrontare numeri grezzi tra atleti diversi: ognuno ha il suo mo
 
 ---
 
+
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
@@ -103,6 +150,7 @@ Non si possono confrontare numeri grezzi tra atleti diversi: ognuno ha il suo mo
    - *Mancanza del dato cardiaco mattutino:* Il radar segnala l'assenza del parametro interno e calcola lo Z-Score parziale sul solo carico esterno con avviso allo staff.
 
 ---
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -148,6 +196,20 @@ Non si possono confrontare numeri grezzi tra atleti diversi: ognuno ha il suo mo
 - `fatigue_zscores`: `id UUID PK`, `athlete_id VARCHAR(64)`, `session_id UUID`, `calculated_z NUMERIC(4,2)`, `rolling_mean_28 NUMERIC(7,2)`, `rolling_std_28 NUMERIC(6,2)`, `cold_start_applied BOOLEAN`, `alert_triggered BOOLEAN`.
 
 ---
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_CORRUPT_GPS` | `POST /gps-stream` | File telemetria corrotto o checksum errato | Notifica: *"File telemetria non integro"* | Richiesta nuovo upload o ri-esportazione da docking |
+| **401** | `ERR_DEVICE_UNAUTH` | `POST /gps-stream` | ID ricevitore GPS non registrato nel club | Alert: *"Dispositivo GPS non censito nel Bunker"*| Assegnazione provvisoria in quarantena |
+| **422** | `ERR_SATELLITE_NOISE`| `POST /gps-stream` | Oltre il 50% dei campioni con DOP $> 3.0$ (Canyoning)| Avviso: *"Segnale GPS instabile nello stadio"* | Integrazione con soli dati accelerometrici IMU |
+| **429** | `ERR_INGEST_OVERLOAD`| `POST /gps-stream` | Frequenza pacchetti superiore a capacità banda | Nessun disturbo all'utente | Buffer in memoria e throttling transitorio |
+| **500** | `ERR_ZSCORE_FAULT` | `POST /gps-stream` | Varianza storica nulla (divisione per zero) | Icona ambrata: *"Z-Score stimato su media ruolo"*| Assegnazione deviazione standard predefinita |
+| **504** | `ERR_PIPELINE_TIMEOUT`| `POST /gps-stream` | Timeout durante calcolo potenza metabolica | Toast: *"Calcolo in corso in background"* | Notifica push a completamento elaborazione |
+
+---
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 

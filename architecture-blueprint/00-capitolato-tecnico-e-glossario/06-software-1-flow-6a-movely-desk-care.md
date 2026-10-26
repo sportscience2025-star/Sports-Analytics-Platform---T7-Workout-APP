@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 6A – Movely Desk-Care & Micro-Pause Ergonomiche (T7 Consumer)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#06` (Posizione: `X: 7937, Y: 465`)
+- **Badge Miro Board:** `#06` (Posizione: `X: 7937, Y: 465`, Miro Shape ID: `3458764688417722722`)
 - **Codice Univoco:** `FLOW-6A`
 - **Titolo Formale:** SOFTWARE 1 (B2C CONSUMER) - FLOW 6A: MOVELY DESK-CARE & MICRO-PAUSE ERGONOMICHE AZIENDALI
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 1: General User / Casual, Colonna 6: Movely Corporate Wellness & Ergonomia)
@@ -9,6 +9,7 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Movely Corporate Wellness, Zero-Knowledge Privacy Shield, Micro-Pause Attive, Ergonomic Engine, K-Anonymity*).
 
 ---
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -26,6 +27,7 @@ Chi lavora molte ore seduto davanti al computer (in ufficio o in smart working) 
 
 ---
 
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (Movely Widget Web & Mobile PWA):**
@@ -38,6 +40,33 @@ Chi lavora molte ore seduto davanti al computer (in ufficio o in smart working) 
    - Tabelle `movely_routines`, `employee_sessions` (memorizzate solo a fini di gamification personale) e `company_reports` (metriche aggregate con soglia minima di $k \ge 10$ dipendenti per reparto per impedire l'identificazione individuale).
 
 ---
+
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-6A)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Utente as Thin Client (Desk Worker)
+    participant TMR as Timer Posturale Locale (Worker)
+    participant GW as API Gateway (Corsia 2)
+    participant SRV as Ergonomic Engine (Corsia 3)
+    participant DB as Database Silo 1 (Corsia 4)
+
+    Utente->>TMR: Avvio sessione lavorativa (Intervallo: 50 min)
+    Note over Utente,TMR: Conteggio tempo continuo in background
+    TMR-->>Utente: Trigger acustico e visivo: "Micro-Pausa Posturale"
+    Utente->>Utente: Esecuzione routine 2 minuti (Mobilità cervicale & spalle)
+    Utente->>GW: POST /api/v1/corporate/break-completed (RoutineID, Durata)
+    GW->>SRV: Dispatch aggregazione anonima
+    SRV->>SRV: Mascheramento K-Anonimato (Zero-Knowledge Shield)
+    SRV->>DB: INSERT corporate_break_metrics (Dataset aggregato k >= 10)
+    DB-->>SRV: Commit completato
+    SRV-->>Utente: 200 OK (Streak personale incrementato, zero leak aziendale)
+```
+
+---
+
 
 ## 4. Flusso Operativo Passo-Passo
 
@@ -53,6 +82,19 @@ Chi lavora molte ore seduto davanti al computer (in ufficio o in smart working) 
 6. **I Punti Salute:** L'app assegna 50 "Punti Movely" che contribuiscono alla sfida del benessere aziendale (es. buoni acquisto o premi salute messi a disposizione dall'azienda).
 
 ---
+
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Precisione Timer Sedentarietà** | $< 1\text{ s}$ deviazione per ora | $\le 5\text{ s}$ | Risincronizzazione continua su clock di sistema |
+| **Garanzia K-Anonimato** | $k \ge 10$ lavoratori per cluster | $k \ge 5$ | Soppressione visualizzazione report al datore |
+| **Avvio Routine Micro-Pausa** | $< 100\text{ ms}$ | $\le 250\text{ ms}$ | Pre-caching asset grafici nello storage locale |
+| **Aderenza Pause Ergonomiche** | $> 60\%$ routine completate | $\ge 40\%$ | Posticipo automatico gentile (+15 min) |
+
+
+---
+
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
@@ -76,6 +118,7 @@ Chi lavora molte ore seduto davanti al computer (in ufficio o in smart working) 
 
 ---
 
+
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
@@ -92,6 +135,7 @@ Chi lavora molte ore seduto davanti al computer (in ufficio o in smart working) 
    - *Altoparlanti disattivati o muti:* Sostituzione dei segnali acustici con una delicata pulsazione visiva del bordo dello schermo (Visual Bell).
 
 ---
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -143,6 +187,21 @@ Chi lavora molte ore seduto davanti al computer (in ufficio o in smart working) 
 - `company_reports`: `id UUID PK`, `company_tenant_id VARCHAR(64)`, `reporting_week VARCHAR(16)`, `aggregated_sessions_count INT`, `adherence_rate NUMERIC(5,2)`, `UNIQUE (company_tenant_id, reporting_week)`.
 
 ---
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_BAD_INTERVAL` | `POST /corporate/config` | Intervallo postura impostato $< 15\text{ min}$ | Notifica: *"Intervallo minimo raccomandato: 20 min"* | Correzione automatica al valore soglia clinico |
+| **401** | `ERR_CORP_TOKEN` | `POST /corporate/metrics`| Token convenzione aziendale scaduto | Banner neutro: *"Modalità personale attiva"* | Passaggio a salvataggio privato non aggregato |
+| **403** | `ERR_PRIVACY_BREACH` | `GET /corporate/analytics`| Tentativo di visualizzare report con $k < 10$ | Schermata: *"Dati aggregati insufficienti (Privacy)"*| Blocco visualizzazione report al datore di lavoro |
+| **404** | `ERR_ROUTINE_404` | `GET /corporate/routine` | ID routine ergonomica non trovato | Schermata: *"Caricamento routine standard..."* | Fallback su sequenza standard di stretching collo |
+| **429** | `ERR_PING_LIMIT` | `POST /corporate/ping` | Troppi ping di presenza da browser aperti | Nessun disturbo all'utente | Silenziamento ping e throttle temporale |
+| **500** | `ERR_KANONYMITY_FAIL`| `POST /corporate/metrics`| Errore nel job di anonimizzazione batch | Icona ambrata di sincronizzazione | Riprova asincrona su cluster di elaborazione |
+
+
+---
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 

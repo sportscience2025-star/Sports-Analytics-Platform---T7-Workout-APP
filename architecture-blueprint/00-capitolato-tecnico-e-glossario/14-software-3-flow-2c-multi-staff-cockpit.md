@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 2C – Catalogo 3D, Video Pro & Libreria Club a 2 Livelli (T7 Elite Pro Teams)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#14` (Posizione: `X: -108, Y: 6245`)
+- **Badge Miro Board:** `#14` (Posizione: `X: -108, Y: 6235.66`, Miro Shape ID: `3458764688417722783`)
 - **Codice Univoco:** `FLOW-2C`
 - **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 2C: CATALOGO 3D, VIDEO MULTI-CAMERA 4K & LIBRERIA CLUB A 2 LIVELLI
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 2: Catalogo Tattico & Cockpit Multi-Staff)
@@ -9,6 +9,7 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Secret Club Vault, Digital Twin 3D Squadra, Multi-Camera 4K Sync, Doppia Firma Digitale Tecnico-Sanitaria, Watermarking Dinamico Anti-Leak*).
 
 ---
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -27,6 +28,7 @@ Nei grandi club professionistici, gli schemi su palla inattiva, le posture speci
 
 ---
 
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (Multi-Staff Cockpit React 18):**
@@ -39,6 +41,38 @@ Nei grandi club professionistici, gli schemi su palla inattiva, le posture speci
    - Tabelle `club_secret_catalog`, `joint_medical_approvals` e `anti_leak_audit_logs`.
 
 ---
+
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-2C)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Staff as Multi-Staff Club (Head Coach, S&C, Medico)
+    participant GW as API Gateway & RBAC Granulare (Corsia 2)
+    participant VAULT as Secret Club Vault & Watermarking (Corsia 3)
+    participant SIM as Digital Twin 3D Engine (Corsia 3)
+    participant SILO2 as Bunker Database Silo 2 KMS (Corsia 4)
+
+    Staff->>GW: POST /api/v1/enterprise/video/ingest-4k (Feed telecamere campo multiple)
+    GW->>GW: Verifica mTLS & Permessi ruolo (R5_HEAD_COACH o R7_ANALYST)
+    GW->>VAULT: Streaming 4K sincrono multi-camera
+    VAULT->>VAULT: Sincronizzazione millimetrica stream & Applicazione Watermark dinamico anti-leak
+    VAULT->>SILO2: Scrittura video cifrati in Vault isolato
+    SILO2-->>VAULT: Commit cifratura confermato
+
+    Staff->>GW: POST /api/v1/enterprise/digital-twin/simulate (athleteId, exerciseData)
+    GW->>SIM: Richiesta estrazione sollecitazioni articolari
+    SIM->>SIM: Calcolo momento torcente ginocchio & carico vertebrale
+    SIM-->>Staff: 200 OK (Mappa termica tensioni muscolari su Digital Twin 3D)
+
+    Staff->>GW: POST /api/v1/enterprise/sign-off (Doppia firma digitale Medico + Preparatore)
+    GW->>SILO2: Registrazione congiunta nulla-osta tecnico-sanitario
+    SILO2-->>Staff: 200 OK (Atleta abilitato nel piano settimanale di squadra)
+```
+
+---
+
 
 ## 4. Flusso Operativo Passo-Passo
 
@@ -55,6 +89,18 @@ Nei grandi club professionistici, gli schemi su palla inattiva, le posture speci
 6. **La Distribuzione all'Atleta:** Solo dopo la doppia firma, l'esercizio compare sul tablet del calciatore nello spogliatoio, con impresso in trasparenza il suo codice identificativo per evitare screenshot non autorizzati.
 
 ---
+
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Sincronia Multi-Camera 4K** | $< 10\text{ ms}$ tra stream | $\le 30\text{ ms}$ | Genlock software con drop frame selettivo |
+| **Watermark Forense Dinamico** | $100\%$ frame marcati | $0\%$ frame scoperti | Blocco riproduzione video non contrassegnati |
+| **Simulazione Digital Twin 3D** | $< 3.0\text{ s}$ per esercizio | $\le 6.0\text{ s}$ | Elaborazione su modello cinematico a 14 nodi |
+| **Validità Doppia Firma** | $100\%$ consensi congiunti | $0\%$ override singoli | Scheda atleta non attivabile senza entrambe le firme |
+
+---
+
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
@@ -79,6 +125,7 @@ Nei grandi club professionistici, gli schemi su palla inattiva, le posture speci
 
 ---
 
+
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
@@ -95,6 +142,7 @@ Nei grandi club professionistici, gli schemi su palla inattiva, le posture speci
    - *Mancanza di firma del medico:* Cartella dell'esercizio contrassegnata in giallo con avviso bloccante: *"Esercizio in attesa di firma del Medico Sociale prima dell'assegnazione alla rosa"*.
 
 ---
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -132,6 +180,20 @@ Nei grandi club professionistici, gli schemi su palla inattiva, le posture speci
 - `joint_medical_approvals`: `id UUID PK`, `exercise_id UUID FK -> club_secret_catalog.id`, `head_coach_sig VARCHAR(255)`, `team_doctor_sig VARCHAR(255)`, `approved_at TIMESTAMPTZ`, `status VARCHAR(16)`.
 
 ---
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_CAM_DESYNC` | `POST /video/ingest-4k` | Timecode tra flussi 4K disallineati $> 100\text{ ms}$ | Alert: *"Disallineamento temporale tra le telecamere"* | Risincronizzazione forzata su audio clock comune |
+| **401** | `ERR_STAFF_EXPIRED` | `POST /sign-off` | Token sessione scaduto prima della firma congiunta | Modale rapido di riconnessione con impronta/FIDO2 | Mantenimento della bozza di nulla osta in memoria |
+| **403** | `ERR_ROLE_UNAUTHORIZED`| `POST /sign-off` | Utente non abilitato alla firma medica/tecnica | Banner: *"Ruolo non autorizzato alla firma del documento"*| Blocco pulsante firma e registrazione audit log |
+| **413** | `ERR_4K_BANDWIDTH` | `POST /video/ingest-4k` | Quota banda contemporanea superata | Toast: *"Banda satura. Switch a risoluzione 1080p"* | Transcodifica dinamica e upload differito 4K |
+| **500** | `ERR_VAULT_ENCRYPT` | `POST /video/ingest-4k` | Eccezione nel modulo crittografico KMS del Vault | Banner rosso: *"Errore salvataggio criptato"* | Interruzione upload per evitare storage non cifrato |
+| **504** | `ERR_TWIN_TIMEOUT` | `POST /digital-twin/sim` | Timeout durante computazione elementi finiti | Notifica: *"Simulazione complessa. Risultati a breve"*| Notifica push al termine del calcolo asincrono |
+
+---
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 

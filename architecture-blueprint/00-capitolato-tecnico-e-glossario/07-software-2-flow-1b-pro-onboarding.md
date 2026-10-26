@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 1B – Onboarding & Setup Fiscale Anti-Frode (T7 Pro Partita IVA)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#07` (Posizione: `X: -2448, Y: 3090`)
+- **Badge Miro Board:** `#07` (Posizione: `X: -2448, Y: 3090`, Miro Shape ID: `3458764688417722731`)
 - **Codice Univoco:** `FLOW-1B`
 - **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 1B: ONBOARDING PROFESSIONALE & SETUP FISCALE P.IVA ANTI-FRODE (T7 PRO)
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 1: Onboarding Professionale)
@@ -9,6 +9,7 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *RBAC Role-Based Access Control, Sistema di Interscambio SDI, Know Your Customer KYC, 3D Liveness Check, Stripe Connect Custom*).
 
 ---
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -26,6 +27,7 @@ Chi lavora come personal trainer, preparatore atletico o fisioterapista con Part
 
 ---
 
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (Pro Cockpit Web / Tablet PWA React 18):**
@@ -38,6 +40,41 @@ Chi lavora come personal trainer, preparatore atletico o fisioterapista con Part
    - Tabelle `pro_profiles` (dati fiscali cifrati a riposo con AES-256), `compliance_dossiers` (documenti caricati e log degli esiti KYC) e `billing_subaccounts` (account Stripe collegato).
 
 ---
+
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-1B)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Pro as Professionista P.IVA (Client UI)
+    participant GW as API Gateway & Anti-Spoof (Corsia 2)
+    participant VIES as Registro Imprese / INI-PEC / SDI
+    participant STRIPE as Stripe Connect & Identity 3D
+    participant SRV as Server Scatola Nera (Corsia 3)
+    participant DB as Database Silo 1 (Corsia 4)
+
+    Pro->>GW: POST /api/v1/pro/verify-vat (Partita IVA, Codice Fiscale, SDI)
+    GW->>VIES: Controllo in tempo reale esistenza & stato attivo P.IVA
+    VIES-->>GW: P.IVA Valida & Ricerca Indirizzo PEC su INI-PEC
+    GW->>VIES: Invio Two-Way OTP (6 cifre) a casella PEC ufficiale
+    VIES-->>GW: OTP consegnato su PEC
+    GW-->>Pro: 200 OK (OTP inviato su PEC ufficiale aziendale)
+
+    Pro->>GW: POST /api/v1/pro/confirm-pec-otp (Codice OTP digitato)
+    GW->>GW: Validazione codice OTP & Scudo Anti-Spoofing
+    GW->>STRIPE: Avvio sessione Stripe Identity (Verifica Documento + Liveness 3D)
+    STRIPE-->>Pro: Webview SDK Biometrico 3D
+    Pro->>STRIPE: Upload CIE/Passaporto & Video Selfie dinamico
+    STRIPE-->>GW: Webhook: Identity.verified & Connect Account Onboarded
+    GW->>SRV: Provisioning profilo professionale Tier 2 (Rolling Reserve 14gg)
+    SRV->>DB: INSERT pro_profiles & UPDATE auth_users (Role R2_COACH o R3_PHYSIO)
+    DB-->>SRV: Commit completato
+    SRV-->>Pro: 200 OK (Accesso Coach Hub Pro sbloccato)
+```
+
+---
+
 
 ## 4. Flusso Operativo Passo-Passo
 
@@ -53,6 +90,18 @@ Chi lavora come personal trainer, preparatore atletico o fisioterapista con Part
 7. **L'Approvazione Finale:** Appena approvato, il profilo riceve il **Badge Blu**, gli inviti agli allievi diventano attivi e lo studio è ufficialmente operativo al 100%!
 
 ---
+
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Tempo Validazione P.IVA** | $< 1.5\text{ s}$ (VIES / SDI) | $\le 3.5\text{ s}$ | Accreditamento provvisorio con audit differito |
+| **Recapito OTP su INI-PEC** | $< 45\text{ s}$ | $\le 120\text{ s}$ | Re-invio manuale con limite 3 tentativi/ora |
+| **Precisione Liveness Check 3D** | $> 99.8\%$ rilevamento spoof | $\ge 99.0\%$ | Invio a revisione manuale con operatore (24h) |
+| **Tasso Frodi / False P.IVA** | $0\%$ tolleranza frode | $0\%$ | Blocco immediato del profilo e segnalazione |
+
+---
+
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
@@ -79,6 +128,7 @@ Chi lavora come personal trainer, preparatore atletico o fisioterapista con Part
 
 ---
 
+
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
@@ -95,6 +145,7 @@ Chi lavora come personal trainer, preparatore atletico o fisioterapista con Part
    - *Documento sfocato o illeggibile:* Notifica immediata: *"La foto del documento è mossa o presenta riflessi. Scatta nuovamente la foto con buona luce"*.
 
 ---
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -138,6 +189,20 @@ Chi lavora come personal trainer, preparatore atletico o fisioterapista con Part
 - `compliance_dossiers`: `id UUID PK`, `pro_id UUID FK -> pro_profiles.id`, `liveness_score NUMERIC(4,3)`, `id_document_type VARCHAR(32)`, `document_vault_ref TEXT`, `status VARCHAR(32)`, `verified_at TIMESTAMPTZ`.
 
 ---
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_INVALID_VAT` | `POST /pro/verify-vat` | Formato Partita IVA o Codice Destinatario SDI errato | Bordo rosso: *"Partita IVA o Codice SDI non validi"* | Validazione regex client-side preventiva |
+| **401** | `ERR_PEC_OTP_WRONG` | `POST /pro/confirm-pec-otp`| Codice OTP digitato errato o scaduto (10 min) | Alert: *"Codice PEC non valido o scaduto"* | Possibilità di generare nuovo codice OTP |
+| **403** | `ERR_VAT_INACTIVE` | `POST /pro/verify-vat` | Partita IVA cessata, sospesa o fallita | Modale: *"Partita IVA non attiva all'Agenzia Entrate"*| Blocco dell'onboarding professionale |
+| **422** | `ERR_LIVENESS_FAIL` | `POST /pro/stripe-webhook`| Mancata corrispondenza selfie 3D e documento | Schermata: *"Verifica identità non superata"* | Richiesta nuovo documento in alta risoluzione |
+| **429** | `ERR_OTP_FLOOD` | `POST /pro/verify-vat` | Più di 3 richieste di OTP all'ora sullo stesso CF | Toast: *"Limite richieste OTP raggiunto. Attendi"* | Throttle temporale con timer visibile |
+| **502** | `ERR_VIES_OFFLINE` | `POST /pro/verify-vat` | Registro europeo VIES momentaneamente offline | Banner ambrato: *"Verifica differita in corso..."* | Accodamento verifica in background |
+
+---
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 

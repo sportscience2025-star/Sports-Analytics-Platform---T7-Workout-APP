@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 2A – Catalogo Esercizi & Avatar Biomeccanico 3D (T7 Consumer)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#02` (Posizione: `X: -256, Y: 330`)
+- **Badge Miro Board:** `#02` (Posizione: `X: 27.35, Y: 179.87`, Miro Shape ID: `3458764688417722707`)
 - **Codice Univoco:** `FLOW-2A`
 - **Titolo Formale:** SOFTWARE 1 (B2C CONSUMER) - FLOW 2A: CATALOGO ESERCIZI & AVATAR BIOMECCANICO 3D
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 1: General User / Casual, Colonna 2: Catalogo Esercizi & 3D)
@@ -9,6 +9,7 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Thin Client, WebGL 3D Avatar, Google Draco Compression, Time Under Tension TUT, Graceful Degradation*).
 
 ---
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -25,6 +26,7 @@ Inoltre, una speciale guida *"Why & Fix"* mostra gli errori più comuni (es. gin
 
 ---
 
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (React 18 + WebGL Three.js / Canvas 2D):**
@@ -37,6 +39,47 @@ Inoltre, una speciale guida *"Why & Fix"* mostra gli errori più comuni (es. gin
    - Tabelle `catalog_exercises` (con metadati biomeccanici, muscoli primari, secondari e controindicazioni) e `user_favorites` per la sincronizzazione cross-device dei preferiti dell'utente.
 
 ---
+
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-2A)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Utente as Thin Client UI (Three.js WebGL)
+    participant GW as API Gateway & Redis Cache (Corsia 2)
+    participant CDN as Cloud CDN / Cloud Run (Corsia 3)
+    participant DB as Database Silo 1 (Corsia 4)
+
+    Utente->>GW: GET /api/v1/catalog/exercises (muscle, pattern, search)
+    alt Cache Hit (Edge Redis)
+        GW-->>Utente: 200 OK (Catalog JSON compresso gzip, latenza < 15ms)
+    else Cache Miss
+        GW->>DB: Query catalog_exercises filtrata
+        DB-->>GW: Righe esercizi & metadati biomeccanici
+        GW->>GW: Memorizzazione cache Redis (TTL 24h)
+        GW-->>Utente: 200 OK (Catalog JSON generato)
+    end
+
+    Utente->>Utente: Selezione Esercizio & Rilevamento WebGL 2.0
+    alt WebGL Supportato e Memoria GPU Valida
+        Utente->>CDN: GET /models3d/exercise_draco.glb
+        CDN-->>Utente: Mesh 3D compressa (1-2 MB)
+        Utente->>Utente: Decompressione Draco in Web Worker & OrbitControls
+    else WebGL Assente o Crash Contesto GPU
+        Utente->>CDN: GET /videos2d/exercise_fallback_60fps.mp4
+        CDN-->>Utente: Stream video 2D H.265 in loop
+        Utente->>Utente: Rendering graceful fallback 2D
+    end
+
+    Utente->>GW: POST /api/v1/catalog/favorites (exerciseId)
+    GW->>DB: INSERT user_favorites (user_id, exercise_id)
+    DB-->>GW: Commit completato
+    GW-->>Utente: 200 OK (Stato preferito aggiornato)
+```
+
+---
+
 
 ## 4. Flusso Operativo Passo-Passo
 
@@ -53,6 +96,19 @@ Inoltre, una speciale guida *"Why & Fix"* mostra gli errori più comuni (es. gin
 7. **L'Azione Finale:** Con un tocco l'utente aggiunge la stellina dei preferiti, oppure preme *"Inizia questo Esercizio"* per caricarlo istantaneamente nel Workout Player del giorno.
 
 ---
+
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Framerate Rendering 3D** | $\ge 60\text{ FPS}$ stabili | $\ge 35\text{ FPS}$ | Attivazione Progressive LOD o fallback 2D |
+| **Dimensione Mesh Draco** | $< 1.5\text{ MB}$ per modello | $\le 2.5\text{ MB}$ | Decimazione automatica dei poligoni |
+| **Latenza Query Catalogo Edge** | $< 15\text{ ms}$ (Cache Hit) | $\le 50\text{ ms}$ | Servizio offline da Service Worker cache |
+| **Reattività Debounce Ricerca** | $250\text{ ms}$ | $\pm 50\text{ ms}$ | Filtraggio istantaneo su array in-memory |
+
+
+---
+
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
@@ -80,6 +136,7 @@ Inoltre, una speciale guida *"Why & Fix"* mostra gli errori più comuni (es. gin
 
 ---
 
+
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
@@ -97,6 +154,7 @@ Inoltre, una speciale guida *"Why & Fix"* mostra gli errori più comuni (es. gin
    - *Crash del contesto WebGL (dispositivo con memoria GPU esaurita):* L'app non va in crash ma esegue il fallback silenzioso caricando istantaneamente il player video 2D compresso.
 
 ---
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -142,6 +200,21 @@ Inoltre, una speciale guida *"Why & Fix"* mostra gli errori più comuni (es. gin
 - `user_favorites`: `user_id UUID FK -> auth_users.id`, `exercise_id VARCHAR(64) FK -> catalog_exercises.id`, `created_at TIMESTAMPTZ`, `PRIMARY KEY (user_id, exercise_id)`.
 
 ---
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_BAD_FILTER` | `GET /catalog/exercises` | Parametro di filtro muscolare non valido | Badge: *"Filtro non riconosciuto"* | Reset automatico ai filtri di default |
+| **401** | `ERR_UNAUTHORIZED` | `GET /catalog/exercises` | Token JWT mancante o firma non valida | Redirect a schermata di login | Salvataggio stato ricerca in sessionStorage |
+| **404** | `ERR_EXERCISE_404` | `GET /catalog/exercises/:id` | ID esercizio non presente nel database | Schermata: *"Esercizio rimosso dal catalogo"* | Reindirizzamento alla griglia generale |
+| **429** | `ERR_CATALOG_FLOOD` | `GET /catalog/exercises` | Superamento soglia 60 chiamate/minuto | Toast: *"Rallenta le ricerche per favore"* | Applicazione debounce rinforzato client-side |
+| **502** | `ERR_CDN_UNREACHABLE` | `GET /models3d/*.glb` | Asset CDN 3D momentaneamente non raggiungibile | Alert trasparente: *"Passaggio a vista 2D..."* | Fallback immediato a video MP4 compresso |
+| **503** | `ERR_REDIS_DOWN` | `GET /catalog/exercises` | Cluster Redis temporaneamente offline | Nessun errore visibile all'utente | Fallback trasparente su query diretta PostgreSQL |
+
+
+---
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 

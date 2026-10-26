@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 5C – Confidential Tactical Video & Voronoi Computer Vision (T7 Elite Pro Teams)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#17` (Posizione: `X: 6464, Y: 6580`)
+- **Badge Miro Board:** `#17` (Posizione: `X: 6464, Y: 6566.88`, Miro Shape ID: `3458764688417722803`)
 - **Codice Univoco:** `FLOW-5C`
 - **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 5C: TACTICAL VISION, COMPUTER VISION SUL CAMPO & DIAGRAMMI DI VORONOI
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 5: Tactical Vision & Computer Vision)
@@ -9,6 +9,7 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Tactical Vision Computer Vision, Omografia Prospettica 2D, Diagrammi di Voronoi Campo, Modello YOLOv8 Object Detection, Zero Social Leakage, Baricentro Squadra*).
 
 ---
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -28,6 +29,7 @@ Nel calcio moderno le partite si vincono o si perdono per questione di spazi: un
 
 ---
 
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (Tactical Vision Canvas React 18):**
@@ -45,6 +47,32 @@ Nel calcio moderno le partite si vincono o si perdono per questione di spazi: un
 
 ---
 
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-5C)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Analyst as Match Analyst (Tactical Cockpit)
+    participant GW as API Gateway & Anti-Leak (Corsia 2)
+    participant YOLO as Modello YOLOv8 Detection (Corsia 3)
+    participant VORONOI as Omografia & Voronoi Engine (Corsia 3)
+    participant SILO2 as Bunker Database Silo 2 (Corsia 4)
+
+    Analyst->>GW: POST /api/v1/enterprise/tactical/video-upload (Clip match da tribuna)
+    GW->>YOLO: Streaming frame video
+    YOLO->>YOLO: Rilevamento Real-Time 22 giocatori, arbitri e pallone (mAP@50 > 94%)
+    YOLO-->>VORONOI: Coordinate bounding box (Pixel frame)
+    VORONOI->>VORONOI: Applicazione Omografia Prospettica 2D (Rimappatura a coordinate campo)
+    VORONOI->>VORONOI: Calcolo Tassellatura Voronoi (Aree controllo campo per squadra)
+    VORONOI->>VORONOI: Estrazione Baricentro, Ampiezza e Profondità tattica
+    VORONOI->>SILO2: INSERT tactical_metrics in Silo 2 (Zero Social Leakage)
+    SILO2-->>Analyst: Rendering 2D Lavagna Tattica Zenitale Dinamica
+```
+
+---
+
+
 ## 4. Flusso Operativo Passo-Passo
 
 ### Livello A: User Journey Narrativo (La Storia dell'Utente)
@@ -58,6 +86,18 @@ Nel calcio moderno le partite si vincono o si perdono per questione di spazi: un
 6. **La Relazione per l'Allenatore nell'Intervallo:** In 60 secondi il sistema compila un **Dossier Tattico Sintetico** di 3 pagine con le 5 clip video più significative e le mappe di calore, che l'Head Coach può mostrare ai giocatori nello spogliatoio tra primo e secondo tempo per correggere la tattica.
 
 ---
+
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Accuratezza YOLOv8** | $\text{mAP@50} \ge 94\%$ | $\ge 90\%$ | Tracciamento inerziale con Filtro di Kalman |
+| **Errore Omografia 2D** | $< 0.35\text{ m}$ errore reale sul campo | $\le 0.75\text{ m}$ | Ricalibrazione manuale dei 4 corner del campo |
+| **Tempo Calcolo Voronoi** | $< 16\text{ ms}$ per frame ($60\text{ FPS}$)| $\le 33\text{ ms}$ ($30\text{ FPS}$) | Calcolo a keyframe alternati ogni 0.25s |
+| **Zero Social Leakage** | $100\%$ confinamento Silo 2 | $0\%$ esportazioni pubbliche | Disabilitazione perentoria condivisione social |
+
+---
+
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
@@ -84,6 +124,7 @@ Nel calcio moderno le partite si vincono o si perdono per questione di spazi: un
 
 ---
 
+
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
@@ -100,6 +141,7 @@ Nel calcio moderno le partite si vincono o si perdono per questione di spazi: un
    - *Nebbia o visibilità ridotta in campo:* Il sistema segnala l'abbassamento di confidenza visiva e commuta automaticamente sui dati dei sensori GPS a 18Hz per mantenere il tracking posizionale.
 
 ---
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -136,6 +178,20 @@ Nel calcio moderno le partite si vincono o si perdono per questione di spazi: un
 - `pitch_space_control`: `id UUID PK`, `session_id UUID FK -> tactical_match_sessions.id`, `timecode_ms BIGINT`, `voronoi_polygons JSONB`, `home_compactness_m NUMERIC(5,2)`, `away_compactness_m NUMERIC(5,2)`.
 
 ---
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_HOMOGRAPHY_FAIL`| `POST /tactical/calibrate` | Punti di riferimento campo non visibili nel video | Alert: *"Impossibile rilevare le linee del campo"* | Richiesta click manuale sui 4 angoli del campo |
+| **401** | `ERR_ANALYST_AUTH` | `POST /tactical/video` | Ruolo Match Analyst non riconosciuto dal Gateway | Redirect a login con certificato mTLS | Mantenimento della sessione video in locale |
+| **413** | `ERR_MATCH_FILE_MAX` | `POST /tactical/video` | File video intero match supera quota ($> 5\text{ GB}$)| Dialog: *"Carica il video diviso per tempi (45 min)"*| Segmentazione automatica della clip prima dell'upload |
+| **422** | `ERR_YOLO_OCCLUSION` | `POST /tactical/video` | Troppi giocatori sovrapposti in mischia d'area | Evidenziazione: *"Rilevamento incerto in area"* | Tracciamento predittivo Kalman per 1.5 secondi |
+| **500** | `ERR_VORONOI_CRASH` | `POST /tactical/video` | Errore geometrico punti collineari nel Voronoi | Schermata: *"Mappa Voronoi non calcolabile"* | Rendering delle sole posizioni dei giocatori |
+| **504** | `ERR_GPU_TIMEOUT` | `POST /tactical/video` | Server cluster GPU temporaneamente saturo | Toast: *"Analisi tattica in coda di elaborazione"*| Notifica push al termine del calcolo asincrono |
+
+---
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 

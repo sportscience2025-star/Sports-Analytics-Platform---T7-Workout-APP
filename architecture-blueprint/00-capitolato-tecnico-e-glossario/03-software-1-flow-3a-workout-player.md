@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 3A – Architettura Thin Client & Interactive Workout Player (T7 Consumer)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#03` (Posizione: `X: 2459, Y: 465`)
+- **Badge Miro Board:** `#03` (Posizione: `X: 2459, Y: 465`, Miro Shape ID: `3458764688417722711`)
 - **Codice Univoco:** `FLOW-3A`
 - **Titolo Formale:** SOFTWARE 1 (B2C CONSUMER) - FLOW 3A: ARCHITETTURA DI SISTEMA, THIN CLIENT & INTERACTIVE WORKOUT PLAYER
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 1: General User / Casual, Colonna 3: Architettura di Sistema & Workout Player)
@@ -9,6 +9,7 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Thin Client, Service Worker Offline-First, IndexedDB, Tonnellaggio & Volume, Epley 1RM Formula, Rate of Perceived Exertion RPE*).
 
 ---
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -27,6 +28,7 @@ Questo modulo è il tuo compagno di allenamento digitale infallibile:
 
 ---
 
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (React 18 + Service Worker PWA):**
@@ -42,6 +44,44 @@ Questo modulo è il tuo compagno di allenamento digitale infallibile:
 
 ---
 
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-3A)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Utente as Thin Client Player (Offline-First)
+    participant IDB as IndexedDB Locale (Client)
+    participant GW as API Gateway (Corsia 2)
+    participant SRV as Server Scatola Nera (Corsia 3)
+    participant DB as Database Silo 1 (Corsia 4)
+
+    Utente->>IDB: Registrazione serie (setIndex, reps: 8, kg: 80, RPE: 8)
+    IDB-->>Utente: Salvataggio locale confermato (< 5ms)
+    Utente->>Utente: Calcolo sub-max 1RM (Epley) & Avvio Timer Recupero
+
+    alt Connessione Online Attiva
+        Utente->>GW: POST /api/v1/workout/sets (Payload serie)
+        GW->>SRV: Dispatch validazione serie
+        SRV->>DB: INSERT workout_sets & Aggiornamento tonnellaggio
+        DB-->>SRV: Commit confermato
+        SRV-->>Utente: 200 OK (Set memorizzato)
+    else Connessione Assente (Offline Mode)
+        Utente->>IDB: Accodamento in optimistic_sync_queue
+        Note over Utente,IDB: Allenamento prosegue senza blocchi UI
+        Utente->>Utente: Rilevamento evento 'online' di rete
+        Utente->>GW: POST /api/v1/workout/sync-batch (Coda mutazioni pendenti)
+        GW->>SRV: Elaborazione transazionale batch
+        SRV->>DB: Scrittura massiva Silo 1 & Ricalcolo streak
+        DB-->>SRV: Commit batch completato
+        SRV-->>Utente: 200 OK (Coda svuotata con successo)
+        Utente->>IDB: Svuotamento optimistic_sync_queue
+    end
+```
+
+---
+
+
 ## 4. Flusso Operativo Passo-Passo
 
 ### Livello A: User Journey Narrativo (La Storia dell'Utente)
@@ -56,6 +96,19 @@ Questo modulo è il tuo compagno di allenamento digitale infallibile:
    I dati sono memorizzati in modo permanente.
 
 ---
+
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Disponibilità Offline-First** | $100\%$ sessioni offline | $\ge 99.9\%$ | Persistenza garantita su IndexedDB |
+| **Latenza Salvataggio Locale** | $< 5\text{ ms}$ | $\le 20\text{ ms}$ | Aggiornamento ottimistico dello stato UI |
+| **Tempo Svuotamento Coda Sync** | $< 2\text{ s}$ dal ritorno online | $\le 5\text{ s}$ | Riprova con backoff esponenziale ($1, 2, 4, 8\text{s}$) |
+| **Accuratezza Tonnellaggio** | $100\%$ deterministico | $0\%$ errore | Audit trail e ricalcolo asincrono server |
+
+
+---
+
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
@@ -81,6 +134,7 @@ Questo modulo è il tuo compagno di allenamento digitale infallibile:
 
 ---
 
+
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
@@ -97,6 +151,7 @@ Questo modulo è il tuo compagno di allenamento digitale infallibile:
    - *Blackout di rete in sala pesi:* Comparsa di un indicatore giallo discreto in alto a destra: *"Modalità Offline attiva. I tuoi dati sono al sicuro sul dispositivo"*. Nessun blocco dell'interfaccia.
 
 ---
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -148,6 +203,21 @@ Questo modulo è il tuo compagno di allenamento digitale infallibile:
 - `athlete_records`: `athlete_id UUID`, `exercise_id VARCHAR(64)`, `max_load_kg NUMERIC(5,2)`, `estimated_1rm_kg NUMERIC(5,2)`, `achieved_at TIMESTAMPTZ`, `PRIMARY KEY (athlete_id, exercise_id)`.
 
 ---
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_NEGATIVE_VALUES` | `POST /workout/sets` | Ripetizioni o carico negativi/nulli | Bordo rosso: *"Inserisci valori validi"* | Validazione client preventiva prima dell'invio |
+| **401** | `ERR_SESSION_INVALID` | `POST /workout/sync-batch` | Token scaduto durante allenamento offline | Banner non intrusivo: *"Offline"* | Mantenimento dati in IndexedDB fino a re-login |
+| **409** | `ERR_TIMESTAMP_CONFLICT` | `POST /workout/sync-batch` | Serie già registrata con timestamp identico | Nessun blocco visibile all'utente | Risoluzione conflitti via Last-Write-Wins (LWW) |
+| **422** | `ERR_MALFORMED_SET` | `POST /workout/sets` | Formato JSON non conforme alla tipizzazione | Notifica: *"Errore di registrazione serie"* | Ripristino copia locale da IndexedDB |
+| **500** | `ERR_STREAK_FAILURE` | `POST /workout/finish` | Errore calcolo giorni consecutivi | Icona ambrata: *"Streak in elaborazione"* | Job server differito e allineamento successivo |
+| **503** | `ERR_SYNC_UNAVAILABLE` | `POST /workout/sync-batch` | Server temporaneamente sovraccarico | Icona nuvola arancione (coda pendente) | Accodamento per riprova automatica differita |
+
+
+---
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 

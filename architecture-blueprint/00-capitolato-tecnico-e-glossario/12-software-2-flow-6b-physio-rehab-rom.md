@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 6B – Physio Rehab Protocols & ROM Tracking (T7 Pro Fisio)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#12` (Posizione: `X: 7937, Y: 2940`)
+- **Badge Miro Board:** `#12` (Posizione: `X: 7937, Y: 2940`, Miro Shape ID: `3458764688417722770`)
 - **Codice Univoco:** `FLOW-6B`
 - **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 6B: PHYSIO REHAB PROTOCOLS, MISURAZIONE ROM DIGITALE & SCALA VAS
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 6: Fisioterapia Clinica & Riabilitazione)
@@ -9,6 +9,7 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Range of Motion ROM, Goniometro Digitale AI, Scala VAS del Dolore, 32 Protocolli Riabilitativi cli_01..32, Barriera Motoria di Sicurezza*).
 
 ---
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -26,6 +27,7 @@ Dopo un'operazione al crociato o una lesione alla spalla, il percorso di riabili
 
 ---
 
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (Physio Rehab Suite React 18):**
@@ -41,6 +43,45 @@ Dopo un'operazione al crociato o una lesione alla spalla, il percorso di riabili
 
 ---
 
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-6B)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Paziente as Paziente / Atleta infortunato
+    actor Fisio as Fisioterapista (Tier 2 Pro)
+    participant CV as Goniometro Digitale AI (Client Edge)
+    participant GW as API Gateway (Corsia 2)
+    participant CLINIC as Clinical Safety Engine (Corsia 3)
+    participant DB as Database Silo 1 (Corsia 4)
+
+    Fisio->>GW: POST /api/v1/physio/prescribe-rehab (Protocollo cli_01..32, Limite ROM: 60°)
+    GW->>DB: INSERT rehab_prescriptions
+    DB-->>Paziente: Notifica: "Nuova seduta riabilitativa attiva"
+
+    Paziente->>CV: Avvio esercizio di fronte a telecamera
+    CV->>CV: Estrazione angoli articolari in tempo reale (< 2° errore)
+    alt Angolo supera Limite Prescritto (> 60°)
+        CV-->>Paziente: FREEZE & ALLARME ACUSTICO: "Barriera Motoria Raggiunta!"
+    end
+
+    Paziente->>Paziente: Inserimento livello dolore soggettivo Scala VAS (0-10)
+    Paziente->>GW: POST /api/v1/physio/session-feedback (Angolo max, VAS: 5)
+    GW->>CLINIC: Valutazione sicurezza clinica
+    alt VAS >= 4 (Dolore Critico)
+        CLINIC->>CLINIC: LOCK PROGRESSIONE CARICO & Alert immediato
+        CLINIC->>DB: UPDATE rehab_status (ATTENZIONE_CLINICA)
+        CLINIC-->>Fisio: Notifica urgente: "Paziente ha segnalato VAS >= 4"
+    else VAS < 4 (Progressione Regolare)
+        CLINIC->>DB: UPDATE rehab_status (PROGRESSIONE_CONVALIDATA)
+    end
+    CLINIC-->>Paziente: 200 OK (Feedback registrato con successo)
+```
+
+---
+
+
 ## 4. Flusso Operativo Passo-Passo
 
 ### Livello A: User Journey Narrativo (La Storia dell'Utente)
@@ -55,6 +96,18 @@ Dopo un'operazione al crociato o una lesione alla spalla, il percorso di riabili
 6. **L'Esecuzione a Casa del Paziente:** Quando il paziente apre l'app a casa per fare gli esercizi, la fotocamera lo controlla: se prova a piegare a 125°, l'app suona ed emette un avviso visivo giallo: *"Stop! Hai raggiunto il limite prescritto dal tuo fisioterapista"*.
 
 ---
+
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Errore Goniometro AI** | $< 2.0^\circ$ deviazione angolare | $\le 4.0^\circ$ | Richiesta ricalibrazione piano inquadratura |
+| **Reattività Barriera Motoria** | $< 100\text{ ms}$ al superamento ROM | $\le 200\text{ ms}$ | Allarme acustico e freeze immediato dell'avatar |
+| **Rilevamento Dolore VAS $\ge 4$** | $100\%$ intercettazione | $0\%$ omissione | Lock automatico progressione terapeutica |
+| **Convalida 32 Protocolli** | $100\%$ conformità linee FNOFI | $0\%$ deviazioni non autorizzate | Richiesta firma clinica obbligatoria del fisio |
+
+---
+
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
@@ -77,6 +130,7 @@ Dopo un'operazione al crociato o una lesione alla spalla, il percorso di riabili
 
 ---
 
+
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
@@ -93,6 +147,7 @@ Dopo un'operazione al crociato o una lesione alla spalla, il percorso di riabili
    - *Paziente inquadrato parzialmente fuori campo:* L'app colora l'arco di arancione e visualizza la guida: *"Inquadra l'intera gamba dalla caviglia all'anca per una misurazione accurata"*.
 
 ---
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -130,6 +185,20 @@ Dopo un'operazione al crociato o una lesione alla spalla, il percorso di riabili
 - `patient_rom_history`: `id UUID PK`, `patient_id UUID FK -> athlete_profiles.id`, `physio_id UUID FK -> pro_profiles.id`, `joint VARCHAR(32)`, `measured_deg NUMERIC(5,2)`, `vas_score NUMERIC(3,1)`, `created_at TIMESTAMPTZ`.
 
 ---
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_INVALID_VAS` | `POST /session-feedback` | Valore scala VAS fuori scala ($< 0$ o $> 10$)| Bordo rosso: *"Indica un valore di dolore tra 0 e 10"*| Limitazione cursore a range consentito 0-10 |
+| **401** | `ERR_PHYSIO_AUTH` | `POST /prescribe-rehab` | Abilitazione ordine sanitario non verificata | Modale: *"Verifica iscrizione all'albo richiesta"* | Blocco prescrizione protocolli clinici |
+| **403** | `ERR_ROM_OVERRIDE` | `POST /prescribe-rehab` | Tentativo di rimuovere barriera motoria protetta | Dialog rosso: *"Impossibile superare limite post-operatorio"*| Richiesta motivazione clinica formale |
+| **422** | `ERR_GONIOMETER_FAIL`| `POST /session-feedback` | Mancata rilevazione punti articolari nel video | Alert: *"Illuminazione insufficiente o arto coperto"*| Ripetizione test con guida a silhouette |
+| **500** | `ERR_CLINIC_ENGINE` | `POST /session-feedback` | Eccezione nel modulo di calcolo progressione | Banner: *"Valutazione in corso dal tuo fisioterapista"*| Notifica manuale differita al professionista |
+| **503** | `ERR_REHAB_DB_BUSY` | `POST /session-feedback` | Database clinico temporaneamente in lock | Toast: *"Salvataggio completato in locale"* | Sincronizzazione automatica al ripristino |
+
+---
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 

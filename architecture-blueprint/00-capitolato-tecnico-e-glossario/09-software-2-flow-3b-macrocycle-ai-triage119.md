@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 3B – Architettura Pro & Macrocicli IA con Triage 119 Patologie (T7 Pro Coach)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#09` (Posizione: `X: 2459, Y: 2940`)
+- **Badge Miro Board:** `#09` (Posizione: `X: 2459, Y: 2940`, Miro Shape ID: `3458764688417722743`)
 - **Codice Univoco:** `FLOW-3B`
 - **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 3B: ARCHITETTURA PRO, GENERATORE MACROCICLI IA & CLINICAL TRIAGE 119
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 3: Architettura Pro & Periodizzazione)
@@ -9,6 +9,7 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *ImpactCalculator Triage 119, Periodizzazione DUP, Periodizzazione a Blocchi, Coniugata Westside, Excel Sbloccato protected:false, RAG Scientifico con Gerarchia Fonti*).
 
 ---
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -26,6 +27,7 @@ Scrivere una scheda di allenamento di 6 mesi (un macrociclo) per un cliente è u
 
 ---
 
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (Periodization Wizard React 18):**
@@ -41,6 +43,37 @@ Scrivere una scheda di allenamento di 6 mesi (un macrociclo) per un cliente è u
 
 ---
 
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-3B)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Coach as Coach Pro UI
+    participant GW as API Gateway (Corsia 2)
+    participant TRIAGE as Clinical Triage 119 (Corsia 3)
+    participant PERIOD as Periodization AI Engine (Corsia 3)
+    participant DB as Database Silo 1 (Corsia 4)
+
+    Coach->>GW: POST /api/v1/pro/macrocycle/generate (athleteId, DUP, obiettivi)
+    GW->>DB: Query anamnesi e patologie diagnosticate all'atleta
+    DB-->>GW: Profilo clinico (es. Lesione meniscale, Ernia L4-L5)
+    GW->>TRIAGE: Inoltro dati anamnestici per Triage Clinico 119
+    TRIAGE->>TRIAGE: Esecuzione ImpactCalculator (Esclusi, Adattati ROM, Disponibili)
+    TRIAGE-->>PERIOD: Matrice esercizi ammissibili & vincoli angolari
+    PERIOD->>PERIOD: Generazione Macrociclo DUP (Progressione carico & scarichi)
+    PERIOD-->>Coach: 200 OK (Bozza macrociclo completa con note di sicurezza)
+
+    Coach->>Coach: Revisione fine-tuning volumi e conferme
+    Coach->>GW: POST /api/v1/pro/macrocycle/assign (Piano confermato)
+    GW->>DB: INSERT athlete_macrocycles & workout_plans
+    DB-->>GW: Commit completato
+    GW-->>Coach: 201 Created (Scheda assegnata all'atleta)
+```
+
+---
+
+
 ## 4. Flusso Operativo Passo-Passo
 
 ### Livello A: User Journey Narrativo (La Storia dell'Utente)
@@ -55,6 +88,18 @@ Scrivere una scheda di allenamento di 6 mesi (un macrociclo) per un cliente è u
 6. **L'Esportazione Libera:** Il coach tocca *"Scarica Foglio Excel"*. Il file si apre su Microsoft Excel o Google Fogli: non ci sono blocchi o celle bloccate, il coach può personalizzare i colori, aggiungere note o cambiare un esercizio con totale libertà.
 
 ---
+
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Zero Violazioni Cliniche** | $100\%$ rispetto vincoli patologia | $0\%$ eccezioni | Blocco perentorio generazione scheda |
+| **Tempo Generazione DUP** | $< 800\text{ ms}$ per macrociclo 12 sett. | $\le 2.0\text{ s}$ | Caricamento template standard pre-validato |
+| **Aderenza Fasi Ondulate** | $100\%$ conformità carichi DUP | $\pm 2.5\%$ | Normalizzazione pesi automatica server-side |
+| **Copertura Clinica 119** | 119 condizioni mediche mappate | 119 condizioni attive | Rinvio a parere medico specialistico |
+
+---
+
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
@@ -82,6 +127,7 @@ Scrivere una scheda di allenamento di 6 mesi (un macrociclo) per un cliente è u
 
 ---
 
+
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
@@ -98,6 +144,7 @@ Scrivere una scheda di allenamento di 6 mesi (un macrociclo) per un cliente è u
    - *Conflitto insolubile tra patologie ed esercizi:* Alert guidato *"I filtri selezionati escludono tutti gli esercizi di spinta verticale. Si consiglia una consultazione fisioterapica prima di proseguire"*.
 
 ---
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -142,6 +189,20 @@ Scrivere una scheda di allenamento di 6 mesi (un macrociclo) per un cliente è u
 - `clinical_conditions_catalog`: `id VARCHAR(64) PK`, `district VARCHAR(32)`, `name_it VARCHAR(128)`, `axial_load_penalty NUMERIC(3,2)`, `rom_contraindications TEXT[]`.
 
 ---
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_BAD_PERIOD_PARAM`| `POST /macrocycle/generate`| Settimane non congrue ($< 4$ o $> 52$) | Alert: *"Durata macrociclo consentita: 4-52 settimane"*| Correzione automatica della durata a 8 settimane |
+| **401** | `ERR_UNAUTHORIZED` | `POST /macrocycle/generate`| Sessione coach scaduta durante la configurazione | Modale: *"Riconnetti per salvare il macrociclo"* | Salvataggio bozza in localStorage per non perdere dati |
+| **403** | `ERR_CLINICAL_LOCK` | `POST /macrocycle/assign` | Coach tenta di forzare esercizio con Red Flag | Dialog rosso: *"Esercizio controindicato per patologia"*| Sostituzione forzata con variante clinica sicura |
+| **404** | `ERR_ATHLETE_NOT_FOUND`| `POST /macrocycle/generate`| Atleta non presente o non associato al coach | Toast: *"Seleziona un atleta attivo dal tuo roster"* | Ritorno all'elenco atleti assegnati |
+| **422** | `ERR_TRIAGE_CONFLICT` | `POST /macrocycle/generate`| Conflitto tra patologie multiple incompatibili | Avviso: *"Troppe restrizioni. Richiesto consulto medico"*| Limitazione a soli protocolli di mobilità protetta |
+| **500** | `ERR_SOLVER_CRASH` | `POST /macrocycle/generate`| Timeout del risolutore di ottimizzazione carichi | Banner: *"Generazione standard in corso..."* | Assegnazione schema lineare classico di backup |
+
+---
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 

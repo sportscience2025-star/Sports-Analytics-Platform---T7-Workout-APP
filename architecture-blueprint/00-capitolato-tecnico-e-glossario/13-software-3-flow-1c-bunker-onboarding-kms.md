@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 1C – Onboarding Enterprise & Bunker Club Isolation (T7 Elite Club Enterprise)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#13` (Posizione: `X: -2925, Y: 6580`)
+- **Badge Miro Board:** `#13` (Posizione: `X: -2925, Y: 6555`, Miro Shape ID: `3458764688417722778`)
 - **Codice Univoco:** `FLOW-1C`
 - **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 1C: ONBOARDING ENTERPRISE, FEDERAZIONE SSO & ACCESSO BLINDATO BUNKER CLUB KMS
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 1: Onboarding Enterprise & Bunker KMS)
@@ -9,6 +9,7 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Silo 2 Bunker Club, Cloud KMS Envelope Encryption, Mutual TLS mTLS, SAML 2.0 SSO, FIDO2 Hardware Keys, WORM Audit Log*).
 
 ---
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -26,6 +27,7 @@ Nello sport professionistico di massimo livello (come un club di calcio di Serie
 
 ---
 
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (Enterprise Staff Cockpit React 18):**
@@ -38,6 +40,38 @@ Nello sport professionistico di massimo livello (come un club di calcio di Serie
    - Database per-tenant o partizione a Row-Level Security rigorosa con crittografia a riposo AES-256-GCM. Nessun canale di comunicazione con il Silo 1 social o con altri tenant.
 
 ---
+
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-1C)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor ClubAdmin as Dirigente Club (Elite Tier 3)
+    participant IDP as Enterprise IdP (SAML 2.0 / Okta)
+    participant GW as API Gateway & mTLS Gate (Corsia 2)
+    participant KMS as Google Cloud KMS (HSM Silo 2)
+    participant WORM as WORM Storage Audit Log (Corsia 3)
+    participant SILO2 as Bunker Database Silo 2 (Corsia 4)
+
+    ClubAdmin->>GW: POST /api/v1/enterprise/kyb-verify (Dati REA, UBO, Camera Commercio)
+    GW->>GW: Verifica conformità antiriciclaggio & Poteri di firma
+    GW->>IDP: Handshake federazione SAML 2.0 SSO
+    IDP-->>ClubAdmin: Challenge autenticazione FIDO2 Hardware Key
+    ClubAdmin->>IDP: Tocco chiave fisica USB/NFC
+    IDP-->>GW: SAML Assertion firmata digitalmente (Ruolo: DIRIGENTE_CLUB)
+
+    GW->>KMS: Creazione Dedicated Key Ring per il Club (AES-256 GCM)
+    KMS-->>GW: Chiave Master e certificati mTLS client emessi
+    GW->>SILO2: Provisioning partizione Bunker cifrata a tenuta stagna
+    SILO2-->>GW: Partizione pronta & isolamento verificato
+    GW->>WORM: Scrittura immutabile log di conformità KYB e contratti
+    WORM-->>GW: WORM Write Acknowledged (Immutabile)
+    GW-->>ClubAdmin: 201 Created (Accesso Enterprise Bunker con mTLS sbloccato)
+```
+
+---
+
 
 ## 4. Flusso Operativo Passo-Passo
 
@@ -54,6 +88,18 @@ Nello sport professionistico di massimo livello (come un club di calcio di Serie
 6. **L'Audit Immutabile:** Ogni click o visualizzazione viene registrata in un registro indelebile (WORM): se qualcuno tentasse di scaricare dati non autorizzati, la dirigenza riceverebbe un allarme immediato.
 
 ---
+
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Tempo Handshake SAML 2.0** | $< 600\text{ ms}$ | $\le 1.5\text{ s}$ | Fallback su autenticazione certificato mTLS |
+| **Isolamento Silo 2 KMS** | Cifratura dedicata $100\%$ | $0\%$ commistione dati | Abort provisioning immediato con alert |
+| **Immutabilità WORM Storage** | $100\%$ scritture protette | $0\%$ cancellazioni possibili | Allarme di sicurezza SOC prioritario |
+| **Conformità KYB / UBO** | $100\%$ rispetto antiriciclaggio | $0\%$ irregolarità | Blocco contrattuale preventivo della società |
+
+---
+
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
@@ -77,6 +123,7 @@ Nello sport professionistico di massimo livello (come un club di calcio di Serie
 
 ---
 
+
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
@@ -93,6 +140,7 @@ Nello sport professionistico di massimo livello (come un club di calcio di Serie
    - *Tentativo di accesso da IP o paese non autorizzato:* Blocco istantaneo dell'account, revoca dei certificati e invio notifica d'emergenza al Responsabile della Sicurezza del Club.
 
 ---
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -128,6 +176,20 @@ Nello sport professionistico di massimo livello (come un club di calcio di Serie
 - `worm_audit_vault`: `id UUID PK`, `club_id VARCHAR(64)`, `actor_email VARCHAR(255)`, `action_performed VARCHAR(64)`, `target_resource VARCHAR(128)`, `client_ip INET`, `created_at TIMESTAMPTZ NOT NULL`.
 
 ---
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_BAD_SAML_ASSERT`| `POST /saml/consume` | Asserzione XML SAML corrotta o firma non valida | Schermata: *"Errore federazione Single Sign-On"* | Richiesta ri-autenticazione tramite IdP aziendale |
+| **401** | `ERR_MTLS_CERT_FAIL` | `ALL /enterprise/*` | Certificato client mTLS mancante, revocato o scaduto| Modale di sistema: *"Certificato di dispositivo non valido"*| Blocco connessione e notifica all'IT Admin del club |
+| **403** | `ERR_KYB_REJECTED` | `POST /kyb-verify` | Firma societaria non corrispondente a visura REA | Dialog: *"Verifica poteri di firma Camera di Commercio fallita"*| Sospensione onboarding e verifica notarile |
+| **409** | `ERR_BUNKER_EXISTS` | `POST /bunker/provision`| Partizione societaria già censita e attiva | Notifica: *"Bunker societario già esistente"* | Reindirizzamento a richiesta credenziali allo staff admin |
+| **500** | `ERR_KMS_PROVISION` | `POST /bunker/provision`| Errore generazione Key Ring su Cloud KMS | Banner rosso: *"Errore crittografico. Riprova tra poco"* | Rollback provisioning e allarme a DevOps T7 |
+| **503** | `ERR_WORM_UNAVAIL` | `POST /bunker/provision`| Archivio immutabile WORM non raggiungibile | Modale bloccante: *"Audit storage momentaneamente offline"*| Sospensione completamento fino a ripristino WORM |
+
+---
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 

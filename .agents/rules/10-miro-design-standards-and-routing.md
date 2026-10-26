@@ -61,6 +61,18 @@ In ogni flusso di interfaccia devono essere esplicitati:
    - Larghezza standard: $W \ge 380\text{-}500\text{px}$ per consentire al testo di andare a capo con naturalezza.
 4. **Spaziatura Inter-Nodo:** Mantenere uno spazio minimo di $70\text{-}90\text{px}$ tra elementi collegati consecutivi per consentire alle etichette dei connettori di respirare.
 
+### B. Standard Visivi & Geometrici dei Badge di Identificazione Flusso (#01..#18)
+I 18 cartigli identificativi posizionati all'inizio di ciascun diagramma di flusso sulla board Miro devono rispettare rigidamente la seguente codifica:
+1. **Forma Geometrica:** `round_rectangle` con angoli arrotondati e bordo ad alto spessore (`borderWidth: 3.0px`).
+2. **Dimensioni Calibrate:**
+   - Larghezza fissa: $W = 520\text{px}$ (garantisce zero troncamento del testo e spaziatura aurea).
+   - Altezza: $H = 75\text{px}$ per titoli standard di Tier 1 e Tier 2; fino a $H = 125\text{px}$ per le titolazioni estese e multi-riga di Tier 3.
+3. **Palette Ufficiale per Tier:**
+   - **Tier 1 (Casual Consumer B2C):** Sfondo `#0f766e` / Bordo `#14b8a6` (Teal 700 / Teal 500) con testo bianco `#ffffff`.
+   - **Tier 2 (Pro Coach & Fisio B2B):** Sfondo `#b45309` / Bordo `#f59e0b` (Amber 700 / Amber 500) con testo bianco `#ffffff`.
+   - **Tier 3 (Elite Pro Teams & Enterprise KMS):** Sfondo `#4338ca` / Bordo `#818cf8` (Indigo 700 / Indigo 400 ad alto contrasto per Dark/Light theme) con testo bianco `#ffffff`.
+4. **Contenuto Informativo Strutturato:** Ciascun badge deve indicare: Numero progressivo (`#01`..`#18`), Tier di appartenenza, Codice univoco flusso (es. `FLOW-1A`), Titolo formale e indicazione della colonna tematica.
+
 ---
 
 ## 5. Standard di Routing Ortogonale dei Connettori & Zero Crossing (FONDAMENTALE)
@@ -76,6 +88,9 @@ In ogni flusso di interfaccia devono essere esplicitati:
    - È vietato collegare nodi distanti tra loro con connettori diagonali che attraversano la board o blocchi di altri diagrammi. I passaggi inter-modulo si gestiscono con:
      - Badge/card di transizione locali ben formattate (es. `➔ NAVIGA ALL'HUB CENTRALE`).
      - Corridoi perimetrali dedicati privi di ostacoli.
+5. **Regola della "No-Fly Zone" per i Badge di Identificazione (#01..#18):**
+   - Ciascuno dei 18 badge possiede una **zona di rispetto perimetrale (No-Fly Zone) di almeno $40\text{px}$** su tutti e 4 i lati.
+   - È fatto divieto assoluto a qualsiasi connettore ortogonale (`elbowed`) o freccia di attraversare l'area del badge o la sua fascia di rispetto. Tutti i connettori devono circumnavigare la No-Fly Zone transitando nei corridoi (*gutters*) perimetrali per garantire zero-crossing assoluto.
 
 ---
 

@@ -1,7 +1,7 @@
 # Capitolato Tecnico: Flow 5A – Together Social Community & Coach Marketplace (T7 Consumer)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#05` (Posizione: `X: 6048, Y: 465`)
+- **Badge Miro Board:** `#05` (Posizione: `X: 6048, Y: 465`, Miro Shape ID: `3458764688417722718`)
 - **Codice Univoco:** `FLOW-5A`
 - **Titolo Formale:** SOFTWARE 1 (B2C CONSUMER) - FLOW 5A: TOGETHER SOCIAL COMMUNITY & COACH MARKETPLACE
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 1: General User / Casual, Colonna 5: Social Platform & Community B2C)
@@ -9,6 +9,7 @@
 - **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Together Social Network, Fan-Out on Write, Redis Cluster ZSET, Marketplace B2C, Step-Up SMS Anti-Troll*).
 
 ---
+
 
 ## 2. Obiettivo di Business & Target Utente
 
@@ -26,6 +27,7 @@ Allenarsi da soli richiede grande forza di volontà, e spesso mancano gli stimol
 
 ---
 
+
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
 1. **Corsia 1: Thin Client UI/UX (Social Feed React 18 / Mobile PWA):**
@@ -39,6 +41,38 @@ Allenarsi da soli richiede grande forza di volontà, e spesso mancano gli stimol
 
 ---
 
+
+### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-5A)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Utente as Thin Client UI (Together Feed)
+    participant GW as API Gateway & Rate Limit (Corsia 2)
+    participant REDIS as Redis Cluster ZSET (Corsia 3)
+    participant SRV as Server Fan-Out Worker (Corsia 3)
+    participant DB as Database Silo 1 (Corsia 4)
+
+    Utente->>GW: GET /api/v1/social/feed?page=1&limit=20
+    GW->>REDIS: ZREVRANGEBYSCORE timeline:user_id (Range timestamp)
+    REDIS-->>GW: Lista ID post ordinati per freschezza (< 50ms)
+    GW->>DB: Multi-get contenuti post & avatar autori
+    DB-->>GW: Record post arricchiti
+    GW-->>Utente: 200 OK (Feed timeline renderizzata)
+
+    Utente->>GW: POST /api/v1/social/posts (Testo, Immagine, Traguardo)
+    GW->>GW: Verifica Step-Up SMS & Controllo Spam
+    GW->>SRV: Dispatch nuovo post
+    SRV->>DB: INSERT social_posts in Silo 1
+    DB-->>SRV: Post ID generato
+    SRV->>REDIS: Fan-Out on Write (ZADD nelle timeline dei follower)
+    REDIS-->>SRV: Fan-Out completato (< 500ms)
+    SRV-->>Utente: 201 Created (Post pubblicato istantaneamente)
+```
+
+---
+
+
 ## 4. Flusso Operativo Passo-Passo
 
 ### Livello A: User Journey Narrativo (La Storia dell'Utente)
@@ -51,6 +85,19 @@ Allenarsi da soli richiede grande forza di volontà, e spesso mancano gli stimol
 5. **L'Ingaggio del Professionista:** L'atleta seleziona il pacchetto e completa il pagamento sicuro con Apple Pay / Google Pay. Automaticamente, il coach selezionato riceve la richiesta nel suo Hub (Tier 2) e può iniettare la scheda personalizzata direttamente nell'app dell'atleta.
 
 ---
+
+
+#### Indicatori di Accettazione Operativa & Clinica (KPI)
+| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+| :--- | :--- | :--- | :--- |
+| **Latenza Rendering Feed** | $< 50\text{ ms}$ (Redis ZSET) | $\le 100\text{ ms}$ | Query paginata diretta su PostgreSQL Silo 1 |
+| **Velocità Fan-Out on Write** | $< 500\text{ ms}$ per 1.000 follower | $\le 1.5\text{ s}$ | Accodamento asincrono su Cloud Tasks |
+| **Tasso Blocco Account Troll** | $> 99.5\%$ profili fake fermati | $\ge 98\%$ | Attivazione shadowban su analisi del testo |
+| **Affidabilità Checkout Coach** | $> 97\%$ conversioni Stripe | $\ge 94\%$ | Notifica recupero carrello e webhook retry |
+
+
+---
+
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
@@ -75,6 +122,7 @@ Allenarsi da soli richiede grande forza di volontà, e spesso mancano gli stimol
 
 ---
 
+
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
@@ -91,6 +139,7 @@ Allenarsi da soli richiede grande forza di volontà, e spesso mancano gli stimol
    - *Errore di pagamento nel marketplace:* Messaggio chiaro *"Transazione non riuscita. La tua carta non è stata addebitata. Verifica il saldo o prova un altro metodo"*.
 
 ---
+
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
@@ -144,6 +193,21 @@ Allenarsi da soli richiede grande forza di volontà, e spesso mancano gli stimol
 - `marketplace_pros`: `pro_id UUID PK`, `user_id UUID FK -> auth_users.id`, `vat_number VARCHAR(16)`, `specialties TEXT[]`, `hourly_rate NUMERIC(6,2)`, `verified_badge BOOLEAN DEFAULT FALSE`.
 
 ---
+
+
+### Matrice Errori HTTP & Strategie di Resilienza
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **400** | `ERR_EMPTY_POST` | `POST /social/posts` | Contenuto post privo di testo e media | Bordo arancione: *"Scrivi un messaggio"* | Blocco pulsante di invio client-side |
+| **401** | `ERR_LOGIN_REQUIRED` | `POST /social/posts` | Tentativo di interazione da utente anonimo | Modale: *"Accedi per commentare o postare"* | Reindirizzamento a login preservando bozza |
+| **403** | `ERR_STEPUP_NEEDED` | `POST /social/posts` | Numero cellulare non verificato via SMS | Dialog: *"Verifica il telefono per tutelare la community"* | Avvio flusso modale Twilio SMS OTP |
+| **429** | `ERR_SPAM_FLOOD` | `POST /social/posts` | Più di 3 post pubblicati in 60 secondi | Banner rosso: *"Stai postando troppo velocemente"* | Attivazione cooldown timer di 3 minuti |
+| **500** | `ERR_FANOUT_FAILED` | `POST /social/posts` | Eccezione cluster Redis durante fan-out | Nessun errore bloccante per l'autore | Fallback su fan-out on read per i follower |
+| **503** | `ERR_STRIPE_UNAVAIL` | `POST /marketplace/book`| Servizio pagamenti temporaneamente non raggiungibile| Avviso: *"Servizio cassa momentaneamente occupato"* | Salvataggio prenotazione in stato pendente |
+
+
+---
+
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 
