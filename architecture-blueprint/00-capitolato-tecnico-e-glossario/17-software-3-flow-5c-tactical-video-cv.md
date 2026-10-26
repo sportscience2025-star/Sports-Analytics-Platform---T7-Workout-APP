@@ -1,92 +1,145 @@
-# Capitolato Tecnico: Flow 5C – Confidential Tactical Video Computer Vision (T7 Elite Pro Teams)
+# Capitolato Tecnico: Flow 5C – Confidential Tactical Video & Voronoi Computer Vision (T7 Elite Pro Teams)
 
 ## 1. Identificativo & Titolo Ufficiale
+- **Badge Miro Board:** `#17` (Posizione: `X: 6464, Y: 6580`)
 - **Codice Univoco:** `FLOW-5C`
-- **Titolo Ufficiale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 5C: CONFIDENTIAL TACTICAL VIDEO COMPUTER VISION (PITCH ANALYSIS)
-- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 5: Video Analisi Tattica & Computer Vision)
+- **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 5C: TACTICAL VISION, COMPUTER VISION SUL CAMPO & DIAGRAMMI DI VORONOI
+- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 5: Tactical Vision & Computer Vision)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-5c-tactical-video-cv.mmd`
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Tactical Vision Computer Vision, Omografia Prospettica 2D, Diagrammi di Voronoi Campo, Modello YOLOv8 Object Detection, Zero Social Leakage, Baricentro Squadra*).
 
 ---
 
 ## 2. Obiettivo di Business & Target Utente
-- **Target Utente:** Match Analyst, Tattici, Head Coach e Staff Tecnico di club professionistici (Tier 3 – B2B Enterprise).
-- **Problema Risolto:** L'analisi tattica tradizionale delle partite e degli allenamenti richiede ore di "tagging manuale" e non fornisce metriche geometriche oggettive sullo spazio occupato sul campo. Inoltre, i video tattici delle sedute a porte chiuse contengono schemi segreti e strategie di palla inattiva che non devono mai fuoriuscire dal club. T7 implementa un sistema di **Visione Artificiale Markerless Confidenziale**:
-  1. Caricamento video multi-camera sincronizzato a 60-120 fps;
-  2. Rilevamento automatico delle coordinate $(X,Y)$ di tutti i 22 calciatori tramite modelli deep learning YOLO e pose estimation;
-  3. **Trasformazione Omografica:** Proiezione prospettica dal punto di vista della telecamera al piano bidimensionale calibrato del campo di gioco ($105\text{m} \times 68\text{m}$);
-  4. Calcolo geometrico dei **Diagrammi di Voronoi** per quantificare lo spazio dominato da ciascun reparto;
-  5. Calcolo della compattezza di squadra (distanza tra linea difensiva e offensiva) e del baricentro dinamico;
-  6. **Sicurezza Anti-Leak Inderogabile:** Watermark dinamico in sovrimpressione con dati dell'operatore connesso e blocco totale dell'accesso dall'esterno della rete del club.
+
+### Guida Pratica per Non Tecnici: Cos'è questo modulo per un umano?
+Nel calcio moderno le partite si vincono o si perdono per questione di spazi: una squadra che resta compatta e non lascia buchi tra centrocampo e difesa è quasi impossibile da battere. Gli allenatori passano ore e ore a rivedere i video delle partite, disegnando frecce a mano sui filmati.  
+**Tactical Vision di T7** è l'occhio bionico dell'allenatore:
+- Prende i filmati delle telecamere fisse dello stadio o del centro sportivo;
+- Grazie all'Intelligenza Artificiale (Computer Vision), riconosce all'istante ogni singolo giocatore delle due squadre e la posizione della palla;
+- Schiaccia la prospettiva della telecamera e trasforma il video in una **mappa 2D dall'alto (Bird's Eye View)** perfetta al millimetro;
+- Disegna sul campo i celebri **Poligoni di Voronoi**: colora le zone di campo controllate dalla tua squadra e quelle lasciate agli avversari;
+- Calcola in automatico la **compattezza della squadra** (quanto è corta la squadra tra primo difensore e ultimo attaccante) e il baricentro medio;
+- **Zero Social:** Nessuna immagine o dato di questo modulo può essere condiviso sui social: tutto rimane blindato nel bunker del club per la riunione tecnica prima della partita.
+
+### Specifiche di Business & Metriche
+- **Target Utente:** Head Coach, Vice Allenatori e Match Analyst di club professionistici (Tier 3 – B2B Enterprise).
+- **Problema Risolto:** Automatizzare la match analysis tattica in tempo reale eliminando decine di ore di montaggio video manuale e fornendo parametri oggettivi di densità e pressione per battere gli avversari.
 
 ---
 
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
-1. **Corsia 1: Thin Client UI/UX (Tactical Video Suite - React 18 & WebGL):**
-   - Player video multi-camera a 60 fps sincronizzato, sovrimpressione delle bounding box dei calciatori e dei vettori di corsa, overlay grafico metriche tattiche (linee di pressione, baricentro, compattezza in metri), cassetto di tagging eventi (transizioni positive/negative, recuperi palla, duelli aerei) e watermark di sicurezza dinamico antifuga ("STRETTAMENTE RISERVATO - NON DIFFONDIBILE").
-2. **Corsia 2: API Gateway & Secure Streaming (Envoy / Zero-Trust Gateway):**
-   - Ricezione upload video tattico ad alto bitrate (`/video/upload-tactical`), verifica ferrea dell'origine della richiesta (blocco immediato se la chiamata non proviene dalla rete interna protetta del Centro Sportivo o dalla VPN crittografata autorizzata). **Zero integrazioni con social o canali pubblici.**
-3. **Corsia 3: Server Scatola Nera (Computer Vision & Tactics Engine - Cloud Run GPU):**
-   - Pipeline di Computer Vision accelerata su GPU: detection e tracking dei giocatori (ByteTrack/YOLOv8), calcolo della matrice di omografia per proiettare i pixel video in coordinate metriche reali sul terreno di gioco e partizionamento spaziale con diagrammi di Voronoi.
-4. **Corsia 4: Database Silo 2 (Bunker Club KMS Enclave - PostgreSQL Dedicated):**
-   - Tabelle ad alta densità `tactical_coordinates` (coordinate spaziali per ogni frame video) e `match_tactical_events` (tag con minutaggio e clip associate), protette da crittografia a riposo Cloud KMS.
+
+1. **Corsia 1: Thin Client UI/UX (Tactical Vision Canvas React 18):**
+   - Interfaccia per il Match Analyst: player video sincronizzato con canvas 2D del terreno di gioco, sovrimpressione interattiva dei poligoni di Voronoi, linee di pressing dinamiche, tracciamento del baricentro medio e pannello di esportazione del Dossier Tattico per l'Head Coach.
+2. **Corsia 2: API Gateway & Video Feed Gateway (Envoy Private VPC):**
+   - Connessione protetta con mTLS societario, ricezione flussi video 4K/60fps dalla regia stadio, blocco assoluto di endpoint verso social network esterni e filtro anti-scraping.
+3. **Corsia 3: Server Scatola Nera (Computer Vision & Homography Engine Cloud Run GPU):**
+   - Rete neurale YOLOv8x per object detection (calciatori squadra A, squadra B, arbitro, pallone);
+   - Algoritmo di tracciamento multi-target ByteTrack;
+   - *Matrice di Omografia Prospettica $3 \times 3$ ($H$):* Mappatura dei punti immagine $(u, v)$ sul piano reale del campo $(X, Y)$ in metri;
+   - *Tassellazione di Voronoi:* Calcolo geometrico delle aree di influenza tramite triangolazione di Delaunay;
+   - Sincronizzazione dei vettori di velocità video con i dati dei sensori GPS a 18Hz (`FLOW-4C`).
+4. **Corsia 4: Database Tripartito (Silo 2 - Enclave Bunker PostgreSQL):**
+   - Tabelle `tactical_match_sessions`, `pitch_space_control` e `tactical_dossiers` protette da chiavi Cloud KMS societarie.
 
 ---
 
-## 4. Flusso Operativo Passo-Passo (Nodi Numerati)
-1. **START (Caricamento Video Tattico Gara / Allenamento):** Il Match Analyst carica le registrazioni multi-angolari (telecamera panoramica tattica e telecamera ravvicinata di campo) sulla piattaforma.
-2. **GW_VIDEO_UPLOAD & GW_CHECK_INTERNAL (Controllo Sicurezza di Rete):** L'API Gateway verifica che l'indirizzo IP di provenienza appartenga alla subnet interna del Centro Sportivo societario:
-   - *Se la richiesta proviene da rete esterna non protetta:* La richiesta viene rigettata all'istante (`GW_BLOCKED`), impedendo la manipolazione o la visualizzazione di filmati riservati da postazioni non autorizzate.
-   - *Se la richiesta è conforme:* Il video viene instradato verso i cluster GPU di calcolo.
-3. **SRV_CV_DETECTION (Computer Vision YOLO & Pose Tracking):** Gli algoritmi di deep learning analizzano ciascun frame a 60 fps, identificando le sagome dei calciatori, distinguendo le due squadre in base ai colori sociali delle maglie e tracciando i baricentri corporei.
-4. **SRV_HOMOGRAPHY (Trasformazione Omografica 2D):**
-   - Tramite l'identificazione delle linee del campo (linea di metà campo, aree di rigore, cerchio centrale), il server calcola la matrice di trasformazione prospettica $H$.
-   - Converte le coordinate pixel $(u,v)$ del fotogramma video in metri reali $(X,Y)$ sul terreno di gioco.
-5. **SRV_VORONOI (Calcolo Diagrammi di Voronoi):** Il server partiziona la superficie del campo di gioco in poligoni di dominanza spaziale: ogni punto del terreno appartiene al calciatore più vicino. Ciò consente di quantificare istantaneamente:
-   - Superficie dominata dalla squadra (es. 58% del campo occupato);
-   - Distanza tra le linee di reparto (es. squadra lunga $> 35\text{ metri}$, squadra compatta $< 25\text{ metri}$);
-   - Posizione del Baricentro di squadra (metri rispetto alla linea di porta).
-6. **DB_WRITE_COORDS & DB_WRITE_TAGS (Archiviazione Silo 2):** Scrittura delle serie di coordinate e degli eventi nel bunker crittografato societario.
-7. **PLAYER_CANVAS & METRIC_OVERLAY (Visualizzazione Tattica nel Client):**
-   - Il player visualizza il video con i poligoni di Voronoi in trasparenza neon semitrasparente;
-   - Linee di connessione tra i difensori e indicatori di compattezza numerica;
-   - Bounding box colorate sui calciatori con velocità istantanea in $\text{km/h}$.
-8. **CONFIDENTIAL_LOCK (Watermark Dinamico Anti-Fuga):** In sovrimpressione sul video scorre costantemente un watermark trasparente con: Nome del club, Cognome dell'operatore connesso, Indirizzo IP e Timestamp al secondo. In caso di screenshot o ripresa con smartphone, la fonte della fuga di notizie è immediatamente identificabile ed esposta a procedimenti legali e contrattuali.
-9. **TAG_DRAWER & EXPORT_REPORT_BTN (Tagging & Dossier Tecnico):** L'analista inserisce tag rapidi ("Pressing Alto Riuscito", "Perdita Palla Costruzione Bassa") ed esporta il dossier tecnico multimediale per l'Head Coach in vista della riunione tecnica pre-partita.
-10. **END_TACTICAL_DONE (Fine Flusso):** Analisi tattica completata e blindata nel bunker del club.
+## 4. Flusso Operativo Passo-Passo
+
+### Livello A: User Journey Narrativo (La Storia dell'Utente)
+1. **L'Acquisizione del Video di Gara:** Durante o al termine del primo tempo, il Match Analyst carica il flusso video registrato dalla telecamera tattica posta sulla tribuna dello stadio.
+2. **Il Riconoscimento Istantaneo dei Giocatori:** L'Intelligenza Artificiale scansiona ogni fotogramma: riconosce i calciatori della maglia di casa, gli avversari e il pallone, assegnando a ciascuno una casella di tracciamento che non si perde nemmeno nei contrasti.
+3. **La Trasformazione 2D dall'Alto:** L'app raddrizza la prospettiva angolata dello stadio e genera una perfetta visuale piana del campo, come in un videogioco tattico.
+4. **I Poligoni di Voronoi (Il Controllo dello Spazio):** Sullo schermo compaiono tessere geometriche colorate:
+   - Ogni porzione di campo si colora del colore della squadra il cui giocatore è più vicino a quello spazio;
+   - L'analista vede all'istante che gli avversari hanno lasciato **25 metri di spazio libero tra terzino e difensore centrale**;
+5. **La Compattezza della Squadra:** Un grafico laterale mostra: *"La nostra squadra è lunga 31 metri: compattezza perfetta. Al 38° minuto però il baricentro si è abbassato di 12 metri sotto la pressione avversaria"*.
+6. **La Relazione per l'Allenatore nell'Intervallo:** In 60 secondi il sistema compila un **Dossier Tattico Sintetico** di 3 pagine con le 5 clip video più significative e le mappe di calore, che l'Head Coach può mostrare ai giocatori nello spogliatoio tra primo e secondo tempo per correggere la tattica.
+
+---
+
+### Livello B: Trattazione Tecnica Nodi Operativi
+
+1. `START` (Acquisizione Flusso Video Gara): Ricezione stream RTSP/HLS 4K da telecamera panoramica fissa posta in tribuna stadio.
+2. `GW_FEED_INGEST` (Ingestion Gateway Privato): Instradamento su rete privata isolata. Verifica assenza di canali verso internet pubblico (No-Social Filter).
+3. `SRV_YOLO_DETECT` (Rilevamento Giocatori & Palla):
+   - Modello YOLOv8x ottimizzato con TensorRT su GPU NVIDIA L4;
+   - Identificazione di 23 classi: 11 squadra casa, 11 squadra ospite, 1 pallone.
+4. `SRV_HOMOGRAPHY_CALC` (Trasformazione Omografica Prospettica 2D):
+   - Riconoscimento automatico delle linee del campo (linee laterali, area di rigore, cerchio di centrocampo);
+   - Calcolo della matrice di omografia planare $H$ tale che:
+     $$\begin{bmatrix} X \\ Y \\ 1 \end{bmatrix} \sim H \begin{bmatrix} u \\ v \\ 1 \end{bmatrix}$$
+   - Conversione delle coordinate pixel in coordinate metriche reali sul terreno $(X, Y) \in [-52.5, 52.5] \times [-34.0, 34.0]\text{ metri}$.
+5. `SRV_VORONOI_TESSELLATION` (Calcolo Diagrammi di Controllo Spazi):
+   - Per ogni giocatore $i$ sul piano $2D$, calcolo della regione di Voronoi:
+     $$V_i = \{ p \in \text{Pitch} \mid d(p, x_i) < d(p, x_j) \, \forall j \neq i \}$$
+   - Calcolo della percentuale di superficie dominata da ciascun team e della densità attorno al pallone.
+6. `SRV_COMPACTNESS & CENTROID` (Calcolo Baricentro e Compattezza):
+   - Baricentro squadra: media aritmetica delle posizioni $(X, Y)$ dei 10 giocatori di movimento;
+   - Compattezza: distanza euclidea tra la linea difensiva media e la linea offensiva media.
+7. `SRV_GPS_SYNC` (Sincronizzazione con Telemetria GPS): Fusione delle coordinate video con i timestamp delle pettorine GPS a 18Hz (`FLOW-4C`) per verificare velocità e potenza metabolica sui corridoi di gioco.
+8. `DB_WRITE_TACTICAL` (Archiviazione Silo 2 Criptata): Salvataggio delle serie temporali dei dati posizionali con chiave Cloud KMS del club.
+9. `TACTICAL_DOSSIER_GEN` (Generazione Dossier Tattico per Head Coach): Esportazione dashboard interattiva con clip sincronizzate e watermark forense per la riunione tecnica.
 
 ---
 
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
-- **Decisione Rete Sicura (`GW_CHECK_INTERNAL`):** IP Rete Interna Club $\implies$ Elaborazione Video; Rete Esterna $\implies$ Blocco d'accesso assoluto.
-- **Decisione Visualizzazione:** Overlay Poligoni Voronoi vs Linee di Reparto vs Video Grezzo.
 
-### Gestione dei 4 Stati UI:
-1. **Empty State:** Nessun video caricato per la seduta corrente; visualizzazione box drag-and-drop con istruzioni di calibrazione delle telecamere tattiche.
-2. **Loading State:** Elaborazione dell'omografia e della detection YOLO con barra di avanzamento e anteprima dei frame processati.
-3. **Populated State:** Player multi-camera sincronizzato a 60 fps con controlli di rallentatore ($0.25\times, 0.5\times, 1\times$), poligoni di Voronoi dinamici e timeline con indicatori colorati dei tag tattici.
-4. **Error / Fallback State:** Condizioni meteo estreme (nebbia o pioggia battente) che oscurano le linee del campo; il sistema richiede all'analista di cliccare manualmente sui 4 vertici del campo (calibrazione manuale dell'omografia a 4 punti).
+| Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
+| :--- | :--- | :--- | :--- |
+| `HOMOGRAPHY_CONFIDENCE` | Riconoscimento linee campo $> 95\%$? | Omografia 2D automatica | Calibrazione manuale su 4 punti d'angolo |
+| `PRESSING_TRIGGER` | Densità difensiva avversaria $> 4$ giocatori in $15\text{ m}$? | Trigger evento "Pressing Alto Rilevato" | Fase di transizione ordinaria |
+| `NO_SOCIAL_GUARD` | Richiesta export verso canali pubblici? | Blocco immediato violazione sicurezza | Consegna autorizzata al solo Head Coach |
+
+### I 4 Stati di Interfaccia Utente (UI States):
+1. **Empty State:** Nessun video caricato per la partita: interfaccia in attesa con schema del campo vuoto e spia di connessione alle telecamere dello stadio.
+2. **Loading State:** Elaborazione della sequenza video con barra di tracking neuronale GPU a 60fps in tempo reale.
+3. **Populated State:** Vista tattica immersiva: campo 2D con tessere di Voronoi colorate in tempo reale, traiettoria della palla con scia al neon e baricentro di squadra evidenziato.
+4. **Error / Fallback State:**
+   - *Nebbia o visibilità ridotta in campo:* Il sistema segnala l'abbassamento di confidenza visiva e commuta automaticamente sui dati dei sensori GPS a 18Hz per mantenere il tracking posizionale.
 
 ---
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
-### Endpoint Principali:
-- `POST /api/v1/club/video/upload-tactical`:
-  - Input: `{ clubId: string, matchDate: 'YYYY-MM-DD', videoFileUrl: string, cameraAngle: 'PANORAMIC_TACTICAL' }`
-  - Output: `{ videoJobId: string, status: 'processing_cv' }`
-- `GET /api/v1/club/video/tactical-frames?jobId=cv_108&timeSec=142.5`:
-  - Output: `{ timestamp: 142.5, players: [{ number: 9, team: 'HOME', xMeters: 42.1, yMeters: 18.5, voronoiAreaM2: 184.2 }], teamCompactnessM: 23.4, teamBarycenterM: 52.8 }`
+### Specifiche Endpoint REST:
 
-### Tabelle Database Coinvolte (Silo 2 - Enclave Club):
-- `tactical_video_sessions`: id, club_id, match_name, recording_date, camera_setup, kms_video_storage_path.
-- `tactical_coordinates`: id, session_id, frame_index, timestamp_ms, player_id, x_coord_m, y_coord_m, velocity_kmh.
-- `match_tactical_events`: id, session_id, event_type ('HIGH_PRESS'|'TURNOVER'|'AERIAL_DUEL'), start_time_ms, end_time_ms, analyst_notes.
+#### 1. Ingestion Clip Tattica & Calcolo Voronoi
+- **Endpoint:** `POST /api/v1/club/tactical/process-clip`
+- **Headers:** `Authorization: Bearer <staff_jwt>`, `X-Club-Tenant-ID: club_seriea_01`, `Content-Type: application/json`
+- **Request Payload:**
+```json
+{
+  "matchId": "match_20261026_juve_milan",
+  "clipTimeRange": { "startSec": 1240, "endSec": 1285 },
+  "videoStreamUrl": "rtsp://camera-stadium-lan/tactical_high.stream",
+  "calculateVoronoi": true,
+  "syncGpsSessionId": "gps_sess_20261026_match"
+}
+```
+- **Responses:**
+  - `200 OK`:
+```json
+{
+  "clipAnalysisId": "tact_clip_9921",
+  "teamDominancePercent": { "homeTeam": 58.4, "awayTeam": 41.6 },
+  "teamCompactnessMeters": 31.2,
+  "centroidPosition": { "xMeters": 14.2, "yMeters": -2.1 },
+  "pressingTriggerDetected": true,
+  "dossierExportUrl": "https://vault.club-seriea-01.t7workout.app/tactical/dossier_9921.pdf"
+}
+```
+
+### Schema Relazionale (Database Silo 2 - Bunker Enclave):
+- `tactical_match_sessions`: `id UUID PK`, `club_id VARCHAR(64)`, `opponent_team VARCHAR(128)`, `match_date DATE`, `video_raw_vault_ref TEXT`, `created_at TIMESTAMPTZ`.
+- `pitch_space_control`: `id UUID PK`, `session_id UUID FK -> tactical_match_sessions.id`, `timecode_ms BIGINT`, `voronoi_polygons JSONB`, `home_compactness_m NUMERIC(5,2)`, `away_compactness_m NUMERIC(5,2)`.
 
 ---
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
-- **Differenziali rispetto a Tier 1 e Tier 2:**
-  - Nel Tier 1 (`flow-5a`) vi è un social network pubblico;
-  - Nel Tier 2 (`flow-5b`) vi è un player per singoli allievi con annotazioni commerciali;
-  - Nel Tier 3 (`flow-5c`) qualsiasi logica social o pubblica è **tassativamente cancellata**. Il sistema si trasforma in un'infrastruttura di intelligence militare/sportiva confinata nella rete fisica del club con computer vision d'avanguardia (Voronoi e omografia metrica 2D).
-- **Protezione Proprietà Intellettuale:** Il watermark dinamico e la crittografia Silo 2 impediscono l'esfiltrazione delle tattiche societarie.
+
+- **Isolamento Totale:**  
+  Il modulo Tactical Vision **è rigorosamente esclusivo di Tier 3 Enterprise** ed è totalmente inesistente nel Tier 1 e Tier 2.
+- **Politica Zero Social:**  
+  Mentre il Tier 1 e il Tier 2 usano il video per la condivisione social o il coaching commerciale, nel Tier 3 i video di gara e le metriche di Voronoi sono considerati **segreto industriale sportivo**, blindati nel bunker Silo 2 con chiavi Cloud KMS e divieto hardware assoluto di esportazione verso reti esterne.

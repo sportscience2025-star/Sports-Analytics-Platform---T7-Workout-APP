@@ -1,108 +1,144 @@
-# Capitolato Tecnico: Flow 2C – Catalogo 3D, Video In-App & Libreria Club a 2 Livelli (T7 Elite Pro Teams)
+# Capitolato Tecnico: Flow 2C – Catalogo 3D, Video Pro & Libreria Club a 2 Livelli (T7 Elite Pro Teams)
 
 ## 1. Identificativo & Titolo Ufficiale
+- **Badge Miro Board:** `#14` (Posizione: `X: -108, Y: 6245`)
 - **Codice Univoco:** `FLOW-2C`
-- **Titolo Ufficiale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 2C: CATALOGO 3D, VIDEO IN-APP & LIBRERIA CLUB A 2 LIVELLI
-- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 2: Catalogo Multi-Staff & Digital Twin)
+- **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 2C: CATALOGO 3D, VIDEO MULTI-CAMERA 4K & LIBRERIA CLUB A 2 LIVELLI
+- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 2: Catalogo Tattico & Cockpit Multi-Staff)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-2c-multi-staff-cockpit.mmd`
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Secret Club Vault, Digital Twin 3D Squadra, Multi-Camera 4K Sync, Doppia Firma Digitale Tecnico-Sanitaria, Watermarking Dinamico Anti-Leak*).
 
 ---
 
 ## 2. Obiettivo di Business & Target Utente
-- **Target Utente:** Staff multidisciplinare di società sportive d'élite: Head Coach, Strength & Conditioning Coach (S&C), Medico Sociale, Fisioterapista della prima squadra e Match Analyst (Tier 3 – B2B Enterprise).
-- **Problema Risolto:** Nei club di vertice, la prescrizione dell'allenamento non è mai un atto isolato di un singolo individuo, ma richiede una collaborazione sincronizzata tra staff tecnico e medico, tenendo conto dell'indice di carico acuto/cronico (ACWR) e del rischio infortuni. Inoltre, quando si crea un nuovo esercizio personalizzato o un protocollo correttivo, il club necessita di:
-  1. Un **Digital Twin Biomeccanico** parametrizzato sulla reale struttura corporea del calciatore (altezza, lunghezza segmenti ossei, asimmetrie);
-  2. Una **Libreria Club a Due Livelli** che distingua le bozze temporanee del singolo giocatore dagli esercizi ufficiali validati e condivisi con l'intera organizzazione;
-  3. Un workflow di **Validazione Congiunta Obbligatoria (Co-Firma Medico Sociale + Head S&C)**;
-  4. Protezione crittografica totale dei video e dei modelli nel bunker Silo 2 gestito via Cloud KMS.
+
+### Guida Pratica per Non Tecnici: Cos'è questo modulo per un umano?
+Nei grandi club professionistici, gli schemi su palla inattiva, le posture speciali di riatletizzazione e gli esercizi di prevenzione elaborati dallo staff sono **segreti industriali e sportivi custoditi gelosamente**. Se una squadra rivale scopre in anticipo come batte i calci d'angolo o come allena i propri attaccanti, il vantaggio competitivo svanisce.  
+**Il Catalogo d'Élite di T7** organizza il sapere tecnico della società su **due livelli separati**:
+1. **Libreria Pubblica Globale:** I 296 esercizi standard di T7 con l'Avatar 3D;
+2. **Secret Club Vault (Cassaforte Segreta del Club):** Una sezione accessibile solo allo staff societario, dove vengono caricati i video in altissima definizione (4K a 120fps da più angolazioni) registrati sul campo d'allenamento;
+- Lo staff può passare in un attimo dal video reale al Digital Twin 3D;
+- **Doppia Firma Obbligatoria Medico + Preparatore:** Nessun esercizio riabilitativo personalizzato può essere somministrato a un calciatore di alto valore se non è stato approvato digitalmente sia dal Medico Sociale che dal Responsabile della Preparazione;
+- **Watermark Anti-Fuga di Notizie:** Se qualcuno visualizza un video sul tablet, sullo sfondo compare in trasparenza il suo nome e l'orario: se facesse una foto allo schermo per mandarla a un giornalista, verrebbe identificato all'istante.
+
+### Specifiche di Business & Metriche
+- **Target Utente:** Head Coach, Preparatori Atletici (S&C), Medici Sociali e Match Analyst di club professionistici (Tier 3 – B2B Enterprise).
+- **Problema Risolto:** Proteggere i segreti tattici e i protocolli riabilitativi brevettati dal club societario (Zero Data Leaks), garantendo che ogni esercizio somministrato all'atleta sia validato congiuntamente da staff tecnico e sanitario.
 
 ---
 
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
-1. **Corsia 1: Thin Client UI/UX (Team Squad Cockpit - React 18 & WebGL):**
-   - Navigazione catalogo rosa con telemetria Z-Score e carichi live, visualizzatore 3D avanzato con rendering delle forze di taglio articolari in Newton (N), modulo camera con Markerless Computer Vision ad alta precisione, modale revisione AI con citazione paper PubMed e cartella EMR, selettore di livello di salvataggio (Bozza Atleta vs Libreria Club), e pannello di co-firma congiunta.
-2. **Corsia 2: API Gateway & RBAC Tier 3 (Envoy / mTLS Gateway):**
-   - Autenticazione mTLS X.509 + token hardware FIDO2, verifica dei ruoli staff societari e feature gating di Tier 3.
-3. **Corsia 3: Server Scatola Nera (Digital Twin & Multimodal RAG Engine - Cloud Run GPU):**
-   - Calcolo del carico acuto/cronico (ACWR), motore RAG accademico (connessione ai 322 paper scientifici, PubMed e cartella clinica EMR societaria) e compilatore del Digital Twin con adattamento morfologico della mesh scheletrica.
-4. **Corsia 4: Database Silo 2 (Bunker Club KMS Enclave - PostgreSQL Dedicated):**
-   - Archivio rosa prima squadra, cronologia infortuni criptata, libreria club `club_exercise_library`, video criptati e audit trail WORM delle co-firme dello staff.
+
+1. **Corsia 1: Thin Client UI/UX (Multi-Staff Cockpit React 18):**
+   - Interfaccia avanzata multi-schermo con supporto a griglia multi-camera 4K, toggle dinamico "Video Reale vs Digital Twin 3D", pannello di validazione a doppia firma digitale con lettore smart-card o FIDO2, e watermark video dinamico impresso a livello shader WebGL.
+2. **Corsia 2: API Gateway & Enterprise Stream Gate (Envoy mTLS):**
+   - Verifica credenziali mTLS con certificato di club, controllo del ruolo applicativo e streaming video sicuro HLS criptato con chiavi temporanee rotanti (DRM Widevine / FairPlay).
+3. **Corsia 3: Server Scatola Nera (Digital Twin & Dual-Signature Engine Cloud Run):**
+   - Sincronizzazione temporale delle clip multi-camera da campo, binding crittografico della doppia firma digitale (SHA-256 tra chiave privata Medico e Preparatore) e rendering del watermark forense invisibile.
+4. **Corsia 4: Database Tripartito (Silo 2 - Encrypted Club Vault PostgreSQL):**
+   - Tabelle `club_secret_catalog`, `joint_medical_approvals` e `anti_leak_audit_logs`.
 
 ---
 
-## 4. Flusso Operativo Passo-Passo (Nodi Numerati)
-1. **START (Accesso Catalogo Team Cockpit):** Lo staff accede alla sezione Esercizi & Biomeccanica dal Cockpit societario.
-2. **DEC_MODE (Selettore Operazione Staff):** Lo staff sceglie l'azione:
-   - **Ramo 1:** Catalogo Rosa, Telemetria & Return to Play (RTP)
-   - **Ramo 2:** Registra Video Atleta In-App & Libreria Club
-   - **Ramo 3:** Nuovo Esercizio Solo-Testo
+## 4. Flusso Operativo Passo-Passo
 
-### Ramo 1: Consultazione Rosa & Gestione Rischio ACWR
-3. **UI_SEARCH_TEAM (Consultazione Catalogo Rosa):** Lo staff consulta gli esercizi incrociando i dati di carico della rosa, lo Z-Score di fatica e il minutaggio settimanale.
-4. **DEC_RISK (Verifica Indice di Rischio ACWR):** Il server Scatola Nera calcola il rapporto tra Carico Acuto (ultimi 7 giorni) e Carico Cronico (ultimi 28 giorni):
-   - *Se ACWR $\le 1.5$ (Finestra Ottimale):* Viene mostrata la griglia `GRID_ELITE` con telemetria e idoneità confermata.
-   - *Se ACWR > 1.5 (Spike Pericoloso di Sovraccarico):* Si attiva l'alert clinico `UI_ALERT_RTP`. Il sistema blocca gli esercizi ad alta intensità e reindirizza automaticamente l'atleta verso esercizi adattati del protocollo Return to Play (RTP a 6 Fasi).
-5. **VIEWER_3D_ELITE (Visualizzatore 3D Elite & Digital Twin):** Esplorazione a 360° dell'avatar del calciatore con sovrimpressione in tempo reale dei vettori delle forze di taglio articolari (es. sollecitazione sul legamento crociato anteriore espressa in Newton).
+### Livello A: User Journey Narrativo (La Storia dell'Utente)
+1. **L'Accesso alla Sezione Esercizi del Club:** Il preparatore e il medico sociale aprono il tablet nel loro ufficio al centro sportivo.
+2. **La Scelta dei Due Livelli di Catalogo:**
+   - Possono consultare il catalogo generale (i 296 esercizi standard);
+   - Oppure toccare *"Libreria Riservata Prima Squadra"*, accessibile solo con i permessi societari.
+3. **La Registrazione con le Telecamere del Campo:** Durante l'allenamento a porte chiuse, le telecamere fisse del campo registrano un nuovo esercizio di agilità e forza esplosiva da 3 angolazioni (frontale, laterale e dall'alto).
+4. **La Sincronizzazione 3D:** L'app carica le 3 angolazioni e crea il Digital Twin 3D: il preparatore può girare l'omino virtuale per mostrare al giocatore l'angolo perfetto con cui spingere sui tacchetti.
+5. **La Doppia Firma Tecnico-Sanitaria:**
+   - Il Preparatore firma digitalmente con la sua chiavetta FIDO2: *"Approvato per il carico neuromuscolare"*;
+   - Il Medico Sociale esamina i parametri articolari e appone la sua controfirma: *"Idoneo: nessun sovraccarico per il ginocchio operato"*.
+6. **La Distribuzione all'Atleta:** Solo dopo la doppia firma, l'esercizio compare sul tablet del calciatore nello spogliatoio, con impresso in trasparenza il suo codice identificativo per evitare screenshot non autorizzati.
 
-### Ramo 2: Video Recording Markerless & Libreria Club a 2 Livelli
-6. **UI_CAM_CAPTURE (Registrazione In-App Pro):** Lo staff registra il calciatore durante un gesto atletico specifico in campo o in palestra pesi (a 60 o 120 fps).
-7. **UI_MARKERLESS (Markerless Computer Vision 3D):** Gli algoritmi di visione artificiale estraggono lo scheletro biomeccanico 3D ad alta precisione senza richiedere l'applicazione di marker adesivi sul corpo dell'atleta.
-8. **UI_STAFF_DRAFT (Compilazione Bozza Staff):** Il preparatore inserisce gli appunti tecnici e le finalità biomeccaniche.
-9. **DEC_AI_AUDIT_PRO (Attivazione Revisione Coerente AI):** Lo staff decide se attivare la revisione automatica:
-   - Il server (`SRV_RAG_PRO`) interroga la letteratura scientifica internazionale (322 paper T7 + PubMed) e la cartella clinica EMR criptata del calciatore, verificando se il movimento rispetta i tempi biologici di guarigione e i pattern di forza.
-   - Compare la modale `UI_DIFF_PRO` con il confronto ragionato tra bozza del preparatore e rilievi scientifici dell'AI.
-10. **DEC_LIBRARY_TIER (Bivio Architettura di Salvataggio a 2 Livelli):**
-    - **Livello 1 – Bozza Singolo Giocatore (`UI_LEVEL_ATHLETE`):** L'esercizio viene salvato come bozza temporanea personalizzata per il singolo atleta (es. "Esercizio correttivo valgismo ginocchio sinistro per Calciatore X"). Non è visibile al resto della rosa.
-    - **Livello 2 – Libreria Ufficiale Club (`UI_LEVEL_CLUB`):** L'esercizio viene promosso a patrimonio della società sportiva, entrando nella libreria ufficiale condivisa tra tutti i preparatori e fisioterapisti del club.
-11. **SRV_TWIN_SYNTH (Sintesi Digital Twin):** Il generatore modella la mesh 3D Draco sulle reali proporzioni antropometriche del calciatore e archivia il video crittografato tramite Google Cloud KMS in Silo 2 (`DB_KMS_SAVE`).
-12. **VIEWER_TOGGLE_PRO:** L'esercizio è corredato dal toggle che permette di alternare il video reale alla visualizzazione del Digital Twin 3D.
+---
 
-### Ramo 3: Creazione Solo-Testo
-13. **UI_TEXT_CREATE_PRO (Creazione Parametrica):** Compilazione solo-testo dei parametri tassonomici e delle traiettorie ideali, sintetizzati poi dal generatore cinematico.
+### Livello B: Trattazione Tecnica Nodi Operativi
 
-### Fase Conclusiva: Validazione Congiunta Obbligatoria
-14. **DEC_ACTION (Co-Firma Staff Medico-S&C):**
-    - Un esercizio custom o un protocollo ad alta intensità non può essere assegnato a un atleta professionista se non riceve la **doppia approvazione digitale simultanea**:
-      - 1ª Firma: Medico Sociale (Nulla osta clinico-funzionale);
-      - 2ª Firma: Head Strength & Conditioning Coach (Approvazione metodologica).
-15. **END_READY (Fine Flusso):** Esercizio integrato a pieno titolo nel sistema societario.
+1. `START` (Accesso Catalogo di Squadra): Autenticazione mTLS e verifica del claim JWT societario `tier: 3_ENTERPRISE`.
+2. `LIBRERIA_2_LIVELLI` (Bivio Catalogo):
+   - *Livello 1: Catalogo Standard T7* (296 esercizi, sola consultazione e integrazione);
+   - *Livello 2: Secret Club Vault* (esercizi custom della società con partizione crittografata Silo 2).
+3. `UI_CAMERA_PRO_INGEST` (Ingestion Multi-Camera Campo):
+   - Ricezione flussi 4K a 120fps da 3 telecamere sincronizzate tramite timecode SMPTE;
+   - Transcodifica video HLS criptata con Google Cloud Transcoder.
+4. `SRV_DIGITAL_TWIN_MAPPING` (Elaborazione Server Scatola Nera):
+   - Mappatura scheletrica del gesto tecnico e calcolo dei carichi articolari stimati;
+   - Generazione mesh Digital Twin animata in formato `.glb` compresso.
+5. `JOINT_SIGNATURE_GATE` (Workflow di Doppia Firma Digitale):
+   - Step 1: Firma crittografica del Responsabile S&C (`R2_HEAD_COACH`);
+   - Step 2: Controfirma del Medico Sociale (`R4_TEAM_DOCTOR`).
+   - Se manca una delle due firme $\implies$ stato `PENDING_MEDICAL_APPROVAL` (l'esercizio non può essere erogato ai calciatori).
+6. `WATERMARK_INJECTION` (Iniezione Watermark Forense):
+   - Il server imprime sul flusso video un watermark semitrasparente dinamico contenente l'ID univoco dell'utente visualizzatore, l'IP e il timestamp UTC.
+7. `DB_VAULT_WRITE` (Archiviazione Silo 2 Criptata): Scrittura dei metadati in `club_secret_catalog` con chiave Cloud KMS del club.
+8. `SYNC_PLAYER_DEVICES` (Sincronizzazione Dispositivi Calciatori): Consegna sicura della scheda sul tablet dell'atleta in spogliatoio (`FLOW-3C`).
 
 ---
 
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
-- **Decisione Operazione Staff (`DEC_MODE`):** Consultazione Rosa vs Registrazione Video vs Solo-Testo.
-- **Decisione Rischio Carico (`DEC_RISK`):** $\text{ACWR} \le 1.5 \implies$ Idoneità; $\text{ACWR} > 1.5 \implies$ Allarme sovraccarico + RTP.
-- **Decisione Destinazione Libreria (`DEC_LIBRARY_TIER`):** Livello 1 (Bozza Singolo Atleta) vs Livello 2 (Libreria Ufficiale Club).
-- **Decisione Co-Firma Staff (`DEC_ACTION`):** Entrambe le firme presenti $\implies$ Pubblicazione; Firma mancante $\implies$ Stato di attesa ("Pending Co-Signature").
 
-### Gestione dei 4 Stati UI:
-1. **Empty State:** Sezione libreria custom societaria vuota; invito allo staff a convertire le schede proprietarie in protocolli 3D.
-2. **Loading State:** Rendering del Digital Twin e sintesi dei landmark con indicatore di caricamento crittografato.
-3. **Populated State:** Griglia societaria con miniature 3D, badge di co-firma approvata (verde), indicatore di livello (Atleta vs Club) e Z-Score.
-4. **Error / Fallback State:** Conflitto tra staff: il medico boccia l'esercizio per rischio articolare; l'esercizio viene congelato con motivazione medica allegata e notifica all'Head Coach.
+| Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
+| :--- | :--- | :--- | :--- |
+| `JOINT_SIGNATURE` | Entrambe le firme (Medico + S&C) apposte? | Sblocca esercizio per la squadra | Stato congelato in attesa firma |
+| `NETWORK_SECURITY` | Connessione proviene da rete protetta del Club? | Visualizzazione video 4K completa | Blocco streaming video (solo scheda dati) |
+| `WATERMARK_APPLIED` | Watermark dinamico renderizzato con successo? | Avvia riproduzione sicura | Blocco preventivo riproduzione |
+
+### I 4 Stati di Interfaccia Utente (UI States):
+1. **Empty State:** Secret Vault vuoto (inizio stagione): pannello *"Inizia a costruire la libreria segreta del tuo club caricando i video del campo o i protocolli RTP"*.
+2. **Loading State:** Sincronizzazione delle 3 clip multi-camera 4K con barra di progresso e transcodifica in $< 3.5\text{ secondi}$.
+3. **Populated State:** Cockpit completo: griglia multi-camera con selettore prospettiva (Frontale/Laterale/Aerea), Digital Twin 3D e registro firme digitali verdi.
+4. **Error / Fallback State:**
+   - *Mancanza di firma del medico:* Cartella dell'esercizio contrassegnata in giallo con avviso bloccante: *"Esercizio in attesa di firma del Medico Sociale prima dell'assegnazione alla rosa"*.
 
 ---
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
-### Endpoint Principali:
-- `POST /api/v1/club/exercises/ai-audit`:
-  - Input: `{ clubId: string, athleteId: string, pose3dLandmarks: Array<Object>, coachDraft: Object }`
-  - Output: `{ academicEvaluation: string, emrRiskMatch: boolean, suggestedModifications: Object }`
-- `POST /api/v1/club/exercises/kms-save`:
-  - Input: `{ clubId: string, libraryTier: 'LEVEL_1_ATHLETE'|'LEVEL_2_CLUB', exercisePayload: Object, signatures: { doctorMtls: string, headCoachMtls: string } }`
-  - Output: `{ exerciseId: string, kmsEncryptedPath: string, publishedToClub: boolean }`
+### Specifiche Endpoint REST:
 
-### Tabelle Database Coinvolte (Silo 2 - Enclave Club):
-- `club_exercise_library`: id, club_id, target_athlete_id (nullable se Tier 2), library_tier ('LEVEL_1'|'LEVEL_2'), model_glb_kms_path, video_kms_path.
-- `staff_co_signatures`: id, exercise_id, doctor_user_id, doctor_signed_at, sc_coach_user_id, sc_coach_signed_at, audit_status ('APPROVED'|'PENDING'|'REJECTED').
+#### 1. Upload Esercizio Segreto & Richiesta Doppia Firma
+- **Endpoint:** `POST /api/v1/club/catalog/secret-exercise`
+- **Headers:** `Authorization: Bearer <staff_jwt>`, `X-Club-Tenant-ID: club_seriea_01`, `Content-Type: application/json`
+- **Request Payload:**
+```json
+{
+  "exerciseCode": "sc_corner_kick_routine_b",
+  "tacticalCategory": "SET_PIECE_OFFENSIVE",
+  "multiCameraVaultRefs": [
+    "gs://club-seriea-01-vault/tactical/cam1_front.mp4",
+    "gs://club-seriea-01-vault/tactical/cam2_side.mp4"
+  ],
+  "initiatorStaffRole": "HEAD_STRENGTH_COACH",
+  "cryptographicSignature": "sig_rsa_sc_coach_99a8b7"
+}
+```
+- **Responses:**
+  - `201 Created`:
+```json
+{
+  "secretExerciseId": "sec_ex_1192",
+  "approvalStatus": "AWAITING_TEAM_DOCTOR_SIGNATURE",
+  "digitalTwinReady": true,
+  "watermarkPolicy": "FORENSIC_USER_ID_IMPRINTED"
+}
+```
+
+### Schema Relazionale (Database Silo 2 - Bunker Enclave PostgreSQL):
+- `club_secret_catalog`: `id UUID PK`, `club_id VARCHAR(64)`, `exercise_code VARCHAR(64) UNIQUE`, `tactical_category VARCHAR(32)`, `multi_cam_refs JSONB`, `digital_twin_ref TEXT`, `created_at TIMESTAMPTZ`.
+- `joint_medical_approvals`: `id UUID PK`, `exercise_id UUID FK -> club_secret_catalog.id`, `head_coach_sig VARCHAR(255)`, `team_doctor_sig VARCHAR(255)`, `approved_at TIMESTAMPTZ`, `status VARCHAR(16)`.
 
 ---
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
-- **Ereditarietà Totale da Tier 1 e Tier 2:** Il Tier 3 eredita il 100% delle funzionalità di consultazione e visualizzazione del General User (`flow-2a`) e la videocamera in-app con revisione AI del Professionista (`flow-2b`).
-- **Elevazione Enterprise Esclusiva:**
-  - Sostituzione dell'avatar generico con il **Digital Twin parametrizzato sulla reale anatomia del calciatore**.
-  - Passaggio dalla singola cartella coach alla **Libreria Club a 2 Livelli**.
-  - Introduzione del vincolo non derogabile della **Co-Firma congiunta Medico Sociale + Head S&C**.
-  - Crittografia a tenuta stagna nel bunker Silo 2 protetto da Cloud KMS.
+
+- **Ereditarietà da Tier 1 e Tier 2:**  
+  Il club eredita l'intero catalogo dei 296 movimenti pubblici e la visualizzazione 3D WebGL con muscoli primari/secondari.
+- **Esclusività Assoluta di Tier 3 Enterprise:**
+  - **Libreria Segreta di Club a due livelli** protetta da crittografia hardware Cloud KMS;
+  - Supporto nativo a **video multi-camera 4K a 120fps** sincronizzati su timecode SMPTE;
+  - Workflow di validazione a **Doppia Firma Digitale Tecnico-Sanitaria** (S&C + Medico Sociale);
+  - **Watermarking Dinamico Anti-Leak** impresso a livello hardware su ogni frame riprodotto.

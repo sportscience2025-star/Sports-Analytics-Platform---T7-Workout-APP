@@ -1,87 +1,151 @@
-# Capitolato Tecnico: Flow 3B – AI Macrocycle Generator with 119 Clinical Triage (T7 Pro Coach)
+# Capitolato Tecnico: Flow 3B – Architettura Pro & Macrocicli IA con Triage 119 Patologie (T7 Pro Coach)
 
 ## 1. Identificativo & Titolo Ufficiale
+- **Badge Miro Board:** `#09` (Posizione: `X: 2459, Y: 2940`)
 - **Codice Univoco:** `FLOW-3B`
-- **Titolo Ufficiale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 3B: AI MACROCYCLE GENERATOR WITH 119 CLINICAL TRIAGE
-- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 3: Programmazione & Macrocicli)
+- **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 3B: ARCHITETTURA PRO, GENERATORE MACROCICLI IA & CLINICAL TRIAGE 119
+- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 3: Architettura Pro & Periodizzazione)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-3b-macrocycle-ai-triage119.mmd`
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *ImpactCalculator Triage 119, Periodizzazione DUP, Periodizzazione a Blocchi, Coniugata Westside, Excel Sbloccato protected:false, RAG Scientifico con Gerarchia Fonti*).
 
 ---
 
 ## 2. Obiettivo di Business & Target Utente
-- **Target Utente:** Preparatori atletici, coach di forza e condizionamento e personal trainer con atleti agonisti o clienti con quadri clinici complessi (Tier 2 – B2B Freelance).
-- **Problema Risolto:** Costruire una programmazione di 12-16 settimane richiede ore di calcoli matematici per modulare volumi, carichi ondulati (DUP) e settimane di scarico (-40/50%), con il rischio critico di prescrivere esercizi dannosi per articolazioni o rachide compromessi. T7 automatizza la generazione di macrocicli strutturati incrociandoli con il motore medico `ImpactCalculator` su 119 patologie codificate (discopatie, lesioni tendinee, instabilità di spalla), fornendo un'esportazione in Excel (.xlsx) completamente sbloccata per consentire al coach di annotare note sul campo senza barriere software.
+
+### Guida Pratica per Non Tecnici: Cos'è questo modulo per un umano?
+Scrivere una scheda di allenamento di 6 mesi (un macrociclo) per un cliente è un lavoro lungo, complesso e rischioso. Se il cliente ha un'ernia discale L4-L5 o una spalla operata, basta inserire un esercizio sbagliato per causargli dolori acuti o infortuni. Inoltre, i professionisti amano personalizzare i propri fogli di lavoro e non sopportano i software chiusi che impediscono di modificare le formule su Excel.  
+**Il Generatore Pro di T7** è l'assistente scientifico definitivo del preparatore:
+- Inserisci gli obiettivi del cliente e le sue eventuali problematiche fisiche scegliendo tra **119 patologie codificate** (dalle discopatie alla tendinopatia rotulea, fino alle patologie sistemiche);
+- Un algoritmo medico-sportivo (`ImpactCalculator`) setaccia all'istante l'intero catalogo degli esercizi: **elimina o adatta in automatico** tutti i movimenti che caricano pericolosamente la zona lesa;
+- Un'Intelligenza Artificiale esperta di periodizzazione (che conosce i modelli DUP ondulate, a Blocchi, Coniugata o Lineare) genera un piano perfetto di 12-24 settimane;
+- **Esportazione Excel Totalmente Sbloccata:** Il coach può scaricare il file `.xlsx` senza alcuna password o protezione (`protected: false`), potendo modificare liberamente ogni cella o formula secondo le proprie abitudini.
+
+### Specifiche di Business & Metriche
+- **Target Utente:** Preparatori atletici, chinesiologi e personal trainer con atleti che presentano esigenze complesse o quadri clinici specifici (Tier 2 – Pro P.IVA).
+- **Problema Risolto:** Ridurre da 3 ore a 5 minuti il tempo necessario per progettare una periodizzazione scientifica avanzata, eliminando al 100% il rischio di prescrivere esercizi controindicati per le 119 patologie censite.
 
 ---
 
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
-1. **Corsia 1: Thin Client UI/UX (Programming Wizard - React 18):**
-   - Wizard a 4 step guidati: 1. Selezione atleta dal roster; 2. Matrice patologica 119 condizioni; 3. Modello di periodizzazione; 4. Durata e frequenza settimanale. Visualizzazione grafica delle settimane, badge di rischio e pulsante per export Excel sbloccato.
-2. **Corsia 2: API Gateway & Pipeline Audit (Envoy / Kong):**
-   - Verifica autorizzazione JWT Tier 2, rate limiting su calcoli ad alta intensità computazionale e smistamento verso i container server dedicati.
-3. **Corsia 3: Server Scatola Nera (119 Triage & Openpyxl Engine - Cloud Run):**
-   - Esecuzione dell'algoritmo `ImpactCalculator` (generazione automatica di blacklist e limitazioni ROM per l'atleta), calcolo matematico della progressione carichi (DUP, Coniugata, Blocchi, Lineare) e compilazione del file Excel nativo formattato tramite libreria Openpyxl.
-4. **Corsia 4: Database Silo 1 (Pro Programming Repository - PostgreSQL):**
-   - Lettura del catalogo 296 esercizi e delle matrici patologiche; scrittura del piano approvato in `macrocycles` e `mesocycles`.
+
+1. **Corsia 1: Thin Client UI/UX (Periodization Wizard React 18):**
+   - Selettore del modello di periodizzazione (DUP, Blocchi, Coniugata, Lineare), checklist multi-distretto delle 119 condizioni cliniche con gradi di severità (1-5), anteprima del calendario dei microcicli e pulsante di export immediato Excel/PDF.
+2. **Corsia 2: API Gateway & Quota Manager (Envoy Gateway):**
+   - Validazione token JWT Tier 2, controllo delle quote di generazione AI e instradamento delle chiamate verso il motore di calcolo protetto.
+3. **Corsia 3: Server Scatola Nera (ImpactCalculator & AI Periodization Engine Cloud Run):**
+   - *ImpactCalculator:* Algoritmo proprietario che incrocia i carichi assiali e i gradi ROM con la matrice di severità delle patologie;
+   - *Periodization Engine:* Calcolo dei volumi settimanali (numero di serie per gruppo muscolare) e delle progressioni di intensità in percentuale del massimale ($% 1\text{RM}$);
+   - *Excel Generator (ExcelJS):* Compilazione del file binario `.xlsx` privo di protezioni con formule matematiche native (`SUM`, `AVERAGE`).
+4. **Corsia 4: Database Tripartito (Silo 1 Pro - PostgreSQL):**
+   - Tabelle `clinical_conditions` (119 patologie con relative controindicazioni assiali), `macrocycles` (programmi generati) e `client_assignments`.
 
 ---
 
-## 4. Flusso Operativo Passo-Passo (Nodi Numerati)
-1. **START (Avvio Wizard Programmazione):** Il coach apre la sezione "Crea Nuovo Piano" dal proprio hub.
-2. **STEP1_ATHLETE (Selezione Atleta):** Il coach sceglie l'atleta dal proprio roster. Il sistema estrae automaticamente i suoi dati biometrici, l'esperienza di allenamento e i massimali storici 1RM.
-3. **STEP2_PATHOLOGY (Checklist Clinica 119 Patologie):** Presentazione della matrice interattiva suddivisa nei 5 distretti anatomici (Colonna, Arti Superiori, Arti Inferiori, Patologie Sistemiche, Condizioni Neurologiche Speciali). Il coach seleziona le condizioni attive (es. "Ernia discale L5-S1" o "Conflitto sub-acromiale spalla destra").
-4. **STEP3_MODEL (Selezione Modello di Periodizzazione):** Scelta dell'approccio metodologico:
-   - *DUP (Daily Undulating Periodization):* Ondulazione continua di ipertrofia, forza e potenza all'interno della stessa settimana.
-   - *Periodizzazione a Blocchi (Verkhoshansky / Issurin):* Fasi concentrate di Accumulazione, Trasformazione e Realizzazione.
-   - *Metodo Coniugato (Westside Barbell):* Alternanza di Max Effort (ME) e Dynamic Effort (DE).
-   - *Periodizzazione Lineare Tradizionale.*
-5. **STEP4_DURATION (Durata & Frequenza):** Impostazione della durata del ciclo (da 8 a 16 settimane) e della frequenza (da 3 a 5 giorni/settimana), con posizionamento delle settimane di scarico (riduzione volume del 40-50% a intensità invariata).
-6. **BTN_GENERATE (Pulsante CTA Genera Piano):** Il coach preme il pulsante di calcolo. La richiesta viene inviata all'endpoint `GW_GEN_REQ`.
-7. **GW_AUTH_CHECK (Verifica Gateway):** Convalida del token JWT Tier 2.
-8. **SRV_TRIAGE_AUDIT (Audit Motore 119 Patologie):** Il server Scatola Nera scansiona l'intero catalogo esercizi incrociandolo con le patologie selezionate:
-   - Applica cutoff esponenziali sui carichi assiali e articolari.
-   - Assegna a ciascun esercizio lo status: `EXCLUDED` (vietato), `ADAPTED` (concessa variazione con ROM protetto) o `AVAILABLE` (sicuro).
-   - Genera l'alert visivo `ALERT_CONTRA` ("3 esercizi esclusi per conflitto patologia rachide: Squat con bilanciere sostituito con Belt Squat").
-9. **SRV_DUP_CALC & SRV_SESSION_BUILDER (Generatore di Sessioni):** Il server calcola le serie, ripetizioni, percentuali $\%1\text{RM}$ e target RPE per ogni singola seduta, strutturando la sessione in Warmup dinamico, Esercizi primari, Accessori e Decompressione.
-10. **DB_SAVE_MACRO (Persistenza Piano):** Il macrociclo finito viene salvato in Silo 1.
-11. **RESULT_VIEW (Visualizzazione Risultato):** Il client renderizza la vista interattiva: calendario settimanale, grafici a barre dei volumi per gruppo muscolare e schede dettagliate per ogni giorno.
-12. **BTN_EXPORT_XLSX & SRV_OPENPYXL (Esportazione Excel Sbloccato):**
-    - Toccando "Esporta Excel", il server compila tramite Openpyxl un file `.xlsx` professionale multi-tab con fogli dedicati (Riepilogo, Settimana per Settimana, Registro Pesi sul Campo).
-    - **Requisito Inderogabile:** Il file Excel è totalmente privo di password (`protected: false`), permettendo al coach di modificarlo liberamente su tablet o stamparlo.
-13. **END_EXPORTED (Fine Flusso):** Piano attivo, assegnato al cliente ed esportato con successo.
+## 4. Flusso Operativo Passo-Passo
+
+### Livello A: User Journey Narrativo (La Storia dell'Utente)
+1. **La Selezione dell'Atleta:** Il coach apre il suo portafoglio clienti e seleziona ad esempio *"Luca, 34 anni, impiegato con lombalgia ricorrente"*.
+2. **La Scelta dell'Obiettivo & del Modello:** Il coach sceglie l'obiettivo: *"Forza e Ipertrofia con modello DUP (Ondulata Giornaliera) su 16 settimane"*.
+3. **Il Triage Clinico delle 119 Patologie:** Nella sezione clinica, il coach seleziona *"Colonna - Ernia discale L4-L5 (Severità Media)"*.
+4. **L'Azione Istantanea dell'ImpactCalculator:** In un millisecondo l'app risponde a video:
+   - *Esercizi Esclusi (Bollino Rosso):* Squat con bilanciere sopra le spalle e stacco da terra pesante (perché comprimono le vertebre);
+   - *Esercizi Adattati (Bollino Giallo):* Leg Press a schienale inclinato a 45° o Squat alla cintura (Belt Squat);
+   - *Esercizi di Pre-Attivazione Obbligatori (Bollino Verde):* 5 minuti di riscaldamento del core (Bird-Dog e Plancia) prima di ogni seduta.
+5. **La Creazione del Piano:** Il coach preme *"Genera Macrociclo"*. In 3 secondi compare il calendario completo delle 16 settimane, con i volumi e i pesi suggeriti per ogni seduta.
+6. **L'Esportazione Libera:** Il coach tocca *"Scarica Foglio Excel"*. Il file si apre su Microsoft Excel o Google Fogli: non ci sono blocchi o celle bloccate, il coach può personalizzare i colori, aggiungere note o cambiare un esercizio con totale libertà.
+
+---
+
+### Livello B: Trattazione Tecnica Nodi Operativi
+
+1. `START` (Avvio Wizard Periodizzazione): Montaggio del componente `MacrocycleWizard` con recupero profilo atleta dal client state.
+2. `MODEL_SELECTION` (Scelta Modello Matematico):
+   - *DUP (Daily Undulating Periodization):* Variazione carichi all'interno del microciclo (es. Lun: Forza 85%, Mer: Ipertrofia 70%, Ven: Potenza 60%);
+   - *Block Periodization:* Blocchi sequenziali (Accumulo $\to$ Trasformazione $\to$ Realizzazione);
+   - *Conjugate Method:* Separazione sforzo massimale (Max Effort) e sforzo dinamico (Dynamic Effort);
+   - *Linear Periodization:* Incremento progressivo del carico con decremento del volume.
+3. `CLINICAL_TRIAGE_CHECK` (Incrocio su 119 Condizioni Cliniche):
+   - Input patologie selezionate con gravità $[1, 5]$;
+   - Chiamata interna al modulo `ImpactCalculator`:
+     $$\text{PenaltyScore} = \sum_{p \in \text{Patologie}} \text{AxialLoadCoeff}_p \times \text{Severity}_p$$
+   - Cutoff binario: se il punteggio supera la soglia critica per un esercizio $\implies$ stato `EXCLUDED`.
+4. `PRE_ACTIVATION_INJECTION` (Iniezione Protocolli di Pre-Attivazione): Inserimento automatico dei 32 protocolli clinici riabilitativi (`clinical-knee.ts` / spalla / rachide) all'inizio di ogni seduta come riscaldamento obbligatorio.
+5. `SRV_PERIODIZATION_GEN` (Computazione Algoritmica Cloud Run):
+   - Generazione della matrice $W \times S$ (Settimane $\times$ Sessioni);
+   - Assegnazione dei parametri di intensità nominale e Reps in Reserve (RIR 1-3).
+6. `EXCEL_COMPILER` (Compilazione Foglio Excel Sbloccato):
+   - Utilizzo libreria server-side `exceljs`;
+   - Configurazione esplicita foglio di calcolo con `worksheet.protect = false` e formattazione celle professionale;
+   - Inserimento di collegamenti ipertestuali ai video dimostrativi del catalogo.
+7. `DB_MACRO_WRITE` (Archiviazione Silo 1): Persistenza del piano in `pro_macrocycles`.
+8. `DOWNLOAD_HANDOFF` (Consegna al Client): Invio stream binario `.xlsx` e PDF interattivo per stampa o invio via email all'atleta.
 
 ---
 
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
-- **Decisione Patologie (`SRV_TRIAGE_AUDIT`):** Conflitto rilevato $\implies$ Esclusione automatica + Proposta alternativa; Nessun conflitto $\implies$ Catalogo standard.
-- **Decisione Modello Periodizzazione:** DUP vs Blocchi vs Coniugata vs Lineare.
-- **Decisione Destinazione:** Consultazione in-app vs Export Excel (.xlsx) sbloccato.
 
-### Gestione dei 4 Stati UI:
-1. **Empty State:** Nessun macrociclo creato per l'atleta selezionato; prompt che illustra i vantaggi della pianificazione a lungo termine con pulsante "Avvia Wizard".
-2. **Loading State:** Animazione con avanzamento a step ("Analisi 119 patologie...", "Calcolo curve di carico DUP...", "Costruzione sedute...").
-3. **Populated State:** Dashboard del macrociclo con griglia a 16 settimane navigabile, colori distinti per fasi di carico e scarico e indicatori di tonnellaggio previsto.
-4. **Error / Fallback State:** Conflitto clinico totale (es. patologia multipla grave che esclude l'intero distretto gambe); il sistema mostra un warning rosso raccomandando un protocollo di riabilitazione fisioterapica prima della forza.
+| Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
+| :--- | :--- | :--- | :--- |
+| `CLINICAL_CHECK` | Atleta presenta condizioni cliniche attive? | Attiva filtro ImpactCalculator | Generazione libera standard |
+| `IMPACT_SCORE` | Esercizio supera soglia di sicurezza assiale? | Escludi o sostituisci con variante | Mantieni esercizio originale |
+| `PRE_ACTIVATION` | Patologia richiede warm-up protettivo? | Inietta scheda di pre-attivazione | Warm-up aspecifico standard |
+
+### I 4 Stati di Interfaccia Utente (UI States):
+1. **Empty State:** Nessun macrociclo creato per l'atleta: schermata di setup *"Configura il primo piano di allenamento a lungo termine in 3 semplici passaggi"*.
+2. **Loading State:** Barra di calcolo progressiva con messaggi di stato *"Analisi delle 119 patologie..."*, *"Ottimizzazione curve di carico DUP..."*, *"Generazione foglio Excel..."* ($< 1.8\text{ secondi}$).
+3. **Populated State:** Vista a griglia interattiva con tabella di marcia delle settimane, grafici a linee dell'ondulazione del volume e pulsanti di download immediato.
+4. **Error / Fallback State:**
+   - *Conflitto insolubile tra patologie ed esercizi:* Alert guidato *"I filtri selezionati escludono tutti gli esercizi di spinta verticale. Si consiglia una consultazione fisioterapica prima di proseguire"*.
 
 ---
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
-### Endpoint Principali:
-- `POST /api/v1/pro/programming/generate`:
-  - Input: `{ athleteId: string, pathologyIds: string[], model: 'DUP'|'BLOCKS'|'CONJUGATE', durationWeeks: 12, frequencyDays: 4, targetGoals: ['strength', 'hypertrophy'] }`
-  - Output: `{ macrocycleId: string, weeks: Array<Object>, excludedExercisesCount: 3, substitutedList: [{ original: 'Back Squat', replacement: 'Belt Squat', reason: 'Spinal Compression' }] }`
-- `POST /api/v1/pro/programming/export-xlsx`:
-  - Input: `{ macrocycleId: string }`
-  - Output: Binary stream `.xlsx` MIME type `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`.
+### Specifiche Endpoint REST:
 
-### Tabelle Database Coinvolte (Silo 1):
-- `macrocycles`: id, pro_id, athlete_id, model_type, total_weeks, start_date, status ('ACTIVE'|'ARCHIVED').
-- `mesocycles`: id, macrocycle_id, phase_name, week_start, week_end, volume_target_kg.
-- `planned_workouts`: id, mesocycle_id, week_number, day_number, session_structure (JSONB).
+#### 1. Generazione Macrociclo con Triage Clinico
+- **Endpoint:** `POST /api/v1/pro/periodization/generate-macrocycle`
+- **Headers:** `Authorization: Bearer <pro_jwt>`, `Content-Type: application/json`
+- **Request Payload:**
+```json
+{
+  "athleteId": "ath_c0192a",
+  "programName": "DUP Forza & Ipertrofia Avanzata",
+  "periodizationModel": "DUP",
+  "durationWeeks": 16,
+  "weeklySessions": 4,
+  "clinicalConditions": [
+    { "conditionId": "col_discopatia_l4_l5", "severity": 3 }
+  ],
+  "unlockedExcelExportRequired": true
+}
+```
+- **Responses:**
+  - `201 Created`:
+```json
+{
+  "macrocycleId": "macro_8819a",
+  "weeksCount": 16,
+  "totalSessions": 64,
+  "triageApplied": {
+    "excludedExercisesCount": 14,
+    "adaptedExercisesCount": 8,
+    "injectedPreActivations": ["pre_act_core_stability_02"]
+  },
+  "excelDownloadUrl": "https://vault.t7workout.app/exports/macro_8819a_unlocked.xlsx",
+  "pdfDownloadUrl": "https://vault.t7workout.app/exports/macro_8819a_report.pdf"
+}
+```
+
+### Schema Relazionale (Database Silo 1 - PostgreSQL):
+- `pro_macrocycles`: `id UUID PK`, `pro_id UUID FK -> pro_profiles.id`, `athlete_id UUID FK -> athlete_profiles.id`, `model_type VARCHAR(32)`, `weeks_count INT`, `plan_matrix JSONB`, `created_at TIMESTAMPTZ`.
+- `clinical_conditions_catalog`: `id VARCHAR(64) PK`, `district VARCHAR(32)`, `name_it VARCHAR(128)`, `axial_load_penalty NUMERIC(3,2)`, `rom_contraindications TEXT[]`.
 
 ---
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
-- **Differenziali rispetto a Tier 1:** Il General User compila solo un diario a posteriori o seleziona schede preconfezionate; il Tier 2 ha a disposizione il motore matematico industriale di periodizzazione e il triage clinico delle 119 patologie.
-- **Propagazione verso Tier 3:** Nel Tier 3 (Elite Club - `flow-3c`), questo motore costituisce la base algoritmica, arricchita dalla gestione del microciclo di squadra sincronizzato con il calendario gare (MD-X / MD+X), dalla gestione differenziata titolari/riserve e dal bilanciamento per atleti con doppio ruolo tattico.
+
+- **Differenziali rispetto al Tier 1:**  
+  Nel Tier 1 l'utente riceve solo schede singole di base senza programmazione plurimensile. Il **Generatore di Macrocicli DUP/Blocchi, l'ImpactCalculator su 119 patologie e l'export Excel sbloccato sono esclusivi di Tier 2**.
+- **Propagazione verso Tier 3 (`FLOW-3C`):**  
+  Nei club professionistici, il macrociclo individuale del singolo cliente si trasforma nel **Microciclo di Squadra (MD-X)**, in cui il carico viene modulato in base ai giorni che mancano alla partita (MD-4, MD-3, MD-1, MD+1) differenziando titolari e panchinari.

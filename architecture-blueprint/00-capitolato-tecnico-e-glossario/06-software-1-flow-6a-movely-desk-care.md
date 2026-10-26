@@ -1,79 +1,153 @@
-# Capitolato Tecnico: Flow 6A – Movely Desk-Care & Active Micro-Pauses (T7 Consumer)
+# Capitolato Tecnico: Flow 6A – Movely Desk-Care & Micro-Pause Ergonomiche (T7 Consumer)
 
 ## 1. Identificativo & Titolo Ufficiale
+- **Badge Miro Board:** `#06` (Posizione: `X: 7937, Y: 465`)
 - **Codice Univoco:** `FLOW-6A`
-- **Titolo Ufficiale:** SOFTWARE 1 (B2C CONSUMER) - FLOW 6A: MOVELY DESK-CARE & ACTIVE MICRO-PAUSES
-- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 1: General User / Casual, Colonna 6: Salute & Desk-Care)
+- **Titolo Formale:** SOFTWARE 1 (B2C CONSUMER) - FLOW 6A: MOVELY DESK-CARE & MICRO-PAUSE ERGONOMICHE AZIENDALI
+- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 1: General User / Casual, Colonna 6: Movely Corporate Wellness & Ergonomia)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-1-consumer-b2c/flow-6a-movely-desk-care.mmd`
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Movely Corporate Wellness, Zero-Knowledge Privacy Shield, Micro-Pause Attive, Ergonomic Engine, K-Anonymity*).
 
 ---
 
 ## 2. Obiettivo di Business & Target Utente
-- **Target Utente:** Lavoratori sedentari, impiegati, programmatori e studenti che trascorrono molte ore seduti alla scrivania o al computer (Tier 1 – B2C).
-- **Problema Risolto:** Combattere i danni della postura fissa prolungata (cervicalgie, lombalgie, rigidità scapolare e affaticamento visivo) attraverso un timer di background non invasivo che suggerisce micro-pause attive di 2 minuti con sequenze di decompressione articolare ed esercizi di mobilità eseguibili direttamente sul posto di lavoro senza attrezzi.
+
+### Guida Pratica per Non Tecnici: Cos'è questo modulo per un umano?
+Chi lavora molte ore seduto davanti al computer (in ufficio o in smart working) conosce bene il dolore al collo, le spalle rigide e il fastidio alla zona lombare. Spesso le persone vorrebbero fare qualcosa, ma non possono cambiarsi per andare in palestra durante l'orario di lavoro o non sanno quali movimenti fare senza apparire ridicoli davanti ai colleghi.  
+**Movely** è il personal trainer dell'ufficio:
+- Ogni 90 minuti di sedia ti invia una notifica discreta: *"È ora di 3 minuti di respiro e mobilità per le tue spalle"*;
+- Ti guida attraverso **3 esercizi facilissimi da fare direttamente alla scrivania o in piedi**, in abiti da lavoro e senza sudare;
+- Un video compatto ti mostra esattamente come muovere il collo e aprire il torace;
+- **Privacy assoluta garantita per legge:** se il tuo datore di lavoro o le Risorse Umane pagano l'abbonamento Movely per i dipendenti, **NON vedranno MAI i tuoi dati personali o la tua salute**. L'azienda riceve solo statistiche generali e anonime (es. *"L'85% dei dipendenti ha fatto le pause attive questa settimana, migliorando il benessere aziendale"*).
+
+### Specifiche di Business & Metriche
+- **Target Utente:** Lavoratori sedentari, impiegati d'ufficio e lavoratori da remoto (Tier 1 – B2C / B2B2C Corporate Wellness).
+- **Problema Risolto:** Abbattere le giornate di malattia dovute a disturbi muscolo-scheletrici cronici (Neck pain e Low Back Pain $-40\%$) e generare abitudini di vita attive anche per chi non frequenta la palestra, con totale tutela della privacy del dipendente (GDPR Sanitario Art. 9).
 
 ---
 
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
-1. **Corsia 1: Thin Client UI/UX (Desk-Care - React Native / Web Worker):**
-   - Background timer di sedentarietà (50 minuti di inattività/lavoro al PC), notifiche push locali/web, schermata interattiva con 3 micro-esercizi guidati da animazioni biomeccaniche fluide, countdown di 120 secondi e popup celebrativo dello streak posturale.
-2. **Corsia 2: API Gateway & Log Sync (Envoy / Kong):**
-   - Ricezione della chiamata di completamento micro-pausa (`/complete-break`), verifica dello stato attivo dell'account consumer e protezione anti-spam.
-3. **Corsia 3: Server Scatola Nera (Postural Health Engine - Cloud Run):**
-   - Algoritmo di rotazione dei pattern articolari per evitare sovraccarichi ripetitivi (alternanza tra estensione toracica, mobilità cervicale, retroversione di bacino e allungamento flessori d'anca) e calcolo dell'Indice di Benessere Posturale giornaliero.
-4. **Corsia 4: Database Silo 1 (Consumer Wellness Partition - PostgreSQL):**
-   - Tabella `deskcare_logs` per il tracciamento delle pause effettuate e `postural_streaks` per il conteggio dei giorni consecutivi di abitudini posturali sane.
+
+1. **Corsia 1: Thin Client UI/UX (Movely Widget Web & Mobile PWA):**
+   - Mini-player ergonomico a scomparsa con timer a campana tibetana discreta, guida video animata per esercizi di decompressione cervicale/toracica, e questionario rapido sul dolore (scala VAS semplificata a 3 faccine).
+2. **Corsia 2: API Gateway & Privacy Shield (Envoy + Zero-Knowledge Aggregator):**
+   - Ricezione degli eventi di completamento pausa, validazione JWT Tier 1, anonimizzazione immediata delle risposte cliniche e blocco di qualsiasi associazione tra l'identità del lavoratore e i report aziendali.
+3. **Corsia 3: Server Scatola Nera (Ergonomic Routine Engine Cloud Run):**
+   - Algoritmo intelligente di selezione degli esercizi in base al profilo di postura (ore di sedia continuative) e rotazione delle 12 micro-routine posturali scientificamente validate.
+4. **Corsia 4: Database Tripartito (Silo 1 - Corporate Welfare Partition):**
+   - Tabelle `movely_routines`, `employee_sessions` (memorizzate solo a fini di gamification personale) e `company_reports` (metriche aggregate con soglia minima di $k \ge 10$ dipendenti per reparto per impedire l'identificazione individuale).
 
 ---
 
-## 4. Flusso Operativo Passo-Passo (Nodi Numerati)
-1. **START (Timer Sedentarietà Attivo):** L'utente attiva la funzione "Desk-Care" dalle impostazioni dell'app o la lascia attiva in background durante l'orario d'ufficio.
-2. **TIMER_TRIGGER (Rilevamento 50 Minuti di Sedentarietà):** Il Web Worker o il sensore dell'orologio rileva 50 minuti continuativi di inattività o lavoro alla scrivania.
-   - *Se il tempo non è ancora trascorso:* Il timer continua il conteggio silenzioso in background.
-   - *Se i 50 minuti sono trascorsi:* Si attiva il prompt successivo.
-3. **NOTIF_PROMPT (Notifica Push):** Compare un avviso sonoro e visivo discreto sul dispositivo: *"È ora di una pausa attiva di 2 minuti! Proteggi il tuo rachide"*.
-4. **MODAL_EXERCISES (Schermata Esercizi Movely):** Toccando la notifica, si apre la modale Desk-Care con 3 micro-esercizi selezionati:
-   - *Distretto 1:* Decompressione cervicale (chin tuck e inclinazioni laterali controllate).
-   - *Distretto 2:* Mobilità toracica e apertura scapolare ("Wall Angel" o rotazioni su sedia).
-   - *Distretto 3:* Sblocco del bacino e allungamento dello psoas (estensioni dell'anca in piedi).
-5. **TIMER_2MIN (Timer Guidato 120s):** L'utente avvia la sequenza. Una figura stilizzata neon illustra il movimento e guida il ritmo respiratorio per 40 secondi per ciascun esercizio.
-6. **BTN_DONE (Pulsante 'Pausa Completata'):** Al termine dei 120 secondi, l'utente conferma il completamento della routine.
-7. **GW_SYNC & GW_CHECK_TIER (Validazione Gateway):** L'API Gateway riceve la richiesta `POST /api/v1/deskcare/complete-break` e convalida la sessione utente.
-8. **SRV_ROTATE & SRV_POSTURE_SCORE (Elaborazione Server):** Il server aggiorna l'algoritmo di rotazione (in modo che la pausa successiva proponga esercizi diversi) e ricalcola il punteggio posturale della giornata (da 0 a 100).
-9. **DB_SAVE_BREAK (Persistenza Silo 1):** Scrittura del log orario nella tabella `deskcare_logs` e incremento del contatore di regolarità in `postural_streaks`.
-10. **STREAK_POPUP (Popup Motivazionale):** L'app mostra un feedback gratificante: *"Ottimo lavoro! Streak Posturale: 5 giorni consecutivi"* con badge cumulativo.
-11. **END_CARE (Fine Flusso):** Micro-pausa completata e timer dei 50 minuti resettato per il ciclo successivo.
+## 4. Flusso Operativo Passo-Passo
+
+### Livello A: User Journey Narrativo (La Storia dell'Utente)
+1. **Il Promemoria Gentile:** L'impiegato è concentrato al computer dalle 9:00 del mattino. Alle 10:45 compare una notifica discreta nell'angolo dello schermo: *"3 minuti per liberare il collo e le spalle. Facciamo una pausa insieme?"*.
+2. **L'Avvio della Micro-Pausa:** L'utente tocca la notifica. Si apre una finestrella pulita con un messaggio rassicurante: *"Niente sudore, nessun attrezzo. Puoi farlo comodamente sulla tua sedia"*.
+3. **I 3 Esercizi Guidati:**
+   - *Esercizio 1 (45 secondi):* Retrazione del mento ed estensione dolce del collo per annullare la gobba da schermo;
+   - *Esercizio 2 (60 secondi):* Apertura delle braccia a candelabro con respirazione diaframmatica per aprire il petto chiuso;
+   - *Esercizio 3 (45 secondi):* Torsione lenta del busto a destra e sinistra per sciogliere la colonna vertebrale.
+4. **Il Suono Discreto:** Un delicato rintocco sonoro scandisce il cambio esercizio senza disturbare i vicini di scrivania.
+5. **Il Feedback Immediato:** Al termine compare un pollice alzato: *"Fantastico! Ti senti più leggero?"*. L'utente preme la faccina sorridente.
+6. **I Punti Salute:** L'app assegna 50 "Punti Movely" che contribuiscono alla sfida del benessere aziendale (es. buoni acquisto o premi salute messi a disposizione dall'azienda).
+
+---
+
+### Livello B: Trattazione Tecnica Nodi Operativi
+
+1. `START` (Trigger Micro-Pausa): Trigger automatico impostato su timer circolare (default: ogni 90 minuti di attività) o avvio manuale su richiesta del lavoratore.
+2. `POSTURE_CHECK` (Rilevazione Rapida Fastidi): Visualizzazione rapida di 3 pulsanti anatomici: *"Collo/Spalle"*, *"Schiena/Lombare"*, *"Occhi/Respiro"*.
+3. `SRV_ROUTINE_SELECT` (Selezione Algoritmica Routine): Il microservizio Cloud Run estrae una combinazione di 3 esercizi mirati dal catalogo riabilitativo `clinical-knee.ts` / distrettuali adatti all'ambiente ufficio.
+4. `DESK_PLAYER_VIEW` (Rendering Player alla Scrivania):
+   - Video loop compatto compresso in WebM/MP4 (peso $< 1.5\text{ MB}$ per non rallentare la rete aziendale);
+   - Timer acustico realizzato con Web Audio API (suono morbido a $432\text{ Hz}$);
+   - Testo sintetico con cue biomeccanico: *"Inspira espandendo la pancia, espira allungando la nuca verso il soffitto"*.
+5. `COMPLETION_LOG` (Registrazione Sessione): L'utente completa i 3 minuti di pausa.
+6. `GW_PRIVACY_SHIELD` (Scudo Privacy & Zero-Knowledge):
+   - L'API Gateway riceve il ping di completamento;
+   - I dati sanitari puntuali rimangono segregati sul profilo personale dell'utente;
+   - Verso il datore di lavoro viene inviato esclusivamente un contatore numerico aggregato.
+7. `DB_WRITE_AGGREGATE` (Scrittura Silo 1 Corporate): Inserimento nella tabella `company_department_stats`.
+8. `DEC_K_ANONYMITY` (Controllo K-Anonimato):
+   - Se il reparto aziendale conta $< 10$ dipendenti $\implies$ i dati vengono accorpati all'intera sede per impedire che l'ufficio HR deduca chi ha fatto o saltato le pause;
+   - Se il reparto conta $\ge 10$ dipendenti $\implies$ rilascio indice aggregato di adesione.
+9. `GAMIFICATION_REWARD` (Assegnazione Punti & Badge): Accredito punti welfare convertibili in premi benessere aziendali.
 
 ---
 
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
-- **Decisione Timer (`TIMER_TRIGGER`):** < 50 min $\implies$ Standby silenzioso; $\ge 50\text{ min} \implies$ Notifica push attiva.
-- **Decisione Gating Tier (`GW_CHECK_TIER`):** Account attivo $\implies$ Registrazione log e punteggio; Token non valido $\implies$ Fallback anonimo locale.
 
-### Gestione dei 4 Stati UI:
-1. **Empty State:** Prima attivazione di Desk-Care; schermata con guida all'ergonomia da ufficio e configurazione degli orari lavorativi (es. 09:00 - 18:00).
-2. **Loading State:** Transizione istantanea tra le 3 pose animate dell'avatar.
-3. **Populated State:** Dashboard giornaliera con orologio circolare a spicchi che mostra quante micro-pause sono state completate su quelle raccomandate.
-4. **Error / Fallback State:** Notifiche bloccate dal sistema operativo; l'app mostra un banner interno con istruzioni per consentire le notifiche o attivare la vibrazione silenziosa.
+| Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
+| :--- | :--- | :--- | :--- |
+| `POSTURE_CHECK` | L'utente segnala un distretto indolenzito? | Genera routine specifica per quel distretto | Genera routine standard Total-Body |
+| `DEC_K_ANONYMITY` | Dimensione reparto aziendale $\ge 10$ persone? | Report aggregato per reparto | Accorpamento a livello aziendale globale |
+| `REMINDER_SNOOZE` | L'utente è in riunione o impegnato? | Posticipa promemoria di 20 minuti | Avvia micro-pausa istantanea |
+
+### I 4 Stati di Interfaccia Utente (UI States):
+1. **Empty State:** Prima installazione: tutorial rapido di 2 schermate *"Come fare micro-pause di qualità senza alzarsi dalla scrivania"*.
+2. **Loading State:** Avvio istantaneo in $< 100\text{ ms}$ con precaricamento della clip video nella cache del browser.
+3. **Populated State:** Widget compatto con barra di progresso circolare, video animato fluido e timer sonoro calibrato.
+4. **Error / Fallback State:**
+   - *Altoparlanti disattivati o muti:* Sostituzione dei segnali acustici con una delicata pulsazione visiva del bordo dello schermo (Visual Bell).
 
 ---
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
-### Endpoint Principali:
-- `POST /api/v1/deskcare/complete-break`:
-  - Input: `{ athleteId: string, durationSeconds: 120, routineId: 'routine_cervico_toracica_01', clientTimestamp: string }`
-  - Output: `{ status: 'success', currentStreakDays: 5, dailyPostureScore: 92, nextBreakSuggestedInMinutes: 50 }`
+### Specifiche Endpoint REST:
 
-### Tabelle Database Coinvolte (Silo 1):
-- `deskcare_logs`: id, athlete_id, routine_id, completed_at, duration_sec.
-- `postural_streaks`: athlete_id, current_streak_days, max_streak_days, last_break_date.
+#### 1. Ingestion Completamento Micro-Pausa
+- **Endpoint:** `POST /api/v1/movely/sessions/complete`
+- **Headers:** `Authorization: Bearer <jwt_token>`, `Content-Type: application/json`
+- **Request Payload:**
+```json
+{
+  "routineId": "mov_neck_release_03",
+  "targetArea": "CERVICAL",
+  "durationSeconds": 180,
+  "subjectiveReliefScore": "BETTER",
+  "companyTenantId": "corp_acme_it"
+}
+```
+- **Responses:**
+  - `200 OK`:
+```json
+{
+  "status": "success",
+  "wellnessPointsEarned": 50,
+  "dailyStreakDays": 4,
+  "nextPauseScheduledUtc": "2026-10-26T12:30:00Z"
+}
+```
+
+#### 2. Query Report Welfare Aggregato per Portale HR
+- **Endpoint:** `GET /api/v1/movely/corporate/reports?companyId=corp_acme_it&period=2026-W43`
+- **Headers:** `Authorization: Bearer <hr_admin_jwt>`, `Accept: application/json`
+- **Responses:**
+  - `200 OK`:
+```json
+{
+  "companyId": "corp_acme_it",
+  "kAnonymityGuaranteed": true,
+  "activeEmployeesCount": 142,
+  "overallAdherencePercent": 78.4,
+  "totalActiveMinutes": 18450,
+  "reportedReliefRatePercent": 89.2
+}
+```
+
+### Schema Relazionale (Database Silo 1 - PostgreSQL):
+- `movely_routines`: `id VARCHAR(64) PK`, `title VARCHAR(128)`, `target_area VARCHAR(32)`, `duration_sec INT`, `video_asset_url TEXT`.
+- `employee_sessions`: `id UUID PK`, `user_id UUID FK -> auth_users.id`, `routine_id VARCHAR(64)`, `points_earned INT`, `created_at TIMESTAMPTZ`.
+- `company_reports`: `id UUID PK`, `company_tenant_id VARCHAR(64)`, `reporting_week VARCHAR(16)`, `aggregated_sessions_count INT`, `adherence_rate NUMERIC(5,2)`, `UNIQUE (company_tenant_id, reporting_week)`.
 
 ---
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
-- **Modulo Consumer di Benessere Quotidiano:** Progettato per aumentare la retention e il benessere fisico generale dei singoli utenti amatoriali.
-- **Propagazione a Cascata Top-Down:**
-  - Nel Tier 2 (Partita IVA - `flow-6b`), questo modulo si evolve nella vera e propria Cartella Clinica Fisioterapica (EMR), con misurazione goniometrica degli angoli di mobilità (ROM in gradi) e protocolli clinici Return-to-Play (`cli_01`..`cli_32`).
-  - Nel Tier 3 (Elite Club - `flow-6c`), si trasforma nell'Infermeria Medica Federata e nel registro infortuni societario collegato al Research Warehouse accademico (Silo 3).
-- **Differenziali:** Il General User esegue micro-pause preventive di mobilità libera; il fisioterapista e il medico monitorano parametri clinici con valenza medico-legale.
+
+- **Funzionalità Consumer (Tier 1):** Micro-pause ergonomiche per la persona comune e il lavoratore d'ufficio con report aggregato privacy-shield.
+- **Evoluzione verso Tier 2 (`FLOW-6B` - Physio Rehab):**  
+  Nel Tier 2, la semplice mobilità d'ufficio si trasforma in **Fisioterapia Clinica Avanzata**: il fisioterapista esegue il test del Range of Motion (ROM) tramite goniometro video AI, monitora la scala del dolore VAS e prescrive i 32 protocolli riabilitativi specifici per ginocchio e spalla.
+- **Evoluzione verso Tier 3 (`FLOW-6C` - Medical Room):**  
+  Nei club sportivi professionistici, il modulo evolve nella **Cartella Clinica EMR societaria**, con gestione degli infortuni da campo, protocolli Return-to-Play a 6 stadi e pipeline ETL de-identificata verso il Silo 3 per la ricerca scientifica accademica.

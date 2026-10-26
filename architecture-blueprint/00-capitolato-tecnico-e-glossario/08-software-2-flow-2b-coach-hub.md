@@ -1,109 +1,142 @@
 # Capitolato Tecnico: Flow 2B – Catalogo 3D, Video In-App & Revisione AI (T7 Pro Coach & Fisio)
 
 ## 1. Identificativo & Titolo Ufficiale
+- **Badge Miro Board:** `#08` (Posizione: `X: -181, Y: 2960`)
 - **Codice Univoco:** `FLOW-2B`
-- **Titolo Ufficiale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 2B: CATALOGO 3D, VIDEO IN-APP & REVISIONE AI
-- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 2: Catalogo Professionale & Custom AI)
+- **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 2B: CATALOGO 3D, VIDEO IN-APP & REVISIONE BIOMECCANICA AI (T7 PRO)
+- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 2: Catalogo Professionale & Video AI)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-2b-coach-hub.mmd`
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Multimodal RAG, Pose Estimation, WebRTC MediaStream, Digital Twin 3D, GDPR Video Cryptography*).
 
 ---
 
 ## 2. Obiettivo di Business & Target Utente
-- **Target Utente:** Preparatori atletici, personal trainer e fisioterapisti che gestiscono atleti e pazienti (Tier 2 – B2B Freelance).
-- **Problema Risolto:** I professionisti necessitano sia di consultare rapidamente gli esercizi della piattaforma incrociandoli con lo stato clinico dei propri atleti, sia di creare **esercizi custom inediti o altamente personalizzati**. T7 consente al coach di:
-  1. Registrare l'atleta sul campo tramite videocamera in-app;
-  2. Estrarre in tempo reale i keypoint articolari 3D (MediaPipe a 33 landmark);
-  3. Redigere una bozza tecnica preliminare;
-  4. Sottoporre la bozza a una **"Revisione Coerente AI"** basata su un RAG multimodale evidence-based (322 paper scientifici + PubMed + video benchmark) con modale comparativa "Diff";
-  5. Scegliere la conservazione privacy (video criptato su cloud vs sola estrazione 3D anonimizzata);
-  6. Disporre di uno switch "Video Reale vs Avatar 3D" e di un limitatore goniometrico del Range of Motion (ROM).
+
+### Guida Pratica per Non Tecnici: Cos'è questo modulo per un umano?
+I preparatori atletici e i fisioterapisti insegnano spesso movimenti speciali o varianti personalizzate che non esistono nei manuali standard. Fino ad oggi, i coach registravano i video dei loro allievi con WhatsApp, disperdendo file sul telefono e rischiando sanzioni sulla privacy se un video finiva nelle mani sbagliate.  
+**Il Catalogo Pro di T7** è lo studio cinematografico e scientifico del coach:
+- Il coach può aprire la fotocamera direttamente dentro l'app e filmare il proprio atleta mentre esegue un esercizio speciale;
+- L'app posiziona sullo schermo un **confronto a specchio (Split-Screen)**: da una parte c'è il video reale dell'atleta, dall'altra c'è l'Avatar 3D perfetto;
+- Un'Intelligenza Artificiale Scientifica (addestrata su **322 paper medici e sportivi**) analizza il gesto in 5 secondi e segnala eventuali rischi: *"Attenzione: il ginocchio destro collassa all'interno di 8 gradi nella fase di spinta"*;
+- **Tutela della Privacy:** Il coach può decidere con un solo interruttore se salvare il video reale in una cassaforte criptata oppure trasformarlo in un avatar scheletrico anonimo che tutela al 100% l'identità del cliente.
+
+### Specifiche di Business & Metriche
+- **Target Utente:** Coach, chinesiologi, personal trainer e fisioterapisti dello sport (Tier 2 – Pro P.IVA).
+- **Problema Risolto:** Permettere la creazione di librerie di esercizi personalizzate ad altissima autorevolezza scientifica, eliminando i contenziosi medico-legali e tutelando la privacy dei clienti con crittografia dedicata (GDPR Art. 9).
 
 ---
 
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
-1. **Corsia 1: Thin Client UI/UX (Coach & Fisio Cockpit - React 18 & WebGL):**
-   - Bivio operativo a 3 rami (Consultazione, Registrazione Video In-App, Creazione Solo-Testo), canvas con visualizzatore 3D Three.js dotato di slider touch per limitare il ROM articolare (es. blocco flessione ginocchio a $90^{\circ}$), modulo fotocamera con overlay scheletrico in tempo reale, form di bozza, modale "Diff" comparativa con approvazione selettiva delle modifiche AI, e toggle di visualizzazione.
-2. **Corsia 2: API Gateway & Feature Gating Tier 2 (Envoy / Kong):**
-   - Verifica token JWT Tier 2, blocco categorico per utenti Tier 1 dei percorsi di creazione (`GW_AUTH_CREATE`), endpoint per l'invio della bozza alla revisione AI (`/ai-audit`) e per la sintesi della mesh 3D (`/synthesize-3d`).
-3. **Corsia 3: Server Scatola Nera (Multimodal RAG & 3D Synthesis Engine - Cloud Run GPU):**
-   - Motore di Triage Clinico (esclusione esercizi con sovraccarico assiale per patologie attive dell'atleta), Multimodal RAG evidence-based per la revisione tecnica del testo e generatore cinematico di file Draco GLB compatibili con Three.js.
-4. **Corsia 4: Database Silo 2 (Pro Tenant Dedicated Enclave - PostgreSQL):**
-   - Tabella `catalog_exercises` per gli esercizi di sistema, archivio `custom_exercises` del singolo professionista, file video criptati AES-256 e audit trail delle revisioni.
+
+1. **Corsia 1: Thin Client UI/UX (React 18 Pro + WebRTC Camera Studio):**
+   - Modulo di acquisizione video HD/4K tramite browser WebRTC `MediaStreamRecorder`, toggle istantaneo "Video Reale vs Avatar 3D", pannello comparativo side-by-side con slider goniometrico e form tassonomico per l'aggiunta di cues verbali.
+2. **Corsia 2: API Gateway & Video Upload Gateway (Envoy + Chunked Resumable Upload):**
+   - Endpoint protetto con JWT Tier 2, gestione upload a blocchi (chunking) per prevenire fallimenti su file pesanti, verifica permessi di quota storage per studio (max 20 GB inclusi nel piano Pro).
+3. **Corsia 3: Server Scatola Nera (Multimodal RAG & Pose Estimation Engine Cloud Run GPU):**
+   - Riconoscimento scheletrico a 33 keypoints (MediaPipe / YOLOv8-Pose), calcolo angoli articolari istantanei (valgo ginocchio, tilt pelvico, flessione d'anca) e interrogazione RAG gerarchica sui 322 paper scientifici del corpus T7 per validare la congruità del gesto.
+4. **Corsia 4: Database Tripartito (Silo 1 / Silo 2 Vault - PostgreSQL & Cloud Storage Criptato):**
+   - Tabella `custom_exercises` con binding al professionista creatore e bucket Google Cloud Storage criptato con chiavi AES-256 gestite per singolo studio.
 
 ---
 
-## 4. Flusso Operativo Passo-Passo (Nodi Numerati)
-1. **START (Accesso Catalogo Coach Hub):** Il coach o fisioterapista apre la sezione Catalogo dal proprio pannello professionale.
-2. **DEC_MODE (Selettore Operazione):** Il professionista seleziona una delle tre modalità operative disponibili:
-   - **Ramo 1:** Consulta Catalogo & Prescrizione
-   - **Ramo 2:** Registra Video Atleta In-App
-   - **Ramo 3:** Nuovo Esercizio Solo-Testo
+## 4. Flusso Operativo Passo-Passo
 
-### Ramo 1: Consultazione & Prescrizione Clinica
-3. **UI_SEARCH (Consultazione Catalogo):** Ricerca sui 328 esercizi di base con filtri clinici avanzati per le 119 patologie dell'anamnesi.
-4. **DEC_SAFETY (Verifica Compatibilità Clinica):** L'API interroga lo storico infortuni dell'atleta selezionato:
-   - *Se compatibile:* Mostra la scheda in `GRID_PRO` con il limitatore ROM disponibile.
-   - *Se a rischio:* Compare l'alert rosso `UI_ALERT` ("Rischio sovraccarico per discopatia L4-L5") che propone automaticamente 3 alternative biomeccanicamente sicure (es. Hip Thrust con elastico anziché Stacco da terra).
-5. **VIEWER_3D & UI_PRESCRIPTION:** Visualizzazione dell'avatar 3D, impostazione del blocco angolare di sicurezza sul touch screen (es. divieto di estensione oltre i $15^{\circ}$) e assegnazione immediata alla scheda dell'atleta (`END_READY`).
+### Livello A: User Journey Narrativo (La Storia dell'Utente)
+1. **L'Accesso al Catalogo Coach:** Il professionista entra nella sezione *"Catalogo Esercizi"* dal suo tablet o computer portatile.
+2. **La Decisione Operativa:** Il coach può scegliere tra 3 strade:
+   - *Consulta e Prescrivi:* Cerca tra i 296 esercizi ufficiali con il filtro delle 119 patologie;
+   - *Registra Nuovo Esercizio Video:* Filma un allievo sul campo per codificare un esercizio nuovo;
+   - *Crea Esercizio Solo-Testo:* Scrive rapidamente una descrizione tecnica senza registrare video.
+3. **La Registrazione sul Campo:** Il coach tocca *"Registra Esercizio"*, inquadra l'allievo mentre fa uno stacco da terra e preme Registra. Dopo 3 ripetizioni preme Stop.
+4. **L'Analisi Istantanea dell'Intelligenza Artificiale:** In meno di 4 secondi, il server Scatola Nera esamina la clip:
+   - Traccia i punti di ginocchia, anche e colonna vertebrale;
+   - Consulta i testi scientifici di biomeccanica e fa apparire un referto: *"Esecuzione valida. Curvatura lombare mantenuta in zona di sicurezza fisiologica (sotto i 15° di flessione)"*.
+5. **La Scelta della Privacy (GDPR):** Il coach tocca l'interruttore:
+   - *"Conserva Video Reale":* Il filmato viene custodito nella cassaforte digitale dello studio;
+   - *"Converti in Avatar 3D":* Il video del viso e del corpo scompare, sostituito da un manichino tridimensionale neutro che compie gli stessi identici movimenti.
+6. **L'Assegnazione Immediata:** L'esercizio personalizzato compare subito nell'elenco del coach con l'etichetta *"Personalizzato per Mario Rossi"*, pronto per essere inserito nella scheda con un tocco.
 
-### Ramo 2: Video Recording In-App & Revisione Coerente AI
-6. **UI_CAM_RECORD (Registrazione In-App):** Il coach inquadra l'atleta mentre esegue l'esercizio specifico. L'app registra il video a 60 fps.
-7. **UI_EDGE_POSE (Edge Computer Vision MediaPipe):** In locale sul dispositivo, l'algoritmo MediaPipe estrae le coordinate 3D dei 33 landmark corporei per l'intero arco di movimento.
-8. **UI_DRAFT_FORM (Bozza del Coach):** Il coach compila rapidamente i punti chiave: Nome esercizio, Punti di forza (es. "Ottimo controllo scapolare"), Punti deboli (es. "Tendenza a perdere la curvatura lombare in buca") e Cues verbali.
-9. **DEC_AI_AUDIT (Richiesta Revisione Coerente AI):** Il coach può decidere se procedere con la propria bozza oppure premere il pulsante "Revisione Coerente AI".
-   - *Se NO:* Si passa direttamente alla scelta di conservazione video.
-   - *Se SÌ:* La bozza e il tracciamento pose vengono inviati all'endpoint `GW_AUDIT_REQ`.
-10. **SRV_RAG_AUDIT (Elaborazione Server RAG Multimodale):** Il server analizza la cinematica estratta e il testo del coach, interrogando i 322 paper scientifici del database T7, banche dati PubMed e video benchmark convalidati. L'AI genera una proposta di ottimizzazione (corregge termini biomeccanici imprecisi, evidenzia angoli critici di rischio e standardizza le fasi concentrica/eccentrica).
-11. **UI_DIFF_MODAL (Modale Diff Comparativa):** Il coach visualizza una schermata "Diff" affiancata (Bozza Originale vs Proposta AI) sezione per sezione:
-    - Può cliccare su "Accetta proposta", "Modifica manualmente" o "Mantieni mia formulazione".
-12. **DEC_KEEP_VIDEO (Opzione Privacy GDPR & Spazio Cloud):**
-    - *Opzione A (Video Reale Criptato):* Il video sorgente viene compresso, crittografato e caricato nel cloud storage privato del professionista.
-    - *Opzione B (Solo 3D - Zero Video):* A tutela della privacy dell'atleta o per risparmiare traffico dati, il video grezzo viene distrutto localmente dopo aver salvato esclusivamente la cinematica scheletrica 3D.
-13. **SRV_3D_SYNTH (Generatore Cinematico 3D):** Il server compila la mesh 3D in formato standard Draco `.glb`, applicando la colorazione muscolare e i vettori di forza.
-14. **VIEWER_TOGGLE (Scheda Esercizio Custom Creata):** L'esercizio è ora nel catalogo privato del coach. Una levetta permette di passare istantaneamente dalla vista video reale all'avatar 3D stilizzato.
+---
 
-### Ramo 3: Creazione Manuale Solo-Testo
-15. **UI_TEXT_CREATE (Creazione Descrittiva):** Se non è possibile filmare l'atleta, il coach compila un form descrittivo completo di pattern motorio, muscoli target e fasi temporali.
-16. **GW_AUTH_CREATE (Verifica Abilitazione Tier 2):** L'API Gateway verifica che l'utente sia un professionista Tier 2 (per utenti Tier 1 l'accesso è bloccato con messaggio di upgrade).
-17. **GW_SYNTH_REQ & PERSISTENZA:** Il generatore cinematico sintetizza l'animazione 3D teorica basandosi sulla libreria di pattern e salva l'esercizio nel catalogo dello studio (`DB_CUSTOM_SAVE`).
-18. **END_READY (Fine Flusso):** Esercizio operativo e utilizzabile per tutte le programmazioni future.
+### Livello B: Trattazione Tecnica Nodi Operativi
+
+1. `START` (Coach Cockpit Access): Inizializzazione della shell Pro e verifica token JWT con claim `role: R2_COACH` o `role: R3_PHYSIO`.
+2. `DEC_MODE` (Bivio Modalità Operativa nel Catalogo):
+   - *Ramo 1: Consultazione & Triage Clinico* $\to$ `DEC_SEARCH`;
+   - *Ramo 2: In-App Video Recording Atleta* $\to$ `UI_CAMERA_RECORD`;
+   - *Ramo 3: Creazione Solo-Testo* $\to$ `UI_FORM_MANUAL`.
+3. `UI_CAMERA_RECORD` (Acquisizione Video In-App):
+   - Accesso a `navigator.mediaDevices.getUserMedia({ video: { width: 1920, height: 1080, frameRate: 60 } })`;
+   - Registrazione buffer WebM/MP4 con codec H.264/AAC.
+4. `GW_CHUNKED_UPLOAD` (Upload Resumable verso Cloud Run): Trasferimento a blocchi di $5\text{ MB}$ con hash di controllo MD5 per evitare corruzioni da Wi-Fi instabile in palestra.
+5. `SRV_MULTIMODAL_RAG` (Elaborazione Server Scatola Nera):
+   - *Pose Estimation:* Estrazione traiettorie vettoriali delle articolazioni;
+   - *Vector Search:* Confronto del vettore cinematico con il database di 322 paper scientifici indicizzati su pgvector;
+   - *Audit Referto:* Generazione report con punteggio di congruità biomeccanica $[0, 100]$.
+6. `DEC_PRIVACY_TOGGLE` (Bivio Custodia GDPR):
+   - *Scelta Video Reale:* Archiviazione file raw in Cloud Storage con crittografia a riposo Customer-Managed;
+   - *Scelta Solo 3D:* Estrazione delle sole coordinate scheletriche BVH/GLTF e cancellazione irreversibile del file video grezzo.
+7. `UI_CUSTOM_TOGGLE` (Rendering Switch Client): Generazione card con toggle visuale *"Video Reale vs Avatar 3D"* e pulsante di assegnazione.
+8. `DB_ASSIGN_WORKOUT` (Assegnazione a Scheda Atleta): Iniezione del movimento nel programma cliente (`FLOW-3B`).
 
 ---
 
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
-- **Decisione Operazione (`DEC_MODE`):** Consultazione vs Registrazione Video vs Solo-Testo.
-- **Decisione Sicurezza Clinica (`DEC_SAFETY`):** Idoneo $\implies$ Griglia Pro; Conflitto patologia $\implies$ `UI_ALERT` + 3 alternative sicure.
-- **Decisione Revisione AI (`DEC_AI_AUDIT`):** SÌ $\implies$ RAG Multimodale + Modale Diff; NO $\implies$ Procedi a salvataggio bozza.
-- **Decisione Privacy Video (`DEC_KEEP_VIDEO`):** Cloud Criptato vs Distruzione Video & Solo Mesh 3D.
-- **Decisione Gating Creazione (`GW_AUTH_CREATE`):** Tier 2 $\implies$ Autorizzato; Tier 1 $\implies$ Accesso Negato.
 
-### Gestione dei 4 Stati UI:
-1. **Empty State:** Catalogo custom vuoto per un nuovo studio; card tutorial "Come creare il tuo primo esercizio personalizzato in 60 secondi".
-2. **Loading State:** Barra di caricamento durante l'elaborazione del video e l'analisi dei 33 landmark con stima del tempo residuo.
-3. **Populated State:** Griglia professionale con badge "Verificato AI", etichette di conformità ROM e toggle rapido Video/3D.
+| Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
+| :--- | :--- | :--- | :--- |
+| `DEC_MODE` | Modalità scelta dal coach? | Registrazione Video In-App | Consultazione ordinaria catalogo |
+| `SRV_RAG_AUDIT` | Gesto biomeccanico privo di controindicazioni? | Piena idoneità all'assegnazione | Alert clinico con suggerimento varianti |
+| `DEC_PRIVACY` | Cliente ha firmato consenso per conservazione video? | Archivia video reale cifrato | Converte in Digital Twin 3D anonimo |
+
+### I 4 Stati di Interfaccia Utente (UI States):
+1. **Empty State:** Nessun esercizio personalizzato creato: banner *"Crea il tuo primo esercizio filmando un atleta in palestra o descrivendolo via testo"*.
+2. **Loading State:** Barra di avanzamento dell'upload del video con stima del tempo residuo e indicatore *"Estrazione cinematica AI in corso..."*.
+3. **Populated State:** Scheda esercizio arricchita con miniatura video ad alto contrasto, diagramma angolare delle articolazioni e badge di conformità scientifica.
 4. **Error / Fallback State:**
-   - Inquadratura video non conforme (corpo parzialmente fuori campo): prompt a schermo "Allontana la fotocamera: piedi o testa non visibili".
-   - Conflitto RAG AI: se la proposta AI stravolge il senso della bozza, il coach può scartare con un solo click l'intera revisione mantenendo intatta la propria bozza.
+   - *Upload interrotto per disconnessione:* Ripristino automatico dell'upload dal blocco interrotto grazie al protocollo TUS resumable.
 
 ---
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
-### Endpoint Principali:
-- `POST /api/v1/pro/exercises/ai-audit`:
-  - Input: `{ rawTextDraft: { title, weaknesses, strengths, cues }, landmarks3d: Array<Array<{x,y,z,visibility}>>, athleteId: string }`
-  - Output: `{ suggestions: { title, correctedWeaknesses, scientificCues, citedSources: [{ pmid: string, title: string }] }, diffSummary: string }`
-- `POST /api/v1/pro/exercises/custom-save`:
-  - Input: `{ proId: string, athleteId?: string, exerciseData: Object, keepVideoRaw: boolean, meshGlbPayload: string }`
-  - Output: `{ customExerciseId: string, status: 'published_in_studio_catalog' }`
+### Specifiche Endpoint REST:
 
-### Tabelle Database Coinvolte (Silo 2 - Pro Enclave):
-- `custom_exercises`: id, pro_id, athlete_id, title, description, landmarks_json, model_glb_url, raw_video_encrypted_url, is_ai_audited, rom_constraints (JSONB).
-- `exercise_audit_history`: id, exercise_id, original_draft, ai_proposed_diff, approved_diff, timestamp.
+#### 1. Upload In-App Video & Trigger Analisi Multimodale
+- **Endpoint:** `POST /api/v1/pro/catalog/custom-video-exercise`
+- **Headers:** `Authorization: Bearer <pro_jwt>`, `Content-Type: multipart/form-data`
+- **Request Form Data:**
+  - `videoBlob`: file binario MP4/WebM (max 150 MB);
+  - `exerciseName`: "Stacco Rumeno con Bilanciere su Pedana";
+  - `targetMuscles`: `["HAMSTRINGS", "GLUTES", "ERECTOR_SPINAE"]`;
+  - `retainRawVideo`: `true`;
+  - `athleteConsentId`: "w_waiver_9921".
+- **Responses:**
+  - `201 Created`:
+```json
+{
+  "customExerciseId": "cust_ex_4412a",
+  "ragAuditScore": 92.5,
+  "detectedKinematics": {
+    "peakHipFlexionDeg": 82.4,
+    "kneeValgusDeg": 3.1,
+    "lumbarNeutrality": "SAFE"
+  },
+  "scientificReferences": ["DOI: 10.1519/JSC.0000000000002163"],
+  "digitalTwinGlbUrl": "https://assets.t7workout.app/twins/cust_4412a.glb"
+}
+```
+
+### Schema Relazionale (Database Silo 1 / Silo 2 Pro):
+- `pro_custom_exercises`: `id UUID PK`, `pro_id UUID FK -> pro_profiles.id`, `exercise_name VARCHAR(128)`, `target_muscles TEXT[]`, `kinematics_json JSONB`, `video_vault_ref TEXT`, `twin_glb_ref TEXT`, `is_raw_retained BOOLEAN`, `created_at TIMESTAMPTZ`.
 
 ---
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
-- **Ereditarietà Totale da Tier 1:** Il Tier 2 incorpora integralmente il catalogo di 328 esercizi e la tecnologia WebGL Three.js con OrbitControls del General User (`flow-2a`).
-- **Propagazione a Cascata verso Tier 3:** Tutte le funzionalità introdotte in questo flusso (In-App Camera, MediaPipe 33 Landmark, Revisione Coerente AI con Diff comparativa, Privacy Toggle Video/3D) **vengono ereditate automaticamente dal Tier 3 (Elite Pro Teams - `flow-2c`)**, dove si arricchiscono con il Digital Twin personalizzato sul calciatore e la gestione della Libreria Club a 2 livelli.
-- **Differenziali:** Il General User (Tier 1) non può registrare video né generare esercizi custom; il Professionista (Tier 2) crea esercizi per il proprio studio; l'Elite Club (Tier 3) gestisce la validazione congiunta Medico-S&C e archivia nel bunker societario protetto da Cloud KMS.
+
+- **Ereditarietà da Tier 1 (`FLOW-2A`):**  
+  Il coach eredita l'intero catalogo dei 296 movimenti e l'avatar 3D WebGL con muscoli primari e secondari.
+- **Differenziali Esclusivi di Tier 2:**  
+  La videocamera in-app WebRTC, l'audit scientifico multimodale su 322 paper e la conversione video-to-twin **sono strumenti esclusivi per i professionisti di Tier 2**.
+- **Propagazione a Tier 3 (`FLOW-2C`):**  
+  Nei club professionistici, il modulo video evolve in una postazione con telecamere tattiche fisse a 120fps sincronizzate via mTLS societario per l'analisi del Return-to-Play multi-staff.

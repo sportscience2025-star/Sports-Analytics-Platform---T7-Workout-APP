@@ -1,92 +1,152 @@
 # Capitolato Tecnico: Flow 2A – Catalogo Esercizi & Avatar Biomeccanico 3D (T7 Consumer)
 
 ## 1. Identificativo & Titolo Ufficiale
+- **Badge Miro Board:** `#02` (Posizione: `X: -256, Y: 330`)
 - **Codice Univoco:** `FLOW-2A`
-- **Titolo Ufficiale:** SOFTWARE 1 (B2C CONSUMER) - FLOW 2A: CATALOGO ESERCIZI & AVATAR BIOMECCANICO 3D
+- **Titolo Formale:** SOFTWARE 1 (B2C CONSUMER) - FLOW 2A: CATALOGO ESERCIZI & AVATAR BIOMECCANICO 3D
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 1: General User / Casual, Colonna 2: Catalogo Esercizi & 3D)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-1-consumer-b2c/flow-2a-personal-cockpit.mmd`
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Thin Client, WebGL 3D Avatar, Google Draco Compression, Time Under Tension TUT, Graceful Degradation*).
 
 ---
 
 ## 2. Obiettivo di Business & Target Utente
-- **Target Utente:** Utenti comuni e atleti amatoriali che desiderano consultare gli esercizi, comprendere la corretta esecuzione tecnica, visualizzare il coinvolgimento muscolare nello spazio 3D e salvare i propri esercizi preferiti.
-- **Problema Risolto:** Superare le limitazioni dei vecchi cataloghi basati su foto statiche o video muti. T7 fornisce un avatar 3D interattivo esplorabile a 360° con OrbitControls, evidenziazione cromatica dei muscoli agonisti/antagonisti/stabilizzatori e protocollo di correzione errori biomeccanici ("Why & Fix"), garantendo al tempo stesso una fluida degradazione a video 2D su dispositivi datati.
+
+### Guida Pratica per Non Tecnici: Cos'è questo modulo per un umano?
+Quante volte in palestra capita di trovarsi davanti a un esercizio nuovo e chiedersi: *"Come si fa senza farsi male alla schiena? Quali muscoli devo sentire bruciare?"*. Questo modulo è l'enciclopedia visiva vivente di T7 Workout. Al posto di noiose foto o video muti e sfuocati, l'atleta ha a disposizione un **Avatar Biomeccanico 3D** che si può ruotare a 360 gradi toccando lo schermo dello smartphone:
+- I muscoli che lavorano di più si colorano di **rosso acceso**;
+- Quelli secondari di supporto si colorano di **giallo**;
+- I muscoli che mantengono la postura stabile si illuminano di **azzurro**.
+Inoltre, una speciale guida *"Why & Fix"* mostra gli errori più comuni (es. ginocchia che crollano all'interno nello squat o schiena inarcata) e spiega subito con parole semplici come correggerli per non farsi male. Se lo smartphone è un po' vecchio o non regge la grafica 3D, l'app passa automaticamente e senza scatti a un video ad alta definizione a 60 fotogrammi al secondo.
+
+### Specifiche di Business & Metriche
+- **Target Utente:** Utenti amatoriali, appassionati di fitness e chiunque voglia imparare la corretta tecnica esecutiva dei 296 esercizi codificati (Tier 1 – Casual Consumer).
+- **Problema Risolto:** Ridurre drasticamente gli infortuni da errata esecuzione e aumentare il tempo di permanenza nell'app (Engagement Time $> 3\text{ minuti/sessione}$), consentendo il salvataggio istantaneo nei "Preferiti" o il caricamento diretto nella scheda del giorno con un solo tocco ("Regola dei 2 click").
 
 ---
 
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
-1. **Corsia 1: Thin Client UI/UX (React 18 + WebGL / Three.js):**
-   - Schermata catalogo con ricerca testuale istantanea (debounce 250ms), chip di filtro multidistretto (gruppo muscolare, pattern motorio, attrezzatura), griglia dinamica di ExerciseCard, canvas 3D interattivo con controlli touch e protocollo tecnico.
-2. **Corsia 2: API Gateway & Feature Gating (Envoy / Kong + Redis Cache):**
-   - Endpoint protetto con token JWT Tier 1, verifica dei permessi di lettura pubblica, caching a livello edge (Redis TTL 24h) per azzerare la latenza di caricamento dei 328 esercizi.
-3. **Corsia 3: Server Scatola Nera (CDN 3D & Streaming Cinematico Cloud Run):**
-   - Distribuzione ottimizzata delle mesh tridimensionali compresse con Google Draco (`.glb`), calcolo delle coordinate articolari cinematiche e timeline delle fasi concentrica/eccentrica/isometrica (TUT).
-4. **Corsia 4: Database Silo 1 (Consumer Relational Data Store - PostgreSQL):**
-   - Tabella `catalog_exercises` con indici vettoriali e full-text, e tabella `user_favorites` per la memorizzazione dei preferiti dell'atleta.
+
+1. **Corsia 1: Thin Client UI/UX (React 18 + WebGL Three.js / Canvas 2D):**
+   - Barra di ricerca con debounce di 250ms, griglia di schede esercizio (ExerciseCard), canvas 3D con controlli orbitali touch (OrbitControls), visualizzatore cromatico dei gruppi muscolari e scheda riassuntiva "Why & Fix".
+2. **Corsia 2: API Gateway & Edge Cache (Envoy Gateway + Redis Cache Cluster):**
+   - Validazione token JWT Tier 1, caching edge su CDN Cloudflare (TTL 24 ore) delle risposte JSON di catalogo con latenza di risposta $< 15\text{ ms}$, smistamento verso i bucket di asset grafici.
+3. **Corsia 3: Server Scatola Nera (3D Mesh Delivery & Video Streamer Cloud Run):**
+   - Distribuzione mesh tridimensionali compresse con Google Draco (`.glb` con compressione $> 80\%$), calcolo delle timeline del Time Under Tension (fase eccentrica, fermo isometrico, fase concentrica) e streaming video fallback MP4/H.265.
+4. **Corsia 4: Database Tripartito (Silo 1 - PostgreSQL):**
+   - Tabelle `catalog_exercises` (con metadati biomeccanici, muscoli primari, secondari e controindicazioni) e `user_favorites` per la sincronizzazione cross-device dei preferiti dell'utente.
 
 ---
 
-## 4. Flusso Operativo Passo-Passo (Nodi Numerati)
-1. **START (Accesso Catalogo):** L'utente tocca la voce "Catalogo Esercizi" dalla barra di navigazione o dalla home dell'app.
-2. **DEC_SEARCH (Bivio Modalità di Ricerca):** L'utente può scegliere tra navigazione esplorativa per filtri oppure digitazione diretta nel campo di ricerca.
-3. **UI_FILTERS (Filtri Dinamici Multidistretto):** Selezione per distretto anatomico (Pettorali, Dorso, Spalle, Braccia, Gambe, Core, Clinico), pattern (Spinta, Trazione, Accosciata, Cerniera d'anca) o attrezzatura (Bilanciere, Manubri, Cavi, Macchinari, Corpo Libero).
-4. **UI_SEARCH (Ricerca Full-Text Istantanea):** Barra di ricerca con debounce di 250 millisecondi per interrogare istantaneamente il catalogo completo di 328 esercizi.
-5. **GW_FETCH (Chiamata Gateway):** Inoltro richiesta `GET /api/v1/catalog/exercises` con parametri di query e validazione JWT.
-6. **GW_CACHE (Controllo Cache Edge Redis):**
-   - *Cache Hit:* Risposta immediata in <15ms servita dall'edge.
-   - *Cache Miss:* Interrogazione del database (`DB_QUERY`) e popolamento cache.
-7. **DEC_RESULTS (Esito Query):**
-   - *Match Trovati:* Transizione a `GRID_POPULATED` con elenco di schede esercizio.
-   - *Zero Match:* Visualizzazione di `UI_EMPTY` con suggerimento di parole chiave simili o reset dei filtri.
-8. **GRID_POPULATED (Rendering Griglia):** Renderizzazione fluida di ExerciseCard con badge biomeccanici, preview del movimento e livello di difficoltà.
-9. **DEC_WEBGL (Verifica Supporto Grafico):** Al tap su un esercizio, il client verifica la disponibilità del contesto WebGL e dell'accelerazione hardware GPU del dispositivo.
-   - *Se WebGL è supportato:* Il server scarica il modello compresso Draco (`SRV_3D_STREAM`) e la cinematica (`SRV_KINEMATICS`), avviando il `VIEWER_3D`.
-   - *Se WebGL non è supportato o fallisce:* Il sistema attiva la degradazione morbida (`FALLBACK_2D`), caricando il video pre-renderizzato in MP4 a 60fps con sprite loop.
-10. **VIEWER_3D (Visualizzatore Biomeccanico 3D):**
-    - Interazione a 360° con gesture touch (rotazione, pan, tilt zenitale/dal basso).
-    - Mappatura cromatica fasce muscolari: **Rosso** (motori primari), **Giallo** (sinergici/secondari), **Ciano** (stabilizzatori isometrici).
-    - Timeline TUT (Time Under Tension) con cursore sincrono sulle fasi concentrica ed eccentrica.
-11. **UI_PROTOCOL (Protocollo Tecnico & Correzione Errori):** Tab esplicativa con punti chiave di setup, traiettoria ideale e confronto tra esecuzione corretta ed errori tipici ("Why & Fix").
-12. **DEC_ACTION (Azione Post-Consultazione):** L'utente può:
-    - Salvare l'esercizio nei Preferiti (`GW_FAV` $\to$ `DB_FAV_SAVE`).
-    - Avviare direttamente la sessione di allenamento caricando l'esercizio nel Workout Player (`TRANSITION_PLAYER`).
-13. **END_READY (Fine Flusso):** Esercizio assimilato dall'atleta e pronto per l'esecuzione.
+## 4. Flusso Operativo Passo-Passo
+
+### Livello A: User Journey Narrativo (La Storia dell'Utente)
+1. **L'Apertura del Catalogo:** Dalla barra in basso dell'app, l'utente tocca l'icona *"Catalogo Esercizi"*. In meno di un battito di ciglia compare l'elenco organizzato per grandi categorie (Petto, Dorso, Spalle, Gambe, Braccia, Addome, Clinici).
+2. **La Ricerca Semplice:** L'utente può scorrere i pulsanti (es. tocca *"Gambe"* e *"Corpo Libero"*) oppure digita semplicemente *"squat"* nella casella di testo. La lista si aggiorna in tempo reale mentre digita.
+3. **La Scelta dell'Esercizio:** L'utente tocca la scheda dello *"Squat con Bilanciere"*.
+4. **L'Esperienza 3D:** Si apre una vista splendida: un manichino atletico tridimensionale sta eseguendo lo squat con movimento continuo. L'utente ruota il manichino con il dito per vederlo di lato, dall'alto o da dietro:
+   - I quadricipiti e i glutei brillano in **rosso**;
+   - La fascia lombare e i polpacci sono colorati in **giallo**;
+   - I muscoli dell'addome profondo sono evidenziati in **ciano** per mostrare come fanno da scudo alla colonna.
+5. **Il Controllo della Velocità (TUT):** Una barra temporale in basso pulsa a ritmo: 3 secondi per scendere piano (fase eccentrica), 1 secondo di fermo stabile, 1 secondo per risalire veloci ed esplosivi (fase concentrica).
+6. **La Sezione "Errori da Evitare":** Sotto all'avatar compaiono due schede: *"Cosa fare"* (tenere i talloni saldi a terra) e *"Cosa non fare"* (inarcare la schiena in avanti).
+7. **L'Azione Finale:** Con un tocco l'utente aggiunge la stellina dei preferiti, oppure preme *"Inizia questo Esercizio"* per caricarlo istantaneamente nel Workout Player del giorno.
+
+---
+
+### Livello B: Trattazione Tecnica Nodi Operativi
+
+1. `START` (Accesso Catalogo): Evento UI di navigazione da Navigation Shell. Montaggio componente `CatalogFeatureView`.
+2. `DEC_SEARCH` (Bivio Modalità Ricerca): L'utente seleziona se filtrare tramite tassonomia motoria (`UI_FILTERS`) o digitare testo (`UI_SEARCH`).
+3. `UI_FILTERS` (Filtri Multidistretto): Selezione parametri: `primaryMuscle` (7 distretti), `movementPattern` (Spinta, Tirata, Squat, Hinge), `equipment` (Bilanciere, Manubri, Cavi, Macchine, Bodyweight).
+4. `UI_SEARCH` (Ricerca Full-Text): Input gestito con operatore rxjs/custom hook debounce a 250ms per limitare le chiamate al backend.
+5. `GW_FETCH` (Chiamata Gateway): Emissione query HTTP `GET /api/v1/catalog/exercises` con parametri URL serializzati.
+6. `GW_CACHE` (Controllo Cache Edge Redis):
+   - *Hit:* Restituzione del catalogo compresso in gzip/brotli in $< 15\text{ ms}$.
+   - *Miss:* Esecuzione query Postgres (`DB_QUERY`) e caching automatico con TTL 86.400s (24 ore).
+7. `DEC_RESULTS` (Verifica Esito Query): Se risultati $> 0 \implies$ `GRID_POPULATED`; se 0 $\implies$ `UI_EMPTY` con suggerimento fuzzy matching dei termini.
+8. `GRID_POPULATED` (Rendering Griglia): Virtualizzazione lista con `react-virtualized` o `flash-list` per garantire 60fps costanti anche su 296 schede.
+9. `DEC_WEBGL` (Verifica Hardware Client): Rilevamento capabilities browser (`gl = canvas.getContext('webgl2')`).
+   - *Se WebGL attivo:* Download della mesh Draco compressa via CDN (`SRV_3D_STREAM`) e trigger `VIEWER_3D`.
+   - *Se WebGL fallisce o assente:* Attivazione automatica `FALLBACK_2D` (streaming video H.265 a 60fps con sprite loop).
+10. `VIEWER_3D` (Rendering Avatar Biomeccanico):
+    - Scene Three.js con illuminazione a 3 punti e Dark Background `#0f172a`;
+    - Shader personalizzato per vertex coloring delle fasce muscolari (Rosso `#ef4444`, Giallo `#f59e0b`, Ciano `#06b6d4`);
+    - Timeline cinematico Time Under Tension (TUT) con cursore sincrono sulle fasi motorie.
+11. `UI_PROTOCOL` (Scheda Tecnica & Why-Fix): Presentazione dei parametri: Setup posturale, Traiettoria bilanciere/arto, Errori critici e correzioni biomeccaniche.
+12. `DEC_ACTION` (Decisione Azione Utente):
+    - *Azione Preferiti:* Chiamata `POST /api/v1/catalog/favorites` $\to$ scrittura Silo 1 (`DB_FAV_WRITE`);
+    - *Azione Allenamento:* Iniezione dati nell'interfaccia di seduta $\to$ `NAV_PLAYER` (`FLOW-3A`).
 
 ---
 
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
-- **Decisione Modalità Ricerca (`DEC_SEARCH`):** Filtri anatomici vs Ricerca testuale full-text.
-- **Decisione Cache Gateway (`GW_CACHE`):** Cache Hit (Edge) vs Cache Miss (DB query).
-- **Decisione Risultati (`DEC_RESULTS`):** Griglia popolata vs Empty State con suggerimenti.
-- **Decisione Rendering 3D (`DEC_WEBGL`):** WebGL attivo $\implies$ Three.js 3D; WebGL assente $\implies$ Video MP4 60fps 2D.
-- **Decisione Azione Utente (`DEC_ACTION`):** Salva Preferito vs Avvia Workout.
 
-### Gestione dei 4 Stati UI:
-1. **Empty State:** Ricerca senza risultati; mostra icona lente vuota, pulsante "Resetta tutti i filtri" e 4 esercizi correlati suggeriti.
-2. **Loading State:** Skeleton card pulsanti con effetto glassmorphism durante il fetch dei dati e spinner circolare durante il download della mesh `.glb`.
-3. **Populated State:** Griglia fluida con miniature, indicatori visivi di muscoli coinvolti e badge di sicurezza.
+| Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
+| :--- | :--- | :--- | :--- |
+| `DEC_SEARCH` | L'utente usa filtri o testo? | Filtro tassonomico (`UI_FILTERS`) | Ricerca testo (`UI_SEARCH`) |
+| `DEC_RESULTS` | Risultati trovati $> 0$? | Mostra griglia schede (`GRID_POPULATED`) | Schermata vuota (`UI_EMPTY`) |
+| `DEC_WEBGL` | Supporto WebGL 2.0 e GPU attivo? | Render 3D interattivo (`VIEWER_3D`) | Fallback video 2D (`FALLBACK_2D`) |
+| `DEC_ACTION` | Azione post-consultazione? | Aggiungi a Preferiti (`DB_FAV_WRITE`) | Invia al Player (`FLOW-3A`) |
+
+### I 4 Stati di Interfaccia Utente (UI States):
+1. **Empty State:** Nessun risultato per la combinazione di filtri selezionata: rendering messaggio amichevole *"Nessun esercizio trovato. Prova a rimuovere un filtro o cerca per nome generico (es. 'Panca')"* con pulsante di reset rapido.
+2. **Loading State:** Skeleton card con effetto shimmer durante il fetch iniziale dei dati o spinner orbitale sul canvas durante la decompressione della mesh Draco 3D.
+3. **Populated State:** Griglia completa con 296 esercizi filtrabili istantaneamente, indicatori di difficoltà e card 3D fluide con comandi touch zoom e rotazione.
 4. **Error / Fallback State:**
-   - Fallback WebGL: passaggio automatico trasparente al video 2D senza interruzioni per l'utente.
-   - Offline Mode: caricamento del catalogo pre-salvato in IndexedDB tramite Service Worker (`sw.js`).
+   - *Crash del contesto WebGL (dispositivo con memoria GPU esaurita):* L'app non va in crash ma esegue il fallback silenzioso caricando istantaneamente il player video 2D compresso.
 
 ---
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
-### Endpoint Principali:
-- `GET /api/v1/catalog/exercises?muscle=chest&pattern=push&q=bench`:
-  - Output: `[{ id: 'ex_01', name: 'Panca Piana con Bilanciere', primaryMuscles: ['pectoralis_major'], modelGlbUrl: 'cdn/.../ex_01.glb', video2dUrl: 'cdn/.../ex_01.mp4', tut: { conc: 1.5, ecc: 3.0 } }]`
-- `POST /api/v1/user/favorites`: `{ athleteId: string, exerciseId: string, note?: string }` $\to$ `{ status: 'saved' }`
+### Specifiche Endpoint REST:
 
-### Tabelle Database Coinvolte (Silo 1):
-- `catalog_exercises`: id, name_it, district, pattern, primary_muscles (JSONB), secondary_muscles (JSONB), cues (JSONB), model_url, video_url.
-- `user_favorites`: user_id, exercise_id, created_at, custom_notes.
+#### 1. Query Catalogo Esercizi Filtrato
+- **Endpoint:** `GET /api/v1/catalog/exercises`
+- **Headers:** `Authorization: Bearer <jwt_token>`, `Accept: application/json`
+- **Query Params:** `muscle=CHEST&pattern=PUSH&equipment=BARBELL&limit=20&page=1`
+- **Responses:**
+  - `200 OK`:
+```json
+{
+  "total": 1,
+  "page": 1,
+  "exercises": [
+    {
+      "id": "ch_barbell_bench_press_01",
+      "nameIt": "Panca Piana con Bilanciere",
+      "nameEn": "Barbell Flat Bench Press",
+      "primaryMuscle": "CHEST",
+      "secondaryMuscles": ["TRICEPS", "FRONT_DELTS"],
+      "stabilizerMuscles": ["CORE", "ROTATOR_CUFF"],
+      "movementPattern": "HORIZONTAL_PUSH",
+      "model3dGlbUrl": "https://assets.t7workout.app/models3d/ch_bench_press.glb",
+      "fallbackVideoMp4Url": "https://assets.t7workout.app/videos2d/ch_bench_press_60fps.mp4",
+      "tutRecommended": { "eccentricSec": 3, "isometricSec": 1, "concentricSec": 1 }
+    }
+  ]
+}
+```
+  - `401 Unauthorized`: Token scaduto o non valido.
+
+#### 2. Salvataggio Esercizio nei Preferiti
+- **Endpoint:** `POST /api/v1/catalog/favorites`
+- **Headers:** `Authorization: Bearer <jwt_token>`, `Content-Type: application/json`
+- **Request Payload:** `{ "exerciseId": "ch_barbell_bench_press_01" }`
+- **Responses:**
+  - `200 OK`: `{ "status": "favorited", "exerciseId": "ch_barbell_bench_press_01" }`
+
+### Schema Relazionale (Database Silo 1 - PostgreSQL):
+- `catalog_exercises`: `id VARCHAR(64) PRIMARY KEY`, `name_it VARCHAR(128)`, `name_en VARCHAR(128)`, `primary_muscle VARCHAR(32)`, `secondary_muscles JSONB`, `movement_pattern VARCHAR(32)`, `equipment VARCHAR(32)`, `model_3d_url TEXT`, `fallback_video_url TEXT`, `created_at TIMESTAMPTZ`.
+- `user_favorites`: `user_id UUID FK -> auth_users.id`, `exercise_id VARCHAR(64) FK -> catalog_exercises.id`, `created_at TIMESTAMPTZ`, `PRIMARY KEY (user_id, exercise_id)`.
 
 ---
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
-- **Base Funzionale di Partenza:** Il Flow 2A definisce l'infrastruttura di consultazione 3D e protocollo biomeccanico standard dell'intera piattaforma.
-- **Propagazione a Cascata Top-Down:**
-  - Il Tier 2 (Partita IVA - `flow-2b`) **eredita al 100%** tutta la pipeline di visualizzazione 3D, filtri e ricerca del General User, a cui AGGIUNGE la videocamera in-app per filmare l'atleta, l'Edge Pose Estimation a 33 landmark, la bozza coach e la "Revisione Coerente AI".
-  - Il Tier 3 (Elite Club - `flow-2c`) **eredita a sua volta tutto quanto sopra**, aggiungendovi il Digital Twin biometrico personalizzato sul singolo calciatore e la Libreria Club a 2 livelli con archiviazione crittografata in Silo 2 (Bunker KMS).
-- **Limitazioni Tier 1:** L'utente comune può solo consultare ed eseguire; non può registrare o inserire esercizi custom nel catalogo (funzionalità riservata ai professionisti).
+
+- **Funzionalità Base (Tier 1):** Consultazione del catalogo completo dei 296 esercizi, visualizzatore 3D WebGL con muscoli primari/secondari e video 2D di fallback.
+- **Ereditarietà verso Tier 2 (`FLOW-2B`):**  
+  Il professionista eredita interamente questo visualizzatore 3D, potenziato con la possibilità di registrare e caricare video reali dell'atleta via in-app camera, confrontandoli con l'avatar 3D e interrogando il motore RAG su 322 paper scientifici per verifiche biomeccaniche avanzate.
+- **Ereditarietà verso Tier 3 (`FLOW-2C`):**  
+  Il club societario eredita il catalogo e integra la libreria video multi-camera a 120fps per l'analisi tattica e i protocolli Return-to-Play a tenuta stagna nel bunker Silo 2.

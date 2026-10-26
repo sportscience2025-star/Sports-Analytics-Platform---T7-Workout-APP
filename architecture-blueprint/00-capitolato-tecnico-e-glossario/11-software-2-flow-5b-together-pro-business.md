@@ -1,85 +1,126 @@
 # Capitolato Tecnico: Flow 5B – Together Pro Business & Remote Client Review (T7 Pro Coach)
 
 ## 1. Identificativo & Titolo Ufficiale
+- **Badge Miro Board:** `#11` (Posizione: `X: 6048, Y: 2940`)
 - **Codice Univoco:** `FLOW-5B`
-- **Titolo Ufficiale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 5B: TOGETHER PRO BUSINESS & REMOTE CLIENT REVIEW
-- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 5: Marketplace & Video Review Remota)
+- **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 5B: TOGETHER PRO BUSINESS, LEAD ONBOARDING & VIDEO REVISIONE REMOTA
+- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 5: Business Pro, Lead & Video Review)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-5b-together-pro-business.mmd`
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Together Pro Marketplace, Video Annotazione Tecnica, Stripe Connect Transfers, Bar Path Tracking, Assegnazione Schede Remota*).
 
 ---
 
 ## 2. Obiettivo di Business & Target Utente
-- **Target Utente:** Personal trainer, preparatori atletici online e studi di consulenza sportiva (Tier 2 – B2B Freelance).
-- **Problema Risolto:** Gestire l'intero ciclo commerciale del coaching a distanza in un unico ambiente protetto:
-  1. Pubblicazione della vetrina professionale con pacchetti e tariffe trasparenti;
-  2. Ricezione e accettazione delle richieste di allievi provenienti dalla community B2C;
-  3. Gestione dei pagamenti con protezione anti-chargeback (Stripe Escrow);
-  4. Strumento avanzato di **Video Review Asincrona**: il coach riceve i video registrati dagli allievi durante le sedute, disegna in sovrimpressione linee di forza e angoli articolari, aggiunge note vocali sincronizzate al millisecondo e rilascia feedback correttivi professionali.
+
+### Guida Pratica per Non Tecnici: Cos'è questo modulo per un umano?
+I migliori personal trainer e fisioterapisti oggi seguono molti atleti a distanza (Online Coaching). Il problema più grande del coaching online è la correzione tecnica: gli allievi mandano video sgranati su WhatsApp, il coach risponde con messaggi vocali lunghi e confusi, e la gestione dei pagamenti diventa un incubo tra bonifici persi e ricariche manuali.  
+**Together Pro** è l'ufficio virtuale e lo studio di analisi del coach:
+- Mette a disposizione una **vetrina professionale certificata** dove mostrare i propri pacchetti di allenamento e i successi reali dei propri allievi;
+- Quando un nuovo cliente acquista un pacchetto, entra automaticamente nel roster del coach senza dover inserire dati a mano;
+- L'allievo registra la sua serie direttamente dall'app di allenamento: il video arriva all'istante sulla scrivania del coach;
+- Il coach apre il video con gli **strumenti di disegno su schermo**: può tracciare la linea del bilanciere (Bar Path), evidenziare la posizione della schiena con frecce colorate e registrare un commento vocale sincronizzato;
+- L'atleta riceve la correzione direttamente nel suo player, potendo guardare l'errore al rallentatore prima di affrontare la serie successiva.
+
+### Specifiche di Business & Metriche
+- **Target Utente:** Chinesiologi, coach online, preparatori e fisioterapisti che gestiscono clienti da remoto (Tier 2 – Pro P.IVA).
+- **Problema Risolto:** Aumentare la capacità operativa del coach (fino a 100 atleti seguiti senza stress) e monetizzare il proprio tempo professionale con accredito bancario automatico e strumenti visivi di correzione tecnica.
 
 ---
 
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
-1. **Corsia 1: Thin Client UI/UX (Pro Business Suite - React 18):**
-   - Editor vetrina pubblica del professionista, inbox richieste di coaching con azioni Accetta/Rifiuta, coda di revisione video con player interattivo a frame singolo (60 fps), strumenti di disegno canvas (goniometro articolare, frecce di traiettoria, cerchi di stabilità) e registrazione memo vocale.
-2. **Corsia 2: API Gateway & Media Upload (Envoy / CDN Signed URLs):**
-   - Generazione di URL firmati crittograficamente per il caricamento video sicuro, endpoint gestione lead (`/leads/{id}/respond`) e rilascio feedback (`/video-reviews/{id}/feedback`).
-3. **Corsia 3: Server Scatola Nera (Contract & Media Engine - Cloud Run):**
-   - Attivazione formale del contratto di coaching tra coach e allievo (con assegnazione automatica del piano nel diario del cliente), transcodifica video con fusione dei metadati grafici/vocali in un formato compresso e dispatcher notifiche push immediate.
-4. **Corsia 4: Database Silo 1 (Pro Business Data Store - PostgreSQL):**
-   - Tabella `pro_showcase` per le informazioni del profilo pubblico, `coaching_packages` per i listini e `video_feedbacks` per l'archiviazione delle revisioni tecniche e delle note vocali.
+
+1. **Corsia 1: Thin Client UI/UX (Coach Review Suite React 18):**
+   - Dashboard roster atleti con filtri di priorità ("In attesa di revisione video", "Scheda in scadenza"), player video con controlli frame-by-frame, lavagna di annotazione vettoriale (linee, frecce, goniometri, bar path tracking), registratore audio vocale e pulsante di invio notifica push.
+2. **Corsia 2: API Gateway & Media Transcoding Gateway (Envoy):**
+   - Ricezione dei video caricati dagli atleti (`/pro/video-reviews`), validazione del legame contrattuale coach-atleta, streaming video HLS adattivo e webhook di sincronizzazione transazioni Stripe Connect.
+3. **Corsia 3: Server Scatola Nera (Video Annotation & Bar Path Engine Cloud Run):**
+   - Rendering automatico della traiettoria del bilanciere (Bar Path ottico tramite computer vision OpenCV), fusione dell'audio vocale del coach con i frame video annotati e generazione della clip di feedback ottimizzata per smartphone.
+4. **Corsia 4: Database Tripartito (Silo 1 Pro - PostgreSQL & Storage):**
+   - Tabelle `coach_packages`, `client_subscriptions`, `video_reviews` (clip originali, metadati delle annotazioni vettoriali e audio allegato).
 
 ---
 
-## 4. Flusso Operativo Passo-Passo (Nodi Numerati)
-1. **START (Accesso Gestione Business):** Il professionista apre la sezione "Business & Allievi" dal menu principale.
-2. **PROFILE_EDITOR (Gestione Vetrina):** Il coach definisce la propria biografia, i titoli di studio (Laurea Scienze Motorie, certificazioni), la galleria fotografica, i pacchetti di consulenza mensili/trimestrali e le recensioni verificate. L'invio aggiorna `DB_PRO_PROFILE` via `GW_SAVE_PROFILE`.
-3. **INBOX_LEADS (Gestione Richieste Allievo):** Quando un utente consumer invia una richiesta dal marketplace (generata nel `flow-5a`), essa atterra in questa casella:
-   - Il coach legge gli obiettivi e lo storico dell'atleta.
-   - Può cliccare su "Accetta Richiesta" o "Rifiuta con motivazione".
-   - All'accettazione, il server Scatola Nera (`SRV_CONTRACT_BIND`) crea il legame contrattuale e associa il profilo dell'atleta al roster attivo del coach.
-4. **VIDEO_REVIEW_QUEUE (Coda Revisione Esecuzioni Video):** Lista delle clip video inviate dagli atleti per il controllo della tecnica esecutiva (es. "Controllo alzata Stacco da terra 140 kg").
-5. **VIDEO_CANVAS (Player con Tool di Sovrimpressione):** Il coach apre il video dell'atleta su un player professionale:
-   - Scorrimento avanti/indietro fotogramma per fotogramma (scrubbing a 60 fps).
-   - Strumenti di annotazione su canvas trasparente: tracciamento della traiettoria del bilanciere (bar path), misurazione dell'angolo di flessione del ginocchio e della colonna vertebrale.
-   - Registrazione nota vocale sincronizzata: il coach parla sopra il video evidenziando i punti critici.
-6. **SEND_FEEDBACK_BTN (Invio Feedback):** Il coach conferma l'invio della revisione all'atleta.
-7. **GW_MEDIA_FEEDBACK & AUTH (Verifica Gateway):** L'API Gateway autentica la richiesta tramite URL firmato e autorizzazione JWT.
-8. **SRV_TRANSCODE (Elaborazione Server):** Il server Scatola Nera esporta il video arricchito con le annotazioni vettoriali e la traccia audio, generando un player compatto visualizzabile dall'atleta.
-9. **DB_VIDEO_REVIEWS (Archiviazione Silo 1):** Persistenza delle note e dei dati temporali nella tabella `video_feedbacks`.
-10. **SRV_NOTIF_DISPATCH (Notifica Push Istantanea):** Il server invia una notifica push sullo smartphone dell'allievo: *"Il tuo coach Marco ha revisionato il tuo video di Stacco da terra. Guarda le correzioni"*.
-11. **END_BIZ_DONE (Fine Flusso):** Feedback consegnato con successo e sessione registrata.
+## 4. Flusso Operativo Passo-Passo
+
+### Livello A: User Journey Narrativo (La Storia dell'Utente)
+1. **La Vetrina del Coach:** Il professionista crea in 2 minuti il suo pacchetto di punta: *"Programma Forza 12 Settimane + Correzione Video Settimanale a 120€/mese"*.
+2. **L'Ingaggio del Cliente:** Un atleta trova il profilo su Together, acquista il pacchetto con carta di credito. I soldi vanno direttamente sul conto bancario del coach (al netto della piccola commissione di piattaforma), e l'atleta compare subito nel roster del coach.
+3. **L'Invio della Scheda:** Il coach assegna la scheda creata con il generatore DUP (`FLOW-3B`). L'atleta riceve una notifica sul telefono: *"Il tuo coach ti ha assegnato il nuovo programma di allenamento!"*.
+4. **La Ricezione del Video:** L'atleta esegue la sua serie pesante di squat e tocca *"Invia video al Coach"*. Nel pannello del professionista compare un bollino arancione: *"1 nuovo video da revisionare per Mario Rossi"*.
+5. **La Revisione Professionale con Disegni:** Il coach apre il video a schermo intero:
+   - Mette in pausa al punto più basso dello squat;
+   - Con il mouse o la penna touch traccia una freccia rossa: *"Guarda come il tallone sinistro si solleva leggermente da terra"*;
+   - L'algoritmo automatico disegna la scia luminosa del bilanciere, mostrando se è sceso dritto in verticale;
+   - Il coach registra 20 secondi di messaggio vocale: *"Ottima spinta Mario, la prossima volta allarga leggermente le punte dei piedi per stabilizzare i talloni"*.
+6. **Il Feedback nel Player dell'Allievo:** L'atleta riceve la clip commentata direttamente nell'app T7, pronta da consultare prima del prossimo allenamento.
+
+---
+
+### Livello B: Trattazione Tecnica Nodi Operativi
+
+1. `START` (Accesso Together Pro Suite): Apertura tab "Vetrina & Clienti" nel Coach Cockpit.
+2. `PACKAGE_MANAGEMENT` (Configurazione Pacchetti & Listini): Creazione offerte (prezzo mensile, numero di revisioni video incluse, canali di contatto).
+3. `GW_STRIPE_WEBHOOK` (Ricezione Evento Acquisto): Ricezione evento Stripe `customer.subscription.created`. L'API Gateway valida la transazione, preleva la fee di piattaforma e autorizza la creazione del legame in `client_subscriptions`.
+4. `CLIENT_ONBOARDED` (Attivazione Cliente nel Roster): Inizializzazione della scheda atleta con autorizzazione del coach alla scrittura nel diario dell'atleta.
+5. `ATHLETE_VIDEO_UPLOAD` (Invio Video da Parte dell'Allievo): L'atleta carica la serie dall'interfaccia player (`FLOW-3A`). Il video viene transcodificato in formato HLS multi-bitrate su Google Cloud Storage.
+6. `COACH_REVIEW_SUITE` (Apertura Suite di Revisione):
+   - Player video con scrubbing frame-by-frame a 60fps;
+   - Tool di disegno vettoriale Canvas 2D (frecce, segmenti angolari, box);
+   - *Bar Path Extraction:* Algoritmo server-side che traccia le coordinate $(x, y)$ del centro del bilanciere fotogramma per fotogramma, renderizzando la scia neon della traiettoria.
+7. `SRV_COMPOSITION_ENGINE` (Composizione Feedback Cloud Run): Fusione asincrona dei layer di disegno vettoriale e della traccia audio del microfono del coach sul video master.
+8. `FEEDBACK_DELIVERY` (Consegna Feedback nel Player Atleta): Notifica push WebSocket al dispositivo dell'atleta con link al video arricchito visualizzabile nel Workout Player (`FLOW-3A`).
 
 ---
 
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
-- **Decisione Lead Inbox (`INBOX_LEADS`):** Accetta cliente $\implies$ Binding contrattuale e invito roster; Rifiuta $\implies$ Notifica cortese e rilascio credito allievo.
-- **Decisione Media Auth (`GW_MEDIA_AUTH`):** Token firmato valido $\implies$ Transcodifica; Token scaduto $\implies$ Rigenerazione credenziale.
 
-### Gestione dei 4 Stati UI:
-1. **Empty State:** Coda video vuota; messaggio distensivo "Nessun video in attesa di revisione: i tuoi allievi sono aggiornati!".
-2. **Loading State:** Elaborazione della transcodifica video con barra percentuale durante l'upload dei vettori di annotazione.
-3. **Populated State:** Interfaccia video fluida con controlli multimediali professionali, forme geometriche personalizzabili e traccia audio visibile come waveform.
-4. **Error / Fallback State:** Fallimento di connessione durante la registrazione del memo vocale; salvataggio della bozza locale su IndexedDB con opzione di re-invio senza perdere le forme disegnate.
+| Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
+| :--- | :--- | :--- | :--- |
+| `STRIPE_PAYMENT` | Pagamento ricorrente cliente andato a buon fine? | Mantieni accesso attivo al roster | Notifica di pagamento fallito / congelamento |
+| `VIDEO_QUOTA` | Allievo ha ancora revisioni disponibili nel mese? | Consenti upload clip per correzione | Invita allievo ad acquistare revisioni extra |
+| `BAR_PATH_DETECT` | Bilanciere visibile e tracciabile dall'AI? | Disegna scia luminosa automatica | Correzione manuale con penna touch |
+
+### I 4 Stati di Interfaccia Utente (UI States):
+1. **Empty State:** Nessun cliente attivo: guida illustrata *"Come pubblicare la tua vetrina e invitare i tuoi primi atleti con link diretto"*.
+2. **Loading State:** Elaborazione della clip video con rendering della traiettoria del bilanciere in $< 2.5\text{ secondi}$.
+3. **Populated State:** Roster atleti completo con foto, badge semaforici dello stato di forma, schede attive e contatore dei video da visionare.
+4. **Error / Fallback State:**
+   - *Video registrato con scarsa luminosità:* L'AI disabilita il bar path automatico e avvisa il coach: *"Tracciamento automatico non disponibile per scarsa luce: usa gli strumenti di disegno manuale"*.
 
 ---
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
-### Endpoint Principali:
-- `PUT /api/v1/pro/profile/showcase`:
-  - Input: `{ proId: string, bio: string, specialties: string[], pricingPackages: [{ title: string, priceEur: number, durationMonths: number }] }`
-- `POST /api/v1/pro/video-reviews/{id}/feedback`:
-  - Input: `{ reviewId: string, athleteId: string, annotations: [{ timestampSec: number, type: 'angle'|'path'|'text', data: Object }], voiceAudioUrl?: string }`
-  - Output: `{ status: 'delivered', notifiedAt: string }`
+### Specifiche Endpoint REST:
 
-### Tabelle Database Coinvolte (Silo 1):
-- `pro_showcase`: pro_id, bio, specialties (ARRAY), packages_json, is_accepting_new_clients.
-- `coaching_contracts`: id, pro_id, athlete_id, start_date, end_date, monthly_fee_eur, status ('ACTIVE'|'PAUSED'|'TERMINATED').
-- `video_feedbacks`: id, contract_id, athlete_id, original_video_url, annotated_payload (JSONB), voice_memo_url, created_at.
+#### 1. Sottomissione Revisione Tecnica con Annotazioni
+- **Endpoint:** `POST /api/v1/pro/video-reviews/submit-feedback`
+- **Headers:** `Authorization: Bearer <pro_jwt>`, `Content-Type: application/json`
+- **Request Payload:**
+```json
+{
+  "reviewId": "rev_77192",
+  "athleteId": "ath_c0192a",
+  "coachAudioVaultRef": "gs://t7-voice-vault/audio_77192.m4a",
+  "vectorDrawings": [
+    { "frameIndex": 142, "tool": "ARROW", "coords": [120, 240, 180, 290], "color": "#ef4444" },
+    { "frameIndex": 180, "tool": "ANGLE", "angleDeg": 165.2, "joint": "KNEE_LEFT" }
+  ],
+  "writtenNotes": "Attento a non sollevare il tallone sinistro durante l'inversione di spinta."
+}
+```
+- **Responses:**
+  - `200 OK`: `{ "status": "delivered", "notifiedAthlete": true, "processedVideoUrl": "https://vault.t7workout.app/feedback/rev_77192.mp4" }`
+
+### Schema Relazionale (Database Silo 1 - PostgreSQL):
+- `client_subscriptions`: `id UUID PK`, `coach_id UUID FK -> pro_profiles.id`, `athlete_id UUID FK -> athlete_profiles.id`, `plan_type VARCHAR(32)`, `monthly_fee NUMERIC(6,2)`, `status VARCHAR(16)`, `created_at TIMESTAMPTZ`.
+- `video_reviews`: `id UUID PK`, `subscription_id UUID FK -> client_subscriptions.id`, `raw_video_url TEXT`, `feedback_video_url TEXT`, `vector_annotations JSONB`, `audio_notes_url TEXT`, `status VARCHAR(16)`, `created_at TIMESTAMPTZ`.
 
 ---
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
-- **Integrazione con Tier 1:** Risponde direttamente alle richieste originate dal flusso consumer `flow-5a`, consentendo al professionista di monetizzare le proprie competenze.
-- **Propagazione verso Tier 3:** Nel Tier 3 (Elite Club - `flow-5c`), l'analisi video si eleva a livello di Computer Vision markerless per l'intera squadra sul campo di gara (rilevamento spaziature e diagrammi di Voronoi), ma **viene totalmente depurata da qualsiasi componente commerciale o di marketplace pubblico**.
-- **Differenziali:** Il Tier 2 gestisce un rapporto 1-a-1 con singoli clienti paganti; il Tier 3 opera su scala di squadra e staff multidisciplinare all'interno del bunker societario.
+
+- **Differenziali rispetto a Tier 1:**  
+  Nel Tier 1 il consumatore naviga la bacheca social generica e acquista servizi. Il **Pannello di Revisione Video con Disegno su Schermo, il Bar Path Tracker e la gestione incassi Stripe Connect sono esclusivi di Tier 2**.
+- **Isolamento da Tier 3 (`FLOW-5C`):**  
+  Nei club professionistici societari, il modulo video commerciale viene sostituito da **Tactical Vision**: video analisi multi-camera da campo a 120fps con reti neurali YOLO, omografia prospettica 2D e calcolo dei diagrammi di Voronoi per il controllo degli spazi di gioco nel bunker Silo 2.
