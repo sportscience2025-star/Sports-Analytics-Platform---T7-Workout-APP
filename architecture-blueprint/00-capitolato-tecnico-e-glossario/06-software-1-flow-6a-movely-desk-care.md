@@ -6,7 +6,7 @@
 - **Titolo Formale:** SOFTWARE 1 (B2C CONSUMER) - FLOW 6A: MOVELY DESK-CARE & MICRO-PAUSE ERGONOMICHE AZIENDALI
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 1: General User / Casual, Colonna 6: Movely Corporate Wellness & Ergonomia)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-1-consumer-b2c/flow-6a-movely-desk-care.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Movely Corporate Wellness, Zero-Knowledge Privacy Shield, Micro-Pause Attive, Ergonomic Engine, K-Anonymity*).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Movely Corporate Wellness](00-GLOSSARIO-TERMINI-TECNICI.md#movely-corporate-wellness-ergonomic-engine), [Zero-Knowledge Privacy Shield](00-GLOSSARIO-TERMINI-TECNICI.md#k-anonymity-zero-knowledge-privacy-shield), [Micro-Pause Attive](00-GLOSSARIO-TERMINI-TECNICI.md#movely-corporate-wellness-ergonomic-engine), [Ergonomic Engine](00-GLOSSARIO-TERMINI-TECNICI.md#movely-corporate-wellness-ergonomic-engine), [K-Anonymity](00-GLOSSARIO-TERMINI-TECNICI.md#k-anonymity-zero-knowledge-privacy-shield)).
 
 ---
 

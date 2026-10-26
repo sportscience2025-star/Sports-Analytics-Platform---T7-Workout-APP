@@ -6,7 +6,7 @@
 - **Titolo Formale:** SOFTWARE 1 (B2C CONSUMER) - FLOW 1A: ACCESSO, ONBOARDING & ANAMNESI ANTI-FRODE (T7 CONSUMER)
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 1: General User / Casual, Colonna 1: Onboarding & Accesso)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-1-consumer-b2c/flow-1a-consumer-onboarding.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Thin Client, WebAuthn, API Gateway, Cloudflare Turnstile, BMR Mifflin-St Jeor, PAR-Q+*).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Thin Client](00-GLOSSARIO-TERMINI-TECNICI.md#thin-client-guscio-visivo), [WebAuthn](00-GLOSSARIO-TERMINI-TECNICI.md#webauthn-passkeys-biometria-hardware), [API Gateway](00-GLOSSARIO-TERMINI-TECNICI.md#api-gateway-feature-gating), [Cloudflare Turnstile](00-GLOSSARIO-TERMINI-TECNICI.md#cloudflare-turnstile-scudo-anti-bot-invisibile), [BMR Mifflin-St Jeor](00-GLOSSARIO-TERMINI-TECNICI.md#bmr-mifflin-st-jeor-harris-benedict-fabbisogno-metabolico), [PAR-Q+](00-GLOSSARIO-TERMINI-TECNICI.md#par-q-physical-activity-readiness-questionnaire-digital-triage)).
 
 ---
 

@@ -6,7 +6,7 @@
 - **Titolo Formale:** SOFTWARE 1 (B2C CONSUMER) - FLOW 5A: TOGETHER SOCIAL COMMUNITY & COACH MARKETPLACE
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 1: General User / Casual, Colonna 5: Social Platform & Community B2C)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-1-consumer-b2c/flow-5a-together-social-b2c.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Together Social Network, Fan-Out on Write, Redis Cluster ZSET, Marketplace B2C, Step-Up SMS Anti-Troll*).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Together Social Network](00-GLOSSARIO-TERMINI-TECNICI.md#together-social-network-movely-marketplace), [Fan-Out on Write](00-GLOSSARIO-TERMINI-TECNICI.md#fan-out-on-write-redis-cluster-zset-timeline-social), [Redis Cluster ZSET](00-GLOSSARIO-TERMINI-TECNICI.md#fan-out-on-write-redis-cluster-zset-timeline-social), [Marketplace B2C](00-GLOSSARIO-TERMINI-TECNICI.md#together-social-network-movely-marketplace), [Step-Up SMS Anti-Troll](00-GLOSSARIO-TERMINI-TECNICI.md#step-up-verification-verifica-telefono-anti-troll-per-community)).
 
 ---
 

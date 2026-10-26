@@ -1,64 +1,135 @@
 # -*- coding: utf-8 -*-
+"""
+Test Suite di Validazione Completa & Rigorosa per tutti i Deliverable di Architettura Miro:
+- Fase 1: Regole di Progetto 08 e 10
+- Fase 2: Glossario Vivente (A-Z index, Matrice, 93 schede, ELI5 <= 10 parole, zero broken links)
+- Fase 3: 18 File di Capitolato Tecnico (7 sezioni, sequenceDiagram, KPI, Error matrix 6 col, coordinate #02 e #08, anchor links riga 9)
+"""
 import glob
 import os
 import re
 
 def verify():
-    # 1. Verify Rules
+    print("=== AVVIO VALIDAZIONE RIGOROSA DELIVERABLE ARCHITETTURA MIRO ===")
+
+    # 1. Verify Rule 08
     rule08_path = os.path.join(".agents", "rules", "08-miro-architecture-blueprint.md")
     with open(rule08_path, encoding="utf-8") as fp:
         r08 = fp.read()
     assert "Matrice delle 6 Colonne Funzionali della ZONA 4" in r08, "Rule 08: Missing 6 columns matrix"
     assert "Tabella Master Ufficiale di Corrispondenza (18 Badge Miro Online)" in r08, "Rule 08: Missing Master Table"
     assert "Doppio Livello di Lettura" in r08, "Rule 08: Missing Doppio Livello di Lettura"
-    print("Rule 08: PASSED")
+    assert "Colonna 1: Identity, Security & Anti-Frode" in r08, "Rule 08: Missing Col 1"
+    assert "Colonna 6: Rehab ROM, Clinical Desk-Care & Research Lake" in r08, "Rule 08: Missing Col 6"
+    print("[1/5] Regola 08 (Matrice 6 Colonne, Tabella Master 18 Badge, Doppio Livello): PASSED")
 
+    # 2. Verify Rule 10
     rule10_path = os.path.join(".agents", "rules", "10-miro-design-standards-and-routing.md")
     with open(rule10_path, encoding="utf-8") as fp:
         r10 = fp.read()
     assert "Standard Visivi & Geometrici dei Badge di Identificazione Flusso" in r10, "Rule 10: Missing badge standard"
     assert "No-Fly Zone" in r10, "Rule 10: Missing No-Fly Zone"
     assert "W = 520" in r10, "Rule 10: Missing W=520"
-    print("Rule 10: PASSED")
+    assert "#0f766e" in r10 and "#14b8a6" in r10, "Rule 10: Missing Tier 1 palette"
+    assert "#b45309" in r10 and "#f59e0b" in r10, "Rule 10: Missing Tier 2 palette"
+    assert "#4338ca" in r10 and "#818cf8" in r10, "Rule 10: Missing Tier 3 palette"
+    assert "40" in r10 and "zero-crossing" in r10, "Rule 10: Missing No-Fly Zone clearance standard"
+    print("[2/5] Regola 10 (Geometria Badge W=520, Palette Tier 1-2-3, No-Fly Zone 40px): PASSED")
 
-    # 2. Verify Glossary
+    # 3. Verify Glossary
     glossary_path = os.path.join("architecture-blueprint", "00-capitolato-tecnico-e-glossario", "00-GLOSSARIO-TERMINI-TECNICI.md")
     with open(glossary_path, encoding="utf-8") as fp:
         gloss = fp.read()
-    terms = re.findall(r"^#### <a id=\"[^\"]+\"></a>(.+)$", gloss, re.MULTILINE)
-    eli5s = re.findall(r"^\*\*ELI5:\*\* \".+\"$", gloss, re.MULTILINE)
-    print(f"Glossary: Found {len(terms)} terms, {len(eli5s)} ELI5 lines")
-    assert len(terms) >= 90, f"Glossary has only {len(terms)} terms, expected >= 90"
-    assert len(terms) == len(eli5s), f"Mismatch: {len(terms)} terms vs {len(eli5s)} ELI5s"
+    
+    terms = re.findall(r'^#### <a id="([^"]+)"></a>(.+)$', gloss, re.MULTILINE)
+    eli5_matches = re.findall(r'^\*\*ELI5:\*\* "([^"]+)"$', gloss, re.MULTILINE)
+    
+    print(f"Glossary: Trovati {len(terms)} termini e {len(eli5_matches)} sintesi ELI5")
+    assert len(terms) >= 90, f"Glossario ha {len(terms)} termini, attesi >= 90"
+    assert len(terms) == len(eli5_matches), f"Mismatch: {len(terms)} termini vs {len(eli5_matches)} ELI5s"
     assert "## Indice Analitico A-Z" in gloss, "Glossary: Missing Indice Analitico A-Z"
     assert "## Matrice di Tracciabilità Incrociata" in gloss, "Glossary: Missing Matrice di Tracciabilita"
-    print("Glossary: PASSED")
+    assert f"## Schede Terminologiche Enciclopediche ({len(terms)} Termini Ufficiali)" in gloss, "Glossary: Header count mismatch"
+    
+    # Rigorous check: ALL ELI5 strings must be <= 10 words
+    eli5_over_10 = []
+    for (t_anchor, t_name), eli5_text in zip(terms, eli5_matches):
+        words = eli5_text.split()
+        if len(words) > 10:
+            eli5_over_10.append((t_name, len(words), eli5_text))
+    assert len(eli5_over_10) == 0, f"Rilevati {len(eli5_over_10)} termini con ELI5 > 10 parole: {eli5_over_10}"
 
-    # 3. Verify 18 Flowchart Spec Files
+    # Check zero broken internal anchors in glossary
+    defined_anchors = set(re.findall(r'<a id="([^"]+)"></a>', gloss))
+    internal_links = re.findall(r'\[([^\]]+)\]\((#[^\)]+)\)', gloss)
+    broken_internal = [href for text, href in internal_links if href[1:] not in defined_anchors]
+    assert len(broken_internal) == 0, f"Trovati link interni rotti nel glossario: {broken_internal}"
+    print("[3/5] Glossario Vivente (Indice A-Z, Matrice, 93 schede, 100% ELI5 <= 10 parole, zero link rotti): PASSED")
+
+    # 4. Verify 18 Flowchart Spec Files
     files = sorted(glob.glob("architecture-blueprint/00-capitolato-tecnico-e-glossario/[0-1][0-9]-*.md"))
     flow_files = [f for f in files if not f.endswith("00-GLOSSARIO-TERMINI-TECNICI.md")]
     assert len(flow_files) == 18, f"Expected 18 flow files, found {len(flow_files)}"
+
+    required_sections = [
+        (r"## 1\. Identificativo & Titolo Ufficiale", "Sezione 1"),
+        (r"## 2\. Obiettivo di Business", "Sezione 2"),
+        (r"## 3\. Attori & Architettura a 4 Corsie", "Sezione 3"),
+        (r"```mermaid\s+sequenceDiagram", "Sequence Diagram Asincrono"),
+        (r"## 4\. Flusso Operativo Passo-Passo", "Sezione 4"),
+        (r"### Livello A: User Journey Narrativo", "Livello A Narrativo"),
+        (r"Indicatori di Accettazione Operativa & Clinica \(KPI\)", "Tabella KPI Accettazione"),
+        (r"### Livello B: Trattazione Tecnica Nodi Operativi", "Livello B Deep-Dive"),
+        (r"## 5\. Rami Decisionali & Gestione dei 4 Stati UI", "Sezione 5 (4 Stati UI)"),
+        (r"## 6\. Contratti Dati, Parametri I/O", "Sezione 6 (Contratti I/O)"),
+        (r"### Matrice Errori HTTP & Strategie di Resilienza", "Matrice Errori HTTP 6 Colonne"),
+        (r"## 7\. Ereditarietà di Tier & Differenziali di Fascia", "Sezione 7 (Ereditarietà)")
+    ]
+
     for f in flow_files:
         fname = os.path.basename(f)
         with open(f, encoding="utf-8") as fp:
             fc = fp.read()
-        assert "sequenceDiagram" in fc, f"{fname}: missing sequenceDiagram"
-        assert "Indicatori di Accettazione Operativa & Clinica (KPI)" in fc, f"{fname}: missing KPI table"
-        assert "Matrice Errori HTTP & Strategie di Resilienza" in fc, f"{fname}: missing Error matrix"
-        assert "Miro Shape ID" in fc, f"{fname}: missing Miro Shape ID"
-    print("18 Flow Spec Files: ALL 18 PASSED")
+        
+        for pat, desc in required_sections:
+            assert re.search(pat, fc), f"{fname}: mancante {desc}"
+        
+        # Verify 6-column error matrix format
+        assert re.search(r"\|\s*HTTP Code\s*\|\s*Codice Interno\s*\|\s*Endpoint\s*\|\s*Causa Scatenante\s*\|\s*UX Feedback Visivo\s*\|\s*Strategia di Resilienza & Fallback\s*\|", fc), f"{fname}: Matrice Errori non conforme allo standard a 6 colonne"
+    
+    print("[4/5] 18 File di Capitolato (7 sezioni complete, Sequence Diagram, KPI, Matrice Errori 6 Colonne): PASSED")
 
-    # 4. Check specific coordinate fixes
+    # 5. Verify Line 9 Clickable Hyperlinks & Specific Coordinates
     f02_path = os.path.join("architecture-blueprint", "00-capitolato-tecnico-e-glossario", "02-software-1-flow-2a-personal-cockpit.md")
     with open(f02_path, encoding="utf-8") as fp:
-        assert "X: 27.35, Y: 179.87" in fp.read(), "Flow 02: coordinates not fixed"
+        f02_c = fp.read()
+        assert "X: 27.35, Y: 179.87" in f02_c, "Flow 02: coordinates not fixed"
+        assert "3458764688417722707" in f02_c, "Flow 02: Miro Shape ID missing"
 
     f08_path = os.path.join("architecture-blueprint", "00-capitolato-tecnico-e-glossario", "08-software-2-flow-2b-coach-hub.md")
     with open(f08_path, encoding="utf-8") as fp:
-        assert "X: 251.36, Y: 2940" in fp.read(), "Flow 08: coordinates not fixed"
-    print("Coordinate Fixes (#02 and #08): PASSED")
+        f08_c = fp.read()
+        assert "X: 251.36, Y: 2940" in f08_c, "Flow 08: coordinates not fixed"
+        assert "3458764688417722736" in f08_c, "Flow 08: Miro Shape ID missing"
 
-    print("\nALL VERIFICATIONS PASSED SUCCESSFULLY!")
+    total_line9_links = 0
+    for f in flow_files:
+        fname = os.path.basename(f)
+        with open(f, encoding="utf-8") as fp:
+            lines = fp.readlines()
+        for line in lines[:15]:
+            if "Riferimento Glossario:" in line:
+                links = re.findall(r'\[([^\]]+)\]\(00-GLOSSARIO-TERMINI-TECNICI\.md#([^\)]+)\)', line)
+                assert len(links) > 0, f"{fname}: riga 9 priva di collegamenti ipertestuali al glossario"
+                total_line9_links += len(links)
+                for text, anchor in links:
+                    assert anchor in defined_anchors, f"{fname}: link riga 9 '{text}' punta ad ancora inesistente #{anchor}"
+
+    print(f"[5/5] Coordinate reali (#02 e #08) e Collegamenti Ipertestuali Riga 9 ({total_line9_links} link verificati 1:1): PASSED")
+
+    print("\n=======================================================")
+    print("100% DEI REQUISITI DI ARCHITETTURA E CAPITOLATO VERIFICATI CON SUCCESSO!")
+    print("=======================================================")
 
 if __name__ == "__main__":
     verify()

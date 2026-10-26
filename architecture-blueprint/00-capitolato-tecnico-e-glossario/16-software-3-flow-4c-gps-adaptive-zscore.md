@@ -6,7 +6,7 @@
 - **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 4C: GPS TELEMETRY & ADAPTIVE Z-SCORE FATIGUE PROFILING
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 4: Telemetria GPS & Z-Score Squadra)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-4c-gps-adaptive-zscore.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Adaptive Z-Score 28gg, Telemetria GPS 10-18Hz, Potenza Metabolica Osgnach W/kg, Dilution of Precision DOP, Cold-Start Nuovi Acquisti, HRV Fusion*).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Adaptive Z-Score 28gg](00-GLOSSARIO-TERMINI-TECNICI.md#z-score-adattivo-normalizzazione-statistica), [Telemetria GPS 10-18Hz](00-GLOSSARIO-TERMINI-TECNICI.md#dop-hdop-dilution-of-precision-satellite-filtering), [Potenza Metabolica Osgnach W/kg](00-GLOSSARIO-TERMINI-TECNICI.md#osgnach-metabolic-power-wkg-high-metabolic-load-distance), [Dilution of Precision DOP](00-GLOSSARIO-TERMINI-TECNICI.md#dop-hdop-dilution-of-precision-satellite-filtering), [Cold-Start Nuovi Acquisti](00-GLOSSARIO-TERMINI-TECNICI.md#fallback-per-nuovi-acquisti-cold-start-senza-baseline), [HRV Fusion](00-GLOSSARIO-TERMINI-TECNICI.md#hrv-fusion-integrazione-carico-internoesterno)).
 
 ---
 

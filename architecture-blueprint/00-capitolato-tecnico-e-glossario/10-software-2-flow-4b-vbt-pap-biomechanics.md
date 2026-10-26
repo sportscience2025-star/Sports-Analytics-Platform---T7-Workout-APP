@@ -6,7 +6,7 @@
 - **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 4B: BIOMECHANICAL VBT & PAP JUMP ANALYSIS
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 4: VBT & Valutazione Biomeccanica)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-4b-vbt-pap-biomechanics.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Velocity Based Training VBT, Mean Propulsive Velocity MPV, Minimum Velocity Threshold MVT, Post-Activation Potentiation PAP, Minimal Detectable Change MDC 95%, Filtro Outlier MAD*).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Velocity Based Training VBT](00-GLOSSARIO-TERMINI-TECNICI.md#vbt-velocity-based-training), [Mean Propulsive Velocity MPV](00-GLOSSARIO-TERMINI-TECNICI.md#mean-propulsive-velocity-mpv-vs-peak-velocity), [Minimum Velocity Threshold MVT](00-GLOSSARIO-TERMINI-TECNICI.md#mvt-minimum-velocity-threshold), [Post-Activation Potentiation PAP](00-GLOSSARIO-TERMINI-TECNICI.md#pap-post-activation-potentiation), [Minimal Detectable Change MDC 95%](00-GLOSSARIO-TERMINI-TECNICI.md#minimal-detectable-change-mdc-95-cohens-d), [Filtro Outlier MAD](00-GLOSSARIO-TERMINI-TECNICI.md#filtro-outlier-mad-median-absolute-deviation)).
 
 ---
 

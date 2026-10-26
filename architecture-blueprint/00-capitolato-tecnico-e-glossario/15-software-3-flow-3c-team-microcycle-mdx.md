@@ -6,7 +6,7 @@
 - **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 3C: ARCHITETTURA BUNKER SILO 2 & MICROCICLO SQUADRA MD-X
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 3: Architettura Bunker & Microciclo Gara)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-3c-team-microcycle-mdx.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Microciclo MD-X, Modello Titolari vs Panchinari, ACWR EWMA, Doppio Ruolo Tattico Ponderato, Silo 2 Bunker KMS, Silo 3 Research Warehouse*).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Microciclo MD-X](00-GLOSSARIO-TERMINI-TECNICI.md#microciclo-md-x-modello-titolari-vs-panchinari), [Modello Titolari vs Panchinari](00-GLOSSARIO-TERMINI-TECNICI.md#microciclo-md-x-modello-titolari-vs-panchinari), [ACWR EWMA](00-GLOSSARIO-TERMINI-TECNICI.md#acwr-ewma-exponentially-weighted-moving-average), [Doppio Ruolo Tattico Ponderato](00-GLOSSARIO-TERMINI-TECNICI.md#z-weighting-gestione-doppio-ruolo-tattico), [Silo 2 Bunker KMS](00-GLOSSARIO-TERMINI-TECNICI.md#cloud-kms-key-management-service), [Silo 3 Research Warehouse](00-GLOSSARIO-TERMINI-TECNICI.md#3-silos-database-multi-tenant-data-isolation)).
 
 ---
 

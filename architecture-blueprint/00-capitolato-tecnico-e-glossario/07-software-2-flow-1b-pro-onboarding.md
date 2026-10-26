@@ -6,7 +6,7 @@
 - **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 1B: ONBOARDING PROFESSIONALE & SETUP FISCALE P.IVA ANTI-FRODE (T7 PRO)
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 1: Onboarding Professionale)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-1b-pro-onboarding.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *RBAC Role-Based Access Control, Sistema di Interscambio SDI, Know Your Customer KYC, 3D Liveness Check, Stripe Connect Custom*).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [RBAC Role-Based Access Control](00-GLOSSARIO-TERMINI-TECNICI.md#rbac-role-based-access-control-a-3-tiers-x-8-ruoli), [Sistema di Interscambio SDI](00-GLOSSARIO-TERMINI-TECNICI.md#vies-sistema-di-interscambio-sdi), [Know Your Customer KYC](00-GLOSSARIO-TERMINI-TECNICI.md#kyb-know-your-business-ubo-ultimate-beneficial-owner), [3D Liveness Check](00-GLOSSARIO-TERMINI-TECNICI.md#stripe-identity-biometric-liveness-3d), [Stripe Connect Custom](00-GLOSSARIO-TERMINI-TECNICI.md#rolling-reserve-escrow-anti-chargeback)).
 
 ---
 

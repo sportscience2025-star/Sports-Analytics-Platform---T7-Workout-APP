@@ -6,7 +6,7 @@
 - **Titolo Formale:** SOFTWARE 1 (B2C CONSUMER) - FLOW 4A: WORKFLOW FUNZIONALI & WEARABLE HEALTH SYNC
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 1: General User / Casual, Colonna 4: Workflow Funzionali & Wearables)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-1-consumer-b2c/flow-4a-wearable-sync.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Apple HealthKit, Google Health Connect, Heart Rate Variability HRV, rMSSD, Training Readiness Score, Filtro Outlier*).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Apple HealthKit](00-GLOSSARIO-TERMINI-TECNICI.md#apple-healthkit-google-health-connect-pipeline), [Google Health Connect](00-GLOSSARIO-TERMINI-TECNICI.md#apple-healthkit-google-health-connect-pipeline), [Heart Rate Variability HRV](00-GLOSSARIO-TERMINI-TECNICI.md#heart-rate-variability-hrv-rmssd-recovery-score), [rMSSD](00-GLOSSARIO-TERMINI-TECNICI.md#heart-rate-variability-hrv-rmssd-recovery-score), [Training Readiness Score](00-GLOSSARIO-TERMINI-TECNICI.md#training-readiness-composite-score), [Filtro Outlier](00-GLOSSARIO-TERMINI-TECNICI.md#filtro-outlier-mad-median-absolute-deviation)).
 
 ---
 

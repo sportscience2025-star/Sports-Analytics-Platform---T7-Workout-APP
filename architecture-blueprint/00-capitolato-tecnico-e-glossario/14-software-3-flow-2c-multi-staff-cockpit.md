@@ -6,7 +6,7 @@
 - **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 2C: CATALOGO 3D, VIDEO MULTI-CAMERA 4K & LIBRERIA CLUB A 2 LIVELLI
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 2: Catalogo Tattico & Cockpit Multi-Staff)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-2c-multi-staff-cockpit.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Secret Club Vault, Digital Twin 3D Squadra, Multi-Camera 4K Sync, Doppia Firma Digitale Tecnico-Sanitaria, Watermarking Dinamico Anti-Leak*).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Secret Club Vault](00-GLOSSARIO-TERMINI-TECNICI.md#multi-camera-4k-sync-secret-club-vault), [Digital Twin 3D Squadra](00-GLOSSARIO-TERMINI-TECNICI.md#digital-twin-biomeccanico-dellatleta), [Multi-Camera 4K Sync](00-GLOSSARIO-TERMINI-TECNICI.md#multi-camera-4k-sync-secret-club-vault), [Doppia Firma Digitale Tecnico-Sanitaria](00-GLOSSARIO-TERMINI-TECNICI.md#electronic-medical-record-emr-segreto-medico), [Watermarking Dinamico Anti-Leak](00-GLOSSARIO-TERMINI-TECNICI.md#dynamic-forensic-watermarking-anti-leak)).
 
 ---
 

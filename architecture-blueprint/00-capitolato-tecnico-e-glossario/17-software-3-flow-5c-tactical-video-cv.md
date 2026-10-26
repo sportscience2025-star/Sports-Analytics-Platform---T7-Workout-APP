@@ -6,7 +6,7 @@
 - **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 5C: TACTICAL VISION, COMPUTER VISION SUL CAMPO & DIAGRAMMI DI VORONOI
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 5: Tactical Vision & Computer Vision)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-5c-tactical-video-cv.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Tactical Vision Computer Vision, Omografia Prospettica 2D, Diagrammi di Voronoi Campo, Modello YOLOv8 Object Detection, Zero Social Leakage, Baricentro Squadra*).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Tactical Vision Computer Vision](00-GLOSSARIO-TERMINI-TECNICI.md#tactical-vision-omografia-prospettica-2d-da-telecamera-campo), [Omografia Prospettica 2D](00-GLOSSARIO-TERMINI-TECNICI.md#tactical-vision-omografia-prospettica-2d-da-telecamera-campo), [Diagrammi di Voronoi Campo](00-GLOSSARIO-TERMINI-TECNICI.md#diagrammi-di-voronoi-spazio-di-controllo-pitch), [Modello YOLOv8 Object Detection](00-GLOSSARIO-TERMINI-TECNICI.md#yolov8-deep-learning-object-detection-da-campo), [Zero Social Leakage](00-GLOSSARIO-TERMINI-TECNICI.md#3-silos-database-multi-tenant-data-isolation), [Baricentro Squadra](00-GLOSSARIO-TERMINI-TECNICI.md#baricentro-di-squadra-ampiezza-profondit-tattica)).
 
 ---
 

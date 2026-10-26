@@ -6,7 +6,7 @@
 - **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 1C: ONBOARDING ENTERPRISE, FEDERAZIONE SSO & ACCESSO BLINDATO BUNKER CLUB KMS
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 1: Onboarding Enterprise & Bunker KMS)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-1c-bunker-onboarding-kms.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Silo 2 Bunker Club, Cloud KMS Envelope Encryption, Mutual TLS mTLS, SAML 2.0 SSO, FIDO2 Hardware Keys, WORM Audit Log*).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Silo 2 Bunker Club](00-GLOSSARIO-TERMINI-TECNICI.md#3-silos-database-multi-tenant-data-isolation), [Cloud KMS Envelope Encryption](00-GLOSSARIO-TERMINI-TECNICI.md#cloud-kms-key-management-service), [Mutual TLS mTLS](00-GLOSSARIO-TERMINI-TECNICI.md#mtls-mutual-transport-layer-security-chiavi-hardware-fido2), [SAML 2.0 SSO](00-GLOSSARIO-TERMINI-TECNICI.md#saml-20-enterprise-federation-single-sign-on), [FIDO2 Hardware Keys](00-GLOSSARIO-TERMINI-TECNICI.md#mtls-mutual-transport-layer-security-chiavi-hardware-fido2), [WORM Audit Log](00-GLOSSARIO-TERMINI-TECNICI.md#worm-storage-write-once-read-many-audit-logs)).
 
 ---
 

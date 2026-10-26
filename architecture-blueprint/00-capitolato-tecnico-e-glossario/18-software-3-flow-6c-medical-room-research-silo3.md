@@ -6,7 +6,7 @@
 - **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 6C: MEDICAL ROOM EMR, RETURN-TO-PLAY 6 FASI & RESEARCH LAKE SILO 3
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 6: Cartella Clinica EMR, RTP & Ricerca Silo 3)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-6c-medical-room-research-silo3.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Electronic Medical Record EMR, Protocollo Return to Play 6 Fasi, Segreto Medico Oscuramento Diagnosi, Silo 3 Research Warehouse, Pipeline ETL De-Identificazione, K-Anonimato Sanitario*).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Electronic Medical Record EMR](00-GLOSSARIO-TERMINI-TECNICI.md#electronic-medical-record-emr-segreto-medico), [Protocollo Return to Play 6 Fasi](00-GLOSSARIO-TERMINI-TECNICI.md#return-to-play-rtp-a-6-fasi-congiunto), [Segreto Medico Oscuramento Diagnosi](00-GLOSSARIO-TERMINI-TECNICI.md#electronic-medical-record-emr-segreto-medico), [Silo 3 Research Warehouse](00-GLOSSARIO-TERMINI-TECNICI.md#3-silos-database-multi-tenant-data-isolation), [Pipeline ETL De-Identificazione](00-GLOSSARIO-TERMINI-TECNICI.md#k-anonymity-zero-knowledge-privacy-shield), [K-Anonimato Sanitario](00-GLOSSARIO-TERMINI-TECNICI.md#k-anonymity-zero-knowledge-privacy-shield)).
 
 ---
 

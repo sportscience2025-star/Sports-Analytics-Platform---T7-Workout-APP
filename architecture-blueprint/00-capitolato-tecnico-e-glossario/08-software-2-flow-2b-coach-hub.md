@@ -6,7 +6,7 @@
 - **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 2B: CATALOGO 3D, VIDEO IN-APP & REVISIONE BIOMECCANICA AI (T7 PRO)
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 2: Catalogo Professionale & Video AI)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-2b-coach-hub.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Multimodal RAG, Pose Estimation, WebRTC MediaStream, Digital Twin 3D, GDPR Video Cryptography*).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Multimodal RAG](00-GLOSSARIO-TERMINI-TECNICI.md#revisione-coerente-ai-multimodal-rag-web-biomechanical-audit), [Pose Estimation](00-GLOSSARIO-TERMINI-TECNICI.md#mediapipe-blazepose-3d-edge-pose-estimation-su-video-mobile), [WebRTC MediaStream](00-GLOSSARIO-TERMINI-TECNICI.md#webrtc-mediastream-secure-video-recording), [Digital Twin 3D](00-GLOSSARIO-TERMINI-TECNICI.md#digital-twin-biomeccanico-dellatleta), [GDPR Video Cryptography](00-GLOSSARIO-TERMINI-TECNICI.md#dynamic-forensic-watermarking-anti-leak)).
 
 ---
 

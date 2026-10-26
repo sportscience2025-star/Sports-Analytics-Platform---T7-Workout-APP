@@ -6,7 +6,7 @@
 - **Titolo Formale:** SOFTWARE 1 (B2C CONSUMER) - FLOW 3A: ARCHITETTURA DI SISTEMA, THIN CLIENT & INTERACTIVE WORKOUT PLAYER
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 1: General User / Casual, Colonna 3: Architettura di Sistema & Workout Player)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-1-consumer-b2c/flow-3a-workout-player.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Thin Client, Service Worker Offline-First, IndexedDB, Tonnellaggio & Volume, Epley 1RM Formula, Rate of Perceived Exertion RPE*).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Thin Client](00-GLOSSARIO-TERMINI-TECNICI.md#thin-client-guscio-visivo), [Service Worker Offline-First](00-GLOSSARIO-TERMINI-TECNICI.md#service-worker-offline-first-cache-storage-api), [IndexedDB](00-GLOSSARIO-TERMINI-TECNICI.md#indexeddb-optimistic-transaction-queue), [Tonnellaggio & Volume](00-GLOSSARIO-TERMINI-TECNICI.md#tonnellaggio-volume-di-carico-sets-x-reps-x-kg), [Epley 1RM Formula](00-GLOSSARIO-TERMINI-TECNICI.md#epley-1rm-formula-stima-sub-massimale), [Rate of Perceived Exertion RPE](00-GLOSSARIO-TERMINI-TECNICI.md#scale-rpe-rir-borg-cr10-reps-in-reserve)).
 
 ---
 

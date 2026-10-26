@@ -6,7 +6,7 @@
 - **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 5B: TOGETHER PRO BUSINESS, LEAD ONBOARDING & VIDEO REVISIONE REMOTA
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 5: Business Pro, Lead & Video Review)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-5b-together-pro-business.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Together Pro Marketplace, Video Annotazione Tecnica, Stripe Connect Transfers, Bar Path Tracking, Assegnazione Schede Remota*).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Together Pro Marketplace](00-GLOSSARIO-TERMINI-TECNICI.md#together-pro-marketplace-video-annotazione-tecnica), [Video Annotazione Tecnica](00-GLOSSARIO-TERMINI-TECNICI.md#together-pro-marketplace-video-annotazione-tecnica), [Stripe Connect Transfers](00-GLOSSARIO-TERMINI-TECNICI.md#together-pro-marketplace-video-annotazione-tecnica), [Bar Path Tracking](00-GLOSSARIO-TERMINI-TECNICI.md#bar-path-optical-tracking-traiettoria-bilanciere-da-cv), [Assegnazione Schede Remota](00-GLOSSARIO-TERMINI-TECNICI.md#together-pro-marketplace-video-annotazione-tecnica)).
 
 ---
 

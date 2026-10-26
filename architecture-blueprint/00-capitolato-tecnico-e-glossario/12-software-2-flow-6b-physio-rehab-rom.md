@@ -6,7 +6,7 @@
 - **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 6B: PHYSIO REHAB PROTOCOLS, MISURAZIONE ROM DIGITALE & SCALA VAS
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 6: Fisioterapia Clinica & Riabilitazione)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-6b-physio-rehab-rom.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *Range of Motion ROM, Goniometro Digitale AI, Scala VAS del Dolore, 32 Protocolli Riabilitativi cli_01..32, Barriera Motoria di Sicurezza*).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Range of Motion ROM](00-GLOSSARIO-TERMINI-TECNICI.md#limitatore-goniometrico-di-rom-touch-range-of-motion-lock), [Goniometro Digitale AI](00-GLOSSARIO-TERMINI-TECNICI.md#goniometro-digitale-ai-markerless-joint-angle-extraction), [Scala VAS del Dolore](00-GLOSSARIO-TERMINI-TECNICI.md#scala-vas-del-dolore-visual-analogue-scale-0-10), [32 Protocolli Riabilitativi cli_01..32](00-GLOSSARIO-TERMINI-TECNICI.md#32-protocolli-riabilitativi-clinici-cli01cli32), [Barriera Motoria di Sicurezza](00-GLOSSARIO-TERMINI-TECNICI.md#limitatore-goniometrico-di-rom-touch-range-of-motion-lock)).
 
 ---
 

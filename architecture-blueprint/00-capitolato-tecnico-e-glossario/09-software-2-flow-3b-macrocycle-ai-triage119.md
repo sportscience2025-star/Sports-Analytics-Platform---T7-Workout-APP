@@ -6,7 +6,7 @@
 - **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 3B: ARCHITETTURA PRO, GENERATORE MACROCICLI IA & CLINICAL TRIAGE 119
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 3: Architettura Pro & Periodizzazione)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-3b-macrocycle-ai-triage119.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](file:///e:/Nuove%20App%20Installate/Sports-Analytics-Platform---T7-Workout-APP/architecture-blueprint/00-capitolato-tecnico-e-glossario/00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: *ImpactCalculator Triage 119, Periodizzazione DUP, Periodizzazione a Blocchi, Coniugata Westside, Excel Sbloccato protected:false, RAG Scientifico con Gerarchia Fonti*).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [ImpactCalculator Triage 119](00-GLOSSARIO-TERMINI-TECNICI.md#triage-clinico-patologie-impactcalculator), [Periodizzazione DUP](00-GLOSSARIO-TERMINI-TECNICI.md#dup-daily-undulating-periodization), [Periodizzazione a Blocchi](00-GLOSSARIO-TERMINI-TECNICI.md#periodizzazione-a-blocchi-coniugata), [Coniugata Westside](00-GLOSSARIO-TERMINI-TECNICI.md#periodizzazione-a-blocchi-coniugata), [Excel Sbloccato protected:false](00-GLOSSARIO-TERMINI-TECNICI.md#excel-sbloccato-protected-false-data-interoperability), [RAG Scientifico con Gerarchia Fonti](00-GLOSSARIO-TERMINI-TECNICI.md#rag-gerarchico-scientifico-retrieval-augmented-generation)).
 
 ---
 
