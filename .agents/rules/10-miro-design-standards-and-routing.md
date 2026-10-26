@@ -87,3 +87,5 @@ In ogni flusso di interfaccia devono essere esplicitati:
    - Snap points espliciti: utilizzare sempre punti di ancoraggio coerenti (`snapTo: top, bottom, left, right`).
 2. **Validazione Geometrica Prima della Chiusura:**
    - Prima di considerare conclusa qualsiasi operazione sui connettori o sul riposizionamento di forme su Miro, eseguire lo script di calcolo delle intersezioni per certificare **0 crossings** (nessuna sovrapposizione linea-forma).
+3. **Controllo Ingegneristico Documentale (Regola 08, Sez. 7):**
+   - Prima di considerare conclusa qualsiasi modifica o estensione ai flowchart su Miro, verificare tassativamente che sia stato aggiornato il corrispondente file `.md` di capitolato tecnico in `architecture-blueprint/00-capitolato-tecnico-e-glossario/`, il Glossario Tecnico Vivente e la cascata top-down sui diagrammi sottostanti.
