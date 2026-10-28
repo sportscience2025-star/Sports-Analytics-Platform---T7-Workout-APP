@@ -27,6 +27,7 @@ scratch/
 
 # Ensure critical architecture and agent sync files are explicitly tracked
 !.agents/
+.agents/teamwork/
 !.vscode/extensions.json
 !architecture-blueprint/
 
