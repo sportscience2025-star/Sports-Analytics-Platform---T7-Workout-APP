@@ -973,20 +973,20 @@ Questo documento costituisce la versione locale e sincronizzata su Git della **L
 #### <a id="variable-playback-rate-frame-by-frame-scrubbing-120fps"></a>Variable Playback Rate & Frame-by-Frame Scrubbing (120fps)
 **ELI5:** "Rallentatore millimetrico per analizzare ogni istante del movimento."
 
-- **Spiegazione Semplificata:** Controlli di riproduzione dinamica con velocità variabile (da 0.25x a 2.0x per Tier 2; scrubbing frame-by-frame a 120fps per Tier 3) per esaminare dettagli impercettibili a occhio nudo come impatti al suolo, deviazioni angolari e inversioni di fase concentrica/eccentrica.
+- **Spiegazione Semplificata:** Controlli di riproduzione dinamica con velocità variabile (da 0.25x a 2.0x per Tier 2 (1080p); scrubbing frame-by-frame a 120fps per Tier 3 (4K/8K)) per esaminare dettagli impercettibili a occhio nudo come impatti al suolo, deviazioni angolari e inversioni di fase concentrica/eccentrica.
 - **Ruolo Operativo nel Progetto T7:** Fornisce a coach e preparatori uno strumento di precisione chirurgica per la diagnostica biomeccanica e la riatletizzazione.
 - **Zona / Flusso di Riferimento:** Colonna 2, Righe 2 e 3 (Coach Hub & Multi-Staff Cockpit). (Flussi Miro: `#08, #14`)
 
-#### <a id="video-ingest-tiers-1080p-consumer-2k-pro-4k8k-enterprise"></a>Video Ingest Tiers (1080p Consumer, 2K Pro, 4K/8K Enterprise)
-**ELI5:** "Risoluzioni video graduate in base all'abbonamento dell'utente."
+#### <a id="video-ingest-tiers-policy-tier-1-zero-upload-tier-2-1080p-tier-3-4k8k"></a>Video Ingest Tiers (Zero Upload Tier 1, 1080p Pro Tier 2, 4K/8K Enterprise Tier 3)
+**ELI5:** "Politica video: zero upload nel piano base, 1080p per i coach, 4K/8K per i club."
 
-- **Spiegazione Semplificata:** Policy architetturale di segmentazione della qualità video: 1080p Full HD per utenti consumer (video caricato as-is con trim base), 2K 1440p per coach e fisioterapisti (con controlli di velocità e pose estimation), e 4K/8K broadcast grade per club d'élite (con sincronizzazione multi-camera e suite di editing avanzata).
-- **Ruolo Operativo nel Progetto T7:** Bilancia storage cloud e banda garantendo un'esperienza calibrata sulle reali esigenze dei singoli target.
-- **Zona / Flusso di Riferimento:** Colonna 2, Righe 1, 2 e 3 (Catalogo 3D & Video Ingest). (Flussi Miro: `#02, #08, #14`)
+- **Spiegazione Semplificata:** Policy architetturale di segmentazione della capacità video: Tier 1 Consumer a **Zero Upload** (dedicato esclusivamente alla consultazione interattiva dell'Avatar 3D e video pre-renderizzato 2D fallback); Tier 2 Pro (Coach e Fisioterapisti P.IVA) con upload video fino a **1080p Full HD a 60fps** (con trimming WebCodecs, controlli di velocità slow-motion 0.25x-2.0x e MediaPipe 3D); Tier 3 Enterprise/Club con acquisizione broadcast **4K / 8K** (multi-camera SMPTE sync, 120fps frame scrubbing, Telestrator tattico, Dynamic Forensic Watermark e doppio livello di libreria Secret Club Vault).
+- **Ruolo Operativo nel Progetto T7:** Protegge l'integrità del business model, abbatte i costi di storage su Silo 1, garantisce conformità GDPR e offre un percorso di upgrade coerente e scalabile.
+- **Zona / Flusso di Riferimento:** Colonna 2, Righe 1, 2 e 3 (Catalogo Esercizi & 3D Video Tiers). (Flussi Miro: `#02, #08, #14`)
 
 #### <a id="webcodecs-api-client-side-lossless-trimming"></a>WebCodecs API & Client-Side Lossless Trimming
 **ELI5:** "Taglia i video direttamente nel browser senza sprecare internet."
 
 - **Spiegazione Semplificata:** Standard web moderno ad alte prestazioni che consente di decodificare, ritagliare e ricodificare fotogrammi video tramite accelerazione hardware direttamente sul dispositivo dell'utente, senza inviare file pesanti al server per il solo ritaglio di inizio e fine clip.
-- **Ruolo Operativo nel Progetto T7:** Permette il trimming istantaneo a tutti e 3 i Tier eliminando tempi morti ed evitando costi e latenze di transcodifica server.
+- **Ruolo Operativo nel Progetto T7:** Permette il trimming istantaneo e lossless client-side per Tier 2 (taglio clip singola coach) e Tier 3 (multi-traccia SMPTE) eliminando tempi morti ed evitando costi e latenze di transcodifica server.
 - **Zona / Flusso di Riferimento:** Colonna 2, Righe 1, 2 e 3 (Catalogo 3D & Video Ingest). (Flussi Miro: `#02, #08, #14`)

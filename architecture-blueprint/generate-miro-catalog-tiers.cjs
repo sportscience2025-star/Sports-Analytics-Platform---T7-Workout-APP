@@ -104,7 +104,7 @@ async function buildFullBoard() {
   t2.UI_CAM_RECORD = await createShape({
     x: -800, y: 3260, width: 500, height: 90, shape: 'rectangle',
     fillColor: '#e0f2fe', borderColor: '#0284c7', color: '#0f172a',
-    content: '<p><strong>In-App Camera Pro: Ripresa Atleta Max 2K (1440p 60fps) &amp; Trimming</strong></p><p>&bull; Alta risoluzione per analisi posturale studio/palestra &bull; Trimming temporale frame-accurate</p>'
+    content: '<p><strong>In-App Camera Pro: Ripresa Atleta Max 1080p (Full HD 60fps) &amp; Trimming</strong></p><p>&bull; Alta risoluzione per analisi posturale studio/palestra &bull; Trimming temporale frame-accurate</p>'
   });
 
   t2.UI_EDGE_POSE = await createShape({
