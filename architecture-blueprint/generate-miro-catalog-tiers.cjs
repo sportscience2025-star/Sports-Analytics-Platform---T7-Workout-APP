@@ -104,13 +104,13 @@ async function buildFullBoard() {
   t2.UI_CAM_RECORD = await createShape({
     x: -800, y: 3260, width: 500, height: 90, shape: 'rectangle',
     fillColor: '#e0f2fe', borderColor: '#0284c7', color: '#0f172a',
-    content: '<p><strong>In-App Camera: Registrazione Video Atleta</strong></p><p>&bull; Ripresa live atleta su esercizio personalizzato non codificato</p>'
+    content: '<p><strong>In-App Camera Pro: Ripresa Atleta Max 2K (1440p 60fps) &amp; Trimming</strong></p><p>&bull; Alta risoluzione per analisi posturale studio/palestra &bull; Trimming temporale frame-accurate</p>'
   });
 
   t2.UI_EDGE_POSE = await createShape({
     x: -800, y: 3385, width: 500, height: 90, shape: 'rectangle',
     fillColor: '#e0f2fe', borderColor: '#0284c7', color: '#0f172a',
-    content: '<p><strong>Edge Computer Vision: Estrazione Keypoints 3D</strong></p><p>&bull; MediaPipe 33 landmark scheletrici &bull; Angoli articolari e ROM in tempo reale</p>'
+    content: '<p><strong>Edge Computer Vision: Estrazione Keypoints 3D &amp; Speed Control (0.25x - 2.0x)</strong></p><p>&bull; MediaPipe 33 landmark &bull; Rallentatore (0.25x, 0.5x, 0.75x) &amp; Accelerazione (fino a 2.0x)</p>'
   });
 
   t2.UI_DRAFT_FORM = await createShape({
@@ -358,13 +358,13 @@ async function buildFullBoard() {
   t3.UI_CAM_CAPTURE = await createShape({
     x: -800, y: 5640, width: 500, height: 90, shape: 'rectangle',
     fillColor: '#e0f2fe', borderColor: '#0284c7', color: '#0f172a',
-    content: '<p><strong>In-App Camera Pro: Ripresa Giocatore su Gesto Tecnico / RTP</strong></p><p>&bull; Registrazione video ad alta frequenza &bull; Acquisizione campo o palestra societaria</p>'
+    content: '<p><strong>In-App Camera Elite: Acquisizione 4K/8K &amp; Multi-Camera Sync SMPTE</strong></p><p>&bull; Telecamere fisse 4K/8K a 120fps/240fps &bull; Trimming multi-traccia sincrono (&lt; 10ms jitter)</p>'
   });
 
   t3.UI_MARKERLESS = await createShape({
     x: -800, y: 5765, width: 500, height: 90, shape: 'rectangle',
     fillColor: '#e0f2fe', borderColor: '#0284c7', color: '#0f172a',
-    content: '<p><strong>Edge Computer Vision 3D: Markerless Pose Tracking</strong></p><p>&bull; Tracciamento cinematico 3D multi-articolare senza tute o marker invasivi</p>'
+    content: '<p><strong>Scrubbing Frame-by-Frame (120fps) &amp; Suite Tattica (Telestrator &amp; Barbell Path)</strong></p><p>&bull; Rallentatore millimetrico per impatti violenti &bull; Disegno vettoriale e vettori forza (N)</p>'
   });
 
   t3.UI_STAFF_DRAFT = await createShape({

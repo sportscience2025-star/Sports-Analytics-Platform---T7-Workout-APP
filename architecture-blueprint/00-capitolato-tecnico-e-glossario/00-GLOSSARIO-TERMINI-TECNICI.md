@@ -133,6 +133,7 @@ Questo documento costituisce la versione locale e sincronizzata su Git della **L
 - [Scale RPE & RIR (Borg CR10 / Reps in Reserve)](#scale-rpe-rir-borg-cr10-reps-in-reserve) — *Metodologia d'Allenamento & Clinica Sportiva*
 - [Secret Club Vault & Multi-Camera 4K Sync](#secret-club-vault-multi-camera-4k-sync) — *Sicurezza Enterprise & Identità Societaria (Tier 3)*
 - [Service Worker Offline-First & Cache Storage API](#service-worker-offline-first-cache-storage-api) — *Ingegneria Software & Architettura Cloud*
+- [SMPTE Timecode Multi-Camera Synchronization](#smpte-timecode-multi-camera-synchronization) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [Step-Up Verification (Verifica Telefono Anti-Troll per Community)](#step-up-verification-verifica-telefono-anti-troll-per-community) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [Stripe Identity & Biometric Liveness 3D](#stripe-identity-biometric-liveness-3d) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [Swimlanes (Corsie Architetturali nei Flowchart)](#swimlanes-corsie-architetturali-nei-flowchart) — *Ingegneria Software & Architettura Cloud*
@@ -140,6 +141,7 @@ Questo documento costituisce la versione locale e sincronizzata su Git della **L
 ### <a id="letter-t"></a>T
 
 - [Tactical Vision & Omografia Prospettica 2D da Telecamera Campo](#tactical-vision-omografia-prospettica-2d-da-telecamera-campo) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
+- [Telestrator & Tactical Video Annotations](#telestrator-tactical-video-annotations) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [Text-to-Kinematics 3D Synthesis (Generatore di Esercizi Solo-Testo)](#text-to-kinematics-3d-synthesis-generatore-di-esercizi-solo-testo) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [Thin Client (Guscio Visivo)](#thin-client-guscio-visivo) — *Ingegneria Software & Architettura Cloud*
 - [Together Pro Marketplace & Video Annotazione Tecnica](#together-pro-marketplace-video-annotazione-tecnica) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
@@ -151,12 +153,15 @@ Questo documento costituisce la versione locale e sincronizzata su Git della **L
 ### <a id="letter-v"></a>V
 
 - [Valgismo Dinamico del Ginocchio](#valgismo-dinamico-del-ginocchio) — *Biomeccanica & Valutazione Funzionale*
+- [Variable Playback Rate & Frame-by-Frame Scrubbing (120fps)](#variable-playback-rate-frame-by-frame-scrubbing-120fps) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [VBT (Velocity Based Training)](#vbt-velocity-based-training) — *Biomeccanica & Valutazione Funzionale*
+- [Video Ingest Tiers (1080p Consumer, 2K Pro, 4K/8K Enterprise)](#video-ingest-tiers-1080p-consumer-2k-pro-4k8k-enterprise) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [VIES & Sistema di Interscambio (SDI)](#vies-sistema-di-interscambio-sdi) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 
 ### <a id="letter-w"></a>W
 
 - [WebAuthn (Passkeys & Biometria Hardware)](#webauthn-passkeys-biometria-hardware) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
+- [WebCodecs API & Client-Side Lossless Trimming](#webcodecs-api-client-side-lossless-trimming) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [WebRTC MediaStream & Secure Video Recording](#webrtc-mediastream-secure-video-recording) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [WORM Storage (Write-Once-Read-Many) Audit Logs](#worm-storage-write-once-read-many-audit-logs) — *Sicurezza Enterprise & Identità Societaria (Tier 3)*
 
@@ -949,3 +954,39 @@ Questo documento costituisce la versione locale e sincronizzata su Git della **L
 - **Spiegazione Semplificata:** Rete neurale convoluzionale ad altissima velocita per il rilevamento di oggetti multipli in tempo reale su flussi video complessi.
 - **Ruolo Operativo nel Progetto T7:** Individua e traccia continuamente le posizioni dei calciatori e del pallone sui filmati delle partite registrati dalla tribuna.
 - **Zona / Flusso di Riferimento:** Colonna 5, Riga 3 (Tactical Vision CV). (Flussi Miro: `#17`)
+
+
+#### <a id="smpte-timecode-multi-camera-synchronization"></a>SMPTE Timecode Multi-Camera Synchronization
+**ELI5:** "Allinea al millisecondo più telecamere puntate sullo stesso atleta."
+
+- **Spiegazione Semplificata:** Protocollo standard di sincronizzazione temporale cinematografica (SMPTE) che aggancia i flussi video registrati contemporaneamente da diverse angolazioni (frontale, laterale, zenitale) garantendo un disallineamento inferiore a 10 millisecondi.
+- **Ruolo Operativo nel Progetto T7:** Permette allo staff della prima squadra di visualizzare il gesto tecnico da 3 prospettive sincronizzate o di confrontarlo con il Digital Twin 3D.
+- **Zona / Flusso di Riferimento:** Colonna 2, Riga 3 (Multi-Staff Cockpit). (Flussi Miro: `#14`)
+
+#### <a id="telestrator-tactical-video-annotations"></a>Telestrator & Tactical Video Annotations
+**ELI5:** "Disegna frecce, traiettorie e linee direttamente sopra i video."
+
+- **Spiegazione Semplificata:** Strumento di overlay grafico e disegno vettoriale dinamico che consente ai preparatori e match analyst di tracciare frecce direzionali, linee di spinta, vettori di forza articolare in Newton e cerchi di evidenziazione sui singoli fotogrammi del video.
+- **Ruolo Operativo nel Progetto T7:** Trasforma i video del club in schede didattiche interattive e visualizza le sollecitazioni articolari prima della validazione congiunta con il medico sociale.
+- **Zona / Flusso di Riferimento:** Colonna 2, Riga 3 (Multi-Staff Cockpit). (Flussi Miro: `#14`)
+
+#### <a id="variable-playback-rate-frame-by-frame-scrubbing-120fps"></a>Variable Playback Rate & Frame-by-Frame Scrubbing (120fps)
+**ELI5:** "Rallentatore millimetrico per analizzare ogni istante del movimento."
+
+- **Spiegazione Semplificata:** Controlli di riproduzione dinamica con velocità variabile (da 0.25x a 2.0x per Tier 2; scrubbing frame-by-frame a 120fps per Tier 3) per esaminare dettagli impercettibili a occhio nudo come impatti al suolo, deviazioni angolari e inversioni di fase concentrica/eccentrica.
+- **Ruolo Operativo nel Progetto T7:** Fornisce a coach e preparatori uno strumento di precisione chirurgica per la diagnostica biomeccanica e la riatletizzazione.
+- **Zona / Flusso di Riferimento:** Colonna 2, Righe 2 e 3 (Coach Hub & Multi-Staff Cockpit). (Flussi Miro: `#08, #14`)
+
+#### <a id="video-ingest-tiers-1080p-consumer-2k-pro-4k8k-enterprise"></a>Video Ingest Tiers (1080p Consumer, 2K Pro, 4K/8K Enterprise)
+**ELI5:** "Risoluzioni video graduate in base all'abbonamento dell'utente."
+
+- **Spiegazione Semplificata:** Policy architetturale di segmentazione della qualità video: 1080p Full HD per utenti consumer (video caricato as-is con trim base), 2K 1440p per coach e fisioterapisti (con controlli di velocità e pose estimation), e 4K/8K broadcast grade per club d'élite (con sincronizzazione multi-camera e suite di editing avanzata).
+- **Ruolo Operativo nel Progetto T7:** Bilancia storage cloud e banda garantendo un'esperienza calibrata sulle reali esigenze dei singoli target.
+- **Zona / Flusso di Riferimento:** Colonna 2, Righe 1, 2 e 3 (Catalogo 3D & Video Ingest). (Flussi Miro: `#02, #08, #14`)
+
+#### <a id="webcodecs-api-client-side-lossless-trimming"></a>WebCodecs API & Client-Side Lossless Trimming
+**ELI5:** "Taglia i video direttamente nel browser senza sprecare internet."
+
+- **Spiegazione Semplificata:** Standard web moderno ad alte prestazioni che consente di decodificare, ritagliare e ricodificare fotogrammi video tramite accelerazione hardware direttamente sul dispositivo dell'utente, senza inviare file pesanti al server per il solo ritaglio di inizio e fine clip.
+- **Ruolo Operativo nel Progetto T7:** Permette il trimming istantaneo a tutti e 3 i Tier eliminando tempi morti ed evitando costi e latenze di transcodifica server.
+- **Zona / Flusso di Riferimento:** Colonna 2, Righe 1, 2 e 3 (Catalogo 3D & Video Ingest). (Flussi Miro: `#02, #08, #14`)
