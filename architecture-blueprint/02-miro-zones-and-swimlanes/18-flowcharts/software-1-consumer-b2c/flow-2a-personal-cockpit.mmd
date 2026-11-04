@@ -1,63 +1,66 @@
 flowchart TD
     classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
-    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1.5px,color:#0f172a;
     classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
-    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
-    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1.5px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1.5px,color:#0f172a;
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 1 (B2C CONSUMER) - FLOW 2A: CATALOGO ESERCIZI & AVATAR BIOMECCANICO 3D"]
+    TITLE["SOFTWARE 1 (B2C CONSUMER) - FLOW 2A: CATALOGO ESERCIZI & AVATAR 3D"]
 
-    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (REACT 18 & WEBGL THREE.JS)"]
-        START(["Inizio: Home Cockpit - Accesso Sezione Catalogo"]):::startend
-        DEC_SEARCH{"Modalita di Ricerca Utente?"}:::decision
-        UI_FILTERS["Filtri Dinamici Multidistretto (Muscoli, Pattern, Attrezzatura)"]:::client
-        UI_SEARCH["Ricerca Full-Text Istantanea (Debounce 250ms, 328 Esercizi)"]:::client
-        DEC_RESULTS{"Esito Query Catalogo?"}:::decision
-        GRID_POPULATED["Rendering Griglia ExerciseCard: Miniature 3D & Badge Qualita"]:::client
-        UI_EMPTY["Empty State & Offline Fallback: Suggerimenti o Cache IndexedDB"]:::error
-        DEC_WEBGL{"Supporto WebGL & Accelerazione GPU?"}:::decision
-        FALLBACK_2D["Graceful Degradation: Video 2D Pre-renderizzato MP4 60fps & Sprite"]:::error
-        VIEWER_3D["Visualizzatore Biomeccanico 3D Three.js: Orbit 360°, Fasce Muscolari (Rosso/Giallo/Ciano)"]:::client
-        UI_PROTOCOL["Protocollo Tecnico & Contrasto Errori Biomeccanici (Why & Fix)"]:::client
-        DEC_ACTION{"Azione Atleta Post-Consultazione?"}:::decision
-        TRANSITION_PLAYER["Transizione al Player: Inserimento in Scheda o Sessione Attiva"]:::startend
-        END_READY(["Fine: Esercizio Compreso e Pronto per Esecuzione"]):::startend
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (REACT 18 & THREE.JS DRACO)"]
+        T1_START(["Inizio: Home Cockpit - Accesso Catalogo Esercizi"]):::startend
+        T1_DEC_SEARCH_MODE{"Modalita di Ricerca Utente?"}:::decision
+        T1_UI_FILTER_SECTION["Navigazione Filtrata per Sezioni (Muscolo, Distretto, Categoria)"]:::client
+        T1_UI_TEXT_SEARCH["Ricerca Testuale Full-Text Istantanea (Debounce 250ms)"]:::client
+        T1_DEC_RESULTS{"Esito Filtri & Ricerca Catalogo?"}:::decision
+        T1_UI_GRID_POPULATED["Rendering Griglia Esercizi Catalogo Base (328 Esercizi)"]:::client
+        T1_UI_EMPTY_STATE["Empty State & Suggerimenti di Ricerca"]:::error
+        T1_DEC_SELECT_EXERCISE{"Supporto WebGL 2.0 & GPU 3D Attivo?"}:::decision
+        T1_UI_FALLBACK_2D["Graceful Degradation: Video 2D Pre-Renderizzato MP4 60fps"]:::error
+        T1_UI_VIEWER_3D["Visualizzazione 3D Interattiva: Orbit 360°, Fasce Muscolari (Rosso/Giallo/Ciano)"]:::client
+        T1_UI_TECH_CONTENT["Contenuti Tecnici & Correzioni Posturali (Why & Fix)"]:::client
+        T1_DEC_USER_ACTION{"Azione Utente Post-Consultazione?"}:::decision
+        T1_UI_POLICY_BLOCK["Blocco Modifiche & Zero Video Upload (Policy Tier 1)"]:::error
+        T1_TRANSITION_PLAYER["Transizione a Workout Player (FLOW-3A)"]:::client
+        T1_END_READY(["Fine: Consultazione Esercizio Completata"]):::startend
     end
 
-    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & FEATURE GATING TIER 1"]
-        GW_FETCH["API Gateway: GET /api/v1/catalog/exercises (Validazione JWT Tier 1)"]:::gateway
-        GW_CACHE{"Cache Redis Edge Attiva?"}:::decision
-        GW_FAV["API Gateway: POST /api/v1/user/favorites"]:::gateway
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & RBAC FEATURE GATING TIER 1"]
+        T1_UI_POLICY_CHECK["API Gateway: Verifica Gating Tier 1 (Libreria Standard)"]:::gateway
+        T1_GW_CATALOG_QUERY["API Gateway: GET /api/v1/catalog/exercises (Cache Redis)"]:::gateway
+        T1_DEC_MOD_CHECK{"Richiesta Modifica o Upload Video Proprio?"}:::decision
+        T1_GW_FAV_SAVE["API Gateway: POST /api/v1/user/favorites"]:::gateway
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (CDN 3D & STREAMING CINEMATICO)"]
-        SRV_3D_STREAM["Server Scatola Nera: Asset Streaming Mesh 3D Draco GLB & LOD Progressivo"]:::server
-        SRV_KINEMATICS["Risoluzione Coordinate Articolari & Timeline Concentrica/Eccentrica"]:::server
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (CDN 3D & KINEMATICS)"]
+        T1_SRV_3D_DRACO["Server Scatola Nera: Mesh 3D Google Draco GLB & LOD Progressivo"]:::server
     end
 
-    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (CONSUMER DATA STORE)"]
-        DB_QUERY[("Query Silo 1: catalog_exercises (328 record, indici distretto/qualita)")]:::db
-        DB_FAV_SAVE[("Persistenza Silo 1: user_favorites & note personali")]:::db
+    subgraph LANE_DB["CORSIA 4: DATABASE TRIPARTITO (SILO 1 - CONSUMER POSTGRESQL)"]
+        T1_DB_QUERY_SILO1[("Database Silo 1: catalog_exercises (328 record)")]:::db
+        T1_DB_FAV_WRITE[("Database Silo 1: user_favorites (Preferiti Utente)")]:::db
     end
 
     %% Connessioni del Flusso
-    START --> DEC_SEARCH
-    DEC_SEARCH -- "Filtri Dinamici" --> UI_FILTERS
-    DEC_SEARCH -- "Ricerca Testuale" --> UI_SEARCH
-    UI_FILTERS --> GW_FETCH
-    UI_SEARCH --> GW_FETCH
-    GW_FETCH --> GW_CACHE
-    GW_CACHE -- "Cache Hit" --> DEC_RESULTS
-    GW_CACHE -- "Cache Miss" --> DB_QUERY --> DEC_RESULTS
-    DEC_RESULTS -- "Match Trovati" --> GRID_POPULATED
-    DEC_RESULTS -- "Zero Match" --> UI_EMPTY
-    UI_EMPTY -. "Reset Filtri" .-> GRID_POPULATED
-    GRID_POPULATED --> DEC_WEBGL
-    DEC_WEBGL -- "WebGL SÌ" --> SRV_3D_STREAM --> SRV_KINEMATICS --> VIEWER_3D
-    DEC_WEBGL -- "Fallback 2D" --> FALLBACK_2D --> VIEWER_3D
-    VIEWER_3D --> UI_PROTOCOL
-    UI_PROTOCOL --> DEC_ACTION
-    DEC_ACTION -- "Salva nei Preferiti" --> GW_FAV --> DB_FAV_SAVE --> END_READY
-    DEC_ACTION -- "Avvia Workout" --> TRANSITION_PLAYER --> END_READY
+    T1_START --> T1_UI_POLICY_CHECK
+    T1_UI_POLICY_CHECK --> T1_DEC_SEARCH_MODE
+    T1_DEC_SEARCH_MODE -- "Sezioni Specifiche" --> T1_UI_FILTER_SECTION
+    T1_DEC_SEARCH_MODE -- "Ricerca Testuale" --> T1_UI_TEXT_SEARCH
+    T1_UI_FILTER_SECTION --> T1_GW_CATALOG_QUERY
+    T1_UI_TEXT_SEARCH --> T1_GW_CATALOG_QUERY
+    T1_GW_CATALOG_QUERY -- "Cache Hit" --> T1_DEC_RESULTS
+    T1_GW_CATALOG_QUERY -- "Cache Miss" --> T1_DB_QUERY_SILO1 --> T1_DEC_RESULTS
+    T1_DEC_RESULTS -- "Match Trovati" --> T1_UI_GRID_POPULATED
+    T1_DEC_RESULTS -- "Zero Risultati" --> T1_UI_EMPTY_STATE
+    T1_UI_EMPTY_STATE -. "Reset Filtri" .-> T1_UI_GRID_POPULATED
+    T1_UI_GRID_POPULATED --> T1_DEC_SELECT_EXERCISE
+    T1_DEC_SELECT_EXERCISE -- "SÌ: WebGL 3D" --> T1_SRV_3D_DRACO --> T1_UI_VIEWER_3D
+    T1_DEC_SELECT_EXERCISE -- "NO: Fallback 2D" --> T1_UI_FALLBACK_2D --> T1_UI_VIEWER_3D
+    T1_UI_VIEWER_3D --> T1_UI_TECH_CONTENT
+    T1_UI_TECH_CONTENT --> T1_DEC_USER_ACTION
+    T1_DEC_USER_ACTION -- "Tenta Modifica/Upload" --> T1_DEC_MOD_CHECK
+    T1_DEC_MOD_CHECK -- "Blocco Enforced" --> T1_UI_POLICY_BLOCK --> T1_END_READY
+    T1_DEC_USER_ACTION -- "Salva nei Preferiti" --> T1_GW_FAV_SAVE --> T1_DB_FAV_WRITE --> T1_END_READY
+    T1_DEC_USER_ACTION -- "Avvia Workout" --> T1_TRANSITION_PLAYER --> T1_END_READY

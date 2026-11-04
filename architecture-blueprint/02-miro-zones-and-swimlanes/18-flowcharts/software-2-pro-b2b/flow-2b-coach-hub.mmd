@@ -1,99 +1,72 @@
 flowchart TD
-    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
-    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef startend fill:#b45309,stroke:#f59e0b,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1.5px,color:#0f172a;
     classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
-    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
-    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1.5px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1.5px,color:#0f172a;
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 2 (B2B PRO P.IVA) - FLOW 2B: CATALOGO 3D, VIDEO IN-APP 1080P, SPEED CONTROL & REVISIONE AI"]
+    TITLE["SOFTWARE 2 (B2B PRO P.IVA) - FLOW 2B: CATALOGO 3D, VIDEO 1080P, SPEED CONTROL & AI COACH"]
 
     subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (COACH COCKPIT REACT 18 PRO)"]
-        START(["Inizio: Coach Cockpit - Accesso Catalogo Esercizi"]):::startend
-        DEC_MODE{"Modalita Operativa nel Catalogo?"}:::decision
+        T2_START(["Inizio: Coach Cockpit - Accesso Catalogo Esercizi (Pro P.IVA)"]):::startend
+        T2_DEC_MODE{"Modalita Operativa nel Catalogo?"}:::decision
         
-        %% Ramo 1: Consultazione & Triage
-        DEC_SEARCH{"Modalita di Ricerca Coach?"}:::decision
-        UI_FILTERS["Filtri Dinamici & Triage 119 Patologie (ImpactCalculator)"]:::client
-        UI_SEARCH["Ricerca Full-Text Istantanea (Debounce 250ms)"]:::client
-        DEC_RESULTS{"Esito Risultati Ricerca?"}:::decision
-        GRID_PRO["Rendering Griglia ExerciseCard Pro: Miniature 3D & Badge Idoneita"]:::client
-        UI_EMPTY["Gestione Empty State & Offline Fallback Pro"]:::error
-        DEC_WEBGL{"Supporto WebGL & Accelerazione GPU?"}:::decision
-        FALLBACK_2D["Graceful Degradation: Video 2D Pre-renderizzato MP4 60fps"]:::error
-        VIEWER_3D["Visualizzatore 3D Pro: Orbit 360°, Fasce Muscolari & Blocco ROM Touch"]:::client
-        UI_PROTOCOL["Protocollo di Esecuzione Tecnica, Errori Comuni (Why & Fix) & Cues"]:::client
-        
-        %% Ramo 2: Video 2K, Trimming, Speed & AI
-        UI_CAM_RECORD_1080P["In-App Camera Pro: Ripresa Atleta in Risoluzione Max 1080p (Full HD a 60fps)"]:::client
-        UI_TRIM_SPEED["Editor Video Pro: Trimming Temporale & Speed Control (Slow-Mo 0.25x / Fast 2.0x)"]:::client
-        UI_EDGE_POSE["Edge Computer Vision: Estrazione Keypoints 3D MediaPipe BlazePose"]:::client
-        UI_DRAFT_FORM["Compilazione Bozza Coach: Note, Errori & Cues Propriocettivi"]:::client
-        DEC_AI_AUDIT{"Richiedere Revisione Coerente AI?"}:::decision
-        UI_DIFF_MODAL["Modale Revisione Diff Sezione per Sezione (RAG 322 Paper)"]:::client
-        DEC_KEEP_VIDEO{"Conservare Video Grezzo 1080p o Solo Avatar 3D? (Privacy GDPR)"}:::decision
-        VIEWER_TOGGLE["Scheda Esercizio Custom: Toggle 'Video 1080p Reale (con Speed Control) vs Avatar 3D'"]:::client
-        
-        %% Ramo 3: Solo-Testo
-        UI_TEXT_CREATE["Creazione Manuale Solo-Testo: Parametri Tassonomici, Setup & Cues"]:::client
-        
-        DEC_DEST{"Destinazione Prescrizione & Salvataggio Coach?"}:::decision
-        END_READY(["Fine: Esercizio Custom Operativo nel Catalogo Coach"]):::startend
+        %% Ramo 1: Consultazione Avanzata
+        T2_UI_SEARCH_ADVANCED["Ricerca Avanzata: Muscolo, Distretto, Categoria, Attrezzatura & Triage 119"]:::client
+        T2_UI_3D_VIEWER_PRO["Visualizzazione 3D Modelli Dinamici: Orbit 360°, Fasce & Blocco ROM"]:::client
+        T2_UI_TECH_CONTENT_PRO["Contenuti Tecnici Completi, Correzioni Why & Fix & Cues Coach"]:::client
+        T2_DEC_CONSULT_ACTION{"Azione Post-Consultazione Esercizio Standard?"}:::decision
+
+        %% Ramo 2: Video 1080p, Editing & AI
+        T2_UI_VIDEO_CAPTURE_1080P["Caricamento / Registrazione Video Personalizzato (Max 1080p Full HD)"]:::client
+        T2_UI_DOWNSCALE_1080P["Downscaling Automatico Client-Side a 1080p (WebCodecs)"]:::error
+        T2_UI_VIDEO_EDITOR["Editing Video Integrato: Taglio, Rallentatore (0.25x-0.75x) & Velocizzazione (1.25x-2.0x)"]:::client
+        T2_UI_MANUAL_STRENGTHS_WEAKNESSES["Inserimento Manuale Punti di Forza e di Debolezza dell'Atleta"]:::client
+        T2_DEC_AI_SUPPORT{"Richiesta Supporto AI per Completare Spiegazione?"}:::decision
+        T2_UI_DIFF_APPROVAL["Modale Diff: Approvazione / Modifica Spiegazione Generata dall'AI"]:::client
+        T2_UI_VIEWER_TOGGLE_PRO["Scheda Esercizio: Toggle 'Video 1080p Reale (Editing Attivo) vs Modello 3D'"]:::client
+
+        T2_DEC_ACTION_DEST{"Destinazione Salvataggio / Condivisione Esercizio?"}:::decision
+        T2_DEC_SHARE_TARGET{"Selezione Destinatario Condivisione Esercizio?"}:::decision
+        T2_UI_SHARE_BLOCK_ALERT["Blocco Condivisione Multi-Atleta (Limite 1:1 Rigoroso per Tier 2)"]:::error
+        T2_END_READY(["Fine: Esercizio Operativo nel Catalogo Pro & Condiviso 1:1"]):::startend
     end
 
-    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & RBAC TIER 2"]
-        GW_FETCH["API Gateway Pro: GET /api/v1/pro/catalog/exercises"]:::gateway
-        GW_AUTH_CHECK{"Controllo Feature Gating Tier?"}:::decision
-        GW_AUDIT_REQ["API Gateway: POST /api/v1/pro/exercises/ai-audit"]:::gateway
-        GW_CUSTOM_SAVE["API Gateway: POST /api/v1/pro/catalog/custom-video-exercise"]:::gateway
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & RBAC FEATURE GATING TIER 2"]
+        T2_GW_RES_CHECK{"Verifica Risoluzione Video (Max 1080p)?"}:::decision
+        T2_GW_FAVORITES["API Gateway: POST /api/v1/pro/favorites"]:::gateway
+        T2_GW_SHARE_ENFORCEMENT{"Gateway: Controllo Limite di Condivisione 1:1?"}:::decision
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (MULTIMODAL RAG & 3D SYNTHESIS)"]
-        SRV_MESH["Server Scatola Nera: Mesh 3D Draco + Iniezione Vincoli ROM"]:::server
-        SRV_RAG_AUDIT["Server: Multimodal RAG & Web Biomechanical Audit (322 Paper indicizzati)"]:::server
-        SRV_3D_SYNTH["Server Scatola Nera: Sintesi Avatar 3D Draco GLB da Video 1080p"]:::server
-        SRV_TEXT_SYNTH["Server Scatola Nera: Generatore Cinematico AI (Text-to-Kinematics)"]:::server
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (MULTIMODAL RAG 322 PAPERS)"]
+        T2_SRV_AI_COMPLETION["Server Scatola Nera: AI Multimodale (RAG 322 Paper Medici) per Spiegazione"]:::server
     end
 
-    subgraph LANE_DB["CORSIA 4: DATABASE SILO 2 (BUNKER PRO POSTGRESQL & VAULT)"]
-        DB_QUERY_PRO[("Query Silo 2: catalogo coach, storico clienti & triage patologie")]:::db
-        SAVE_CLIENT[("Assegnazione Scheda Cliente: Database Silo 2 Pro")]:::db
-        SAVE_EXPORT[("Export Scheda PDF Interattivo / Excel con QR Code 3D")]:::db
+    subgraph LANE_DB["CORSIA 4: DATABASE TRIPARTITO (SILO 2 - BUNKER PRO POSTGRESQL AES-256)"]
+        T2_DB_SAVE_SILO2[("Database Silo 2: pro_custom_exercises & Assegnazione 1:1 Atleta")]:::db
     end
 
     %% Connessioni del Flusso
-    START --> DEC_MODE
-    
-    %% Ramo 1: Consultazione
-    DEC_MODE -- "1. Consulta & Triage" --> DEC_SEARCH
-    DEC_SEARCH -- "Filtro Tassonomico" --> UI_FILTERS
-    DEC_SEARCH -- "Ricerca Full-Text" --> UI_SEARCH
-    UI_FILTERS --> GW_FETCH
-    UI_SEARCH --> GW_FETCH
-    GW_FETCH --> DB_QUERY_PRO --> DEC_RESULTS
-    DEC_RESULTS -- "Esercizi Idonei" --> GRID_PRO
-    DEC_RESULTS -- "Nessun Risultato" --> UI_EMPTY
-    UI_EMPTY -. "Reset / Alternative" .-> GRID_PRO
-    GRID_PRO --> DEC_WEBGL
-    DEC_WEBGL -- "SÌ: WebGL 3D" --> SRV_MESH --> VIEWER_3D
-    DEC_WEBGL -- "NO: Fallback 2D" --> FALLBACK_2D --> VIEWER_3D
-    VIEWER_3D --> UI_PROTOCOL --> DEC_DEST
+    T2_START --> T2_DEC_MODE
+    T2_DEC_MODE -- "1. Consulta & Triage" --> T2_UI_SEARCH_ADVANCED
+    T2_UI_SEARCH_ADVANCED --> T2_UI_3D_VIEWER_PRO --> T2_UI_TECH_CONTENT_PRO --> T2_DEC_CONSULT_ACTION
+    T2_DEC_CONSULT_ACTION -- "Salva nei Preferiti" --> T2_GW_FAVORITES --> T2_END_READY
+    T2_DEC_CONSULT_ACTION -- "Assegna ad Atleta" --> T2_DEC_SHARE_TARGET
 
-    %% Ramo 2: Video 2K & AI Review
-    DEC_MODE -- "2. Video Atleta 1080p" --> UI_CAM_RECORD_1080P
-    UI_CAM_RECORD_1080P --> UI_TRIM_SPEED --> UI_EDGE_POSE --> UI_DRAFT_FORM --> DEC_AI_AUDIT
-    DEC_AI_AUDIT -- "SÌ: Revisione AI" --> GW_AUDIT_REQ --> SRV_RAG_AUDIT --> UI_DIFF_MODAL --> DEC_KEEP_VIDEO
-    DEC_AI_AUDIT -- "NO: Mantieni Bozza" --> DEC_KEEP_VIDEO
-    DEC_KEEP_VIDEO -- "Salva Video 1080p" --> GW_CUSTOM_SAVE --> SRV_3D_SYNTH --> VIEWER_TOGGLE
-    DEC_KEEP_VIDEO -- "Solo Avatar 3D" --> SRV_3D_SYNTH --> VIEWER_TOGGLE
-    VIEWER_TOGGLE --> DEC_DEST
+    T2_DEC_MODE -- "2. Crea Video 1080p" --> T2_UI_VIDEO_CAPTURE_1080P
+    T2_UI_VIDEO_CAPTURE_1080P --> T2_GW_RES_CHECK
+    T2_GW_RES_CHECK -- "Risoluzione > 1080p" --> T2_UI_DOWNSCALE_1080P --> T2_UI_VIDEO_EDITOR
+    T2_GW_RES_CHECK -- "Conforme <= 1080p" --> T2_UI_VIDEO_EDITOR
+    T2_UI_VIDEO_EDITOR --> T2_UI_MANUAL_STRENGTHS_WEAKNESSES --> T2_DEC_AI_SUPPORT
+    T2_DEC_AI_SUPPORT -- "SÌ: Supporto AI" --> T2_SRV_AI_COMPLETION --> T2_UI_DIFF_APPROVAL --> T2_UI_VIEWER_TOGGLE_PRO
+    T2_DEC_AI_SUPPORT -- "NO: Bozza Coach" --> T2_UI_VIEWER_TOGGLE_PRO
+    T2_UI_VIEWER_TOGGLE_PRO --> T2_DEC_ACTION_DEST
 
-    %% Ramo 3: Solo Testo
-    DEC_MODE -- "3. Nuovo Solo-Testo" --> UI_TEXT_CREATE
-    UI_TEXT_CREATE --> GW_AUTH_CHECK
-    GW_AUTH_CHECK -- "Tier 2 Valido" --> SRV_TEXT_SYNTH --> VIEWER_TOGGLE
-
-    %% Uscite
-    DEC_DEST -- "Scheda Cliente" --> SAVE_CLIENT --> END_READY
-    DEC_DEST -- "Export PDF/Excel" --> SAVE_EXPORT --> END_READY
+    T2_DEC_ACTION_DEST -- "Salva nei Preferiti" --> T2_GW_FAVORITES
+    T2_DEC_ACTION_DEST -- "Condividi con Atleta" --> T2_DEC_SHARE_TARGET
+    T2_DEC_SHARE_TARGET -- "Singolo Atleta (1:1)" --> T2_GW_SHARE_ENFORCEMENT
+    T2_DEC_SHARE_TARGET -- "Multiplo / Squadra" --> T2_UI_SHARE_BLOCK_ALERT --> T2_END_READY
+    T2_GW_SHARE_ENFORCEMENT -- "Autorizzato (1:1)" --> T2_DB_SAVE_SILO2 --> T2_END_READY
+    T2_GW_SHARE_ENFORCEMENT -- "Tentativo Multiplo" --> T2_UI_SHARE_BLOCK_ALERT

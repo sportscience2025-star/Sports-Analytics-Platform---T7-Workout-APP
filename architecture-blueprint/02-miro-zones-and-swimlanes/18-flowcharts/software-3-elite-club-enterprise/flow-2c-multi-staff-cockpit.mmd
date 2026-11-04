@@ -1,97 +1,68 @@
 flowchart TD
-    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
-    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef startend fill:#4338ca,stroke:#818cf8,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1.5px,color:#0f172a;
     classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
-    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
-    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1.5px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1.5px,color:#0f172a;
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 2C: CATALOGO 3D, MULTI-CAMERA 4K/8K, SUITE TATTICA & CLUB VAULT"]
+    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 2C: CATALOGO 3D, MULTI-CAMERA 4K, SUITE TATTICA & STRESS MUSCOLARE"]
 
-    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (TEAM SQUAD COCKPIT & SUITE TATTICA)"]
-        START(["Inizio: Team Cockpit - Accesso Catalogo Esercizi & Telemetria"]):::startend
-        DEC_MODE{"Modalita Operativa Staff Societario?"}:::decision
-        
-        %% Ramo 1: Consultazione Squadra
-        UI_SEARCH_TEAM["Consultazione Catalogo Club: Telemetria Z-Score, ACWR & Carico Rosa"]:::client
-        DEC_RISK{"Verifica Idoneita Giocatore & Rischio ACWR?"}:::decision
-        GRID_ELITE["Griglia Catalogo Elite: Miniature 3D, Dati GPS & Telemetria Live"]:::client
-        UI_ALERT_RTP["Alert Sovraccarico: Attivazione Protocollo Return to Play (RTP 6 Fasi)"]:::error
-        VIEWER_3D_ELITE["Visualizzatore 3D Elite: Orbit 360°, Digital Twin Atleta & Forze di Taglio (N)"]:::client
-        
-        %% Ramo 2: Video 4K/8K Multi-Camera, Trimming SMPTE, Speed 120fps & Suite Tattica
-        UI_CAM_CAPTURE_4K["In-App Camera Elite: Acquisizione 4K/8K High-Speed (120fps) & Multi-Camera Sync"]:::client
-        UI_TRIM_SMPTE["Trimming Multi-Traccia Sincrono con Timecode SMPTE (< 10ms jitter)"]:::client
-        UI_SPEED_120FPS["Scrubbing Frame-by-Frame a 120fps & Rallentatore Esplosivo per Analisi Impatti"]:::client
-        UI_TELESTRATOR["Suite Editing Tattico/Biomeccanico: Telestrator, Vettori di Forza (N) & Barbell Path"]:::client
-        DEC_AI_AUDIT_PRO{"Attivazione Revisione Coerente AI Multimodale?"}:::decision
-        UI_DIFF_PRO["Modale Revisione Diff Sezione per Sezione: RAG Accademico + Cross-Check EMR Silo 2"]:::client
-        DEC_LIBRARY_TIER{"Destinazione Salvataggio nel Club (Due Livelli)?"}:::decision
-        UI_LEVEL_ATHLETE["Salvataggio Livello 1: Bozza Individuale Vincolata a Singolo Giocatore (EMR)"]:::client
-        UI_LEVEL_CLUB["Salvataggio Livello 2: Promozione a Secret Club Vault Ufficiale (Condivisa con Staff)"]:::client
-        VIEWER_TOGGLE_PRO["Scheda Esercizio Custom: Toggle 'Video 4K/8K Multi-Camera Tattico vs Digital Twin 3D'"]:::client
-        
-        %% Ramo 3: Creazione Solo-Testo
-        UI_TEXT_CREATE_PRO["Creazione Manuale Solo-Testo: Parametri Tassonomici, Setup & Cues Mentali"]:::client
-        
-        DEC_ACTION["Validazione Congiunta Staff: Doppia Firma FIDO2 Medico Sociale + Head S&C"]:::decision
-        END_READY(["Fine: Esercizio Integrato nel Sistema Societario (Microciclo MD-X)"]):::startend
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (TEAM COCKPIT REACT 18 ENTERPRISE)"]
+        T3_START(["Inizio: Team Cockpit - Catalogo Esercizi & Suite Tattica (Elite Club)"]):::startend
+        T3_DEC_MODE{"Modalita Operativa Staff Societario?"}:::decision
+
+        %% Ramo 1: Consultazione & Stress Muscolare
+        T3_UI_SEARCH_ADVANCED["Ricerca Avanzata Club: Muscolo, Distretto, Categoria, Attrezzatura, Ruolo & RTP"]:::client
+        T3_UI_3D_VIEWER_ELITE["Visualizzazione 3D Modelli Dinamici con Digital Twin della Rosa (360°)"]:::client
+        T3_UI_TECH_EXPLANATION["Contenuti Tecnici & Correzioni Biomeccaniche Avanzate per lo Staff"]:::client
+        T3_UI_MUSCLE_STRESS_VIEWER["Visualizzatore 3D Analisi Stress Muscolare: Tensione Fibre & Forze di Taglio (N)"]:::client
+
+        %% Ramo 2: Video 4K, Editing & Caricamento Multiplo AI
+        T3_UI_VIDEO_CAPTURE_4K["Caricamento Video Esercizi Risoluzione Superiore (Fino a 4K Ultra HD)"]:::client
+        T3_UI_VIDEO_EDITOR_ADVANCED["Editing Video Integrato Avanzato: Taglio Multi-Traccia, Scrub 120fps & Telestrator"]:::client
+        T3_UI_STAFF_STRENGTHS_WEAKNESSES["Redazione Punti di Forza e Debolezza da parte dello Staff"]:::client
+        T3_UI_DIFF_STAFF_MODAL["Modale Revisione Diff Spiegazione Tecnica Integrata dall'AI"]:::client
+        T3_DEC_MULTI_ATHLETE_UPLOAD{"Caricamento Multiplo Stesso Esercizio su Più Persone?"}:::decision
+        T3_UI_MULTI_UPLOAD_INGEST["Caricamento Multiplo: Stesso Esercizio Eseguito da Atleti Diversi"]:::client
+
+        %% Ramo 3: Gruppi & Broadcast
+        T3_DEC_DISTRIBUTION{"Destinazione Distribuzione & Condivisione Esercizio?"}:::decision
+        T3_UI_WORKGROUPS_CREATION["Creazione Gruppi di Lavoro Dedicati con Spiegazione Tecnica Sottostante"]:::client
+        T3_UI_GLOBAL_TEAM_SHARE["Condivisione Globale: Broadcast a Tutti gli Atleti del Team (Watermark Anti-Leak)"]:::client
+        T3_END_READY(["Fine: Esercizio 4K Integrato nel Secret Club Vault & Condiviso con la Squadra"]):::startend
     end
 
-    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & RBAC TIER 3 (mTLS)"]
-        GW_FETCH_PRO["API Gateway mTLS: GET /api/v1/club/catalog/exercises (Autenticazione FIDO2)"]:::gateway
-        GW_AUTH_CHECK{"Validazione mTLS e Permessi Staff Societario?"}:::decision
-        GW_AUDIT_REQ_PRO["API Gateway: POST /api/v1/club/exercises/ai-audit"]:::gateway
-        GW_SYNTH_PRO["API Gateway: POST /api/v1/club/exercises/synthesize-digital-twin"]:::gateway
-        GW_KMS_SAVE["API Gateway: POST /api/v1/club/exercises/kms-save (Watermark Forense WebGL)"]:::gateway
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & RBAC ENTERPRISE TIER 3 (mTLS)"]
+        T3_DEC_DUAL_SIGNATURE{"Validazione Congiunta: Doppia Firma Digitale (Head S&C + Medico Sociale)?"}:::decision
+        T3_GW_FAVORITES_CLUB["API Gateway: POST /api/v1/club/favorites"]:::gateway
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (DIGITAL TWIN, SMPTE GENLOCK & RAG)"]
-        SRV_SMPTE_SYNC["Server Scatola Nera: SMPTE Genlock (< 10ms) & Iniezione Watermark Anti-Leak"]:::server
-        SRV_ACWR_ENGINE["Motore ACWR: Calcolo Carico Acuto/Cronico & Rischio Lesione"]:::server
-        SRV_RAG_PRO["Multimodal RAG Accademico: Cross-Check 322 Paper, PubMed & Cartella EMR"]:::server
-        SRV_TWIN_SYNTH["Sintesi Digital Twin: Mappatura Mesh 3D Draco su Biometria Reale Calciatore"]:::server
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (STRESS ENGINE, HPC & MULTI-AI)"]
+        T3_SRV_MUSCLE_STRESS_ENGINE["Server Scatola Nera: Motore Analisi Sollecitazione Fibre Muscolari (Elementi Finiti)"]:::server
+        T3_SRV_AI_INTEGRATION["Server Scatola Nera: Supporto AI per Integrare la Spiegazione Tecnica"]:::server
+        T3_SRV_INDIVIDUAL_AI_ENGINE["Server Scatola Nera: Correzioni AI Specifiche per Ciascun Individuo"]:::server
     end
 
-    subgraph LANE_DB["CORSIA 4: DATABASE SILO 2 (BUNKER CLUB KMS ENCLAVE)"]
-        DB_QUERY_PRO[("Query Silo 2: rosa prima squadra, Z-Score e cartella clinica crittografata")]:::db
-        SAVE_EMR[("Archiviazione Cartella EMR: Silo 2 Bunker Cloud KMS")]:::db
-        SAVE_SQUAD[("Persistenza Silo 2: Secret Club Vault & Assegnazione Microciclo MD-X")]:::db
+    subgraph LANE_DB["CORSIA 4: DATABASE TRIPARTITO (SILO 2 - BUNKER CLUB KMS ENCLAVE)"]
+        T3_DB_SAVE_INDIVIDUAL_CORRECTIONS[("Database Silo 2: Schede Individuali Atleta & Correzioni AI Personalizzate")]:::db
+        T3_DB_VAULT_PERSISTENCE[("Database Silo 2: Secret Club Vault & Microciclo MD-X")]:::db
     end
 
     %% Connessioni del Flusso
-    START --> DEC_MODE
-    
-    %% Ramo Consultazione
-    DEC_MODE -- "1. Catalogo Rosa & RTP" --> UI_SEARCH_TEAM
-    UI_SEARCH_TEAM --> GW_FETCH_PRO --> GW_AUTH_CHECK
-    GW_AUTH_CHECK -- "Staff Autorizzato" --> DB_QUERY_PRO --> DEC_RISK
-    DEC_RISK -- "Idoneita Verificata" --> GRID_ELITE
-    DEC_RISK -- "Rischio Lesione (>1.5)" --> UI_ALERT_RTP -. "Esercizi Adattati" .-> GRID_ELITE
-    GRID_ELITE --> VIEWER_3D_ELITE --> DEC_ACTION
+    T3_START --> T3_DEC_MODE
+    T3_DEC_MODE -- "1. Consulta & Stress" --> T3_UI_SEARCH_ADVANCED
+    T3_UI_SEARCH_ADVANCED --> T3_UI_3D_VIEWER_ELITE --> T3_UI_TECH_EXPLANATION --> T3_SRV_MUSCLE_STRESS_ENGINE --> T3_UI_MUSCLE_STRESS_VIEWER --> T3_DEC_DISTRIBUTION
 
-    %% Ramo Video 4K/8K & Suite Tattica
-    DEC_MODE -- "2. Video 4K/8K Multi-Camera" --> UI_CAM_CAPTURE_4K
-    UI_CAM_CAPTURE_4K --> GW_KMS_SAVE --> SRV_SMPTE_SYNC --> UI_TRIM_SMPTE
-    UI_TRIM_SMPTE --> UI_SPEED_120FPS --> UI_TELESTRATOR --> DEC_AI_AUDIT_PRO
-    
-    DEC_AI_AUDIT_PRO -- "SÌ: Revisione AI" --> GW_AUDIT_REQ_PRO --> SRV_RAG_PRO --> UI_DIFF_PRO --> DEC_LIBRARY_TIER
-    DEC_AI_AUDIT_PRO -- "NO: Procedi con Bozza" --> DEC_LIBRARY_TIER
-    
-    DEC_LIBRARY_TIER -- "Livello 1: Atleta (EMR)" --> UI_LEVEL_ATHLETE
-    DEC_LIBRARY_TIER -- "Livello 2: Club Vault" --> UI_LEVEL_CLUB
-    
-    UI_LEVEL_ATHLETE --> GW_SYNTH_PRO
-    UI_LEVEL_CLUB --> GW_SYNTH_PRO
-    
-    GW_SYNTH_PRO --> SRV_TWIN_SYNTH --> VIEWER_TOGGLE_PRO --> DEC_ACTION
+    T3_DEC_MODE -- "2. Crea Video 4K" --> T3_UI_VIDEO_CAPTURE_4K
+    T3_UI_VIDEO_CAPTURE_4K --> T3_UI_VIDEO_EDITOR_ADVANCED --> T3_UI_STAFF_STRENGTHS_WEAKNESSES --> T3_SRV_AI_INTEGRATION --> T3_UI_DIFF_STAFF_MODAL --> T3_DEC_MULTI_ATHLETE_UPLOAD
+    T3_DEC_MULTI_ATHLETE_UPLOAD -- "SÌ: Multi-Atleta" --> T3_UI_MULTI_UPLOAD_INGEST --> T3_SRV_INDIVIDUAL_AI_ENGINE --> T3_DB_SAVE_INDIVIDUAL_CORRECTIONS --> T3_DEC_DISTRIBUTION
+    T3_DEC_MULTI_ATHLETE_UPLOAD -- "NO: Singolo Gesto" --> T3_DEC_DISTRIBUTION
 
-    %% Ramo Creazione Solo-Testo
-    DEC_MODE -- "3. Nuovo Solo-Testo" --> UI_TEXT_CREATE_PRO
-    UI_TEXT_CREATE_PRO --> GW_AUTH_CHECK
-    GW_AUTH_CHECK -- "Tier 3 Valido" --> GW_SYNTH_PRO
-    
-    %% Conclusione con Doppia Firma
-    DEC_ACTION -- "Co-Firma Approvata" --> SAVE_SQUAD --> END_READY
-    DEC_ACTION -- "Salva EMR Medico" --> SAVE_EMR --> END_READY
+    T3_DEC_MODE -- "3. Gruppi & Broadcast" --> T3_UI_WORKGROUPS_CREATION
+
+    T3_DEC_DISTRIBUTION -- "Salva nei Preferiti" --> T3_GW_FAVORITES_CLUB --> T3_END_READY
+    T3_DEC_DISTRIBUTION -- "Gruppo Dedicato" --> T3_UI_WORKGROUPS_CREATION --> T3_DEC_DUAL_SIGNATURE
+    T3_DEC_DISTRIBUTION -- "Broadcast Squadra" --> T3_UI_GLOBAL_TEAM_SHARE --> T3_DEC_DUAL_SIGNATURE
+    T3_DEC_DUAL_SIGNATURE -- "Co-Firma Approvata" --> T3_DB_VAULT_PERSISTENCE --> T3_END_READY

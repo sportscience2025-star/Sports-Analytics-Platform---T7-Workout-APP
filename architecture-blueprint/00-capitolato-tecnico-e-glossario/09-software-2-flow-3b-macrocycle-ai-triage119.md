@@ -1,212 +1,204 @@
-# Capitolato Tecnico: Flow 3B – Architettura Pro & Macrocicli IA con Triage 119 Patologie (T7 Pro Coach)
+# Capitolato Tecnico: Flow 3B – Programmazione Anamnestica (6 Mesi), RTP & AI Scientifica (T7 Pro Coach)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#09` (Posizione: `X: 2459, Y: 2940`, Miro Shape ID: `3458764688417722743`)
+- **Badge Miro Board:** `#09` (Posizione: `X: 2641.02, Y: 3598.51`, Miro Shape ID: `3458764688417722743`)
 - **Codice Univoco:** `FLOW-3B`
-- **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 3B: ARCHITETTURA PRO, GENERATORE MACROCICLI IA & CLINICAL TRIAGE 119
-- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 3: Architettura Pro & Periodizzazione)
+- **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 3B: PROGRAMMAZIONE ANAMNESTICA, PIANIFICAZIONE A 6 MESI, PROTOCOLLI RETURN TO PLAY, AI SCIENTIFICA CON FONTI & EXPORT MULTI-FORMATO
+- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 3: Programmazione degli Esercizi)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-3b-macrocycle-ai-triage119.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [ImpactCalculator Triage 119](00-GLOSSARIO-TERMINI-TECNICI.md#triage-clinico-patologie-impactcalculator), [Periodizzazione DUP](00-GLOSSARIO-TERMINI-TECNICI.md#dup-daily-undulating-periodization), [Periodizzazione a Blocchi](00-GLOSSARIO-TERMINI-TECNICI.md#periodizzazione-a-blocchi-coniugata), [Coniugata Westside](00-GLOSSARIO-TERMINI-TECNICI.md#periodizzazione-a-blocchi-coniugata), [Excel Sbloccato protected:false](00-GLOSSARIO-TERMINI-TECNICI.md#excel-sbloccato-protected-false-data-interoperability), [RAG Scientifico con Gerarchia Fonti](00-GLOSSARIO-TERMINI-TECNICI.md#rag-gerarchico-scientifico-retrieval-augmented-generation)).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Questionario Anamnestico](00-GLOSSARIO-TERMINI-TECNICI.md), [Periodizzazione 6 Mesi](00-GLOSSARIO-TERMINI-TECNICI.md#dup-daily-undulating-periodization), [Return to Play RTP](00-GLOSSARIO-TERMINI-TECNICI.md), [AI Citazioni Scientifiche DOI](00-GLOSSARIO-TERMINI-TECNICI.md#rag-gerarchico-scientifico-retrieval-augmented-generation), [Export Multi-Formato XLSX DOCX](00-GLOSSARIO-TERMINI-TECNICI.md#excel-sbloccato-protected-false-data-interoperability)).
 
 ---
-
 
 ## 2. Obiettivo di Business & Target Utente
 
 ### Guida Pratica per Non Tecnici: Cos'è questo modulo per un umano?
-Scrivere una scheda di allenamento di 6 mesi (un macrociclo) per un cliente è un lavoro lungo, complesso e rischioso. Se il cliente ha un'ernia discale L4-L5 o una spalla operata, basta inserire un esercizio sbagliato per causargli dolori acuti o infortuni. Inoltre, i professionisti amano personalizzare i propri fogli di lavoro e non sopportano i software chiusi che impediscono di modificare le formule su Excel.  
-**Il Generatore Pro di T7** è l'assistente scientifico definitivo del preparatore:
-- Inserisci gli obiettivi del cliente e le sue eventuali problematiche fisiche scegliendo tra **119 patologie codificate** (dalle discopatie alla tendinopatia rotulea, fino alle patologie sistemiche);
-- Un algoritmo medico-sportivo (`ImpactCalculator`) setaccia all'istante l'intero catalogo degli esercizi: **elimina o adatta in automatico** tutti i movimenti che caricano pericolosamente la zona lesa;
-- Un'Intelligenza Artificiale esperta di periodizzazione (che conosce i modelli DUP ondulate, a Blocchi, Coniugata o Lineare) genera un piano perfetto di 12-24 settimane;
-- **Esportazione Excel Totalmente Sbloccata:** Il coach può scaricare il file `.xlsx` senza alcuna password o protezione (`protected: false`), potendo modificare liberamente ogni cella o formula secondo le proprie abitudini.
+Per un preparatore atletico o fisioterapista con Partita IVA (Tier 2 Pro), programmare l'allenamento richiede di bilanciare la storia clinica dell'atleta, i suoi traumi pregressi e una periodizzazione solida a medio termine, con la libertà di modificare ogni dettaglio e di esportare nei formati usati ogni giorno.  
+Questo modulo è la centrale operativa del professionista:
+- **Eredità Archivio Standardizzato:** Include l'archivio completo di schede pre-confezionate divise per specifica disciplina sportiva (calcio, basket, tennis, running, sport da combattimento);
+- **Questionario Anamnestico Completo:** Permette di raccogliere la storia clinica dell'atleta, le caratteristiche individuali, le asimmetrie e i traumi pregressi per generare una programmazione adatta;
+- **Pianificazione fino a 6 Mesi:** Consente di strutturare microcicli, mesocicli e macrocicli fino a un massimo di 6 mesi, con personalizzazione mirata;
+- **Personalizzazione Totale dei Parametri:** Il coach può modificare liberamente esercizi, serie, ripetizioni, carichi, tempi di recupero e percentuali di sforzo;
+- **Riabilitazione Specifica & Return to Play (RTP):** Include protocolli dedicati per la riatletizzazione e il ritorno in campo post-infortunio;
+- **Spiegazioni AI con Fonti Scientifiche:** Ogni scelta di programmazione è motivata dall'AI con riferimenti precisi a fonti accademiche, bibliografia, DOI e link alle fonti originali, oltre a una spiegazione generica per ciascun singolo esercizio;
+- **Esportazione Multi-Formato:** Esporta la scheda in 4 formati: **PDF, Excel (.xlsx sbloccato senza password), Word (.docx) e Notes**;
+- **Vincoli e Limitazioni di Fascia:** Non è possibile inserire video all'interno delle schede di allenamento; assenza del chatbot interattivo, della funzione RAG e del collegamento con la sezione di Data Analysis (riservati a Tier 3).
 
 ### Specifiche di Business & Metriche
-- **Target Utente:** Preparatori atletici, chinesiologi e personal trainer con atleti che presentano esigenze complesse o quadri clinici specifici (Tier 2 – Pro P.IVA).
-- **Problema Risolto:** Ridurre da 3 ore a 5 minuti il tempo necessario per progettare una periodizzazione scientifica avanzata, eliminando al 100% il rischio di prescrivere esercizi controindicati per le 119 patologie censite.
+- **Target Utente:** Personal trainer, preparatori fisici e chinesiologi con Partita IVA (Tier 2 – Pro B2B).
+- **Problema Risolto:** Automatizzare la stesura di programmi semestrali scientificamente inattaccabili, garantendo massima flessibilità di editing e assoluta libertà di esportazione multi-formato senza vincoli di piattaforma.
 
 ---
-
 
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
-1. **Corsia 1: Thin Client UI/UX (Periodization Wizard React 18):**
-   - Selettore del modello di periodizzazione (DUP, Blocchi, Coniugata, Lineare), checklist multi-distretto delle 119 condizioni cliniche con gradi di severità (1-5), anteprima del calendario dei microcicli e pulsante di export immediato Excel/PDF.
-2. **Corsia 2: API Gateway & Quota Manager (Envoy Gateway):**
-   - Validazione token JWT Tier 2, controllo delle quote di generazione AI e instradamento delle chiamate verso il motore di calcolo protetto.
-3. **Corsia 3: Server Scatola Nera (ImpactCalculator & AI Periodization Engine Cloud Run):**
-   - *ImpactCalculator:* Algoritmo proprietario che incrocia i carichi assiali e i gradi ROM con la matrice di severità delle patologie;
-   - *Periodization Engine:* Calcolo dei volumi settimanali (numero di serie per gruppo muscolare) e delle progressioni di intensità in percentuale del massimale ($% 1\text{RM}$);
-   - *Excel Generator (ExcelJS):* Compilazione del file binario `.xlsx` privo di protezioni con formule matematiche native (`SUM`, `AVERAGE`).
+1. **Corsia 1: Thin Client UI/UX (React 18 Pro Suite):**
+   - Wizard anamnestico a step (anamnesi clinica, traumi, obiettivi), selettore orizzonte temporale (micro/meso/macrociclo fino a 6 mesi), editor avanzato parametri (serie, reps, kg, recuperi), pannello AI fonti scientifiche e hub di export a 4 formati (PDF, XLSX, DOCX, Notes).
+2. **Corsia 2: API Gateway & RBAC Pro (Envoy Gateway):**
+   - Validazione token JWT Tier 2 Pro (verifica P.IVA attiva). Controllo permessi export multi-formato, blocco richieste orizzonte temporale $> 6\text{ mesi}$, inibizione stream video nelle schede e blocco chiamate a Data Analysis o RAG cluster.
+3. **Corsia 3: Server Scatola Nera (Clinical Anamnesis, Periodizer & Citation Engine Cloud Run):**
+   - *Anamnesis Matrix Processor:* Incrocio tra anamnesi clinica e selezione esercizi ammessi;
+   - *6-Month Periodization Engine:* Generazione progressioni di carico DUP, a blocchi e lineari fino a 24 settimane (6 mesi);
+   - *Scientific Citation & Explain Engine:* Generazione referenze bibliografiche accademiche (PubMed, DOI, link a studi) e spiegazione tecnica per esercizio;
+   - *Multi-Format Exporter (ExcelJS, docx, PDFKit):* Compilazione binari formattati.
 4. **Corsia 4: Database Tripartito (Silo 1 Pro - PostgreSQL):**
-   - Tabelle `clinical_conditions` (119 patologie con relative controindicazioni assiali), `macrocycles` (programmi generati) e `client_assignments`.
+   - Tabelle `athlete_anamnesis`, `pro_macrocycles`, `pro_mesocycles`, `rehab_rtp_protocols` e `pro_exercise_overrides`.
 
 ---
-
 
 ### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-3B)
 
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Coach as Coach Pro UI
+    actor Coach as Coach Pro P.IVA (React 18)
     participant GW as API Gateway (Corsia 2)
-    participant TRIAGE as Clinical Triage 119 (Corsia 3)
-    participant PERIOD as Periodization AI Engine (Corsia 3)
-    participant DB as Database Silo 1 (Corsia 4)
+    participant SRV as Server Scatola Nera (Corsia 3)
+    participant DB as Database Silo 1 Pro (Corsia 4)
 
-    Coach->>GW: POST /api/v1/pro/macrocycle/generate (athleteId, DUP, obiettivi)
-    GW->>DB: Query anamnesi e patologie diagnosticate all'atleta
-    DB-->>GW: Profilo clinico (es. Lesione meniscale, Ernia L4-L5)
-    GW->>TRIAGE: Inoltro dati anamnestici per Triage Clinico 119
-    TRIAGE->>TRIAGE: Esecuzione ImpactCalculator (Esclusi, Adattati ROM, Disponibili)
-    TRIAGE-->>PERIOD: Matrice esercizi ammissibili & vincoli angolari
-    PERIOD->>PERIOD: Generazione Macrociclo DUP (Progressione carico & scarichi)
-    PERIOD-->>Coach: 200 OK (Bozza macrociclo completa con note di sicurezza)
+    Coach->>GW: POST /api/v1/pro/programs/generate (anamnesisData, 6months, sportType)
+    GW->>GW: Validazione JWT Tier 2 (P.IVA verificata, orizzonte <= 6 mesi)
+    GW->>SRV: Dispatch pipeline anamnesi clinica & periodizzazione
+    SRV->>DB: Query storico anamnestico & matrice esercizi
+    DB-->>SRV: Record clinici & catalogo
+    SRV->>SRV: Elaborazione macrociclo 6 mesi (DUP / Blocchi) + Protocolli RTP
+    SRV->>SRV: Interrogazione archivio scientifico (Citazioni DOI & PubMed)
+    SRV->>DB: INSERT pro_macrocycles (Salvataggio bozza programma)
+    DB-->>SRV: Commit ID macrociclo
+    SRV-->>Coach: Rendering Editor Parametri (Esercizi, carichi, spiegazioni AI con fonti)
 
-    Coach->>Coach: Revisione fine-tuning volumi e conferme
-    Coach->>GW: POST /api/v1/pro/macrocycle/assign (Piano confermato)
-    GW->>DB: INSERT athlete_macrocycles & workout_plans
-    DB-->>GW: Commit completato
-    GW-->>Coach: 201 Created (Scheda assegnata all'atleta)
+    Coach->>Coach: Personalizzazione libera serie, reps, carichi ed esercizi
+    Coach->>GW: POST /api/v1/pro/programs/:id/export?format=xlsx
+    GW->>SRV: Compilazione Openpyxl / ExcelJS sbloccato (protected: false)
+    SRV-->>Coach: Stream binario file .xlsx modificabile
 ```
 
 ---
 
+## 4. Flusso Passo-Passo (Livello A Narrativo + KPI e Livello B Deep-Dive)
 
-## 4. Flusso Operativo Passo-Passo
+### Livello A: Flusso Operativo Utente & Tabella KPI
+1. **Scelta Modalità di Avvio:** Il coach sceglie se partire da una scheda pre-confezionata per sport o se compilare il Questionario Anamnestico;
+2. **Compilazione Anamnesi:** Inserisce parametri clinici, traumi pregressi e caratteristiche dell'atleta;
+3. **Scelta Percorso & Orizzonte Temporale:** Imposta la durata (da 1 a 6 mesi) e seleziona se includere protocolli specifici di Riabilitazione & Return to Play (RTP);
+4. **Personalizzazione Totale Parametri:** Modifica liberamente esercizi, carichi, serie e ripetizioni nell'editor interattivo;
+5. **Consultazione Spiegazioni AI con Fonti:** Esamina la rationale scientifica generata dall'AI per la periodizzazione con link diretti ai DOI, oltre alla spiegazione specifica di ciascun esercizio;
+6. **Esportazione Multi-Formato:** Seleziona uno dei 4 formati disponibili (**PDF, Excel, Word, Notes**) e scarica il file.
 
-### Livello A: User Journey Narrativo (La Storia dell'Utente)
-1. **La Selezione dell'Atleta:** Il coach apre il suo portafoglio clienti e seleziona ad esempio *"Luca, 34 anni, impiegato con lombalgia ricorrente"*.
-2. **La Scelta dell'Obiettivo & del Modello:** Il coach sceglie l'obiettivo: *"Forza e Ipertrofia con modello DUP (Ondulata Giornaliera) su 16 settimane"*.
-3. **Il Triage Clinico delle 119 Patologie:** Nella sezione clinica, il coach seleziona *"Colonna - Ernia discale L4-L5 (Severità Media)"*.
-4. **L'Azione Istantanea dell'ImpactCalculator:** In un millisecondo l'app risponde a video:
-   - *Esercizi Esclusi (Bollino Rosso):* Squat con bilanciere sopra le spalle e stacco da terra pesante (perché comprimono le vertebre);
-   - *Esercizi Adattati (Bollino Giallo):* Leg Press a schienale inclinato a 45° o Squat alla cintura (Belt Squat);
-   - *Esercizi di Pre-Attivazione Obbligatori (Bollino Verde):* 5 minuti di riscaldamento del core (Bird-Dog e Plancia) prima di ogni seduta.
-5. **La Creazione del Piano:** Il coach preme *"Genera Macrociclo"*. In 3 secondi compare il calendario completo delle 16 settimane, con i volumi e i pesi suggeriti per ogni seduta.
-6. **L'Esportazione Libera:** Il coach tocca *"Scarica Foglio Excel"*. Il file si apre su Microsoft Excel o Google Fogli: non ci sono blocchi o celle bloccate, il coach può personalizzare i colori, aggiungere note o cambiare un esercizio con totale libertà.
+| Step | Nome Operazione | Tempo Target (KPI) | Descrizione Tecnica |
+| :---: | :--- | :---: | :--- |
+| **01** | Caricamento Anamnesi Atleta | $< 250\text{ ms}$ | Fetch profilo clinico da Silo 1 Pro |
+| **02** | Generazione Macrociclo (6 Mesi) | $< 1.8\text{ s}$ | Elaborazione progressioni di carico DUP/Blocchi su 24 settimane |
+| **03** | Retrieval Fonti Scientifiche AI | $< 900\text{ ms}$ | Associazione studi peer-reviewed (DOI, PubMed link) |
+| **04** | Esportazione XLSX / DOCX / PDF | $< 1.5\text{ s}$ | Compilazione dinamica file multi-formato senza protezioni |
 
----
-
-
-#### Indicatori di Accettazione Operativa & Clinica (KPI)
-| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
-| :--- | :--- | :--- | :--- |
-| **Zero Violazioni Cliniche** | $100\%$ rispetto vincoli patologia | $0\%$ eccezioni | Blocco perentorio generazione scheda |
-| **Tempo Generazione DUP** | $< 800\text{ ms}$ per macrociclo 12 sett. | $\le 2.0\text{ s}$ | Caricamento template standard pre-validato |
-| **Aderenza Fasi Ondulate** | $100\%$ conformità carichi DUP | $\pm 2.5\%$ | Normalizzazione pesi automatica server-side |
-| **Copertura Clinica 119** | 119 condizioni mediche mappate | 119 condizioni attive | Rinvio a parere medico specialistico |
-
----
-
-
-### Livello B: Trattazione Tecnica Nodi Operativi
-
-1. `START` (Avvio Wizard Periodizzazione): Montaggio del componente `MacrocycleWizard` con recupero profilo atleta dal client state.
-2. `MODEL_SELECTION` (Scelta Modello Matematico):
-   - *DUP (Daily Undulating Periodization):* Variazione carichi all'interno del microciclo (es. Lun: Forza 85%, Mer: Ipertrofia 70%, Ven: Potenza 60%);
-   - *Block Periodization:* Blocchi sequenziali (Accumulo $\to$ Trasformazione $\to$ Realizzazione);
-   - *Conjugate Method:* Separazione sforzo massimale (Max Effort) e sforzo dinamico (Dynamic Effort);
-   - *Linear Periodization:* Incremento progressivo del carico con decremento del volume.
-3. `CLINICAL_TRIAGE_CHECK` (Incrocio su 119 Condizioni Cliniche):
-   - Input patologie selezionate con gravità $[1, 5]$;
-   - Chiamata interna al modulo `ImpactCalculator`:
-     $$\text{PenaltyScore} = \sum_{p \in \text{Patologie}} \text{AxialLoadCoeff}_p \times \text{Severity}_p$$
-   - Cutoff binario: se il punteggio supera la soglia critica per un esercizio $\implies$ stato `EXCLUDED`.
-4. `PRE_ACTIVATION_INJECTION` (Iniezione Protocolli di Pre-Attivazione): Inserimento automatico dei 32 protocolli clinici riabilitativi (`clinical-knee.ts` / spalla / rachide) all'inizio di ogni seduta come riscaldamento obbligatorio.
-5. `SRV_PERIODIZATION_GEN` (Computazione Algoritmica Cloud Run):
-   - Generazione della matrice $W \times S$ (Settimane $\times$ Sessioni);
-   - Assegnazione dei parametri di intensità nominale e Reps in Reserve (RIR 1-3).
-6. `EXCEL_COMPILER` (Compilazione Foglio Excel Sbloccato):
-   - Utilizzo libreria server-side `exceljs`;
-   - Configurazione esplicita foglio di calcolo con `worksheet.protect = false` e formattazione celle professionale;
-   - Inserimento di collegamenti ipertestuali ai video dimostrativi del catalogo.
-7. `DB_MACRO_WRITE` (Archiviazione Silo 1): Persistenza del piano in `pro_macrocycles`.
-8. `DOWNLOAD_HANDOFF` (Consegna al Client): Invio stream binario `.xlsx` e PDF interattivo per stampa o invio via email all'atleta.
+### Livello B: Deep-Dive Ingegneristico sui Microservizi
+- **Motore di Periodizzazione Semestrale:** Limite vincolante a $N \le 26$ microcicli settimanali (6 mesi). Tentativi di programmazione annuale vengono respinti dall'API Gateway con richiesta di upgrade a Tier 3;
+- **Formattazione Excel Interoperabile:** L'export `.xlsx` viene generato con il flag `protected: false`, consentendo al professionista di aggiungere colonne, formule e loghi personali;
+- **Gating Negativo:**
+  - `POST /api/v1/pro/programs/:id/attach-video` $\rightarrow$ `403 Forbidden` (`FEATURE_RESERVED_TIER3_VIDEO_PROGRAMS`);
+  - `GET /api/v1/chat/assistant` $\rightarrow$ `403 Forbidden` (`FEATURE_RESERVED_TIER3_CHATBOT_247`).
 
 ---
 
+## 5. Rami Decisionali & 4 Stati UI
 
-## 5. Rami Decisionali & Gestione dei 4 Stati UI
+```mermaid
+flowchart TD
+    DEC_SOURCE{Modalità di Generazione?}
+    DEC_SOURCE -->|Archivio Sport| UI_SPORT[Schede Standardizzate per Sport]
+    DEC_SOURCE -->|Questionario Anamnestico| UI_ANAM[Compilazione Anamnesi Clinica]
 
-| Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
-| :--- | :--- | :--- | :--- |
-| `CLINICAL_CHECK` | Atleta presenta condizioni cliniche attive? | Attiva filtro ImpactCalculator | Generazione libera standard |
-| `IMPACT_SCORE` | Esercizio supera soglia di sicurezza assiale? | Escludi o sostituisci con variante | Mantieni esercizio originale |
-| `PRE_ACTIVATION` | Patologia richiede warm-up protettivo? | Inietta scheda di pre-attivazione | Warm-up aspecifico standard |
+    UI_ANAM --> DEC_TYPE{Tipo Percorso?}
+    DEC_TYPE -->|Performance| UI_PLAN[Periodizzazione 1-6 Mesi]
+    DEC_TYPE -->|Riabilitazione / RTP| UI_RTP[Protocolli Return to Play & Rehab]
 
-### I 4 Stati di Interfaccia Utente (UI States):
-1. **Empty State:** Nessun macrociclo creato per l'atleta: schermata di setup *"Configura il primo piano di allenamento a lungo termine in 3 semplici passaggi"*.
-2. **Loading State:** Barra di calcolo progressiva con messaggi di stato *"Analisi delle 119 patologie..."*, *"Ottimizzazione curve di carico DUP..."*, *"Generazione foglio Excel..."* ($< 1.8\text{ secondi}$).
-3. **Populated State:** Vista a griglia interattiva con tabella di marcia delle settimane, grafici a linee dell'ondulazione del volume e pulsanti di download immediato.
-4. **Error / Fallback State:**
-   - *Conflitto insolubile tra patologie ed esercizi:* Alert guidato *"I filtri selezionati escludono tutti gli esercizi di spinta verticale. Si consiglia una consultazione fisioterapica prima di proseguire"*.
+    UI_PLAN --> UI_EDIT[Editor Completo Parametri: Serie, Reps, Carichi, Swap]
+    UI_RTP --> UI_EDIT
 
----
+    UI_EDIT --> UI_AI[Spiegazioni AI con Fonti Bibliografiche & DOI]
+    UI_AI --> DEC_EXP{Selezione Formato Esportazione?}
 
+    DEC_EXP -->|PDF| EXP_PDF[Download PDF]
+    DEC_EXP -->|Excel| EXP_XLSX[Download Excel .xlsx Sbloccato]
+    DEC_EXP -->|Word| EXP_DOCX[Download Word .docx]
+    DEC_EXP -->|Notes| EXP_NOTES[Download Notes]
 
-## 6. Contratti Dati, Parametri I/O & Database Silo
-
-### Specifiche Endpoint REST:
-
-#### 1. Generazione Macrociclo con Triage Clinico
-- **Endpoint:** `POST /api/v1/pro/periodization/generate-macrocycle`
-- **Headers:** `Authorization: Bearer <pro_jwt>`, `Content-Type: application/json`
-- **Request Payload:**
-```json
-{
-  "athleteId": "ath_c0192a",
-  "programName": "DUP Forza & Ipertrofia Avanzata",
-  "periodizationModel": "DUP",
-  "durationWeeks": 16,
-  "weeklySessions": 4,
-  "clinicalConditions": [
-    { "conditionId": "col_discopatia_l4_l5", "severity": 3 }
-  ],
-  "unlockedExcelExportRequired": true
-}
+    EXP_PDF --> UI_LIMITS[Banner Vincoli: Video in scheda, Chatbot 24/7 e RAG riservati a Tier 3]
 ```
-- **Responses:**
-  - `201 Created`:
+
+### Gestione dei 4 Stati UI (Obbligatoria)
+1. **Empty State:** Nessuna scheda o anamnesi attiva per l'atleta selezionato. CTA: "Compila il primo questionario anamnestico o seleziona un programma dall'archivio sport".
+2. **Loading State:** Progress bar durante l'elaborazione del macrociclo semestrale e la composizione delle referenze scientifiche.
+3. **Populated State:** Dashboard di periodizzazione con timeline a 6 mesi, tabelle carichi modificabili e badge scientifici con link ai paper.
+4. **Error / Fallback State:** Timeout durante l'export DOCX/XLSX: fallback automatico a visualizzazione web interattiva con possibilità di copia negli appunti.
+
+---
+
+## 6. Contratti Dati & Error Matrix
+
+### Schema JSON Richiesta & Risposta Macrociclo Pro
 ```json
 {
-  "macrocycleId": "macro_8819a",
-  "weeksCount": 16,
-  "totalSessions": 64,
-  "triageApplied": {
-    "excludedExercisesCount": 14,
-    "adaptedExercisesCount": 8,
-    "injectedPreActivations": ["pre_act_core_stability_02"]
+  "programId": "pro_macro_6m_01",
+  "tier": 2,
+  "athleteId": "ath_78912",
+  "horizonMonths": 6,
+  "isPersonalized": true,
+  "anamnesisSummary": {
+    "hasInjuryHistory": true,
+    "reportedConditions": ["patellar_tendinopathy_right"],
+    "rtpProtocolApplied": true
   },
-  "excelDownloadUrl": "https://vault.t7workout.app/exports/macro_8819a_unlocked.xlsx",
-  "pdfDownloadUrl": "https://vault.t7workout.app/exports/macro_8819a_report.pdf"
+  "periodizationModel": "DUP_DailyUndulating",
+  "editableParameters": {
+    "canEditSets": true,
+    "canEditReps": true,
+    "canEditLoads": true,
+    "canSwapExercises": true
+  },
+  "scientificReferences": [
+    {
+      "topic": "Eccentric Loading in Patellar Tendinopathy",
+      "authors": "Malliaras P. et al.",
+      "journal": "Sports Med",
+      "year": 2015,
+      "doi": "10.1007/s40279-015-0339-z",
+      "url": "https://doi.org/10.1007/s40279-015-0339-z"
+    }
+  ],
+  "exportFormatsAllowed": ["pdf", "xlsx", "docx", "notes"],
+  "restrictions": {
+    "allowVideoEmbedding": false,
+    "allowChatbotAssistant": false,
+    "allowRagCustomization": false,
+    "allowDataAnalysisSync": false
+  }
 }
 ```
 
-### Schema Relazionale (Database Silo 1 - PostgreSQL):
-- `pro_macrocycles`: `id UUID PK`, `pro_id UUID FK -> pro_profiles.id`, `athlete_id UUID FK -> athlete_profiles.id`, `model_type VARCHAR(32)`, `weeks_count INT`, `plan_matrix JSONB`, `created_at TIMESTAMPTZ`.
-- `clinical_conditions_catalog`: `id VARCHAR(64) PK`, `district VARCHAR(32)`, `name_it VARCHAR(128)`, `axial_load_penalty NUMERIC(3,2)`, `rom_contraindications TEXT[]`.
+### Matrice Errori HTTP a 6 Colonne
+| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza |
+| :---: | :---: | :--- | :--- | :--- | :--- |
+| `400` | `ERR_T2_HORIZON_EXCEEDED` | `/api/v1/pro/programs/generate` | Richiesta durata $> 6\text{ mesi}$ | Avviso modale: "In Tier 2 la pianificazione massima consentita è di 6 mesi. Per la programmazione annuale passa a Tier 3" | Riduzione automatica a 6 mesi |
+| `403` | `ERR_T2_VIDEO_EMBED_BLOCKED` | `/api/v1/pro/programs/:id/video` | Tentativo di inserire video nella scheda | Tooltip informativo: "L'invio di schede con video dimostrativi è una funzione esclusiva di Tier 3" | Blocco upload video; salvataggio testo |
+| `403` | `ERR_T2_RAG_CHAT_BLOCKED` | `/api/v1/chat/query` | Tentativo di avvio chatbot interattivo RAG | Banner: "Chatbot 24/7 e RAG riservati a Tier 3 Elite" | Apertura pannello FAQ statiche |
+| `502` | `ERR_T2_XLSX_BUILD_FAIL` | `/api/v1/pro/programs/:id/export` | Errore motore compilazione Excel | Toast: "Errore compilazione Excel. Download PDF alternativo disponibile" | Generazione automatica PDF di fallback |
 
 ---
 
+## 7. Ereditarietà di Tier & Vincoli
 
-### Matrice Errori HTTP & Strategie di Resilienza
-| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
-| :---: | :--- | :--- | :--- | :--- | :--- |
-| **400** | `ERR_BAD_PERIOD_PARAM`| `POST /macrocycle/generate`| Settimane non congrue ($< 4$ o $> 52$) | Alert: *"Durata macrociclo consentita: 4-52 settimane"*| Correzione automatica della durata a 8 settimane |
-| **401** | `ERR_UNAUTHORIZED` | `POST /macrocycle/generate`| Sessione coach scaduta durante la configurazione | Modale: *"Riconnetti per salvare il macrociclo"* | Salvataggio bozza in localStorage per non perdere dati |
-| **403** | `ERR_CLINICAL_LOCK` | `POST /macrocycle/assign` | Coach tenta di forzare esercizio con Red Flag | Dialog rosso: *"Esercizio controindicato per patologia"*| Sostituzione forzata con variante clinica sicura |
-| **404** | `ERR_ATHLETE_NOT_FOUND`| `POST /macrocycle/generate`| Atleta non presente o non associato al coach | Toast: *"Seleziona un atleta attivo dal tuo roster"* | Ritorno all'elenco atleti assegnati |
-| **422** | `ERR_TRIAGE_CONFLICT` | `POST /macrocycle/generate`| Conflitto tra patologie multiple incompatibili | Avviso: *"Troppe restrizioni. Richiesto consulto medico"*| Limitazione a soli protocolli di mobilità protetta |
-| **500** | `ERR_SOLVER_CRASH` | `POST /macrocycle/generate`| Timeout del risolutore di ottimizzazione carichi | Banner: *"Generazione standard in corso..."* | Assegnazione schema lineare classico di backup |
-
----
-
-
-## 7. Ereditarietà di Tier & Differenziali di Fascia
-
-- **Differenziali rispetto al Tier 1:**  
-  Nel Tier 1 l'utente riceve solo schede singole di base senza programmazione plurimensile. Il **Generatore di Macrocicli DUP/Blocchi, l'ImpactCalculator su 119 patologie e l'export Excel sbloccato sono esclusivi di Tier 2**.
-- **Propagazione verso Tier 3 (`FLOW-3C`):**  
-  Nei club professionistici, il macrociclo individuale del singolo cliente si trasforma nel **Microciclo di Squadra (MD-X)**, in cui il carico viene modulato in base ai giorni che mancano alla partita (MD-4, MD-3, MD-1, MD+1) differenziando titolari e panchinari.
+- **Ereditarietà da Livelli Inferiori:** Eredita il catalogo completo di schede pre-confezionate per sport e i programmi di riabilitazione generica del Tier 1.
+- **Differenziali Esclusivi Tier 2:**
+  - Generazione personalizzata tramite Questionario Anamnestico clinico;
+  - Periodizzazione a medio termine fino a 6 mesi (microcicli, mesocicli, macrocicli);
+  - Modifica libera e totale di serie, ripetizioni, carichi, recuperi ed esercizi;
+  - Spiegazioni AI arricchite con citazioni bibliografiche, DOI e link scientifici + spiegazione per singolo esercizio;
+  - Protocolli specifici di Riabilitazione e Return to Play (RTP);
+  - Esportazione multi-formato sbloccata in 4 formati: **PDF, Excel (.xlsx), Word (.docx) e Notes**.
+- **Vincoli e Limitazioni di Fascia (Gating Negativo):**
+  - **Divieto inserimento video:** Le schede non supportano streaming video incorporato;
+  - **Assenza Chatbot 24/7:** Nessun agente conversazionale per gli atleti;
+  - **Assenza RAG:** Nessun modello addestrabile sulle abitudini dell'atleta o stile metodologico del coach;
+  - **Assenza Data Analysis:** Nessun collegamento con metriche di laboratorio o test da campo.

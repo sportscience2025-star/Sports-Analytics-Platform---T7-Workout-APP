@@ -7,40 +7,65 @@ flowchart TD
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 3C: SQUAD MICROCYCLE PLANNING & MATCH DAY LOADS (MD-X TO MD+X)"]
+    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 3C: PIANIFICAZIONE ANNUALE RAG, VIDEO ATLETI, CHATBOT 24/7 & READINESS SECTION"]
 
-    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (TACTICAL MICROCYCLE PLANNER)"]
-        START(["Inizio: Pianificazione Microciclo Squadra"]):::startend
-        TIMELINE_MD["Timeline Match Day: MD-4 Forza, MD-3 Intensita Tattica, MD-2 Velocita, MD-1 Rifinitura, MD Gara, MD+1 Scarico"]:::client
-        ROLE_MODAL["Configurazione Tattica Doppio Ruolo (es. Terzino / Esterno Alto)"]:::client
-        BENCH_COMPENSATION["Compensazione Carichi Panchina: Ricalcolo Lavoro per Riserve non Impiegate in Partita"]:::client
-        ACWR_CHART["Grafico Rapporto Carico Acuto/Cronico (ACWR) con Finestra Ottimale 0.8 - 1.3"]:::client
-        APPROVE_BTN["Pulsante 'Convalida Piano Microciclo Squadra' (Co-Firma Staff)"]:::client
-        ALERT_SPIKE["Allarme Spike Carico: ACWR > 1.5 - Rischio Infortunio Elevato"]:::error
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (STAFF COCKPIT, ATHLETE APP & READINESS)"]
+        START(["Inizio: Staff Cockpit Élite (Tier 3)"]):::startend
+        UI_SYNC_DATA["Integrazione Data Analysis: Import Excel, Test Forza/Velocità & Storico"]:::client
+        
+        subgraph SUB_READINESS["TIER 3 ONLY: READINESS SECTION"]
+            UI_PVT_TEST["Test Cognitivi & Vigilanza PVT (Psychomotor Vigilance Task)"]:::client
+            UI_HRV_TEST["Test HRV / RMSSD: Time Domain (SDNN) & Frequency Domain (LF/HF)"]:::client
+            UI_RISK_DASH["Cruscotto Rischio Infortuni (Formula Matematica) & Baseline Neurale/Fisica"]:::client
+            UI_AI_PREVENTION["Supporto Preventivo AI: Raccomandazioni Singolo Atleta & Squadra"]:::client
+        end
+
+        UI_ANNUAL_WIZARD["Pianificazione Annuale: Micro-Meso-Macrocicli fino a 1 Anno (Stagione)"]:::client
+        UI_RAG_COACH["RAG Stile Coach & Atleta: Replica Metodologia & Consigli Abitudini"]:::client
+        UI_REHAB_ELITE["Protocolli Return to Play Élite & Coordinamento Staff Medico"]:::client
+        DEC_DELIVERY{"Canale Condivisione Programma?"}:::decision
+        UI_SHARE_VIDEO["Invio App Atleta con Video Dimostrativi, Tecnica ed Errori da Evitare"]:::client
+        UI_CHATBOT_24_7["Chatbot Interattivo 24/7 Addestrato RAG: Q&A Real-Time & Guida Esercizi"]:::client
+        UI_EXPORT_DOCS["Esportazione Multi-Formato: PDF, Excel (.xlsx), Word (.docx), Notes"]:::client
     end
 
-    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & SIGNATURE VERIFICATION"]
-        GW_PLAN_SAVE["Ricezione POST /api/v1/club/microcycles/plan"]:::gateway
-        GW_CO_SIGN{"Verifica Doppia Firma (Preparatore Atletico + Allenatore)?"}:::decision
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & ENTERPRISE BROKER"]
+        GW_AUTH_BUNKER["Autenticazione Silo 2 Bunker mTLS & Feature Gating Tier 3"]:::gateway
+        GW_DATA_SYNC["Ricezione POST /api/v1/elite/data-analysis/sync"]:::gateway
+        GW_READINESS_INGEST["Ricezione POST /api/v1/elite/readiness/ingest (PVT & HRV)"]:::gateway
+        GW_STREAM_BROKER["Broker HLS Video Streaming & WSS WebSocket Chatbot 24/7"]:::gateway
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (TEAM LOAD ENGINE)"]
-        SRV_ACWR_CALC["Algoritmo Calcolo ACWR (EWMA - Exponentially Weighted Moving Average)"]:::server
-        SRV_BENCH_LOAD["Algoritmo Generazione Lavoro Compensativo Riserve Post-Gara (MD+1)"]:::server
-        SRV_DUAL_ROLE["Bilanciamento Metabolico e Meccanico per Atleti con Doppio Ruolo"]:::server
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (READINESS, RAG & ANNUAL ENGINES)"]
+        SRV_DATA_PARSER["Data Analysis Ingestion: Parser Matrici Excel & Test Biomeccanici"]:::server
+        SRV_INJURY_ALGO["Algoritmo Calcolo Rischio Infortuni & Baseline Neurale/Fisica"]:::server
+        SRV_ZSCORE_ENGINE["Stat Engine: Standardizzazione Z-Score Carico Interno ed Esterno"]:::server
+        SRV_ANNUAL_ENGINE["Annual Periodization Engine: Macrostruttura 52 Settimane di Gara"]:::server
+        SRV_RAG_CLUSTER["RAG Cognitive Core: LLM societario per stile coach & Chatbot 24/7"]:::server
     end
 
-    subgraph LANE_DB["CORSIA 4: DATABASE SILO 2 (BUNKER CLUB KMS ENCLAVE)"]
-        DB_SAVE_PLAN[("Salvataggio Microciclo di Squadra in Silo 2 (squad_microcycles, player_loads)")]:::db
-        END_MICROCYCLE_READY(["Fine: Microciclo Distribuito a Tutti i Componenti della Squadra"]):::startend
+    subgraph LANE_DB["CORSIA 4: DATABASE TRIPARTITO (SILO 2 BUNKER KMS & DATA LAKE)"]
+        DB_SILO2_BUNKER[("Silo 2 Bunker KMS: Schede Annuali, Log PVT/HRV & Vettori RAG")]:::db
+        END_ACTIVE(["Fine: Programma Annuale Attivo, Monitorato da Readiness & RAG 24/7"]):::startend
     end
 
-    %% Flussi
-    START --> TIMELINE_MD --> ROLE_MODAL --> BENCH_COMPENSATION --> APPROVE_BTN
-    APPROVE_BTN --> GW_PLAN_SAVE --> GW_CO_SIGN
-    GW_CO_SIGN -- Firma Mancante --> TIMELINE_MD
-    GW_CO_SIGN -- Firme Valide --> SRV_ACWR_CALC
+    %% Flussi di Connessione
+    START --> UI_SYNC_DATA --> GW_DATA_SYNC --> SRV_DATA_PARSER
+    SRV_DATA_PARSER --> UI_PVT_TEST
+    SRV_DATA_PARSER --> UI_HRV_TEST
 
-    SRV_ACWR_CALC --> SRV_BENCH_LOAD --> SRV_DUAL_ROLE --> DB_SAVE_PLAN
-    SRV_ACWR_CALC -. Se ACWR > 1.5 .-> ALERT_SPIKE -. Mostrato in .-> ACWR_CHART
-    DB_SAVE_PLAN --> ACWR_CHART --> END_MICROCYCLE_READY
+    UI_PVT_TEST --> GW_READINESS_INGEST
+    UI_HRV_TEST --> GW_READINESS_INGEST
+
+    GW_READINESS_INGEST --> SRV_INJURY_ALGO --> SRV_ZSCORE_ENGINE
+    SRV_ZSCORE_ENGINE --> UI_RISK_DASH --> UI_AI_PREVENTION
+
+    UI_AI_PREVENTION --> UI_ANNUAL_WIZARD --> SRV_ANNUAL_ENGINE --> UI_RAG_COACH
+    UI_RAG_COACH --> SRV_RAG_CLUSTER --> UI_REHAB_ELITE --> DB_SILO2_BUNKER
+    DB_SILO2_BUNKER --> DEC_DELIVERY
+
+    DEC_DELIVERY -- App Atleta con Video --> UI_SHARE_VIDEO --> GW_STREAM_BROKER --> UI_CHATBOT_24_7
+    DEC_DELIVERY -- Export Multi-Formato --> UI_EXPORT_DOCS
+
+    UI_CHATBOT_24_7 --> END_ACTIVE
+    UI_EXPORT_DOCS --> END_ACTIVE

@@ -1,59 +1,62 @@
-# Capitolato Tecnico: Flow 2C – Catalogo 3D, Video Multi-Camera 4K/8K & Libreria Club a 2 Livelli (T7 Elite Pro Teams)
+# Capitolato Tecnico: Flow 2C – Catalogo 3D, Multi-Camera 4K & Suite Tattica (T7 Elite Pro Teams)
 
 ## 1. Identificativo & Titolo Ufficiale
 - **Badge Miro Board:** `#14` (Posizione: `X: -108, Y: 6235.66`, Miro Shape ID: `3458764688417722783`)
 - **Codice Univoco:** `FLOW-2C`
-- **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 2C: CATALOGO 3D, VIDEO MULTI-CAMERA 4K/8K, SUITE EDITING TATTICA & LIBRERIA CLUB A 2 LIVELLI
+- **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 2C: CATALOGO 3D, MULTI-CAMERA 4K, SUITE TATTICA & STRESS MUSCOLARE
 - **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 2: Catalogo Tattico & Cockpit Multi-Staff)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-2c-multi-staff-cockpit.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Secret Club Vault](00-GLOSSARIO-TERMINI-TECNICI.md#secret-club-vault-multi-camera-4k-sync), [Digital Twin 3D Squadra](00-GLOSSARIO-TERMINI-TECNICI.md#digital-twin-biomeccanico-dellatleta), [Video Ingest Tiers](00-GLOSSARIO-TERMINI-TECNICI.md#video-ingest-tiers-1080p-consumer-2k-pro-4k8k-enterprise), [SMPTE Timecode Sync](00-GLOSSARIO-TERMINI-TECNICI.md#smpte-timecode-multi-camera-synchronization), [Telestrator & Tactical Annotations](00-GLOSSARIO-TERMINI-TECNICI.md#telestrator-tactical-video-annotations), [Variable Playback Rate & Scrubbing 120fps](00-GLOSSARIO-TERMINI-TECNICI.md#variable-playback-rate-frame-by-frame-scrubbing-120fps), [Doppia Firma Digitale Tecnico-Sanitaria](00-GLOSSARIO-TERMINI-TECNICI.md#electronic-medical-record-emr-segreto-medico), [Watermarking Dinamico Anti-Leak](00-GLOSSARIO-TERMINI-TECNICI.md#dynamic-forensic-watermarking-anti-leak)).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Secret Club Vault](00-GLOSSARIO-TERMINI-TECNICI.md#secret-club-vault-multi-camera-4k-sync), [Digital Twin 3D Squadra](00-GLOSSARIO-TERMINI-TECNICI.md#digital-twin-biomeccanico-dellatleta), [Video Ingest Tiers](00-GLOSSARIO-TERMINI-TECNICI.md#video-ingest-tiers-policy-tier-1-zero-upload-tier-2-1080p-tier-3-4k8k), [SMPTE Timecode Sync](00-GLOSSARIO-TERMINI-TECNICI.md#smpte-timecode-multi-camera-synchronization), [Telestrator & Tactical Annotations](00-GLOSSARIO-TERMINI-TECNICI.md#telestrator-tactical-video-annotations), [Variable Playback Rate & Scrubbing 120fps](00-GLOSSARIO-TERMINI-TECNICI.md#variable-playback-rate-frame-by-frame-scrubbing-120fps), [Doppia Firma Digitale Tecnico-Sanitaria](00-GLOSSARIO-TERMINI-TECNICI.md#electronic-medical-record-emr-segreto-medico), [Watermarking Dinamico Anti-Leak](00-GLOSSARIO-TERMINI-TECNICI.md#dynamic-forensic-watermarking-anti-leak)).
 
 ---
 
 ## 2. Obiettivo di Business & Target Utente
 
 ### Guida Pratica per Non Tecnici: Cos'è questo modulo per un umano?
-Nei grandi club professionistici (Serie A, Premier League, NBA), gli schemi su palla inattiva, i gesti esplosivi di forza e le posture speciali di riatletizzazione elaborate dallo staff sono **segreti industriali e sportivi custoditi gelosamente**. Se una squadra rivale scopre in anticipo come batte i calci d'angolo o come allena i propri attaccanti, il vantaggio competitivo svanisce.  
-**Il Catalogo d'Élite di T7** organizza il sapere tecnico della società con standard broadcast ad altissima definizione:
-1. **Risoluzione Broadcast 4K (2160p) e fino a 8K (4320p):** Supporto a flussi video ultra-dettagliati registrati da telecamere fisse da campo a 120fps/240fps, per catturare ogni contrazione muscolare e impatto al suolo;
-2. **Sincronizzazione Multi-Camera SMPTE (< 10ms):** Fino a 3-4 telecamere posizionate sul campo (frontale, laterale, zenitale/dall'alto) sincronizzate al millisecondo;
-3. **Trimming Sincrono Multi-Traccia:** Con un solo movimento di taglio, il preparatore ritaglia simultaneamente tutte le angolazioni della clip;
-4. **Controllo Velocità Estremo (Frame-by-Frame Scrubbing a 120fps):** Rallentatore millimetrico e avanzamento fotogramma per fotogramma per analizzare gli angoli di atterraggio dopo un salto o l'inversione di carico del tendine d'Achille;
-5. **Suite di Editing Avanzato (Telestrator & Biomeccanica Tattica):**
-   - Disegno vettoriale interattivo direttamente sui frame (frecce di corsa, cerchi di pressione, linee di postura);
-   - Tracciamento della traiettoria del bilanciere (`Bar Path`);
-   - Mappe vettoriali delle forze di taglio articolari in Newton (N);
-6. **Libreria Club su Due Livelli:**
-   - *Livello 1: Bozza Individuale Atleta* (vincolata al singolo calciatore nella cartella EMR criptata Silo 2);
-   - *Livello 2: Secret Club Vault* (promozione a patrimonio tecnico ufficiale condiviso con tutto lo staff societario);
-7. **Doppia Firma Digitale Obbligatoria (Medico Sociale + Head S&C):** Nessun protocollo o esercizio custom può essere assegnato a un calciatore di alto valore economico se non è validato congiuntamente dal Responsabile Tecnico e dal Responsabile Sanitario;
-8. **Dynamic Forensic Watermarking Anti-Leak:** Se qualcuno visualizza un video sul tablet, sullo sfondo compare in trasparenza impercettibile il suo nome, ruolo e timestamp: qualsiasi foto allo schermo porterebbe all'identificazione immediata del responsabile.
+Nelle massime organizzazioni sportive (club di Serie A, Premier League, NBA, franchigie d'élite), il patrimonio tecnico, i dettagli esecutivi di forza esplosiva e i protocolli di Return to Play sono **segreti industriali e sportivi custoditi gelosamente**.  
+**Il Catalogo d'Élite Tier 3 di T7** rappresenta il vertice tecnologico della piattaforma:
+1. **Visualizzazione 3D ad Altissima Fedeltà con Digital Twin:** Consultazione dei movimenti tramite modelli 3D avanzati Three.js Draco sincronizzati con i parametri biometrici della rosa della prima squadra;
+2. **Contenuti Tecnici Completi per lo Staff:** Spiegazioni tecniche multi-disciplinari, protocolli preventivi e note congiunte preparatore-medico;
+3. **Ricerca Avanzata Club & Tattica:** Filtri specifici per singolo muscolo, distretto, categoria, attrezzatura, ruolo tattico (es. difensori centrali, terzini, centrocampisti, attaccanti) e fase clinica Return to Play (RTP 6 fasi);
+4. **Creazione Video e Supporto AI con Cartella EMR:** Redazione di punti di forza e debolezza da parte dello staff tecnico, con il supporto dell'AI multimodale enterprise che incrocia le cartelle cliniche EMR (Silo 2 Bunker) per perfezionare le spiegazioni;
+5. **Risoluzione Video Superiore Fino a 4K:** Qualità di acquisizione, caricamento e riproduzione supportata fino a un massimo di **4K Ultra HD** ($3840\times 2160$ a 60/120fps) per cogliere ogni minima contrazione e deformazione tendinea;
+6. **Editing Video Integrato Avanzato & Telestrator:** Strumenti professionali di modifica video (taglio multi-traccia, slow-motion estremo con scrubbing frame-by-frame a 120fps, accelerazione e suite Telestrator vettoriale con vettori di forza articolare in Newton e Barbell Path);
+7. **Gestione Preferiti Club:** Salvataggio centralizzato degli esercizi nei preferiti ufficiali del club (`club_secret_vault_favorites`);
+8. **Condivisione Globale Team (Broadcast):** Possibilità di condividere simultaneamente i video con tutti gli atleti della prima squadra in un solo tocco, con impresso il **Dynamic Forensic Watermark** anti-leak;
+9. **Gruppi di Lavoro Dedicati:** Creazione e gestione di gruppi dedicati (es. reparto difensori, reparto attaccanti, gruppo RTP, gruppo velocisti) in cui distribuire l'esercizio accompagnato dalla specifica spiegazione tecnica sottostante;
+10. **Caricamento Multiplo e AI Personalizzata per Atleta:** Possibilità di caricare contemporaneamente più clip video dello stesso esercizio eseguito da diversi atleti, ottenendo correzioni tramite AI specifiche e su misura per ciascun individuo;
+11. **Analisi dello Stress Muscolare 3D:** Visualizzazione interattiva ad elementi finiti (FEA) di come le fibre muscolari dei vari distretti vengono sollecitate, tese e stressate in base alla specifica cinematica di esecuzione dell'atleta.
 
 ### Specifiche di Business & Metriche
-- **Target Utente:** Head Coach, Preparatori Atletici (S&C), Medici Sociali e Match Analyst di club professionistici (Tier 3 – B2B Enterprise).
-- **Problema Risolto:** Proteggere i segreti tattici e i protocolli riabilitativi brevettati dal club (Zero Data Leaks), garantire video editing professionale multi-angolo a 120fps e vincolare l'assegnazione alla doppia firma digitale.
+- **Target Utente:** Head Coach, Preparatori Atletici (Head S&C), Medici Sociali, Fisioterapisti e Match Analyst di club professionistici (Tier 3 – B2B Enterprise).
+- **Problema Risolto:** Standardizzare l'insegnamento tecnico dell'intera rosa, azzerare le fughe di notizie (Zero Data Leaks), consentire analisi biomeccanica individualizzata su larga scala e monitorare lo stress reale delle fibre muscolari per prevenire recidive muscolari.
 
 ---
 
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
-1. **Corsia 1: Thin Client UI/UX (Multi-Staff Cockpit React 18 & Suite Tattica):**
-   - Interfaccia multi-schermo con griglia multi-camera 4K/8K sincrona;
-   - Trimmer multi-traccia basato su timecode SMPTE;
-   - Slider di scrubbing frame-by-frame a 120fps e controllo velocità variabile (`0.1x - 2.0x`);
-   - Canvas Telestrator WebGL per disegno vettoriale tattico e vettori di forza articolare (N);
-   - Pannello di validazione a doppia firma digitale (FIDO2 Hardware token);
-   - Watermark video dinamico impresso a livello shader GPU.
-2. **Corsia 2: API Gateway & Enterprise Stream Gate (Envoy mTLS):**
-   - Verifica credenziali mTLS con certificato societario, RBAC Tier 3 (`R5_HEAD_COACH`, `R6_MEDICO`, `R7_ANALYST`);
-   - Streaming video criptato HLS con DRM Widevine / FairPlay e chiavi di rotazione AES-128.
-3. **Corsia 3: Server Scatola Nera (Digital Twin, SMPTE Genlock & Dual-Signature Cloud Run):**
-   - Sincronizzazione millimetrica dei flussi multi-camera (Genlock software $< 10\text{ ms}$);
-   - Motore biomeccanico per calcolo momento torcente e forze vertebrali su mesh Digital Twin;
-   - Binding crittografico della doppia firma digitale (SHA-256 tra chiave privata Medico e Preparatore);
-   - Applicazione del watermark forense dinamico invisibile.
-4. **Corsia 4: Database Tripartito (Silo 2 Bunker - PostgreSQL & Cloud KMS Dedicated):**
-   - Tabelle `club_secret_catalog`, `joint_medical_approvals`, `multi_camera_recordings` e `anti_leak_audit_logs`.
+1. **Corsia 1: Thin Client UI/UX (Team Cockpit React 18 Enterprise & Suite Tattica):**
+   - Modulo di ricerca avanzata club con filtri tattici e RTP;
+   - Visualizzatore 3D con Digital Twin della rosa e controlli 360°;
+   - Visualizzatore 3D per l'Analisi dello Stress Muscolare delle fibre (tensione in Newton, forze di taglio, momenti articolari);
+   - Ingest video fino a 4K Ultra HD (60/120fps);
+   - Suite di video editing avanzato con scrubbing 120fps, trimming multi-traccia e Telestrator vettoriale WebGL;
+   - Modulo di Caricamento Multiplo batch per lo stesso esercizio su più atleti;
+   - Modulo di Creazione Gruppi di Lavoro dedicati con spiegazione tecnica sottostante;
+   - Modulo di Condivisione Globale Broadcast con rendering dinamico del Forensic Watermark.
+2. **Corsia 2: API Gateway & RBAC Enterprise Tier 3 (Envoy mTLS + FIDO2 Gatekeeper):**
+   - Autenticazione mTLS con certificato hardware societario e firma biometrica FIDO2;
+   - Flussi di validazione congiunta: verifica obbligatoria della doppia firma digitale (Head S&C + Medico Sociale);
+   - Protezione dello streaming video HLS 4K con DRM FairPlay/Widevine e rotazione chiavi KMS.
+3. **Corsia 3: Server Scatola Nera (Stress Engine, HPC Kinematics & Individual AI):**
+   - **Muscle Fiber Stress Engine:** Modello a elementi finiti per il calcolo delle sollecitazioni sulle fibre muscolari dei singoli distretti durante il gesto;
+   - **Multimodal AI Integration:** Motore RAG accademico che incrocia 322 paper scientifici con le cartelle cliniche EMR per integrare la spiegazione tecnica dello staff;
+   - **Individualized Multi-Athlete AI Engine:** Pipeline asincrona di computer vision che analizza N video dello stesso esercizio, generando correzioni posturali e biomeccaniche personalizzate per ciascun atleta.
+4. **Corsia 4: Database Tripartito (Silo 2 - Bunker Club KMS Enclave):**
+   - Tabella `club_secret_vault`: archivio blindato AES-256 degli esercizi di club;
+   - Tabella `athlete_individual_corrections`: feedback biomeccanico specifico memorizzato nella cartella clinica del singolo calciatore;
+   - Tabella `club_workgroups`: gruppi di lavoro societari (difesa, centrocampo, RTP);
+   - Tabella `anti_leak_audit_logs`: registro crittografico per tracciare ogni accesso broadcast.
 
 ---
 
@@ -62,30 +65,32 @@ Nei grandi club professionistici (Serie A, Premier League, NBA), gli schemi su p
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Staff as Multi-Staff Club (S&C, Match Analyst, Medico)
-    participant GW as API Gateway mTLS & RBAC (Corsia 2)
-    participant VAULT as Secret Club Vault & Transcoder (Corsia 3)
-    participant SIM as Digital Twin 3D & Telemetria Engine (Corsia 3)
-    participant SILO2 as Bunker Database Silo 2 KMS (Corsia 4)
+    actor Staff as Staff Tecnico-Medico (Thin Client Enterprise)
+    participant GW as API Gateway mTLS (Corsia 2)
+    participant ENG as Server Scatola Nera (Stress & AI Engine - Corsia 3)
+    participant SILO2 as Bunker Silo 2 KMS (Corsia 4)
 
-    Staff->>GW: POST /api/v1/enterprise/video/ingest-4k (Multi-Camera 4K/8K 120fps)
-    GW->>GW: Verifica certificato mTLS di Club & Ruolo autorizzato
-    GW->>VAULT: Streaming HLS sincrono con timecode SMPTE
-    VAULT->>VAULT: Genlock sincrono (<10ms) & Iniezione Watermark Dinamico Anti-Leak
-    VAULT->>SILO2: Scrittura video cifrati in Vault isolato con chiave KMS di Club
-    SILO2-->>VAULT: Commit confermato
-    
-    Staff->>Staff: Trimming Multi-Traccia Sincrono & Scrubbing Frame-by-Frame (120fps)
-    Staff->>Staff: Disegno Tattico con Telestrator (Vettori di forza N, Barbell Path)
-    
-    Staff->>GW: POST /api/v1/enterprise/digital-twin/simulate (athleteId, exerciseData)
-    GW->>SIM: Richiesta estrazione sollecitazioni articolari e tensioni muscolari
-    SIM->>SIM: Calcolo momento torcente ginocchio & carico vertebrale
-    SIM-->>Staff: 200 OK (Mappa termica tensioni muscolari su Digital Twin 3D)
-    
-    Staff->>GW: POST /api/v1/enterprise/sign-off (Doppia firma digitale Medico + Preparatore FIDO2)
-    GW->>SILO2: Registrazione congiunta nulla-osta tecnico-sanitario
-    SILO2-->>Staff: 200 OK (Esercizio promosso in Secret Club Vault e Microciclo MD-X)
+    alt Scenario 1: Consultazione & Analisi Stress Muscolare
+        Staff->>GW: GET /api/v1/club/exercises/stress-analysis (exerciseId, athleteId)
+        GW->>ENG: Calcolo elementi finiti sollecitazione fibre muscolari
+        ENG-->>Staff: Mappa termica 3D tensioni fibre & carichi in Newton (N)
+    else Scenario 2: Caricamento Multiplo & AI Individuale Multi-Atleta
+        Staff->>GW: POST /api/v1/club/exercises/batch-multi-athlete (exerciseName, [videoClip_1..N], [athleteId_1..N])
+        GW->>ENG: Ingestion flussi 4K & Invocazione Individual AI Engine
+        ENG->>ENG: Analisi cinematica differenziata per ciascun calciatore
+        ENG->>SILO2: Scrittura schede correttive individuali con chiave KMS di Club
+        SILO2-->>Staff: 200 OK (N schede correttive individualizzate generate)
+    else Scenario 3: Gruppi di Lavoro & Condivisione Globale Broadcast
+        Staff->>Staff: Creazione Gruppo di Lavoro (es. Reparto Difensori) con Spiegazione Tecnica
+        Staff->>GW: POST /api/v1/club/workgroups/distribute (groupId, exerciseId, technicalNotes)
+        GW->>GW: Verifica Doppia Firma Digitale (Head S&C + Medico Sociale FIDO2)
+        alt Doppia Firma Presente
+            GW->>SILO2: Commit in Secret Club Vault & Notifica Push Atleti del Gruppo
+            SILO2-->>Staff: 200 OK (Esercizio distribuito al gruppo di lavoro)
+        else Manca Firma Medico
+            GW-->>Staff: 403 Forbidden (ERR_MISSING_DOCTOR_SIGN: Scheda marcata PENDING_APPROVAL)
+        end
+    end
 ```
 
 ---
@@ -93,55 +98,52 @@ sequenceDiagram
 ## 4. Flusso Operativo Passo-Passo
 
 ### Livello A: User Journey Narrativo (La Storia dell'Utente)
-1. **L'Accesso alla Sezione Esercizi del Club:** Il preparatore e il medico sociale aprono il tablet nel loro ufficio al centro sportivo con autenticazione biometrica FIDO2.
-2. **La Scelta dei Due Livelli di Catalogo:**
-   - Consultano il catalogo generale (328 esercizi standard);
-   - Oppure aprono *"Secret Club Vault"*, la cassaforte riservata della prima squadra.
-3. **La Registrazione sul Campo con Telecamere 4K/8K:**
-   - Durante la rifinitura a porte chiuse, 3 telecamere fisse 4K a 120fps registrano da diverse prospettive un nuovo esercizio di agilità e forza eccentrica;
-   - I 3 flussi video arrivano sincronizzati al millisecondo grazie al timecode SMPTE.
-4. **Trimming Sincrono & Frame-by-Frame a 120fps:**
-   - Con un solo tocco sulla timeline, il preparatore taglia l'inizio e la fine contemporaneamente su tutte e 3 le telecamere;
-   - Fa scorrere il dito a rallentatore estremo (120fps): vede il momento esatto in cui l'avampiede del calciatore tocca il terreno, cogliendo l'angolo di flessione della caviglia con accuratezza chirurgica.
-5. **Editing con Telestrator Tattico:**
-   - Traccia una linea gialla per evidenziare la retta di spinta del bacino e una freccia rossa che indica il vettore di forza di reazione al suolo ($1850\text{ N}$ stimati);
-   - L'app crea istantaneamente il Digital Twin 3D sincronizzato con il video reale.
-6. **La Doppia Firma Tecnico-Sanitaria:**
-   - L'Head S&C appone la sua firma digitale: *"Carico neuromuscolare idoneo"*;
-   - Il Medico Sociale controfirma: *"Nessun sovraccarico per il menisco operato: via libera"*.
-7. **La Distribuzione all'Atleta:** L'esercizio compare sul tablet del calciatore nello spogliatoio, con impresso in trasparenza il suo nome per evitare qualsiasi fuga di notizie o screenshot non autorizzati.
+1. **L'Accesso del Cockpit Societario:** L'Head Coach e il Medico Sociale eseguono l'accesso con autenticazione a due fattori mTLS + token hardware FIDO2.
+2. **La Scelta Operativa Multi-Staff:**
+   - *Ramo 1: Consultazione & Stress Muscolare:* Consultano un esercizio tattico aprendo il visualizzatore 3D dello stress muscolare. Osservano la mappa termica che mostra come le fibre corte del bicipite femorale subiscano un picco di trazione di $2200\text{ N}$ nella fase di frenata eccentrica;
+   - *Ramo 2: Video 4K, Editing & Caricamento Multiplo:* Registrano o importano flussi fino a 4K Ultra HD. Attivano l'editing avanzato con scrubbing a 120fps e Telestrator per annotare le linee di spinta. Con la funzione *Caricamento Multiplo*, caricano 12 video dello stesso cambio di direzione eseguito da 12 giocatori diversi: l'AI elabora correzioni specifiche per ciascun individuo;
+   - *Ramo 3: Gruppi di Lavoro & Condivisione Globale:* Creano il gruppo *"Reparto Difensori"* assegnando l'esercizio con la spiegazione tecnica allegata, oppure attivano la *Condivisione Globale Team (Broadcast)* con Forensic Watermark anti-leak per tutta la rosa.
+3. **La Validazione a Doppia Firma:** L'Head S&C appone la firma per l'idoneità prestativa e il Medico Sociale controfirma per l'assenza di rischi articolari.
+4. **La Promozione a Patrimonio di Club:** L'esercizio viene integrato nel Secret Club Vault e programmato nel microciclo gara di squadra (`FLOW-3C`).
 
 ---
 
 #### Indicatori di Accettazione Operativa & Clinica (KPI)
 | Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
 | :--- | :--- | :--- | :--- |
-| **Risoluzione Max Supportata** | $4\text{K} / 8\text{K}$ a $120\text{ FPS}$ | $\ge 4\text{K}$ a $60\text{ FPS}$ | Downsampling adattivo su stream secondari |
-| **Sincronia Multi-Camera SMPTE** | $< 10\text{ ms}$ tra stream | $\le 25\text{ ms}$ | Genlock software con drop frame selettivo |
-| **Watermark Forense Dinamico** | $100\%$ frame marcati | $0\%$ frame scoperti | Blocco riproduzione video non contrassegnati |
-| **Latenza Telestrator Overlay** | $< 16\text{ ms}$ (60fps canvas) | $\le 33\text{ ms}$ | Riduzione layer vettoriali WebGL |
-| **Validità Doppia Firma** | $100\%$ consensi congiunti | $0\%$ override singoli | Scheda atleta non attivabile senza entrambe le firme |
+| **Risoluzione Max Supportata** | $4\text{K}$ Ultra HD ($3840\times 2160$ a 60/120fps) | $\ge 4\text{K}$ standard | Downsampling dinamico su connessioni mobili di campo |
+| **Accuratezza Analisi Stress Fibre** | Correlazione FEA $\ge 95\%$ | $\ge 88\%$ | Segnalazione intervallo di confidenza biomeccanico |
+| **Caricamento Multiplo Concorrente** | Fino a $30$ atleti in parallelo | $\ge 15$ atleti | Accodamento asincrono con notifica di completamento |
+| **Copertura Watermark Forense** | $100\%$ frame marchiati | $0\%$ frame scoperti | Blocco riproduzione video privi di watermark |
+| **Validità Doppia Firma Digitale** | $100\%$ consensi congiunti | $0\%$ override singoli | Scheda esercizio non attivabile senza entrambe le firme |
 
 ---
 
-### Livello B: Trattazione Tecnica Nodi Operativi
+### Livello B: Trattazione Tecnica Nodi Operativi (23 Nodi ISO)
 
-1. `START` (Accesso Catalogo di Squadra): Autenticazione mTLS e verifica claim JWT societario `tier: 3_ENTERPRISE`.
-2. `DEC_MODE` (Bivio Modalità Staff): Ramo 1 (Rosa & Telemetria RTP), Ramo 2 (Video Pro 4K/8K & Libreria Club), Ramo 3 (Solo-Testo Pro).
-3. `UI_CAM_CAPTURE_4K_8K` (Ingestion 4K/8K Multi-Camera):
-   - Ricezione flussi 4K/8K a 120fps da 3 telecamere sincronizzate con SMPTE;
-   - Transcodifica video HLS criptata con Google Cloud Transcoder.
-4. `UI_TRIM_SYNC_SMPTE` (Trimming Multi-Traccia Sincrono): Taglio sincronizzato multi-camera con jitter temporale $< 10\text{ ms}$.
-5. `UI_SPEED_FRAME_BY_FRAME` (Scrubbing Frame-by-Frame): Gestione avanzata del playback a 120fps con scrubbing millimetrico per analisi impatti e cambi di direzione.
-6. `UI_ADVANCED_SPORTS_EDITING` (Suite Editing Tattico/Biomeccanico): Telestrator vettoriale, Barbell Path tracking, vettori di forza articolare (N) e Dynamic Forensic Watermarking.
-7. `DEC_LIBRARY_TIER` (Bivio a Due Livelli di Salvataggio):
-   - *Livello 1: Bozza Individuale Atleta* $\to$ vincolo al calciatore nella cartella EMR Silo 2;
-   - *Livello 2: Secret Club Vault* $\to$ promozione a patrimonio societario condiviso.
-8. `DEC_ACTION` (Workflow di Doppia Firma Digitale):
-   - Step 1: Firma crittografica Responsabile S&C (`R5_HEAD_COACH`);
-   - Step 2: Controfirma del Medico Sociale (`R6_TEAM_DOCTOR`).
-   - Se manca una delle due firme $\implies$ stato `PENDING_MEDICAL_APPROVAL`.
-9. `SAVE_SQUAD` (Persistenza Silo 2): Assegnazione diretta al Microciclo Gara di Squadra (`MD-X`) e navigazione a `FLOW-3C`.
+1. `T3_START` (Inizio: Team Cockpit - Catalogo Esercizi & Suite Tattica): Inizializzazione Cockpit Enterprise con validazione certificato mTLS e permessi multi-staff (Head Coach, Medico, Analyst).
+2. `T3_DEC_MODE` (Modalità Operativa Staff Societario?): Bivio operativo: 1. Consulta & Stress Muscolare • 2. Crea Video 4K & Caricamento Multi-Atleta • 3. Gruppi di Lavoro & Broadcast.
+3. `T3_UI_SEARCH_ADVANCED` (Ricerca Avanzata Club: Muscolo, Distretto, Categoria, Attrezzatura, Ruolo & RTP): Filtri avanzati incrociati con ruoli tattici e stadio Return to Play.
+4. `T3_UI_3D_VIEWER_ELITE` (Visualizzazione 3D Modelli Dinamici con Digital Twin della Rosa): Rendering 3D Three.js Draco ad altissima definizione con Digital Twin dei calciatori della prima squadra.
+5. `T3_UI_TECH_EXPLANATION` (Contenuti Tecnici & Correzioni Biomeccaniche Avanzate per lo Staff): Schede tecniche complete comprensive di spiegazioni, protocolli di prevenzione e correzioni posturali.
+6. `T3_SRV_MUSCLE_STRESS_ENGINE` (Server Scatola Nera: Motore Analisi Sollecitazione Fibre Muscolari): Calcolo a elementi finiti (FEA) dello stress e delle tensioni tensive/eccentriche sulle fibre muscolari dei vari distretti.
+7. `T3_UI_MUSCLE_STRESS_VIEWER` (Visualizzatore 3D Analisi Stress Muscolare): Mappa termica interattiva con visualizzazione delle fibre muscolari sollecitate, momenti di torsione articolare e carichi in Newton (N).
+8. `T3_UI_VIDEO_CAPTURE_4K` (Caricamento Video Esercizi Risoluzione Superiore Fino a 4K): Ingest flussi video fino a 4K Ultra HD a 60/120fps da telecamere fisse di campo o file master.
+9. `T3_UI_VIDEO_EDITOR_ADVANCED` (Editing Video Integrato Avanzato: Taglio Multi-Traccia, Scrub 120fps & Telestrator): Suite di montaggio: trimming multi-traccia, rallentatore millimetrico a 120fps, accelerazione e Telestrator vettoriale.
+10. `T3_UI_STAFF_STRENGTHS_WEAKNESSES` (Redazione Punti di Forza e Debolezza da parte dello Staff): Compilazione tecnica congiunta: punti di forza, asimmetrie bilaterali e rischi di sovraccarico.
+11. `T3_SRV_AI_INTEGRATION` (Server Scatola Nera: Supporto AI per Integrare la Spiegazione Tecnica): AI Multimodale Enterprise: integra la spiegazione dello staff incrociando i dati di stress muscolare e le cartelle EMR.
+12. `T3_UI_DIFF_STAFF_MODAL` (Modale Revisione Diff Spiegazione Tecnica Integrata dall'AI): Approvazione congiunta da parte dell'Head Coach e del Medico delle note didattiche generate dall'AI.
+13. `T3_DEC_MULTI_ATHLETE_UPLOAD` (Caricamento Multiplo Stesso Esercizio su Più Persone?): Bivio decisionale: caricamento batch di clip per più atleti vs singolo gesto tecnico.
+14. `T3_UI_MULTI_UPLOAD_INGEST` (Caricamento Multiplo: Stesso Esercizio Eseguito da Atleti Diversi): Ingestion simultanea di N file video associati ai profili dei singoli atleti della rosa.
+15. `T3_SRV_INDIVIDUAL_AI_ENGINE` (Server Scatola Nera: Correzioni AI Specifiche per Ciascun Individuo): Pipeline AI individualizzata che elabora la cinematica specifica di ogni calciatore producendo correzioni e feedback su misura.
+16. `T3_DB_SAVE_INDIVIDUAL_CORRECTIONS` (Database Silo 2: Schede Individuali Atleta & Correzioni AI Personalizzate): Persistenza delle correzioni AI personalizzate nella cartella clinica/tecnica criptata KMS di ciascun atleta.
+17. `T3_DEC_DISTRIBUTION` (Destinazione Distribuzione & Condivisione Esercizio?): Bivio: 1. Salva nei Preferiti Club • 2. Gruppo di Lavoro Dedicato • 3. Condivisione Globale Team (Broadcast).
+18. `T3_GW_FAVORITES_CLUB` (API Gateway: POST /api/v1/club/favorites): Archiviazione nei preferiti ufficiali dello staff societario in Silo 2.
+19. `T3_UI_WORKGROUPS_CREATION` (Creazione Gruppi di Lavoro Dedicati con Spiegazione Tecnica Sottostante): Gestione e creazione di gruppi dedicati (es. Reparto Difesa, Centrocampo, RTP) con assegnazione esercizio e spiegazione didattica.
+20. `T3_UI_GLOBAL_TEAM_SHARE` (Condivisione Globale: Broadcast a Tutti gli Atleti del Team): Invio 1-to-All a tutta la rosa con Dynamic Forensic Watermark impresso a livello GPU per prevenire leak.
+21. `T3_DEC_DUAL_SIGNATURE` (Validazione Congiunta: Doppia Firma Digitale Head S&C + Medico Sociale?): Controllo crittografico: entrambe le firme FIDO2 presenti $\implies$ approvato; firma mancante $\implies$ blocco PENDING_APPROVAL.
+22. `T3_DB_VAULT_PERSISTENCE` (Database Silo 2: Secret Club Vault & Microciclo MD-X): Scrittura definitiva nel caveau societario e assegnazione al microciclo gara.
+23. `T3_END_READY` (Fine: Esercizio 4K Integrato nel Secret Club Vault & Condiviso con la Squadra): Conclusione e navigazione a `FLOW-3C`.
 
 ---
 
@@ -149,16 +151,18 @@ sequenceDiagram
 
 | Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
 | :--- | :--- | :--- | :--- |
-| `DEC_MODE` | Modalità scelta dallo staff? | Video Multi-Camera 4K/8K | Consultazione rosa / telemetria |
-| `DEC_LIBRARY_TIER` | Livello di destinazione? | Secret Club Vault (Livello 2) | Bozza Singolo Atleta (Livello 1) |
-| `DEC_ACTION` | Presenti entrambe le firme (S&C + Medico)? | Approvato: Assegna a Microciclo MD-X | Blocco: Stato PENDING_APPROVAL |
+| `T3_DEC_MODE` | Modalità scelta dallo staff? | Video 4K & Caricamento Multi-Atleta | Consultazione & Analisi Stress Muscolare |
+| `T3_DEC_MULTI_ATHLETE_UPLOAD`| Caricamento multiplo per più atleti? | Batch ingest & Individual AI Engine (`T3_UI_MULTI_UPLOAD_INGEST`) | Singolo gesto tecnico di squadra |
+| `T3_DEC_DISTRIBUTION` | Canale di distribuzione prescelto? | Gruppo di Lavoro / Broadcast Squadra | Preferiti ufficiali del club |
+| `T3_DEC_DUAL_SIGNATURE` | Presenti entrambe le firme (S&C + Medico)? | Autorizzato: commit nel Secret Club Vault (`T3_DB_VAULT_PERSISTENCE`) | Blocco: stato PENDING_APPROVAL |
 
 ### I 4 Stati di Interfaccia Utente (UI States):
-1. **Empty State:** Nessun esercizio registrato nel Club Vault: interfaccia con schermata telecamere di campo pronte per la registrazione.
-2. **Loading State:** Sincronizzazione SMPTE dei 3 flussi con barra Genlock: *"Allineamento millimetrico stream 4K..."*.
-3. **Populated State:** Griglia multi-schermo a 3 angolazioni con Telestrator attivo, scrubbing 120fps e watermarking anti-leak visibile in trasparenza.
+1. **Empty State:** Nessun esercizio registrato nel Secret Club Vault: schermata di accoglienza con opzioni di ingest video 4K o avvio analisi dello stress muscolare.
+2. **Loading State:** Elaborazione del motore a elementi finiti dello stress muscolare o elaborazione batch AI individuale: *"Calcolo tensioni fibre muscolari ed elaborazione correzioni su 15 atleti..."*.
+3. **Populated State:** Griglia multi-schermo con video 4K a 120fps, mappa dello stress muscolare 3D attiva con carichi in Newton, note didattiche dello staff e selettore gruppi di lavoro.
 4. **Error / Fallback State:**
-   - *Disallineamento telecamere $> 30\text{ ms}$:* Drop automatico dei frame asincroni e segnalazione visiva al match analyst.
+   - *Mancanza della firma del Medico Sociale:* Badge arancione evidente *"Esercizio salvato in bozza: in attesa della firma digitale del Medico Sociale per la distribuzione agli atleti"*;
+   - *Occlusione parziale di un atleta nel batch upload:* Isolamento dell'errore per quel singolo atleta senza bloccare il completamento delle schede degli altri atleti.
 
 ---
 
@@ -166,28 +170,81 @@ sequenceDiagram
 
 ### Specifiche Endpoint REST:
 
-#### 1. Ingest Multi-Camera 4K/8K & Editing Tattico
-- **Endpoint:** `POST /api/v1/enterprise/catalog/multicamera-exercise`
+#### 1. Ingest Video 4K & Analisi Stress Muscolare
+- **Endpoint:** `POST /api/v1/club/catalog/multicamera-4k-exercise`
 - **Headers:** `Authorization: Bearer <club_jwt>`, `X-Club-Cert: <mtls_fingerprint>`
-- **Request JSON:**
+- **Request Form Data:**
+  - `videoMaster`: File binario 4K Ultra HD ($3840\times 2160$ a 60/120fps);
+  - `exerciseName`: "Decelerazione Eccentrica a 90° con Spinta Posteriore";
+  - `targetDistricts`: `["HAMSTRINGS", "QUADRICEPS", "GLUTEUS_MEDIUS"]`;
+  - `staffStrengths`: "Elevata capacità di assorbimento del carico sul ginocchio dominante.";
+  - `staffWeaknesses`: "Asimmetria di frenata con rotazione pelvica compensatoria di 6 gradi.";
+  - `enableFiberStressAnalysis`: true.
+- **Response `201 Created`:**
 ```json
 {
-  "exerciseName": "Cambio di Direzione a 90° con Frenata Eccentrica",
-  "resolution": "4K_2160p",
+  "exerciseId": "club_ex_4k_8812c",
+  "resolution": "4K_UltraHD_2160p",
   "framerate": 120,
-  "cameraAngles": ["FRONTAL", "LATERAL", "ZENITHAL"],
-  "smpteTimecodeSync": { "jitterMs": 4.2, "synced": true },
-  "trimRange": { "startSmpte": "00:01:14:08", "endSmpte": "00:01:22:15" },
-  "telestratorAnnotations": [
-    { "type": "FORCE_VECTOR", "magnitudeN": 1850, "origin": "RIGHT_ANKLE" },
-    { "type": "TACTICAL_ARROW", "color": "#ef4444", "label": "Linea di Spinta" }
-  ],
-  "forensicWatermark": { "operatorId": "OP_HEAD_SC_01", "timestamp": "2026-11-02T22:35:00Z" },
-  "libraryTier": "CLUB_SECRET_VAULT",
-  "dualSignatures": {
-    "scDirectorSign": "SIG_SC_88319f",
-    "teamDoctorSign": "SIG_DOC_44120a"
+  "fiberStressMetrics": {
+    "peakTensionBicepsFemorisN": 2180.5,
+    "shearForceKneeN": 420.2,
+    "eccentricStrainPct": 18.4,
+    "riskLevel": "ELEVATED_STRESS_DISTRICT_HAMSTRINGS"
+  },
+  "watermarkMetadata": {
+    "enabled": true,
+    "algorithm": "GPU_SHADER_DYNAMIC_FORENSIC"
   }
+}
+```
+
+#### 2. Caricamento Multiplo con Correzioni AI Individuali
+- **Endpoint:** `POST /api/v1/club/exercises/batch-multi-athlete`
+- **Headers:** `Authorization: Bearer <club_jwt>`, `Content-Type: multipart/form-data`
+- **Request Parameters:**
+  - `exerciseId`: "club_ex_4k_8812c";
+  - `batchPayload`: Array di `{ athleteId: string, videoClip: binary }`.
+- **Response `200 OK`:**
+```json
+{
+  "exerciseId": "club_ex_4k_8812c",
+  "processedAthletesCount": 15,
+  "individualResults": [
+    {
+      "athleteId": "ath_player_09",
+      "athleteName": "Mario Rossi",
+      "aiCorrection": "Flessione del ginocchio insufficiente in fase di arresto (32° rilevati vs 45° ottimali). Incrementare la dorsiflessione della caviglia destra.",
+      "fiberStressRisk": "MODERATE",
+      "individualCardSaved": true
+    }
+  ]
+}
+```
+
+#### 3. Distribuzione a Gruppi di Lavoro o Broadcast di Squadra
+- **Endpoint:** `POST /api/v1/club/workgroups/distribute`
+- **Headers:** `Authorization: Bearer <club_jwt>`, `Content-Type: application/json`
+- **Request Body:**
+```json
+{
+  "exerciseId": "club_ex_4k_8812c",
+  "distributionMode": "WORKGROUP",
+  "workgroupId": "grp_defenders_first_team",
+  "technicalExplanation": "Focus specifico per i difensori centrali sui cambi di direzione difensivi negli ultimi 16 metri.",
+  "dualSignatures": {
+    "headScSignature": "SIG_SC_99211a_FIDO2",
+    "teamDoctorSignature": "SIG_DOC_33104b_FIDO2"
+  }
+}
+```
+- **Response `200 OK`:**
+```json
+{
+  "status": "DISTRIBUTED_TO_WORKGROUP",
+  "workgroupId": "grp_defenders_first_team",
+  "athletesNotified": 6,
+  "secretVaultStatus": "COMMITTED_APPROVED"
 }
 ```
 
@@ -196,16 +253,16 @@ sequenceDiagram
 ### Matrice Errori HTTP & Strategie di Resilienza
 | HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
 | :---: | :--- | :--- | :--- | :--- | :--- |
-| **401** | `ERR_MTLS_FAILED` | `POST /multicamera-exercise` | Certificato mTLS di club non valido | Alert rosso: *"Accesso negato al bunker di club"* | Blocco immediato del traffico |
-| **403** | `ERR_MISSING_DOCTOR_SIGN` | `POST /multicamera-exercise` | Manca controfirma del Medico Sociale | Badge arancione: *"In attesa di firma medica"* | Esercizio salvato in bozza, non attivabile |
-| **409** | `ERR_GENLOCK_DESYNC` | `POST /multicamera-exercise` | Disallineamento timecode $> 30\text{ ms}$ | Toast: *"Flussi multi-camera non sincronizzati"* | Allineamento software al primo I-frame comune |
-| **413** | `ERR_4K_BUFFER_OVERFLOW` | `POST /multicamera-exercise` | Bitrate 8K satura la banda in campo | Notifica: *"Passaggio automatico a 4K 60fps"* | Transcodifica dinamica cloud-edge |
+| **401** | `ERR_MTLS_FAILED` | Qualsiasi endpoint Tier 3 | Certificato mTLS mancante o non autorizzato | Banner bloccante: *"Accesso negato al Secret Club Vault"* | Blocco immediato del traffico |
+| **403** | `ERR_MISSING_DOCTOR_SIGN` | `POST /workgroups/distribute` | Manca controfirma del Medico Sociale | Badge arancione: *"In attesa di firma medica per attivare la scheda"* | Scheda congelata in stato di bozza |
+| **409** | `ERR_POSE_OCCLUSION_SINGLE` | `POST /batch-multi-athlete` | Uno degli atleti del batch è fuori inquadratura | Warning mirato: *"Atleta 07 occluso: ricaricare la clip per questo atleta"* | Completamento regolare degli altri atleti del batch |
+| **413** | `ERR_BANDWIDTH_LIMIT_4K` | Pipeline Video 4K | Connessione di campo instabile su upload 4K | Toast informativo: *"Compressione adattiva a 4K 60fps in corso"* | Adattamento bitrate trasparente |
 
 ---
 
 ## 7. Ereditarietà di Tier & Differenziali di Fascia
 
 - **Ereditarietà da Tier 1 e Tier 2 (`FLOW-2A`, `FLOW-2B`):**  
-  Il club eredita l'intero catalogo dei 328 movimenti, l'avatar 3D WebGL, il trimming temporale e i controlli di velocità.
-- **Differenziali Esclusivi di Tier 3 (Enterprise):**  
-  Risoluzione ultra-alta **4K/8K High-Speed a 120fps**, sincronizzazione **multi-camera SMPTE**, **trimming multi-traccia**, scrubbing frame-by-frame, **suite Telestrator con vettori di forza articolare (N)**, **Dynamic Forensic Watermarking**, gestione della **libreria a 2 livelli (Secret Club Vault)** e obbligo di **doppia firma digitale congiunta Medico Sociale + Head S&C**.
+  Il club eredita l'intero catalogo dei 328 movimenti biomeccanici, la visualizzazione 3D dinamica Three.js Draco orbitabile a 360°, le spiegazioni tecniche Why & Fix, la ricerca avanzata e gli strumenti di editing video integrato.
+- **Differenziali Esclusivi di Tier 3 (Elite Teams & Enterprise):**  
+  Risoluzione video superiore fino a **4K Ultra HD** a 60/120fps, **condivisione globale team (broadcast)** a tutta la rosa con **Dynamic Forensic Watermark** anti-leak, creazione di **gruppi di lavoro dedicati** con spiegazione tecnica sottostante, **caricamento multiplo dello stesso esercizio su più persone con AI individuale specifica per atleta**, **analisi 3D dello stress muscolare delle fibre** per ciascun distretto in base all'esecuzione e **obbligo di doppia firma digitale congiunta (Head S&C + Medico Sociale)** per la promozione nel Secret Club Vault.

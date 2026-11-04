@@ -66,7 +66,7 @@ Griglia ordinata da sinistra a destra sulla board Miro (`uXjVEbo6L2o=`):
 
 ### Matrice delle 6 Colonne Funzionali della ZONA 4
 1. **Colonna 1: Identity, Security & Anti-Frode:** Consumer WebAuthn (Tier 1), P.IVA/VIES (Tier 2), Enterprise Bunker KMS (Tier 3).
-2. **Colonna 2: 3D Catalog, Kinematics & Computer Vision:** Three.js Draco (Tier 1), Bar Path Tracking WebRTC (Tier 2), Multi-Camera 4K Vault (Tier 3).
+2. **Colonna 2: 3D Catalog, Kinematics & Computer Vision:** Catalogo 3D & Avatar Zero-Upload (Tier 1), Catalogo 3D, Video 1080p, Speed Control & AI Coach 1:1 (Tier 2), Catalogo 3D, Multi-Camera 4K, Suite Tattica, Broadcast & Stress Muscolare (Tier 3).
 3. **Colonna 3: Periodization, Triage & Workout Execution:** Player IndexedDB (Tier 1), DUP & Triage 119 patologie (Tier 2), Microciclo MD-X Bunker Silo 2 (Tier 3).
 4. **Colonna 4: Telemetry, Wearable Sync, VBT & GPS:** Wearable HealthKit (Tier 1), Biomeccanica VBT/PAP (Tier 2), GPS Osgnach & Z-Score Adattivo 28gg (Tier 3).
 5. **Colonna 5: Social Community, Marketplace & Tactical Vision:** Together Social Fan-Out (Tier 1), Together Pro WebRTC (Tier 2), Tactical Vision Voronoi CV (Tier 3).
@@ -91,13 +91,13 @@ Ogni diagramma di flusso su Miro possiede una documentazione tecnica speculare i
 
 #### Tabella Master Ufficiale di Corrispondenza (18 Badge Miro Online)
 
-L'inventario completo a 9 colonne (Badge #01–#18, Codici FLOW-1A–6C, Miro Shape ID univoci, coordinate reali X/Y, sorgenti Mermaid `.mmd` e file di capitolato `.md`) è formalizzato nel registro unico: [MASTER-FLOWCHART-REGISTRY.md](MASTER-FLOWCHART-REGISTRY.md).
+L'inventario completo a 10 colonne (Badge #01–#18, Codici FLOW-1A–6C, Nodi ISO, Miro Shape ID univoci, coordinate reali X/Y, sorgenti Mermaid `.mmd` e file di capitolato `.md`) è formalizzato nel registro unico: [MASTER-FLOWCHART-REGISTRY.md](MASTER-FLOWCHART-REGISTRY.md).
 
 | Colonna Funzionale | Tier 1 (Consumer) | Tier 2 (Pro P.IVA) | Tier 3 (Elite Club) |
 | :--- | :--- | :--- | :--- |
 | **Col 1: Identity & Anti-Frode** | #01 `FLOW-1A` Onboarding | #07 `FLOW-1B` Fiscale P.IVA | #13 `FLOW-1C` Bunker KMS |
-| **Col 2: 3D Catalog & CV** | #02 `FLOW-2A` Catalogo 3D | #08 `FLOW-2B` Video AI Coach | #14 `FLOW-2C` Multi-Camera 4K |
-| **Col 3: Periodization & Triage** | #03 `FLOW-3A` Workout Player | #09 `FLOW-3B` DUP & Triage 119 | #15 `FLOW-3C` Microciclo MD-X |
+| **Col 2: 3D Catalog & CV** | #02 `FLOW-2A` Catalogo 3D & Avatar | #08 `FLOW-2B` Video 1080p, Speed & AI Coach | #14 `FLOW-2C` Multi-Camera 4K & Suite Tattica |
+| **Col 3: Programmazione Esercizi & Readiness** | #03 `FLOW-3A` Programmazione Base & Export PDF | #09 `FLOW-3B` Programmazione Anamnesi 6M & RTP | #15 `FLOW-3C` Programmazione Annuale RAG & Readiness Section |
 | **Col 4: Telemetry, VBT & GPS** | #04 `FLOW-4A` Wearable Sync | #10 `FLOW-4B` VBT & Salti PAP | #16 `FLOW-4C` GPS & Z-Score |
 | **Col 5: Social & Tactical Vision** | #05 `FLOW-5A` Together Social | #11 `FLOW-5B` Together Pro | #17 `FLOW-5C` Tactical Voronoi |
 | **Col 6: Rehab ROM & Desk-Care** | #06 `FLOW-6A` Movely Desk-Care | #12 `FLOW-6B` Physio Rehab ROM | #18 `FLOW-6C` Medical Room Lake |

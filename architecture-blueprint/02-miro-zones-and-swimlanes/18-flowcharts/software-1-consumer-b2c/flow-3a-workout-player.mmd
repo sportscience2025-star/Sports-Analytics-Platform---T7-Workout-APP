@@ -7,48 +7,49 @@ flowchart TD
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 1 (B2C CONSUMER) - FLOW 3A: INTERACTIVE WORKOUT PLAYER & LOGGING"]
+    TITLE["SOFTWARE 1 (B2C CONSUMER) - FLOW 3A: PROGRAMMAZIONE BASE, SCHEDE PRE-CONFEZIONATE & EXPORT PDF"]
 
-    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (WORKOUT PLAYER)"]
-        START(["Inizio: Avvio Sessione"]):::startend
-        PLAYER_VIEW["Schermata Esercizio: Video Miniatura, Target Set/Reps/Kg"]:::client
-        SET_LOG["Input Serie Effettuata (Kg sollevati, Reps fatte)"]:::client
-        BTN_DONE_SET["Pulsante 'Serie Completata'"]:::client
-        REST_TIMER["Avvio Timer Recupero (60s..180s) con Beep Sonoro & Vibrazione"]:::client
-        SESSION_FINISH["Fine Allenamento: Richiesta RPE Sessione (Scala 1-10)"]:::client
-        SUMMARY_CARD["Card Riepilogo: Tonnellaggio Totale, PR Superati, Calorie"]:::client
-        OFFLINE_BADGE["Salvataggio Locale in IndexedDB (Sync al ritorno online)"]:::error
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (SCHEDE PRE-CONFEZIONATE & PDF)"]
+        START(["Inizio: Accesso Sezione Programmi (App Utente)"]):::startend
+        UI_SEARCH_FILTER["Barra di Ricerca & Filtri per Sport, Categoria e Obiettivo"]:::client
+        DEC_CAT{"Scelta Tipologia Scheda?"}:::decision
+        UI_PRESETS["Consultazione Schede Pre-Confezionate (Parametri Standardizzati)"]:::client
+        UI_REHAB["Catalogo Programmi Generici di Riabilitazione"]:::client
+        DEC_ACTION{"Azione Utente: Consultazione vs Esportazione?"}:::decision
+        UI_VIEW["Visualizzazione In-App Scheda & Spiegazione AI Generica"]:::client
+        UI_DOWNLOAD_PDF["Download Scheda in Formato PDF Read-Only (Non Modificabile)"]:::client
+        UI_GATING_BANNER["Banner Vincoli: Modifica parametri, anamnesi & fonti riservati a Tier 2/3"]:::error
     end
 
-    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & LOG SYNC"]
-        GW_LOG_SET["Ricezione POST /api/v1/workouts/session/set-done"]:::gateway
-        GW_LOG_FINISH["Ricezione POST /api/v1/workouts/session/complete"]:::gateway
-        GW_ONLINE{"Connessione Rete Attiva?"}:::decision
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & RBAC FEATURE GATING"]
+        GW_GATING_CHECK["Verifica Permessi Tier 1: Blocco Data Analysis & Parametri Fissi"]:::gateway
+        GW_FETCH_REQ["Ricezione GET /api/v1/programs/presets"]:::gateway
+        GW_PDF_REQ["Ricezione POST /api/v1/programs/presets/:id/export-pdf"]:::gateway
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (VOLUME & PR ENGINE)"]
-        SRV_VOLUME["Calcolo Tonnellaggio Totale: Somma (Kg x Reps)"]:::server
-        SRV_PR_DETECT{"Rilevato Nuovo Record Personale (PR) 1RM Stimato?"}:::decision
-        SRV_BADGE["Generazione Badge Condivisibile 'Nuovo PR'"]:::server
-        SRV_FATIGUE["Ricalcolo Fatica Neuromuscolare Cumulata"]:::server
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (PRESET ENGINE & PDF COMPILER)"]
+        SRV_PRESET_FILTER["Preset Engine: Selezione Schede Standardizzate per Categoria"]:::server
+        SRV_AI_EXPLAIN["AI Generica: Spiegazione Scopo & Utilità Scheda (No Citazioni)"]:::server
+        SRV_PDF_RENDER["PDF Renderer: Generazione Documento Statico Locked (protected:true)"]:::server
     end
 
-    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (CONSUMER RELATIONAL)"]
-        DB_WRITE_LOG[("Scrittura Log Sessione su Silo 1 (completed_workouts)")]:::db
-        DB_UPDATE_PR[("Aggiornamento Tabella athlete_records")]:::db
-        END_LOGGED(["Fine: Allenamento Registrato con Successo"]):::startend
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (CONSUMER RELATIONAL PRESETS)"]
+        DB_FETCH_PRESETS[("Lettura Schede Pre-Confezionate da Silo 1 (preset_programs)")]:::db
+        END_READY(["Fine: Scheda Consultata o Esportata in PDF"]):::startend
     end
 
-    %% Flussi
-    START --> PLAYER_VIEW --> SET_LOG --> BTN_DONE_SET --> REST_TIMER
-    REST_TIMER --> PLAYER_VIEW
-    PLAYER_VIEW --> SESSION_FINISH
-    SESSION_FINISH --> GW_ONLINE
+    %% Connessioni del Flusso
+    START --> UI_SEARCH_FILTER --> DEC_CAT
+    DEC_CAT -- Allenamento Standard --> UI_PRESETS
+    DEC_CAT -- Riabilitazione Generica --> UI_REHAB
 
-    GW_ONLINE -- Offline --> OFFLINE_BADGE
-    GW_ONLINE -- Online --> GW_LOG_FINISH
+    UI_PRESETS --> GW_FETCH_REQ
+    UI_REHAB --> GW_FETCH_REQ
+    GW_FETCH_REQ --> GW_GATING_CHECK --> SRV_PRESET_FILTER --> DB_FETCH_PRESETS
+    DB_FETCH_PRESETS --> DEC_ACTION
 
-    GW_LOG_FINISH --> SRV_VOLUME --> SRV_FATIGUE --> SRV_PR_DETECT
-    SRV_PR_DETECT -- Si --> SRV_BADGE --> DB_UPDATE_PR
-    SRV_PR_DETECT -- No --> DB_WRITE_LOG
-    DB_UPDATE_PR --> DB_WRITE_LOG --> SUMMARY_CARD --> END_LOGGED
+    DEC_ACTION -- Visualizza in App --> UI_VIEW
+    DEC_ACTION -- Esporta PDF --> GW_PDF_REQ
+
+    UI_VIEW --> SRV_AI_EXPLAIN --> UI_GATING_BANNER --> END_READY
+    GW_PDF_REQ --> SRV_PDF_RENDER --> UI_DOWNLOAD_PDF --> UI_GATING_BANNER --> END_READY

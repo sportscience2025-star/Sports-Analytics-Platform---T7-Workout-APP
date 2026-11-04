@@ -7,46 +7,60 @@ flowchart TD
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 2 (B2B PRO P.IVA) - FLOW 3B: AI MACROCYCLE GENERATOR WITH 119 CLINICAL TRIAGE"]
+    TITLE["SOFTWARE 2 (B2B PRO P.IVA) - FLOW 3B: PROGRAMMAZIONE ANAMNESTICA 6M, RTP, AI FONTI & MULTI-EXPORT"]
 
-    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (PROGRAMMING WIZARD)"]
-        START(["Inizio: Wizard Programmazione Schede"]):::startend
-        STEP1_ATHLETE["Step 1: Selezione Atleta dal Roster"]:::client
-        STEP2_PATHOLOGY["Step 2: Checklist Clinica 119 Patologie (Rachide, Spalla, Ginocchio)"]:::client
-        STEP3_MODEL["Step 3: Modello Periodizzazione (DUP, Blocchi, Lineare, Coniugata)"]:::client
-        STEP4_DURATION["Step 4: Durata Macrociclo (12-16 settimane) & Frequenza (3-5 gg/sett)"]:::client
-        BTN_GENERATE["Pulsante CTA 'Genera Piano con AI & Triage'"]:::client
-        RESULT_VIEW["Visualizzazione Scheda Generata: Esercizi, Progressioni, Badge Rischio"]:::client
-        BTN_EXPORT_XLSX["Pulsante 'Esporta Excel (.xlsx) Senza Password'"]:::client
-        ALERT_CONTRA["Alert Clinico: '3 esercizi esclusi per conflitto patologia rachide'"]:::error
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (PRO PROGRAMMING COCKPIT)"]
+        START(["Inizio: Cockpit Programmazione Pro P.IVA"]):::startend
+        DEC_SOURCE{"Modalità di Partenza Programma?"}:::decision
+        UI_SPORT_ARCHIVE["Archivio Schede Pre-Confezionate per Disciplina Sportiva"]:::client
+        UI_ANAMNESIS["Questionario Anamnestico Completo: Storia Clinica & Caratteristiche"]:::client
+        DEC_PATH_TYPE{"Tipologia Percorso Atleta?"}:::decision
+        UI_REHAB_RTP["Modulo Riabilitazione Specifica & Protocolli Return to Play (RTP)"]:::client
+        UI_PERIOD_WIZARD["Wizard Periodizzazione a Medio Termine (Fino a 6 Mesi / Micro-Meso-Macro)"]:::client
+        UI_PARAM_EDITOR["Editor Completo Parametri: Modifica Serie, Reps, Carichi, Recuperi & Swap"]:::client
+        UI_AI_SCIENCE["Pannello AI Fonti: Spiegazione con Bibliografia, DOI e Link + Info Esercizi"]:::client
+        DEC_EXPORT_HUB{"Selezione Formato Esportazione?"}:::decision
+        UI_EXPORT_DOCS["Download Documento: PDF, Excel (.xlsx sbloccato), Word (.docx), Notes"]:::client
+        UI_RESTRICTION_CARD["Banner Vincoli: No Video in scheda, No Chatbot 24/7, No RAG, No Data Analysis"]:::error
     end
 
-    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & PIPELINE AUDIT"]
-        GW_GEN_REQ["Ricezione POST /api/v1/pro/programming/generate"]:::gateway
-        GW_EXPORT_REQ["Ricezione POST /api/v1/pro/programming/export-xlsx"]:::gateway
-        GW_AUTH_CHECK{"JWT Tier 2 Pro Valido?"}:::decision
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & RBAC PRO"]
+        GW_AUTH_PRO["Validazione JWT Tier 2 Pro (P.IVA Attiva) & Verifica Orizzonte <= 6 Mesi"]:::gateway
+        GW_POST_PROGRAM["Ricezione POST /api/v1/pro/programs/generate"]:::gateway
+        GW_EXPORT_REQ["Ricezione POST /api/v1/pro/programs/:id/export"]:::gateway
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (119 TRIAGE & OPENPYXL ENGINE)"]
-        SRV_TRIAGE_AUDIT["Audit Motore 119 Patologie: Generazione Blacklist Esercizi Vietati"]:::server
-        SRV_DUP_CALC["Algoritmo Modulazione Carichi DUP: RPE, %1RM e Volume Ondulato"]:::server
-        SRV_SESSION_BUILDER["Session Builder: Warmup Dinamico, Esercizi Core, Accessori, Defaticamento"]:::server
-        SRV_OPENPYXL["Generatore Openpyxl: Compilazione Foglio Excel Multi-Tab Formattato"]:::server
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (ANAMNESIS, 6M ENGINE & MULTI-EXPORTER)"]
+        SRV_ANAMNESIS_CALC["Clinical Anamnesis Processor: Filtro Esercizi & Asimmetrie"]:::server
+        SRV_PERIODIZER["Periodization Engine: Calcolo Modelli DUP / Blocchi / Lineare fino a 24 Settimane"]:::server
+        SRV_AI_CITATION["Scientific AI Engine: Retrieval Citazioni Accademiche (DOI/PubMed) & Schede"]:::server
+        SRV_MULTI_FORMAT["Multi-Format Compiler: Rendering Openpyxl (.xlsx), docx, PDFKit & Notes"]:::server
     end
 
-    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (PRO PROGRAMMING REPO)"]
-        DB_CATALOG[("Lettura 296 Esercizi e 119 Matrici Patologiche da Silo 1")]:::db
-        DB_SAVE_MACRO[("Salvataggio Macrociclo Generato in Silo 1 (macrocycles, mesocycles)")]:::db
-        END_EXPORTED(["Fine: Macrociclo Attivo ed Esportato in Excel"]):::startend
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (PRO PROGRAMMING & ANAMNESIS)"]
+        DB_QUERY_EXERCISES[("Lettura Catalogo Esercizi & Matrici Cliniche")]:::db
+        DB_SAVE_MACRO[("Salvataggio Scheda Personalizzata su Silo 1 Pro (pro_macrocycles)")]:::db
+        END_EXPORTED(["Fine: Scheda 6 Mesi Attiva & Esportata nei 4 Formati"]):::startend
     end
 
-    %% Flussi
-    START --> STEP1_ATHLETE --> STEP2_PATHOLOGY --> STEP3_MODEL --> STEP4_DURATION --> BTN_GENERATE
-    BTN_GENERATE --> GW_GEN_REQ --> GW_AUTH_CHECK
-    GW_AUTH_CHECK -- Valido --> SRV_TRIAGE_AUDIT
-    SRV_TRIAGE_AUDIT --> DB_CATALOG
-    DB_CATALOG --> SRV_DUP_CALC --> SRV_SESSION_BUILDER
-    SRV_SESSION_BUILDER --> DB_SAVE_MACRO --> RESULT_VIEW
-    SRV_TRIAGE_AUDIT -. Se conflitti .-> ALERT_CONTRA -. Mostrato in .-> RESULT_VIEW
+    %% Flussi di Connessione
+    START --> DEC_SOURCE
+    DEC_SOURCE -- Archivio Sport --> UI_SPORT_ARCHIVE
+    DEC_SOURCE -- Questionario Anamnestico --> UI_ANAMNESIS
 
-    RESULT_VIEW --> BTN_EXPORT_XLSX --> GW_EXPORT_REQ --> SRV_OPENPYXL --> END_EXPORTED
+    UI_SPORT_ARCHIVE --> DEC_PATH_TYPE
+    UI_ANAMNESIS --> DEC_PATH_TYPE
+
+    DEC_PATH_TYPE -- Riabilitazione & RTP --> UI_REHAB_RTP
+    DEC_PATH_TYPE -- Performance / Forza --> UI_PERIOD_WIZARD
+
+    UI_REHAB_RTP --> GW_POST_PROGRAM
+    UI_PERIOD_WIZARD --> GW_POST_PROGRAM
+
+    GW_POST_PROGRAM --> GW_AUTH_PRO --> SRV_ANAMNESIS_CALC --> SRV_PERIODIZER
+    SRV_PERIODIZER --> DB_QUERY_EXERCISES --> DB_SAVE_MACRO
+    DB_SAVE_MACRO --> UI_PARAM_EDITOR
+
+    UI_PARAM_EDITOR --> UI_AI_SCIENCE --> SRV_AI_CITATION --> DEC_EXPORT_HUB
+    DEC_EXPORT_HUB -- Esporta Multi-Formato --> GW_EXPORT_REQ --> SRV_MULTI_FORMAT --> UI_EXPORT_DOCS
+    UI_EXPORT_DOCS --> UI_RESTRICTION_CARD --> END_EXPORTED
