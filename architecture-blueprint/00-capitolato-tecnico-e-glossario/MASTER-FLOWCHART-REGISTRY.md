@@ -16,19 +16,19 @@ La seguente tabella rappresenta il registro unico e autoritativo che mappa 1:1 o
 | **#01** | Tier 1 | Col 1: Identity & Anti-Frode | `FLOW-1A` | Accesso, Onboarding & Anamnesi | 15 | `3458764688417722706` | `X: -2570, Y: 260` | [01-software-1-flow-1a-consumer-onboarding.md](01-software-1-flow-1a-consumer-onboarding.md) | `flow-1a-consumer-onboarding.mmd` |
 | **#02** | Tier 1 | Col 2: 3D Avatar & Certified Catalog | `FLOW-2A` | Catalogo Esercizi & Avatar 3D | 22 | `3458764688417722707` | `X: 27.35, Y: 179.87` | [02-software-1-flow-2a-personal-cockpit.md](02-software-1-flow-2a-personal-cockpit.md) | `flow-2a-personal-cockpit.mmd` |
 | **#03** | Tier 1 | Col 3: Programmi Pre-Confezionati & Export PDF | `FLOW-3A` | Programmazione Base, Pre-Confezionati & Export PDF | 14 | `3458764688417722711` | `X: 2459, Y: 465` | [03-software-1-flow-3a-workout-player.md](03-software-1-flow-3a-workout-player.md) | `flow-3a-workout-player.mmd` |
-| **#04** | Tier 1 | Col 4: Wearable Sync & Readiness | `FLOW-4A` | Wearable Health Sync & Readiness | 14 | `3458764688417722715` | `X: 4171, Y: 465` | [04-software-1-flow-4a-wearable-sync.md](04-software-1-flow-4a-wearable-sync.md) | `flow-4a-wearable-sync.mmd` |
+| **#04** | Tier 1 | Col 4: Data Analisi - Revisione Biomeccanica (NO AI) | `FLOW-4A` | Data Analisi: Biomeccanica Angoli Principali (NO AI, NO RAG) | 13 | `3458764688417722715` | `X: 4171, Y: 465` | [04-software-1-flow-4a-wearable-sync.md](04-software-1-flow-4a-wearable-sync.md) | `flow-4a-wearable-sync.mmd` |
 | **#05** | Tier 1 | Col 5: Together Social Community | `FLOW-5A` | Together Social & Coach Market | 15 | `3458764688417722718` | `X: 6048, Y: 465` | [05-software-1-flow-5a-together-social-b2c.md](05-software-1-flow-5a-together-social-b2c.md) | `flow-5a-together-social-b2c.mmd` |
 | **#06** | Tier 1 | Col 6: Movely Desk-Care & Pause | `FLOW-6A` | Movely Desk-Care Ergonomia | 14 | `3458764688417722722` | `X: 7937, Y: 465` | [06-software-1-flow-6a-movely-desk-care.md](06-software-1-flow-6a-movely-desk-care.md) | `flow-6a-movely-desk-care.mmd` |
 | **#07** | Tier 2 | Col 1: Setup Fiscale P.IVA Anti-Frode | `FLOW-1B` | Onboarding Pro & Setup Fiscale | 16 | `3458764688417722731` | `X: -2448, Y: 3090` | [07-software-2-flow-1b-pro-onboarding.md](07-software-2-flow-1b-pro-onboarding.md) | `flow-1b-pro-onboarding.mmd` |
 | **#08** | Tier 2 | Col 2: Video 1080p, Speed & AI Coach | `FLOW-2B` | Catalogo 3D, Video 1080p, Speed Control & AI Coach | 22 | `3458764688417722736` | `X: 251.36, Y: 2940` | [08-software-2-flow-2b-coach-hub.md](08-software-2-flow-2b-coach-hub.md) | `flow-2b-coach-hub.mmd` |
 | **#09** | Tier 2 | Col 3: Programmazione Anamnesi 6M & AI Fonti | `FLOW-3B` | Programmazione Anamnestica 6M, RTP & AI Fonti | 15 | `3458764688417722743` | `X: 2641.02, Y: 3598.51` | [09-software-2-flow-3b-macrocycle-ai-triage119.md](09-software-2-flow-3b-macrocycle-ai-triage119.md) | `flow-3b-macrocycle-ai-triage119.mmd` |
-| **#10** | Tier 2 | Col 4: Biomeccanica VBT & Salti PAP | `FLOW-4B` | Biomeccanica VBT & Salti PAP | 17 | `3458764688417722745` | `X: 4171, Y: 2940` | [10-software-2-flow-4b-vbt-pap-biomechanics.md](10-software-2-flow-4b-vbt-pap-biomechanics.md) | `flow-4b-vbt-pap-biomechanics.mmd` |
+| **#10** | Tier 2 | Col 4: Data Analisi - Biomeccanica AI 70% & Wearable T7 | `FLOW-4B` | Data Analisi: AI 70%, Live Camera & Wearable T7 | 16 | `3458764688417722745` | `X: 4353.02, Y: 3598.51` | [10-software-2-flow-4b-vbt-pap-biomechanics.md](10-software-2-flow-4b-vbt-pap-biomechanics.md) | `flow-4b-vbt-pap-biomechanics.mmd` |
 | **#11** | Tier 2 | Col 5: Together Pro Vetrina Business | `FLOW-5B` | Together Pro Business & Video | 15 | `3458764688417722746` | `X: 6048, Y: 2940` | [11-software-2-flow-5b-together-pro-business.md](11-software-2-flow-5b-together-pro-business.md) | `flow-5b-together-pro-business.mmd` |
 | **#12** | Tier 2 | Col 6: Physio Rehab Goniometro ROM | `FLOW-6B` | Physio Rehab ROM & Scala VAS | 16 | `3458764688417722770` | `X: 7937, Y: 2940` | [12-software-2-flow-6b-physio-rehab-rom.md](12-software-2-flow-6b-physio-rehab-rom.md) | `flow-6b-physio-rehab-rom.mmd` |
 | **#13** | Tier 3 | Col 1: Onboarding Enterprise KMS | `FLOW-1C` | Onboarding Enterprise KMS | 18 | `3458764688417722778` | `X: -2925, Y: 6555` | [13-software-3-flow-1c-bunker-onboarding-kms.md](13-software-3-flow-1c-bunker-onboarding-kms.md) | `flow-1c-bunker-onboarding-kms.mmd` |
 | **#14** | Tier 3 | Col 2: Multi-Camera 4K & Suite Tattica | `FLOW-2C` | Catalogo 3D, Multi-Camera 4K, Suite Tattica & Stress Muscolare | 23 | `3458764688417722783` | `X: -108, Y: 6235.66` | [14-software-3-flow-2c-multi-staff-cockpit.md](14-software-3-flow-2c-multi-staff-cockpit.md) | `flow-2c-multi-staff-cockpit.mmd` |
 | **#15** | Tier 3 | Col 3: Programmazione Annuale RAG & Readiness | `FLOW-3C` | Programmazione Annuale, Chatbot 24/7 & Readiness Section | 17 | `3458764688417722788` | `X: 3056.26, Y: 8034.66` | [15-software-3-flow-3c-team-microcycle-mdx.md](15-software-3-flow-3c-team-microcycle-mdx.md) | `flow-3c-team-microcycle-mdx.mmd` |
-| **#16** | Tier 3 | Col 4: Telemetria GPS & Z-Score 28gg | `FLOW-4C` | GPS Telemetry & Adaptive Z-Score | 17 | `3458764688417722792` | `X: 4587, Y: 6565.57` | [16-software-3-flow-4c-gps-adaptive-zscore.md](16-software-3-flow-4c-gps-adaptive-zscore.md) | `flow-4c-gps-adaptive-zscore.mmd` |
+| **#16** | Tier 3 | Col 4: Data Analisi - AI 100%, Multi-Device & Role-Based RAG | `FLOW-4C` | Data Analisi: AI 100%, Multi-Device, Full Export & Role-Based RAG | 17 (Mermaid) / 19 (Miro) | `3458764688417722792` | `X: 4768.26, Y: 8032.48` | [16-software-3-flow-4c-gps-adaptive-zscore.md](16-software-3-flow-4c-gps-adaptive-zscore.md) | `flow-4c-gps-adaptive-zscore.mmd` |
 | **#17** | Tier 3 | Col 5: Tactical Vision & Voronoi CV | `FLOW-5C` | Tactical Vision & Voronoi CV | 16 | `3458764688417722803` | `X: 6464, Y: 6566.88` | [17-software-3-flow-5c-tactical-video-cv.md](17-software-3-flow-5c-tactical-video-cv.md) | `flow-5c-tactical-video-cv.mmd` |
 | **#18** | Tier 3 | Col 6: Medical Room EMR & Silo 3 Lake | `FLOW-6C` | Medical Room EMR & Silo 3 Lake | 18 | `3458764688417722810` | `X: 8353, Y: 6573.44` | [18-software-3-flow-6c-medical-room-research-silo3.md](18-software-3-flow-6c-medical-room-research-silo3.md) | `flow-6c-medical-room-research-silo3.mmd` |
 
@@ -120,27 +120,84 @@ In conformità alla "Legge della Programmazione" (approvata dall'utente), i tre 
 
 ---
 
-## 4. Topologia Spaziale della Board Miro (ZONA 4)
+## 4. Dettaglio Specifiche Colonna 4: Data Analisi (Tiers 1, 2, 3)
+
+In conformità alla "Legge della Data Analisi" (approvata in `ORIGINAL_REQUEST.md`), i tre flowchart di Colonna 4 rispettano rigorosamente le seguenti specifiche:
+
+### #04 [ FLOW-4A ] Tier 1 (B2C Casual) • Data Analisi: Biomeccanica Angoli Principali (NO AI, NO RAG)
+- **Badge Shape ID:** `3458764688417722715` | **Coordinate:** `X: 4171, Y: 465` | **Nodi ISO:** 13
+- **Caratteristiche Chiave:**
+  - Revisione biomeccanica: calcolo angoli principali durante la corsa o un esercizio;
+  - **NO AI:** nessun modello di intelligenza artificiale o visione neurale;
+  - **NO RAG:** nessun motore semantico di recupero documentale;
+  - **NO correlazione con programmazione o altre sezioni dell'app;**
+  - **Zero integrazioni wearable:** nessun dispositivo o smartwatch collegato in questa fascia;
+  - Goniometro digitale deterministico: posizionamento marker e calcolo trigonometrico puro;
+  - Salvataggio opzionale nello storico personale di Data Analisi (Silo 1).
+
+### #10 [ FLOW-4B ] Tier 2 (Pro P.IVA) • Data Analisi: AI 70%, Live Camera & Wearable T7
+- **Badge Shape ID:** `3458764688417722745` | **Coordinate:** `X: 4353.02, Y: 3598.51` | **Nodi ISO:** 16
+- **Caratteristiche Chiave:**
+  - Revisione biomeccanica: calcolo angoli principali e specifici durante la corsa o un esercizio;
+  - Aggiunta di considerazioni da parte dell'AI integrata;
+  - **Potenza di calcolo non massima (70%)** dei modelli top o modelli interni meno potenti;
+  - Possibilita di accendere la videocamera e filmarsi in live nell'esecuzione dell'esercizio;
+  - **AI controlla sul momento l'esercizio e suggerisce correzioni del video al momento;**
+  - **Salvataggio video con correzioni trascritte nella sezione Data Analisi – NON nel catalogo (database diversi);**
+  - **Condivisione video e analisi con atleti (vincolo rigoroso 1:1, singolo atleta alla volta);**
+  - **Possibilita di connettere solamente wearable dell'azienda T7:** i modelli di fascia Tier 2 leggono solo dati dagli strumenti indossabili interni all'azienda;
+  - Analisi sommaria delle metriche principali estratte (es. soglie di lattato in un test del lattato);
+  - **NO RAG.**
+
+### #16 [ FLOW-4C ] Tier 3 (Elite Teams) • Data Analisi: AI 100%, Multi-Device, Full Export & Role-Based RAG
+- **Badge Shape ID:** `3458764688417722792` | **Coordinate:** `X: 4768.26, Y: 8032.48` | **Nodi ISO:** 17 (Mermaid) / 19 (Miro, con sdoppiamento gateway su corsia 2 per garantire 0 incroci di linea geometrici)
+- **Caratteristiche Chiave:**
+  - Revisione biomeccanica: calcolo angoli principali e specifici durante la corsa o un esercizio con considerazioni approfondite dell'AI;
+  - **Analisi illimitate e continue sempre possibili in ogni caso;**
+  - **Potenza di calcolo illimitata dell'AI (100%): migliori modelli AI interni in questa sezione;**
+  - Possibilita di accendere la videocamera e filmarsi in live nell'esecuzione dell'esercizio con controllo e suggerimento correzioni in tempo reale;
+  - **Salvataggio del video con correzioni trascritte sia in Data Analisi sia nel Catalogo Esercizi del club;**
+  - **Condivisione video e analisi con atleti e team multi-staff;**
+  - **Connessione con qualsiasi dispositivo indossabile o strumento del mercato** (GPS, VBT, pedane di salto/forza, sensori di potenza) per registrare dati, con analisi approfondita e spiegazione di tutte le metriche;
+  - **Possibilita di creare report dettagliati, grafici, presentazioni e documenti tecnici di qualsiasi formato e condivisibili** (.pdf, .xlsx sbloccato, .docx, .pptx, .csv) utilizzabile su qualsiasi tipo di test, metrica o file esterno;
+  - **Data Analisi si connette alla sezione Programmazione (#15) e al Catalogo (#14):** Chatbot di supporto 24/7, RAG, dati del PVT e contribuzione alla baseline dell'atleta come fonte di conoscenza interna per migliorare anche le altre sezioni;
+  - **RAG PRIVATO ESCLUSIVO TIER 3 (8 Pilastri Fondamentali):**
+    1. *Caricamento universale multi-formato:* allenatore, medico, staff o atleta caricano qualsiasi documento o file (PDF, Excel, Word, CSV, note vocali trascritte) per addestrare l'AI;
+    2. *Privacy totale e isolamento dei dati (100% Private):* dati isolati nel Bunker Silo 2 KMS, mai condivisi con terzi ne usati per addestrare modelli esterni senza esplicita richiesta;
+    3. *Gestione gerarchica dei permessi (Role-Based RAG):* distinzione automatica tra Medico, Preparatore e Atleta, guidando l'AI senza esporre dati sanitari riservati a chi non ha autorizzazione medica;
+    4. *Clonazione dello stile e del lessico del coach:* apprendimento su richiesta del tono di voce, del metodo di lavoro e del vocabolario tecnico dell'allenatore;
+    5. *Controllo incrociato e avvisi di conflitto (Conflict Alert):* rilevamento automatico di incongruenze tra schede di allenamento e referti medici/limiti articolari presenti nel RAG;
+    6. *Tracciabilita e citazione delle fonti interne:* ogni suggerimento dell'AI cita il file interno, il test o lo studio societario caricato dal team su cui si basa la risposta;
+    7. *Memoria storica multi-stagione:* archiviazione cronologica dell'intera carriera dell'atleta nel club per confrontare cicli di carico storici e tempi di recupero da infortuni;
+    8. *Adattamento multilingua e onboarding staff:* traduzione automatica delle indicazioni nella lingua madre degli atleti stranieri e onboarding immediato per nuovi membri dello staff.
+
+### *Nota Strategica:
+- Sviluppare modelli AI interni dedicati per Tier 2 (inferenza 70%) e Tier 3 (inferenza 100% illimitata) su infrastruttura cloud privata T7.
+- Produrre wearable indossabili della nostra marca T7 per l'ecosistema proprietario.
+
+---
+
+## 5. Topologia Spaziale della Board Miro (ZONA 4)
 
 La Zona 4 si articola su una griglia ortogonale rigorosa:
 
 ### Struttura per Righe (3 Livelli Applicativi / Tiers)
 - **Riga 1 (In alto - Tier 1 Consumer):** Coordinata $Y \approx 180 \dots 465$. Palette teal (`#0f766e` / `#14b8a6`).
-- **Riga 2 (In mezzo - Tier 2 Pro / P.IVA):** Coordinata $Y \approx 2940 \dots 3090$. Palette ambra (`#b45309` / `#f59e0b`).
-- **Riga 3 (In basso - Tier 3 Elite Club / Ricerca):** Coordinata $Y \approx 6235 \dots 6573$. Palette indaco (`#4338ca` / `#818cf8`).
+- **Riga 2 (In mezzo - Tier 2 Pro / P.IVA):** Coordinata $Y \approx 2940 \dots 3598$. Palette ambra (`#b45309` / `#f59e0b`).
+- **Riga 3 (In basso - Tier 3 Elite Club / Ricerca):** Coordinata $Y \approx 6235 \dots 8034$. Palette indaco (`#4338ca` / `#818cf8`).
 
 ### Struttura per Colonne (6 Domini Funzionali Specializzati)
 1. **Colonna 1 ($X \approx -2925 \dots -2448$):** Identity, Security & Anti-Frode (Onboarding, WebAuthn, VIES, Cloud KMS).
 2. **Colonna 2 ($X \approx -108 \dots 251$):** 3D Catalog, Kinematics & Computer Vision (Three.js Draco, Optical Bar Tracking, Multi-Camera 4K).
-3. **Colonna 3 ($X \approx 2459 \dots 2875$):** Periodization, Triage & Workout Execution (Thin Player IndexedDB, Macrocicli DUP/Triage 119, Microciclo MD-X Bunker Silo 2).
-4. **Colonna 4 ($X \approx 4171 \dots 4587$):** Telemetry, Wearable Sync, VBT & GPS (Apple/Google Health, Regressione OLS 1RM/PAP, Telemetria GPS Osgnach & Z-Score Adattivo).
+3. **Colonna 3 ($X \approx 2459 \dots 3056$):** Periodization, Triage & Workout Execution (Thin Player IndexedDB, Macrocicli DUP/Triage 119, Microciclo MD-X Bunker Silo 2).
+4. **Colonna 4 ($X \approx 4171 \dots 4768$):** Data Analisi (Revisione Biomeccanica NO AI, Data Analisi AI 70% & Wearable T7, Data Analisi AI 100% & Role-Based RAG).
 5. **Colonna 5 ($X \approx 6048 \dots 6464$):** Social Community, Marketplace & Tactical Vision (Fan-Out on Write, Consulenze Pro WebRTC, Tactical Vision Voronoi CV).
 6. **Colonna 6 ($X \approx 7937 \dots 8353$):** Rehab ROM, Clinical Desk-Care & Research Lake (Desk-Care Ergonomia, Goniometro Markerless AI, Medical Room EMR & Silo 3 Research Warehouse).
 
 ---
 
-## 4. Norme di Manutenzione del Registro
+## 6. Norme di Manutenzione del Registro
 
 1. **Invarianza degli ID Miro:** Gli Shape ID riportati sono identificativi univoci generati dalle API Miro e non devono essere modificati a meno di ricreazione esplicita del badge.
 2. **Aggiornamento Sincrono:** Qualsiasi spostamento geometrico di un badge sulla board Miro impone l'aggiornamento immediato delle coordinate $(X, Y)$ in questo registro e nella Sezione 1 del corrispondente file `.md`.
-3. **Integrità dei File di Capitolato:** Ciascuno dei 18 file `.md` rispetta lo standard obbligatorio del "Doppio Livello di Lettura" articolato in 7 sezioni rigorose.
+3. **Integrita dei File di Capitolato:** Ciascuno dei 18 file `.md` rispetta lo standard obbligatorio del "Doppio Livello di Lettura" articolato in 7 sezioni rigorose.

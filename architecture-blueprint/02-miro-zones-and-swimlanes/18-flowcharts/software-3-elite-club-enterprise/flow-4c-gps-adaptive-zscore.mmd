@@ -7,44 +7,53 @@ flowchart TD
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 4C: GPS TELEMETRY & ADAPTIVE Z-SCORE FATIGUE PROFILING"]
+    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 4C: DATA ANALISI - BIOMECCANICA AI 100%, MULTI-DEVICE, FULL EXPORT & ROLE-BASED RAG"]
 
-    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (TELEMETRY DASHBOARD)"]
-        START(["Inizio: Ricezione Sessione GPS Campo"]):::startend
-        LIVE_GPS_PANEL["Pannello Telemetria Live / Post-Allenamento: Distanza Totale (TD), HSR (>19.8 km/h), Sprint (>25.2 km/h)"]:::client
-        HEATMAP_CANVAS["Canvas Mappa di Calore Dinamica per Giocatore su Campo da Gioco"]:::client
-        ZSCORE_RADAR["Grafico Radar Z-Score Adattivo Multi-Parametrico (GPS + HRV)"]:::client
-        FATIGUE_ALERT["Alert Visivo Rosso: 'Atleta Y presenta Z-Score Fatica > +2.5 deviazioni standard'"]:::error
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (ELITE PERFORMANCE & MULTIMODAL RAG COCKPIT)"]
+        START(["Inizio: Console Data Analisi Elite"]):::startend
+        UNIVERSAL_DROP["Dropzone Universale: Upload Multi-Formato (PDF, XLSX, DOCX, CSV, Note Vocali Trascritte)"]:::client
+        LIVE_CAM_4K["Live Camera 4K con Suggerimenti Immediati e Salvataggio nel Catalogo del Club"]:::client
+        ANY_WEARABLE_CONNECT["Connessione Universale ad Ogni Wearable o Strumento (GPS, VBT, Pedane, File Esterni)"]:::client
+        CONFLICT_ALERT_MODAL["Alert Rosso: 'Conflitto Clinico Rilevato: Scheda contrasta con referti RAG'"]:::error
+        REPORT_STUDIO["Suite Esportazione Documenti, Grafici e Presentazioni (PDF, XLSX, DOCX, PPTX, CSV)"]:::client
     end
 
-    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & HIGH-THROUGHPUT INGESTION"]
-        GW_GPS_BATCH["Ricezione Ingestion Batch: POST /api/v1/club/telemetry/gps-batch"]:::gateway
-        GW_VALIDATE_PAYLOAD{"Validazione Formato Dati GPS (10Hz / 18Hz Binario)?"}:::decision
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & ROLE-BASED RAG RBAC"]
+        GW_INGEST_ENTERPRISE["High-Throughput Ingestion: POST /api/v1/club/analysis/universal-ingest"]:::gateway
+        GW_RBAC_ROLE{"Verifica Ruolo Utente (Medico vs Preparatore vs Atleta)?"}:::decision
+        GW_MASK_SANITARY["Mascheramento Segreto Medico (Esposizione del Solo Limite Meccanico al Preparatore)"]:::gateway
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (Z-SCORE & PHYSIOLOGICAL ENGINE)"]
-        SRV_PARSER["Parser Tracciati GPS: Filtraggio Perdite Segnale Satellitare (DOP < 2)"]:::server
-        SRV_METABOLIC["Calcolo Potenza Metabolica Media (W/kg) ed Eventi di Accelerazione / Decelerazione Intensa"]:::server
-        SRV_ZSCORE_CALC["Algoritmo Z-Score Adattivo: Normalizzazione su Finestra Mobile Rolling 28 Giorni (X - mu) / sigma"]:::server
-        SRV_HRV_MERGE["Fusione con Indici di Recupero Cardiaco HRV (rMSSD mattutino)"]:::server
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (AI 100%, PRIVATE RAG & CONFLICT DETECTOR)"]
+        SRV_AI_100["Modelli AI Interni Top T7 (Potenza Illimitata 100%): Analisi Approfondita di Tutte le Metriche"]:::server
+        SRV_RAG_PRIVATE["Motore RAG 100% Private: Chunking, Citazione Fonti Interne e Memoria Storica Multi-Stagione"]:::server
+        DEC_CONFLICT_CHECK{"Conflitto tra Scheda Programmata e Referti/Limiti Articolari nel RAG?"}:::decision
+        SRV_STYLE_CLONER["Clonazione Stile & Lessico del Coach su Richiesta"]:::server
+        SRV_BASELINE_BRIDGE["Ponte Dati Baseline Atleta Verso Programmazione (#15), Readiness e PVT"]:::server
     end
 
     subgraph LANE_DB["CORSIA 4: DATABASE SILO 2 (BUNKER CLUB KMS ENCLAVE)"]
-        DB_WRITE_GPS[("Salvataggio Tracce Grezze GPS e Metriche Derivate in Silo 2 (gps_sessions)")]:::db
-        DB_WRITE_ZSCORE[("Salvataggio Punteggi Z-Score e Matrice Rischio in Silo 2 (fatigue_zscores)")]:::db
-        END_TELEMETRY_DONE(["Fine: Analisi Telemetrica Completa e Profilo Z-Score Aggiornato"]):::startend
+        DB_BUNKER_STORE[("Archiviazione Cifrata Silo 2 Cloud KMS (100% Private, Zero Sharing, Opt-In Silo 3)")]:::db
+        CAT_STORE[("Sincronizzazione Video con Correzioni nel Catalogo Esercizi del Club (#14)")]:::db
+        END_ENTERPRISE(["Fine: Conoscenza Societaria Consolidata e Dossier Esportato"]):::startend
     end
 
-    %% Flussi
-    START --> LIVE_GPS_PANEL --> GW_GPS_BATCH --> GW_VALIDATE_PAYLOAD
-    GW_VALIDATE_PAYLOAD -- Valido --> SRV_PARSER --> SRV_METABOLIC
-    SRV_METABOLIC --> SRV_ZSCORE_CALC --> SRV_HRV_MERGE
+    %% Connessioni di flusso
+    START --> UNIVERSAL_DROP --> GW_INGEST_ENTERPRISE
+    START --> ANY_WEARABLE_CONNECT --> GW_INGEST_ENTERPRISE
+    START --> LIVE_CAM_4K --> GW_INGEST_ENTERPRISE
+    GW_INGEST_ENTERPRISE --> GW_RBAC_ROLE
+    GW_RBAC_ROLE -- Medico Sociale --> SRV_RAG_PRIVATE
+    GW_RBAC_ROLE -- Preparatore / S&C --> GW_MASK_SANITARY --> SRV_RAG_PRIVATE
+    GW_RBAC_ROLE -- Telemetria / Video Live --> SRV_AI_100
 
-    SRV_HRV_MERGE --> DB_WRITE_GPS
-    SRV_HRV_MERGE --> DB_WRITE_ZSCORE
-
-    DB_WRITE_GPS --> HEATMAP_CANVAS
-    DB_WRITE_ZSCORE --> ZSCORE_RADAR
-    SRV_ZSCORE_CALC -. Se Z-Score > 2.0 .-> FATIGUE_ALERT -. Visualizzato in .-> LIVE_GPS_PANEL
-
-    ZSCORE_RADAR --> END_TELEMETRY_DONE
+    SRV_AI_100 --> CAT_STORE
+    SRV_AI_100 --> SRV_BASELINE_BRIDGE
+    SRV_RAG_PRIVATE --> DEC_CONFLICT_CHECK
+    DEC_CONFLICT_CHECK -- Si / Incongruenza Rilevata --> CONFLICT_ALERT_MODAL
+    CONFLICT_ALERT_MODAL -.-> UNIVERSAL_DROP
+    DEC_CONFLICT_CHECK -- No / Scheda Conforme --> SRV_STYLE_CLONER
+    SRV_STYLE_CLONER --> REPORT_STUDIO
+    SRV_BASELINE_BRIDGE --> DB_BUNKER_STORE
+    SRV_RAG_PRIVATE --> DB_BUNKER_STORE
+    REPORT_STUDIO --> END_ENTERPRISE

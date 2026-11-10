@@ -36,6 +36,7 @@ flowchart LR
 ## 3. Codice Colore Gap Analysis & Gestione dei 4 Stati UI
 
 ### A. Codice Colore Gap Analysis (Capitolato Software House)
+Nei flowchart operativi di **Zona 4** è ammesso utilizzare la **Palette Funzionale per Swimlane** (Client `#e0f2fe`, Gateway `#ede9fe`, Server `#d1fae5`, DB `#ffe4e6`, Decisioni `#fef3c7`, Vincoli/Alert `#fee2e2`) per mantenere coerenza visiva con i flussi già deployati (Col 2 e Col 3), riportando lo stato Gap Analysis (VERDE/GIALLO/ARANCIONE/ROSSO) nei capitolati `.md` e nelle tabelle di Zona 5:
 - **VERDE (`#2ecc71` - AS-IS Pronto):** Componente già implementato e funzionante nella Beta locale React/TS.
 - **GIALLO (`#f1c40f` - Parziale / Refactor):** Funzionalità abbozzata o presente nel codice legacy JS, da tipizzare e migrare.
 - **ARANCIONE (`#e67e22` - TO-BE Nuovo):** Modulo o logica da sviluppare ex novo da parte della Software House.
@@ -86,7 +87,7 @@ I 18 cartigli identificativi posizionati all'inizio di ciascun diagramma di flus
    - **Gutter Routing (Instradamento nei Corridoi Liberi):** Tutte le linee di ritorno o i salti di sezione devono percorrere corridoi geometrici vuoti (*gutters*) posti lateralmente o centralmente rispetto alle colonne dei blocchi.
 4. **Eliminazione di Tratti Diagonali Cross-Board (Laser Beams):**
    - È vietato collegare nodi distanti tra loro con connettori diagonali che attraversano la board o blocchi di altri diagrammi. I passaggi inter-modulo si gestiscono con:
-     - Badge/card di transizione locali ben formattate (es. `➔ NAVIGA ALL'HUB CENTRALE`).
+     - Badge/card di transizione locali ben formattate (es. `-> NAVIGA ALL'HUB CENTRALE`).
      - Corridoi perimetrali dedicati privi di ostacoli.
 5. **Regola della "No-Fly Zone" per i Badge di Identificazione (#01..#18):**
    - Ciascuno dei 18 badge possiede una **zona di rispetto perimetrale (No-Fly Zone) di almeno $40\text{px}$** su tutti e 4 i lati.

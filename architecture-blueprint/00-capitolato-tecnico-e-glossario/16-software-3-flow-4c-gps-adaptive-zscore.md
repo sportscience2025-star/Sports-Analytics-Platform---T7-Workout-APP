@@ -1,219 +1,243 @@
-# Capitolato Tecnico: Flow 4C – GPS Telemetry & Adaptive Z-Score Fatigue Profiling (T7 Elite Pro Teams)
+# Capitolato Tecnico: Flow 4C – Data Analisi: Biomeccanica AI 100%, Multi-Device, Full Export & Role-Based RAG (T7 Elite Pro Teams)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#16` (Posizione: `X: 4587, Y: 6565.57`, Miro Shape ID: `3458764688417722792`)
+- **Badge Miro Board:** `#16` (Posizione: `X: 4768.26, Y: 8032.48`, Miro Shape ID: `3458764688417722792`)
 - **Codice Univoco:** `FLOW-4C`
-- **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 4C: GPS TELEMETRY & ADAPTIVE Z-SCORE FATIGUE PROFILING
-- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 4: Telemetria GPS & Z-Score Squadra)
+- **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 4C: DATA ANALISI - BIOMECCANICA AI 100%, MULTI-DEVICE, FULL EXPORT & ROLE-BASED RAG
+- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 4: Data Analisi)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-4c-gps-adaptive-zscore.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Adaptive Z-Score 28gg](00-GLOSSARIO-TERMINI-TECNICI.md#z-score-adattivo-normalizzazione-statistica), [Telemetria GPS 10-18Hz](00-GLOSSARIO-TERMINI-TECNICI.md#dop-hdop-dilution-of-precision-satellite-filtering), [Potenza Metabolica Osgnach W/kg](00-GLOSSARIO-TERMINI-TECNICI.md#osgnach-metabolic-power-wkg-high-metabolic-load-distance), [Dilution of Precision DOP](00-GLOSSARIO-TERMINI-TECNICI.md#dop-hdop-dilution-of-precision-satellite-filtering), [Cold-Start Nuovi Acquisti](00-GLOSSARIO-TERMINI-TECNICI.md#fallback-per-nuovi-acquisti-cold-start-senza-baseline), [HRV Fusion](00-GLOSSARIO-TERMINI-TECNICI.md#hrv-fusion-integrazione-carico-internoesterno)).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [RAG 100% Private](00-GLOSSARIO-TERMINI-TECNICI.md#rag-100-private-isolamento-totale-dati-societari), [Role-Based RAG](00-GLOSSARIO-TERMINI-TECNICI.md#role-based-rag-controllo-accessi-gerarchico-medico--sc--atleta), [Clonazione Stile Coach](00-GLOSSARIO-TERMINI-TECNICI.md#clonazione-dello-stile-e-lessico-del-coach-style-cloning), [Conflict Alert Schede-Referti](00-GLOSSARIO-TERMINI-TECNICI.md#controllo-incrociato--avvisi-di-conflitto-conflict-alert-schede-referti), [Universal Multi-Format Export](00-GLOSSARIO-TERMINI-TECNICI.md#universal-multi-format-export-report-grafici-presentazioni), [Modelli AI Interni T7 100%](00-GLOSSARIO-TERMINI-TECNICI.md#modelli-ai-interni-t7-inferenza-dedicata-70-vs-100), [Cross-Module Baseline Bridge](00-GLOSSARIO-TERMINI-TECNICI.md#cross-module-baseline-bridge-data-analisi-verso-programmazione-e-catalogo)).
 
 ---
-
 
 ## 2. Obiettivo di Business & Target Utente
 
-### Guida Pratica per Non Tecnici: Cos'è questo modulo per un umano?
-Al fischio finale della partita, i calciatori tolgono la pettorina GPS e la inseriscono nella valigia di ricarica. I sensori (Catapult, Statsports, Wimu) scaricano **milioni di coordinate spaziali al secondo**. Spesso però i preparatori guardano solo i chilometri totali percorsi, commettendo un errore gravissimo:
-- Se un centrocampista corre 11 km è la sua normalità;
-- Se un difensore centrale corre 10.5 km ha corso quasi il 30% in più del suo solito ed è a rischio strappo muscolare!
-Non si possono confrontare numeri grezzi tra atleti diversi: ognuno ha il suo motore e la sua cilindrata.  
-**L'Algoritmo Z-Score Adattivo di T7** normalizza i dati su misura per ciascun atleta:
-- Confronta i dati di oggi con le prestazioni personali di quel singolo giocatore negli ultimi **28 giorni**;
-- Calcola lo **Z-Score Adattivo**: se il valore supera $+2.0$ deviazioni standard, significa che il giocatore ha fatto uno sforzo anomalo ed eccezionale;
-- Incrocia la corsa con il battito cardiaco del mattino (HRV): se ha corso tanto e il cuore al risveglio era stanco, compare un **Allarme Rosso Sovraccarico**;
-- **E se il calciatore è stato appena comprato nel calciomercato e non ha storico?** T7 usa una formula protetta di *Cold-Start*: prende la media dei calciatori dello stesso ruolo nella squadra e aggiunge un margine di prudenza del +10% finché non completa 20 allenamenti con la nuova maglia.
+### Guida Pratica per Non Tecnici: Cos'e questo modulo per un umano?
+Nei club professionistici d'elite, lo staff tecnico e medico e sommerso da dati eterogenei: cartelle cliniche dei medici, dati GPS ad altissima frequenza, test di forza con encoder VBT, pedane di salto, referti ortopedici e fogli di calcolo. Spesso questi dati rimangono isolati in compartimenti stagni, generando incomprensioni tra preparatori e medici o portando a schede di allenamento rischiose per un atleta reduce da un infortunio.  
+Il modulo di **Data Analisi Tier 3** e la cabina di regia scientifica definitiva del club:
+- **Analisi Biomeccanica Illimitata (AI 100%):** Calcolo simultaneo di tutti gli angoli principali e specifici durante corsa ed esercizi con i migliori modelli AI interni proprietari T7 a massima potenza, con analisi continue e approfondite;
+- **Videocamera Live con Salvataggio nel Catalogo:** L'AI corregge l'atleta sul momento a video e consente di salvare la sessione con le correzioni trascritte direttamente nel Catalogo Esercizi del club, a beneficio di tutto lo staff;
+- **Connessione a Qualsiasi Dispositivo e File:** Si collega a qualsiasi wearable o strumento del mercato (GPS Catapult, Statsports, Wimu, encoder Vitruve, GymAware, pedane ForceDecks, sensori di potenza, test del lattato) e importa qualsiasi file esterno (Excel, CSV), spiegando in dettaglio ogni singola metrica estratta;
+- **Suite di Esportazione Universale:** Genera con un clic report dettagliati, grafici interattivi, presentazioni e documenti tecnici in qualsiasi formato (.pdf, .xlsx sbloccato, .docx, .pptx, .csv) pronti per la dirigenza o per l'atleta;
+- **Interconnessione Completa con Programmazione e Catalogo:** I dati di Data Analisi alimentano la baseline prestativa e neurale dell'atleta, dialogano con la sezione Programmazione (FLOW-3C), con la Readiness Section (PVT, HRV, Z-Score) e con il Chatbot di supporto 24/7;
+- **RAG Privato Esclusivo Tier 3 (100% Private & Role-Based):**
+  1. *Caricamento Universale Multi-Formato:* Allenatori, medici, staff e atleti possono caricare qualsiasi file (PDF, Excel, Word, CSV e note vocali trascritte) per addestrare l'AI interna;
+  2. *Privacy Totale (100% Private):* I dati caricati restano di proprieta esclusiva del team nel Bunker Silo 2 KMS, mai condivisi con terzi ne utilizzati per addestrare modelli esterni;
+  3. *Gestione Gerarchica dei Permessi (Role-Based RAG):* Distinzione automatica dei livelli di visibilita tra Medico, Preparatore e Atleta; i dati sanitari sensibili guidano l'AI senza essere esposti a chi non ha l'autorizzazione medica;
+  4. *Clonazione dello Stile e Lessico del Coach:* Su richiesta, l'AI apprende il tono di voce, il metodo e il vocabolario tecnico del capo allenatore;
+  5. *Controllo Incrociato e Avvisi di Conflitto:* Rilevamento automatico di incongruenze tra le schede create e i referti medici, i limiti articolari o le linee guida presenti nel RAG;
+  6. *Tracciabilita e Citazione Fonti Interne:* Ogni consiglio dell'AI cita il file interno, il test o lo studio specifico del club da cui trae origine;
+  7. *Memoria Storica Multi-Stagione:* Cronistoria dell'intera carriera dell'atleta nel club per confrontare cicli di carico storici e tempi di recupero da infortuni passati;
+  8. *Adattamento Multilingua e Onboarding Staff:* Traduzione automatica per atleti stranieri e formazione rapida per nuovi membri dello staff.
 
 ### Specifiche di Business & Metriche
-- **Target Utente:** Sport Scientist, Preparatori Atletici, Match Analyst e Medici Sociali di club professionistici (Tier 3 – B2B Enterprise).
-- **Problema Risolto:** Eliminare i falsi allarmi e identificare con precisione scientifica i calciatori realmente a rischio lesione da fatica acuta, riducendo le assenze per infortunio stagionali di oltre 120 giorni/squadra.
+- **Target Utente:** Sport Scientist, Performance Director, Medici Sociali, Head Coach e Preparatori di societa sportive professionistiche, federazioni olimpiche e centri di ricerca (Tier 3 – B2B Enterprise).
+- **Problema Risolto:** Unificare telemetria multi-dispositivo, biomeccanica video e conoscenza clinica interna in un'unica infrastruttura intelligente protetta da crittografia bancaria, azzerando i conflitti prescrittivi e accelerando il processo decisionale ad ogni livello societario.
 
 ---
-
 
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
-1. **Corsia 1: Thin Client UI/UX (High-Frequency Telemetry Dashboard React 18):**
-   - Pannello telemetrico live da campo o post-partita, mappa di calore 2D (Heatmap) dinamica renderizzata su canvas del campo di gioco con traiettorie dei giocatori, radar multi-assiale Z-Score (Distanza, Sprint, Potenza Metabolica, Decelerazioni, HRV) e alert semaforici lampeggianti.
-2. **Corsia 2: API Gateway & High-Throughput Batch Gateway (Envoy + Kafka):**
-   - Ingestion ad altissima densità di dati (`/telemetry/gps-batch`), decompressione in streaming dei tracciati binari (10Hz / 18Hz) e verifica checksum anti-corruzione.
-3. **Corsia 3: Server Scatola Nera (Z-Score & Physiological Engine Cloud Run GPU):**
-   - *Filtro Precisione Satellitare DOP:* Scarto dei punti con Dilution of Precision $\ge 2$ o riflessioni da coperture di stadi chiusi tramite filtro di Kalman;
-   - *Potenza Metabolica di Osgnach:* Calcolo della spesa energetica istantanea in Watt per kg ($W/kg$) basata sul costo energetico della corsa accelerata;
-   - *Z-Score Rolling 28gg:* Computazione individuale $Z = \frac{X - \mu_{28}}{\sigma_{28}}$;
-   - *Cold-Start Engine:* Applicazione della mediana ponderata di ruolo tattico con fattore correttivo di sicurezza $+10\%$ per nuovi acquisti ($< 20\text{ sessioni}$).
-4. **Corsia 4: Database Tripartito (Silo 2 - Enclave Bunker TimescaleDB / PostgreSQL):**
-   - Hypertables georeferenziate ad altissime prestazioni per serie temporali `gps_raw_tracks` e archivio indici di fatica `fatigue_zscores` criptate con chiavi Cloud KMS.
+1. **Corsia 1: Thin Client UI/UX (Elite Performance & Multimodal RAG Cockpit):**
+   - Console multi-pannello con live camera 4K, overlay biomeccanico scheletrico 3D, Uploader Universale drag-and-drop multi-formato, modulo di registrazione e trascrizione note vocali, studio di export documentale (PDF, Excel, Word, PowerPoint) e visualizzatore di Conflict Alert sanitari/prescrittivi.
+2. **Corsia 2: API Gateway & High-Throughput Envoy Gateway:**
+   - Ingestion ad altissima intensita (`/club/telemetry/universal-ingest`), verifica permessi Role-Based RBAC (token differenziati Medico Sociale, Head S&C, Atleta), filtro anti-leak e instradamento su code streaming Kafka per telemetria GPS e video ad alta risoluzione.
+3. **Corsia 3: Server Scatola Nera (T7 AI Kinematics 100%, Role-Based RAG Engine & Baseline Dispatcher):**
+   - *Modelli AI Interni Top T7 (Potenza 100%):* Inferenza illimitata per tracciamento multi-articolare, asimmetrie complesse e spiegazione approfondita di tutte le metriche telemetriche;
+   - *Motore RAG 100% Private:* Embeddings vettoriali interni, recupero semantico con re-ranking gerarchico basato sul ruolo dell'utente (filtro rigoroso segreto medico);
+   - *Cross-Check Conflict Detector:* Analizzatore di regole formali che confronta le schede create con i limiti articolari e i referti clinici caricati nel database RAG;
+   - *Style Cloning Synthesizer:* Generatore linguistico parametrato sullo stile comunicativo e sul lessico tecnico dell'allenatore;
+   - *Cross-Module Dispatcher:* Inoltro automatico delle metriche aggregate verso il Catalogo Esercizi (FLOW-2C) e la Programmazione/Readiness (FLOW-3C).
+4. **Corsia 4: Database Tripartito (Silo 2 - Encrypted Club Bunker KMS):**
+   - Enclave PostgreSQL / pgvector / TimescaleDB con cifratura Cloud KMS per club. Tabelle `club_data_analysis_warehouse`, `club_rag_documents`, `club_conflict_logs` e partizione video Vault. Esportazione aggregata verso Silo 3 Research Warehouse consentita **esclusivamente su esplicito opt-in**.
 
 ---
-
 
 ### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-4C)
 
 ```mermaid
 sequenceDiagram
     autonumber
-    actor GPS as Dispositivi GPS Campo (10-18 Hz)
-    participant GW as API Gateway & Telemetry Ingest (Corsia 2)
-    participant MATH as Osgnach & Z-Score Engine (Corsia 3)
-    participant SILO2 as Bunker Database Silo 2 (Corsia 4)
-    actor Analyst as Match Analyst / Preparatore
+    actor Staff as Staff Tecnico / Medico / Coach
+    participant GW as API Gateway & RBAC (Corsia 2)
+    participant AI as Server Scatola Nera (AI 100% & Private RAG) (Corsia 3)
+    participant SILO2 as Bunker Silo 2 KMS (Corsia 4)
+    participant PROG as Sezione Programmazione (#15)
+    participant CAT as Catalogo Esercizi (#14)
 
-    GPS->>GW: POST /api/v1/enterprise/telemetry/gps-stream (Campioni raw 10-18Hz)
-    GW->>MATH: Inoltro campioni posizione e accelerazione
-    MATH->>MATH: Filtraggio DOP (Scarto campioni con DOP > 2.0)
-    MATH->>MATH: Calcolo Potenza Metabolica Osgnach (W/kg) & Distanza High Metabolic Load
-    MATH->>MATH: Fusione telemetria interna (HRV ed FC cardiaca)
-    alt Nuovo Acquisto (Assenza Baseline 28 giorni)
-        MATH->>MATH: Fallback Cold-Start: Ponderazione su media ruolo & dati antropometrici
-    else Atleta con Storico Consolidato
-        MATH->>MATH: Calcolo Z-Score Adattivo su media e deviazione standard personale a 28gg
+    Staff->>GW: POST /club/analysis/universal-upload (Referto PDF / Note vocali / GPS Catapult / VBT)
+    GW->>GW: Validazione RBAC Role-Based (Ruolo: Medico vs Preparatore)
+    GW->>AI: Inoltro pipeline RAG 100% Private & Ingestion
+    AI->>AI: Parsing multiformato, chunking e vettorizzazione privata interna
+    AI->>SILO2: Salvataggio isolato in Enclave KMS (zero sharing esterno)
+    Staff->>GW: POST /club/analysis/live-camera-session (Streaming video 4K)
+    AI->>AI: Analisi angoli principali/specifici al 100% di potenza + correzioni live
+    AI->>CAT: Salvataggio clip con correzioni trascritte nel Catalogo Esercizi (#14)
+    Staff->>GW: POST /club/rag/verify-workout-plan (Verifica scheda atleta X)
+    AI->>AI: Controllo incrociato scheda vs limiti articolari / referti RAG
+    alt Rilevato Conflitto Sanitario
+        AI-->>Staff: CONFLICT ALERT: "Carico squat eccede limite articolare ginocchio (Referto Dr. Rossi)"
+    else Nessun Conflitto
+        AI-->>Staff: Verifica superata: Scheda validata e allineata allo stile del coach
     end
-    MATH->>SILO2: INSERT gps_sessions & zscore_metrics (Cifratura Silo 2)
-    SILO2-->>Analyst: Visualizzazione Dashboard Live & Allarmi Picchi Z-Score > 2.0
-    Analyst->>GW: GET /api/v1/enterprise/telemetry/export-excel
-    GW->>MATH: Compilazione file Excel senza password di protezione (protected: false)
-    MATH-->>Analyst: 200 OK (Download file .xlsx per staff)
+    AI->>PROG: Sincronizzazione automatica Baseline atleta & Readiness (#15)
+    Staff->>GW: POST /club/analysis/export-dossier (format: XLSX/PDF/PPTX)
+    GW-->>Staff: Download dossier tecnico multi-formato generato
 ```
 
 ---
 
-
 ## 4. Flusso Operativo Passo-Passo
 
 ### Livello A: User Journey Narrativo (La Storia dell'Utente)
-1. **Lo Scarico delle Pettorine:** Finisce la partita. I magazzinieri ripongono le 26 pettorine nella valigia dock-station collegata a internet. I dati grezzi vengono trasmessi al cloud in 90 secondi.
-2. **Il Filtraggio dei Satelliti:** L'app ripulisce subito il segnale: se un giocatore è passato nel tunnel degli spogliatoi dove il satellite non prende bene, l'app scarta quei punti senza inventare picchi di velocità impossibili.
-3. **Il Calcolo della Potenza Metabolica:** Il sistema calcola che scattare partendo da fermi richiede un'energia enorme anche se non si raggiungono i 30 km/h: viene calcolata la vera potenza metabolica in Watt per chilo.
-4. **Il Verdetto Individuale dello Z-Score:** L'analista apre la dashboard. Al posto di una sfilza di numeri chilometrici, compare una schermata chiarissima con la rosa divisa per colori:
-   - 22 calciatori sono in **Verde** (hanno corso esattamente nei loro ritmi fisiologici abituali);
-   - 3 calciatori sono in **Giallo** (leggermente sopra la media, ma sotto controllo);
-   - Il terzino sinistro è evidenziato in **Rosso Lampeggiante (Z = +2.4)**: *"Ha percorso 1.150 metri ad altissima velocità (> 25 km/h), ben 400 metri oltre il suo limite massimo degli ultimi 28 giorni!"*.
-5. **L'Incrocio con il Battito Cardiaco:** L'app controlla anche l'HRV registrato stamattina: il terzino aveva un cuore affaticato ($-20\%$).
-6. **L'Alert allo Staff Tecnico:** Compare la prescrizione automatica: *"Allarme Sovraccarico Critico: si raccomanda di concedere 48 ore di scarico e non schierarlo nella partitella di Martedì per evitare lesioni al bicipite femorale"*.
+1. **L'Hub Unificato del Club:** Il Performance Director apre la console di Data Analisi. Nel cruscotto convergono i dati GPS della rifinitura mattutina, i video 4K della seduta di squat, i dati degli encoder di velocita e i referti sanitari caricati dal medico sociale.
+2. **Caricamento Multi-Formato nel RAG Privato:** Il medico carica un referto in formato PDF e il preparatore registra una nota vocale: *"L'atleta 10 ha una leggera infiammazione al tendine rotuleo sinistro; evitare carichi eccentrici superiori a 120 kg per 10 giorni"*. L'app trascrive la nota vocale internamente e vettorizza il documento nel database blindato del club (100% Private).
+3. **Live Camera sul Campo e nel Catalogo:** Durante l'allenamento, il coach inquadra l'atleta in diretta. L'AI (a massima potenza 100%) segnala a video le asimmetrie di spinta in millisecondi. Al termine, il coach tocca un pulsante: il video con le correzioni viene salvato sia nella cronologia di Data Analisi sia come esercizio speciale nel **Catalogo del Club**, visibile a tutto lo staff.
+4. **Controllo Incrociato Schede-Referti (Conflict Alert):** Quando il vice-allenatore tenta di programmare una serie pesante di squat per l'atleta 10, il sistema blocca l'azione ed emette un avviso nitido: *"Allerta Conflitto Clinico: La scheda contrasta con il limite rotuleo registrato stamattina. Fonte: Nota vocale Preparatore ore 09:15"*. Il preparatore riceve l'avviso operativo senza che vengano svelati dettagli sanitari riservati.
+5. **Clonazione dello Stile del Coach:** L'allenatore richiede all'AI di preparare il discorso motivazionale e le istruzioni tecniche per la partita. L'AI scrive il documento impiegando il gergo, le metafore e il metodo proprio del coach.
+6. **Esportazione Universale:** Lo staff genera in un istante una presentazione PowerPoint (.pptx) per la riunione tecnica pomeridiana e un foglio Excel (.xlsx sbloccato) completo per i fisioterapisti.
 
 ---
 
-
-#### Indicatori di Accettazione Operativa & Clinica (KPI)
+#### Indicatori di Accettazione Operativa & RAG (KPI)
 | Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
 | :--- | :--- | :--- | :--- |
-| **Filtraggio Satellitare DOP** | Scarto $100\%$ campioni con DOP $> 2.0$ | DOP $\le 2.5$ | Interpolazione spline temporale |
-| **Accuratezza Potenza Osgnach**| Conforme a modello di Prampero-Osgnach | $\pm 1.5\%$ deviazione | Stima basata su sole accelerazioni rettilinee |
-| **Convergenza Cold-Start** | Baseline transitoria attiva da Giorno 1 | Media ruolo $\pm 10\%$ | Assegnazione baseline conservativa al 70% |
-| **Frequenza GPS Supportata** | 10-18 Hz senza perdita di frame | $\ge 10\text{ Hz}$ | Ricampionamento lineare automatico a 10 Hz |
+| **Isolamento Dati RAG (Privacy)** | $100\%$ privato (Zero Leak) | $100\%$ assoluto | Blocco totale istantaneo se rilevato tentativo di export esterno |
+| **Latenza Risposta RAG & Conflict** | $< 1.2\text{ s}$ | $\le 2.5\text{ s}$ | Indicatore di elaborazione semantica e consultazione asincrona |
+| **Potenza Modelli AI Interni** | $100\%$ allocazione top | $100\%$ | Assegnazione dinamica di nodi GPU dedicati |
+| **Supporto Wearable & File Esterni** | Universale ($100\%$) | $\ge 98\%$ formati | Parsing elastico con log di tracciamento campi non mappati |
+| **Accuratezza Conflict Detection** | $\ge 99\%$ incongruenze | $\ge 95\%$ | Flagging cautelativo di revisione umana obbligatoria |
+| **Tempo Generazione Export Multi-Formato**| $< 2.0\text{ s}$ | $\le 4.0\text{ s}$ | Compilazione in background con notifica di completamento |
 
 ---
 
+### Livello B: Trattazione Tecnica Nodi Operativi (Gli 8 Pilastri del RAG e della Data Analisi Elite)
 
-### Livello B: Trattazione Tecnica Nodi Operativi
-
-1. `START` (Ricezione Batch GPS da Campo): Ingestion batch multi-dispositivo (10-18Hz) tramite stazione di scarico Wi-Fi/Ethernet.
-2. `GW_INGEST_VALIDATE` (Validazione Gateway & Unpack): Ricezione archivio compresso contenente i file binari `.ubx` o `.fit`. Verifica integrità crittografica SHA-256.
-3. `SRV_DOP_FILTER` (Filtro Precisione Satellitare DOP):
-   - Scansione delle coordinate latitudine/longitudine;
-   - Esclusione dei frame con Dilution of Precision $\text{DOP} \ge 2.0$ o perdita di costellazione satellitare GNSS ($< 8\text{ satelliti}$ agganciati);
-   - Ricostruzione traiettoria tramite filtro di Kalman cinematico a 2 dimensioni.
-4. `SRV_OSGNACH_METABOLIC` (Calcolo Potenza Metabolica di Osgnach):
-   - Calcolo dell'accelerazione tangenziale $a_t$ e dell'inclinazione equivalente del terreno $\alpha = \arctan(a_t / g)$;
-   - Computazione del costo energetico della corsa e della potenza metabolica media:
-     $$P_{\text{met}} = C_{\text{inclinato}} \cdot v \quad (\text{W/kg})$$
-5. `SRV_ZSCORE_CALC` (Algoritmo Z-Score Adattivo su Finestra Mobile 28gg):
-   - *Estrazione Baseline:* Calcolo media $\mu_{28}$ e deviazione standard $\sigma_{28}$ per: Distanza Totale (TD), High Speed Running (HSR $> 19.8\text{ km/h}$), Distanza di Sprint ($> 25.2\text{ km/h}$), Numero Accelerazioni ($> 3\text{ m/s}^2$), Potenza Metabolica;
-   - *Formula:*
-     $$Z_i = \frac{X_i - \mu_{28, i}}{\sigma_{28, i}}$$
-   - *Cold-Start Fallback (Nuovi Acquisti):* Se lo storico atterrato è $< 20\text{ sessioni}$, il server applica la mediana ponderata del ruolo tattico della squadra con un coefficiente di prudenza $+10\%$:
-     $$Z_{\text{cold}} = \frac{X_i - \text{Median}_{\text{Ruolo}}}{\text{IQR}_{\text{Ruolo}} \cdot 0.7413} \times 1.10$$
-6. `SRV_HRV_MERGE` (Fusione con Carico Interno Cardiaco): Incrocio del valore $Z$ con la variazione percentuale del logaritmo dell'$r\text{MSSD}$ mattutino ($\ln r\text{MSSD}$).
-7. `DB_WRITE_SILO2` (Archiviazione Hypertable Silo 2): Scrittura dei tracciati in TimescaleDB con compressione a colonne (risparmio storage $> 90\%$).
-8. `HEATMAP_RENDER` (Rendering Canvas 2D): Mappatura della densità posizionale sul terreno di gioco e radar multi-assiale a 5 parametri.
-9. `DEC_FATIGUE_ALERT` (Bivio Alert Sovraccarico):
-   - *Se $Z_{\text{composito}} > +2.0\sigma$:* Generazione alert rosso lampeggiante `CRITICAL_FATIGUE_ALERT` nello staff cockpit con notifica WhatsApp/Telegram riservata al Medico e al Preparatore;
-   - *Se $Z_{\text{composito}} \le +2.0\sigma$:* Profilo verde fisiologico ordinario.
+1. `START` (Inizializzazione Workspace Elite): Apertura interfaccia Tier 3 con token verificato da Cloud KMS.
+2. `UNIVERSAL_INGEST` (Ingestion Multi-Formato & Any-Device): Ricezione di file PDF, Excel, Word, CSV, tracciati GPS (10-18Hz), flussi VBT, pedane di forza e file audio.
+3. `AUDIO_TRANSCRIPTION_LOCAL` (Trascrizione Note Vocali): Conversione locale speech-to-text delle note vocali dello staff senza invio a server esterni di terze parti.
+4. `RAG_PRIVATE_PIPELINE` (Pipeline Vettoriale 100% Private): Chunking semantico, embedding vettoriale proprietario T7 e indicizzazione nello spazio isolato del club.
+5. `ROLE_BASED_RBAC_GATE` (Filtraggio Gerarchico dei Permessi):
+   - Ruolo Medico: accesso e interrogazione completa dei referti clinici;
+   - Ruolo Preparatore/S&C: ricezione degli alert di compatibilita e limiti operativi senza visualizzazione delle diagnosi sanitarie;
+   - Ruolo Atleta: visualizzazione delle sole prescrizioni e feedback esecutivi autorizzati.
+6. `AI_100_VISION_ANALYSIS` (Biomeccanica AI 100% Live): Analisi multi-articolare continua a piena risoluzione (angoli principali e specifici, micro-compensazioni, FEA tensioni muscolari).
+7. `CATALOG_SYNC_DISPATCH` (Salvataggio nel Catalogo Esercizi): Scrittura della sessione video e delle trascrizioni nello schema `catalog_exercises` con watermark forense del club (FLOW-2C).
+8. `CROSS_CHECK_CONFLICT_DETECTOR` (Controllo Incrociato Schede-Referti): Esecuzione algoritmo di verifica vincoli: se un esercizio in Programmazione viola un vincolo RAG, generazione immediata di `CONFLICT_ALERT`.
+9. `COACH_STYLE_CLONER` (Clonazione Stile Coach): Applicazione dei pesi stilistici e lessicali dell'allenatore sul motore di generazione testuale.
+10. `MULTI_SEASON_MEMORY_UPDATE` (Memoria Storica Multi-Stagione): Aggiornamento dell'archivio longitudinale della carriera dell'atleta nel database Enclave Silo 2.
+11. `BASELINE_BRIDGE_DISPATCH` (Ponte Baseline Atleta & Programmazione): Trasferimento metriche a FLOW-3C (Readiness Section, PVT, HRV, Z-Score).
+12. `UNIVERSAL_EXPORT_GEN` (Compilatore Documenti Multi-Formato): Esportazione coordinata in formato PDF, Excel (.xlsx), Word (.docx), PowerPoint (.pptx) e CSV.
+13. `END` (Consolidamento Sessione Elite): Persistenza garantita su Enclave Bunker Silo 2 con logging di audit immutabile.
 
 ---
-
 
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
-| Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
+| Bivio Decisionale | Condizione Logica | Ramo SI / Positivo | Ramo NO / Negativo |
 | :--- | :--- | :--- | :--- |
-| `SATELLITE_DOP` | Precisione satellitare DOP $< 2.0$? | Frame valido per calcolo velocità | Scarta frame e interpola con Kalman |
-| `COLD_START_CHECK` | Calciatore ha $\ge 20$ sessioni registrate? | Z-Score individuale puro | Fallback su mediana ponderata di ruolo |
-| `FATIGUE_ALERT` | Z-Score composito $> +2.0\sigma$? | Alert sovraccarico critico (Rosso) | Carico nella norma fisiologica (Verde) |
+| `CHECK_RAG_PERMISSIONS` | Il ruolo dell'utente autorizza la lettura del dato sanitario? | Ritorna dettaglio clinico completo | Ritorna solo indicazione operativa mascherata |
+| `DETECT_WORKOUT_CONFLICT` | La scheda di allenamento contrasta con limiti RAG? | Emette Conflict Alert e blocca scheda | Valida la scheda e procede |
+| `STYLE_CLONING_TOGGLE` | L'utente ha attivato la clonazione dello stile del coach? | Genera testo con lessico e tono del coach | Genera output tecnico standard T7 |
+| `OPT_IN_SILO3_CHECK` | Il club ha concesso l'opt-in esplicito per la ricerca? | Inoltra dati anonimizzati a Silo 3 | Dati rigorosamente confinati in Silo 2 |
 
 ### I 4 Stati di Interfaccia Utente (UI States):
-1. **Empty State:** Nessun file GPS scaricato al termine della seduta: indicatore di stato delle antenne a bordo campo in attesa del primo batch.
-2. **Loading State:** Elaborazione parallela multi-thread su Cloud Run GPU per il parsing di 26 tracciati da 90 minuti (circa 2.8 milioni di coordinate analizzate in $< 2.2\text{ secondi}$).
-3. **Populated State:** Dashboard con radar Z-Score per tutti i titolari, mappa termica (Heatmap) sovrapposta al campo verde e tabella ordinabile per metri percorsi al minuto ($m/\text{min}$).
-4. **Error / Fallback State:**
-   - *Mancanza del dato cardiaco mattutino:* Il radar segnala l'assenza del parametro interno e calcola lo Z-Score parziale sul solo carico esterno con avviso allo staff.
+1. **Empty State:** Nessun dataset importato ne sessione live avviata. Vista della knowledge base del club con indicatore: "Trascina qui qualsiasi file (PDF, Excel, Audio, Telemetria) per addestrare il RAG privato del tuo team".
+2. **Loading State:** Elaborazione simultanea multi-modale (indicizzazione RAG in corso, embedding vettoriale e calibrazione telemetrica a schermo con barra di avanzamento crittografica).
+3. **Populated State:** Dashboard analitica completa a mosaico: radar Z-Score, streaming video con angoli 3D, chat semantica RAG con citazione delle fonti del club e pulsante di export multi-formato attivo.
+4. **Error / Fallback State:** Conflitto insanabile tra scheda e prescrizione medica o file corrotto. Notifica rossa di sicurezza: "Conflitto bloccante rilevato: la scheda viola il referto clinico societario. Richiesta autorizzazione congiunta Medico-S&C".
 
 ---
-
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
 ### Specifiche Endpoint REST:
 
-#### 1. Ingestion Batch Telemetria GPS da Campo
-- **Endpoint:** `POST /api/v1/club/telemetry/gps-batch`
-- **Headers:** `Authorization: Bearer <staff_jwt>`, `X-Club-Tenant-ID: club_seriea_01`, `Content-Type: application/json`
+#### 1. Ingestion Universale Multi-Formato nel RAG Privato
+- **Endpoint:** `POST /api/v1/club/analysis/universal-upload`
+- **Headers:** `Authorization: Bearer <jwt_enterprise_kms>`, `Content-Type: multipart/form-data`
+- **Form Data:**
+  - `clubId`: `clb_real_madrid_99`
+  - `uploaderRole`: `CHIEF_MEDICAL_OFFICER`
+  - `documentType`: `MEDICAL_REPORT` (oppure `VOICE_NOTE`, `GPS_CSV`, `VBT_RAW`)
+  - `confidentialityLevel`: `RESTRICTED_MEDICAL` (solo personale medico autorizzato)
+  - `file`: `<blob_stream>`
+- **Responses:**
+  - `200 OK`:
+```json
+{
+  "status": "success",
+  "documentId": "doc_rag_4418fa",
+  "privacyLevel": "100_PERCENT_PRIVATE_KMS",
+  "chunksCreated": 14,
+  "roleAccessGranted": ["CHIEF_MEDICAL_OFFICER", "TEAM_DOCTOR"],
+  "conflictRulesExtracted": [
+    { "targetAthleteId": "ath_10", "jointConstraint": "KNEE_LEFT", "maxEccentricLoadKg": 120 }
+  ]
+}
+```
+
+#### 2. Query RAG con Controllo Conflitti e Clonazione Stile
+- **Endpoint:** `POST /api/v1/club/rag/query-and-verify`
+- **Headers:** `Authorization: Bearer <jwt_enterprise_kms>`, `Content-Type: application/json`
 - **Request Payload:**
 ```json
 {
-  "clubId": "club_seriea_01",
-  "sessionId": "gps_sess_20261026_match",
-  "sessionType": "MATCH_SERIE_A",
-  "pitchSurface": "NATURAL_GRASS",
-  "samplingRateHz": 18,
-  "rawBatchStorageRef": "gs://club-seriea-01-vault/gps/20261026_match.bin"
+  "clubId": "clb_real_madrid_99",
+  "userRole": "HEAD_STRENGTH_COACH",
+  "query": "Verifica se la progressione di squat prevista per l'atleta 10 rispetta i vincoli del club",
+  "enableCoachStyleCloning": true,
+  "targetLanguage": "it"
 }
 ```
 - **Responses:**
   - `200 OK`:
 ```json
 {
-  "processedAthletesCount": 26,
-  "dopFilteredOutliersPercent": 1.15,
-  "flaggedAlerts": [
-    {
-      "athleteId": "p_03_fullback",
-      "compositeFatigueZ": 2.42,
-      "hsrMeters": 1150,
-      "sprintMeters": 380,
-      "metabolicPowerAvgWkg": 11.4,
-      "alertLevel": "HIGH_INJURY_RISK",
-      "coldStartApplied": false
+  "status": "conflict_detected",
+  "conflictAlert": {
+    "hasConflict": true,
+    "severity": "HIGH",
+    "summary": "Attenzione mister: la progressione supera il limite eccentrico di sicurezza stabilito per l'atleta 10.",
+    "sourceCitation": {
+      "documentId": "doc_rag_4418fa",
+      "sourceName": "Referto Medico-Funzionale Staff Dr. Rossi",
+      "date": "2026-11-10"
     }
-  ]
+  },
+  "coachStyleToneApplied": true,
+  "suggestedModification": "Sostituire lo squat pesante con leg press monopodalica a range controllato."
 }
 ```
 
-### Schema Relazionale (Database Silo 2 - TimescaleDB / PostgreSQL Criptato):
-- `gps_sessions`: `id UUID PK`, `club_id VARCHAR(64)`, `session_date DATE`, `session_type VARCHAR(32)`, `weather VARCHAR(32)`, `created_at TIMESTAMPTZ`.
-- `athlete_gps_metrics`: `id UUID PK`, `session_id UUID FK -> gps_sessions.id`, `athlete_id VARCHAR(64)`, `total_distance_m NUMERIC(7,1)`, `hsr_m NUMERIC(6,1)`, `sprint_m NUMERIC(5,1)`, `avg_metabolic_power_wkg NUMERIC(4,2)`.
-- `fatigue_zscores`: `id UUID PK`, `athlete_id VARCHAR(64)`, `session_id UUID`, `calculated_z NUMERIC(4,2)`, `rolling_mean_28 NUMERIC(7,2)`, `rolling_std_28 NUMERIC(6,2)`, `cold_start_applied BOOLEAN`, `alert_triggered BOOLEAN`.
+### Schema Relazionale & Vettoriale (Database Silo 2 - Bunker KMS):
+- `club_rag_documents`: `id UUID PK`, `club_id UUID NOT NULL`, `uploader_role VARCHAR(64) NOT NULL`, `confidentiality_level VARCHAR(64) NOT NULL`, `source_type VARCHAR(32)`, `file_name VARCHAR(255)`, `encrypted_s3_uri VARCHAR(512)`, `created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()`.
+- `club_rag_embeddings`: `id UUID PK`, `document_id UUID FK -> club_rag_documents.id`, `embedding vector(1536) NOT NULL`, `chunk_content TEXT NOT NULL`, `access_roles TEXT[] NOT NULL`.
+- `club_conflict_rules`: `id UUID PK`, `athlete_id UUID NOT NULL`, `origin_document_id UUID FK`, `rule_condition JSONB NOT NULL`, `is_active BOOLEAN DEFAULT TRUE`.
 
 ---
-
 
 ### Matrice Errori HTTP & Strategie di Resilienza
 | HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
 | :---: | :--- | :--- | :--- | :--- | :--- |
-| **400** | `ERR_CORRUPT_GPS` | `POST /gps-stream` | File telemetria corrotto o checksum errato | Notifica: *"File telemetria non integro"* | Richiesta nuovo upload o ri-esportazione da docking |
-| **401** | `ERR_DEVICE_UNAUTH` | `POST /gps-stream` | ID ricevitore GPS non registrato nel club | Alert: *"Dispositivo GPS non censito nel Bunker"*| Assegnazione provvisoria in quarantena |
-| **422** | `ERR_SATELLITE_NOISE`| `POST /gps-stream` | Oltre il 50% dei campioni con DOP $> 3.0$ (Canyoning)| Avviso: *"Segnale GPS instabile nello stadio"* | Integrazione con soli dati accelerometrici IMU |
-| **429** | `ERR_INGEST_OVERLOAD`| `POST /gps-stream` | Frequenza pacchetti superiore a capacità banda | Nessun disturbo all'utente | Buffer in memoria e throttling transitorio |
-| **500** | `ERR_ZSCORE_FAULT` | `POST /gps-stream` | Varianza storica nulla (divisione per zero) | Icona ambrata: *"Z-Score stimato su media ruolo"*| Assegnazione deviazione standard predefinita |
-| **504** | `ERR_PIPELINE_TIMEOUT`| `POST /gps-stream` | Timeout durante calcolo potenza metabolica | Toast: *"Calcolo in corso in background"* | Notifica push a completamento elaborazione |
+| **400** | `ERR_UNPARSABLE_FORMAT`| `POST /universal-upload` | File danneggiato o codec audio non decodificabile | Dialog: "Formato documento o traccia audio non leggibile" | Richiesta nuovo upload o conversione automatica in testo puro |
+| **401** | `ERR_KMS_AUTH_FAILED` | `POST /query-and-verify` | Firma chiave crittografica Cloud KMS del club non valida | Alert: "Errore autenticazione bunker di sicurezza" | Rinnovo handshake di sicurezza con server centrale |
+| **403** | `ERR_ROLE_MASKED_DATA` | `POST /query-and-verify` | Preparatore tenta di visualizzare referto medico integrale | Avviso: "Dato protetto da segreto medico. Visualizzato solo limite operativo" | Mascheramento automatico e visualizzazione vincolo meccanico |
+| **409** | `ERR_PREVENTIVE_CONFLICT`| `POST /verify-workout-plan` | La scheda contrasta direttamente con un divieto clinico | Modale rossa: "Scheda bloccata per conflitto medico societario" | Proposta di variante dell'esercizio approvata dal RAG |
+| **422** | `ERR_MISSING_METRIC_MAP`| `POST /universal-upload` | File telemetrico con intestazioni colonne sconosciute | Schermata interattiva di mappatura manuale delle colonne | Autodiagnosi fuzzy matching delle metriche con conferma utente |
+| **500** | `ERR_VECTOR_SEARCH_FAIL`| `POST /query-and-verify` | Timeout nel database vettoriale pgvector del Bunker | Toast: "RAG temporaneamente offline: consultazione storico manuale" | Fallback su ricerca testuale esatta su database relazionale |
 
 ---
 
+## 7. Ereditarieta di Tier & Differenziali di Fascia
 
-## 7. Ereditarietà di Tier & Differenziali di Fascia
-
-- **Differenziali rispetto a Tier 1 e Tier 2:**  
-  Nel Tier 1 si leggono solo i passi/HRV dell'Apple Watch; nel Tier 2 si misura il bilanciere con il VBT. **L'ingestion massiva di pettorine GPS a 18Hz, l'equazione della potenza metabolica di Osgnach e l'Adaptive Z-Score su rolling window a 28 giorni sono esclusivi del Tier 3 Enterprise**.
-- **Algoritmo Cold-Start:**  
-  La gestione metrologica dei nuovi acquisti privi di baseline con la mediana ponderata di ruolo è un'innovazione proprietaria custodita esclusivamente nel bunker Silo 2 protetto da Cloud KMS.
+- **Capacita Ereditate da Tier 1 e Tier 2:**  
+  Calcolo degli angoli principali e specifici; live camera con correzioni immediate dell'esercizio.
+- **Sblocco Totale e Differenziali Esclusivi di Tier 3 (`FLOW-4C`):**  
+  Tutti i vincoli e le limitazioni dei Tier inferiori vengono superati:
+  1. **Modelli AI Interni Top al 100% della potenza di calcolo**, con analisi illimitate e continue;
+  2. **Salvataggio Video e Correzioni nel Catalogo Esercizi del Club** (FLOW-2C) oltre che in Data Analisi;
+  3. **Connessione Universale ad Ogni Wearable e Strumento** (qualsiasi marca, GPS, encoder, pedane, file esterni) con spiegazione di tutte le metriche;
+  4. **Suite di Esportazione Universale Multi-Formato** (.pdf, .xlsx sbloccato, .docx, .pptx, .csv, presentazioni);
+  5. **Integrazione Totale con la Sezione Programmazione (#15) e il Catalogo (#14)**, alimentando la baseline prestativa e neurale dell'atleta e integrando i test di vigilanza PVT, HRV e Z-Score;
+  6. **Architettura RAG Esclusiva 100% Private & Role-Based** a 8 capacita distintive: caricamento universale multi-formato, privacy totale e isolamento dei dati nel Bunker Silo 2 KMS, controllo gerarchico degli accessi (Role-Based RAG), clonazione dello stile e del lessico del coach, rilevamento automatico conflitti schede-referti medici, tracciabilita e citazione delle fonti interne, memoria storica multi-stagione dell'atleta e supporto multilingua per atleti e staff.

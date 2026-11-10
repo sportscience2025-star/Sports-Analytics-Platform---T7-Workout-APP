@@ -7,50 +7,47 @@ flowchart TD
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 2 (B2B PRO P.IVA) - FLOW 4B: BIOMECHANICAL VBT & PAP JUMP ANALYSIS"]
+    TITLE["SOFTWARE 2 (B2B PRO P.IVA) - FLOW 4B: DATA ANALISI - BIOMECCANICA AI 70%, LIVE CAMERA & WEARABLE T7"]
 
-    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (BIOMECHANICS DASHBOARD)"]
-        START(["Inizio: Setup Test Biomeccanico"]):::startend
-        BLE_CONNECT["Connessione Web Bluetooth BLE: Encoder Vitruve / Piattaforma Salti"]:::client
-        TEST_CHOICE{"Tipologia Test"}:::decision
-        VBT_EXEC["Esecuzione VBT: 4 Serie Incrementali (Panca/Squat) a Massima Intenzione"]:::client
-        PAP_EXEC["Protocollo PAP: Baseline CMJ -> Carico Condizionante -> Salti Post-PAP (4', 8', 12')"]:::client
-        CHART_RENDER["Rendering Chart.js: Profilo F-V, Curva Potenza e Trend Esplosivita PAP"]:::client
-        OUTLIER_ALERT["Notifica: 'Ripetizione scartata per anomalia di traiettoria (MAD > 3)'"]:::error
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (LIVE CAMERA & POSE CORRECTION)"]
+        START(["Inizio: Setup Analisi Biomeccanica Pro"]):::startend
+        BLE_SCAN["Connessione Wearable Marchio T7 (Web Bluetooth API)"]:::client
+        CAM_START["Attivazione Fotocamera Live Stream 1080p a 60fps"]:::client
+        OVERLAY_RENDER["Overlay Scheletrico 2D: Angoli Principali e Specifici (Valgismo, Tilt, Asimmetrie)"]:::client
+        LIVE_ALERT_BOX["Box Correzione Real-Time: 'Allinea ginocchio destro: correggi valgismo'"]:::client
+        SHARE_MODAL["Selezione Condivisione 1:1 con Singolo Atleta"]:::client
+        ERR_DEV["Notifica: 'Dispositivo non supportato: connetti wearable ufficiale T7'"]:::error
     end
 
-    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & STREAMING INGESTION"]
-        GW_STREAM["Ricezione Stream Dati BLE: POST /api/v1/pro/biomechanics/stream"]:::gateway
-        GW_VALIDATE_STREAM{"Integrita Frame Dati (Campionamento >= 100Hz)?"}:::decision
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & ISOLAMENTO CATALOGO"]
+        GW_INGEST_STREAM["Streaming Ingestion: POST /api/v1/pro/analysis/live-stream"]:::gateway
+        GW_CHECK_T7{"Verifica Hardware T7 & Destinazione DB Data Analisi?"}:::decision
+        GW_BLOCK_NON_T7["HTTP 403 Forbidden: Wearable non T7 o Tentativo Scrittura nel Catalogo"]:::error
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (PHYSICS & REGRESSION ENGINE)"]
-        SRV_MAD_FILTER["Filtro Robusto Outlier MAD (Median Absolute Deviation)"]:::server
-        SRV_HYBRID_FIT["Regressione Ibrida: Confronto Lineare vs Polinomiale (Selezione AIC / R2_adj)"]:::server
-        SRV_METRICS["Calcolo V0 (m/s), F0 (N), Pmax (W) e Stima 1RM con Intervallo Confidenza 95%"]:::server
-        SRV_PAP_STATS["Motore PAP Stats: Student's t-test, Cohen's d e Verifica Soglia Clinica MDC 95%"]:::server
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (AI 70% & T7 SENSOR PARSER)"]
+        SRV_AI_70["Modello AI Interno T7 (Inferenza 70%): Calcolo Angoli Specifici & Note"]:::server
+        DEC_CORRECTION{"Rilevata Deviazione Posturale nell'Esercizio?"}:::decision
+        SRV_GEN_CORRECTION["Generazione Feedback Correttivo sul Momento"]:::server
+        SRV_LACTATE_PARSER["Parser Telemetrico T7: Analisi Sommaria Soglie Lattato"]:::server
     end
 
-    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (PRO BIOMECHANICS ARCHIVE)"]
-        DB_WRITE_VBT[("Salvataggio Serie VBT e Parametri Meccanici in Silo 1 (vbt_trials)")]:::db
-        DB_WRITE_PAP[("Salvataggio Curve PAP e Risposta Neuromuscolare in Silo 1 (pap_tests)")]:::db
-        END_BIOMEC(["Fine: Report Biomeccanico Validato e Archiviato"]):::startend
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (PRO DATA ANALYSIS ARCHIVE)"]
+        DB_STORE_ANALYSIS[("Salvataggio Video e Trascrizioni in DB Data Analisi (Separato dal Catalogo)")]:::db
+        END_PRO(["Fine: Sessione Archiviata in Data Analisi e Condivisa 1:1"]):::startend
     end
 
-    %% Flussi
-    START --> BLE_CONNECT --> TEST_CHOICE
-    TEST_CHOICE -- Velocity Based Training --> VBT_EXEC
-    TEST_CHOICE -- Post-Activation Potentiation --> PAP_EXEC
-
-    VBT_EXEC --> GW_STREAM
-    PAP_EXEC --> GW_STREAM
-    GW_STREAM --> GW_VALIDATE_STREAM
-    GW_VALIDATE_STREAM -- Dati Corrotti --> OUTLIER_ALERT
-    GW_VALIDATE_STREAM -- Validi --> SRV_MAD_FILTER
-
-    SRV_MAD_FILTER --> SRV_HYBRID_FIT --> SRV_METRICS --> DB_WRITE_VBT
-    SRV_MAD_FILTER --> SRV_PAP_STATS --> DB_WRITE_PAP
-
-    DB_WRITE_VBT --> CHART_RENDER
-    DB_WRITE_PAP --> CHART_RENDER
-    CHART_RENDER --> END_BIOMEC
+    %% Connessioni di flusso
+    START --> BLE_SCAN --> CAM_START
+    CAM_START --> GW_INGEST_STREAM
+    GW_INGEST_STREAM --> GW_CHECK_T7
+    GW_CHECK_T7 -- No / Dispositivo Terzo o Scrittura Catalogo --> GW_BLOCK_NON_T7 --> ERR_DEV
+    GW_CHECK_T7 -- Si / Valido T7 e DB Data Analisi --> SRV_AI_70
+    SRV_AI_70 --> DEC_CORRECTION
+    DEC_CORRECTION -- Si / Anomalia Rilevata --> SRV_GEN_CORRECTION --> LIVE_ALERT_BOX
+    DEC_CORRECTION -- No / Esecuzione Corretta --> OVERLAY_RENDER
+    LIVE_ALERT_BOX --> OVERLAY_RENDER
+    SRV_AI_70 --> SRV_LACTATE_PARSER
+    OVERLAY_RENDER --> DB_STORE_ANALYSIS
+    SRV_LACTATE_PARSER --> DB_STORE_ANALYSIS
+    DB_STORE_ANALYSIS --> SHARE_MODAL --> END_PRO

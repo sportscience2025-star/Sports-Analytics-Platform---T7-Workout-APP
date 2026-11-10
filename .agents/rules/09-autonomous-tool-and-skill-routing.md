@@ -23,14 +23,14 @@ trigger: always_on
 
 ---
 
-## 3. Vincoli Rigorosi di Isolamento su Disco E:
+## 3. Vincoli Rigorosi di Isolamento su Repository Locale
 
-- **Cartella di Lavoro Esclusiva:** Qualsiasi file, profilo browser temporaneo, binario, cache npm o log deve essere salvato tassativamente dentro `"E:\Nuove App Installate\Sports-Analytics-Platform---T7-Workout-APP"`.
-- **Nessuna Scrittura su Disco C:** È fatto divieto assoluto di salvare file temporanei, dump o profili sul disco `C:\`.
-- **Configurazione Sessioni:** Le sessioni del browser per automazione e ispezione devono utilizzare sempre e solo:
-  - Profilo Playwright: `"E:\Nuove App Installate\Sports-Analytics-Platform---T7-Workout-APP\.browser-env\playwright-profile"`
-  - Binari Playwright: `"E:\Nuove App Installate\Sports-Analytics-Platform---T7-Workout-APP\.browser-env\playwright-browsers"`
-  - Profilo Chrome DevTools: `"E:\Nuove App Installate\Sports-Analytics-Platform---T7-Workout-APP\.browser-env\chrome-devtools-profile"`
-  - Cache npm: `"E:\Nuove App Installate\Sports-Analytics-Platform---T7-Workout-APP\.browser-env\npm-cache"`
-  - Temp directory: `"E:\Nuove App Installate\Sports-Analytics-Platform---T7-Workout-APP\.browser-env\temp"`
+- **Cartella di Lavoro Esclusiva:** Qualsiasi file, profilo browser temporaneo, binario, cache npm o log deve essere salvato tassativamente dentro la directory radice del repository del progetto (`E:\Nuove App Installate\Sports-Analytics-Platform---T7-Workout-APP` su PC Fisso oppure `C:\Users\srigo\Sports-Analytics-Platform---T7-Workout-APP` su Portatile, secondo la Regola 06).
+- **Nessuna Scrittura Esterna:** È fatto divieto assoluto di salvare file temporanei, dump o profili all'esterno della cartella del progetto o della directory dell'ambiente agenti.
+- **Configurazione Sessioni:** Le sessioni del browser per automazione e ispezione devono utilizzare sempre percorsi relativi alla radice del repository:
+  - Profilo Playwright: `<repo>\.browser-env\playwright-profile`
+  - Binari Playwright: `<repo>\.browser-env\playwright-browsers`
+  - Profilo Chrome DevTools: `<repo>\.browser-env\chrome-devtools-profile`
+  - Cache npm: `<repo>\.browser-env\npm-cache`
+  - Temp directory: `<repo>\.browser-env\temp`
 - **Quotatura dei Percorsi:** Tutti i comandi e percorsi devono essere racchiusi tra virgolette doppie per evitare errori dovuti a spazi nel nome delle directory.

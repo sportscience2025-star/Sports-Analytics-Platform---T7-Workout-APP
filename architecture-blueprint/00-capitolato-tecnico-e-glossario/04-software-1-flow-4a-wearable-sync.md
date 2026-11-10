@@ -1,163 +1,147 @@
-# Capitolato Tecnico: Flow 4A – Workflow Funzionali & Wearable Health Sync (T7 Consumer)
+# Capitolato Tecnico: Flow 4A – Data Analisi: Revisione Biomeccanica Angoli Principali (T7 Consumer)
 
 ## 1. Identificativo & Titolo Ufficiale
 - **Badge Miro Board:** `#04` (Posizione: `X: 4171, Y: 465`, Miro Shape ID: `3458764688417722715`)
 - **Codice Univoco:** `FLOW-4A`
-- **Titolo Formale:** SOFTWARE 1 (B2C CONSUMER) - FLOW 4A: WORKFLOW FUNZIONALI & WEARABLE HEALTH SYNC
-- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 1: General User / Casual, Colonna 4: Workflow Funzionali & Wearables)
+- **Titolo Formale:** SOFTWARE 1 (B2C CONSUMER) - FLOW 4A: DATA ANALISI - REVISIONE BIOMECCANICA ANGOLI PRINCIPALI (NO AI, NO RAG)
+- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 1: General User / Casual, Colonna 4: Data Analisi)
 - **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-1-consumer-b2c/flow-4a-wearable-sync.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Apple HealthKit](00-GLOSSARIO-TERMINI-TECNICI.md#apple-healthkit-google-health-connect-pipeline), [Google Health Connect](00-GLOSSARIO-TERMINI-TECNICI.md#apple-healthkit-google-health-connect-pipeline), [Heart Rate Variability HRV](00-GLOSSARIO-TERMINI-TECNICI.md#heart-rate-variability-hrv-rmssd-recovery-score), [rMSSD](00-GLOSSARIO-TERMINI-TECNICI.md#heart-rate-variability-hrv-rmssd-recovery-score), [Training Readiness Score](00-GLOSSARIO-TERMINI-TECNICI.md#training-readiness-composite-score), [Filtro Outlier](00-GLOSSARIO-TERMINI-TECNICI.md#filtro-outlier-mad-median-absolute-deviation)).
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Revisione Biomeccanica Deterministica](00-GLOSSARIO-TERMINI-TECNICI.md#revisione-biomeccanica-deterministica-calcolo-angoli-principali-no-ai), [Trigonometria Deterministica 2D](00-GLOSSARIO-TERMINI-TECNICI.md#trigonometria-deterministica-2d-goniometro-digitale), [Zero AI Biomeccanica](00-GLOSSARIO-TERMINI-TECNICI.md#zero-ai-biomeccanica), [Isolamento Data Analisi Tier 1](00-GLOSSARIO-TERMINI-TECNICI.md#isolamento-data-analisi-tier-1)).
 
 ---
-
 
 ## 2. Obiettivo di Business & Target Utente
 
-### Guida Pratica per Non Tecnici: Cos'è questo modulo per un umano?
-Chi si allena indossa quasi sempre uno smartwatch al polso: Apple Watch, Garmin, braccialetti Fitbit o anelli Oura. Spesso però questi orologi danno solo numeri freddi e confusi: *"Hai dormito 6 ore e mezza, il battito a riposo è 58, hai fatto 8.000 passi"*. Cosa significa tutto questo per l'allenamento di oggi? Posso spingere forte sui pesi o è meglio fare una camminata rilassante?  
-Questo modulo è il **ponte intelligente tra il tuo orologio e la tua scheda di allenamento**:
-- Si collega in 1 secondo a Apple Salute o Google Health Connect rispettando al 100% la tua privacy;
-- Legge le ore di sonno, i passi e la qualità del recupero cardiaco (HRV);
-- Trasforma questi dati complessi in un semplice **"Indice di Prontezza Giornaliero" (Readiness da 1 a 100)**:
-  - *Sopra 75 (Verde):* Sei in forma smagliante, oggi puoi spingere al massimo!
-  - *Sotto 50 (Arancione/Giallo):* Il tuo corpo è stanco, l'app ti consiglia di alleggerire i carichi del 10% per evitare contratture.
+### Guida Pratica per Non Tecnici: Cos'e questo modulo per un umano?
+Quando una persona corre su un tapis roulant o esegue uno squat a casa, spesso desidera sapere se sta piegando le ginocchia a sufficienza o se la schiena e troppo inclinata in avanti.  
+Il modulo di **Data Analisi Tier 1** offre un goniometro digitale geometrico:
+- L'utente carica una clip o un singolo fermo immagine (frame) della propria corsa o di un esercizio;
+- Posiziona manualmente o seleziona i marker geometrici sulle articolazioni chiave (es. anca, ginocchio, caviglia);
+- Il sistema calcola all'istante l'angolo articolare esatto espresso in gradi attraverso pure formule geometriche e trigonometriche;
+- **Zero AI:** Nessun modello di intelligenza artificiale formula giudizi o correzioni automatiche;
+- **Zero RAG:** Nessun documento esterno viene interrogato;
+- **Zero Correlazione con la Programmazione:** I valori misurati rimangono una semplice misurazione geometrica istantanea consultabile dall'utente, senza modificare schede di allenamento, senza sincronizzazioni con smartwatch o dispositivi indossabili e senza influire sul catalogo esercizi.
 
 ### Specifiche di Business & Metriche
-- **Target Utente:** Persone comuni e atleti amatoriali dotati di smartwatch o smartband (Tier 1 – Casual Consumer).
-- **Problema Risolto:** Prevenire il sovrallenamento (Overtraining) e gli infortuni muscolari negli amatori che tendono a ignorare la stanchezza fisica, fornendo raccomandazioni quotidiane di autoregolazione del carico basate su dati biometrici oggettivi.
+- **Target Utente:** Utenti consumer, corridori amatoriali e appassionati di fitness che desiderano una misurazione geometrica rapida e autonoma del proprio movimento (Tier 1 – Casual Consumer).
+- **Problema Risolto:** Fornire uno strumento di misurazione angolare trasparente, immediato e deterministico senza costi di inferenza cloud e senza complessita algoritmiche, tutelando la privacy e l'autonomia di giudizio dell'atleta amatoriale.
 
 ---
-
 
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
-1. **Corsia 1: Thin Client UI/UX (React Native Health Module / Web Health Connect):**
-   - Schermata di autorizzazione permessi granulari (Sonno, Battito a riposo, Passi, HRV), widget circolare "Readiness Index" neon con semaforo visivo e grafici a barre dei trend settimanali.
-2. **Corsia 2: API Gateway & Biometric Ingestion Gateway (Envoy):**
-   - Ricezione batch crittografata dei parametri biometrici mattutini (`/telemetry/wearable-sync`), validazione token JWT Tier 1 e controllo di coerenza temporale dei timestamp.
-3. **Corsia 3: Server Scatola Nera (Biometric Readiness Engine Cloud Run):**
-   - Filtraggio dei dati anomali (es. picchi cardiaci da orologio slacciato), estrazione della deviazione del parametro $r\text{MSSD}$ (variabilità cardiaca) rispetto alla media personale degli ultimi 7 giorni e calcolo dell'algoritmo di Prontezza:
-     $$\text{Readiness Score} = 0.40 \cdot \Delta\text{HRV}_{\text{norm}} + 0.35 \cdot \text{SleepScore} + 0.25 \cdot \text{RecoveryHR}$$
-4. **Corsia 4: Database Tripartito (Silo 1 - PostgreSQL):**
-   - Tabella `athlete_daily_biometrics` con partizionamento mensile per serie storiche e memorizzazione dell'indice di prontezza calcolato.
+1. **Corsia 1: Thin Client UI/UX (React 18 / HTML5 Canvas Goniometro):**
+   - Interfaccia visuale goniometrica con mirino per il tracciamento manuale dei punti anatomici (marker A-B-C), slider temporale per freeze-frame del video locale e visualizzazione dell'arco angolare in gradi su canvas 2D.
+2. **Corsia 2: API Gateway & RBAC (Envoy Gateway):**
+   - Ricezione della richiesta di calcolo geometrico (`POST /api/v1/analysis/angles-calculate`), verifica del token JWT Tier 1 e applicazione rigorosa delle policy di isolamento (blocco chiamate verso motori AI, RAG o moduli di Programmazione).
+3. **Corsia 3: Server Scatola Nera (Geometric Kinematics Engine):**
+   - Microservizio deterministico puro: calcolo dell'angolo compreso tra due segmenti corporei tramite prodotto scalare tra vettori cartesiani:
+     $$\theta = \arccos\left(\frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|}\right) \times \frac{180^\circ}{\pi}$$
+   - Zero inferenza neurale, zero generazione di testo o raccomandazioni.
+4. **Corsia 4: Database Tripartito (Silo 1 Consumer - PostgreSQL):**
+   - Salvataggio opzionale delle coordinate dei marker e dei gradi calcolati nella tabella `athlete_biomechanics_angles` per la consultazione dello storico personale. Nessuna tabella relazionale collegata a schede di allenamento o wearable.
 
 ---
-
 
 ### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-4A)
 
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Utente as Thin Client UI / Native Bridge
-    participant WAPI as Apple HealthKit / Google Connect
-    participant GW as API Gateway (Corsia 2)
-    participant SRV as Server Scatola Nera (Corsia 3)
+    actor Utente as Utente Casual (Thin Client UI)
+    participant GW as API Gateway & RBAC (Corsia 2)
+    participant GEO as Geometric Kinematics Engine (Corsia 3)
     participant DB as Database Silo 1 (Corsia 4)
 
-    Utente->>WAPI: Richiesta estrazione dati (HRV rMSSD, FC Riposo, Ore Sonno)
-    WAPI-->>Utente: Array campioni biometrici grezzi
-    Utente->>GW: POST /api/v1/telemetry/wearable-sync (Array campioni + DeviceID)
-    GW->>SRV: Inoltro pipeline telemetrica
-    SRV->>SRV: Applicazione Filtro Outlier MAD (scarto battiti spuri)
-    SRV->>SRV: Calcolo Training Readiness Composite Score (0-100)
-    SRV->>DB: INSERT daily_readiness_logs (score, rMSSD, sleep_hours)
-    DB-->>SRV: Commit completato
-    SRV-->>Utente: 200 OK (readinessScore: 84, recommendation: "HIGH_INTENSITY_CLEAR")
-    Utente->>Utente: Rendering quadrante Readiness & suggerimento carichi
+    Utente->>Utente: Caricamento clip locale / freeze frame corsa o esercizio
+    Utente->>Utente: Posizionamento marker geometrici (Anca, Ginocchio, Caviglia)
+    Utente->>GW: POST /api/v1/analysis/angles-calculate (coordinate vettori 2D)
+    GW->>GW: Validazione RBAC Tier 1 (Enforce: NO AI, NO RAG, NO wearable)
+    GW->>GEO: Inoltro coordinate punti cartesiani
+    GEO->>GEO: Calcolo trigonometrico angolo deterministico (dot product)
+    GEO->>DB: INSERT athlete_biomechanics_angles (user_id, joint_type, angle_deg)
+    DB-->>GEO: Commit OK (record_id)
+    GEO-->>GW: Risposta deterministica (angle_degrees: 118.4)
+    GW-->>Utente: 200 OK con valore angolare e arco geometrico
+    Utente->>Utente: Rendering overlay goniometrico a schermo (Zero AI suggestions)
 ```
 
 ---
 
-
 ## 4. Flusso Operativo Passo-Passo
 
 ### Livello A: User Journey Narrativo (La Storia dell'Utente)
-1. **Il Collegamento dell'Orologio:** Nelle impostazioni dell'app o al primo avvio, l'atleta tocca *"Collega il tuo Smartwatch"*. Compare la finestra ufficiale del telefono (Apple o Android) che chiede: *"Consenti a T7 di leggere sonno e battito cardiaco?"*. L'utente dà il consenso.
-2. **La Mattina al Risveglio:** L'atleta apre l'app. Senza dover toccare nulla, l'app legge in un istante che stanotte ha dormito 7 ore e 45 minuti e che il suo cuore ha recuperato bene.
-3. **Il Verdetto di Prontezza:** La schermata mostra un anello verde con il punteggio: **86 / 100 - "Super Recupero!"**.
-4. **L'Adattamento della Scheda:** Sotto al punteggio compare una raccomandazione pratica: *"Il tuo sistema nervoso è fresco e riposato. L'allenamento di gambe di oggi è confermato con i carichi pieni!"*.
-5. **Cosa succede se sei stanco?** Se l'atleta ha dormito 4 ore o ha la febbre, il punteggio scende ad esempio a **42 / 100 - "Fatica Elevata"**. L'app non blocca l'allenamento, ma suggerisce con dolcezza: *"Oggi il tuo cuore è affaticato. Abbiamo ridotto le serie del 20% e inserito 10 minuti di mobilità per farti recuperare senza stress"*.
+1. **Selezione Esercizio o Corsa:** L'utente apre la sezione Data Analisi e tocca "Verifica Angoli di Movimento".
+2. **Caricamento Frame:** Seleziona un video presente sul proprio smartphone o registra un breve passaggio di corsa o uno squat con la fotocamera del dispositivo.
+3. **Posizionamento dei Marker:** L'interfaccia mostra il frame fermo. L'utente trascina 3 mirini sullo schermo: uno sul gran trocantere (anca), uno sul condilo femorale (ginocchio) e uno sul malleolo (caviglia).
+4. **Calcolo Istantaneo:** Tocca il pulsante "Calcola Angolo". In meno di 30 millisecondi, l'app traccia un arco colorato e mostra il numero esatto: **118.4 gradi**.
+5. **Nessun Consiglio Automatico:** L'app non esprime opinioni (non dice "scendi di piu" o "ottimo squat"), ma lascia all'utente la visualizzazione oggettiva del dato numerico.
+6. **Archiviazione Personale:** L'utente puo salvare la foto con l'arco sovraimpresso nel proprio archivio personale Data Analisi per confrontarla in autonomia con i propri video futuri.
 
 ---
 
-
-#### Indicatori di Accettazione Operativa & Clinica (KPI)
+#### Indicatori di Accettazione Operativa & Biomeccanica (KPI)
 | Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
 | :--- | :--- | :--- | :--- |
-| **Scarto Outlier Sensore (MAD)** | $\ge 98\%$ artefatti rimossi | $\ge 95\%$ | Flagging dato con etichetta "low_confidence" |
-| **Tempo Calcolo Readiness** | $< 120\text{ ms}$ | $\le 300\text{ ms}$ | Assegnazione punteggio medio personale 7gg |
-| **Frequenza Sync Wearable** | Ogni 6 ore (in background) | Entro 12 ore | Invito gentile al sync manuale a schermo |
-| **Privacy Dati Biometrici** | Cifratura AES-256 a riposo | $0\%$ compromissione | Blocco ingestione immediato in caso di anomalie |
-
+| **Tempo Risposta Calcolo** | $< 50\text{ ms}$ | $\le 120\text{ ms}$ | Esecuzione fallback lato client WebAssembly |
+| **Precisione Trigonometrica** | $100\%$ deterministica | $100\%$ | Errore matematico scartato immediatamente |
+| **Chiamate Modelli AI** | $0$ (zero chiamate) | $0$ | Blocco gateway con HTTP 403 se richiesta AI |
+| **Connessione Wearable** | $0$ dispositivi | $0$ | Nessun driver BLE caricato in memoria |
+| **Isolamento da Programmazione** | $0$ correlazioni | $0$ | Nessun record inviato a moduli di pianificazione |
 
 ---
-
 
 ### Livello B: Trattazione Tecnica Nodi Operativi
 
-1. `START` (Trigger Sincronizzazione): Apertura app mattutina o trigger in background tramite BackgroundFetch API del sistema operativo.
-2. `PERMISSION_CHECK` (Controllo Autorizzazioni HealthKit/HealthConnect):
-   - Se permessi mancanti $\implies$ rendering modal con spiegazione trasparente del trattamento dati;
-   - Se concessi $\implies$ interrogazione API native per la finestra temporale $[T - 24\text{h}, T]$.
-3. `READ_RAW_METRICS` (Lettura Parametri Sensore): Estrazione di:
-   - Ore totali di sonno e fasi (Deep, REM, Light);
-   - Frequenza cardiaca a riposo (Resting Heart Rate in $bpm$);
-   - Heart Rate Variability ($r\text{MSSD}$ in $ms$);
-   - Passi giornalieri cumulati.
-4. `GW_PAYLOAD_VALIDATE` (Validazione Gateway): Invio payload compresso a Corsia 2. Controllo integrità crittografica e verifica che i timestamp rientrino nelle 24h.
-5. `SRV_OUTLIER_CLEAN` (Pulizia Dati Rumorosi): Il server scarta letture fisiologicamente impossibili (es. battito a riposo $< 30\text{ bpm}$ o $> 220\text{ bpm}$, ore di sonno $> 20\text{ h}$).
-6. `SRV_READINESS_CALC` (Calcolo Algoritmo di Prontezza):
-   - Computazione dello Z-Score individuale dell'HRV su rolling window a 7 giorni:
-     $$Z_{\text{HRV}} = \frac{r\text{MSSD}_{\text{today}} - \mu_{7\text{d}}}{\sigma_{7\text{d}}}$$
-   - Fusione pesata con il punteggio del sonno per ottenere il valore finale $[0, 100]$.
-7. `DB_WRITE_METRICS` (Archiviazione Silo 1): Scrittura dei parametri in `athlete_daily_biometrics`.
-8. `DEC_SCORE_THRESHOLD` (Bivio Autoregolazione Allenamento):
-   - *Se Readiness $\ge 70$ (Verde):* Caricamento scheda ordinaria a intensità nominale (`FULL_VOLUME_OK`);
-   - *Se Readiness tra 50 e 69 (Giallo):* Suggerimento di mantenere i carichi invariati senza tentare massimali;
-   - *Se Readiness $< 50$ (Arancione/Rosso):* Alert `RECOVERY_ADAPTATION` con proposta di taglio del $15\text{-}20\%$ sul volume complessivo (Auto-regulation).
-9. `RENDER_DASHBOARD` (Visualizzazione UI): Aggiornamento dell'anello neon nel Cockpit e invio notifica push discreta.
+1. `START` (Inizio Flusso): L'utente seleziona la funzionalita "Revisione Biomeccanica Angoli Principali" nel cockpit Tier 1.
+2. `MEDIA_LOAD` (Caricamento Frame o Clip Locale): Importazione del file video/immagine locale nel buffer HTML5 Video/Canvas.
+3. `POINT_SELECT` (Posizionamento Marker Geometrici): Tracciamento coordinate 2D relative $P_1(x_1, y_1)$, $P_2(x_2, y_2)$, $P_3(x_3, y_3)$ su piano sagittale o frontale.
+4. `GW_INGEST_CHECK` (Validazione Gateway & Policy Gating):
+   - Controllo token di sessione Tier 1;
+   - Blocco rigoroso di qualsiasi parametro di inferenza AI o prompt testuale;
+   - Verifica conformita formato coordinate normalizzate $[0.0, 1.0]$.
+5. `GEO_DOT_PRODUCT` (Calcolo Angolare Deterministico): Computazione dei vettori $\vec{u} = P_1 - P_2$ e $\vec{v} = P_3 - P_2$, calcolo della norma vettoriale e arccos deterministico.
+6. `DEC_VALID_GEOMETRY` (Controllo Validita Geometrica): Verifica che i punti non siano coincidenti ($\|\vec{u}\| > 0$ e $\|\vec{v}\| > 0$). Se coincidenti, ritorno errore di posizionamento.
+7. `DB_LOCAL_SAVE` (Persistenza Silo 1): Scrittura opzionale in `athlete_biomechanics_angles` (user_id, joint_name, angle_deg, timestamp).
+8. `RENDER_GONIOMETER` (Visualizzazione Goniometrica Thin Client): Disegno dell'arco goniometrico e della quota in gradi sopra il frame visualizzato.
+9. `END` (Termine Flusso): Schermata di visualizzazione statica con opzione di esportazione screenshot locale.
 
 ---
-
 
 ## 5. Rami Decisionali & Gestione dei 4 Stati UI
 
-| Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
+| Bivio Decisionale | Condizione Logica | Ramo SI / Positivo | Ramo NO / Negativo |
 | :--- | :--- | :--- | :--- |
-| `PERMISSION_CHECK` | Permessi Apple/Google Health concessi? | Lettura dati smartwatch | Modal richiesta consensi |
-| `SRV_OUTLIER_CLEAN` | Dati biometrici nel range fisiologico? | Elabora Readiness Score | Scarta campione anomalo |
-| `DEC_SCORE_THRESHOLD` | Readiness Score $\ge 70$? | Scheda a volume pieno | Rimodulazione cautelativa del carico |
+| `MEDIA_LOAD_CHECK` | File video o frame valido e decodificabile? | Passa al piazzamento marker | Mostra alert formato non supportato |
+| `DEC_VALID_GEOMETRY` | Marker non sovrapposti e vettori validi? | Esegue calcolo trigonometrico | Richiede riposizionamento mirini |
+| `DB_SAVE_TOGGLE` | Utente ha richiesto salvataggio nello storico? | Registra su Silo 1 | Mantiene il dato solo volatile a schermo |
 
 ### I 4 Stati di Interfaccia Utente (UI States):
-1. **Empty State:** Nessun wearable connesso: comparsa di una card illustrata *"Connetti Apple Watch o Garmin per scoprire quanto sei in forma oggi"*.
-2. **Loading State:** Anello rotante con animazione fluida a 60fps durante la lettura dei campioni da HealthKit ($< 500\text{ ms}$).
-3. **Populated State:** Anello completo con punteggio chiaro, grafico a linee dell'andamento dell'HRV degli ultimi 7 giorni e consiglio personalizzato del giorno.
-4. **Error / Fallback State:**
-   - *Utente ha dormito senza smartwatch:* L'app non segnala errore ma mostra: *"Nessun dato del sonno per stanotte. Puoi inserire manualmente come ti senti (da 1 a 5 stelline)"*.
+1. **Empty State:** Nessun file multimediale caricato. Compare il pannello con istruzioni: "Carica un video o una foto per misurare gli angoli articolari della tua corsa o del tuo esercizio".
+2. **Loading State:** Elaborazione geometrica istantanea ($< 50\text{ ms}$), con indicatore discreto di calcolo matematico.
+3. **Populated State:** Frame visualizzato con i 3 marker posizionati, linee vettoriali di congiunzione, arco colorato evidenziato e cartiglio numerico con i gradi calcolati (es. "Flessione Ginocchio: 118°").
+4. **Error / Fallback State:** Punti marker sovrapposti o troppo vicini tra loro. Messaggio chiaro: "Impossibile calcolare l'angolo: distanzia i marker per definire i segmenti corporei".
 
 ---
-
 
 ## 6. Contratti Dati, Parametri I/O & Database Silo
 
 ### Specifiche Endpoint REST:
 
-#### 1. Ingestion Metriche Wearable Giornaliere
-- **Endpoint:** `POST /api/v1/telemetry/wearable-sync`
-- **Headers:** `Authorization: Bearer <jwt_token>`, `Content-Type: application/json`
+#### Calcolo Angolare Deterministico 2D
+- **Endpoint:** `POST /api/v1/analysis/angles-calculate`
+- **Headers:** `Authorization: Bearer <jwt_tier1_token>`, `Content-Type: application/json`
 - **Request Payload:**
 ```json
 {
-  "athleteId": "ath_c0192a",
-  "source": "APPLE_HEALTH_KIT",
-  "syncTimestampUtc": "2026-10-26T07:15:00Z",
-  "metrics": {
-    "sleepMinutes": 465,
-    "restingHeartRateBpm": 54,
-    "hrvRmssdMs": 68.4,
-    "stepCountYesterday": 10420
-  }
+  "movementType": "RUNNING_STRIDE",
+  "jointTarget": "KNEE_FLEXION",
+  "points": {
+    "proximal": { "x": 0.452, "y": 0.510, "label": "HIP" },
+    "vertex": { "x": 0.468, "y": 0.680, "label": "KNEE" },
+    "distal": { "x": 0.430, "y": 0.850, "label": "ANKLE" }
+  },
+  "saveToHistory": true
 }
 ```
 - **Responses:**
@@ -165,38 +149,37 @@ sequenceDiagram
 ```json
 {
   "status": "success",
-  "calculatedReadinessScore": 84,
-  "trafficLight": "GREEN",
-  "adaptationAdvice": "Condizioni eccellenti. Nessuna limitazione al programma del giorno.",
-  "volumeMultiplier": 1.0
+  "jointTarget": "KNEE_FLEXION",
+  "angleDegrees": 118.42,
+  "recordId": "ang_99a8b1c2",
+  "computedAt": "2026-11-10T22:50:00Z"
 }
 ```
-  - `400 Bad Request`: Parametri fuori scala o mancanti.
+  - `400 Bad Request`: Punti sovrapposti o coordinate fuori range $[0, 1]$.
+  - `403 Forbidden`: Tentativo di invocare parametri AI, RAG o wearable non consentiti nel Tier 1.
 
 ### Schema Relazionale (Database Silo 1 - PostgreSQL):
-- `athlete_daily_biometrics`: `id UUID PK`, `athlete_id UUID FK -> athlete_profiles.id`, `log_date DATE NOT NULL`, `source VARCHAR(32)`, `sleep_minutes INT`, `resting_hr_bpm INT`, `hrv_rmssd_ms NUMERIC(5,2)`, `readiness_score INT`, `created_at TIMESTAMPTZ`, `UNIQUE (athlete_id, log_date)`.
+- `athlete_biomechanics_angles`: `id UUID PK`, `user_id UUID NOT NULL`, `movement_type VARCHAR(64) NOT NULL`, `joint_target VARCHAR(64) NOT NULL`, `angle_degrees NUMERIC(5,2) NOT NULL`, `points_json JSONB NOT NULL`, `created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()`.
 
 ---
-
 
 ### Matrice Errori HTTP & Strategie di Resilienza
 | HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
 | :---: | :--- | :--- | :--- | :--- | :--- |
-| **400** | `ERR_UNSUPPORTED_DEV` | `POST /wearable-sync` | Formato dati da smartwatch non supportato | Dialog: *"Dispositivo non compatibile"* | Suggerimento esportazione formato standard Fit/GPX |
-| **401** | `ERR_BRIDGE_AUTH` | `POST /wearable-sync` | Permessi Apple Health / Health Connect revocati | Banner: *"Autorizza l'accesso ai dati sanitari"* | Apertura impostazioni permessi del sistema operativo |
-| **403** | `ERR_BIOMETRIC_DENIED`| `POST /wearable-sync` | Consenso Art. 9 GDPR non presente | Alert: *"Consenso biometrico necessario"* | Reindirizzamento al modulo consensi di profilo |
-| **422** | `ERR_INSUFFICIENT_DATA`| `POST /wearable-sync` | Campioni HRV insufficienti per calcolo affidabile | Quadrante neutro: *"Dati sonno/HRV parziali"* | Utilizzo baseline anamnestica e richiesta RPE soggettivo |
-| **500** | `ERR_MAD_ALGORITHM` | `POST /wearable-sync` | Eccezione nel modulo MAD per varianza nulla | Valore default ambrato: *"Readiness stimata"* | Fallback su media mobile aritmetica semplice |
-| **504** | `ERR_HEALTH_TIMEOUT` | `POST /wearable-sync` | Timeout gateway durante elaborazione massiva | Toast: *"Sincronizzazione in corso in background"* | Elaborazione asincrona e notifica push al termine |
-
+| **400** | `ERR_DEGENERATE_POINTS` | `POST /angles-calculate` | Due o tre marker posizionati sulle stesse coordinate | Banner: "Riposiziona i punti sulle articolazioni" | Ripristino posizione marker ai valori predefiniti del frame |
+| **401** | `ERR_AUTH_EXPIRED` | `POST /angles-calculate` | Token di sessione scaduto | Dialog: "Sessione scaduta, effettua nuovamente l'accesso" | Mantenimento frame in memoria locale durante re-login |
+| **403** | `ERR_AI_NOT_PERMITTED` | `POST /angles-calculate` | Richiesta di analisi AI o RAG non autorizzata in Tier 1 | Alert informativo: "Funzionalita AI riservata ai Tier superiori" | Esecuzione limitata al solo calcolo geometrico deterministico |
+| **413** | `ERR_PAYLOAD_TOO_LARGE` | `POST /angles-calculate` | File multimediale eccedente i limiti consentiti dal client | Toast: "Risoluzione video troppo elevata per l'analisi locale" | Downscaling automatico del frame a 720p prima del processing |
+| **422** | `ERR_INVALID_PLANE` | `POST /angles-calculate` | Piano di proiezione non identificabile | Avviso: "Verifica che il movimento sia visibile lateralmente o frontalmente" | Modalita libera di disegno angolare senza vincoli anatomici |
+| **500** | `ERR_MATH_EXCEPTION` | `POST /angles-calculate` | Errore inatteso nella libreria matematica del server | Notifica: "Calcolo temporaneamente non disponibile" | Fallback istantaneo su motore goniometrico JavaScript client-side |
 
 ---
 
+## 7. Ereditarieta di Tier & Differenziali di Fascia
 
-## 7. Ereditarietà di Tier & Differenziali di Fascia
-
-- **Funzionalità Base (Tier 1):** Sincronizzazione wearable consumer via HealthKit/HealthConnect e calcolo del Readiness Score a 3 colori.
-- **Propagazione verso Tier 2 (`FLOW-4B`):**  
-  Nel Tier 2, la prontezza non si basa solo sul polso ma viene verificata sul campo con trasduttori lineari di velocità (VBT) e pedane di salto (PAP), calcolando il massimale $1\text{RM}$ giornaliero reale.
-- **Propagazione verso Tier 3 (`FLOW-4C`):**  
-  Nei club professionistici, il dato cardiaco mattutino ($r\text{MSSD}$) si fonde con i dati delle pettorine GPS a 18Hz e con lo Z-Score rolling a 28 giorni di tutta la squadra, con protezione crittografica blindata Cloud KMS nel Silo 2.
+- **Capacita Esclusive di Tier 1 (`FLOW-4A`):**  
+  Calcolo deterministico degli angoli principali (anca, ginocchio, caviglia, tronco, spalla, gomito) durante la corsa o un esercizio, basato su trigonometria pura. Zero AI, Zero RAG, Zero connessione a wearable, Zero correlazione con la sezione programmazione o altre sezioni dell'app.
+- **Sblocco e Potenziamento in Tier 2 (`FLOW-4B`):**  
+  In Tier 2 vengono introdotti il calcolo degli **angoli specifici** (micro-angolazioni segmentali e asimmetrie dinamiche), le **considerazioni generate da modelli AI integrati a potenza ridotta (70%)**, la **videocamera live con correzioni in tempo reale**, il salvataggio dei video con correzioni trascritte nel DB Data Analisi separato dal Catalogo, la condivisione 1:1 con atleti e la connessione esclusiva ai **wearable proprietari T7** per l'estrazione sommaria delle metriche chiave (es. soglie di lattato).
+- **Sblocco Totale in Tier 3 (`FLOW-4C`):**  
+  In Tier 3 decadono tutti i limiti: **modelli AI interni alla massima potenza (100%)** con analisi illimitate e approfondite, connessione a **qualsiasi wearable o strumento esterno**, salvataggio video/correzioni nel Catalogo Esercizi, integrazione a 360 gradi con Programmazione, PVT e Baseline atleta, e architettura esclusiva **Role-Based RAG 100% Private**.
