@@ -1,33 +1,19 @@
 ---
-trigger: always_on
+trigger: model_decision
+description: "Attivare solo quando si adotta un nuovo tool o estensione IDE, quando l'utente chiede di verificare/allineare le estensioni o quando un git pull modifica .vscode/extensions.json."
 ---
 
-# Sincronizzazione Estensioni & Tooling IDE (Antigravity / VS Code)
+# Regola 07: Sincronizzazione Estensioni IDE (VS Code / Antigravity)
 
-## Obiettivo
+## Scopo
+Mantenere identiche le estensioni dell'editor tra PC Fisso e Portatile usando `.vscode/extensions.json` come elenco condiviso su Git, senza appesantire le normali sessioni di lavoro.
 
-Garantire che l'ambiente di sviluppo e le estensioni dell'IDE rimangano identici e allineati tra PC Fisso e Portatile in modo automatico e senza perdite di memoria, utilizzando `.vscode/extensions.json` come registro condiviso su Git.
+## Cosa l'AI NON può fare (Divieti assoluti)
+- **Zero controlli inutili:** non interrogare né controllare le estensioni via terminale a ogni messaggio.
+- **Nessuna installazione forzata:** non installare estensioni in silenzio o con forza da terminale (il comando `code --install-extension <id>` è ammesso solo su richiesta esplicita dell'utente o se la grafica dell'IDE è bloccata).
 
-## 1. Tracciamento (.vscode/extensions.json)
-
-- **Criterio di aggiunta:**
-  - Ogni volta che si concorda l'adozione di un nuovo tool, oppure se l'utente menziona di aver installato una nuova estensione sul portatile o sul fisso, l'agente registra tempestivamente il suo ID univoco nell'array `recommendations` di `.vscode/extensions.json`.
-
----
-
-## 2. Condizione di Controllo (Lazy Check)
-
-- **Zero overhead:** Non interrogare né verificare le estensioni via terminale a ogni prompt.
-- **Trigger autonomi di attivazione:**
-  1. Quando un'operazione di `git pull` include modifiche al file `.vscode/extensions.json`.
-  2. Quando l'utente chiede esplicitamente un controllo (es. "verifica estensioni", "allinea estensioni").
-  3. Quando l'agente stesso modifica `.vscode/extensions.json`.
-
----
-
-## 3. Procedura di Notifica e Installazione
-
-1. **Nessun forzatura da terminale:** Non eseguire installazioni silenziose o forzate via terminale.
-2. **Avviso all'utente in chat:** Quando si rileva o si aggiorna il file `.vscode/extensions.json`, avvisare sempre l'utente con il seguente messaggio:
-   > *"La lista delle estensioni raccomandate è stata aggiornata in `.vscode/extensions.json`. Clicca su **'Install All'** nel pop-up in basso a destra dell'IDE, oppure apri il pannello Estensioni (`Ctrl+Shift+X`), digita `@recommended` e clicca su Installa per allineare l'ambiente."*
-3. **Fallback da terminale:** Utilizzare l'installazione via riga di comando (`code --install-extension <id>`) esclusivamente se l'utente lo richiede esplicitamente o se segnala che l'interfaccia grafica non risponde.
+## Cosa l'AI DEVE fare (Obblighi operativi)
+- **Aggiornare l'elenco condiviso:** quando si adotta un nuovo tool o l'utente segnala una nuova estensione installata su fisso o portatile, aggiungere il suo ID nell'array `recommendations` di `.vscode/extensions.json`.
+- **Attivarsi solo su eventi precisi:** intervenire esclusivamente se (1) `git pull` aggiorna `.vscode/extensions.json`, (2) l'utente chiede esplicitamente un controllo estensioni, oppure (3) l'AI stessa ha appena modificato `.vscode/extensions.json`.
+- **Avvisare l'utente in chat:** quando `.vscode/extensions.json` viene aggiornato o scaricato con novità, mostrare questo messaggio:
+  > *"La lista delle estensioni raccomandate è stata aggiornata in `.vscode/extensions.json`. Clicca su **'Install All'** nel pop-up in basso a destra dell'IDE, oppure apri il pannello Estensioni (`Ctrl+Shift+X`), digita `@recommended` e clicca su Installa per allineare l'ambiente."*

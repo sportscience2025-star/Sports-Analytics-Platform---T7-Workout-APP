@@ -1,16 +1,21 @@
 ---
-trigger: manual
+trigger: model_decision
+description: "Attivare quando si lavora su calcoli biometrici, parsing di ID dispositivi/sensori, visualizzazione dati nell'interfaccia UI o aggiunta/indicizzazione esercizi nel database."
 ---
 
-## Integrità Dati, Formule Biometriche e UI
+# Regola 03: Integrità Dati Biometrici, Interfaccia UI e Database Esercizi
 
-- **Dimensioni Fisiche e Vincoli Biometrici:**
-  - Controllo di coerenza sui valori: se una stima o un calcolo produce parametri anomali o fisicamente impossibili, applicare fallback al dato grezzo o calcolo stimato standard.
+## Scopo
+Evitare che l'app mostri errori grezzi (come `"undefined"`), valori fisici assurdi o esercizi duplicati nel catalogo locale.
 
-- **Parsing Intelligente dei Dati**: Quando si processano ID grezzi (es. ID dispositivo, ID sensori), estrarre sempre il nome leggibile (es. tramite split su _) per i valori di default della UI, evitando di usare placeholder generici a meno che non sia strettamente necessario.
-- **Validazione UI Binding**: Verificare sempre che i risultati di calcoli complessi (es. metriche biometriche o fisiche) restituiscano un valore valido prima del binding sulla UI. Prevenire in ogni modo la comparsa della stringa "undefined" nelle interfacce, applicando calcoli di fallback o nascondendo il dato.
+## Cosa l'AI NON può fare (Divieti assoluti)
+- **Mai mostrare `"undefined"` in schermata:** è vietato stampare o collegare all'interfaccia il testo `"undefined"` o risultati non validati.
+- **Niente sigle o placeholder pigri:** non mostrare ID tecnici grezzi né etichette generiche nella UI quando è possibile ricavare un nome leggibile.
+- **Niente esercizi duplicati:** non aggiungere un nuovo esercizio nel database locale se esiste già una variante equivalente (anche con nome diverso).
 
-## Database, Tassonomia & Ricerca Esercizi
-
-- **Deduplicazione Semantica:** Prima di inserire nuovi esercizi nel database locale, verificare se la variante esiste già (confrontando sia il nome che il pattern motorio: es. Push-up vs Piegamenti sulle braccia).
-- **Tassonomia Ricerca:** Ogni esercizio deve contenere campi obbligatori coerenti per l'indicizzazione: `id`, `name`, `primary_muscle`, `equipment`, `movement_pattern`, `difficulty`.
+## Cosa l'AI DEVE fare (Obblighi operativi)
+- **Controllo di coerenza sui valori biometrici:** verificare sempre che formule e stime restituiscano valori plausibili; se un risultato è anomalo o fisicamente impossibile, applicare un ripiego (fallback) al dato grezzo o a una stima standard.
+- **Validazione prima del rendering UI:** controllare che ogni calcolo complesso restituisca un valore valido prima di mostrarlo a schermo; in caso contrario applicare il fallback o nascondere il dato.
+- **Lettura pulita degli ID grezzi:** quando si leggono ID di dispositivi o sensori, estrarre il nome leggibile (es. dividendo sul carattere `_`) per i testi mostrati all'utente.
+- **Deduplicazione semantica degli esercizi:** prima di inserire un esercizio, controllare sia il nome sia il movimento svolto (es. *Push-up* vs *Piegamenti sulle braccia*).
+- **Campi obbligatori della scheda esercizio:** garantire che ogni esercizio contenga sempre tutti i campi di indicizzazione: `id`, `name`, `primary_muscle`, `equipment`, `movement_pattern`, `difficulty`.

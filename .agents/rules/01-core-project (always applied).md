@@ -2,23 +2,27 @@
 trigger: always_on
 ---
 
-# Project Guidelines & Rules
+# Regola 01: Sicurezza Operativa, Perimetro di Lavoro e Verifiche
 
-## Multi-Agent Safety Rules (Progetto T7 Workout PWA)
+## Scopo
+Proteggere l'integrità del progetto, evitare modifiche non richieste e garantire che ogni cambiamento al codice venga verificato prima di proseguire.
 
-- **Chirurgia precisa**: modifica solo i file strettamente necessari alla task assegnata. Non fare refactoring strutturale di file che non rientrano nel perimetro della richiesta. Lavora, inserisci e modifica file sempre e solo nei limiti della tua zona di lavoro che è la cartella del repository "Sports-Analytics-Platform---T7-Workout-APP". Non ti è concesso andare a modificare altri file dentro al computer, se per un qualsiasi motivo dovessi fare un operazione del genere dovrai richiederlo in modo chiaro ed esplicito.
-- **Bump SW cache**: ogni volta che si modificano file JS, CSS o asset, incrementa il numero di versione della cache in `sw.js` (es: `t7-workout-v14` → `t7-workout-v15`) per invalidare la cache browser.
-- **Nessun conflitto cross-agent**: se un file è stato modificato di recente da un'altra IA (visibile dai diff nel contesto), non riscrivere quelle sezioni — integra solo le modifiche necessarie.
-- **Test dopo ogni modifica**: eseguire `py test_check.py` dopo ogni modifica a file `.js`. Riportare sempre i risultati all'utente in modo riassuntivo ma chiaro: file modificati, esito del test, eventuali errori. Non eseguire altri script di test a meno che l'utente non lo richieda esplicitamente per iscritto oppure se ne sono necessari altri di altro tipo l'agente lo deve richiedere esplicitamente specificando il motivo per cui vorrebbe fare quei test.
-- **Validazione Sintattica Obbligatoria (JavaScript)**: Se `py test_check.py` riporta un errore (es. "Unclosed {" o "Mismatched ("), l'agente deve risolvere immediatamente il problema sintattico prima di procedere oltre.
+## Cosa l'AI NON può fare (Divieti assoluti)
+- **Non uscire dal progetto:** è vietato creare, modificare o eliminare file fuori dalla cartella `Sports-Analytics-Platform---T7-Workout-APP`. Se un'operazione esterna fosse indispensabile, chiedere prima autorizzazione chiara ed esplicita all'utente.
+- **Non modificare codice non richiesto:** è vietato fare pulizia o ristrutturare file che non rientrano nel compito assegnato.
+- **Non sovrascrivere modifiche recenti altrui:** se nei diff recenti risultano modifiche eseguite da un'altra IA, integrare il nuovo lavoro senza riscrivere quelle parti.
+- **Non usare JavaScript (`js/` o `.js`):** il progetto usa solo TypeScript strict (`src/` con `.ts`/`.tsx` e `allowJs: false` in `tsconfig.json`). Vietato creare nuovi file `.js` o ripristinare `js/`.
+- **Non lanciare test non autorizzati:** non eseguire script di test diversi da quelli approvati a meno che l'utente non lo chieda per iscritto, oppure previa richiesta esplicita e motivata dell'AI.
+- **Non inserire emoji o immagini spontanee:** vietato aggiungere emoji, icone decorative o immagini nell'applicazione o nei file generati se non richieste esplicitamente dall'utente.
 
-## Rules Relative al Progetto
-
-- **Protocollo Esaurimento Contesto / Token (Handoff):** Se il task non può essere completato nella sessione attiva perché si sta quasi per finire i token: arrestarsi in stato stabile e fare un recap di quello che si è fatto in modo che quando i token torneranno attivi l'agente che riprendere in mano il lavoro che è stato interrotto riuscirà a capire meglio cosa deve fare, cosa è stato fatto, come deve farlo e quindi a concludere in modo più efficiente e veloce. Nel riassunto mettere:
+## Cosa l'AI DEVE fare (Obblighi operativi)
+- **Lavorare con precisione chirurgica:** toccare solo i file strettamente necessari all'obiettivo.
+- **Verificare sempre dopo ogni modifica al codice:** dopo qualsiasi modifica in `src/` (`.ts`, `.tsx`), `index.html`, `sw.js` o `tsconfig.json`, eseguire `py test_check.py` (e `npm run typecheck` per verificare i tipi TypeScript).
+- **Correggere subito eventuali errori:** se `py test_check.py` o il controllo tipi segnala un errore (es. parentesi non chiuse, catalogo incoerente, errori di sintassi), risolverlo immediatamente prima di continuare.
+- **Riportare sempre i risultati:** comunicare all'utente elenco dei file modificati, esito dei controlli ed eventuali errori.
+- **Aggiornare la cache del Service Worker (`sw.js`) per i rilasci:** incrementare la versione della cache in `sw.js` (es. `t7-workout-v125` -> `t7-workout-v126`) quando si preparano commit di produzione o si modificano asset in `CORE_ASSETS`, `css/` o `index.html` (nota: su `localhost` il Service Worker è bypassato in sviluppo).
+- **Usare subagenti sui compiti complessi:** quando la task è articolata o multi-fase, suddividere le mansioni assegnando ruoli mirati a subagenti specializzati per essere rapidi ed efficaci.
+- **Passaggio di consegne (Handoff) a fine contesto:** se i token o il contesto stanno per esaurirsi prima di finire, fermarsi in uno stato stabile e scrivere un riepilogo con:
   1. `Stato completamento`: file modificati ed esito dei test.
   2. `Punto di blocco`: riga o funzione esatta interrotta.
-  3. `Next Steps puntuali`: i comandi esatti e i file che l'agente successivo dovrà prendere in carico.
-
-- **Utilizzare sempre più agenti per ogni task specifica:** Se si riceve un compito complesso si deve assegnare per ogni mansioni un sub-agente creato e pensato appositamente per svolgere quel compito. Bisogna essere assolutamente efficaci ed efficienti nel portare a termine la task.
-
-- **Emoji:** Non utilizzare emoji, figure o immagini in modo spontaneo nell'applicazione durante un operazione che ti ho assegnato a meno che non sia io a richiedertelo in modo esplicito.
+  3. `Next Steps puntuali`: comandi esatti e file che il prossimo agente dovrà prendere in carico.
