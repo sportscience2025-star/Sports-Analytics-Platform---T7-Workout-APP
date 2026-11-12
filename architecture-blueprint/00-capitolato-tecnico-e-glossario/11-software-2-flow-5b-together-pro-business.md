@@ -1,188 +1,169 @@
-# Capitolato Tecnico: Flow 5B – Together Pro Business & Remote Client Review (T7 Pro Coach)
+# Capitolato Tecnico: Flow 5B – Libreria Fonti: Sintesi Premium, Area Studio Locale & Commissione Scientifica (T7 Pro Coach)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#11` (Posizione: `X: 6048, Y: 2940`, Miro Shape ID: `3458764688417722746`)
+- **Badge Miro Board:** `#11` (Posizione: `X: 6230.02, Y: 3598.51`, Miro Shape ID: `3458764688417722746`)
 - **Codice Univoco:** `FLOW-5B`
-- **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 5B: TOGETHER PRO BUSINESS, LEAD ONBOARDING & VIDEO REVISIONE REMOTA
-- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 5: Business Pro, Lead & Video Review)
-- **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-5b-together-pro-business.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Together Pro Marketplace](00-GLOSSARIO-TERMINI-TECNICI.md#together-pro-marketplace-video-annotazione-tecnica), [Video Annotazione Tecnica](00-GLOSSARIO-TERMINI-TECNICI.md#together-pro-marketplace-video-annotazione-tecnica), [Stripe Connect Transfers](00-GLOSSARIO-TERMINI-TECNICI.md#together-pro-marketplace-video-annotazione-tecnica), [Bar Path Tracking](00-GLOSSARIO-TERMINI-TECNICI.md#bar-path-optical-tracking-traiettoria-bilanciere-da-cv), [Assegnazione Schede Remota](00-GLOSSARIO-TERMINI-TECNICI.md#together-pro-marketplace-video-annotazione-tecnica)).
+- **Titolo Formale:** SOFTWARE 2 (B2B PRO P.IVA) - FLOW 5B: LIBRERIA FONTI - SINTESI PREMIUM, AREA STUDIO LOCALE & COMMISSIONE SCIENTIFICA
+- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 2: Partita IVA / Coaches & Fisioterapisti, Colonna 5: Libreria Fonti)
+- **Diagramma Sorgente:** [flow-5b-together-pro-business.mmd](../02-miro-zones-and-swimlanes/18-flowcharts/software-2-pro-b2b/flow-5b-together-pro-business.mmd)
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Schede Tecniche di Sintesi](00-GLOSSARIO-TERMINI-TECNICI.md#schede-tecniche-di-sintesi-studi-premium-copyright-safe), [Area Studio Digitale Locale](00-GLOSSARIO-TERMINI-TECNICI.md#area-studio-digitale-in-app-offline-indexeddb), [Commissione Scientifica T7](00-GLOSSARIO-TERMINI-TECNICI.md#commissione-scientifica-t7-peer-review-community), [Gestione Preferiti Studi](00-GLOSSARIO-TERMINI-TECNICI.md#gestione-preferiti-studi-scientifici)).
 
 ---
-
 
 ## 2. Obiettivo di Business & Target Utente
 
-### Guida Pratica per Non Tecnici: Cos'è questo modulo per un umano?
-I migliori personal trainer e fisioterapisti oggi seguono molti atleti a distanza (Online Coaching). Il problema più grande del coaching online è la correzione tecnica: gli allievi mandano video sgranati su WhatsApp, il coach risponde con messaggi vocali lunghi e confusi, e la gestione dei pagamenti diventa un incubo tra bonifici persi e ricariche manuali.  
-**Together Pro** è l'ufficio virtuale e lo studio di analisi del coach:
-- Mette a disposizione una **vetrina professionale certificata** dove mostrare i propri pacchetti di allenamento e i successi reali dei propri allievi;
-- Quando un nuovo cliente acquista un pacchetto, entra automaticamente nel roster del coach senza dover inserire dati a mano;
-- L'allievo registra la sua serie direttamente dall'app di allenamento: il video arriva all'istante sulla scrivania del coach;
-- Il coach apre il video con gli **strumenti di disegno su schermo**: può tracciare la linea del bilanciere (Bar Path), evidenziare la posizione della schiena con frecce colorate e registrare un commento vocale sincronizzato;
-- L'atleta riceve la correzione direttamente nel suo player, potendo guardare l'errore al rallentatore prima di affrontare la serie successiva.
+### Guida Pratica per Non Tecnici: Cos'e questo modulo per un umano?
+I coach professionisti, i chinesiologi e i fisioterapisti devono aggiornarsi costantemente per offrire la massima qualita ai propri atleti. Tuttavia, abbonarsi a decine di riviste scientifiche internazionali costa migliaia di euro all'anno, e leggere paper accademici di 30 pagine in inglese richiede ore di tempo che un professionista indaffarato non ha. Inoltre, quando si studia, si ha bisogno di sottolineare, prendere appunti e fare schemi.  
+**La Libreria Fonti Pro di T7** e l'alleato accademico e lo studio virtuale del professionista:
+- Oltre a tutti gli studi Open Access, hai accesso gratuito alle **Schede Tecniche di Sintesi** di studi internazionali altrimenti a pagamento: riassumono con precisione la metodologia, i risultati numerici, i risvolti pratici da applicare sul campo e il link al DOI ufficiale, nel pieno rispetto del diritto d'autore;
+- Puoi salvare qualsiasi articolo interessante nei tuoi **Preferiti** per ritrovarlo in un istante;
+- Se noti che nel nostro archivio manca uno studio fondamentale, puoi **segnalare il codice DOI o PMID** con un click per farlo aggiungere;
+- Se hai scritto una **tesi di laurea, un caso studio o una ricerca inedita**, puoi inviarla all'app: la nostra **Commissione Scientifica** la revisionera e, se approvata, verra pubblicata con il tuo nome nella libreria, facendoti ottenere grande autorevolezza professionale;
+- Puoi aprire l'**Area Studio Digitale**: uno spazio di lavoro locale in-app dove salvare gli studi (o caricare tuoi PDF personali) e usare strumenti digitali come **evidenziatore, matita, gomma e note**, creando schemi e mappe concettuali per consolidare la tua preparazione senza consumare spazio o dati cloud.
 
 ### Specifiche di Business & Metriche
-- **Target Utente:** Chinesiologi, coach online, preparatori e fisioterapisti che gestiscono clienti da remoto (Tier 2 – Pro P.IVA).
-- **Problema Risolto:** Aumentare la capacità operativa del coach (fino a 100 atleti seguiti senza stress) e monetizzare il proprio tempo professionale con accredito bancario automatico e strumenti visivi di correzione tecnica.
+- **Target Utente:** Preparatori atletici, chinesiologi, personal trainer con P.IVA e fisioterapisti (Tier 2 – Pro P.IVA).
+- **Problema Risolto:** Abbattere i costi di aggiornamento professionale e ridurre dell'80% il tempo necessario per estrarre indicazioni pratiche dagli studi internazionali, offrendo un tavolo di studio integrato.
+- **Metriche Chiave (KPI):**
+  - Tempo medio di consultazione Scheda di Sintesi: $< 3\text{ minuti}$ per comprendere l'applicazione pratica;
+  - Utilizzo dell'Area Studio Locale: $\ge 65\%$ degli utenti Pro attivi almeno una volta a settimana;
+  - Tempo di risposta della Commissione Scientifica su proposte: $\le 5\text{ giorni lavorativi}$.
 
 ---
-
 
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
-1. **Corsia 1: Thin Client UI/UX (Coach Review Suite React 18):**
-   - Dashboard roster atleti con filtri di priorità ("In attesa di revisione video", "Scheda in scadenza"), player video con controlli frame-by-frame, lavagna di annotazione vettoriale (linee, frecce, goniometri, bar path tracking), registratore audio vocale e pulsante di invio notifica push.
-2. **Corsia 2: API Gateway & Media Transcoding Gateway (Envoy):**
-   - Ricezione dei video caricati dagli atleti (`/pro/video-reviews`), validazione del legame contrattuale coach-atleta, streaming video HLS adattivo e webhook di sincronizzazione transazioni Stripe Connect.
-3. **Corsia 3: Server Scatola Nera (Video Annotation & Bar Path Engine Cloud Run):**
-   - Rendering automatico della traiettoria del bilanciere (Bar Path ottico tramite computer vision OpenCV), fusione dell'audio vocale del coach con i frame video annotati e generazione della clip di feedback ottimizzata per smartphone.
-4. **Corsia 4: Database Tripartito (Silo 1 Pro - PostgreSQL & Storage):**
-   - Tabelle `coach_packages`, `client_subscriptions`, `video_reviews` (clip originali, metadati delle annotazioni vettoriali e audio allegato).
+1. **Corsia 1: Thin Client UI/UX (Pro Study Suite & Area Studio Locale React 18):**
+   - Interfaccia con barra di ricerca avanzata, filtri multi-parametro e toggle rapido per salvare/rimuovere articoli dai Preferiti;
+   - Visualizzatore delle Schede Tecniche di Sintesi con tab standardizzate: *Obiettivo dello studio, Campione & Metodologia, Risultati chiave, Applicazioni pratiche per il trainer, DOI e riferimenti bibliografici*;
+   - Form di segnalazione rapida (input codice DOI/PMID) e form di invio contributi inediti (upload file tesi/caso studio con abstract e dichiarazione di paternita intellettuale);
+   - Modulo "Area Studio Digitale": implementato con `HTML5 Canvas` / vettori SVG persistiti interamente in `IndexedDB` locale dell'utente. Comprende strumenti: penna a tratto libero, evidenziatore semitrasparente a norma contrasto WCAG, gomma selettiva, note adesive e canvas per schemi concettuali a nodi manuali.
+2. **Corsia 2: API Gateway & Pro Validation Gate (Envoy):**
+   - Validazione token JWT e verifica dello stato attivo di Partita IVA/abbonamento Tier 2;
+   - Dispatcher di routing verso il catalogo schede o verso il servizio di accoglienza contributi;
+   - Quota check e anti-spam sulle proposte alla Commissione Scientifica (max 10 segnalazioni/giorno per utente Pro).
+3. **Corsia 3: Server Scatola Nera (Study Ingestion & Scientific Committee Pipeline Cloud Run):**
+   - Pipeline di validazione DOI/PMID: query automatica verso le API ufficiali di Crossref e PubMed per scaricare metadati verificati (titolo, autori, rivista, data, abstract);
+   - Workflow per la Commissione Scientifica T7: coda di assegnazione ai revisori accademici, controllo anti-plagio automatizzato del testo e interfaccia di approvazione/rigetto con note motivazionali;
+   - Servizio di distribuzione delle Schede Tecniche di Sintesi redatte dal comitato nel rispetto del Fair Use e delle normative internazionali sul copyright.
+4. **Corsia 4: Database Tripartito (Silo 1 Pro - Premium Repository & Peer Review):**
+   - Tabella `premium_study_summaries` (schede strutturate in formato JSON, redatte e certificate dalla commissione);
+   - Tabella `community_research_submissions` (stato di avanzamento delle proposte inviate, bozze, storico revisioni);
+   - Tabella `user_study_favorites` (relazione $N:M$ tra professionisti e articoli preferiti salvati sul server).
+   - *Nota Architetturale:* I disegni e le annotazioni dell'Area Studio restano archiviati nel database `IndexedDB` locale del client per rispettare la privacy del professionista e azzerare i costi di storage cloud.
 
 ---
-
 
 ### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-5B)
 
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Atleta as Atleta Remoto (Client UI)
-    actor Coach as Coach Pro (Annotation Canvas)
-    participant GW as API Gateway (Corsia 2)
-    participant STRIPE as Stripe Connect Transfers (Corsia 3)
-    participant SRV as Video Processing Engine (Corsia 3)
-    participant DB as Database Silo 1 (Corsia 4)
+    actor Coach as Professionista Pro (Corsia 1)
+    participant GW as API Gateway Pro (Corsia 2)
+    participant SRV as Review Engine (Corsia 3)
+    participant DB as Silo 1 Pro DB (Corsia 4)
+    participant COM as Commissione Scientifica T7
 
-    Atleta->>GW: POST /api/v1/pro/consultations/request (Upload clip video, Descrizione)
-    GW->>DB: INSERT consultation_requests (Stato: PENDING_REVIEW)
-    DB-->>Coach: Notifica push: "Nuovo video da revisionare"
+    Coach->>GW: GET /api/v1/pro/sources/summaries/{paper_id}
+    GW->>GW: Verifica validita profilo Pro P.IVA
+    GW->>DB: SELECT da premium_study_summaries
+    DB-->>GW: Dati strutturati (metodologia, risultati, pratiche, DOI)
+    GW-->>Coach: Rendering Scheda Tecnica di Sintesi a schermo
+    
+    rect rgb(240, 248, 255)
+        note over Coach: Area Studio Digitale Offline (IndexedDB Locale)
+        Coach->>Coach: Apertura Area Studio Locale (IndexedDB)
+        Coach->>Coach: Annotazione PDF con evidenziatore, note e mappe manuali
+    end
 
-    Coach->>GW: GET /api/v1/pro/consultations/:id/video
-    GW-->>Coach: Stream WebRTC del video atleta
-    Coach->>Coach: Disegno annotazioni grafiche (Vettori forza, angoli, audio-nota)
-    Coach->>GW: POST /api/v1/pro/consultations/:id/submit-review (Canvas metadata)
-    GW->>SRV: Compositing video con watermark forense e annotazioni
-    SRV->>DB: UPDATE consultation_requests (COMPLETED) & Storage video annotato
-    DB-->>GW: Commit completato
-    GW->>STRIPE: Trigger payout Stripe Connect (Trattenuta commissione T7)
-    STRIPE-->>Coach: Trasferimento fondi su conto bancario coach
-    GW-->>Atleta: Notifica: "Video revisionato pronto con correzioni tecniche"
+    Coach->>GW: POST /api/v1/pro/sources/contribute (DOI o file tesi)
+    GW->>SRV: Ingestion proposta e fetch metadati Crossref/PubMed
+    SRV->>DB: INSERT su community_research_submissions (status='in_review')
+    DB-->>COM: Notifica a cruscotto Commissione Scientifica
+    COM->>DB: UPDATE status='approved_for_publication'
+    DB-->>Coach: Notifica: 'La tua ricerca e stata approvata e pubblicata'
 ```
 
 ---
 
+## 4. Flusso Passo-Passo
 
-## 4. Flusso Operativo Passo-Passo
+### Livello A: Guida Operativa per Coach e Preparatori
+1. **Ricerca Avanzata & Preferiti:** Il coach entra nella libreria e applica filtri mirati (es. "Forza e Potenza", "Rugby", "2024"). Cliccando sulla stella salva gli studi strategici nella propria lista Preferiti.
+2. **Consultazione Schede di Sintesi:** Trovando uno studio prestigioso pubblicato su riviste ad alto impatto (es. JSCR), apre la Scheda di Sintesi: in pochi secondi legge cosa hanno fatto i ricercatori, quali percentuali di carico hanno testato e quali accorgimenti adottare lunedi in sala pesi.
+3. **Lavoro nell'Area Studio:** Per preparare una lezione o approfondire un caso clinico, il coach apre l'Area Studio: puo evidenziare i passaggi chiave, inserire note adesive a bordo pagina o abbozzare una mappa concettuale a matita. Tutto resta memorizzato sul suo dispositivo anche offline.
+4. **Proposta e Pubblicazione:** Se il coach scopre un articolo recente o desidera pubblicare la tesi del proprio master, compila il form integrato: la Commissione Scientifica di T7 esamina la proposta e, se conforme, la pubblica nel catalogo riconoscendone la paternita intellettuale.
 
-### Livello A: User Journey Narrativo (La Storia dell'Utente)
-1. **La Vetrina del Coach:** Il professionista crea in 2 minuti il suo pacchetto di punta: *"Programma Forza 12 Settimane + Correzione Video Settimanale a 120€/mese"*.
-2. **L'Ingaggio del Cliente:** Un atleta trova il profilo su Together, acquista il pacchetto con carta di credito. I soldi vanno direttamente sul conto bancario del coach (al netto della piccola commissione di piattaforma), e l'atleta compare subito nel roster del coach.
-3. **L'Invio della Scheda:** Il coach assegna la scheda creata con il generatore DUP (`FLOW-3B`). L'atleta riceve una notifica sul telefono: *"Il tuo coach ti ha assegnato il nuovo programma di allenamento!"*.
-4. **La Ricezione del Video:** L'atleta esegue la sua serie pesante di squat e tocca *"Invia video al Coach"*. Nel pannello del professionista compare un bollino arancione: *"1 nuovo video da revisionare per Mario Rossi"*.
-5. **La Revisione Professionale con Disegni:** Il coach apre il video a schermo intero:
-   - Mette in pausa al punto più basso dello squat;
-   - Con il mouse o la penna touch traccia una freccia rossa: *"Guarda come il tallone sinistro si solleva leggermente da terra"*;
-   - L'algoritmo automatico disegna la scia luminosa del bilanciere, mostrando se è sceso dritto in verticale;
-   - Il coach registra 20 secondi di messaggio vocale: *"Ottima spinta Mario, la prossima volta allarga leggermente le punte dei piedi per stabilizzare i talloni"*.
-6. **Il Feedback nel Player dell'Allievo:** L'atleta riceve la clip commentata direttamente nell'app T7, pronta da consultare prima del prossimo allenamento.
+### Livello B: Deep-Dive Tecnico per Sviluppatori
+- **Contratto API Scheda di Sintesi:** `GET /api/v1/pro/sources/summaries/{id}`
+  - Restituisce payload JSON con schema rigido a 5 sezioni: `study_objective`, `methodology_details`, `key_findings`, `practical_takeaways`, `official_doi_url`.
+- **Implementazione Area Studio Locale (IndexedDB):**
+  - Database IndexedDB: `T7_StudyArea_DB`, store `user_study_canvases` e `user_uploaded_documents`.
+  - Struttura Canvas Vector: array di oggetti con coordinate poligonali `points: [{x, y}]`, `tool: 'highlighter' | 'pencil' | 'eraser' | 'sticky_note'`, `stroke_color`, `stroke_width`, `opacity` (0.35 per evidenziatore, 1.0 per matita).
+  - Nessuna chiamata REST verso il server per il salvataggio dei disegni (zero overhead di banda e conformita privacy).
+- **Pipeline Commissione Scientifica:**
+  - Endpoint: `POST /api/v1/pro/sources/contribute` (form multipart per upload abstract/tesi fino a 25MB, oppure payload JSON con `doi_string`).
+  - Worker asincrono: trigger di validazione Crossref API `https://api.crossref.org/works/{doi}` e verifica status anti-plagio su `Silo 1 Pro`.
 
 ---
 
+## 5. Rami Decisionali & Gestione Errori
 
-#### Indicatori di Accettazione Operativa & Clinica (KPI)
-| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+### Tabella dei 4 Stati UI (Ciclo di Vita del Componente)
+
+| Stato UI | Condizione Scatenante | Elementi Visibili a Schermo | Azione Utente Permessa |
 | :--- | :--- | :--- | :--- |
-| **Latenza Video WebRTC** | $< 150\text{ ms}$ | $\le 300\text{ ms}$ | Adattamento dinamico bitrate (Adaptive Bitrate) |
-| **Sincronia Tratti Grafici** | $< 33\text{ ms}$ (1 frame @ 30fps) | $\le 66\text{ ms}$ | Interpolazione spline dei tratti a video |
-| **Rendering Video Finale** | $< 15\text{ s}$ per 60s di clip | $\le 30\text{ s}$ | Rendering cloud asincrono con alert push |
-| **Integrità Payout Stripe** | $100\%$ transazioni riconciliate | $0\%$ errore contabile | Blocco fondo e alert a team finance |
+| **Idle** | Schermata aperta, visualizzazione feed schede e preferiti | Lista articoli con badge "Scheda Sintesi", pulsante Area Studio in vista | Ricerca, filtro, click su articolo, apertura Area Studio |
+| **Loading** | Recupero scheda o validazione DOI in corso | Spinner di caricamento e skeleton strutturato a 5 sezioni | Attesa o annullamento operazione |
+| **Success** | Scheda renderizzata o canvas Area Studio attivo | Visualizzatore scheda o lavagna grafica con toolbar disegno attiva | Lettura, disegno, evidenziazione, salvataggio note |
+| **Error / Quota** | Fallimento validazione DOI o quota invii superata | Alert rosso "Codice DOI non valido" o "Limite giornaliero raggiunto" | Verifica del codice DOI, riprova dopo countdown |
 
 ---
 
+## 6. Contratti Dati JSON & Matrice Errori HTTP
 
-### Livello B: Trattazione Tecnica Nodi Operativi
-
-1. `START` (Accesso Together Pro Suite): Apertura tab "Vetrina & Clienti" nel Coach Cockpit.
-2. `PACKAGE_MANAGEMENT` (Configurazione Pacchetti & Listini): Creazione offerte (prezzo mensile, numero di revisioni video incluse, canali di contatto).
-3. `GW_STRIPE_WEBHOOK` (Ricezione Evento Acquisto): Ricezione evento Stripe `customer.subscription.created`. L'API Gateway valida la transazione, preleva la fee di piattaforma e autorizza la creazione del legame in `client_subscriptions`.
-4. `CLIENT_ONBOARDED` (Attivazione Cliente nel Roster): Inizializzazione della scheda atleta con autorizzazione del coach alla scrittura nel diario dell'atleta.
-5. `ATHLETE_VIDEO_UPLOAD` (Invio Video da Parte dell'Allievo): L'atleta carica la serie dall'interfaccia player (`FLOW-3A`). Il video viene transcodificato in formato HLS multi-bitrate su Google Cloud Storage.
-6. `COACH_REVIEW_SUITE` (Apertura Suite di Revisione):
-   - Player video con scrubbing frame-by-frame a 60fps;
-   - Tool di disegno vettoriale Canvas 2D (frecce, segmenti angolari, box);
-   - *Bar Path Extraction:* Algoritmo server-side che traccia le coordinate $(x, y)$ del centro del bilanciere fotogramma per fotogramma, renderizzando la scia neon della traiettoria.
-7. `SRV_COMPOSITION_ENGINE` (Composizione Feedback Cloud Run): Fusione asincrona dei layer di disegno vettoriale e della traccia audio del microfono del coach sul video master.
-8. `FEEDBACK_DELIVERY` (Consegna Feedback nel Player Atleta): Notifica push WebSocket al dispositivo dell'atleta con link al video arricchito visualizzabile nel Workout Player (`FLOW-3A`).
-
----
-
-
-## 5. Rami Decisionali & Gestione dei 4 Stati UI
-
-| Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
-| :--- | :--- | :--- | :--- |
-| `STRIPE_PAYMENT` | Pagamento ricorrente cliente andato a buon fine? | Mantieni accesso attivo al roster | Notifica di pagamento fallito / congelamento |
-| `VIDEO_QUOTA` | Allievo ha ancora revisioni disponibili nel mese? | Consenti upload clip per correzione | Invita allievo ad acquistare revisioni extra |
-| `BAR_PATH_DETECT` | Bilanciere visibile e tracciabile dall'AI? | Disegna scia luminosa automatica | Correzione manuale con penna touch |
-
-### I 4 Stati di Interfaccia Utente (UI States):
-1. **Empty State:** Nessun cliente attivo: guida illustrata *"Come pubblicare la tua vetrina e invitare i tuoi primi atleti con link diretto"*.
-2. **Loading State:** Elaborazione della clip video con rendering della traiettoria del bilanciere in $< 2.5\text{ secondi}$.
-3. **Populated State:** Roster atleti completo con foto, badge semaforici dello stato di forma, schede attive e contatore dei video da visionare.
-4. **Error / Fallback State:**
-   - *Video registrato con scarsa luminosità:* L'AI disabilita il bar path automatico e avvisa il coach: *"Tracciamento automatico non disponibile per scarsa luce: usa gli strumenti di disegno manuale"*.
-
----
-
-
-## 6. Contratti Dati, Parametri I/O & Database Silo
-
-### Specifiche Endpoint REST:
-
-#### 1. Sottomissione Revisione Tecnica con Annotazioni
-- **Endpoint:** `POST /api/v1/pro/video-reviews/submit-feedback`
-- **Headers:** `Authorization: Bearer <pro_jwt>`, `Content-Type: application/json`
-- **Request Payload:**
+### Contratto Risposta Scheda Tecnica di Sintesi (JSON)
 ```json
 {
-  "reviewId": "rev_77192",
-  "athleteId": "ath_c0192a",
-  "coachAudioVaultRef": "gs://t7-voice-vault/audio_77192.m4a",
-  "vectorDrawings": [
-    { "frameIndex": 142, "tool": "ARROW", "coords": [120, 240, 180, 290], "color": "#ef4444" },
-    { "frameIndex": 180, "tool": "ANGLE", "angleDeg": 165.2, "joint": "KNEE_LEFT" }
-  ],
-  "writtenNotes": "Attento a non sollevare il tallone sinistro durante l'inversione di spinta."
+  "summary_id": "syn_90214",
+  "paper_id": "ext_jscr_2023_881",
+  "official_doi": "10.1519/JSC.0000000000004512",
+  "official_doi_url": "https://doi.org/10.1519/JSC.0000000000004512",
+  "title": "Velocity Loss Thresholds During Squat Training in Professional Athletes",
+  "journal": "Journal of Strength and Conditioning Research",
+  "publication_year": 2023,
+  "structured_content": {
+    "study_objective": "Confrontare gli adattamenti neuromuscolari tra soglie di perdita di velocita del 10% vs 20% durante 8 settimane di back squat.",
+    "sample_and_methodology": "24 atleti agonisti suddivisi in 2 gruppi omogenei per 1RM relativo. Rilevamento tramite encoder lineare.",
+    "key_findings": "Il gruppo 10% ha mostrato incrementi superiori nella velocita a carichi bassi (+8.4% vs +3.1%), con minore fatica percepita.",
+    "practical_takeaways": "Nelle fasi competitive, limitare la perdita di velocita al 10% per preservare la freschezza neurale e massimizzare la potenza.",
+    "verified_by_committee": true,
+    "review_date": "2024-01-15"
+  }
 }
 ```
-- **Responses:**
-  - `200 OK`: `{ "status": "delivered", "notifiedAthlete": true, "processedVideoUrl": "https://vault.t7workout.app/feedback/rev_77192.mp4" }`
 
-### Schema Relazionale (Database Silo 1 - PostgreSQL):
-- `client_subscriptions`: `id UUID PK`, `coach_id UUID FK -> pro_profiles.id`, `athlete_id UUID FK -> athlete_profiles.id`, `plan_type VARCHAR(32)`, `monthly_fee NUMERIC(6,2)`, `status VARCHAR(16)`, `created_at TIMESTAMPTZ`.
-- `video_reviews`: `id UUID PK`, `subscription_id UUID FK -> client_subscriptions.id`, `raw_video_url TEXT`, `feedback_video_url TEXT`, `vector_annotations JSONB`, `audio_notes_url TEXT`, `status VARCHAR(16)`, `created_at TIMESTAMPTZ`.
+### Matrice Errori HTTP a 6 Colonne
 
----
-
-
-### Matrice Errori HTTP & Strategie di Resilienza
-| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
-| :---: | :--- | :--- | :--- | :--- | :--- |
-| **400** | `ERR_BAD_ANNOTATION` | `POST /submit-review` | Coordinate canvas non valide o fuori video | Toast: *"Tratto grafico fuori dai limiti del video"* | Correzione automatica ai bordi del viewport |
-| **401** | `ERR_SESSION_TIMEOUT` | `POST /submit-review` | Sessione coach scaduta durante il disegno | Modale trasparente di re-autenticazione | Preservazione di tutti i tratti disegnati su canvas |
-| **403** | `ERR_ACCESS_DENIED` | `GET /video` | Coach non assegnato alla specifica consulenza | Schermata: *"Non autorizzato a visionare questo video"*| Blocco accesso e registrazione log di sicurezza |
-| **413** | `ERR_CANVAS_PAYLOAD` | `POST /submit-review` | Troppi metadati vettoriali disegnati ($> 10\text{ MB}$)| Alert: *"Disegno troppo complesso. Semplifica"* | Decimazione punti spline e compressione JSON |
-| **500** | `ERR_TRANSCODE_FAIL` | `POST /submit-review` | Fallimento rendering video annotato | Notifica: *"Rendering in corso in background"* | Riprova asincrona su worker Cloud Tasks |
-| **502** | `ERR_STRIPE_PAYOUT` | `POST /submit-review` | Rifiuto trasferimento bancario da Stripe | Notifica discreta a coach: *"Fondi in riserva"* | Riconciliazione automatica entro 12 ore |
+| Codice HTTP | Errore Interno | Condizione Scatenante | Risposta Client | Azione Automatica Client | Ripristino Utente |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `400 Bad Request` | `INVALID_DOI_FORMAT` | Stringa DOI non conforme allo standard ISO 26324 | `{"error": "Formato DOI non valido"}` | Evidenzia campo di input in rosso | Verificare e reinserire il codice DOI |
+| `401 Unauthorized` | `SESSION_EXPIRED` | Sessione utente scaduta | `{"error": "Sessione terminata"}` | Reindirizza al login | Rieseguire il login |
+| `403 Forbidden` | `NON_PRO_USER` | Utente con piano Tier 1 tenta di accedere a schede sintesi | `{"error": "Funzione riservata al piano Pro"}` | Mostra modal di upgrade | Passare al piano Tier 2 |
+| `413 Payload Too Large` | `SUBMISSION_FILE_OVERSIZE` | File tesi caricato superiore a 25 MB | `{"error": "Il file caricato supera il limite di 25MB"}` | Blocca upload | Comprimere il PDF prima dell'invio |
+| `422 Unprocessable` | `DOI_ALREADY_EXISTS` | Segnalazione di un DOI gia presente in archivio | `{"error": "Questo studio e gia presente nella Libreria Fonti"}` | Apre la scheda esistente | Nessun ripristino necessario |
+| `429 Too Many Req` | `SUBMISSION_LIMIT_EXCEEDED`| Piu di 10 proposte inviate nelle ultime 24 ore | `{"error": "Limite giornaliero invio proposte raggiunto"}` | Disabilita pulsante invio | Riprovare nelle 24 ore successive |
 
 ---
 
+## 7. Ereditarieta di Tier & Sblocco Funzionalita a Cascata
 
-## 7. Ereditarietà di Tier & Differenziali di Fascia
-
-- **Differenziali rispetto a Tier 1:**  
-  Nel Tier 1 il consumatore naviga la bacheca social generica e acquista servizi. Il **Pannello di Revisione Video con Disegno su Schermo, il Bar Path Tracker e la gestione incassi Stripe Connect sono esclusivi di Tier 2**.
-- **Isolamento da Tier 3 (`FLOW-5C`):**  
-  Nei club professionistici societari, il modulo video commerciale viene sostituito da **Tactical Vision**: video analisi multi-camera da campo a 120fps con reti neurali YOLO, omografia prospettica 2D e calcolo dei diagrammi di Voronoi per il controllo degli spazi di gioco nel bunker Silo 2.
+- **Cosa fa Tier 2:** Eredita tutte le capacita di ricerca e filtro di Tier 1, sblocca la consultazione completa delle Schede Tecniche di Sintesi degli studi internazionali a pagamento (copyright-safe), abilita i Preferiti personali, apre l'Area Studio Digitale in-app locale (IndexedDB) con strumenti manuali e consente di proporre DOI e proprie ricerche alla Commissione Scientifica.
+- **Cosa NON fa Tier 2 (Limiti Rigorosi di Fascia):**
+  - **NO AI:** Nessun modello di intelligenza artificiale per sintesi automatica, traduzioni o spiegazioni semplificate;
+  - **NO Chatbot:** Nessun assistente conversazionale sul testo dello studio;
+  - **NO Bollettino:** Nessun servizio di newsletter settimanale accademica automatica;
+  - **NO RAG:** Nessuna integrazione con database vettoriali di squadra ne sincronizzazione verso Programmazione o Data Analisi;
+  - Le annotazioni dell'Area Studio rimangono solo in locale (non sincronizzate su database cloud di squadra).
+- **Passaggio a Tier 3:** Sblocca l'AI al 100% per sintesi e traduzioni, introduce il Chatbot scientifico 24/7, il Bollettino Settimanale e la sincronizzazione 1-Click con il database RAG del team (Bunker Silo 2).

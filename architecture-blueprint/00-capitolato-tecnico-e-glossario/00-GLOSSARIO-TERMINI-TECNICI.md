@@ -24,17 +24,21 @@ Questo documento costituisce la versione locale e sincronizzata su Git della **L
 - [Angoli Specifici Biomeccanici](#angoli-specifici-biomeccanici) — *Biomeccanica & Valutazione Funzionale*
 - [API Gateway & Feature Gating](#api-gateway-feature-gating) — *Ingegneria Software & Architettura Cloud*
 - [Apple HealthKit & Google Health Connect Pipeline](#apple-healthkit-google-health-connect-pipeline) — *Telemetria Wearable & Dispositivi Mobili*
+- [Area Studio Digitale In-App (Offline / IndexedDB)](#area-studio-digitale-in-app-offline-indexeddb) — *Libreria Fonti Pro ed Enterprise (Tier 2 & 3)*
 
 ### <a id="letter-b"></a>B
 
 - [Bar Path Optical Tracking (Traiettoria Bilanciere da CV)](#bar-path-optical-tracking-traiettoria-bilanciere-da-cv) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [Baricentro di Squadra, Ampiezza & Profondità Tattica](#baricentro-di-squadra-ampiezza-profondit-tattica) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [BMR Mifflin-St Jeor & Harris-Benedict (Fabbisogno Metabolico)](#bmr-mifflin-st-jeor-harris-benedict-fabbisogno-metabolico) — *Metodologia d'Allenamento & Clinica Sportiva*
+- [Bollettino Settimanale Accademico (Feed Tematico Sportivo)](#bollettino-settimanale-accademico-feed-tematico-sportivo) — *Libreria Fonti Enterprise (Tier 3)*
 
 ### <a id="letter-c"></a>C
 
+- [Chatbot AI Studi Scientifici (Assistente Documentale 24/7)](#chatbot-ai-studi-scientifici-assistente-documentale-247) — *Libreria Fonti Enterprise (Tier 3)*
 - [Clickwrap Liability Waiver (Manleva Medico-Legale Digitale)](#clickwrap-liability-waiver-manleva-medico-legale-digitale) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [Clonazione dello Stile e Lessico del Coach (Style-Cloning)](#clonazione-dello-stile-e-lessico-del-coach-style-cloning) — *Algoritmi, Statistica & Machine Learning*
+- [Commissione Scientifica T7 (Peer-Review Community)](#commissione-scientifica-t7-peer-review-community) — *Libreria Fonti Pro ed Enterprise (Tier 2 & 3)*
 - [Controllo Incrociato & Avvisi di Conflitto (Conflict Alert Schede-Referti)](#controllo-incrociato--avvisi-di-conflitto-conflict-alert-schede-referti) — *Algoritmi, Statistica & Machine Learning*
 - [Cloud KMS (Key Management Service)](#cloud-kms-key-management-service) — *Ingegneria Software & Architettura Cloud*
 - [Cloudflare Turnstile (Scudo Anti-Bot Invisibile)](#cloudflare-turnstile-scudo-anti-bot-invisibile) — *Ingegneria Software & Architettura Cloud*
@@ -85,6 +89,7 @@ Questo documento costituisce la versione locale e sincronizzata su Git della **L
 ### <a id="letter-i"></a>I
 
 - [IndexedDB & Optimistic Transaction Queue](#indexeddb-optimistic-transaction-queue) — *Ingegneria Software & Architettura Cloud*
+- [Indicatori di Qualità Scientifica (CEBM Oxford e Quartili JCR)](#indicatori-di-qualita-scientifica-cebm-oxford-e-quartili-jcr) — *Libreria Fonti Enterprise (Tier 3)*
 - [INI-PEC (Indice Nazionale Posta Elettronica Certificata) & Two-Way OTP](#ini-pec-indice-nazionale-posta-elettronica-certificata-two-way-otp) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [Isolamento Data Analisi Tier 1 (Zero Correlazione Cross-Modulo)](#isolamento-data-analisi-tier-1) — *Ingegneria Software & Architettura Cloud*
 
@@ -114,6 +119,7 @@ Questo documento costituisce la versione locale e sincronizzata su Git della **L
 
 ### <a id="letter-o"></a>O
 
+- [Open Access Papers (Studi Scientifici Pubblici e Gratuiti)](#open-access-papers-studi-scientifici-pubblici-gratuiti) — *Libreria Fonti (Tier 1, 2, 3)*
 - [OrbitControls (Yaw 360° e Pitch Zenitale/Nadir)](#orbitcontrols-yaw-360-e-pitch-zenitalenadir) — *Grafica 3D, WebGL & Rendering Biomeccanico*
 - [Osgnach Metabolic Power (W/kg) & High Metabolic Load Distance](#osgnach-metabolic-power-wkg-high-metabolic-load-distance) — *Algoritmi, Statistica & Machine Learning*
 
@@ -128,6 +134,7 @@ Questo documento costituisce la versione locale e sincronizzata su Git della **L
 
 - [RAG 100% Private (Isolamento Totale Dati Societari)](#rag-100-private-isolamento-totale-dati-societari) — *Sicurezza Enterprise & Identità Societaria (Tier 3)*
 - [RAG Gerarchico Scientifico (Retrieval-Augmented Generation)](#rag-gerarchico-scientifico-retrieval-augmented-generation) — *Algoritmi, Statistica & Machine Learning*
+- [RAG Sync Libreria Fonti (Sincronizzazione Bunker Silo 2)](#rag-sync-libreria-fonti-sincronizzazione-bunker-silo-2) — *Libreria Fonti Enterprise (Tier 3)*
 - [Role-Based RAG (Controllo Accessi Gerarchico Medico / S&C / Atleta)](#role-based-rag-controllo-accessi-gerarchico-medico--sc--atleta) — *Sicurezza Enterprise & Identità Societaria (Tier 3)*
 - [Revisione Biomeccanica Deterministica (Calcolo Angoli Principali NO AI)](#revisione-biomeccanica-deterministica-calcolo-angoli-principali-no-ai) — *Biomeccanica & Valutazione Funzionale*
 - [RBAC (Role-Based Access Control a 3 Tiers x 8 Ruoli)](#rbac-role-based-access-control-a-3-tiers-x-8-ruoli) — *Ingegneria Software & Architettura Cloud*
@@ -142,6 +149,7 @@ Questo documento costituisce la versione locale e sincronizzata su Git della **L
 
 - [SAML 2.0 Enterprise Federation & Single Sign-On](#saml-20-enterprise-federation-single-sign-on) — *Sicurezza Enterprise & Identità Societaria (Tier 3)*
 - [Scala VAS del Dolore (Visual Analogue Scale 0-10)](#scala-vas-del-dolore-visual-analogue-scale-0-10) — *Prescrizione Clinica & Riabilitazione P.IVA (Tier 2)*
+- [Schede Tecniche di Sintesi (Studi Premium Copyright-Safe)](#schede-tecniche-di-sintesi-studi-premium-copyright-safe) — *Libreria Fonti Pro ed Enterprise (Tier 2 & 3)*
 - [Separazione Database Data Analisi vs Catalogo (Isolamento Tier 2)](#separazione-database-data-analisi-vs-catalogo-isolamento-tier-2) — *Ingegneria Software & Architettura Cloud*
 - [Scale RPE & RIR (Borg CR10 / Reps in Reserve)](#scale-rpe-rir-borg-cr10-reps-in-reserve) — *Metodologia d'Allenamento & Clinica Sportiva*
 - [Secret Club Vault & Multi-Camera 4K Sync](#secret-club-vault-multi-camera-4k-sync) — *Sicurezza Enterprise & Identità Societaria (Tier 3)*
@@ -1157,3 +1165,59 @@ Questo documento costituisce la versione locale e sincronizzata su Git della **L
 - **Spiegazione Semplificata:** Pipeline di computer vision a 60fps che acquisisce lo stream video in diretta, analizza la postura istantanea dell'atleta e proietta suggerimenti correttivi in sovrimpressione a schermo in tempo reale.
 - **Ruolo Operativo nel Progetto T7:** Funzionalita chiave di Tier 2 e Tier 3: permette correzione sul momento degli errori biomeccanici durante l'esercizio e trascrizione dei feedback nel video salvato.
 - **Zona / Flusso di Riferimento:** Colonna 4, Righe 2 e 3 (Thin Client UI & Server Vision). (Flussi Miro: `#10, #16`)
+
+#### <a id="open-access-papers-studi-scientifici-pubblici-gratuiti"></a>Open Access Papers (Studi Scientifici Pubblici e Gratuiti)
+**ELI5:** "Articoli scientifici liberi che chiunque puo leggere gratis senza abbonamento."
+
+- **Spiegazione Semplificata:** Pubblicazioni accademiche peer-reviewed distribuite con licenze aperte (Creative Commons CC-BY) liberamente consultabili e fruibili dal pubblico senza barriere di pagamento.
+- **Ruolo Operativo nel Progetto T7:** Costituisce la base documentale di Tier 1 (e superiore) nella Libreria Fonti, consentendo la consultazione protetta in sola lettura in-app.
+- **Zona / Flusso di Riferimento:** Colonna 5, Righe 1, 2 e 3 (Libreria Fonti). (Flussi Miro: `#05, #11, #17`)
+
+#### <a id="schede-tecniche-di-sintesi-studi-premium-copyright-safe"></a>Schede Tecniche di Sintesi (Studi Premium Copyright-Safe)
+**ELI5:** "Riassunto pratico e legale degli studi a pagamento piu importanti al mondo."
+
+- **Spiegazione Semplificata:** Documenti strutturati redatti da ricercatori e revisori accademici che distillano obiettivi, metodologia, evidenze numeriche e applicazioni pratiche per l'allenatore relative a studi protetti da copyright editoriale, corredati da link DOI ufficiale.
+- **Ruolo Operativo nel Progetto T7:** Funzionalita fondamentale di Tier 2 e Tier 3 che consente ai professionisti di aggiornarsi sulle ricerche internazionali ad alto costo nel pieno rispetto della legge.
+- **Zona / Flusso di Riferimento:** Colonna 5, Righe 2 e 3 (Libreria Fonti Pro ed Enterprise). (Flussi Miro: `#11, #17`)
+
+#### <a id="area-studio-digitale-in-app-offline-indexeddb"></a>Area Studio Digitale In-App (Offline / IndexedDB)
+**ELI5:** "Il tuo quaderno digitale con evidenziatore e matita che funziona anche senza internet."
+
+- **Spiegazione Semplificata:** Modulo applicativo interattivo basato su canvas grafico vettoriale locale che consente di sottolineare, disegnare a mano libera, aggiungere note testuali e abbozzare mappe concettuali su articoli e PDF personali, persistendo tutto in IndexedDB sul client senza costi cloud.
+- **Ruolo Operativo nel Progetto T7:** Strumento operativo introdotto in Tier 2 (manuale) e potenziato in Tier 3 (con supporto AI e Chatbot integrato) per l'approfondimento professionale continuo.
+- **Zona / Flusso di Riferimento:** Colonna 5, Righe 2 e 3 (Libreria Fonti). (Flussi Miro: `#11, #17`)
+
+#### <a id="commissione-scientifica-t7-peer-review-community"></a>Commissione Scientifica T7 (Peer-Review Community)
+**ELI5:** "Il comitato di esperti che valuta le ricerche e le tesi prima di pubblicarle nell'app."
+
+- **Spiegazione Semplificata:** Organo collegiale di revisione paritaria interno all'ecosistema T7 che esamina le proposte di integrazione studi (via DOI/PMID) e valuta la solidita metodologica di tesi, casi studio e ricerche inedite caricate dai professionisti prima della divulgazione.
+- **Ruolo Operativo nel Progetto T7:** Garantisce il rigore e la credibilita scientifica dell'archivio, offrendo al contempo un canale di valorizzazione professionale per coach e accademici di Tier 2 e 3.
+- **Zona / Flusso di Riferimento:** Colonna 5, Righe 2 e 3 (Libreria Fonti Pro ed Enterprise). (Flussi Miro: `#11, #17`)
+
+#### <a id="bollettino-settimanale-accademico-feed-tematico-sportivo"></a>Bollettino Settimanale Accademico (Feed Tematico Sportivo)
+**ELI5:** "Rassegna stampa del lunedi con le novita scientifiche solo per i tuoi sport."
+
+- **Spiegazione Semplificata:** Servizio automatizzato di intelligence scientifica che analizza settimanalmente le banche dati mondiali, seleziona le pubblicazioni piu rilevanti per le discipline praticate dal club e distribuisce newsletter esecutive di sintesi.
+- **Ruolo Operativo nel Progetto T7:** Riservato a Tier 3 Enterprise, azzera i tempi morti di monitoraggio accademico per gli staff dei top club sportivi.
+- **Zona / Flusso di Riferimento:** Colonna 5, Riga 3 (Libreria Fonti Enterprise). (Flussi Miro: `#17`)
+
+#### <a id="chatbot-ai-studi-scientifici-assistente-documentale-247"></a>Chatbot AI Studi Scientifici (Assistente Documentale 24/7)
+**ELI5:** "Un assistente virtuale esperto a cui puoi fare qualsiasi domanda sullo studio aperto."
+
+- **Spiegazione Semplificata:** Modello linguistico conversazionale integrato nell'interfaccia di lettura che riceve in contesto il full-text dello studio scientifico e risponde istantaneamente a quesiti specifici, citando pagine e tabelle del paper.
+- **Ruolo Operativo nel Progetto T7:** Funzionalita esclusiva di Tier 3 per accelerare la comprensione metodologica e generare automaticamente mappe e schemi di studio.
+- **Zona / Flusso di Riferimento:** Colonna 5, Riga 3 (Libreria Fonti Enterprise). (Flussi Miro: `#17`)
+
+#### <a id="rag-sync-libreria-fonti-sincronizzazione-bunker-silo-2"></a>RAG Sync Libreria Fonti (Sincronizzazione Bunker Silo 2)
+**ELI5:** "Un click per mandare lo studio al cervello della squadra e migliorare le schede dei giocatori."
+
+- **Spiegazione Semplificata:** Pipeline di ingestione semantica e vettorizzazione che indicizza con un click un articolo scientifico o un riassunto approvato all'interno dello schema `team_scientific_rag` protetto da Cloud KMS nel Bunker Silo 2.
+- **Ruolo Operativo nel Progetto T7:** Crea il ponte strategico tra teoria scientifica e pianificazione pratica: le evidenze sincronizzate alimentano direttamente i motori decisionali di Programmazione (#15) e Data Analisi (#16).
+- **Zona / Flusso di Riferimento:** Colonna 5, Riga 3 (Libreria Fonti Enterprise). (Flussi Miro: `#17`)
+
+#### <a id="indicatori-di-qualita-scientifica-cebm-oxford-e-quartili-jcr"></a>Indicatori di Qualita Scientifica (CEBM Oxford e Quartili JCR)
+**ELI5:** "Badge chiari per capire subito se uno studio e una prova schiacciante o solo un'ipotesi."
+
+- **Spiegazione Semplificata:** Metriche di validita accademica basate sulla gerarchia delle prove dell'Oxford Centre for Evidence-Based Medicine (Livello I-V) e sul fattore d'impatto della rivista (Quartili ISI Web of Science Q1-Q4).
+- **Ruolo Operativo nel Progetto T7:** Permette allo staff di Tier 3 di filtrare e ordinare istantaneamente gli studi in base all'affidabilita metodologica.
+- **Zona / Flusso di Riferimento:** Colonna 5, Riga 3 (Libreria Fonti Enterprise). (Flussi Miro: `#17`)

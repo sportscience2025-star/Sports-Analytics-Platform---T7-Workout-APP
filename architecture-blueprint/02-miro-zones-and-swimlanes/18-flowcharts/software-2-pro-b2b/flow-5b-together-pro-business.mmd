@@ -1,47 +1,53 @@
 flowchart TD
-    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
-    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
-    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef startend fill:#b45309,stroke:#f59e0b,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#fef3c7,stroke:#d97706,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fed7aa,stroke:#ea580c,stroke-width:2px,color:#0f172a,font-weight:bold;
     classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
     classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 2 (B2B PRO P.IVA) - FLOW 5B: TOGETHER PRO BUSINESS & REMOTE CLIENT REVIEW"]
+    TITLE["SOFTWARE 2 (B2B PRO P.IVA) - FLOW 5B: LIBRERIA FONTI - SINTESI PREMIUM, AREA STUDIO LOCALE & COMMISSIONE SCIENTIFICA"]
 
-    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (PRO BUSINESS SUITE)"]
-        START(["Inizio: Accesso Gestione Business"]):::startend
-        PROFILE_EDITOR["Editor Vetrina Professionale: Bio, Tariffe Pacchetti, Recensioni Clienti"]:::client
-        INBOX_LEADS["Inbox Richieste Coaching: Accetta / Rifiuta Nuovi Clienti"]:::client
-        VIDEO_REVIEW_QUEUE["Coda Revisione Esecuzioni Video inviate dagli Atleti"]:::client
-        VIDEO_CANVAS["Player con Tool Sovrimpressione: Disegno Angoli Articolari & Note Vocali"]:::client
-        SEND_FEEDBACK_BTN["Pulsante 'Invia Feedback Correttivo all'Atleta'"]:::client
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (PRO STUDY SUITE & AREA STUDIO LOCALE)"]
+        START(["Inizio: Accesso Pro alla Libreria Fonti"]):::startend
+        PRO_SEARCH["Ricerca Avanzata Completa con Filtri & Gestione Articoli Preferiti"]:::client
+        DEC_ACTION_TYPE{"Scelta Operativa del Professionista?"}:::decision
+        VIEW_SYNTHESIS["Consultazione Scheda Tecnica di Sintesi Studio Premium (Metodi, Risultati, Applicazioni Pratiche, Link DOI)"]:::client
+        LOCAL_STUDY_AREA["Accesso ad Area Studio Digitale In-App Locale (IndexedDB): Evidenziatore, Matita, Gomma, Note & Mappe Concettuali Manuali"]:::client
+        PROPOSE_STUDY["Form Invio Richiesta: Segnalazione Codice DOI/PMID Mancante oppure Upload Tesi/Caso Studio Inedito"]:::client
+        ALERT_COMMISSION["Notifica di Ricezione: 'Proposta Inoltrata alla Commissione Scientifica per Pre-Verifica e Revisione'"]:::client
     end
 
-    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & MEDIA UPLOAD"]
-        GW_SAVE_PROFILE["Ricezione PUT /api/v1/pro/profile/showcase"]:::gateway
-        GW_HANDLE_LEAD["Ricezione POST /api/v1/pro/leads/{id}/respond"]:::gateway
-        GW_MEDIA_FEEDBACK["Ricezione POST /api/v1/pro/video-reviews/{id}/feedback"]:::gateway
-        GW_MEDIA_AUTH{"Autenticazione URL Firmato per Video?"}:::decision
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & PRO VALIDATION GATE"]
+        GW_INGEST_REQ["Ricezione Richiesta: GET /api/v1/pro/sources/summaries/{id} o POST /api/v1/pro/sources/contribute"]:::gateway
+        GW_VALIDATE_PRO{"Verifica Abbonamento Pro Attivo (Enforce: NO AI, NO RAG, Area Studio Confinata in Locale)?"}:::decision
+        GW_ERR_DENIED["HTTP 403 Forbidden: Funzione Riservata a Professionisti Verificati"]:::error
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (CONTRACT & MEDIA ENGINE)"]
-        SRV_CONTRACT_BIND["Attivazione Contratto Coaching & Onboarding Cliente Diretto"]:::server
-        SRV_TRANSCODE["Transcodifica Video con Metadati Angoli e Tracciamento Cues"]:::server
-        SRV_NOTIF_DISPATCH["Notifica Push Istantanea 'Il tuo Coach ha revisionato il tuo video'"]:::server
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (STUDY INGESTION & SCIENTIFIC COMMITTEE PIPELINE)"]
+        SRV_FETCH_DOI["Fetch Metadati Ufficiali DOI/PMID via Crossref & PubMed API"]:::server
+        SRV_GEN_SYNTHESIS["Generazione e Distribuzione Scheda Tecnica di Sintesi nel Pieno Rispetto del Copyright"]:::server
+        SRV_COMMISSION_QUEUE["Accodamento e Pre-Verifica Accademica (Audit Metodologico & Anti-Plagio) per Commissione Scientifica T7"]:::server
     end
 
-    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (PRO BUSINESS DATA)"]
-        DB_PRO_PROFILE[("Scrittura/Lettura Silo 1: pro_showcase, coaching_packages")]:::db
-        DB_VIDEO_REVIEWS[("Salvataggio Feedback e Note Tecniche in Silo 1 (video_feedbacks)")]:::db
-        END_BIZ_DONE(["Fine: Feedback Inviato o Profilo Business Aggiornato"]):::startend
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 PRO (PREMIUM REPOSITORY & PEER REVIEW CODA)"]
+        DB_FETCH_SUMMARIES[("Archivio Silo 1 Pro: Tabella premium_study_summaries & user_favorites")]:::db
+        DB_QUEUE_COMMISSION[("Coda Silo 1 Pro: Tabella community_research_submissions & scientific_reviews")]:::db
+        END_FLOW(["Fine: Consultazione Sintesi, Studio Locale IndexedDB o Invio Ricerca Concluso"]):::startend
     end
 
-    %% Flussi
-    START --> PROFILE_EDITOR --> GW_SAVE_PROFILE --> DB_PRO_PROFILE
-    START --> INBOX_LEADS --> GW_HANDLE_LEAD --> SRV_CONTRACT_BIND --> DB_PRO_PROFILE
+    %% Connessioni di flusso
+    START --> PRO_SEARCH --> DEC_ACTION_TYPE
+    DEC_ACTION_TYPE -- Consultazione Sintesi Premium --> GW_INGEST_REQ
+    DEC_ACTION_TYPE -- Area Studio Digitale Locale --> LOCAL_STUDY_AREA --> END_FLOW
+    DEC_ACTION_TYPE -- Invio Studio o Tesi Inedita --> PROPOSE_STUDY
 
-    START --> VIDEO_REVIEW_QUEUE --> VIDEO_CANVAS --> SEND_FEEDBACK_BTN
-    SEND_FEEDBACK_BTN --> GW_MEDIA_FEEDBACK --> GW_MEDIA_AUTH
-    GW_MEDIA_AUTH -- Token OK --> SRV_TRANSCODE --> DB_VIDEO_REVIEWS
-    DB_VIDEO_REVIEWS --> SRV_NOTIF_DISPATCH --> END_BIZ_DONE
+    GW_INGEST_REQ --> GW_VALIDATE_PRO
+    GW_VALIDATE_PRO -- Credenziali Non Valide --> GW_ERR_DENIED
+    GW_VALIDATE_PRO -- Profilo Pro Verificato --> SRV_GEN_SYNTHESIS
+    SRV_GEN_SYNTHESIS --> DB_FETCH_SUMMARIES --> VIEW_SYNTHESIS --> END_FLOW
+
+    PROPOSE_STUDY --> GW_INGEST_REQ
+    GW_INGEST_REQ --> SRV_FETCH_DOI --> SRV_COMMISSION_QUEUE
+    SRV_COMMISSION_QUEUE --> DB_QUEUE_COMMISSION --> ALERT_COMMISSION --> END_FLOW

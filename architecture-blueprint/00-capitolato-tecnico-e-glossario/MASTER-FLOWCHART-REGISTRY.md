@@ -17,19 +17,19 @@ La seguente tabella rappresenta il registro unico e autoritativo che mappa 1:1 o
 | **#02** | Tier 1 | Col 2: 3D Avatar & Certified Catalog | `FLOW-2A` | Catalogo Esercizi & Avatar 3D | 22 | `3458764688417722707` | `X: 27.35, Y: 179.87` | [02-software-1-flow-2a-personal-cockpit.md](02-software-1-flow-2a-personal-cockpit.md) | `flow-2a-personal-cockpit.mmd` |
 | **#03** | Tier 1 | Col 3: Programmi Pre-Confezionati & Export PDF | `FLOW-3A` | Programmazione Base, Pre-Confezionati & Export PDF | 14 | `3458764688417722711` | `X: 2459, Y: 465` | [03-software-1-flow-3a-workout-player.md](03-software-1-flow-3a-workout-player.md) | `flow-3a-workout-player.mmd` |
 | **#04** | Tier 1 | Col 4: Data Analisi - Revisione Biomeccanica (NO AI) | `FLOW-4A` | Data Analisi: Biomeccanica Angoli Principali (NO AI, NO RAG) | 13 | `3458764688417722715` | `X: 4171, Y: 465` | [04-software-1-flow-4a-wearable-sync.md](04-software-1-flow-4a-wearable-sync.md) | `flow-4a-wearable-sync.mmd` |
-| **#05** | Tier 1 | Col 5: Together Social Community | `FLOW-5A` | Together Social & Coach Market | 15 | `3458764688417722718` | `X: 6048, Y: 465` | [05-software-1-flow-5a-together-social-b2c.md](05-software-1-flow-5a-together-social-b2c.md) | `flow-5a-together-social-b2c.mmd` |
+| **#05** | Tier 1 | Col 5: Libreria Fonti - Archivio Open Access & Filtri | `FLOW-5A` | Libreria Fonti: Archivio Open Access & Read-Only | 15 | `3458764688417722718` | `X: 6048, Y: 465` | [05-software-1-flow-5a-together-social-b2c.md](05-software-1-flow-5a-together-social-b2c.md) | `flow-5a-together-social-b2c.mmd` |
 | **#06** | Tier 1 | Col 6: Movely Desk-Care & Pause | `FLOW-6A` | Movely Desk-Care Ergonomia | 14 | `3458764688417722722` | `X: 7937, Y: 465` | [06-software-1-flow-6a-movely-desk-care.md](06-software-1-flow-6a-movely-desk-care.md) | `flow-6a-movely-desk-care.mmd` |
 | **#07** | Tier 2 | Col 1: Setup Fiscale P.IVA Anti-Frode | `FLOW-1B` | Onboarding Pro & Setup Fiscale | 16 | `3458764688417722731` | `X: -2448, Y: 3090` | [07-software-2-flow-1b-pro-onboarding.md](07-software-2-flow-1b-pro-onboarding.md) | `flow-1b-pro-onboarding.mmd` |
 | **#08** | Tier 2 | Col 2: Video 1080p, Speed & AI Coach | `FLOW-2B` | Catalogo 3D, Video 1080p, Speed Control & AI Coach | 22 | `3458764688417722736` | `X: 251.36, Y: 2940` | [08-software-2-flow-2b-coach-hub.md](08-software-2-flow-2b-coach-hub.md) | `flow-2b-coach-hub.mmd` |
 | **#09** | Tier 2 | Col 3: Programmazione Anamnesi 6M & AI Fonti | `FLOW-3B` | Programmazione Anamnestica 6M, RTP & AI Fonti | 15 | `3458764688417722743` | `X: 2641.02, Y: 3598.51` | [09-software-2-flow-3b-macrocycle-ai-triage119.md](09-software-2-flow-3b-macrocycle-ai-triage119.md) | `flow-3b-macrocycle-ai-triage119.mmd` |
 | **#10** | Tier 2 | Col 4: Data Analisi - Biomeccanica AI 70% & Wearable T7 | `FLOW-4B` | Data Analisi: AI 70%, Live Camera & Wearable T7 | 16 | `3458764688417722745` | `X: 4353.02, Y: 3598.51` | [10-software-2-flow-4b-vbt-pap-biomechanics.md](10-software-2-flow-4b-vbt-pap-biomechanics.md) | `flow-4b-vbt-pap-biomechanics.mmd` |
-| **#11** | Tier 2 | Col 5: Together Pro Vetrina Business | `FLOW-5B` | Together Pro Business & Video | 15 | `3458764688417722746` | `X: 6048, Y: 2940` | [11-software-2-flow-5b-together-pro-business.md](11-software-2-flow-5b-together-pro-business.md) | `flow-5b-together-pro-business.mmd` |
+| **#11** | Tier 2 | Col 5: Libreria Fonti - Sintesi Premium & Area Studio | `FLOW-5B` | Libreria Fonti: Sintesi Premium, Area Studio Locale & Commissione Scientifica | 16 | `3458764688417722746` | `X: 6230.02, Y: 3598.51` | [11-software-2-flow-5b-together-pro-business.md](11-software-2-flow-5b-together-pro-business.md) | `flow-5b-together-pro-business.mmd` |
 | **#12** | Tier 2 | Col 6: Physio Rehab Goniometro ROM | `FLOW-6B` | Physio Rehab ROM & Scala VAS | 16 | `3458764688417722770` | `X: 7937, Y: 2940` | [12-software-2-flow-6b-physio-rehab-rom.md](12-software-2-flow-6b-physio-rehab-rom.md) | `flow-6b-physio-rehab-rom.mmd` |
 | **#13** | Tier 3 | Col 1: Onboarding Enterprise KMS | `FLOW-1C` | Onboarding Enterprise KMS | 18 | `3458764688417722778` | `X: -2925, Y: 6555` | [13-software-3-flow-1c-bunker-onboarding-kms.md](13-software-3-flow-1c-bunker-onboarding-kms.md) | `flow-1c-bunker-onboarding-kms.mmd` |
 | **#14** | Tier 3 | Col 2: Multi-Camera 4K & Suite Tattica | `FLOW-2C` | Catalogo 3D, Multi-Camera 4K, Suite Tattica & Stress Muscolare | 23 | `3458764688417722783` | `X: -108, Y: 6235.66` | [14-software-3-flow-2c-multi-staff-cockpit.md](14-software-3-flow-2c-multi-staff-cockpit.md) | `flow-2c-multi-staff-cockpit.mmd` |
 | **#15** | Tier 3 | Col 3: Programmazione Annuale RAG & Readiness | `FLOW-3C` | Programmazione Annuale, Chatbot 24/7 & Readiness Section | 17 | `3458764688417722788` | `X: 3056.26, Y: 8034.66` | [15-software-3-flow-3c-team-microcycle-mdx.md](15-software-3-flow-3c-team-microcycle-mdx.md) | `flow-3c-team-microcycle-mdx.mmd` |
 | **#16** | Tier 3 | Col 4: Data Analisi - AI 100%, Multi-Device & Role-Based RAG | `FLOW-4C` | Data Analisi: AI 100%, Multi-Device, Full Export & Role-Based RAG | 17 (Mermaid) / 19 (Miro) | `3458764688417722792` | `X: 4768.26, Y: 8032.48` | [16-software-3-flow-4c-gps-adaptive-zscore.md](16-software-3-flow-4c-gps-adaptive-zscore.md) | `flow-4c-gps-adaptive-zscore.mmd` |
-| **#17** | Tier 3 | Col 5: Tactical Vision & Voronoi CV | `FLOW-5C` | Tactical Vision & Voronoi CV | 16 | `3458764688417722803` | `X: 6464, Y: 6566.88` | [17-software-3-flow-5c-tactical-video-cv.md](17-software-3-flow-5c-tactical-video-cv.md) | `flow-5c-tactical-video-cv.mmd` |
+| **#17** | Tier 3 | Col 5: Libreria Fonti - AI Studio, Chatbot & RAG Sync | `FLOW-5C` | Libreria Fonti: AI Studio, Chatbot Scientifico, Bollettino & RAG Sync | 16 (Mermaid) / 18 (Miro) | `3458764688417722803` | `X: 6645.26, Y: 8033.79` | [17-software-3-flow-5c-tactical-video-cv.md](17-software-3-flow-5c-tactical-video-cv.md) | `flow-5c-tactical-video-cv.mmd` |
 | **#18** | Tier 3 | Col 6: Medical Room EMR & Silo 3 Lake | `FLOW-6C` | Medical Room EMR & Silo 3 Lake | 18 | `3458764688417722810` | `X: 8353, Y: 6573.44` | [18-software-3-flow-6c-medical-room-research-silo3.md](18-software-3-flow-6c-medical-room-research-silo3.md) | `flow-6c-medical-room-research-silo3.mmd` |
 
 ---
@@ -177,7 +177,45 @@ In conformità alla "Legge della Data Analisi" (approvata in `ORIGINAL_REQUEST.m
 
 ---
 
-## 5. Topologia Spaziale della Board Miro (ZONA 4)
+## 5. Dettaglio Specifiche Colonna 5: Libreria Fonti (Tiers 1, 2, 3)
+
+In conformità alla "Legge della Libreria Fonti" (approvata in data 12 Novembre 2026), i tre flowchart di Colonna 5 (#05, #11, #17) rispettano rigorosamente le seguenti specifiche funzionali vincolanti:
+
+### #05 [ FLOW-5A ] Tier 1 (B2C Casual) • Libreria Fonti: Archivio Open Access & Read-Only
+- **Badge Shape ID:** `3458764688417722718` | **Coordinate:** `X: 6048, Y: 465` | **Nodi ISO:** 15
+- **Caratteristiche Chiave:**
+  - **Archivio e ricerca base:** accesso alla lista della Libreria Fonti con ricerca tramite barra testuale apposita;
+  - **Sistema di filtraggio completo:** presenza di filtri avanzati per tutte le categorie di ricerca (sport, distretto muscolare, patologia, tipologia di studio, anno di pubblicazione);
+  - **Accesso esclusivo Open Access:** consultazione di tutti gli studi scientifici pubblici e gratuiti (Open Access);
+  - **Esclusione contenuti Premium e proprietari:** nessun accesso alle schede di sintesi degli studi protetti/a pagamento ne alle ricerche inedite pubblicate dalla community professionale;
+  - **Blocco download e Area Studio:** consultazione in sola lettura; impossibilita di salvare gli studi in locale/offline, di modificarli o di accedere agli strumenti dell'Area Studio;
+  - **NO AI:** nessun modello di intelligenza artificiale per sintesi o traduzione;
+  - **NO RAG:** nessun collegamento semantico o vettoriale.
+
+### #11 [ FLOW-5B ] Tier 2 (Pro P.IVA) • Libreria Fonti: Sintesi Premium, Area Studio Locale & Commissione Scientifica
+- **Badge Shape ID:** `3458764688417722746` | **Coordinate:** `X: 6230.02, Y: 3598.51` | **Nodi ISO:** 16
+- **Caratteristiche Chiave:**
+  - **Archivio e ricerca avanzata:** accesso completo alla Libreria Fonti tramite barra di ricerca e filtri per tutte le categorie disponibili, con possibilita di salvare gli articoli nella sezione Preferiti;
+  - **Accesso esteso (Open Access + Schede di Sintesi Studi Premium):** consultazione integrale di tutti gli studi gratuiti (Open Access) e accesso gratuito alle Schede Tecniche di Sintesi (metodologia, risultati, applicazioni pratiche e link DOI ufficiale) relative agli studi internazionali a pagamento/privati, nel pieno rispetto del copyright;
+  - **Richiesta integrazione e pubblicazione proprie ricerche:** possibilita di segnalare studi mancanti tramite codice DOI/PMID per aggiornare il database e facolta di inviare proprie ricerche, tesi o casi studio inediti (soggetti a pre-verifica e approvazione da parte di un'apposita Commissione Scientifica prima della pubblicazione);
+  - **Area Studio digitale in-app (Offline/Locale):** possibilita di salvare gli studi disponibili (o di caricare PDF propri ad uso personale) dentro un'apposita Area Studio interna all'app per lavorarci in locale con strumenti di studio digitali (evidenziatore, matita, gomma, note testuali) e creare manualmente mappe concettuali, schemi e riassunti per massimizzare l'apprendimento (dati persistiti in IndexedDB, zero costi cloud);
+  - **NO AI:** nessun modello di generazione automatica o chatbot attivo nella Libreria Fonti in questa fascia;
+  - **NO RAG.**
+
+### #17 [ FLOW-5C ] Tier 3 (Elite Teams) • Libreria Fonti: AI Studio, Chatbot Scientifico, Bollettino & RAG Sync
+- **Badge Shape ID:** `3458764688417722803` | **Coordinate:** `X: 6645.26, Y: 8033.79` | **Nodi ISO:** 16 (Mermaid) / 18 (Miro)
+- **Caratteristiche Chiave:**
+  - **Archivio e ricerca avanzata:** accesso completo alla Libreria Fonti tramite barra di ricerca, filtri per tutte le categorie, indicatori del livello di qualita scientifica (CEBM Oxford da I a V, Quartili ISI JCR Q1-Q4) e salvataggio in cartelle Preferiti del team;
+  - **Accesso totale (Open Access + Schede di Sintesi Studi Premium):** consultazione integrale degli studi Open Access e accesso completo gratuito alle Schede Tecniche di Sintesi degli studi privati/a pagamento;
+  - **Aggiornamento database e pubblicazione ricerche:** possibilita di integrare ricerche mancanti e di pubblicare studi o report proprietari del club (previa revisione della Commissione Scientifica);
+  - **Bollettino settimanale e aggiornamento continuo:** ricezione di news riassuntive settimanali sulle ultime pubblicazioni accademiche (filtrate per i propri sport di interesse) e aggiornamento continuo e gratuito sulle nuove evidenze scientifiche;
+  - **Sintesi, traduzione e spiegazione tramite AI:** integrazione dell'intelligenza artificiale proprietaria T7 (alla massima potenza di calcolo, 100%) per generare riassunti immediati, traduzioni tecniche e spiegazioni semplificate degli studi, velocizzando la lettura e l'approfondimento;
+  - **Area Studio potenziata da AI e Chatbot integrato:** accesso a tutte le funzioni di salvataggio in locale, annotazione digitale (evidenziatore, gomma, matita) e creazione di mappe concettuali, schemi e riassunti, potenziate da un Chatbot AI dedicato che risponde alle domande sul singolo studio e aiuta a generare automaticamente gli schemi concettuali;
+  - **Integrazione diretta con il modulo RAG (1-Click Sync):** possibilita di inviare con un clic qualsiasi studio scientifico o proprio riassunto dell'Area Studio direttamente al database RAG del team (Bunker Silo 2 KMS), connettendo la ricerca teorica alla pianificazione pratica (Programmazione #15) e all'analisi dati (Data Analisi #16).
+
+---
+
+## 6. Topologia Spaziale della Board Miro (ZONA 4)
 
 La Zona 4 si articola su una griglia ortogonale rigorosa:
 
@@ -191,12 +229,12 @@ La Zona 4 si articola su una griglia ortogonale rigorosa:
 2. **Colonna 2 ($X \approx -108 \dots 251$):** 3D Catalog, Kinematics & Computer Vision (Three.js Draco, Optical Bar Tracking, Multi-Camera 4K).
 3. **Colonna 3 ($X \approx 2459 \dots 3056$):** Periodization, Triage & Workout Execution (Thin Player IndexedDB, Macrocicli DUP/Triage 119, Microciclo MD-X Bunker Silo 2).
 4. **Colonna 4 ($X \approx 4171 \dots 4768$):** Data Analisi (Revisione Biomeccanica NO AI, Data Analisi AI 70% & Wearable T7, Data Analisi AI 100% & Role-Based RAG).
-5. **Colonna 5 ($X \approx 6048 \dots 6464$):** Social Community, Marketplace & Tactical Vision (Fan-Out on Write, Consulenze Pro WebRTC, Tactical Vision Voronoi CV).
+5. **Colonna 5 ($X \approx 6048 \dots 6645$):** Libreria Fonti (Archivio Open Access Read-Only, Sintesi Premium & Area Studio Locale IndexedDB, AI Studio 100%, Chatbot & RAG Sync Bunker Silo 2).
 6. **Colonna 6 ($X \approx 7937 \dots 8353$):** Rehab ROM, Clinical Desk-Care & Research Lake (Desk-Care Ergonomia, Goniometro Markerless AI, Medical Room EMR & Silo 3 Research Warehouse).
 
 ---
 
-## 6. Norme di Manutenzione del Registro
+## 7. Norme di Manutenzione del Registro
 
 1. **Invarianza degli ID Miro:** Gli Shape ID riportati sono identificativi univoci generati dalle API Miro e non devono essere modificati a meno di ricreazione esplicita del badge.
 2. **Aggiornamento Sincrono:** Qualsiasi spostamento geometrico di un badge sulla board Miro impone l'aggiornamento immediato delle coordinate $(X, Y)$ in questo registro e nella Sezione 1 del corrispondente file `.md`.

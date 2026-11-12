@@ -28,9 +28,9 @@ Proteggere la struttura commerciale e tecnica dell'applicazione (3 Piani di Abbo
 
 ### 2. Vincoli invarianti dei 3 Piani di Abbonamento (RBAC & Feature Gating)
 *(I dettagli operativi dei singoli flussi risiedono nel registro master e nei rispettivi `.md` di capitolato.)*
-- **Tier 1 – Base (Consumer):** Catalogo 3D sola lettura (zero upload/editing video), Programmazione pre-confezionata (no Data Analisi, export PDF fisso), Data Analisi solo angoli principali (no AI, no RAG, no wearable), Social Movely B2C.
-- **Tier 2 – Pro (Partita IVA, Coach, Fisio):** Catalogo personalizzato max 1080p, editing e condivisione 1:1 (no broadcast), Programmazione anamnestica fino a 6 mesi con multi-export e fonti scientifiche (no RAG, no Data Analisi), Data Analisi con AI ridotta (70%) + soli wearable proprietari T7 + DB Data Analisi separato dal Catalogo.
-- **Tier 3 – Elite Club & Ricerca:** Sblocca i vincoli di fascia: video 4K, broadcast e analisi stress muscolare; AI alla massima potenza (100%); qualsiasi wearable/file esterno; integrazione totale Data Analisi <-> Programmazione <-> Catalogo (inclusa Readiness Section: PVT, HRV, rischio infortuni, Z-score); RAG privato multi-formato isolato per ruolo; Bunker KMS (Silo 2) e Research Hub (Silo 3 solo opt-in).
+- **Tier 1 – Base (Consumer):** Catalogo 3D sola lettura (zero upload/editing video), Programmazione pre-confezionata (no Data Analisi, export PDF fisso), Data Analisi solo angoli principali (no AI, no RAG, no wearable), Libreria Fonti Open Access in sola lettura con filtri (no sintesi premium, no area studio, no AI).
+- **Tier 2 – Pro (Partita IVA, Coach, Fisio):** Catalogo personalizzato max 1080p, editing e condivisione 1:1 (no broadcast), Programmazione anamnestica fino a 6 mesi con multi-export e fonti scientifiche (no RAG, no Data Analisi), Data Analisi con AI ridotta (70%) + soli wearable proprietari T7 + DB Data Analisi separato dal Catalogo, Libreria Fonti con schede sintesi premium, invio proposte/tesi alla Commissione Scientifica e Area Studio Digitale in locale IndexedDB (no AI, no RAG).
+- **Tier 3 – Elite Club & Ricerca:** Sblocca i vincoli di fascia: video 4K, broadcast e analisi stress muscolare; AI alla massima potenza (100%); qualsiasi wearable/file esterno; integrazione totale Data Analisi <-> Programmazione <-> Catalogo (inclusa Readiness Section: PVT, HRV, rischio infortuni, Z-score); Libreria Fonti con AI 100% (sintesi/traduzione), indicatori CEBM/JCR, Bollettino Settimanale per sport, Chatbot documentale 24/7 in Area Studio e sincronizzazione 1-Click con il Bunker RAG (Silo 2 KMS); Bunker KMS e Research Hub (Silo 3 solo opt-in).
 
 ### 3. Cascata Funzionale Top-Down (Riga 1 -> Riga 2 -> Riga 3 su Miro)
 - **Modifiche Tier 1:** scendono automaticamente su Tier 2 e Tier 3.
@@ -48,7 +48,7 @@ Inventario completo (ID Miro, coordinate X/Y, `.mmd` e `.md`) nel registro unico
 | **Col 2: Catalogo Esercizi & CV** | #02 `FLOW-2A` Catalogo 3D & Avatar | #08 `FLOW-2B` Video 1080p, Speed & AI Coach | #14 `FLOW-2C` Multi-Camera 4K & Stress Muscolare |
 | **Col 3: Programmazione & Readiness** | #03 `FLOW-3A` Schede Base & Export PDF | #09 `FLOW-3B` Anamnesi 6M, RTP & Fonti AI | #15 `FLOW-3C` Piano Annuale RAG & Readiness Section |
 | **Col 4: Data Analisi** | #04 `FLOW-4A` Angoli Principali NO AI | #10 `FLOW-4B` AI 70%, Live Cam DB Separato & Wearable T7 | #16 `FLOW-4C` AI 100%, Any-Device, Full Export & Role-Based RAG |
-| **Col 5: Social & Tactical Vision** | #05 `FLOW-5A` Together Social B2C | #11 `FLOW-5B` Together Pro WebRTC | #17 `FLOW-5C` Tactical Voronoi CV |
+| **Col 5: Libreria Fonti** | #05 `FLOW-5A` Open Access & Read-Only | #11 `FLOW-5B` Sintesi Premium, Area Studio & Commissione | #17 `FLOW-5C` AI Studio, Chatbot, Bollettino & RAG Sync |
 | **Col 6: Rehab ROM & Desk-Care** | #06 `FLOW-6A` Movely Desk-Care | #12 `FLOW-6B` Physio Rehab ROM/VAS | #18 `FLOW-6C` Medical Room Silo 3 Lake |
 
 ### 5. Glossario Vivente, Capitolati a Doppio Livello & Manutenzione Continua

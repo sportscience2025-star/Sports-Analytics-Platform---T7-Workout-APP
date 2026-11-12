@@ -7,45 +7,48 @@ flowchart TD
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 1 (B2C CONSUMER) - FLOW 5A: TOGETHER SOCIAL COMMUNITY & COACH MARKETPLACE"]
+    TITLE["SOFTWARE 1 (B2C CONSUMER) - FLOW 5A: LIBRERIA FONTI - ARCHIVIO OPEN ACCESS, FILTRI AVANZATI & READ-ONLY"]
 
-    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (SOCIAL & MARKETPLACE)"]
-        START(["Inizio: Accesso Sezione Together"]):::startend
-        FEED_VIEW["Feed Community: Schede condivise, Badge PR amici, Like/Commenti"]:::client
-        SHARE_PR_MODAL["Modale Condividi Record: 'Ho superato il mio PR di Squat!'"]:::client
-        MARKETPLACE_BROWSE["Tab Marketplace Coach: Esplora Personal Trainer certificati per specialita"]:::client
-        HIRE_COACH_BTN["Pulsante 'Invia Richiesta Coaching a Professionista'"]:::client
-        CONFIRM_MODAL["Modale Conferma Inoltro Richiesta a Coach"]:::client
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (PORTALE LIBRERIA FONTI & LETTORE IN-APP)"]
+        START(["Inizio: Accesso Sezione Libreria Fonti"]):::startend
+        SEARCH_BAR["Digitazione Parola Chiave o Argomento nella Barra di Ricerca Testuale"]:::client
+        APPLY_FILTERS["Selezione Filtri Avanzati (Sport, Distretto Muscolare, Patologia, Tipo Studio, Anno)"]:::client
+        SELECT_STUDY["Selezione Articolo Scientifico dall'Elenco Risultati"]:::client
+        DEC_IS_OA{"Lo Studio Selezionato e Open Access Gratuito?"}:::decision
+        ALERT_LOCKED["Avviso di Blocco: 'Studio Premium: Sintesi e Dettagli Riservati a Tier 2 e 3'"]:::error
+        RENDER_READER["Apertura Lettore PDF In-App in Sola Lettura (Download, Copia e Stampa Disabilitati)"]:::client
     end
 
-    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & SOCIAL ROUTING"]
-        GW_FEED_REQ["Ricezione GET /api/v1/social/feed"]:::gateway
-        GW_SHARE_POST["Ricezione POST /api/v1/social/posts"]:::gateway
-        GW_COACH_LEAD["Ricezione POST /api/v1/marketplace/hire-request"]:::gateway
-        GW_SPAM_CHECK{"Anti-Spam & Content Moderation Passata?"}:::decision
-        GW_BLOCK["Blocco Richiesta HTTP 422 Unprocessable"]:::error
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & RBAC CONTENT SHIELD"]
+        GW_QUERY["Ricezione Query: GET /api/v1/sources/open-access/search"]:::gateway
+        GW_POLICY_CHECK{"Validazione Policy Tier 1 (Enforce: Solo Open Access, Blocco Export Binary)?"}:::decision
+        GW_BLOCK["HTTP 403 Forbidden: Accesso a Studi Privati o Strumenti Studio Negato in Tier 1"]:::error
+        GW_STREAM_REQ["Richiesta Stream Protetto: GET /api/v1/sources/papers/{id}/stream"]:::gateway
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (SOCIAL & MATCHING ENGINE)"]
-        SRV_FEED_ALG["Algoritmo Ranking Feed: Amici, Attivita Recenti, Traguardi"]:::server
-        SRV_MATCH["Matching Engine: Geolocalizzazione & Specialita Coach"]:::server
-        SRV_DISPATCH["Notifica Push & Email al Coach Selezionato"]:::server
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (LITERATURE INDEXING & STREAMING ENGINE)"]
+        SRV_TAXONOMY_MATCH["Matching Tassonomico MeSH per Sport, Distretti Anatomici e Patologie"]:::server
+        SRV_SEARCH_EXEC["Esecuzione Query su Indice Accademico Open Access (PMC, DOAJ, bioRxiv)"]:::server
+        SRV_WATERMARK_STREAM["Generazione Stream PDF In-Memory con Watermark Dinamico Anti-Copia"]:::server
     end
 
-    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (SOCIAL & MARKETPLACE RELATIONAL)"]
-        DB_POSTS[("Scrittura/Lettura Silo 1: social_posts, social_likes, comments")]:::db
-        DB_LEADS[("Creazione Record Lead in Silo 1: coaching_leads (Link Atleta -> Coach)")]:::db
-        END_INTERACTION(["Fine: Post Condiviso o Richiesta Inviata al Coach"]):::startend
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (PUBLIC LITERATURE REPOSITORY)"]
+        DB_FETCH_PAPERS[("Query Silo 1: Tabella open_access_papers & research_taxonomies")]:::db
+        END_FLOW(["Fine: Consultazione Studio Open Access Conclusa (Zero Download / Zero Area Studio)"]):::startend
     end
 
-    %% Flussi
-    START --> FEED_VIEW
-    FEED_VIEW --> GW_FEED_REQ --> SRV_FEED_ALG --> DB_POSTS --> FEED_VIEW
-
-    FEED_VIEW --> SHARE_PR_MODAL --> GW_SHARE_POST
-    GW_SHARE_POST --> GW_SPAM_CHECK
-    GW_SPAM_CHECK -- Flag Spam --> GW_BLOCK
-    GW_SPAM_CHECK -- Approvato --> DB_POSTS --> FEED_VIEW
-
-    FEED_VIEW --> MARKETPLACE_BROWSE --> HIRE_COACH_BTN --> CONFIRM_MODAL
-    CONFIRM_MODAL --> GW_COACH_LEAD --> SRV_MATCH --> DB_LEADS --> SRV_DISPATCH --> END_INTERACTION
+    %% Connessioni di flusso
+    START --> SEARCH_BAR --> APPLY_FILTERS
+    APPLY_FILTERS --> GW_QUERY
+    GW_QUERY --> SRV_TAXONOMY_MATCH
+    SRV_TAXONOMY_MATCH --> SRV_SEARCH_EXEC
+    SRV_SEARCH_EXEC --> DB_FETCH_PAPERS
+    DB_FETCH_PAPERS --> SELECT_STUDY
+    SELECT_STUDY --> DEC_IS_OA
+    DEC_IS_OA -- No / Studio Premium --> ALERT_LOCKED --> GW_BLOCK
+    DEC_IS_OA -- Si / Studio Open Access --> GW_STREAM_REQ
+    GW_STREAM_REQ --> GW_POLICY_CHECK
+    GW_POLICY_CHECK -- Violazione / Richiesta Download --> GW_BLOCK
+    GW_POLICY_CHECK -- Conforme Sola Lettura --> SRV_WATERMARK_STREAM
+    SRV_WATERMARK_STREAM --> RENDER_READER
+    RENDER_READER --> END_FLOW

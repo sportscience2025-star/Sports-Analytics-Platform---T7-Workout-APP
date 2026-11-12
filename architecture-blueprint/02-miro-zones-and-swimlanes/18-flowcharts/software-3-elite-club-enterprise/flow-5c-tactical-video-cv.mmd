@@ -1,52 +1,57 @@
 flowchart TD
-    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
-    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
-    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
-    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef startend fill:#4338ca,stroke:#818cf8,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0e7ff,stroke:#6366f1,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#fae8ff,stroke:#d946ef,stroke-width:1px,color:#0f172a;
     classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 5C: CONFIDENTIAL TACTICAL VIDEO COMPUTER VISION (PITCH ANALYSIS)"]
+    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 5C: LIBRERIA FONTI - AI STUDIO, CHATBOT SCIENTIFICO, BOLLETTINO & RAG SYNC"]
 
-    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (TACTICAL VIDEO SUITE)"]
-        START(["Inizio: Caricamento Video Tattico Gara / Allenamento"]):::startend
-        PLAYER_CANVAS["Player Video Multi-Camera Sincronizzato con Bounding Box Giocatori"]:::client
-        METRIC_OVERLAY["Sovrimpressione Metriche Tattiche: Compattezza Squadra (m), Linee di Pressione, Baricentro"]:::client
-        TAG_DRAWER["Strumento Tag Eventi: Transizioni Positive/Negative, Recuperi Palla, Duelli"]:::client
-        EXPORT_REPORT_BTN["Pulsante 'Genera Dossier Tattico per lo Staff Tecnico'"]:::client
-        CONFIDENTIAL_LOCK["Watermark Sicurezza Dinamico: 'STRETTAMENTE RISERVATO - NON DIFFONDIBILE'"]:::error
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (ENTERPRISE RESEARCH HUB & AI CHATBOT SUITE)"]
+        START(["Inizio: Accesso Elite alla Libreria Fonti"]):::startend
+        ELITE_SEARCH["Ricerca Avanzata con Indicatori Qualita Scientifica (CEBM I-V, Quartili Q1-Q4) & Cartelle Team"]:::client
+        DEC_FEATURE_BRANCH{"Selezione Funzione Specialistica Tier 3?"}:::decision
+        VIEW_BULLETIN["Consultazione Bollettino Settimanale Accademico Personalizzato per gli Sport del Club"]:::client
+        AI_TOOLS_BAR["Pannello AI Specialistica: Sintesi Immediata, Traduzione Tecnica & Spiegazione Semplificata"]:::client
+        AI_STUDY_SUITE["Area Studio Potenziata da AI: Note Digitali + Chatbot Integrato sul Singolo Studio + Schemi Concettuali Automatici"]:::client
+        SYNC_RAG_BTN["Pulsante 1-Click: 'Invia Studio e Schemi al RAG del Team (Bunker Silo 2)'"]:::client
+        NOTIFY_SYNC["Notifica di Conferma: 'Conoscenza Integrata nel RAG: Disponibile per Programmazione e Data Analisi'"]:::client
     end
 
-    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & SECURE STREAMING"]
-        GW_VIDEO_UPLOAD["Ricezione POST /api/v1/club/video/upload-tactical"]:::gateway
-        GW_CHECK_INTERNAL{"Richiesta Proviene da Rete Interna Protetta del Club?"}:::decision
-        GW_BLOCKED["Accesso Negato: Funzionalita Video Riservata e Senza Integrazioni Social"]:::error
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & SECURE ENTERPRISE ROUTER"]
+        GW_INGEST_ENTERPRISE["Ricezione Chiamata Protetta mTLS: /api/v1/enterprise/literature/*"]:::gateway
+        GW_AI_GATE["Gateway di Instradamento ad Alta Priorita verso Cluster Inferenza AI Proprietari T7"]:::gateway
+        GW_RAG_GATE["Controllo Convalida e Permessi Club: POST /api/v1/enterprise/rag/sync-scientific-source"]:::gateway
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (COMPUTER VISION & TACTICS ENGINE)"]
-        SRV_CV_DETECTION["Computer Vision YOLO & Pose Estimation: Rilevamento Coordinate (X,Y) Giocatori sul Campo"]:::server
-        SRV_HOMOGRAPHY["Trasformazione Omografica: Proiezione da Vista Prospettica Telecamera a Piano 2D del Campo"]:::server
-        SRV_VORONOI["Calcolo Diagrammi di Voronoi: Spazi Dominati e Superficie Utile Occupata"]:::server
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (SCIENTIFIC AI REASONING & RAG KNOWLEDGE PIPELINE)"]
+        SRV_BULLETIN_ENGINE["Motore Schedulatore Bollettino Settimanale Basato sulle Discipline del Roster"]:::server
+        SRV_AI_REASONING["Cluster AI Proprietari T7 (100% Potenza): Sintesi Accademica, Traduzione Tecnica e Chatbot Documentale"]:::server
+        SRV_RAG_PIPELINE["Pipeline Ingestion Vettoriale: Chunking, Tokenizzazione, Embedding pgvector & Cross-Linking"]:::server
     end
 
-    subgraph LANE_DB["CORSIA 4: DATABASE SILO 2 (BUNKER CLUB KMS ENCLAVE)"]
-        DB_WRITE_COORDS[("Salvataggio Coordinate Tracciamento sul Campo in Silo 2 (tactical_coordinates)")]:::db
-        DB_WRITE_TAGS[("Salvataggio Tag Tattici e Clip Correlate in Silo 2 (match_tactical_events)")]:::db
-        END_TACTICAL_DONE(["Fine: Analisi Tattico-Biomeccanica Archiviata nel Bunker"]):::startend
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 2 (ENCRYPTED CLUB BUNKER KMS & RAG REPOSITORY)"]
+        DB_FETCH_BULLETIN[("Archivio Silo 2: Tabella weekly_scientific_bulletins")]:::db
+        DB_BUNKER_RAG[("Bunker KMS Silo 2: Schema team_scientific_rag (Indici Vettoriali pgvector)")]:::db
+        DB_INTERCONNECT[("Connessione Attiva con Motori RAG di Programmazione (#15) e Data Analisi (#16)")]:::db
+        END_FLOW(["Fine: Conoscenza Scientifica Trasformata in Vantaggio Tattico e Metodologico"]):::startend
     end
 
-    %% Flussi
-    START --> GW_VIDEO_UPLOAD --> GW_CHECK_INTERNAL
-    GW_CHECK_INTERNAL -- Esterna Non Protetta --> GW_BLOCKED
-    GW_CHECK_INTERNAL -- Rete Protetta Club --> SRV_CV_DETECTION
+    %% Connessioni di flusso
+    START --> ELITE_SEARCH --> DEC_FEATURE_BRANCH
+    DEC_FEATURE_BRANCH -- Bollettino Settimanale --> GW_INGEST_ENTERPRISE
+    DEC_FEATURE_BRANCH -- Sintesi, Traduzione & Chatbot --> AI_TOOLS_BAR --> GW_AI_GATE
+    DEC_FEATURE_BRANCH -- Area Studio AI & Mappe Concettuali --> AI_STUDY_SUITE --> SYNC_RAG_BTN
 
-    SRV_CV_DETECTION --> SRV_HOMOGRAPHY --> SRV_VORONOI
-    SRV_VORONOI --> DB_WRITE_COORDS
-    SRV_VORONOI --> DB_WRITE_TAGS
+    GW_INGEST_ENTERPRISE --> SRV_BULLETIN_ENGINE --> DB_FETCH_BULLETIN --> VIEW_BULLETIN --> END_FLOW
 
-    DB_WRITE_COORDS --> PLAYER_CANVAS --> METRIC_OVERLAY
-    DB_WRITE_TAGS --> TAG_DRAWER --> EXPORT_REPORT_BTN
-    CONFIDENTIAL_LOCK -. Sempre Attivo su .-> PLAYER_CANVAS
+    GW_AI_GATE --> SRV_AI_REASONING
+    SRV_AI_REASONING --> AI_STUDY_SUITE
 
-    EXPORT_REPORT_BTN --> END_TACTICAL_DONE
+    SYNC_RAG_BTN --> GW_RAG_GATE
+    GW_RAG_GATE --> SRV_RAG_PIPELINE
+    SRV_RAG_PIPELINE --> DB_BUNKER_RAG
+    DB_BUNKER_RAG --> DB_INTERCONNECT
+    DB_INTERCONNECT --> NOTIFY_SYNC --> END_FLOW

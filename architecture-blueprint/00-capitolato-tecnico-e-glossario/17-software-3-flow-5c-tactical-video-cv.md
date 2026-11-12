@@ -1,201 +1,180 @@
-# Capitolato Tecnico: Flow 5C – Confidential Tactical Video & Voronoi Computer Vision (T7 Elite Pro Teams)
+# Capitolato Tecnico: Flow 5C – Libreria Fonti: AI Studio, Chatbot Scientifico, Bollettino & RAG Sync (T7 Elite Pro Teams)
 
 ## 1. Identificativo & Titolo Ufficiale
-- **Badge Miro Board:** `#17` (Posizione: `X: 6464, Y: 6566.88`, Miro Shape ID: `3458764688417722803`)
+- **Badge Miro Board:** `#17` (Posizione: `X: 6645.26, Y: 8033.79`, Miro Shape ID: `3458764688417722803`)
 - **Codice Univoco:** `FLOW-5C`
-- **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 5C: TACTICAL VISION, COMPUTER VISION SUL CAMPO & DIAGRAMMI DI VORONOI
-- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 5: Tactical Vision & Computer Vision)
-- **Diagramma Sorgente:** `architecture-blueprint/02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-5c-tactical-video-cv.mmd`
-- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Tactical Vision Computer Vision](00-GLOSSARIO-TERMINI-TECNICI.md#tactical-vision-omografia-prospettica-2d-da-telecamera-campo), [Omografia Prospettica 2D](00-GLOSSARIO-TERMINI-TECNICI.md#tactical-vision-omografia-prospettica-2d-da-telecamera-campo), [Diagrammi di Voronoi Campo](00-GLOSSARIO-TERMINI-TECNICI.md#diagrammi-di-voronoi-spazio-di-controllo-pitch), [Modello YOLOv8 Object Detection](00-GLOSSARIO-TERMINI-TECNICI.md#yolov8-deep-learning-object-detection-da-campo), [Zero Social Leakage](00-GLOSSARIO-TERMINI-TECNICI.md#3-silos-database-multi-tenant-data-isolation), [Baricentro Squadra](00-GLOSSARIO-TERMINI-TECNICI.md#baricentro-di-squadra-ampiezza-profondit-tattica)).
+- **Titolo Formale:** SOFTWARE 3 (B2B ENTERPRISE) - FLOW 5C: LIBRERIA FONTI - AI STUDIO, CHATBOT SCIENTIFICO, BOLLETTINO & RAG SYNC
+- **Board Miro Online:** `uXjVEbo6L2o=` (Zona 4, Riga 3: High-Level Pro Teams & Enterprise, Colonna 5: Libreria Fonti)
+- **Diagramma Sorgente:** [flow-5c-tactical-video-cv.mmd](../02-miro-zones-and-swimlanes/18-flowcharts/software-3-elite-club-enterprise/flow-5c-tactical-video-cv.mmd)
+- **Riferimento Glossario:** [Glossario Tecnico Vivente](00-GLOSSARIO-TERMINI-TECNICI.md) (Voci: [Chatbot AI Studi Scientifici](00-GLOSSARIO-TERMINI-TECNICI.md#chatbot-ai-studi-scientifici-assistente-documentale-247), [Bollettino Settimanale Accademico](00-GLOSSARIO-TERMINI-TECNICI.md#bollettino-settimanale-accademico-feed-tematico-sportivo), [RAG Sync Libreria Fonti](00-GLOSSARIO-TERMINI-TECNICI.md#rag-sync-libreria-fonti-sincronizzazione-bunker-silo-2), [Indicatori Evidenza CEBM](00-GLOSSARIO-TERMINI-TECNICI.md#indicatori-di-qualita-scientifica-cebm-oxford-e-quartili-jcr), [AI Specialistica 100%](00-GLOSSARIO-TERMINI-TECNICI.md#potenza-di-calcolo-ai-100-tier-3)).
 
 ---
-
 
 ## 2. Obiettivo di Business & Target Utente
 
-### Guida Pratica per Non Tecnici: Cos'è questo modulo per un umano?
-Nel calcio moderno le partite si vincono o si perdono per questione di spazi: una squadra che resta compatta e non lascia buchi tra centrocampo e difesa è quasi impossibile da battere. Gli allenatori passano ore e ore a rivedere i video delle partite, disegnando frecce a mano sui filmati.  
-**Tactical Vision di T7** è l'occhio bionico dell'allenatore:
-- Prende i filmati delle telecamere fisse dello stadio o del centro sportivo;
-- Grazie all'Intelligenza Artificiale (Computer Vision), riconosce all'istante ogni singolo giocatore delle due squadre e la posizione della palla;
-- Schiaccia la prospettiva della telecamera e trasforma il video in una **mappa 2D dall'alto (Bird's Eye View)** perfetta al millimetro;
-- Disegna sul campo i celebri **Poligoni di Voronoi**: colora le zone di campo controllate dalla tua squadra e quelle lasciate agli avversari;
-- Calcola in automatico la **compattezza della squadra** (quanto è corta la squadra tra primo difensore e ultimo attaccante) e il baricentro medio;
-- **Zero Social:** Nessuna immagine o dato di questo modulo può essere condiviso sui social: tutto rimane blindato nel bunker del club per la riunione tecnica prima della partita.
+### Guida Pratica per Non Tecnici: Cos'e questo modulo per un umano?
+Negli staff dei club di Serie A, delle franchigie olimpiche e dei centri sportivi d'elite, il tempo e la risorsa piu scarsa. Gli allenatori, i medici sociali e i responsabili della performance hanno bisogno di sapere all'istante se una nuova metodologia di allenamento o un protocollo di recupero da infortuni e realmente supportato dalla scienza piu recente, senza perdere giornate a tradurre articoli complessi o a sintetizzare testi fitti.  
+**La Libreria Fonti Enterprise di T7** trasforma la scienza accademica in un vantaggio competitivo immediato:
+- **Qualita Scientifica a Colpo d'Occhio:** Ogni studio riporta chiaramente il livello di evidenza scientifica (scala internazionale Oxford CEBM da I a V) e il prestigio della rivista (Quartili Q1-Q4), cosi da distinguere subito le ricerche solide da quelle deboli;
+- **Cartelle Condivise del Team:** Puoi salvare gli articoli in cartelle organizzate per obiettivi dello staff (es. "Prevenzione Lesioni Bicipite Femorale", "Recupero Post-Partita", "Riatletizzazione LCA");
+- **Bollettino Settimanale Tematico:** Ricevi ogni lunedi mattina una rassegna riassuntiva personalizzata che ti segnala tutte le nuove ricerche mondiali pubblicate esclusivamente negli sport praticati dalla tua societa;
+- **Intelligenza Artificiale Specialistica Integrata:** Con un solo click l'AI proprietaria T7 (alla massima potenza di calcolo) crea un **riassunto immediato**, esegue una **traduzione tecnica impeccabile in italiano** e redige una **spiegazione semplificata** comprensibile anche per un atleta senza formazione scientifica;
+- **Area Studio Potenziata con Chatbot 24/7:** Mentre consulti uno studio, hai a fianco un Chatbot intelligente addestrato sul documento a cui puoi chiedere qualsiasi chiarimento (es. "Qual era il tempo di recupero esatto tra le serie nel gruppo B?"), con generazione automatica di mappe mentali e schemi riassuntivi;
+- **Collegamento Diretto con il RAG del Club (1-Click Sync):** Puoi inviare qualsiasi articolo scientifico o riassunto direttamente al cervello digitale della squadra (**Database RAG Bunker Silo 2**). Da quel momento, quando prepari una scheda di allenamento (nella sezione Programmazione `#15`) o analizzi i dati atletici (nella sezione Data Analisi `#16`), l'AI del team consigliera carichi ed esercizi basandosi esattamente sulla scienza che hai approvato.
 
 ### Specifiche di Business & Metriche
-- **Target Utente:** Head Coach, Vice Allenatori e Match Analyst di club professionistici (Tier 3 – B2B Enterprise).
-- **Problema Risolto:** Automatizzare la match analysis tattica in tempo reale eliminando decine di ore di montaggio video manuale e fornendo parametri oggettivi di densità e pressione per battere gli avversari.
+- **Target Utente:** Direttori della Performance, Medici di Squadra, Head Coach e Responsabili Ricerca e Sviluppo di club professionistici (Tier 3 – B2B Enterprise).
+- **Problema Risolto:** Azzerare la distanza tra ricerca scientifica teorica e applicazione pratica sul campo, dotando lo staff di un'assistente AI dedicato e connettendo la letteratura al motore di pianificazione dei carichi.
+- **Metriche Chiave (KPI):**
+  - Tempo di estrazione indicazioni pratiche da un paper: $< 30\text{ secondi}$ tramite sintesi AI;
+  - Aderenza del piano settimanale al Bollettino Scientifico: $+45\%$ nell'adozione di evidenze aggiornate;
+  - Tasso di sincronizzazione RAG: $> 15$ evidenze scientifiche integrate nel Bunker del team per stagione.
 
 ---
-
 
 ## 3. Attori & Architettura a 4 Corsie (Swimlanes)
 
-1. **Corsia 1: Thin Client UI/UX (Tactical Vision Canvas React 18):**
-   - Interfaccia per il Match Analyst: player video sincronizzato con canvas 2D del terreno di gioco, sovrimpressione interattiva dei poligoni di Voronoi, linee di pressing dinamiche, tracciamento del baricentro medio e pannello di esportazione del Dossier Tattico per l'Head Coach.
-2. **Corsia 2: API Gateway & Video Feed Gateway (Envoy Private VPC):**
-   - Connessione protetta con mTLS societario, ricezione flussi video 4K/60fps dalla regia stadio, blocco assoluto di endpoint verso social network esterni e filtro anti-scraping.
-3. **Corsia 3: Server Scatola Nera (Computer Vision & Homography Engine Cloud Run GPU):**
-   - Rete neurale YOLOv8x per object detection (calciatori squadra A, squadra B, arbitro, pallone);
-   - Algoritmo di tracciamento multi-target ByteTrack;
-   - *Matrice di Omografia Prospettica $3 \times 3$ ($H$):* Mappatura dei punti immagine $(u, v)$ sul piano reale del campo $(X, Y)$ in metri;
-   - *Tassellazione di Voronoi:* Calcolo geometrico delle aree di influenza tramite triangolazione di Delaunay;
-   - Sincronizzazione dei vettori di velocità video con i dati dei sensori GPS a 18Hz (`FLOW-4C`).
-4. **Corsia 4: Database Tripartito (Silo 2 - Enclave Bunker PostgreSQL):**
-   - Tabelle `tactical_match_sessions`, `pitch_space_control` e `tactical_dossiers` protette da chiavi Cloud KMS societarie.
+1. **Corsia 1: Thin Client UI/UX (Enterprise Research Hub & AI Suite React 18):**
+   - Interfaccia avanzata con indicatori di qualita evidence-based (badge CEBM Level I-V e quartili ISI Web of Science Q1-Q4);
+   - Pannello di gestione cartelle condivise dello staff societario con permessi basati sui ruoli (Medico, Preparatore, Match Analyst);
+   - Feed integrato del "Bollettino Accademico Settimanale" con notifiche push sulle novita scientifiche;
+   - Dock laterale AI Specialistica: pulsanti ad attivazione immediata (Sintesi Esecutiva, Traduzione Termini Tecnici, Versione per Atleta);
+   - Area Studio AI: canvas interattivo per annotazioni digitali, finestra di conversazione con Chatbot documentale e render SVG automatico di mappe concettuali;
+   - Pulsante d'azione primaria 1-Click: "Invia al RAG del Team (Bunker Silo 2)".
+2. **Corsia 2: API Gateway & Secure Enterprise Router (Envoy mTLS):**
+   - Autenticazione mTLS societaria e certificati crittografici dedicati per ciascun club;
+   - Routing ad alta priorita verso i cluster di inferenza AI proprietari T7 (100% potenza di calcolo senza throttle);
+   - Gateway di isolamento per la sincronizzazione RAG verso il database Bunker Silo 2 protetto da Cloud KMS.
+3. **Corsia 3: Server Scatola Nera (Scientific AI Reasoning & RAG Pipeline Cloud Run GPU):**
+   - Cluster di modelli AI proprietari T7 (Massima capacita di calcolo, inferenza a precisione completa FP16/BF16): estrazione entita biomediche, sintesi densa, traduzione contestualizzata per scienze motorie e Chatbot conversazionale;
+   - Scheduler del Bollettino Settimanale: worker cron che interroga quotidianamente i feed RSS/API accademici, filtra per le discipline associate al roster del club e genera newsletter strutturate;
+   - Pipeline di ingestione RAG: estrazione testo strutturato, chunking semantico a finestra scorrevole (512 token con overlap 10%), calcolo embedding vettoriali ad alta dimensionalita (1536d) e indicizzazione HNSW su PostgreSQL `pgvector`.
+4. **Corsia 4: Database Tripartito (Silo 2 - Encrypted Club Bunker KMS & pgvector):**
+   - Schema `team_scientific_rag` in Silo 2, isolato fisicamente o logicamente con crittografia KMS gestita con chiave del club;
+   - Tabelle `weekly_scientific_bulletins` e `team_study_folders`;
+   - Interconnessione diretta via event-bus con i moduli di Programmazione (#15) e Data Analisi (#16) del medesimo club.
 
 ---
-
 
 ### Sequence Diagram Asincrono del Ciclo di Vita (FLOW-5C)
 
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Analyst as Match Analyst (Tactical Cockpit)
-    participant GW as API Gateway & Anti-Leak (Corsia 2)
-    participant YOLO as Modello YOLOv8 Detection (Corsia 3)
-    participant VORONOI as Omografia & Voronoi Engine (Corsia 3)
-    participant SILO2 as Bunker Database Silo 2 (Corsia 4)
+    actor Staff as Staff Performance Club (Corsia 1)
+    participant GW as API Gateway Enterprise mTLS (Corsia 2)
+    participant AI as Cluster AI Proprietari T7 (Corsia 3)
+    participant RAG_PIPE as Pipeline Vettoriale (Corsia 3)
+    participant BUNKER as Bunker Silo 2 KMS & pgvector (Corsia 4)
+    participant PROG as Sezione Programmazione #15 (Corsia 4)
 
-    Analyst->>GW: POST /api/v1/enterprise/tactical/video-upload (Clip match da tribuna)
-    GW->>YOLO: Streaming frame video
-    YOLO->>YOLO: Rilevamento Real-Time 22 giocatori, arbitri e pallone (mAP@50 > 94%)
-    YOLO-->>VORONOI: Coordinate bounding box (Pixel frame)
-    VORONOI->>VORONOI: Applicazione Omografia Prospettica 2D (Rimappatura a coordinate campo)
-    VORONOI->>VORONOI: Calcolo Tassellatura Voronoi (Aree controllo campo per squadra)
-    VORONOI->>VORONOI: Estrazione Baricentro, Ampiezza e Profondità tattica
-    VORONOI->>SILO2: INSERT tactical_metrics in Silo 2 (Zero Social Leakage)
-    SILO2-->>Analyst: Rendering 2D Lavagna Tattica Zenitale Dinamica
+    Staff->>GW: GET /api/v1/enterprise/literature/bulletin/latest
+    GW->>BUNKER: SELECT da weekly_scientific_bulletins WHERE club_id=X
+    BUNKER-->>GW: Articoli selezionati per le discipline del club
+    GW-->>Staff: Visualizzazione Bollettino Settimanale a schermo
+
+    Staff->>GW: POST /api/v1/enterprise/literature/ai-summarize {paper_id, mode: "executive"}
+    GW->>AI: Trigger inferenza AI 100% potenza (modello proprietario T7)
+    AI-->>GW: Sintesi strutturata, evidenze pratiche e traduzione
+    GW-->>Staff: Visualizzazione sintesi e apertura Chatbot documentale
+
+    Staff->>Staff: Apertura Area Studio AI & Chat con l'assistente sullo studio
+    Staff->>GW: POST /api/v1/enterprise/rag/sync-scientific-source {paper_id, annotations, notes}
+    GW->>RAG_PIPE: Ingestion semantica: chunking + calcolo embedding vettoriali
+    RAG_PIPE->>BUNKER: INSERT INTO team_scientific_rag (vettori, metadati, testo)
+    BUNKER->>PROG: Notifica evento: "Nuova evidenza scientifica disponibile per pianificazione carichi"
+    BUNKER-->>GW: HTTP 201 Created (Knowledge Node ID sincronizzato)
+    GW-->>Staff: Notifica: "Studio integrato con successo nel RAG della squadra"
 ```
 
 ---
 
+## 4. Flusso Passo-Passo
 
-## 4. Flusso Operativo Passo-Passo
+### Livello A: Guida Operativa per Coach e Preparatori
+1. **Consultazione del Bollettino:** Il lunedi mattina il preparatore atletico apre l'app e trova gia pronte le novita della settimana filtrate per i suoi sport (es. basket e pallavolo).
+2. **Lettura con Indicatori di Qualita:** Gli studi mostrano subito il badge del livello di prova (es. "CEBM Livello I - Meta-analisi"): lo staff sa subito se fidarsi ciecamente dei dati.
+3. **Sintesi e Spiegazione AI Istantanea:** Toccando "Sintesi AI", il preparatore ottiene in 10 secondi i punti chiave operativi. Se vuole spiegare l'esercizio a un giocatore straniero, tocca "Versione Atleta" per avere una sintesi chiara ed esente da gergo incomprensibile.
+4. **Chatbot sul Singolo Articolo:** Nell'Area Studio, il medico pone domande dirette all'AI (es. "Quali sono state le complicanze post-operatorie registrate nel campione?"): il Chatbot risponde citando la pagina e il paragrafo esatto del documento.
+5. **Integrazione RAG con 1-Click:** Con un tocco sul pulsante "Invia al RAG del Team", lo studio diventa patrimonio permanente della societa: da quel momento in poi, il Chatbot di Programmazione (`#15`) e l'AI di Data Analisi (`#16`) utilizzeranno quella ricerca per calibrare i carichi della squadra.
 
-### Livello A: User Journey Narrativo (La Storia dell'Utente)
-1. **L'Acquisizione del Video di Gara:** Durante o al termine del primo tempo, il Match Analyst carica il flusso video registrato dalla telecamera tattica posta sulla tribuna dello stadio.
-2. **Il Riconoscimento Istantaneo dei Giocatori:** L'Intelligenza Artificiale scansiona ogni fotogramma: riconosce i calciatori della maglia di casa, gli avversari e il pallone, assegnando a ciascuno una casella di tracciamento che non si perde nemmeno nei contrasti.
-3. **La Trasformazione 2D dall'Alto:** L'app raddrizza la prospettiva angolata dello stadio e genera una perfetta visuale piana del campo, come in un videogioco tattico.
-4. **I Poligoni di Voronoi (Il Controllo dello Spazio):** Sullo schermo compaiono tessere geometriche colorate:
-   - Ogni porzione di campo si colora del colore della squadra il cui giocatore è più vicino a quello spazio;
-   - L'analista vede all'istante che gli avversari hanno lasciato **25 metri di spazio libero tra terzino e difensore centrale**;
-5. **La Compattezza della Squadra:** Un grafico laterale mostra: *"La nostra squadra è lunga 31 metri: compattezza perfetta. Al 38° minuto però il baricentro si è abbassato di 12 metri sotto la pressione avversaria"*.
-6. **La Relazione per l'Allenatore nell'Intervallo:** In 60 secondi il sistema compila un **Dossier Tattico Sintetico** di 3 pagine con le 5 clip video più significative e le mappe di calore, che l'Head Coach può mostrare ai giocatori nello spogliatoio tra primo e secondo tempo per correggere la tattica.
+### Livello B: Deep-Dive Tecnico per Sviluppatori
+- **Contratto di Inferenza AI Specialistica:** `POST /api/v1/enterprise/literature/ai-summarize`
+  - Parametri Body: `paper_id` (string), `output_mode` (`executive_summary` | `technical_translation_it` | `athlete_simplified`), `target_sport` (string).
+  - Cluster di calcolo: GPU NVIDIA H100 su tenant cloud privato T7 con latenza inferenza $< 1200\text{ms}$.
+- **Architettura del Chatbot Documentale:**
+  - Endpoint WebSocket protetto: `wss://api.t7.club/v1/enterprise/literature/chat-session`.
+  - Context Window: 32k token con iniezione del full-text dell'articolo e delle note dell'Area Studio nel prompt di sistema del modello.
+- **Pipeline RAG & Bunker Silo 2:**
+  - Endpoint: `POST /api/v1/enterprise/rag/sync-scientific-source`
+  - Algoritmo di Chunking: parser semantico strutturato (suddivisione per sezioni IMRAD: Introduction, Methods, Results, Discussion).
+  - Vettorizzazione: modello di embedding proprietario `t7-biomedical-embed-1536`.
+  - Salvataggio: tabella `team_scientific_rag` partizionata per `club_id` con indice `ivfflat` o `hnsw` su `embedding vector(1536)`.
+  - Cross-Linking: emissione di evento Kafka/PubSub `scientific_knowledge_ingested` per notificare i cluster decisionali di Programmazione (#15) e Data Analisi (#16).
 
 ---
 
+## 5. Rami Decisionali & Gestione Errori
 
-#### Indicatori di Accettazione Operativa & Clinica (KPI)
-| Metrica / Parametro | Obiettivo Target | Tolleranza Accettabile | Azione Fallback / Allerta |
+### Tabella dei 4 Stati UI (Ciclo di Vita del Componente)
+
+| Stato UI | Condizione Scatenante | Elementi Visibili a Schermo | Azione Utente Permessa |
 | :--- | :--- | :--- | :--- |
-| **Accuratezza YOLOv8** | $\text{mAP@50} \ge 94\%$ | $\ge 90\%$ | Tracciamento inerziale con Filtro di Kalman |
-| **Errore Omografia 2D** | $< 0.35\text{ m}$ errore reale sul campo | $\le 0.75\text{ m}$ | Ricalibrazione manuale dei 4 corner del campo |
-| **Tempo Calcolo Voronoi** | $< 16\text{ ms}$ per frame ($60\text{ FPS}$)| $\le 33\text{ ms}$ ($30\text{ FPS}$) | Calcolo a keyframe alternati ogni 0.25s |
-| **Zero Social Leakage** | $100\%$ confinamento Silo 2 | $0\%$ esportazioni pubbliche | Disabilitazione perentoria condivisione social |
+| **Idle** | Dashboard accademica caricata | Bollettino in primo piano, cartelle team, feed con badge CEBM/JCR | Consultazione bollettino, apertura cartelle, selezione paper |
+| **AI Processing** | Richiesta sintesi o interrogazione Chatbot | Visualizzatore con skeleton dinamico e indicatore di digitazione AI | Possibilita di interrompere la generazione |
+| **Success / Interactive** | Output AI generato, chat attiva, Area Studio pronta | Testo strutturato, chat aperta, mappa concettuale SVG renderizzata | Domande in chat, disegno, salvataggio note, click sync RAG |
+| **Syncing / Confirm** | Click su "Invia al RAG del Team" | Barra di progresso vettorizzazione e notifica verde di successo | Navigazione verso altre sezioni dell'app |
 
 ---
 
+## 6. Contratti Dati JSON & Matrice Errori HTTP
 
-### Livello B: Trattazione Tecnica Nodi Operativi
-
-1. `START` (Acquisizione Flusso Video Gara): Ricezione stream RTSP/HLS 4K da telecamera panoramica fissa posta in tribuna stadio.
-2. `GW_FEED_INGEST` (Ingestion Gateway Privato): Instradamento su rete privata isolata. Verifica assenza di canali verso internet pubblico (No-Social Filter).
-3. `SRV_YOLO_DETECT` (Rilevamento Giocatori & Palla):
-   - Modello YOLOv8x ottimizzato con TensorRT su GPU NVIDIA L4;
-   - Identificazione di 23 classi: 11 squadra casa, 11 squadra ospite, 1 pallone.
-4. `SRV_HOMOGRAPHY_CALC` (Trasformazione Omografica Prospettica 2D):
-   - Riconoscimento automatico delle linee del campo (linee laterali, area di rigore, cerchio di centrocampo);
-   - Calcolo della matrice di omografia planare $H$ tale che:
-     $$\begin{bmatrix} X \\ Y \\ 1 \end{bmatrix} \sim H \begin{bmatrix} u \\ v \\ 1 \end{bmatrix}$$
-   - Conversione delle coordinate pixel in coordinate metriche reali sul terreno $(X, Y) \in [-52.5, 52.5] \times [-34.0, 34.0]\text{ metri}$.
-5. `SRV_VORONOI_TESSELLATION` (Calcolo Diagrammi di Controllo Spazi):
-   - Per ogni giocatore $i$ sul piano $2D$, calcolo della regione di Voronoi:
-     $$V_i = \{ p \in \text{Pitch} \mid d(p, x_i) < d(p, x_j) \, \forall j \neq i \}$$
-   - Calcolo della percentuale di superficie dominata da ciascun team e della densità attorno al pallone.
-6. `SRV_COMPACTNESS & CENTROID` (Calcolo Baricentro e Compattezza):
-   - Baricentro squadra: media aritmetica delle posizioni $(X, Y)$ dei 10 giocatori di movimento;
-   - Compattezza: distanza euclidea tra la linea difensiva media e la linea offensiva media.
-7. `SRV_GPS_SYNC` (Sincronizzazione con Telemetria GPS): Fusione delle coordinate video con i timestamp delle pettorine GPS a 18Hz (`FLOW-4C`) per verificare velocità e potenza metabolica sui corridoi di gioco.
-8. `DB_WRITE_TACTICAL` (Archiviazione Silo 2 Criptata): Salvataggio delle serie temporali dei dati posizionali con chiave Cloud KMS del club.
-9. `TACTICAL_DOSSIER_GEN` (Generazione Dossier Tattico per Head Coach): Esportazione dashboard interattiva con clip sincronizzate e watermark forense per la riunione tecnica.
-
----
-
-
-## 5. Rami Decisionali & Gestione dei 4 Stati UI
-
-| Bivio Decisionale | Condizione Logica | Ramo SÌ / Positivo | Ramo NO / Negativo |
-| :--- | :--- | :--- | :--- |
-| `HOMOGRAPHY_CONFIDENCE` | Riconoscimento linee campo $> 95\%$? | Omografia 2D automatica | Calibrazione manuale su 4 punti d'angolo |
-| `PRESSING_TRIGGER` | Densità difensiva avversaria $> 4$ giocatori in $15\text{ m}$? | Trigger evento "Pressing Alto Rilevato" | Fase di transizione ordinaria |
-| `NO_SOCIAL_GUARD` | Richiesta export verso canali pubblici? | Blocco immediato violazione sicurezza | Consegna autorizzata al solo Head Coach |
-
-### I 4 Stati di Interfaccia Utente (UI States):
-1. **Empty State:** Nessun video caricato per la partita: interfaccia in attesa con schema del campo vuoto e spia di connessione alle telecamere dello stadio.
-2. **Loading State:** Elaborazione della sequenza video con barra di tracking neuronale GPU a 60fps in tempo reale.
-3. **Populated State:** Vista tattica immersiva: campo 2D con tessere di Voronoi colorate in tempo reale, traiettoria della palla con scia al neon e baricentro di squadra evidenziato.
-4. **Error / Fallback State:**
-   - *Nebbia o visibilità ridotta in campo:* Il sistema segnala l'abbassamento di confidenza visiva e commuta automaticamente sui dati dei sensori GPS a 18Hz per mantenere il tracking posizionale.
-
----
-
-
-## 6. Contratti Dati, Parametri I/O & Database Silo
-
-### Specifiche Endpoint REST:
-
-#### 1. Ingestion Clip Tattica & Calcolo Voronoi
-- **Endpoint:** `POST /api/v1/club/tactical/process-clip`
-- **Headers:** `Authorization: Bearer <staff_jwt>`, `X-Club-Tenant-ID: club_seriea_01`, `Content-Type: application/json`
-- **Request Payload:**
+### Contratto Richiesta Sincronizzazione RAG (Payload JSON)
 ```json
 {
-  "matchId": "match_20261026_juve_milan",
-  "clipTimeRange": { "startSec": 1240, "endSec": 1285 },
-  "videoStreamUrl": "rtsp://camera-stadium-lan/tactical_high.stream",
-  "calculateVoronoi": true,
-  "syncGpsSessionId": "gps_sess_20261026_match"
-}
-```
-- **Responses:**
-  - `200 OK`:
-```json
-{
-  "clipAnalysisId": "tact_clip_9921",
-  "teamDominancePercent": { "homeTeam": 58.4, "awayTeam": 41.6 },
-  "teamCompactnessMeters": 31.2,
-  "centroidPosition": { "xMeters": 14.2, "yMeters": -2.1 },
-  "pressingTriggerDetected": true,
-  "dossierExportUrl": "https://vault.club-seriea-01.t7workout.app/tactical/dossier_9921.pdf"
+  "paper_id": "ext_pmc_9823412",
+  "club_id": "club_juventus_fc",
+  "authorized_by_role": "head_of_performance",
+  "sync_options": {
+    "include_personal_notes": true,
+    "include_concept_map": true,
+    "target_modules": ["programming_section_15", "data_analysis_section_16"]
+  },
+  "custom_tags": ["hamstring_prevention", "eccentric_loading", "nordic_curl"]
 }
 ```
 
-### Schema Relazionale (Database Silo 2 - Bunker Enclave):
-- `tactical_match_sessions`: `id UUID PK`, `club_id VARCHAR(64)`, `opponent_team VARCHAR(128)`, `match_date DATE`, `video_raw_vault_ref TEXT`, `created_at TIMESTAMPTZ`.
-- `pitch_space_control`: `id UUID PK`, `session_id UUID FK -> tactical_match_sessions.id`, `timecode_ms BIGINT`, `voronoi_polygons JSONB`, `home_compactness_m NUMERIC(5,2)`, `away_compactness_m NUMERIC(5,2)`.
+### Contratto Risposta Sincronizzazione RAG (JSON)
+```json
+{
+  "status": "success",
+  "knowledge_node_id": "kn_rag_8819234",
+  "indexed_chunks_count": 18,
+  "embedding_model": "t7-biomedical-embed-1536",
+  "storage_target": "silo_2_bunker_kms",
+  "cross_linked_modules": {
+    "programming_flow_15": "active",
+    "data_analysis_flow_16": "active"
+  },
+  "timestamp": "2026-11-12T22:25:00Z"
+}
+```
+
+### Matrice Errori HTTP a 6 Colonne
+
+| Codice HTTP | Errore Interno | Condizione Scatenante | Risposta Client | Azione Automatica Client | Ripristino Utente |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `400 Bad Request` | `INVALID_SYNC_TARGET` | Modulo di destinazione non censito o non attivo per il club | `{"error": "Modulo target di sincronizzazione non valido"}` | Disabilita opzioni di sincronizzazione non supportate | Selezionare moduli validi |
+| `401 Unauthorized` | `MTLS_CERT_EXPIRED` | Certificato client mTLS societario scaduto o non valido | `{"error": "Certificato di sicurezza club non valido"}` | Blocca handshake sicuro e richiede re-autenticazione | Contattare l'amministratore IT del club |
+| `403 Forbidden` | `INSUFFICIENT_RAG_ROLE` | Utente con ruolo non abilitato tenta di inviare paper al RAG | `{"error": "Permesso di scrittura nel RAG societario negato"}` | Mostra alert sui privilegi richiesti | Richiedere autorizzazione all'Head of Performance |
+| `429 Too Many Req` | `AI_GPU_CLUSTER_BUSY` | Saturazione temporanea del cluster di calcolo AI | `{"error": "Cluster AI momentaneamente sovraccarico. In coda..."}` | Mantiene la richiesta in buffer e riprova con backoff | Attendere qualche secondo |
+| `500 Server Error` | `RAG_EMBEDDING_FAILED` | Errore nella generazione dei vettori di embedding | `{"error": "Errore durante la vettorizzazione del documento"}` | Mostra pulsante "Riprova sincronizzazione" | Cliccare su Riprova |
+| `503 Service Unav` | `BUNKER_KMS_UNREACHABLE`| Chiave Cloud KMS di Silo 2 temporaneamente non accessibile | `{"error": "Servizio di crittografia Bunker non disponibile"}` | Blocca la sincronizzazione per sicurezza dati | Riprovare appena ripristinato il KMS |
 
 ---
 
+## 7. Ereditarieta di Tier & Sblocco Funzionalita a Cascata
 
-### Matrice Errori HTTP & Strategie di Resilienza
-| HTTP Code | Codice Interno | Endpoint | Causa Scatenante | UX Feedback Visivo | Strategia di Resilienza & Fallback |
-| :---: | :--- | :--- | :--- | :--- | :--- |
-| **400** | `ERR_HOMOGRAPHY_FAIL`| `POST /tactical/calibrate` | Punti di riferimento campo non visibili nel video | Alert: *"Impossibile rilevare le linee del campo"* | Richiesta click manuale sui 4 angoli del campo |
-| **401** | `ERR_ANALYST_AUTH` | `POST /tactical/video` | Ruolo Match Analyst non riconosciuto dal Gateway | Redirect a login con certificato mTLS | Mantenimento della sessione video in locale |
-| **413** | `ERR_MATCH_FILE_MAX` | `POST /tactical/video` | File video intero match supera quota ($> 5\text{ GB}$)| Dialog: *"Carica il video diviso per tempi (45 min)"*| Segmentazione automatica della clip prima dell'upload |
-| **422** | `ERR_YOLO_OCCLUSION` | `POST /tactical/video` | Troppi giocatori sovrapposti in mischia d'area | Evidenziazione: *"Rilevamento incerto in area"* | Tracciamento predittivo Kalman per 1.5 secondi |
-| **500** | `ERR_VORONOI_CRASH` | `POST /tactical/video` | Errore geometrico punti collineari nel Voronoi | Schermata: *"Mappa Voronoi non calcolabile"* | Rendering delle sole posizioni dei giocatori |
-| **504** | `ERR_GPU_TIMEOUT` | `POST /tactical/video` | Server cluster GPU temporaneamente saturo | Toast: *"Analisi tattica in coda di elaborazione"*| Notifica push al termine del calcolo asincrono |
-
----
-
-
-## 7. Ereditarietà di Tier & Differenziali di Fascia
-
-- **Isolamento Totale:**  
-  Il modulo Tactical Vision **è rigorosamente esclusivo di Tier 3 Enterprise** ed è totalmente inesistente nel Tier 1 e Tier 2.
-- **Politica Zero Social:**  
-  Mentre il Tier 1 e il Tier 2 usano il video per la condivisione social o il coaching commerciale, nel Tier 3 i video di gara e le metriche di Voronoi sono considerati **segreto industriale sportivo**, blindati nel bunker Silo 2 con chiavi Cloud KMS e divieto hardware assoluto di esportazione verso reti esterne.
+- **Cosa fa Tier 3:** Eredita tutte le capacita di ricerca, filtraggio e preferiti di Tier 1 e Tier 2, sblocca gli indicatori scientifici di qualita evidence-based (CEBM e quartili JCR), attiva il Bollettino Settimanale tematico su misura per il roster, integra l'AI proprietaria T7 al 100% per sintesi, traduzioni e spiegazioni, potenzia l'Area Studio con il Chatbot documentale 24/7 e la generazione automatica di schemi, e consente la sincronizzazione 1-Click nel database RAG del team in Silo 2 Bunker KMS, alimentando direttamente Programmazione (#15) e Data Analisi (#16).
+- **Isolamento e Sicurezza Massima (Bunker Silo 2):** Tutte le ricerche salvate nelle cartelle del club, i riassunti annotati e i vettori di embedding restano confinati nell'enclave cifrata della societa, senza alcuna contaminazione verso Silo 1 o verso altri club.
+- **Top della Cascata Top-Down:** In Tier 3 decadono tutti i limiti di fruizione presenti nei livelli inferiori (blocco download, sola lettura, assenza di AI, assenza di RAG), offrendo la suite accademica definitiva per lo sport professionistico.
