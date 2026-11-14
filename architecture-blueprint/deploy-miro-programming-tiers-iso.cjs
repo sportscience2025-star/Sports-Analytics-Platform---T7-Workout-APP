@@ -686,73 +686,73 @@ const T3_NODES = [
     key: 'T3_UI_READINESS_HEADER',
     shape: 'round_rectangle',
     width: 540,
-    height: 80,
-    x: 3056.26,
-    y: 8590,
+    height: 90,
+    x: 2641.02,
+    y: 8722,
     fillColor: '#ede9fe',
     borderColor: '#7c3aed',
     color: '#0f172a',
-    content: '<p><strong>TIER 3 ONLY &mdash; READINESS SECTION: INGESTIONE MULTI-PARAMETRICA</strong></p><p>Acquisizione sincronizzata parametri neurali, cardiaci e carichi giornalieri</p>'
+    content: '<p><strong>TIER 3 ONLY &mdash; READINESS SECTION: 4 DOMINI DISACCOPPIATI</strong></p><p>Acquisizione multi-parametrica indipendente (Fisiologico, Neurocognitivo, Neuromuscolare, Tolleranza Carico) &bull; Prevenzione del masking di cali acuti</p>'
   },
   {
     key: 'T3_UI_PVT_TEST',
     shape: 'rectangle',
     width: 460,
-    height: 95,
-    x: 2706.26,
-    y: 8740,
+    height: 120,
+    x: 2291.02,
+    y: 8872,
     fillColor: '#e0f2fe',
     borderColor: '#0284c7',
     color: '#0f172a',
-    content: '<p><strong>Test Cognitivi &amp; Vigilanza PVT (Psychomotor Vigilance Task)</strong></p><p>Misurazione latenza media e lapse rate per fatica del Sistema Nervoso Centrale (SNC)</p>'
+    content: '<p><strong>Protocollo PVT-B (3 Minuti) &amp; Segregazione Contestuale</strong></p><p>Vigilanza comportamentale &amp; attenzione sostenuta &bull; Dual Testing: Mattutino a Digiuno (CNS Baseline/Recovery) vs Pre-Sessione (Arousal Acuto) &bull; Median RT, Velocit&agrave; 1/RT, False Starts &amp; Lapsus calibrati su 3 min</p>'
   },
   {
     key: 'T3_UI_HRV_TEST',
     shape: 'rectangle',
     width: 460,
-    height: 95,
-    x: 3406.26,
-    y: 8740,
+    height: 120,
+    x: 2991.02,
+    y: 8872,
     fillColor: '#e0f2fe',
     borderColor: '#0284c7',
     color: '#0f172a',
-    content: '<p><strong>Metriche HRV &amp; RMSSD (Time &amp; Frequency Domain)</strong></p><p>Caricamento test fisiologici: SDNN, RMSSD (tempo) e rapporto bande spettrali LF/HF (frequenza)</p>'
+    content: '<p><strong>Metriche Fisiologiche HRV/RMSSD, RHR &amp; Neuromuscolari</strong></p><p>Dominio Tempo (RMSSD, SDNN), Frequenza (LF/HF) e RHR &bull; Sub-Score Neuromuscolare: Salto CMJ (Altezza, RSI-mod, Tasso Forza Eccentrica) e Tolleranza Carico (sRPE, EWMA ACWR)</p>'
   },
   {
     key: 'T3_SRV_INJURY_ALGO',
     shape: 'rectangle',
     width: 540,
-    height: 100,
-    x: 3056.26,
-    y: 8910,
+    height: 110,
+    x: 2641.02,
+    y: 9042,
     fillColor: '#d1fae5',
     borderColor: '#059669',
     color: '#0f172a',
-    content: '<p><strong>Algoritmo Matematico Calcolo Rischio Infortuni &amp; Baseline</strong></p><p>Formula predittiva rischio infortuni &bull; Creazione baseline prestativa neurale e fisica (singolo e team)</p>'
+    content: '<p><strong>Architettura Rischio Infortuni a Due Fasi (Two-Phase Model)</strong></p><p>Fase 1: Matrice Deterministica Red Flag (Hard stop su asimmetrie e spike carichi) &rarr; Fase 2: Regressione Logistica Calibrata / ML su serie storiche longitudinali di squadra</p>'
   },
   {
     key: 'T3_SRV_ZSCORE',
     shape: 'rectangle',
     width: 540,
-    height: 95,
-    x: 3056.26,
-    y: 9070,
+    height: 110,
+    x: 2641.02,
+    y: 9202,
     fillColor: '#d1fae5',
     borderColor: '#059669',
     color: '#0f172a',
-    content: '<p><strong>Reportistica Automatica &amp; Standardizzazione Statistica Z-Score</strong></p><p>Bilanciamento carico interno (sRPE/HRV) ed esterno (GPS/VBT) normalizzato su rolling window</p>'
+    content: '<p><strong>Normalizzazione Statistica Robust Z-Score (MAD)</strong></p><p>Z_robust = (x - mediana) / (1.4826 &times; MAD) su rolling window 28gg &bull; Immunit&agrave; da asimmetrie ed outlier &bull; Reportistica dei 4 Sub-Scores Disaccoppiati prima del composito</p>'
   },
   {
     key: 'T3_UI_AI_PREVENTION',
     shape: 'rectangle',
     width: 540,
-    height: 95,
-    x: 3056.26,
-    y: 9220,
+    height: 110,
+    x: 2641.02,
+    y: 9352,
     fillColor: '#e0f2fe',
     borderColor: '#0284c7',
     color: '#0f172a',
-    content: '<p><strong>Supporto Preventivo AI: Indicazioni Operative Rischio Infortuni</strong></p><p>Raccomandazioni su cosa fare e come lavorare per abbattere il rischio infortuni (atleta &amp; squadra)</p>'
+    content: '<p><strong>Supporto Preventivo AI: Modulazione del Carico Mirata per Dominio</strong></p><p>Prescrizione stimoli selettiva: calo PVT &rarr; taglio HSR, sprint max e decision-making; calo HRV &rarr; taglio volume e densit&agrave;; calo CMJ &rarr; stop pliometria ed eccentrici pesanti</p>'
   },
   {
     key: 'T3_UI_ANNUAL_PLANNER',

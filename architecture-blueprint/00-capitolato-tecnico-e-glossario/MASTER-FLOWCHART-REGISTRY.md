@@ -27,7 +27,7 @@ La seguente tabella rappresenta il registro unico e autoritativo che mappa 1:1 o
 | **#12** | Tier 2 | Col 6: Physio Rehab Goniometro ROM | `FLOW-6B` | Physio Rehab ROM & Scala VAS | 16 | `3458764688417722770` | `X: 7937, Y: 2940` | [12-software-2-flow-6b-physio-rehab-rom.md](12-software-2-flow-6b-physio-rehab-rom.md) | `flow-6b-physio-rehab-rom.mmd` |
 | **#13** | Tier 3 | Col 1: Onboarding Enterprise KMS | `FLOW-1C` | Onboarding Enterprise KMS | 18 | `3458764688417722778` | `X: -2925, Y: 6555` | [13-software-3-flow-1c-bunker-onboarding-kms.md](13-software-3-flow-1c-bunker-onboarding-kms.md) | `flow-1c-bunker-onboarding-kms.mmd` |
 | **#14** | Tier 3 | Col 2: Multi-Camera 4K & Suite Tattica | `FLOW-2C` | Catalogo 3D, Multi-Camera 4K, Suite Tattica & Stress Muscolare | 23 | `3458764688417722783` | `X: -108, Y: 6235.66` | [14-software-3-flow-2c-multi-staff-cockpit.md](14-software-3-flow-2c-multi-staff-cockpit.md) | `flow-2c-multi-staff-cockpit.mmd` |
-| **#15** | Tier 3 | Col 3: Programmazione Annuale RAG & Readiness | `FLOW-3C` | Programmazione Annuale, Chatbot 24/7 & Readiness Section | 17 | `3458764688417722788` | `X: 3056.26, Y: 8034.66` | [15-software-3-flow-3c-team-microcycle-mdx.md](15-software-3-flow-3c-team-microcycle-mdx.md) | `flow-3c-team-microcycle-mdx.mmd` |
+| **#15** | Tier 3 | Col 3: Programmazione Annuale RAG & Readiness | `FLOW-3C` | Programmazione Annuale, Chatbot 24/7 & Readiness Section (PVT-B, 4 Domini, Robust Z-Score, Two-Phase) | 17 | `3458764688417722788` | `X: 2641.02, Y: 8166.68` | [15-software-3-flow-3c-team-microcycle-mdx.md](15-software-3-flow-3c-team-microcycle-mdx.md) | `flow-3c-team-microcycle-mdx.mmd` |
 | **#16** | Tier 3 | Col 4: Data Analisi - AI 100%, Multi-Device & Role-Based RAG | `FLOW-4C` | Data Analisi: AI 100%, Multi-Device, Full Export & Role-Based RAG | 17 (Mermaid) / 19 (Miro) | `3458764688417722792` | `X: 4768.26, Y: 8032.48` | [16-software-3-flow-4c-gps-adaptive-zscore.md](16-software-3-flow-4c-gps-adaptive-zscore.md) | `flow-4c-gps-adaptive-zscore.mmd` |
 | **#17** | Tier 3 | Col 5: Libreria Fonti - AI Studio, Chatbot & RAG Sync | `FLOW-5C` | Libreria Fonti: AI Studio, Chatbot Scientifico, Bollettino & RAG Sync | 16 (Mermaid) / 18 (Miro) | `3458764688417722803` | `X: 6645.26, Y: 8033.79` | [17-software-3-flow-5c-tactical-video-cv.md](17-software-3-flow-5c-tactical-video-cv.md) | `flow-5c-tactical-video-cv.mmd` |
 | **#18** | Tier 3 | Col 6: Medical Room EMR & Silo 3 Lake | `FLOW-6C` | Medical Room EMR & Silo 3 Lake | 18 | `3458764688417722810` | `X: 8353, Y: 6573.44` | [18-software-3-flow-6c-medical-room-research-silo3.md](18-software-3-flow-6c-medical-room-research-silo3.md) | `flow-6c-medical-room-research-silo3.mmd` |
@@ -98,25 +98,24 @@ In conformità alla "Legge della Programmazione" (approvata dall'utente), i tre 
   - Programmi specifici di riabilitazione e protocolli Return to Play (RTP);
   - Vincoli vincolanti: NO video nelle schede, NO chatbot, NO RAG, NO Data Analysis.
 
-### #15 [ FLOW-3C ] Tier 3 (Elite Teams) • Programmazione Annuale RAG, Chatbot 24/7 & Readiness Section
-- **Badge Shape ID:** `3458764688417722788` | **Coordinate:** `X: 3056.26, Y: 8034.66` | **Nodi ISO:** 17
+### #15 [ FLOW-3C ] Tier 3 (Elite Teams) • Programmazione Annuale RAG, Chatbot 24/7 & Readiness Section (PVT-B, 4 Domini, Robust Z-Score, Two-Phase)
+- **Badge Shape ID:** `3458764688417722788` | **Coordinate:** `X: 2641.02, Y: 8166.68` | **Nodi ISO:** 17
 - **Caratteristiche Chiave:**
-  - Eredita tutte le funzioni Tier 1 e Tier 2 (archivio per sport, anamnesi, export multi-formato);
+  - Eredita tutte le funzioni Tier 1 e Tier 2 (archivio per sport, anamnesi, export multi-formato sbloccato in 4 formati: PDF, Excel .xlsx, Word .docx, Notes);
   - Integrazione diretta con Data Analysis (storico, import Excel, riassunti prestativi, antropometria, test forza/velocità);
-  - Condivisione programmi con video dimostrativi, consigli tecnici ed errori comuni da evitare;
+  - Condivisione programmi con video dimostrativi 4K, consigli tecnici ed errori comuni da evitare;
   - Consigli AI e addestramento RAG personalizzato su abitudini e gestione quotidiana dell'atleta;
   - Chatbot interattivo integrato 24/7 addestrato via RAG per spiegazione real-time degli esercizi;
-  - Replica dello stile metodologico del capo allenatore tramite RAG;
-  - Pianificazione annuale completa (fino a 1 anno / intera stagione agonistica);
-  - Gestione carico interno ed esterno con l'algoritmo della Readiness Section;
-  - Riabilitazione e protocolli Return to Play d'élite;
-  - **READINESS SECTION (TIER 3 ONLY):**
-    - Sezione test cognitivi e di vigilanza PVT (Psychomotor Vigilance Task);
-    - Metriche HRV / RMSSD nel dominio del tempo e della frequenza;
-    - Algoritmo di calcolo del rischio infortuni basato su formula matematica;
-    - Supporto preventivo AI per singolo atleta e squadra;
-    - Costruzione della baseline prestativa neurale e fisica;
-    - Reportistica automatica e standardizzazione statistica dei carichi tramite Z-score.
+  - Replica dello stile metodologico e del lessico del capo allenatore tramite RAG (Style-Cloning);
+  - Pianificazione annuale completa estesa all'intera stagione agonistica (fino a 52 settimane);
+  - Riabilitazione e protocolli Return to Play (RTP) d'élite coordinati con lo staff medico;
+  - **READINESS SECTION (TIER 3 ONLY) — I 6 PILASTRI METODOLOGICI:**
+    - *Protocollo PVT-B (3 minuti):* misurazione della vigilanza comportamentale e attenzione sostenuta del SNC tramite Median RT, velocità reciproca 1/RT, variabilità intra-individuale, lapsus calibrati su baseline individuale e false starts;
+    - *Segregazione contestuale (Dual Testing Protocol):* test Mattutino a Digiuno (recupero sistemico, sonno e baseline SNC) vs Pre-Sessione Acuta (arousal neuromuscolare e prontezza immediata);
+    - *Decoupled Readiness Sub-Scores (4 Domini Indipendenti):* esposizione disaccoppiata di 4 sotto-punteggi autonomi (Fisiologico, Neurocognitivo, Neuromuscolare, Tolleranza Carico) per prevenire il masking di deficit critici acuti;
+    - *Standardizzazione Robust Z-Score (MAD):* normalizzazione non parametrica Z = (x - mediana) / (1.4826 * MAD) su rolling window a 28 giorni, totalmente immune da asimmetrie ed outlier estremi;
+    - *Architettura Rischio Infortuni a Due Fasi (Two-Phase Model):* Fase 1 Matrice Deterministica Red Flag (hard stop su asimmetrie > 15%, spike ACWR > 1.50 e deficit neurali) -> Fase 2 Regressione logistica multivariata / ML calibrata su serie storiche longitudinali di squadra;
+    - *Supporto preventivo AI con modulazione mirata del carico:* prescrizione selettiva degli stimoli (calo PVT -> taglio HSR/sprint/carico cognitivo; calo HRV -> taglio volume/densità; calo CMJ -> stop pliometria ed eccentrici pesanti).
 
 ---
 

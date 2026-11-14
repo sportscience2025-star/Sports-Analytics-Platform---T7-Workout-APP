@@ -13,11 +13,11 @@ flowchart TD
         START(["Inizio: Staff Cockpit Élite (Tier 3)"]):::startend
         UI_SYNC_DATA["Integrazione Data Analysis: Import Excel, Test Forza/Velocità & Storico"]:::client
         
-        subgraph SUB_READINESS["TIER 3 ONLY: READINESS SECTION"]
-            UI_PVT_TEST["Test Cognitivi & Vigilanza PVT (Psychomotor Vigilance Task)"]:::client
-            UI_HRV_TEST["Test HRV / RMSSD: Time Domain (SDNN) & Frequency Domain (LF/HF)"]:::client
-            UI_RISK_DASH["Cruscotto Rischio Infortuni (Formula Matematica) & Baseline Neurale/Fisica"]:::client
-            UI_AI_PREVENTION["Supporto Preventivo AI: Raccomandazioni Singolo Atleta & Squadra"]:::client
+        subgraph SUB_READINESS["TIER 3 ONLY: READINESS SECTION (4 DOMINI DISACCOPPIATI)"]
+            UI_PVT_TEST["PVT-B 3 Minuti & Segregazione: Mattutino (CNS Baseline) vs Pre-Sessione (Arousal)"]:::client
+            UI_HRV_TEST["Metriche Fisiologiche (HRV/RMSSD, RHR), Neuromuscolari (CMJ RSI-mod) & Carico"]:::client
+            UI_RISK_DASH["Cruscotto 4 Sotto-Punteggi Disaccoppiati & Indice di Rischio Two-Phase Model"]:::client
+            UI_AI_PREVENTION["Supporto Preventivo AI: Modulazione Mirata (Taglio HSR/Sprint, Volume, Pliometria)"]:::client
         end
 
         UI_ANNUAL_WIZARD["Pianificazione Annuale: Micro-Meso-Macrocicli fino a 1 Anno (Stagione)"]:::client
@@ -32,20 +32,20 @@ flowchart TD
     subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & ENTERPRISE BROKER"]
         GW_AUTH_BUNKER["Autenticazione Silo 2 Bunker mTLS & Feature Gating Tier 3"]:::gateway
         GW_DATA_SYNC["Ricezione POST /api/v1/elite/data-analysis/sync"]:::gateway
-        GW_READINESS_INGEST["Ricezione POST /api/v1/elite/readiness/ingest (PVT & HRV)"]:::gateway
+        GW_READINESS_INGEST["Ricezione POST /api/v1/elite/readiness/ingest (PVT-B, HRV & CMJ)"]:::gateway
         GW_STREAM_BROKER["Broker HLS Video Streaming & WSS WebSocket Chatbot 24/7"]:::gateway
     end
 
     subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (READINESS, RAG & ANNUAL ENGINES)"]
         SRV_DATA_PARSER["Data Analysis Ingestion: Parser Matrici Excel & Test Biomeccanici"]:::server
-        SRV_INJURY_ALGO["Algoritmo Calcolo Rischio Infortuni & Baseline Neurale/Fisica"]:::server
-        SRV_ZSCORE_ENGINE["Stat Engine: Standardizzazione Z-Score Carico Interno ed Esterno"]:::server
+        SRV_INJURY_ALGO["Two-Phase Injury Model: Fase 1 Red Flag Deterministica -> Fase 2 Regressione ML"]:::server
+        SRV_ZSCORE_ENGINE["Stat Engine: Robust Z-Score MAD (Immunità Outlier su 28gg) & 4 Sub-Scores"]:::server
         SRV_ANNUAL_ENGINE["Annual Periodization Engine: Macrostruttura 52 Settimane di Gara"]:::server
         SRV_RAG_CLUSTER["RAG Cognitive Core: LLM societario per stile coach & Chatbot 24/7"]:::server
     end
 
     subgraph LANE_DB["CORSIA 4: DATABASE TRIPARTITO (SILO 2 BUNKER KMS & DATA LAKE)"]
-        DB_SILO2_BUNKER[("Silo 2 Bunker KMS: Schede Annuali, Log PVT/HRV & Vettori RAG")]:::db
+        DB_SILO2_BUNKER[("Silo 2 Bunker KMS: Schede Annuali, Log PVT-B/HRV/CMJ & Vettori RAG")]:::db
         END_ACTIVE(["Fine: Programma Annuale Attivo, Monitorato da Readiness & RAG 24/7"]):::startend
     end
 
