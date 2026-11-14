@@ -41,15 +41,24 @@ def verify():
     with open(glossary_path, encoding="utf-8") as fp:
         gloss = fp.read()
     
-    terms = re.findall(r'^#### <a id="([^"]+)"></a>(.+)$', gloss, re.MULTILINE)
+    terms_raw = re.findall(r'^#### ((?:<a id="[^"]+"></a>)+)(.+)$', gloss, re.MULTILINE)
+    terms = [(anchors, name.strip()) for anchors, name in terms_raw]
     eli5_matches = re.findall(r'^\*\*ELI5:\*\* "([^"]+)"$', gloss, re.MULTILINE)
     
     print(f"Glossary: Trovati {len(terms)} termini e {len(eli5_matches)} sintesi ELI5")
-    assert len(terms) >= 90, f"Glossario ha {len(terms)} termini, attesi >= 90"
+    assert len(terms) == 132, f"Glossario ha {len(terms)} termini, attesi 132"
     assert len(terms) == len(eli5_matches), f"Mismatch: {len(terms)} termini vs {len(eli5_matches)} ELI5s"
     assert "## Indice Analitico A-Z" in gloss, "Glossary: Missing Indice Analitico A-Z"
     assert "## Matrice di Tracciabilità Incrociata" in gloss, "Glossary: Missing Matrice di Tracciabilita"
     assert f"## Schede Terminologiche Enciclopediche ({len(terms)} Termini Ufficiali)" in gloss, "Glossary: Header count mismatch"
+    assert "<a-id=" not in gloss, "Rilevati slug ancorati corrotti '<a-id=' nel glossario"
+    assert not any(re.search(r'<[^>]+>', t_name) for _, t_name in terms), "Rilevati tag HTML incorporati nei nomi dei termini del glossario"
+
+    # Verify only numbers start in '#' section of A-Z index
+    num_section = re.search(r'### <a id="letter-num"></a>#\n\n([\s\S]*?)(?=### <a id="letter-a">)', gloss)
+    assert num_section, "Mancante sezione # nell'indice A-Z"
+    num_items = [l for l in num_section.group(1).strip().split('\n') if l.startswith('- ')]
+    assert len(num_items) == 2, f"Attesi solo 2 termini numerici sotto '#', trovati: {num_items}"
     
     # Rigorous check: ALL ELI5 strings must be <= 10 words
     eli5_over_10 = []
@@ -64,7 +73,7 @@ def verify():
     internal_links = re.findall(r'\[([^\]]+)\]\((#[^\)]+)\)', gloss)
     broken_internal = [href for text, href in internal_links if href[1:] not in defined_anchors]
     assert len(broken_internal) == 0, f"Trovati link interni rotti nel glossario: {broken_internal}"
-    print("[3/5] Glossario Vivente (Indice A-Z, Matrice, 93 schede, 100% ELI5 <= 10 parole, zero link rotti): PASSED")
+    print(f"[3/5] Glossario Vivente (Indice A-Z, Matrice, {len(terms)} schede, 100% ELI5 <= 10 parole, zero link rotti): PASSED")
 
     # 4. Verify 18 Flowchart Spec Files
     files = sorted(glob.glob("architecture-blueprint/00-capitolato-tecnico-e-glossario/[0-1][0-9]-*.md"))

@@ -187,7 +187,7 @@ def run():
     all_terms_map = {}
 
     for anchor, name, eli5, spiegazione, ruolo, zona_line in matches:
-        name = name.strip()
+        name = re.sub(r'<a id="[^"]+"></a>', '', name).strip()
         flows_match = re.search(r'`([^`]+)`', zona_line)
         flows = [f.strip() for f in flows_match.group(1).split(",")] if flows_match else []
         zona = re.sub(r'\s*\(Flussi Miro:.*?\)', '', zona_line).strip()
@@ -297,7 +297,8 @@ def run():
             anchors_html = f'<a id="{slug}"></a>'
             if t["name"] in TERM_ALIASES:
                 for alias in TERM_ALIASES[t["name"]]:
-                    anchors_html += f'<a id="{alias}"></a>'
+                    if alias != slug:
+                        anchors_html += f'<a id="{alias}"></a>'
 
             lines.append(f"#### {anchors_html}{t['name']}")
             lines.append(f"**ELI5:** \"{t['eli5']}\"")
@@ -427,7 +428,8 @@ def generate_markdown():
             anchors_html = f'<a id="{slug}"></a>'
             if t["name"] in TERM_ALIASES:
                 for alias in TERM_ALIASES[t["name"]]:
-                    anchors_html += f'<a id="{alias}"></a>'
+                    if alias != slug:
+                        anchors_html += f'<a id="{alias}"></a>'
 
             lines.append(f"#### {anchors_html}{t['name']}")
             lines.append(f"**ELI5:** \\"{t['eli5']}\\"")

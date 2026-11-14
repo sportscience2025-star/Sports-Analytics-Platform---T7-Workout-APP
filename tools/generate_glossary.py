@@ -21,7 +21,7 @@ TERMS = [
         "flows": ['#01', '#02', '#03', '#04', '#05', '#06', '#07', '#08', '#09', '#10', '#11', '#12', '#13', '#14', '#15', '#16', '#17', '#18']
     },
     {
-        "name": '<a id="32-protocolli-riabilitativi-clinici-cli01cli32"></a>32 Protocolli Riabilitativi Clinici (cli_01..cli_32)',
+        "name": '32 Protocolli Riabilitativi Clinici (cli_01..cli_32)',
         "cat": 'Prescrizione Clinica & Riabilitazione P.IVA (Tier 2)',
         "eli5": 'Schede riabilitative ufficiali per curare le lesioni passo dopo passo.',
         "spiegazione": 'Insieme codificato di 32 percorsi terapeutici basati su linee guida ortopediche e fisiatriche internazionali per la gestione delle patologie muscolo-scheletriche piu diffuse.',
@@ -30,7 +30,7 @@ TERMS = [
         "flows": ['#12']
     },
     {
-        "name": '<a id="analisi-sommaria-metriche-lattato"></a>Analisi Sommaria Metriche Lattato (Soglie Aerobica/Anaerobica T7)',
+        "name": 'Analisi Sommaria Metriche Lattato (Soglie Aerobica/Anaerobica T7)',
         "cat": 'Telemetria Wearable & Dispositivi Mobili',
         "eli5": 'Stima rapida delle soglie di lattato dai sensori T7.',
         "spiegazione": 'Elaborazione fisiologica di primo livello applicata alle serie temporali acquisite esclusivamente da dispositivi indossabili proprietari T7 durante test incrementali (es. test del lattato a gradini o rampe cardio), con calcolo approssimato delle soglie ventilatorie/lattacide (LT1 ~2.0 mmol/L e LT2 / OBLA ~4.0 mmol/L).',
@@ -39,7 +39,7 @@ TERMS = [
         "flows": ['#10']
     },
     {
-        "name": '<a id="chatbot-ai-studi-scientifici-assistente-documentale-247"></a>Chatbot AI Studi Scientifici (Assistente Documentale 24/7)',
+        "name": 'Chatbot AI Studi Scientifici (Assistente Documentale 24/7)',
         "cat": 'Video Analysis In-App, AI Multimodale & Custom Exercise Creator',
         "eli5": 'Assistente virtuale per fare domande sullo studio scientifico aperto.',
         "spiegazione": "Modello linguistico conversazionale integrato nell'interfaccia di lettura che riceve in contesto il full-text dello studio scientifico e risponde istantaneamente a quesiti specifici, citando pagine e tabelle del paper.",
@@ -48,7 +48,7 @@ TERMS = [
         "flows": ['#17']
     },
     {
-        "name": '<a id="controllo-incrociato--avvisi-di-conflitto-conflict-alert-schede-referti"></a>Controllo Incrociato & Avvisi di Conflitto (Conflict Alert Schede-Referti)',
+        "name": 'Controllo Incrociato & Avvisi di Conflitto (Conflict Alert Schede-Referti)',
         "cat": 'Algoritmi, Statistica & Machine Learning',
         "eli5": "Allarme automatico se l'allenamento confligge con un referto medico.",
         "spiegazione": 'Motore semantico e deterministico di validazione che confronta le schede create con i limiti articolari, i carichi massimi eccentrici e i referti clinici archiviati nel RAG.',
@@ -57,7 +57,7 @@ TERMS = [
         "flows": ['#15', '#16']
     },
     {
-        "name": '<a id="digital-twin-biomeccanico-dellatleta"></a>Digital Twin Biomeccanico dell\'Atleta',
+        "name": "Digital Twin Biomeccanico dell'Atleta",
         "cat": 'Telemetria Pro, Performance Tracking & Carico Rosa (Tier 3)',
         "eli5": "Copia virtuale 3D dell'atleta che simula movimenti e fatiche.",
         "spiegazione": "Modello computazionale tridimensionale parametrizzato sulle caratteristiche antropometriche e storiche di un singolo atleta d'elite.",
@@ -66,7 +66,7 @@ TERMS = [
         "flows": ['#14']
     },
     {
-        "name": '<a id="isolamento-data-analisi-tier-1"></a>Isolamento Data Analisi Tier 1 (Zero Correlazione Cross-Modulo)',
+        "name": 'Isolamento Data Analisi Tier 1 (Zero Correlazione Cross-Modulo)',
         "cat": 'Ingegneria Software & Architettura Cloud',
         "eli5": 'Dati di corsa isolati senza connessione con altre sezioni.',
         "spiegazione": "Regola di segregazione del flusso dati che proibisce qualsiasi correlazione automatica o scambio informativo tra il modulo Data Analisi di Tier 1 e gli altri moduli dell'applicazione (Programmazione Allenamento, Catalogo Esercizi o Social Network).",
@@ -75,7 +75,7 @@ TERMS = [
         "flows": ['#04']
     },
     {
-        "name": '<a id="open-access-papers-studi-scientifici-pubblici-gratuiti"></a>Open Access Papers (Studi Scientifici Pubblici e Gratuiti)',
+        "name": 'Open Access Papers (Studi Scientifici Pubblici e Gratuiti)',
         "cat": 'Video Analysis In-App, AI Multimodale & Custom Exercise Creator',
         "eli5": 'Articoli scientifici liberi che chiunque puo leggere gratis senza abbonamento.',
         "spiegazione": 'Pubblicazioni accademiche peer-reviewed distribuite con licenze aperte (Creative Commons CC-BY) liberamente consultabili e fruibili dal pubblico senza barriere di pagamento.',
@@ -84,7 +84,7 @@ TERMS = [
         "flows": ['#05', '#11', '#17']
     },
     {
-        "name": '<a id="par-q-physical-activity-readiness-questionnaire-digital-triage"></a>PAR-Q+ (Physical Activity Readiness Questionnaire) & Digital Triage',
+        "name": 'PAR-Q+ (Physical Activity Readiness Questionnaire) & Digital Triage',
         "cat": 'Sicurezza, Anti-Frode & Fiscalità Digitale B2B',
         "eli5": "Questionario rapido che intercetta rischi medici prima dell'allenamento.",
         "spiegazione": "Questionario di autovalutazione dello stato di salute strutturato su 7 quesiti clinici per identificare controindicazioni all'attivita fisica.",
@@ -93,7 +93,7 @@ TERMS = [
         "flows": ['#01']
     },
     {
-        "name": '<a id="role-based-rag-controllo-accessi-gerarchico-medico--sc--atleta"></a>Role-Based RAG (Controllo Accessi Gerarchico Medico / S&C / Atleta)',
+        "name": 'Role-Based RAG (Controllo Accessi Gerarchico Medico / S&C / Atleta)',
         "cat": 'Sicurezza Enterprise & Identità Societaria (Tier 3)',
         "eli5": 'Accesso gerarchico alle risposte AI per proteggere il segreto.',
         "spiegazione": "Meccanismo di recupero e filtraggio vettoriale condizionato dal ruolo dell'utente: i referti sanitari guidano i vincoli di carico per l'allenatore senza esporre diagnosi confidenziali tutelate dal segreto professionale.",
@@ -102,7 +102,7 @@ TERMS = [
         "flows": ['#16', '#18']
     },
     {
-        "name": '<a id="saml-20-enterprise-federation-single-sign-on"></a>SAML 2.0 Enterprise Federation & Single Sign-On',
+        "name": 'SAML 2.0 Enterprise Federation & Single Sign-On',
         "cat": 'Sicurezza Enterprise & Identità Societaria (Tier 3)',
         "eli5": 'Accesso aziendale unificato con le credenziali ufficiali del club.',
         "spiegazione": 'Protocollo di autenticazione federata basato su asserzioni XML crittografiche scambiate tra un Identity Provider aziendale e il service provider.',
@@ -111,7 +111,7 @@ TERMS = [
         "flows": ['#13']
     },
     {
-        "name": '<a id="video-ingest-tiers-policy-tier-1-zero-upload-tier-2-1080p-tier-3-4k8k"></a><a id="video-ingest-tiers-1080p-consumer-2k-pro-4k8k-enterprise"></a>Video Ingest Tiers (Zero Upload Tier 1, 1080p Pro Tier 2, 4K/8K Enterprise Tier 3)',
+        "name": 'Video Ingest Tiers (Zero Upload Tier 1, 1080p Pro Tier 2, 4K/8K Enterprise Tier 3)',
         "cat": 'Video Analysis In-App, AI Multimodale & Custom Exercise Creator',
         "eli5": 'Regole video: zero upload base, 1080p coach, 4K/8K club.',
         "spiegazione": "Policy architetturale di segmentazione della capacità video: Tier 1 Consumer a **Zero Upload** (dedicato esclusivamente alla consultazione interattiva dell'Avatar 3D e video pre-renderizzato 2D fallback); Tier 2 Pro (Coach e Fisioterapisti P.IVA) con upload video fino a **1080p Full HD a 60fps** (con trimming WebCodecs, controlli di velocità slow-motion 0.25x-2.0x e MediaPipe 3D); Tier 3 Enterprise/Club con acquisizione broadcast **4K / 8K** (multi-camera SMPTE sync, 120fps frame scrubbing, Telestrator tattico, Dynamic Forensic Watermark e doppio livello di libreria Secret Club Vault).",
@@ -120,7 +120,7 @@ TERMS = [
         "flows": ['#02', '#08', '#14']
     },
     {
-        "name": '<a id="zero-ai-biomeccanica"></a>Zero AI Biomeccanica (Elaborazione Matematica Pura)',
+        "name": 'Zero AI Biomeccanica (Elaborazione Matematica Pura)',
         "cat": 'Biomeccanica & Valutazione Funzionale',
         "eli5": 'Zero intelligenza artificiale: solo calcoli matematici certi e verificabili.',
         "spiegazione": "Principio architetturale vincolante per il Tier 1 che vieta categoricamente l'invocazione di modelli di intelligenza artificiale, reti neurali o motori RAG per l'analisi del movimento: tutti i calcoli derivano esclusivamente da equazioni fisiche, cinematica classica e formule trigonometriche note.",
@@ -1293,7 +1293,8 @@ def generate_markdown():
             anchors_html = f'<a id="{slug}"></a>'
             if t["name"] in TERM_ALIASES:
                 for alias in TERM_ALIASES[t["name"]]:
-                    anchors_html += f'<a id="{alias}"></a>'
+                    if alias != slug:
+                        anchors_html += f'<a id="{alias}"></a>'
 
             lines.append(f"#### {anchors_html}{t['name']}")
             lines.append(f"**ELI5:** \"{t['eli5']}\"")
