@@ -1,7 +1,7 @@
 # Glossario Tecnico Vivente & Matrice di Tracciabilità dei Flussi (18 Flowcharts T7)
 
 > **Documento Autoritativo di Architettura (Zona 0 - Miro Board `uXjVEbo6L2o=`)**  
-> Censimento enciclopedico di **132 Termini Tecnici e Acronimi Ufficiali** del progetto *Sports Analytics Platform — T7 Workout APP*.  
+> Censimento enciclopedico di **134 Termini Tecnici e Acronimi Ufficiali** del progetto *Sports Analytics Platform — T7 Workout APP*.  
 > Ogni voce include: Identificativo univoco, Sintesi ELI5 (strettamente $\le 10$ parole per non-tecnici), Spiegazione Operativa, Ruolo Architetturale in T7 e Mappatura 1:1 sui 18 Flussi.
 
 ---
@@ -172,6 +172,7 @@
 - [Thin Client (Guscio Visivo)](#thin-client-guscio-visivo) — *Ingegneria Software & Architettura Cloud*
 - [Together Pro Marketplace & Video Annotazione Tecnica](#together-pro-marketplace-video-annotazione-tecnica) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [Together Social Network & Movely Marketplace](#together-social-network-movely-marketplace) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
+- [Together Social Workout Sharing](#together-social-workout-sharing) — *Ingegneria Software & Architettura Cloud*
 - [Tonnellaggio & Volume di Carico (Sets x Reps x Kg)](#tonnellaggio-volume-di-carico-sets-x-reps-x-kg) — *Metodologia d'Allenamento & Clinica Sportiva*
 - [Training Readiness Composite Score](#training-readiness-composite-score) — *Telemetria Wearable & Dispositivi Mobili*
 - [Triage Clinico Patologie & ImpactCalculator](#triage-clinico-patologie-impactcalculator) — *Metodologia d'Allenamento & Clinica Sportiva*
@@ -197,6 +198,7 @@
 - [WebAuthn (Passkeys & Biometria Hardware)](#webauthn-passkeys-biometria-hardware) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [WebCodecs API & Client-Side Lossless Trimming](#webcodecs-api-client-side-lossless-trimming) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [WebRTC MediaStream & Secure Video Recording](#webrtc-mediastream-secure-video-recording) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
+- [Workout Session Tracker (Avvia Sessione)](#workout-session-tracker-avvia-sessione) — *Ingegneria Software & Architettura Cloud*
 - [WORM Storage (Write-Once-Read-Many) Audit Logs](#worm-storage-write-once-read-many-audit-logs) — *Sicurezza Enterprise & Identità Societaria (Tier 3)*
 
 ### <a id="letter-y"></a>Y
@@ -326,31 +328,33 @@
 | **109** | [Thin Client (Guscio Visivo)](#thin-client-guscio-visivo) | Ingegneria Software & Architettura Cloud | `#01, #02, #03, #04, #05, #06` |
 | **110** | [Together Pro Marketplace & Video Annotazione Tecnica](#together-pro-marketplace-video-annotazione-tecnica) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#11` |
 | **111** | [Together Social Network & Movely Marketplace](#together-social-network-movely-marketplace) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#05` |
-| **112** | [Tonnellaggio & Volume di Carico (Sets x Reps x Kg)](#tonnellaggio-volume-di-carico-sets-x-reps-x-kg) | Metodologia d'Allenamento & Clinica Sportiva | `#03` |
-| **113** | [Training Readiness Composite Score](#training-readiness-composite-score) | Telemetria Wearable & Dispositivi Mobili | `#04` |
-| **114** | [Triage Clinico Patologie & ImpactCalculator](#triage-clinico-patologie-impactcalculator) | Metodologia d'Allenamento & Clinica Sportiva | `#09` |
-| **115** | [Trigonometria Deterministica 2D (Goniometro Digitale)](#trigonometria-deterministica-2d-goniometro-digitale) | Biomeccanica & Valutazione Funzionale | `#04` |
-| **116** | [Two-Phase Injury Risk Architecture (Architettura Rischio Infortuni)](#two-phase-injury-risk-architecture-architettura-rischio-infortuni) | Algoritmi, Statistica & Machine Learning | `#15` |
-| **117** | [Universal Multi-Format Export (Report, Grafici, Presentazioni)](#universal-multi-format-export-report-grafici-presentazioni) | Ingegneria Software & Architettura Cloud | `#16` |
-| **118** | [Valgismo Dinamico del Ginocchio](#valgismo-dinamico-del-ginocchio) | Biomeccanica & Valutazione Funzionale | `#08, #10, #12` |
-| **119** | [Variable Playback Rate & Frame-by-Frame Scrubbing (120fps)](#variable-playback-rate-frame-by-frame-scrubbing-120fps) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08, #14` |
-| **120** | [VBT (Velocity Based Training)](#vbt-velocity-based-training) | Biomeccanica & Valutazione Funzionale | `#10` |
-| **121** | [Video Ingest Tiers (Zero Upload Tier 1, 1080p Pro Tier 2, 4K/8K Enterprise Tier 3)](#video-ingest-tiers-zero-upload-tier-1-1080p-pro-tier-2-4k-8k-enterprise-tier-3) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#02, #08, #14` |
-| **122** | [VIES & Sistema di Interscambio (SDI)](#vies-sistema-di-interscambio-sdi) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#07` |
-| **123** | [Visualizzatore PDF Protetto In-App (Read-Only)](#visualizzatore-pdf-protetto-in-app-read-only) | Ingegneria Software & Architettura Cloud | `#05` |
-| **124** | [Wearable T7 (Ecosistema Hardware Proprietario T7)](#wearable-t7-ecosistema-hardware-proprietario-t7) | Telemetria Wearable & Dispositivi Mobili | `#10, #16` |
-| **125** | [WebAuthn (Passkeys & Biometria Hardware)](#webauthn-passkeys-biometria-hardware) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#01` |
-| **126** | [WebCodecs API & Client-Side Lossless Trimming](#webcodecs-api-client-side-lossless-trimming) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#02, #08, #14` |
-| **127** | [WebRTC MediaStream & Secure Video Recording](#webrtc-mediastream-secure-video-recording) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08, #11` |
-| **128** | [WORM Storage (Write-Once-Read-Many) Audit Logs](#worm-storage-write-once-read-many-audit-logs) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#13` |
-| **129** | [YOLOv8 Deep Learning Object Detection da Campo](#yolov8-deep-learning-object-detection-da-campo) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
-| **130** | [Z-Score Adattivo (Normalizzazione Statistica)](#z-score-adattivo-normalizzazione-statistica) | Algoritmi, Statistica & Machine Learning | `#16` |
-| **131** | [Z-Weighting & Gestione Doppio Ruolo Tattico](#z-weighting-gestione-doppio-ruolo-tattico) | Algoritmi, Statistica & Machine Learning | `#16` |
-| **132** | [Zero AI Biomeccanica (Elaborazione Matematica Pura)](#zero-ai-biomeccanica-elaborazione-matematica-pura) | Biomeccanica & Valutazione Funzionale | `#04` |
+| **112** | [Together Social Workout Sharing](#together-social-workout-sharing) | Ingegneria Software & Architettura Cloud | `#03, #09, #15` |
+| **113** | [Tonnellaggio & Volume di Carico (Sets x Reps x Kg)](#tonnellaggio-volume-di-carico-sets-x-reps-x-kg) | Metodologia d'Allenamento & Clinica Sportiva | `#03` |
+| **114** | [Training Readiness Composite Score](#training-readiness-composite-score) | Telemetria Wearable & Dispositivi Mobili | `#04` |
+| **115** | [Triage Clinico Patologie & ImpactCalculator](#triage-clinico-patologie-impactcalculator) | Metodologia d'Allenamento & Clinica Sportiva | `#09` |
+| **116** | [Trigonometria Deterministica 2D (Goniometro Digitale)](#trigonometria-deterministica-2d-goniometro-digitale) | Biomeccanica & Valutazione Funzionale | `#04` |
+| **117** | [Two-Phase Injury Risk Architecture (Architettura Rischio Infortuni)](#two-phase-injury-risk-architecture-architettura-rischio-infortuni) | Algoritmi, Statistica & Machine Learning | `#15` |
+| **118** | [Universal Multi-Format Export (Report, Grafici, Presentazioni)](#universal-multi-format-export-report-grafici-presentazioni) | Ingegneria Software & Architettura Cloud | `#16` |
+| **119** | [Valgismo Dinamico del Ginocchio](#valgismo-dinamico-del-ginocchio) | Biomeccanica & Valutazione Funzionale | `#08, #10, #12` |
+| **120** | [Variable Playback Rate & Frame-by-Frame Scrubbing (120fps)](#variable-playback-rate-frame-by-frame-scrubbing-120fps) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08, #14` |
+| **121** | [VBT (Velocity Based Training)](#vbt-velocity-based-training) | Biomeccanica & Valutazione Funzionale | `#10` |
+| **122** | [Video Ingest Tiers (Zero Upload Tier 1, 1080p Pro Tier 2, 4K/8K Enterprise Tier 3)](#video-ingest-tiers-zero-upload-tier-1-1080p-pro-tier-2-4k-8k-enterprise-tier-3) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#02, #08, #14` |
+| **123** | [VIES & Sistema di Interscambio (SDI)](#vies-sistema-di-interscambio-sdi) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#07` |
+| **124** | [Visualizzatore PDF Protetto In-App (Read-Only)](#visualizzatore-pdf-protetto-in-app-read-only) | Ingegneria Software & Architettura Cloud | `#05` |
+| **125** | [Wearable T7 (Ecosistema Hardware Proprietario T7)](#wearable-t7-ecosistema-hardware-proprietario-t7) | Telemetria Wearable & Dispositivi Mobili | `#10, #16` |
+| **126** | [WebAuthn (Passkeys & Biometria Hardware)](#webauthn-passkeys-biometria-hardware) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#01` |
+| **127** | [WebCodecs API & Client-Side Lossless Trimming](#webcodecs-api-client-side-lossless-trimming) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#02, #08, #14` |
+| **128** | [WebRTC MediaStream & Secure Video Recording](#webrtc-mediastream-secure-video-recording) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08, #11` |
+| **129** | [Workout Session Tracker (Avvia Sessione)](#workout-session-tracker-avvia-sessione) | Ingegneria Software & Architettura Cloud | `#03, #09, #15` |
+| **130** | [WORM Storage (Write-Once-Read-Many) Audit Logs](#worm-storage-write-once-read-many-audit-logs) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#13` |
+| **131** | [YOLOv8 Deep Learning Object Detection da Campo](#yolov8-deep-learning-object-detection-da-campo) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
+| **132** | [Z-Score Adattivo (Normalizzazione Statistica)](#z-score-adattivo-normalizzazione-statistica) | Algoritmi, Statistica & Machine Learning | `#16` |
+| **133** | [Z-Weighting & Gestione Doppio Ruolo Tattico](#z-weighting-gestione-doppio-ruolo-tattico) | Algoritmi, Statistica & Machine Learning | `#16` |
+| **134** | [Zero AI Biomeccanica (Elaborazione Matematica Pura)](#zero-ai-biomeccanica-elaborazione-matematica-pura) | Biomeccanica & Valutazione Funzionale | `#04` |
 
 ---
 
-## Schede Terminologiche Enciclopediche (132 Termini Ufficiali)
+## Schede Terminologiche Enciclopediche (134 Termini Ufficiali)
 
 ### Ingegneria Software & Architettura Cloud
 
@@ -468,6 +472,13 @@
 - **Ruolo Operativo nel Progetto T7:** Protegge la proprieta intellettuale (IP) di T7: formule di carico, regressioni VBT e triage clinico risiedono esclusivamente sul server centrale.
 - **Zona / Flusso di Riferimento:** Corsia 1 di tutti i Flowchart (Zona 4) e Topologia C4. (Flussi Miro: `#01, #02, #03, #04, #05, #06`)
 
+#### <a id="together-social-workout-sharing"></a><a id="together-social"></a><a id="together-app"></a>Together Social Workout Sharing
+**ELI5:** "Condivisione su Together Social dei dati generici dell'allenamento completato."
+
+- **Spiegazione Semplificata:** Funzionalità integrata nell'ecosistema T7 Workout che genera un riepilogo con metriche generiche (durata, volume totale, esercizi svolti) al termine della sessione registrata, permettendo la condivisione all'interno del social network Together Social per stimolare la community senza esporre dati sensibili.
+- **Ruolo Operativo nel Progetto T7:** Abilita la condivisione social peer-to-peer e community-driven tra gli atleti dei Tier 1, 2 e 3 sull'app integrata Together Social.
+- **Zona / Flusso di Riferimento:** Colonna 3, Righe 1, 2 e 3 (Programmazione degli Esercizi) e Corsia 1 / 4. (Flussi Miro: `#03, #09, #15`)
+
 #### <a id="universal-multi-format-export-report-grafici-presentazioni"></a>Universal Multi-Format Export (Report, Grafici, Presentazioni)
 **ELI5:** "Esporta analisi in PDF, Excel, Word e PowerPoint liberamente."
 
@@ -481,6 +492,13 @@
 - **Spiegazione Semplificata:** Componente client di rendering vettoriale PDF su canvas isolato che disabilita il menu contestuale, la stampa e il download di file non autorizzati.
 - **Ruolo Operativo nel Progetto T7:** Consente la fruizione di paper protetti in sola lettura rispettando le licenze di distribuzione scientifica.
 - **Zona / Flusso di Riferimento:** Colonna 5, Riga 1 (Libreria Fonti Tier 1) e Corsia 1 Client. (Flussi Miro: `#05`)
+
+#### <a id="workout-session-tracker-avvia-sessione"></a><a id="workout-session-tracker"></a><a id="avvia-sessione"></a>Workout Session Tracker (Avvia Sessione)
+**ELI5:** "Interfaccia da palestra per registrare serie, carichi, ripetizioni e recuperi."
+
+- **Spiegazione Semplificata:** Interfaccia interattiva da palestra che si avvia con il pulsante 'Avvia Sessione' all'apertura del programma giornaliero o di un workout libero, dotata di timer di recupero inter-serie, spunta delle serie completate e campi di input per inserire i carichi effettivi sollevati in kg e le ripetizioni reali eseguite.
+- **Ruolo Operativo nel Progetto T7:** Fornisce il player esecutivo in sala pesi su tutti i 3 Tier, registrando i volumi reali sul database e predisponendo i dati generici per la condivisione social.
+- **Zona / Flusso di Riferimento:** Colonna 3, Righe 1, 2 e 3 (Programmazione degli Esercizi) e Corsia 1 Client. (Flussi Miro: `#03, #09, #15`)
 
 ### Biomeccanica & Valutazione Funzionale
 

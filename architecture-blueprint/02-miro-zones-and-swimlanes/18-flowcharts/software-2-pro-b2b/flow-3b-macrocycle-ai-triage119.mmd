@@ -7,9 +7,9 @@ flowchart TD
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 2 (B2B PRO P.IVA) - FLOW 3B: PROGRAMMAZIONE ANAMNESTICA 6M, RTP, AI FONTI & MULTI-EXPORT"]
+    TITLE["SOFTWARE 2 (B2B PRO P.IVA) - FLOW 3B: PROGRAMMAZIONE ANAMNESTICA 6M, RTP, WORKOUT PLAYER, AI FONTI & CONDIVISIONE TOGETHER SOCIAL"]
 
-    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (PRO PROGRAMMING COCKPIT)"]
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (PRO PROGRAMMING COCKPIT, GYM PLAYER & TOGETHER SOCIAL)"]
         START(["Inizio: Cockpit Programmazione Pro P.IVA"]):::startend
         DEC_SOURCE{"Modalità di Partenza Programma?"}:::decision
         UI_SPORT_ARCHIVE["Archivio Schede Pre-Confezionate per Disciplina Sportiva"]:::client
@@ -19,7 +19,10 @@ flowchart TD
         UI_PERIOD_WIZARD["Wizard Periodizzazione a Medio Termine (Fino a 6 Mesi / Micro-Meso-Macro)"]:::client
         UI_PARAM_EDITOR["Editor Completo Parametri: Modifica Serie, Reps, Carichi, Recuperi & Swap"]:::client
         UI_AI_SCIENCE["Pannello AI Fonti: Spiegazione con Bibliografia, DOI e Link + Info Esercizi"]:::client
-        DEC_EXPORT_HUB{"Selezione Formato Esportazione?"}:::decision
+        DEC_ACTION{"Azione: Avvia Sessione vs Esporta Multi-Formato?"}:::decision
+        UI_START_SESSION["Pulsante 'Avvia Sessione' (Programma 6M o Workout Libero)"]:::client
+        UI_GYM_PLAYER["Interfaccia da Palestra Pro (Workout Session Tracker): Timer Recupero, Check Serie, Carichi (kg) & Reps Effettive vs Target Coach"]:::client
+        UI_TOGETHER_SHARE["Condivisione su Together Social: Card Dati Generici Allenamento (Durata, Volume, Esercizi)"]:::client
         UI_EXPORT_DOCS["Download Documento: PDF, Excel (.xlsx sbloccato), Word (.docx), Notes"]:::client
         UI_RESTRICTION_CARD["Banner Vincoli: No Video in scheda, No Chatbot 24/7, No RAG, No Data Analysis"]:::error
     end
@@ -27,20 +30,24 @@ flowchart TD
     subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & RBAC PRO"]
         GW_AUTH_PRO["Validazione JWT Tier 2 Pro (P.IVA Attiva) & Verifica Orizzonte <= 6 Mesi"]:::gateway
         GW_POST_PROGRAM["Ricezione POST /api/v1/pro/programs/generate"]:::gateway
+        GW_LOG_REQ["Ricezione POST /api/v1/pro/programs/sessions/log"]:::gateway
+        GW_SOCIAL_REQ["Ricezione POST /api/v1/social/together/share"]:::gateway
         GW_EXPORT_REQ["Ricezione POST /api/v1/pro/programs/:id/export"]:::gateway
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (ANAMNESIS, 6M ENGINE & MULTI-EXPORTER)"]
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (ANAMNESIS, 6M ENGINE, WORKOUT LOGGER & MULTI-EXPORTER)"]
         SRV_ANAMNESIS_CALC["Clinical Anamnesis Processor: Filtro Esercizi & Asimmetrie"]:::server
         SRV_PERIODIZER["Periodization Engine: Calcolo Modelli DUP / Blocchi / Lineare fino a 24 Settimane"]:::server
         SRV_AI_CITATION["Scientific AI Engine: Retrieval Citazioni Accademiche (DOI/PubMed) & Schede"]:::server
+        SRV_LOG_SESSION["Pro Workout Logger: Calcolo Volume Totale, Aggiornamento Progressioni & Generazione Card Social Together"]:::server
         SRV_MULTI_FORMAT["Multi-Format Compiler: Rendering Openpyxl (.xlsx), docx, PDFKit & Notes"]:::server
     end
 
-    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (PRO PROGRAMMING & ANAMNESIS)"]
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (PRO PROGRAMMING, ANAMNESIS & WORKOUT SESSIONS)"]
         DB_QUERY_EXERCISES[("Lettura Catalogo Esercizi & Matrici Cliniche")]:::db
         DB_SAVE_MACRO[("Salvataggio Scheda Personalizzata su Silo 1 Pro (pro_macrocycles)")]:::db
-        END_EXPORTED(["Fine: Scheda 6 Mesi Attiva & Esportata nei 4 Formati"]):::startend
+        DB_LOG_SESSION[("Registrazione Sessione Silo 1 Pro (pro_workout_sessions)")]:::db
+        END_EXPORTED(["Fine: Sessione Registrata su Together Social / Export 6M Attivo"]):::startend
     end
 
     %% Flussi di Connessione
@@ -61,6 +68,9 @@ flowchart TD
     SRV_PERIODIZER --> DB_QUERY_EXERCISES --> DB_SAVE_MACRO
     DB_SAVE_MACRO --> UI_PARAM_EDITOR
 
-    UI_PARAM_EDITOR --> UI_AI_SCIENCE --> SRV_AI_CITATION --> DEC_EXPORT_HUB
-    DEC_EXPORT_HUB -- Esporta Multi-Formato --> GW_EXPORT_REQ --> SRV_MULTI_FORMAT --> UI_EXPORT_DOCS
-    UI_EXPORT_DOCS --> UI_RESTRICTION_CARD --> END_EXPORTED
+    UI_PARAM_EDITOR --> UI_AI_SCIENCE --> SRV_AI_CITATION --> DEC_ACTION
+
+    DEC_ACTION -- Avvia Sessione --> UI_START_SESSION --> UI_GYM_PLAYER --> GW_LOG_REQ --> SRV_LOG_SESSION
+    SRV_LOG_SESSION --> DB_LOG_SESSION --> GW_SOCIAL_REQ --> UI_TOGETHER_SHARE --> UI_RESTRICTION_CARD --> END_EXPORTED
+
+    DEC_ACTION -- Esporta Multi-Formato --> GW_EXPORT_REQ --> SRV_MULTI_FORMAT --> UI_EXPORT_DOCS --> UI_RESTRICTION_CARD --> END_EXPORTED

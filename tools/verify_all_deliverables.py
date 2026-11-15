@@ -46,7 +46,7 @@ def verify():
     eli5_matches = re.findall(r'^\*\*ELI5:\*\* "([^"]+)"$', gloss, re.MULTILINE)
     
     print(f"Glossary: Trovati {len(terms)} termini e {len(eli5_matches)} sintesi ELI5")
-    assert len(terms) == 132, f"Glossario ha {len(terms)} termini, attesi 132"
+    assert len(terms) == 134, f"Glossario ha {len(terms)} termini, attesi 134"
     assert len(terms) == len(eli5_matches), f"Mismatch: {len(terms)} termini vs {len(eli5_matches)} ELI5s"
     assert "## Indice Analitico A-Z" in gloss, "Glossary: Missing Indice Analitico A-Z"
     assert "## Matrice di Tracciabilità Incrociata" in gloss, "Glossary: Missing Matrice di Tracciabilita"

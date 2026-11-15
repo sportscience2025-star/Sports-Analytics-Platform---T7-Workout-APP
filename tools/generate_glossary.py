@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Script per la generazione enciclopedica di 00-GLOSSARIO-TERMINI-TECNICI.md
-Contiene 132 Schede Terminologiche complete con ELI5 (<= 10 parole).
+Contiene 134 Schede Terminologiche complete con ELI5 (<= 10 parole).
 """
 import re
 import os
@@ -30,105 +30,6 @@ TERMS = [
         "flows": ['#12']
     },
     {
-        "name": 'Analisi Sommaria Metriche Lattato (Soglie Aerobica/Anaerobica T7)',
-        "cat": 'Telemetria Wearable & Dispositivi Mobili',
-        "eli5": 'Stima rapida delle soglie di lattato dai sensori T7.',
-        "spiegazione": 'Elaborazione fisiologica di primo livello applicata alle serie temporali acquisite esclusivamente da dispositivi indossabili proprietari T7 durante test incrementali (es. test del lattato a gradini o rampe cardio), con calcolo approssimato delle soglie ventilatorie/lattacide (LT1 ~2.0 mmol/L e LT2 / OBLA ~4.0 mmol/L).',
-        "ruolo": 'Consente ai professionisti P.IVA di Tier 2 (FLOW-4B) di visualizzare un prospetto sintetico della curva lattacida senza accedere alle analisi fisiologiche multi-variate, ai modelli predittivi avanzati e alla potenza illimitata riservati al Tier 3.',
-        "zona": 'Colonna 4, Riga 2 (VBT & PAP Biomechanics).',
-        "flows": ['#10']
-    },
-    {
-        "name": 'Chatbot AI Studi Scientifici (Assistente Documentale 24/7)',
-        "cat": 'Video Analysis In-App, AI Multimodale & Custom Exercise Creator',
-        "eli5": 'Assistente virtuale per fare domande sullo studio scientifico aperto.',
-        "spiegazione": "Modello linguistico conversazionale integrato nell'interfaccia di lettura che riceve in contesto il full-text dello studio scientifico e risponde istantaneamente a quesiti specifici, citando pagine e tabelle del paper.",
-        "ruolo": 'Funzionalita esclusiva di Tier 3 per accelerare la comprensione metodologica e generare automaticamente mappe e schemi di studio.',
-        "zona": 'Colonna 5, Riga 3 (Libreria Fonti Enterprise).',
-        "flows": ['#17']
-    },
-    {
-        "name": 'Controllo Incrociato & Avvisi di Conflitto (Conflict Alert Schede-Referti)',
-        "cat": 'Algoritmi, Statistica & Machine Learning',
-        "eli5": "Allarme automatico se l'allenamento confligge con un referto medico.",
-        "spiegazione": 'Motore semantico e deterministico di validazione che confronta le schede create con i limiti articolari, i carichi massimi eccentrici e i referti clinici archiviati nel RAG.',
-        "ruolo": 'Blocca sul nascere prescrizioni di carico inappropriate per atleti in fase di recupero o con sovraccarichi tendinei nel Tier 3.',
-        "zona": 'Colonna 4, Riga 3 (Data Analisi) e Colonna 3, Riga 3 (Programmazione).',
-        "flows": ['#15', '#16']
-    },
-    {
-        "name": "Digital Twin Biomeccanico dell'Atleta",
-        "cat": 'Telemetria Pro, Performance Tracking & Carico Rosa (Tier 3)',
-        "eli5": "Copia virtuale 3D dell'atleta che simula movimenti e fatiche.",
-        "spiegazione": "Modello computazionale tridimensionale parametrizzato sulle caratteristiche antropometriche e storiche di un singolo atleta d'elite.",
-        "ruolo": 'Simula sollecitazioni articolari, forze di taglio sul ginocchio e carichi muscolari per anticipare il rischio lesivo e personalizzare il microciclo.',
-        "zona": 'Colonna 2, Riga 3 (Multi-Staff Cockpit).',
-        "flows": ['#14']
-    },
-    {
-        "name": 'Isolamento Data Analisi Tier 1 (Zero Correlazione Cross-Modulo)',
-        "cat": 'Ingegneria Software & Architettura Cloud',
-        "eli5": 'Dati di corsa isolati senza connessione con altre sezioni.',
-        "spiegazione": "Regola di segregazione del flusso dati che proibisce qualsiasi correlazione automatica o scambio informativo tra il modulo Data Analisi di Tier 1 e gli altri moduli dell'applicazione (Programmazione Allenamento, Catalogo Esercizi o Social Network).",
-        "ruolo": "Mantiene l'esperienza B2C circoscritta all'ispezione immediata del video e dei dati della sessione corrente, delimitando rigorosamente il perimetro funzionale rispetto alla convergenza multi-modulo di Tier 2 e alla sinergia omnicomprensiva con baseline bridge di Tier 3.",
-        "zona": 'Colonna 4, Riga 1 (Data Analisi Casual).',
-        "flows": ['#04']
-    },
-    {
-        "name": 'Open Access Papers (Studi Scientifici Pubblici e Gratuiti)',
-        "cat": 'Video Analysis In-App, AI Multimodale & Custom Exercise Creator',
-        "eli5": 'Articoli scientifici liberi che chiunque puo leggere gratis senza abbonamento.',
-        "spiegazione": 'Pubblicazioni accademiche peer-reviewed distribuite con licenze aperte (Creative Commons CC-BY) liberamente consultabili e fruibili dal pubblico senza barriere di pagamento.',
-        "ruolo": 'Costituisce la base documentale di Tier 1 (e superiore) nella Libreria Fonti, consentendo la consultazione protetta in sola lettura in-app.',
-        "zona": 'Colonna 5, Righe 1, 2 e 3 (Libreria Fonti).',
-        "flows": ['#05', '#11', '#17']
-    },
-    {
-        "name": 'PAR-Q+ (Physical Activity Readiness Questionnaire) & Digital Triage',
-        "cat": 'Sicurezza, Anti-Frode & Fiscalità Digitale B2B',
-        "eli5": "Questionario rapido che intercetta rischi medici prima dell'allenamento.",
-        "spiegazione": "Questionario di autovalutazione dello stato di salute strutturato su 7 quesiti clinici per identificare controindicazioni all'attivita fisica.",
-        "ruolo": "Intercetta sintomi cardiorespiratori o dolori articolari all'onboarding: in caso di esito positivo attiva la modalita cautelativa e disabilita esercizi pesanti.",
-        "zona": 'Colonna 1, Riga 1 (Consumer Onboarding).',
-        "flows": ['#01']
-    },
-    {
-        "name": 'Role-Based RAG (Controllo Accessi Gerarchico Medico / S&C / Atleta)',
-        "cat": 'Sicurezza Enterprise & Identità Societaria (Tier 3)',
-        "eli5": 'Accesso gerarchico alle risposte AI per proteggere il segreto.',
-        "spiegazione": "Meccanismo di recupero e filtraggio vettoriale condizionato dal ruolo dell'utente: i referti sanitari guidano i vincoli di carico per l'allenatore senza esporre diagnosi confidenziali tutelate dal segreto professionale.",
-        "ruolo": "Risolve il conflitto storico tra area medica e area tecnica nel Tier 3, consentendo prevenzione automatica senza violare la privacy dell'atleta.",
-        "zona": 'Colonna 4, Riga 3 (Data Analisi Elite) e Colonna 6, Riga 3 (Medical Room).',
-        "flows": ['#16', '#18']
-    },
-    {
-        "name": 'SAML 2.0 Enterprise Federation & Single Sign-On',
-        "cat": 'Sicurezza Enterprise & Identità Societaria (Tier 3)',
-        "eli5": 'Accesso aziendale unificato con le credenziali ufficiali del club.',
-        "spiegazione": 'Protocollo di autenticazione federata basato su asserzioni XML crittografiche scambiate tra un Identity Provider aziendale e il service provider.',
-        "ruolo": 'Permette ai club di connettere il proprio gestionale aziendale (es. Microsoft Entra ID o Okta) per gestire le utenze di dirigenti, medici e staff in modo centralizzato.',
-        "zona": 'Colonna 1, Riga 3 (Bunker Onboarding KMS).',
-        "flows": ['#13']
-    },
-    {
-        "name": 'Video Ingest Tiers (Zero Upload Tier 1, 1080p Pro Tier 2, 4K/8K Enterprise Tier 3)',
-        "cat": 'Video Analysis In-App, AI Multimodale & Custom Exercise Creator',
-        "eli5": 'Regole video: zero upload base, 1080p coach, 4K/8K club.',
-        "spiegazione": "Policy architetturale di segmentazione della capacità video: Tier 1 Consumer a **Zero Upload** (dedicato esclusivamente alla consultazione interattiva dell'Avatar 3D e video pre-renderizzato 2D fallback); Tier 2 Pro (Coach e Fisioterapisti P.IVA) con upload video fino a **1080p Full HD a 60fps** (con trimming WebCodecs, controlli di velocità slow-motion 0.25x-2.0x e MediaPipe 3D); Tier 3 Enterprise/Club con acquisizione broadcast **4K / 8K** (multi-camera SMPTE sync, 120fps frame scrubbing, Telestrator tattico, Dynamic Forensic Watermark e doppio livello di libreria Secret Club Vault).",
-        "ruolo": "Protegge l'integrità del business model, abbatte i costi di storage su Silo 1, garantisce conformità GDPR e offre un percorso di upgrade coerente e scalabile.",
-        "zona": 'Colonna 2, Righe 1, 2 e 3 (Catalogo Esercizi & 3D Video Tiers).',
-        "flows": ['#02', '#08', '#14']
-    },
-    {
-        "name": 'Zero AI Biomeccanica (Elaborazione Matematica Pura)',
-        "cat": 'Biomeccanica & Valutazione Funzionale',
-        "eli5": 'Zero intelligenza artificiale: solo calcoli matematici certi e verificabili.',
-        "spiegazione": "Principio architetturale vincolante per il Tier 1 che vieta categoricamente l'invocazione di modelli di intelligenza artificiale, reti neurali o motori RAG per l'analisi del movimento: tutti i calcoli derivano esclusivamente da equazioni fisiche, cinematica classica e formule trigonometriche note.",
-        "ruolo": 'Garantisce trasparenza scientifica assoluta, esclude costi di inferenza cloud per gli account consumer, assicura funzionamento offline su qualsiasi dispositivo mobile ed evidenzia la netta demarcazione di valore rispetto ai modelli AI proprietari dei Tier 2 e Tier 3.',
-        "zona": 'Colonna 4, Riga 1 (Data Analisi Casual).',
-        "flows": ['#04']
-    },
-    {
         "name": 'ACWR (Acute:Chronic Workload Ratio)',
         "cat": 'Telemetria Pro, Performance Tracking & Carico Rosa (Tier 3)',
         "eli5": "Confronta la fatica settimanale con l'allenamento dell'ultimo mese.",
@@ -145,6 +46,15 @@ TERMS = [
         "ruolo": "Rappresenta fedelmente la risposta fisiologica reale del corpo, evitando l'effetto a gradino delle medie mobili semplici e anticipando stati di sovrallenamento.",
         "zona": 'Colonna 3, Riga 3 (Microciclo MD-X) e Corsia 3 Server.',
         "flows": ['#15']
+    },
+    {
+        "name": 'Analisi Sommaria Metriche Lattato (Soglie Aerobica/Anaerobica T7)',
+        "cat": 'Telemetria Wearable & Dispositivi Mobili',
+        "eli5": 'Stima rapida delle soglie di lattato dai sensori T7.',
+        "spiegazione": 'Elaborazione fisiologica di primo livello applicata alle serie temporali acquisite esclusivamente da dispositivi indossabili proprietari T7 durante test incrementali (es. test del lattato a gradini o rampe cardio), con calcolo approssimato delle soglie ventilatorie/lattacide (LT1 ~2.0 mmol/L e LT2 / OBLA ~4.0 mmol/L).',
+        "ruolo": 'Consente ai professionisti P.IVA di Tier 2 (FLOW-4B) di visualizzare un prospetto sintetico della curva lattacida senza accedere alle analisi fisiologiche multi-variate, ai modelli predittivi avanzati e alla potenza illimitata riservati al Tier 3.',
+        "zona": 'Colonna 4, Riga 2 (VBT & PAP Biomechanics).',
+        "flows": ['#10']
     },
     {
         "name": 'Angoli Principali Biomeccanici',
@@ -224,6 +134,15 @@ TERMS = [
         "eli5": 'Rassegna settimanale con le ultime novità scientifiche sui tuoi sport.',
         "spiegazione": 'Servizio automatizzato di intelligence scientifica che analizza settimanalmente le banche dati mondiali, seleziona le pubblicazioni piu rilevanti per le discipline praticate dal club e distribuisce newsletter esecutive di sintesi.',
         "ruolo": 'Riservato a Tier 3 Enterprise, azzera i tempi morti di monitoraggio accademico per gli staff dei top club sportivi.',
+        "zona": 'Colonna 5, Riga 3 (Libreria Fonti Enterprise).',
+        "flows": ['#17']
+    },
+    {
+        "name": 'Chatbot AI Studi Scientifici (Assistente Documentale 24/7)',
+        "cat": 'Video Analysis In-App, AI Multimodale & Custom Exercise Creator',
+        "eli5": 'Assistente virtuale per fare domande sullo studio scientifico aperto.',
+        "spiegazione": "Modello linguistico conversazionale integrato nell'interfaccia di lettura che riceve in contesto il full-text dello studio scientifico e risponde istantaneamente a quesiti specifici, citando pagine e tabelle del paper.",
+        "ruolo": 'Funzionalita esclusiva di Tier 3 per accelerare la comprensione metodologica e generare automaticamente mappe e schemi di studio.',
         "zona": 'Colonna 5, Riga 3 (Libreria Fonti Enterprise).',
         "flows": ['#17']
     },
@@ -309,6 +228,15 @@ TERMS = [
         "flows": ['#13', '#18']
     },
     {
+        "name": 'Controllo Incrociato & Avvisi di Conflitto (Conflict Alert Schede-Referti)',
+        "cat": 'Algoritmi, Statistica & Machine Learning',
+        "eli5": "Allarme automatico se l'allenamento confligge con un referto medico.",
+        "spiegazione": 'Motore semantico e deterministico di validazione che confronta le schede create con i limiti articolari, i carichi massimi eccentrici e i referti clinici archiviati nel RAG.',
+        "ruolo": 'Blocca sul nascere prescrizioni di carico inappropriate per atleti in fase di recupero o con sovraccarichi tendinei nel Tier 3.',
+        "zona": 'Colonna 4, Riga 3 (Data Analisi) e Colonna 3, Riga 3 (Programmazione).',
+        "flows": ['#15', '#16']
+    },
+    {
         "name": 'Cross-Module Baseline Bridge (Data Analisi verso Programmazione e Catalogo)',
         "cat": 'Ingegneria Software & Architettura Cloud',
         "eli5": 'Aggiorna schede e catalogo usando i dati delle partite.',
@@ -343,6 +271,15 @@ TERMS = [
         "ruolo": 'Calcola in tempo reale le superfici di influenza territoriale e gli spazi liberi attaccabili durante le azioni di gioco riprese da telecamere tattiche.',
         "zona": 'Colonna 5, Riga 3 (Tactical Vision CV).',
         "flows": ['#17']
+    },
+    {
+        "name": "Digital Twin Biomeccanico dell'Atleta",
+        "cat": 'Telemetria Pro, Performance Tracking & Carico Rosa (Tier 3)',
+        "eli5": "Copia virtuale 3D dell'atleta che simula movimenti e fatiche.",
+        "spiegazione": "Modello computazionale tridimensionale parametrizzato sulle caratteristiche antropometriche e storiche di un singolo atleta d'elite.",
+        "ruolo": 'Simula sollecitazioni articolari, forze di taglio sul ginocchio e carichi muscolari per anticipare il rischio lesivo e personalizzare il microciclo.',
+        "zona": 'Colonna 2, Riga 3 (Multi-Staff Cockpit).',
+        "flows": ['#14']
     },
     {
         "name": 'DOP / HDOP (Dilution of Precision Satellite Filtering)',
@@ -570,6 +507,15 @@ TERMS = [
         "flows": ['#07']
     },
     {
+        "name": 'Isolamento Data Analisi Tier 1 (Zero Correlazione Cross-Modulo)',
+        "cat": 'Ingegneria Software & Architettura Cloud',
+        "eli5": 'Dati di corsa isolati senza connessione con altre sezioni.',
+        "spiegazione": "Regola di segregazione del flusso dati che proibisce qualsiasi correlazione automatica o scambio informativo tra il modulo Data Analisi di Tier 1 e gli altri moduli dell'applicazione (Programmazione Allenamento, Catalogo Esercizi o Social Network).",
+        "ruolo": "Mantiene l'esperienza B2C circoscritta all'ispezione immediata del video e dei dati della sessione corrente, delimitando rigorosamente il perimetro funzionale rispetto alla convergenza multi-modulo di Tier 2 e alla sinergia omnicomprensiva con baseline bridge di Tier 3.",
+        "zona": 'Colonna 4, Riga 1 (Data Analisi Casual).',
+        "flows": ['#04']
+    },
+    {
         "name": 'K-Anonymity & Zero-Knowledge Privacy Shield',
         "cat": 'Ingegneria Software & Architettura Cloud',
         "eli5": 'Protegge la tua identità mescolando i dati nel gruppo.',
@@ -705,6 +651,15 @@ TERMS = [
         "flows": ['#10']
     },
     {
+        "name": 'Open Access Papers (Studi Scientifici Pubblici e Gratuiti)',
+        "cat": 'Video Analysis In-App, AI Multimodale & Custom Exercise Creator',
+        "eli5": 'Articoli scientifici liberi che chiunque puo leggere gratis senza abbonamento.',
+        "spiegazione": 'Pubblicazioni accademiche peer-reviewed distribuite con licenze aperte (Creative Commons CC-BY) liberamente consultabili e fruibili dal pubblico senza barriere di pagamento.',
+        "ruolo": 'Costituisce la base documentale di Tier 1 (e superiore) nella Libreria Fonti, consentendo la consultazione protetta in sola lettura in-app.',
+        "zona": 'Colonna 5, Righe 1, 2 e 3 (Libreria Fonti).',
+        "flows": ['#05', '#11', '#17']
+    },
+    {
         "name": 'OrbitControls (Yaw 360° e Pitch Zenitale/Nadir)',
         "cat": 'Grafica 3D, WebGL & Rendering Biomeccanico',
         "eli5": 'Ruota la visuale con le dita per ogni angolazione.',
@@ -730,6 +685,15 @@ TERMS = [
         "ruolo": 'Modulo di calcolo per identificare la finestra temporale ideale (tipicamente 4-8 minuti) tra serie pesanti di riscaldamento e salti o sprint ottimali.',
         "zona": 'Colonna 4, Riga 2 (VBT & PAP).',
         "flows": ['#10']
+    },
+    {
+        "name": 'PAR-Q+ (Physical Activity Readiness Questionnaire) & Digital Triage',
+        "cat": 'Sicurezza, Anti-Frode & Fiscalità Digitale B2B',
+        "eli5": "Questionario rapido che intercetta rischi medici prima dell'allenamento.",
+        "spiegazione": "Questionario di autovalutazione dello stato di salute strutturato su 7 quesiti clinici per identificare controindicazioni all'attivita fisica.",
+        "ruolo": "Intercetta sintomi cardiorespiratori o dolori articolari all'onboarding: in caso di esito positivo attiva la modalita cautelativa e disabilita esercizi pesanti.",
+        "zona": 'Colonna 1, Riga 1 (Consumer Onboarding).',
+        "flows": ['#01']
     },
     {
         "name": 'Periodizzazione a Blocchi & Coniugata',
@@ -858,6 +822,15 @@ TERMS = [
         "flows": ['#15', '#16']
     },
     {
+        "name": 'Role-Based RAG (Controllo Accessi Gerarchico Medico / S&C / Atleta)',
+        "cat": 'Sicurezza Enterprise & Identità Societaria (Tier 3)',
+        "eli5": 'Accesso gerarchico alle risposte AI per proteggere il segreto.',
+        "spiegazione": "Meccanismo di recupero e filtraggio vettoriale condizionato dal ruolo dell'utente: i referti sanitari guidano i vincoli di carico per l'allenatore senza esporre diagnosi confidenziali tutelate dal segreto professionale.",
+        "ruolo": "Risolve il conflitto storico tra area medica e area tecnica nel Tier 3, consentendo prevenzione automatica senza violare la privacy dell'atleta.",
+        "zona": 'Colonna 4, Riga 3 (Data Analisi Elite) e Colonna 6, Riga 3 (Medical Room).',
+        "flows": ['#16', '#18']
+    },
+    {
         "name": 'Rolling Reserve & Escrow Anti-Chargeback',
         "cat": 'Sicurezza, Anti-Frode & Fiscalità Digitale B2B',
         "eli5": 'Somma trattenuta a garanzia contro contestazioni o rimborsi bancari.',
@@ -874,6 +847,15 @@ TERMS = [
         "ruolo": 'Azzeramento delle sovrapposizioni visive sulle board Miro e massima chiarezza comunicativa tra architetti software, clinici e programmatori.',
         "zona": 'Regola 10 su tutti i 18 Flowchart (Zona 4).',
         "flows": ['#01', '#02', '#03', '#04', '#05', '#06', '#07', '#08', '#09', '#10', '#11', '#12', '#13', '#14', '#15', '#16', '#17', '#18']
+    },
+    {
+        "name": 'SAML 2.0 Enterprise Federation & Single Sign-On',
+        "cat": 'Sicurezza Enterprise & Identità Societaria (Tier 3)',
+        "eli5": 'Accesso aziendale unificato con le credenziali ufficiali del club.',
+        "spiegazione": 'Protocollo di autenticazione federata basato su asserzioni XML crittografiche scambiate tra un Identity Provider aziendale e il service provider.',
+        "ruolo": 'Permette ai club di connettere il proprio gestionale aziendale (es. Microsoft Entra ID o Okta) per gestire le utenze di dirigenti, medici e staff in modo centralizzato.',
+        "zona": 'Colonna 1, Riga 3 (Bunker Onboarding KMS).',
+        "flows": ['#13']
     },
     {
         "name": 'Scala VAS del Dolore (Visual Analogue Scale 0-10)',
@@ -1029,6 +1011,15 @@ TERMS = [
         "flows": ['#05']
     },
     {
+        "name": 'Together Social Workout Sharing',
+        "cat": 'Ingegneria Software & Architettura Cloud',
+        "eli5": "Condivisione su Together Social dei dati generici dell'allenamento completato.",
+        "spiegazione": "Funzionalità integrata nell'ecosistema T7 Workout che genera un riepilogo con metriche generiche (durata, volume totale, esercizi svolti) al termine della sessione registrata, permettendo la condivisione all'interno del social network Together Social per stimolare la community senza esporre dati sensibili.",
+        "ruolo": "Abilita la condivisione social peer-to-peer e community-driven tra gli atleti dei Tier 1, 2 e 3 sull'app integrata Together Social.",
+        "zona": 'Colonna 3, Righe 1, 2 e 3 (Programmazione degli Esercizi) e Corsia 1 / 4.',
+        "flows": ['#03', '#09', '#15']
+    },
+    {
         "name": 'Tonnellaggio & Volume di Carico (Sets x Reps x Kg)',
         "cat": "Metodologia d'Allenamento & Clinica Sportiva",
         "eli5": "Chili complessivi sollevati durante l'intera seduta di allenamento.",
@@ -1110,6 +1101,15 @@ TERMS = [
         "flows": ['#10']
     },
     {
+        "name": 'Video Ingest Tiers (Zero Upload Tier 1, 1080p Pro Tier 2, 4K/8K Enterprise Tier 3)',
+        "cat": 'Video Analysis In-App, AI Multimodale & Custom Exercise Creator',
+        "eli5": 'Regole video: zero upload base, 1080p coach, 4K/8K club.',
+        "spiegazione": "Policy architetturale di segmentazione della capacità video: Tier 1 Consumer a **Zero Upload** (dedicato esclusivamente alla consultazione interattiva dell'Avatar 3D e video pre-renderizzato 2D fallback); Tier 2 Pro (Coach e Fisioterapisti P.IVA) con upload video fino a **1080p Full HD a 60fps** (con trimming WebCodecs, controlli di velocità slow-motion 0.25x-2.0x e MediaPipe 3D); Tier 3 Enterprise/Club con acquisizione broadcast **4K / 8K** (multi-camera SMPTE sync, 120fps frame scrubbing, Telestrator tattico, Dynamic Forensic Watermark e doppio livello di libreria Secret Club Vault).",
+        "ruolo": "Protegge l'integrità del business model, abbatte i costi di storage su Silo 1, garantisce conformità GDPR e offre un percorso di upgrade coerente e scalabile.",
+        "zona": 'Colonna 2, Righe 1, 2 e 3 (Catalogo Esercizi & 3D Video Tiers).',
+        "flows": ['#02', '#08', '#14']
+    },
+    {
         "name": 'VIES & Sistema di Interscambio (SDI)',
         "cat": 'Sicurezza, Anti-Frode & Fiscalità Digitale B2B',
         "eli5": 'Verifica istantanea della Partita IVA e fatturazione elettronica automatica.',
@@ -1164,6 +1164,15 @@ TERMS = [
         "flows": ['#08', '#11']
     },
     {
+        "name": 'Workout Session Tracker (Avvia Sessione)',
+        "cat": 'Ingegneria Software & Architettura Cloud',
+        "eli5": 'Interfaccia da palestra per registrare serie, carichi, ripetizioni e recuperi.',
+        "spiegazione": "Interfaccia interattiva da palestra che si avvia con il pulsante 'Avvia Sessione' all'apertura del programma giornaliero o di un workout libero, dotata di timer di recupero inter-serie, spunta delle serie completate e campi di input per inserire i carichi effettivi sollevati in kg e le ripetizioni reali eseguite.",
+        "ruolo": 'Fornisce il player esecutivo in sala pesi su tutti i 3 Tier, registrando i volumi reali sul database e predisponendo i dati generici per la condivisione social.',
+        "zona": 'Colonna 3, Righe 1, 2 e 3 (Programmazione degli Esercizi) e Corsia 1 Client.',
+        "flows": ['#03', '#09', '#15']
+    },
+    {
         "name": 'WORM Storage (Write-Once-Read-Many) Audit Logs',
         "cat": 'Sicurezza Enterprise & Identità Societaria (Tier 3)',
         "eli5": 'Registro blindato in cui nessuno può cancellare le registrazioni.',
@@ -1199,9 +1208,18 @@ TERMS = [
         "zona": 'Colonna 4, Riga 3 (GPS Adaptive Z-Score).',
         "flows": ['#16']
     },
+    {
+        "name": 'Zero AI Biomeccanica (Elaborazione Matematica Pura)',
+        "cat": 'Biomeccanica & Valutazione Funzionale',
+        "eli5": 'Zero intelligenza artificiale: solo calcoli matematici certi e verificabili.',
+        "spiegazione": "Principio architetturale vincolante per il Tier 1 che vieta categoricamente l'invocazione di modelli di intelligenza artificiale, reti neurali o motori RAG per l'analisi del movimento: tutti i calcoli derivano esclusivamente da equazioni fisiche, cinematica classica e formule trigonometriche note.",
+        "ruolo": 'Garantisce trasparenza scientifica assoluta, esclude costi di inferenza cloud per gli account consumer, assicura funzionamento offline su qualsiasi dispositivo mobile ed evidenzia la netta demarcazione di valore rispetto ai modelli AI proprietari dei Tier 2 e Tier 3.',
+        "zona": 'Colonna 4, Riga 1 (Data Analisi Casual).',
+        "flows": ['#04']
+    },
 ]
 
-TERM_ALIASES = {'PAR-Q+ (Physical Activity Readiness Questionnaire) & Digital Triage': ['par-q-physical-activity-readiness-questionnaire-digital-triage'], 'Video Ingest Tiers (Zero Upload Tier 1, 1080p Pro Tier 2, 4K/8K Enterprise Tier 3)': ['video-ingest-tiers-policy-tier-1-zero-upload-tier-2-1080p-tier-3-4k8k', 'video-ingest-tiers-1080p-consumer-2k-pro-4k8k-enterprise'], 'Zero AI Biomeccanica (Elaborazione Matematica Pura)': ['zero-ai-biomeccanica'], 'Isolamento Data Analisi Tier 1 (Zero Correlazione Cross-Modulo)': ['isolamento-data-analisi-tier-1'], 'Open Access Papers (Studi Scientifici Pubblici e Gratuiti)': ['open-access-papers-studi-scientifici-pubblici-gratuiti'], "Digital Twin Biomeccanico dell'Atleta": ['digital-twin-biomeccanico-dellatleta'], 'Analisi Sommaria Metriche Lattato (Soglie Aerobica/Anaerobica T7)': ['analisi-sommaria-metriche-lattato'], '32 Protocolli Riabilitativi Clinici (cli_01..cli_32)': ['32-protocolli-riabilitativi-clinici-cli01cli32'], 'SAML 2.0 Enterprise Federation & Single Sign-On': ['saml-20-enterprise-federation-single-sign-on'], 'Role-Based RAG (Controllo Accessi Gerarchico Medico / S&C / Atleta)': ['role-based-rag-controllo-accessi-gerarchico-medico--sc--atleta'], 'Controllo Incrociato & Avvisi di Conflitto (Conflict Alert Schede-Referti)': ['controllo-incrociato--avvisi-di-conflitto-conflict-alert-schede-referti'], 'Chatbot AI Studi Scientifici (Assistente Documentale 24/7)': ['chatbot-ai-studi-scientifici-assistente-documentale-247'], 'Potenza di Calcolo AI 100% (Tier 3 Enterprise)': ['potenza-di-calcolo-ai-100-tier-3']}
+TERM_ALIASES = {'PAR-Q+ (Physical Activity Readiness Questionnaire) & Digital Triage': ['par-q-physical-activity-readiness-questionnaire-digital-triage'], 'Video Ingest Tiers (Zero Upload Tier 1, 1080p Pro Tier 2, 4K/8K Enterprise Tier 3)': ['video-ingest-tiers-policy-tier-1-zero-upload-tier-2-1080p-tier-3-4k8k', 'video-ingest-tiers-1080p-consumer-2k-pro-4k8k-enterprise'], 'Zero AI Biomeccanica (Elaborazione Matematica Pura)': ['zero-ai-biomeccanica'], 'Isolamento Data Analisi Tier 1 (Zero Correlazione Cross-Modulo)': ['isolamento-data-analisi-tier-1'], 'Open Access Papers (Studi Scientifici Pubblici e Gratuiti)': ['open-access-papers-studi-scientifici-pubblici-gratuiti'], "Digital Twin Biomeccanico dell'Atleta": ['digital-twin-biomeccanico-dellatleta'], 'Analisi Sommaria Metriche Lattato (Soglie Aerobica/Anaerobica T7)': ['analisi-sommaria-metriche-lattato'], '32 Protocolli Riabilitativi Clinici (cli_01..cli_32)': ['32-protocolli-riabilitativi-clinici-cli01cli32'], 'SAML 2.0 Enterprise Federation & Single Sign-On': ['saml-20-enterprise-federation-single-sign-on'], 'Role-Based RAG (Controllo Accessi Gerarchico Medico / S&C / Atleta)': ['role-based-rag-controllo-accessi-gerarchico-medico--sc--atleta'], 'Controllo Incrociato & Avvisi di Conflitto (Conflict Alert Schede-Referti)': ['controllo-incrociato--avvisi-di-conflitto-conflict-alert-schede-referti'], 'Chatbot AI Studi Scientifici (Assistente Documentale 24/7)': ['chatbot-ai-studi-scientifici-assistente-documentale-247'], 'Potenza di Calcolo AI 100% (Tier 3 Enterprise)': ['potenza-di-calcolo-ai-100-tier-3'], 'Workout Session Tracker (Avvia Sessione)': ['workout-session-tracker', 'avvia-sessione'], 'Together Social Workout Sharing': ['together-social', 'together-app']}
 
 def make_slug(name):
     clean = unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore').decode('utf-8')

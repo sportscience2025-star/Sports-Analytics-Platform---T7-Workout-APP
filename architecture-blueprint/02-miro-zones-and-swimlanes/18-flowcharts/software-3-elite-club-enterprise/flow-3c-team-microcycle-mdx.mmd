@@ -7,9 +7,9 @@ flowchart TD
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 3C: PIANIFICAZIONE ANNUALE RAG, VIDEO ATLETI, CHATBOT 24/7 & READINESS SECTION"]
+    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 3C: PIANIFICAZIONE ANNUALE RAG, VIDEO ATLETI, CHATBOT 24/7, WORKOUT PLAYER, READINESS & CONDIVISIONE TOGETHER SOCIAL"]
 
-    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (STAFF COCKPIT, ATHLETE APP & READINESS)"]
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (STAFF COCKPIT, ATHLETE APP, GYM PLAYER & READINESS)"]
         START(["Inizio: Staff Cockpit Élite (Tier 3)"]):::startend
         UI_SYNC_DATA["Integrazione Data Analysis: Import Excel, Test Forza/Velocità & Storico"]:::client
         
@@ -26,6 +26,9 @@ flowchart TD
         DEC_DELIVERY{"Canale Condivisione Programma?"}:::decision
         UI_SHARE_VIDEO["Invio App Atleta con Video Dimostrativi, Tecnica ed Errori da Evitare"]:::client
         UI_CHATBOT_24_7["Chatbot Interattivo 24/7 Addestrato RAG: Q&A Real-Time & Guida Esercizi"]:::client
+        UI_START_SESSION["Pulsante 'Avvia Sessione' (Scheda Giorno o Allenamento Libero)"]:::client
+        UI_GYM_PLAYER["Interfaccia da Palestra Élite (Workout Session Tracker): Timer Recupero, Check Serie, Carichi (kg), Reps & Video 4K / Chatbot"]:::client
+        UI_TOGETHER_SHARE["Condivisione su Together Social: Card Dati Generici Allenamento (Durata, Volume, Esercizi - Privacy Safe)"]:::client
         UI_EXPORT_DOCS["Esportazione Multi-Formato: PDF, Excel (.xlsx), Word (.docx), Notes"]:::client
     end
 
@@ -34,19 +37,23 @@ flowchart TD
         GW_DATA_SYNC["Ricezione POST /api/v1/elite/data-analysis/sync"]:::gateway
         GW_READINESS_INGEST["Ricezione POST /api/v1/elite/readiness/ingest (PVT-B, HRV & CMJ)"]:::gateway
         GW_STREAM_BROKER["Broker HLS Video Streaming & WSS WebSocket Chatbot 24/7"]:::gateway
+        GW_LOG_REQ["Ricezione POST /api/v1/elite/programs/sessions/log"]:::gateway
+        GW_SOCIAL_REQ["Ricezione POST /api/v1/social/together/share"]:::gateway
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (READINESS, RAG & ANNUAL ENGINES)"]
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (READINESS, RAG, ANNUAL ENGINE & WORKOUT LOGGER)"]
         SRV_DATA_PARSER["Data Analysis Ingestion: Parser Matrici Excel & Test Biomeccanici"]:::server
         SRV_INJURY_ALGO["Two-Phase Injury Model: Fase 1 Red Flag Deterministica -> Fase 2 Regressione ML"]:::server
         SRV_ZSCORE_ENGINE["Stat Engine: Robust Z-Score MAD (Immunità Outlier su 28gg) & 4 Sub-Scores"]:::server
         SRV_ANNUAL_ENGINE["Annual Periodization Engine: Macrostruttura 52 Settimane di Gara"]:::server
         SRV_RAG_CLUSTER["RAG Cognitive Core: LLM societario per stile coach & Chatbot 24/7"]:::server
+        SRV_LOG_SESSION["Elite Workout Logger: Calcolo Volume, Retroazione Carico Acuto EWMA ACWR & Card Social"]:::server
     end
 
     subgraph LANE_DB["CORSIA 4: DATABASE TRIPARTITO (SILO 2 BUNKER KMS & DATA LAKE)"]
         DB_SILO2_BUNKER[("Silo 2 Bunker KMS: Schede Annuali, Log PVT-B/HRV/CMJ & Vettori RAG")]:::db
-        END_ACTIVE(["Fine: Programma Annuale Attivo, Monitorato da Readiness & RAG 24/7"]):::startend
+        DB_LOG_SESSION[("Registrazione Cifrata Sessione Silo 2 Bunker KMS (elite_workout_sessions)")]:::db
+        END_ACTIVE(["Fine: Programma Annuale Attivo, Monitorato da Readiness & Together Social"]):::startend
     end
 
     %% Flussi di Connessione
@@ -65,7 +72,7 @@ flowchart TD
     DB_SILO2_BUNKER --> DEC_DELIVERY
 
     DEC_DELIVERY -- App Atleta con Video --> UI_SHARE_VIDEO --> GW_STREAM_BROKER --> UI_CHATBOT_24_7
-    DEC_DELIVERY -- Export Multi-Formato --> UI_EXPORT_DOCS
+    UI_CHATBOT_24_7 --> UI_START_SESSION --> UI_GYM_PLAYER --> GW_LOG_REQ --> SRV_LOG_SESSION
+    SRV_LOG_SESSION --> DB_LOG_SESSION --> GW_SOCIAL_REQ --> UI_TOGETHER_SHARE --> END_ACTIVE
 
-    UI_CHATBOT_24_7 --> END_ACTIVE
-    UI_EXPORT_DOCS --> END_ACTIVE
+    DEC_DELIVERY -- Export Multi-Formato --> UI_EXPORT_DOCS --> END_ACTIVE

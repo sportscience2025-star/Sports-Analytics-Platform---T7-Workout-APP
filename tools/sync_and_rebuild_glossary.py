@@ -78,10 +78,36 @@ TERM_ALIASES = {
     ],
     "Potenza di Calcolo AI 100% (Tier 3 Enterprise)": [
         "potenza-di-calcolo-ai-100-tier-3"
+    ],
+    "Workout Session Tracker (Avvia Sessione)": [
+        "workout-session-tracker",
+        "avvia-sessione"
+    ],
+    "Together Social Workout Sharing": [
+        "together-social",
+        "together-app"
     ]
 }
 
 NEW_TERMS = [
+    {
+        "name": "Workout Session Tracker (Avvia Sessione)",
+        "cat": "Ingegneria Software & Architettura Cloud",
+        "eli5": "Interfaccia da palestra per registrare serie, carichi, ripetizioni e recuperi.",
+        "spiegazione": "Interfaccia interattiva da palestra che si avvia con il pulsante 'Avvia Sessione' all'apertura del programma giornaliero o di un workout libero, dotata di timer di recupero inter-serie, spunta delle serie completate e campi di input per inserire i carichi effettivi sollevati in kg e le ripetizioni reali eseguite.",
+        "ruolo": "Fornisce il player esecutivo in sala pesi su tutti i 3 Tier, registrando i volumi reali sul database e predisponendo i dati generici per la condivisione social.",
+        "zona": "Colonna 3, Righe 1, 2 e 3 (Programmazione degli Esercizi) e Corsia 1 Client.",
+        "flows": ["#03", "#09", "#15"]
+    },
+    {
+        "name": "Together Social Workout Sharing",
+        "cat": "Ingegneria Software & Architettura Cloud",
+        "eli5": "Condivisione su Together Social dei dati generici dell'allenamento completato.",
+        "spiegazione": "Funzionalità integrata nell'ecosistema T7 Workout che genera un riepilogo con metriche generiche (durata, volume totale, esercizi svolti) al termine della sessione registrata, permettendo la condivisione all'interno del social network Together Social per stimolare la community senza esporre dati sensibili.",
+        "ruolo": "Abilita la condivisione social peer-to-peer e community-driven tra gli atleti dei Tier 1, 2 e 3 sull'app integrata Together Social.",
+        "zona": "Colonna 3, Righe 1, 2 e 3 (Programmazione degli Esercizi) e Corsia 1 / 4.",
+        "flows": ["#03", "#09", "#15"]
+    },
     {
         "name": "PVT-B (Brief Psychomotor Vigilance Task 3-min)",
         "cat": "Biomeccanica & Valutazione Funzionale",
