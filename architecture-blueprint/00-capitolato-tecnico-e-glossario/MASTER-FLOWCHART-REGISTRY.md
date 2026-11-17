@@ -18,19 +18,19 @@ La seguente tabella rappresenta il registro unico e autoritativo che mappa 1:1 o
 | **#03** | Tier 1 | Col 3: Programmi Pre-Confezionati, Workout Player & Together Social | `FLOW-3A` | Programmazione Base, Pre-Confezionati, Workout Player & Together Social | 24 | `3458764688417722711` | `X: 2459, Y: 465` | [03-software-1-flow-3a-workout-player.md](03-software-1-flow-3a-workout-player.md) | `flow-3a-workout-player.mmd` |
 | **#04** | Tier 1 | Col 4: Data Analisi - Revisione Biomeccanica (NO AI) | `FLOW-4A` | Data Analisi: Biomeccanica Angoli Principali (NO AI, NO RAG) | 13 | `3458764688417722715` | `X: 4171, Y: 465` | [04-software-1-flow-4a-wearable-sync.md](04-software-1-flow-4a-wearable-sync.md) | `flow-4a-wearable-sync.mmd` |
 | **#05** | Tier 1 | Col 5: Libreria Fonti - Archivio Open Access & Filtri | `FLOW-5A` | Libreria Fonti: Archivio Open Access & Read-Only | 15 | `3458764688417722718` | `X: 6048, Y: 465` | [05-software-1-flow-5a-together-social-b2c.md](05-software-1-flow-5a-together-social-b2c.md) | `flow-5a-together-social-b2c.mmd` |
-| **#06** | Tier 1 | Col 6: Movely Desk-Care & Pause | `FLOW-6A` | Movely Desk-Care Ergonomia | 14 | `3458764688417722722` | `X: 7937, Y: 465` | [06-software-1-flow-6a-movely-desk-care.md](06-software-1-flow-6a-movely-desk-care.md) | `flow-6a-movely-desk-care.mmd` |
+| **#06** | Tier 1 | Col 6: Preferiti - Esercizi 3D, Programmi Base & Lista Lineare | `FLOW-6A` | Preferiti Base: Esercizi 3D, Programmi Pre-Confezionati & Lista Lineare | 14 | `3458764688417722722` | `X: 8960.19, Y: 602.88` | [06-software-1-flow-6a-movely-desk-care.md](06-software-1-flow-6a-movely-desk-care.md) | `flow-6a-movely-desk-care.mmd` |
 | **#07** | Tier 2 | Col 1: Setup Fiscale P.IVA Anti-Frode | `FLOW-1B` | Onboarding Pro & Setup Fiscale | 16 | `3458764688417722731` | `X: -2448, Y: 3090` | [07-software-2-flow-1b-pro-onboarding.md](07-software-2-flow-1b-pro-onboarding.md) | `flow-1b-pro-onboarding.mmd` |
 | **#08** | Tier 2 | Col 2: Video 1080p, Speed & AI Coach | `FLOW-2B` | Catalogo 3D, Video 1080p, Speed Control & AI Coach | 22 | `3458764688417722736` | `X: 251.36, Y: 2940` | [08-software-2-flow-2b-coach-hub.md](08-software-2-flow-2b-coach-hub.md) | `flow-2b-coach-hub.mmd` |
 | **#09** | Tier 2 | Col 3: Programmazione Anamnesi 6M, Workout Player & Together Social | `FLOW-3B` | Programmazione Anamnestica 6M, RTP, Workout Player, AI Fonti & Together Social | 29 | `3458764688417722743` | `X: 2641.02, Y: 3598.51` | [09-software-2-flow-3b-macrocycle-ai-triage119.md](09-software-2-flow-3b-macrocycle-ai-triage119.md) | `flow-3b-macrocycle-ai-triage119.mmd` |
 | **#10** | Tier 2 | Col 4: Data Analisi - Biomeccanica AI 70% & Wearable T7 | `FLOW-4B` | Data Analisi: AI 70%, Live Camera & Wearable T7 | 16 | `3458764688417722745` | `X: 4353.02, Y: 3598.51` | [10-software-2-flow-4b-vbt-pap-biomechanics.md](10-software-2-flow-4b-vbt-pap-biomechanics.md) | `flow-4b-vbt-pap-biomechanics.mmd` |
 | **#11** | Tier 2 | Col 5: Libreria Fonti - Sintesi Premium & Area Studio | `FLOW-5B` | Libreria Fonti: Sintesi Premium, Area Studio Locale & Commissione Scientifica | 16 | `3458764688417722746` | `X: 6230.02, Y: 3598.51` | [11-software-2-flow-5b-together-pro-business.md](11-software-2-flow-5b-together-pro-business.md) | `flow-5b-together-pro-business.mmd` |
-| **#12** | Tier 2 | Col 6: Physio Rehab Goniometro ROM | `FLOW-6B` | Physio Rehab ROM & Scala VAS | 16 | `3458764688417722770` | `X: 7937, Y: 2940` | [12-software-2-flow-6b-physio-rehab-rom.md](12-software-2-flow-6b-physio-rehab-rom.md) | `flow-6b-physio-rehab-rom.mmd` |
+| **#12** | Tier 2 | Col 6: Preferiti - Cartelle Tematiche, Tag, Template & Fonti | `FLOW-6B` | Preferiti Pro: Cartelle Tematiche, Tag, Video 1080p, Template & Fonti | 16 | `3458764688417722770` | `X: 9108.26, Y: 3815.00` | [12-software-2-flow-6b-physio-rehab-rom.md](12-software-2-flow-6b-physio-rehab-rom.md) | `flow-6b-physio-rehab-rom.mmd` |
 | **#13** | Tier 3 | Col 1: Onboarding Enterprise KMS | `FLOW-1C` | Onboarding Enterprise KMS | 18 | `3458764688417722778` | `X: -2925, Y: 6555` | [13-software-3-flow-1c-bunker-onboarding-kms.md](13-software-3-flow-1c-bunker-onboarding-kms.md) | `flow-1c-bunker-onboarding-kms.mmd` |
 | **#14** | Tier 3 | Col 2: Multi-Camera 4K & Suite Tattica | `FLOW-2C` | Catalogo 3D, Multi-Camera 4K, Suite Tattica & Stress Muscolare | 23 | `3458764688417722783` | `X: -108, Y: 6235.66` | [14-software-3-flow-2c-multi-staff-cockpit.md](14-software-3-flow-2c-multi-staff-cockpit.md) | `flow-2c-multi-staff-cockpit.mmd` |
 | **#15** | Tier 3 | Col 3: Programmazione Annuale RAG, Workout Player & Readiness | `FLOW-3C` | Programmazione Annuale, Workout Player, Chatbot 24/7, Readiness Section & Together Social | 31 | `3458764688417722788` | `X: 2641.02, Y: 8166.68` | [15-software-3-flow-3c-team-microcycle-mdx.md](15-software-3-flow-3c-team-microcycle-mdx.md) | `flow-3c-team-microcycle-mdx.mmd` |
 | **#16** | Tier 3 | Col 4: Data Analisi - AI 100%, Multi-Device & Role-Based RAG | `FLOW-4C` | Data Analisi: AI 100%, Multi-Device, Full Export & Role-Based RAG | 17 (Mermaid) / 19 (Miro) | `3458764688417722792` | `X: 4768.26, Y: 8032.48` | [16-software-3-flow-4c-gps-adaptive-zscore.md](16-software-3-flow-4c-gps-adaptive-zscore.md) | `flow-4c-gps-adaptive-zscore.mmd` |
 | **#17** | Tier 3 | Col 5: Libreria Fonti - AI Studio, Chatbot & RAG Sync | `FLOW-5C` | Libreria Fonti: AI Studio, Chatbot Scientifico, Bollettino & RAG Sync | 16 (Mermaid) / 18 (Miro) | `3458764688417722803` | `X: 6645.26, Y: 8033.79` | [17-software-3-flow-5c-tactical-video-cv.md](17-software-3-flow-5c-tactical-video-cv.md) | `flow-5c-tactical-video-cv.mmd` |
-| **#18** | Tier 3 | Col 6: Medical Room EMR & Silo 3 Lake | `FLOW-6C` | Medical Room EMR & Silo 3 Lake | 18 | `3458764688417722810` | `X: 8353, Y: 6573.44` | [18-software-3-flow-6c-medical-room-research-silo3.md](18-software-3-flow-6c-medical-room-research-silo3.md) | `flow-6c-medical-room-research-silo3.mmd` |
+| **#18** | Tier 3 | Col 6: Preferiti - All-in-One, Team Pinning, Albero ltree & AI | `FLOW-6C` | Preferiti Enterprise All-in-One: Team Pinning, ltree, Ricerca Ibrida AI & RLS | 18 | `3458764688417722810` | `X: 9225.38, Y: 8230.99` | [18-software-3-flow-6c-medical-room-research-silo3.md](18-software-3-flow-6c-medical-room-research-silo3.md) | `flow-6c-medical-room-research-silo3.mmd` |
 
 ---
 
@@ -214,14 +214,49 @@ In conformità alla "Legge della Libreria Fonti" (approvata in data 12 Novembre 
 
 ---
 
-## 6. Topologia Spaziale della Board Miro (ZONA 4)
+## 6. Dettaglio Specifiche Colonna 6: Preferiti (Tiers 1, 2, 3)
+
+In conformita alla "Legge dei Preferiti", i tre flowchart di Colonna 6 (`#06`, `#12`, `#18`) rispettano rigorosamente le seguenti specifiche funzionali vincolanti:
+
+> **Nota di Parking Architetturale & Continuita Slug:** I moduli precedentemente ospitati nella Colonna 6 (*Movely Desk-Care & Micro-Pause Ergonomiche* in `#06`, *Physio Rehab Protocols / Goniometro ROM & VAS* in `#12`, *Medical Room EMR / RTP 6 Fasi & Silo 3 Research Lake* in `#18`) sono stati parcheggiati per una futura colonna dedicata. Gli slug fisici dei file `.md` e `.mmd` (`06-...`, `12-...`, `18-...`) e i Miro Badge Shape ID restano invariati per continuita referenziale.
+
+### #06 [ FLOW-6A ] Tier 1 (B2C Casual) - Preferiti Base: Esercizi 3D, Programmi Pre-Confezionati & Lista Lineare
+- **Badge Shape ID:** `3458764688417722722` | **Coordinate LIVE:** `X: 8960.19, Y: 602.88` | **Nodi ISO:** 14
+- **Caratteristiche Chiave:**
+  - **Salvataggio Esercizi 3D:** contrassegnare e salvare esercizi (modelli 3D e spiegazioni) dal Catalogo (Col 2, `#02`);
+  - **Salvataggio Programmi Base:** salvare programmi pre-confezionati standard dalla Programmazione (Col 3, `#03`);
+  - **Organizzazione visiva lineare:** lista semplice e piatta senza gerarchie;
+  - **Architettura a puntatori relazionali:** 100% deterministico tramite `bookmark_id` su Silo 1 (`user_favorites`), zero duplicazione media;
+  - **Limiti rigorosi Tier 1:** NO sottocartelle, NO tag, NO fonti scientifiche, NO video custom, NO template, NO Data Analisi, NO AI, NO RAG.
+
+### #12 [ FLOW-6B ] Tier 2 (Pro P.IVA) - Preferiti Pro: Cartelle Tematiche, Tag, Video 1080p, Template & Fonti
+- **Badge Shape ID:** `3458764688417722770` | **Coordinate LIVE:** `X: 9108.26, Y: 3815.00` | **Nodi ISO:** 16
+- **Caratteristiche Chiave:**
+  - **Salvataggio Esercizi e Video Custom:** esercizi standard (Col 2) e propri Video Personalizzati 1080p (Col 2, `#08`);
+  - **Salvataggio Programmi e Template Riutilizzabili:** modelli base clonabili per nuovi clienti 1:1 (Col 3, `#09`);
+  - **Salvataggio Fonti Scientifiche e Appunti Locali:** articoli Open Access, Schede Tecniche di Sintesi e riferimenti ai propri appunti digitali locali (`IndexedDB`) dalla Libreria Fonti (Col 5, `#11`);
+  - **Cartelle Tematiche e Tag Personalizzati:** organizzazione personale con cartelle e tag (es. *"Protocolli Ipertrofia"*, *"Articoli Nutrizione"*);
+  - **Architettura deterministica e Isolamento DB Tier 2:** 100% puntatori relazionali su `Silo 1 Pro` (`pro_favorite_folders`, `pro_favorite_tags`, `pro_favorite_pointers`), zero duplicazione media; **Data Analisi (`#10`) NON salvabile nei Preferiti Tier 2**; NO AI, NO RAG, NO condivisione team/staff.
+
+### #18 [ FLOW-6C ] Tier 3 (Elite Teams) - Preferiti Enterprise All-in-One: Team Pinning, ltree, Ricerca Ibrida AI & Segreto Medico RLS
+- **Badge Shape ID:** `3458764688417722810` | **Coordinate LIVE:** `X: 9225.38, Y: 8230.99` | **Nodi ISO:** 18
+- **Caratteristiche Chiave:**
+  - **Integrazione Totale (Ecosistema All-in-One):** esercizi 4K (Col 2, `#14`), programmi stagionali complessi (Col 3, `#15`), report dettagliati Data Analisi & Readiness Section (Col 4, `#16`), articoli scientifici (Col 5, `#17`), documenti privati staff e RAG, referti clinici, test e report Match Analisi;
+  - **Doppio Livello di Preferiti:** *Preferiti Personali* (visibili solo al singolo) vs *Preferiti di Team/Staff* (condivisi, con **Pinning in alto** di documenti e routine cruciali per tutta la squadra);
+  - **Albero Cartelle Complesse (`ltree`) & Ricerca Ibrida Intelligente:** gerarchia annidata indicizzata GiST + ricerca ibrida Full-Text PostgreSQL (`tsvector` GIN) + AI Semantica (`pgvector` HNSW su Silo 2 Bunker KMS);
+  - **Contratti Gemini SDK Correnti (`@google/genai`):** `ai.models.embedContent({ model: 'gemini-embedding-2', contents })` e `ai.interactions.create({ model: 'gemini-2.5-flash-lite', store: false, input, response_format: { ... } })` nell'enclave privata T7 con guardrail server-side `BudgetConfig` e `SafetyPolicy`;
+  - **Segreto Medico & Filtro Silenzioso RBAC + PostgreSQL RLS (GDPR Art. 9):** Envoy RBAC (Corsia 2) + PostgreSQL RLS FORCED (Silo 2) filtrano automaticamente e silenziosamente per ruolo; referti clinici visibili ESCLUSIVAMENTE allo Staff Medico, mentre allenatori e preparatori vedono tutti gli altri documenti, video e routine fissati senza fuga di dati ne rivelazione di esistenza.
+
+---
+
+## 7. Topologia Spaziale della Board Miro (ZONA 4)
 
 La Zona 4 si articola su una griglia ortogonale rigorosa:
 
 ### Struttura per Righe (3 Livelli Applicativi / Tiers)
-- **Riga 1 (In alto - Tier 1 Consumer):** Coordinata $Y \approx 180 \dots 465$. Palette teal (`#0f766e` / `#14b8a6`).
-- **Riga 2 (In mezzo - Tier 2 Pro / P.IVA):** Coordinata $Y \approx 2940 \dots 3598$. Palette ambra (`#b45309` / `#f59e0b`).
-- **Riga 3 (In basso - Tier 3 Elite Club / Ricerca):** Coordinata $Y \approx 6235 \dots 8034$. Palette indaco (`#4338ca` / `#818cf8`).
+- **Riga 1 (In alto - Tier 1 Consumer):** Coordinata $Y \approx 180 \dots 603$. Palette teal (`#0f766e` / `#14b8a6`).
+- **Riga 2 (In mezzo - Tier 2 Pro / P.IVA):** Coordinata $Y \approx 2940 \dots 3815$. Palette ambra (`#b45309` / `#f59e0b`).
+- **Riga 3 (In basso - Tier 3 Elite Club / Ricerca):** Coordinata $Y \approx 6235 \dots 8231$. Palette indaco (`#4338ca` / `#818cf8`).
 
 ### Struttura per Colonne (6 Domini Funzionali Specializzati)
 1. **Colonna 1 ($X \approx -2925 \dots -2448$):** Identity, Security & Anti-Frode (Onboarding, WebAuthn, VIES, Cloud KMS).
@@ -229,11 +264,11 @@ La Zona 4 si articola su una griglia ortogonale rigorosa:
 3. **Colonna 3 ($X \approx 2459 \dots 3056$):** Periodization, Triage & Workout Execution (Thin Player IndexedDB, Macrocicli DUP/Triage 119, Microciclo MD-X Bunker Silo 2).
 4. **Colonna 4 ($X \approx 4171 \dots 4768$):** Data Analisi (Revisione Biomeccanica NO AI, Data Analisi AI 70% & Wearable T7, Data Analisi AI 100% & Role-Based RAG).
 5. **Colonna 5 ($X \approx 6048 \dots 6645$):** Libreria Fonti (Archivio Open Access Read-Only, Sintesi Premium & Area Studio Locale IndexedDB, AI Studio 100%, Chatbot & RAG Sync Bunker Silo 2).
-6. **Colonna 6 ($X \approx 7937 \dots 8353$):** Rehab ROM, Clinical Desk-Care & Research Lake (Desk-Care Ergonomia, Goniometro Markerless AI, Medical Room EMR & Silo 3 Research Warehouse).
+6. **Colonna 6 ($X \approx 8960 \dots 9225$):** Preferiti (Lista Lineare Puntatori Silo 1 Tier 1, Cartelle Tematiche/Tag/Template/Fonti Silo 1 Pro Tier 2, Ecosistema All-in-One con Team Pinning, Albero `ltree`, Ricerca Ibrida `tsvector`+`pgvector` AI e Filtro Silenzioso RBAC/RLS Silo 2 Bunker KMS Tier 3; moduli precedenti Movely/Physio ROM/Medical EMR parcheggiati per futura colonna dedicata).
 
 ---
 
-## 7. Norme di Manutenzione del Registro
+## 8. Norme di Manutenzione del Registro
 
 1. **Invarianza degli ID Miro:** Gli Shape ID riportati sono identificativi univoci generati dalle API Miro e non devono essere modificati a meno di ricreazione esplicita del badge.
 2. **Aggiornamento Sincrono:** Qualsiasi spostamento geometrico di un badge sulla board Miro impone l'aggiornamento immediato delle coordinate $(X, Y)$ in questo registro e nella Sezione 1 del corrispondente file `.md`.

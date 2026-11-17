@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Script per la generazione enciclopedica di 00-GLOSSARIO-TERMINI-TECNICI.md
-Contiene 134 Schede Terminologiche complete con ELI5 (<= 10 parole).
+Contiene 143 Schede Terminologiche complete con ELI5 (<= 10 parole).
 """
 import re
 import os
@@ -46,6 +46,15 @@ TERMS = [
         "ruolo": "Rappresenta fedelmente la risposta fisiologica reale del corpo, evitando l'effetto a gradino delle medie mobili semplici e anticipando stati di sovrallenamento.",
         "zona": 'Colonna 3, Riga 3 (Microciclo MD-X) e Corsia 3 Server.',
         "flows": ['#15']
+    },
+    {
+        "name": 'Albero Cartelle Gerarchico (PostgreSQL ltree)',
+        "cat": 'Ingegneria Software & Architettura Cloud',
+        "eli5": 'Struttura di cartelle e sottocartelle velocissima per archivi complessi.',
+        "spiegazione": 'Estensione nativa di PostgreSQL (ltree) basata su percorsi etichettati indicizzati GiST che consente gerarchie annidate illimitate (es. club.stagione_26.match_analisi.avversari) con query di sottoalbero in millisecondi.',
+        "ruolo": 'Gestisce la tassonomia complessa dei Preferiti Personali e di Team/Staff in Tier 3 (Silo 2 Bunker KMS), garantendo navigazione istantanea e ricerca filtrata per ramo.',
+        "zona": 'Colonna 6, Riga 3 (Preferiti Enterprise) e Corsia 4 Silo 2.',
+        "flows": ['#18']
     },
     {
         "name": 'Analisi Sommaria Metriche Lattato (Soglie Aerobica/Anaerobica T7)',
@@ -136,6 +145,15 @@ TERMS = [
         "ruolo": 'Riservato a Tier 3 Enterprise, azzera i tempi morti di monitoraggio accademico per gli staff dei top club sportivi.',
         "zona": 'Colonna 5, Riga 3 (Libreria Fonti Enterprise).',
         "flows": ['#17']
+    },
+    {
+        "name": 'Cartelle Tematiche & Tag Personalizzati (Preferiti Pro)',
+        "cat": 'Principi Architetturali di Prodotto',
+        "eli5": 'Cartelle ed etichette personali per ordinare esercizi e fonti.',
+        "spiegazione": "Sistema di tassonomia personale basato su cartelle tematiche e tag liberi definiti dal professionista (es. 'Protocolli Ipertrofia', 'Articoli Nutrizione') per filtrare deterministicamente puntatori a esercizi, video 1080p, template e fonti scientifiche.",
+        "ruolo": "Potenzia l'operativita quotidiana di coach e fisioterapisti P.IVA in Tier 2 (Silo 1 Pro), mantenendo l'isolamento da Data Analisi, AI, RAG e condivisione di squadra.",
+        "zona": 'Colonna 6, Righe 2 e 3 (Preferiti Pro ed Enterprise) e Corsia 1 / 4.',
+        "flows": ['#12', '#18']
     },
     {
         "name": 'Chatbot AI Studi Scientifici (Assistente Documentale 24/7)',
@@ -291,6 +309,15 @@ TERMS = [
         "flows": ['#16']
     },
     {
+        "name": 'Doppio Livello Preferiti (Personali vs Team/Staff Pinning)',
+        "cat": 'Sicurezza Enterprise & Identità Societaria (Tier 3)',
+        "eli5": 'Spazio personale separato dalla bacheca condivisa con documenti fissati.',
+        "spiegazione": 'Architettura multi-scope di Tier 3 che separa i Preferiti Personali (visibili solo al singolo operatore) dai Preferiti di Team/Staff (condivisi con il club e dotati di pinning prioritario in alto per documenti e routine cruciali).',
+        "ruolo": "Permette agli staff dei club professionistici di standardizzare l'accesso immediato a routine 4K, report Match Analisi, Readiness e documenti RAG senza mescolarli con gli appunti privati del singolo.",
+        "zona": 'Colonna 6, Riga 3 (Preferiti Enterprise All-in-One) e Corsia 1 / 4.',
+        "flows": ['#18']
+    },
+    {
         "name": 'Draco Geometry Compression & Progressive LOD',
         "cat": 'Grafica 3D, WebGL & Rendering Biomeccanico',
         "eli5": 'Rimpicciolisce i file 3D per caricarli velocemente sullo smartphone.',
@@ -426,6 +453,24 @@ TERMS = [
         "flows": ['#04', '#10']
     },
     {
+        "name": 'Filtro Silenzioso RBAC & PostgreSQL RLS (Segreto Medico Preferiti)',
+        "cat": 'Sicurezza Enterprise & Identità Societaria (Tier 3)',
+        "eli5": 'Nasconde i referti medici allo staff non autorizzato.',
+        "spiegazione": 'Meccanismo di difesa in profondita conforme al GDPR Art. 9 che combina Envoy RBAC (Corsia 2) e PostgreSQL Row-Level Security (Silo 2) per escludere silenziosamente referti clinici e documenti sanitari dai risultati di ricerca e dal pinning visibili ai ruoli tecnici.',
+        "ruolo": "Garantisce che i documenti clinici fissati nei Preferiti di Team/Staff siano visibili esclusivamente allo Staff Medico, impedendo ad allenatori e preparatori qualsiasi fuga di dati o rivelazione dell'esistenza stessa del referto.",
+        "zona": 'Colonna 6, Riga 3 (Preferiti Enterprise) e Corsia 2 / 4.',
+        "flows": ['#18']
+    },
+    {
+        "name": 'Gemini Interactions API & Embedding-2 (Guardrail Enclave T7)',
+        "cat": 'Algoritmi, Statistica & Machine Learning',
+        "eli5": 'Motore AI stateless privato con controlli di sicurezza integrati.',
+        "spiegazione": "Integrazione server-side mediante SDK ufficiale @google/genai con ai.models.embedContent (gemini-embedding-2) per la vettorizzazione semantica e ai.interactions.create (gemini-2.5-flash-lite, store: false, output JSON strutturato) protetta da BudgetConfig e SafetyPolicy nell'enclave privata T7.",
+        "ruolo": 'Alimenta la ricerca semantica e il reranking intelligente dei Preferiti Enterprise (FLOW-6C) senza conservazione esterna dei dati sensibili del club e con zero esposizione sul Thin Client.',
+        "zona": 'Colonna 6, Riga 3 (Preferiti Enterprise) e Corsia 3 Server Scatola Nera.',
+        "flows": ['#18']
+    },
+    {
         "name": 'Gestione Preferiti Studi Scientifici',
         "cat": 'Ricerca Scientifica & Documentazione Accademica (Tier 1-2-3)',
         "eli5": 'Salva e organizza le ricerche scientifiche in cartelle personalizzate.',
@@ -550,6 +595,15 @@ TERMS = [
         "ruolo": "Protegge tessuti biologici in via di guarigione o neo-legamenti chirurgici, bloccando visivamente l'animazione all'angolo limite impostato.",
         "zona": 'Colonna 2 e 6, Riga 2.',
         "flows": ['#12']
+    },
+    {
+        "name": 'Lista Lineare Preferiti (Tier 1 Base)',
+        "cat": 'Principi Architetturali di Prodotto',
+        "eli5": 'Elenco piatto di esercizi e programmi salvati senza cartelle.',
+        "spiegazione": 'Organizzazione visiva essenziale a lista singola e cronologica riservata agli utenti Consumer, priva di sottocartelle, etichette personalizzate, fonti scientifiche, video personalizzati o ricerca AI.',
+        "ruolo": "Consente all'utente amatoriale di Tier 1 di contrassegnare e richiamare in un tocco esercizi 3D dal Catalogo (#02) e programmi pre-confezionati base (#03), applicando in modo rigoroso il Feature Gating di fascia.",
+        "zona": 'Colonna 6, Riga 1 (Preferiti Tier 1) e Corsia 1 Client.',
+        "flows": ['#06']
     },
     {
         "name": 'Live Camera AI Real-Time Correction (Feedback Esecutivo sul Momento)',
@@ -723,6 +777,15 @@ TERMS = [
         "flows": ['#02']
     },
     {
+        "name": 'Puntatore Relazionale Preferiti (Zero-Duplication Bookmark)',
+        "cat": 'Ingegneria Software & Architettura Cloud',
+        "eli5": "Collegamento rapido all'asset originale senza duplicare file pesanti.",
+        "spiegazione": "Record leggero su database relazionale che memorizza esclusivamente l'identificativo univoco (bookmark_id) e il tipo di risorsa referenziata, risolvendo l'asset in tempo reale senza mai clonare modelli 3D, video, PDF o report.",
+        "ruolo": 'Costituisce la spina dorsale deterministica della Colonna 6 Preferiti su tutti e tre i Tier (Silo 1 per Tier 1/2, Silo 2 Bunker KMS per Tier 3), azzerando la duplicazione dello storage e garantendo coerenza immediata agli aggiornamenti della sorgente.',
+        "zona": 'Colonna 6, Righe 1, 2 e 3 (Preferiti) e Corsia 3 / 4.',
+        "flows": ['#06', '#12', '#18']
+    },
+    {
         "name": 'PVT-B (Brief Psychomotor Vigilance Task 3-min)',
         "cat": 'Biomeccanica & Valutazione Funzionale',
         "eli5": 'Test di reazione rapida per misurare la fatica cerebrale.',
@@ -811,6 +874,15 @@ TERMS = [
         "ruolo": "Fornisce una revisione tecnica oggettiva al coach, evidenziando incongruenze anatomiche o rischi lesivi prima che l'esercizio sia salvato nel catalogo.",
         "zona": 'Colonna 2, Riga 2 e 3.',
         "flows": ['#08']
+    },
+    {
+        "name": 'Ricerca Ibrida Preferiti (PostgreSQL tsvector + pgvector AI)',
+        "cat": 'Algoritmi, Statistica & Machine Learning',
+        "eli5": 'Combina ricerca esatta per parole e ricerca semantica AI.',
+        "spiegazione": 'Motore di recupero documentale a doppio canale che fonde lo score lessicale full-text (PostgreSQL tsvector con indice GIN) e la similarita coseno su vettori semantici (pgvector HNSW), integrando fusione RRF e reranking contestuale.',
+        "ruolo": "Permette allo staff di Tier 3 di ritrovare istantaneamente esercizi 4K, programmi annuali, report Data Analisi, studi scientifici, file RAG e referti nell'enclave privata Silo 2 Bunker KMS.",
+        "zona": 'Colonna 6, Riga 3 (Preferiti Enterprise) e Corsia 3 / 4.',
+        "flows": ['#18']
     },
     {
         "name": 'Robust Z-Score (MAD - Median Absolute Deviation)',
@@ -973,6 +1045,15 @@ TERMS = [
         "ruolo": 'Trasforma i video del club in schede didattiche interattive e visualizza le sollecitazioni articolari prima della validazione congiunta con il medico sociale.',
         "zona": 'Colonna 2, Riga 3 (Multi-Staff Cockpit).',
         "flows": ['#14']
+    },
+    {
+        "name": 'Template Riutilizzabili Preferiti (Clonazione Modelli Pro)',
+        "cat": "Metodologia d'Allenamento & Clinica Sportiva",
+        "eli5": 'Schede salvate come modelli base pronti per nuovi clienti.',
+        "spiegazione": "Meccanismo deterministico che contrassegna programmi di allenamento di Tier 2 (#09) come modelli riutilizzabili nei Preferiti, consentendo la clonazione parametrica su nuovi clienti senza alterare l'originale.",
+        "ruolo": 'Riduce i tempi di compilazione delle schede per preparatori e fisioterapisti P.IVA (FLOW-6B) mantenendo la separazione rigorosa dai dati di Data Analisi.',
+        "zona": 'Colonna 6, Righe 2 e 3 (Preferiti Pro ed Enterprise) e Corsia 3 Server.',
+        "flows": ['#12', '#18']
     },
     {
         "name": 'Text-to-Kinematics 3D Synthesis (Generatore di Esercizi Solo-Testo)',

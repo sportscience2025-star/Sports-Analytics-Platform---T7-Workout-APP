@@ -1,5 +1,5 @@
 flowchart TD
-    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef startend fill:#4338ca,stroke:#818cf8,stroke-width:2px,color:#ffffff,font-weight:bold;
     classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
     classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
     classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
@@ -7,43 +7,54 @@ flowchart TD
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 6C: MEDICAL ROOM EMR, RETURN-TO-PLAY & RESEARCH WAREHOUSE (SILO 3)"]
+    TITLE["SOFTWARE 3 (B2B ENTERPRISE) - FLOW 6C: HUB PREFERITI ALL-IN-ONE - TEAM PINNING, ALBERO LTREE, RICERCA IBRIDA AI & SEGRETO MEDICO RLS"]
 
-    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (MEDICAL ROOM & RESEARCH PORTAL)"]
-        START(["Inizio: Accesso Cartella Clinica EMR"]):::startend
-        EMR_VIEW["Cartella Clinica Elettronica Atleta: Storico Lesioni, Esami Strumentali (RMN/Ecografie)"]:::client
-        RTP_STEPPER["Stepper Return to Play (RTP) a 6 Fasi: 1. Riposo -> 2. Terapie -> 3. Lavoro Differenziato -> 4. In Gruppo Senza Contatto -> 5. Con Gruppo -> 6. Idoneita Gara"]:::client
-        DOC_SIGN_BTN["Pulsante 'Firma Digitale Medico Sociale per Passaggio Fase RTP'"]:::client
-        RESEARCH_OPTIN["Toggle: 'Consenso Ricerca Scientifica Universitaria Anonimizzata'"]:::client
-        RTP_BLOCKED["Blocco: Criteri Funzionali non Soddisfatti - Rimani in Fase Attuale"]:::error
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (ENTERPRISE HUB PREFERITI ALL-IN-ONE & TEAM PINNING)"]
+        START(["Inizio: Accesso Hub Preferiti Enterprise All-in-One (Tier 3)"]):::startend
+        DEC_SCOPE{"Scelta Scope: Preferiti Personali vs Preferiti di Team/Staff con Pinning?"}:::decision
+        UI_TREE_SEARCH["Albero Cartelle Complesse (ltree) & Barra Ricerca Ibrida (Full-Text + AI Semantica)"]:::client
+        UI_TEAM_PIN["Vista Preferiti Team/Staff: Pinning in Alto Documenti e Routine Cruciali di Squadra"]:::client
+        NAV_CARD_ALLINONE["Card Passaggio Locale All-in-One: Catalogo 4K (#14), Programmazione (#15), Data Analisi & Readiness (#16), Fonti (#17), RAG/Match/Referti"]:::client
+        RENDER_ROLE_RESULTS["Rendering Risultati Filtrati per Ruolo con 4 Stati UI (Empty, Loading, Populated, Error/Fallback)"]:::client
     end
 
-    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & MEDICAL AUTHORIZATION"]
-        GW_RTP_UPDATE["Ricezione POST /api/v1/club/medical/rtp/advance"]:::gateway
-        GW_RESEARCH_SYNC["Ricezione POST /api/v1/club/research/etl-export"]:::gateway
-        GW_DOC_VERIFY{"Firma Digitale Medico Sociale Valida (R3)?"}:::decision
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & RBAC (ENTERPRISE mTLS & GDPR ART. 9 MEDICAL SHIELD)"]
+        GW_MTLS_API["Ricezione Chiamata mTLS + JWT Ruolo Club: /api/v1/enterprise/favorites/*"]:::gateway
+        DEC_GDPR_MED{"RBAC + GDPR Art. 9: Asset Clinico/Referto in Team/Staff & Richiedente = Staff Medico?"}:::decision
+        GW_SILENT_MASK["Filtro Silenzioso Mascheramento Clinico (Oscura Referti a Coach/Preparatori: Zero Leakage & Zero Hint)"]:::error
+        GW_ROUTE_SECURE["Inoltro Sicuro con Contesto Ruolo Sanitizzato (role_claim + tenant_kms_id) verso Enclave T7"]:::gateway
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (RTP VALIDATOR & ANONYMIZATION ETL)"]
-        SRV_RTP_AUDIT["Audit Clinico: Verifica Parametri Funzionali (LSI Simmetria Arti > 90%, Assenza Dolore)"]:::server
-        SRV_DE_ID_ETL["Pipeline ETL De-Identificazione: K-Anonimato (k >= 5) ed l-Diversita (Rimozione Totale PII)"]:::server
-        SRV_NOTIF_STAFF["Notifica a Head Coach & S&C: 'Atleta autorizzato a Fase 4 (In Gruppo Senza Contatto)'"]:::server
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (HYBRID SEARCH, GEMINI AI ENCLAVE & TREE RESOLVER)"]
+        SRV_TREE_PIN["Resolver Albero Cartelle Gerarchico (ltree) & Motore Pinning Prioritario Team/Staff"]:::server
+        SRV_FULLTEXT["Motore Ricerca Full-Text PostgreSQL (tsvector / tsquery su Metadati & Indici Club)"]:::server
+        SRV_SEMANTIC_EMBED["AI Semantica Enclave T7 (@google/genai): ai.models.embedContent (gemini-embedding-2)"]:::server
+        SRV_RERANK_GUARD["Reranking Ibrido: ai.interactions.create (gemini-2.5-flash-lite, store: false) + Guardrail BudgetConfig/SafetyPolicy"]:::server
     end
 
-    subgraph LANE_DB["CORSIA 4: DATABASE A DOPPIO SILO (SILO 2 BUNKER + SILO 3 RESEARCH WAREHOUSE)"]
-        DB_WRITE_S2[("Salvataggio Cartella Clinica Crittografata in Silo 2 (medical_records, rtp_milestones)")]:::db
-        DB_WRITE_S3[("Export Coorte Dati Anonimizzati in Silo 3 (research_warehouse_lake)")]:::db
-        END_MEDICAL_SYNC(["Fine: Atleta Aggiornato e Dati Ricerca Alimentati"]):::startend
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 2 (ENCRYPTED CLUB BUNKER KMS & POSTGRESQL RLS)"]
+        DB_FAV_TREES[("Bunker Silo 2 KMS + RLS: Tabella club_favorite_trees (Alberi ltree Personali & Team)")]:::db
+        DB_FAV_ITEMS[("Bunker Silo 2 KMS + RLS: Tabella club_favorite_items (Puntatori #14-#17, RAG, Match, Referti & Pinning)")]:::db
+        DB_FAV_EMBED[("Bunker Silo 2 KMS + RLS: Tabella club_favorite_embeddings (Indici pgvector con PostgreSQL RLS Obbligatoria)")]:::db
+        END_FLOW(["Fine: Hub Preferiti Enterprise Sincronizzato con Segreto Medico Garantito (GDPR Art. 9)"]):::startend
     end
 
-    %% Flussi
-    START --> EMR_VIEW --> RTP_STEPPER --> DOC_SIGN_BTN
-    DOC_SIGN_BTN --> GW_RTP_UPDATE --> GW_DOC_VERIFY
-    GW_DOC_VERIFY -- No --> RTP_BLOCKED
-    GW_DOC_VERIFY -- Valida --> SRV_RTP_AUDIT
-
-    SRV_RTP_AUDIT --> DB_WRITE_S2 --> SRV_NOTIF_STAFF
-
-    RESEARCH_OPTIN --> GW_RESEARCH_SYNC --> SRV_DE_ID_ETL --> DB_WRITE_S3
-    SRV_NOTIF_STAFF --> END_MEDICAL_SYNC
-    DB_WRITE_S3 --> END_MEDICAL_SYNC
+    %% Connessioni di flusso
+    START --> DEC_SCOPE
+    DEC_SCOPE -- "Preferiti Personali & Ricerca Ibrida" --> UI_TREE_SEARCH --> NAV_CARD_ALLINONE
+    DEC_SCOPE -- "Preferiti Team/Staff & Pinning in Alto" --> UI_TEAM_PIN --> NAV_CARD_ALLINONE
+    NAV_CARD_ALLINONE --> GW_MTLS_API --> DEC_GDPR_MED
+    DEC_GDPR_MED -- "No / Coach o Preparatore su Asset Clinico" --> GW_SILENT_MASK --> GW_ROUTE_SECURE
+    DEC_GDPR_MED -- "Si / Staff Medico o Asset Non Clinico" --> GW_ROUTE_SECURE
+    GW_ROUTE_SECURE --> SRV_TREE_PIN
+    GW_ROUTE_SECURE --> SRV_FULLTEXT
+    GW_ROUTE_SECURE --> SRV_SEMANTIC_EMBED
+    SRV_TREE_PIN --> DB_FAV_TREES
+    SRV_TREE_PIN --> DB_FAV_ITEMS
+    SRV_FULLTEXT --> DB_FAV_ITEMS
+    SRV_SEMANTIC_EMBED --> DB_FAV_EMBED
+    DB_FAV_ITEMS --> SRV_RERANK_GUARD
+    DB_FAV_EMBED --> SRV_RERANK_GUARD
+    DB_FAV_TREES --> RENDER_ROLE_RESULTS
+    SRV_RERANK_GUARD --> RENDER_ROLE_RESULTS
+    RENDER_ROLE_RESULTS --> END_FLOW

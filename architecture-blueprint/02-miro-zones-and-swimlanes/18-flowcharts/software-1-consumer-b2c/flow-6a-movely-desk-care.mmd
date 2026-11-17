@@ -7,38 +7,40 @@ flowchart TD
     classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
     classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
 
-    TITLE["SOFTWARE 1 (B2C CONSUMER) - FLOW 6A: MOVELY DESK-CARE & ACTIVE MICRO-PAUSES"]
+    TITLE["SOFTWARE 1 (B2C CONSUMER) - FLOW 6A: HUB PREFERITI BASE - ESERCIZI 3D, PROGRAMMI BASE & LISTA LINEARE"]
 
-    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (DESK-CARE)"]
-        START(["Inizio: Timer Sedentarieta Attivo"]):::startend
-        TIMER_TRIGGER{"Rilevati 50 minuti di sedentarieta / lavoro?"}:::decision
-        NOTIF_PROMPT["Notifica Push: 'E ora di una pausa attiva di 2 minuti!'"]:::client
-        MODAL_EXERCISES["Schermata Movely: 3 Micro-Esercizi Scrivania (Cervicale, Spalle, Lombare)"]:::client
-        TIMER_2MIN["Timer Guidato 120s con Animazione Postura"]:::client
-        BTN_DONE["Pulsante 'Pausa Completata'"]:::client
-        STREAK_POPUP["Popup: 'Ottimo! Streak Posturale Giornaliero: +1'"]:::client
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (HUB PREFERITI BASE - LISTA LINEARE)"]
+        START(["Inizio: Accesso Sezione Preferiti Base (Tier 1)"]):::startend
+        LINEAR_LIST["Vista Lista Semplice e Lineare (Solo Esercizi 3D & Programmi Base - NO Cartelle/Tag)"]:::client
+        DEC_FAV_ACTION{"Azione Utente: Apri Sorgente o Salva/Rimuovi Preferito?"}:::decision
+        NAV_CARD_SRC["Card Passaggio Locale: Apri Catalogo 3D (#02) o Programmi Base (#03)"]:::client
+        ACTION_REQ["Richiesta Salva, Rimuovi o Apri Puntatore Preferito (bookmark_id)"]:::client
+        ALERT_UPGRADE["Avviso Blocco Tier 1: 'Sottocartelle, Tag, Fonti, Video Custom e AI Riservati a Tier 2/3'"]:::error
+        RENDER_UI_STATES["Rendering Lista Lineare con 4 Stati UI (Empty, Loading, Populated, Error/Fallback)"]:::client
     end
 
-    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & LOG SYNC"]
-        GW_SYNC["Ricezione POST /api/v1/deskcare/complete-break"]:::gateway
-        GW_CHECK_TIER{"Abbonamento Consumer Tier 1 Attivo?"}:::decision
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & RBAC (TIER 1 FEATURE SHIELD)"]
+        GW_ENDPOINT["Ricezione Richiesta: GET / POST / DELETE /api/v1/favorites"]:::gateway
+        GW_RBAC_DEC{"Policy Tier 1: Solo Esercizio 3D (#02) o Programma Base (#03)? (NO Cartelle/Tag/Fonti/Video/AI)"}:::decision
+        GW_HTTP_403["HTTP 403 Forbidden: Blocco Upgrade Tier 1 (Funzione o Tipo Asset Non Consentito)"]:::error
     end
 
-    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (POSTURAL HEALTH ENGINE)"]
-        SRV_ROTATE["Rotazione Algoritmica Routine Micro-Pause (Prevenzione Sovraccarico)"]:::server
-        SRV_POSTURE_SCORE["Calcolo Indice Benessere Posturale Giornaliero"]:::server
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (DETERMINISTIC POINTER ENGINE)"]
+        SRV_VALIDATE_PTR["Validatore Puntatore Relazionale Deterministico (NO AI, NO RAG, Zero Duplicazione Media)"]:::server
+        SRV_LINEAR_SORT["Ordinatore Lista Lineare (Ordine Cronologico / A-Z, Struttura Piatta Senza Sottocartelle)"]:::server
     end
 
-    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (CONSUMER WELLNESS)"]
-        DB_SAVE_BREAK[("Scrittura Silo 1: deskcare_logs, postural_streaks")]:::db
-        END_CARE(["Fine: Micro-Pausa Registrata"]):::startend
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (PUBLIC CONSUMER FAVORITES)"]
+        DB_USER_FAV[("Lettura/Scrittura Silo 1: Tabella user_favorites (Solo Puntatori bookmark_id)")]:::db
+        END_FLOW(["Fine: Preferito Salvato o Aperto nella Lista Lineare (Zero Duplicazione Media)"]):::startend
     end
 
-    %% Flussi
-    START --> TIMER_TRIGGER
-    TIMER_TRIGGER -- No --> START
-    TIMER_TRIGGER -- Si --> NOTIF_PROMPT --> MODAL_EXERCISES
-    MODAL_EXERCISES --> TIMER_2MIN --> BTN_DONE
-    BTN_DONE --> GW_SYNC --> GW_CHECK_TIER
-    GW_CHECK_TIER -- Valido --> SRV_ROTATE --> SRV_POSTURE_SCORE
-    SRV_POSTURE_SCORE --> DB_SAVE_BREAK --> STREAK_POPUP --> END_CARE
+    %% Connessioni di flusso
+    START --> LINEAR_LIST --> DEC_FAV_ACTION
+    DEC_FAV_ACTION -- "Apri Sorgente (#02 / #03)" --> NAV_CARD_SRC --> ACTION_REQ
+    DEC_FAV_ACTION -- "Salva / Rimuovi / Apri Diretto" --> ACTION_REQ
+    ACTION_REQ --> GW_ENDPOINT --> GW_RBAC_DEC
+    GW_RBAC_DEC -- "No / Tipo o Funzione Tier 2-3" --> GW_HTTP_403 --> ALERT_UPGRADE
+    GW_RBAC_DEC -- "Si / Esercizio 3D o Programma Base" --> SRV_VALIDATE_PTR
+    SRV_VALIDATE_PTR --> SRV_LINEAR_SORT --> DB_USER_FAV
+    DB_USER_FAV --> RENDER_UI_STATES --> END_FLOW
