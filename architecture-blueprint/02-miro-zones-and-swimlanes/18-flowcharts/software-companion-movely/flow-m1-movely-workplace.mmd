@@ -1,0 +1,69 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["COMPANION APP (MOVELY ECOSYSTEM) - FLOW M1: MOVELY WORKPLACE - BENESSERE AZIENDALE, SMART CLINIC, DESK-CARE & SSO T7"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (PORTALE DIPENDENTI MOVELY WORKPLACE)"]
+        START(["Inizio: Apertura Movely Companion App (Portale Dipendenti)"]):::startend
+        UI_CORP_CODE["Input Codice Azienda & Convenzione Family Plan"]:::client
+        UI_MINI_TRIAGE["Mini-Triage Visivo del Benessere: Autovalutazione Postura & Sedentarieta"]:::client
+        DEC_ACTION_FORK{"Selezione Percorso: Desk-Care & Sfide o Smart Clinic & Visita?"}:::decision
+        UI_DESK_CARE["Micro-pause Scrivania: Decompressione 3-5 min & Sfide tra Colleghi"]:::client
+        UI_BOOKING_SELECT["Prenotazione Servizio & Wallet Co-Pay (Voucher Welfare + Saldo Dipendente)"]:::client
+        UI_SWITCH_T7["Ricezione Notifica SSO & Switch Rapido a T-SevenApp (Dossier Salute)"]:::client
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY, RBAC & HR FIREWALL"]
+        GW_ENVOY_INGRESS["Envoy Ingress Gateway & SSO Token Broker (mTLS & Rate Limiting)"]:::gateway
+        DEC_CORP_VALID{"Codice Aziendale & Convenzione Welfare Valida?"}:::decision
+        GW_ERR_CODE["HTTP 403 Forbidden: Codice Invalido, Convenzione Sospesa o Scaduta"]:::error
+        GW_HR_FIREWALL["K-Anonymity HR Privacy Firewall: Filtro di Anonimizzazione Rigida (k >= 5)"]:::gateway
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: MOTORI BUSINESS, SCHEDULING & AGENDE"]
+        SRV_VALIDATE_CORP["Motore Regole Triage & Verifica Plafond Welfare Aziendale"]:::server
+        SRV_BOOKING_ENGINE["Motore Prenotazioni & Sincronizzazione Outlook / Google Calendar"]:::server
+        SRV_WAITLIST_HANDOVER["Waitlist Anti-No-Show & Handover Slot ad Agenda Tier 2 P.IVA"]:::server
+        SRV_ZERO_CODA_STS["Smart Clinic Zero-Coda: Check-in QR Code & Ricevuta Fiscale STS"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE TRIPARTITO & ISOLAMENTO CLINICO"]
+        DB_SILO1_WELFARE[("Silo 1 Operativo B2B: Contratti Corporate, Prenotazioni & Wallet Co-Pay")]:::db
+        DB_SILO2_BUNKER[("Silo 2 Bunker Clinico T-SevenApp: Dossier Salute & Schede Esercizi Quarantenate")]:::db
+        END_FLOW(["Fine: Sessione Movely Conclusa o Transizione Ecosistema T7 Attivata"]):::startend
+    end
+
+    %% Connessioni di Flusso ISO 5807
+    START --> UI_CORP_CODE
+    UI_CORP_CODE --> GW_ENVOY_INGRESS
+    GW_ENVOY_INGRESS --> SRV_VALIDATE_CORP
+    SRV_VALIDATE_CORP --> DEC_CORP_VALID
+
+    DEC_CORP_VALID -- "No / Invalido o Scaduto" --> GW_ERR_CODE
+    GW_ERR_CODE --> UI_CORP_CODE
+    DEC_CORP_VALID -- "Si / Attivo" --> DB_SILO1_WELFARE
+
+    DB_SILO1_WELFARE --> UI_MINI_TRIAGE
+    UI_MINI_TRIAGE --> DEC_ACTION_FORK
+
+    DEC_ACTION_FORK -- "Desk-Care & Sfide" --> UI_DESK_CARE
+    UI_DESK_CARE --> GW_HR_FIREWALL
+    GW_HR_FIREWALL --> DB_SILO1_WELFARE
+
+    DEC_ACTION_FORK -- "Smart Clinic & Visite" --> UI_BOOKING_SELECT
+    UI_BOOKING_SELECT --> SRV_BOOKING_ENGINE
+    SRV_BOOKING_ENGINE --> SRV_WAITLIST_HANDOVER
+    SRV_WAITLIST_HANDOVER --> SRV_ZERO_CODA_STS
+    SRV_ZERO_CODA_STS --> DB_SILO1_WELFARE
+
+    SRV_ZERO_CODA_STS --> UI_SWITCH_T7
+    UI_SWITCH_T7 --> DB_SILO2_BUNKER
+
+    DB_SILO1_WELFARE --> END_FLOW
+    DB_SILO2_BUNKER --> END_FLOW

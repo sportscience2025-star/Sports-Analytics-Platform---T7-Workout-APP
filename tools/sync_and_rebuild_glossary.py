@@ -269,6 +269,69 @@ NEW_TERMS = [
         "ruolo": "Alimenta la ricerca semantica e il reranking intelligente dei Preferiti Enterprise (FLOW-6C) senza conservazione esterna dei dati sensibili del club e con zero esposizione sul Thin Client.",
         "zona": "Colonna 6, Riga 3 (Preferiti Enterprise) e Corsia 3 Server Scatola Nera.",
         "flows": ["#18"]
+    },
+    {
+        "name": "Movely Companion App",
+        "cat": "Principi Architetturali di Prodotto",
+        "eli5": "Applicazione per il benessere aziendale e le pause attive.",
+        "spiegazione": "Applicazione companion dedicata all'ecosistema Corporate Wellness, concepita per guidare i lavoratori in micro-pause attive alla scrivania, mobilità articolare ed educazione posturale quotidiana.",
+        "ruolo": "Offre ai dipendenti aziendali un punto di accesso leggero al benessere lavorativo, separato fisicamente da carichi atletici pesanti e referti clinici, persistito su Silo 1.",
+        "zona": "Companion Apps: Movely Ecosystem (#19 / #M1), Silo 1.",
+        "flows": ["#19"]
+    },
+    {
+        "name": "K-Anonymity HR Privacy Firewall",
+        "cat": "Sicurezza, Anti-Frode & Fiscalità Digitale B2B",
+        "eli5": "Anonimizza i dati benessere per tutelare i dipendenti dall'azienda.",
+        "spiegazione": "Meccanismo di protezione crittografica e statistica basato sul principio del k-anonimato (con soglia minima k >= 5), che blocca l'esposizione di dati aggregati per gruppi aziendali con meno di 5 individui.",
+        "ruolo": "Impedisce al datore di lavoro o all'HR di risalire ai dati posturali, abitudini o risposte individuali dei singoli dipendenti, tutelando la privacy secondo il GDPR.",
+        "zona": "Companion Apps: Movely Ecosystem (#19 / #M1) e Corsia 3 Server Scatola Nera.",
+        "flows": ["#19"]
+    },
+    {
+        "name": "Mini-Triage Visivo del Benessere",
+        "cat": "Metodologia d'Allenamento & Clinica Sportiva",
+        "eli5": "Questionario rapido illustrato per misurare postura, sonno ed energia.",
+        "spiegazione": "Strumento di autovalutazione visiva non clinico a risposta rapida (inferiore a 60 secondi) basato su sagome corporee interattive per mappare sensazioni di rigidità articolare, affaticamento visivo e livello energetico.",
+        "ruolo": "Determina in tempo reale le micro-pause ergonomiche più adatte al lavoratore senza raccogliere dati diagnostici o informazioni sanitarie sensibili.",
+        "zona": "Companion Apps: Movely Ecosystem (#19 / #M1) e Corsia 1 Client.",
+        "flows": ["#19"]
+    },
+    {
+        "name": "Family Plan Welfare",
+        "cat": "Ingegneria Software & Architettura Cloud",
+        "eli5": "Estende i benefit di movimento e benessere ai familiari.",
+        "spiegazione": "Funzionalità che consente al lavoratore di estendere i benefit aziendali di movimento ed educazione posturale ai componenti del proprio nucleo familiare tramite profili secondari collegati.",
+        "ruolo": "Promuove abitudini salutari condivise in famiglia, mantenendo i dati di ciascun membro rigorosamente separati e isolati nella partizione Silo 1.",
+        "zona": "Companion Apps: Movely Ecosystem (#19 / #M1) e Corsia 1 / 4.",
+        "flows": ["#19"]
+    },
+    {
+        "name": "Smart Clinic Zero-Coda",
+        "cat": "Ingegneria Software & Architettura Cloud",
+        "eli5": "Prenotazione rapida di visite specialistiche convenzionate senza attese.",
+        "spiegazione": "Sistema di prenotazione in tempo reale di visite fisioterapiche, valutazioni posturali ed esami specialistici presso cliniche convenzionate con check-in digitale e zero tempi di attesa.",
+        "ruolo": "Gestisce la sola logistica dell'appuntamento e l'utilizzo dei voucher welfare, escludendo l'archiviazione o il transito di referti medici all'interno dell'app Movely.",
+        "zona": "Companion Apps: Movely Ecosystem (#19 / #M1) e Corsia 1 / 2.",
+        "flows": ["#19"]
+    },
+    {
+        "name": "Ambassador Educational Feed",
+        "cat": "Metodologia d'Allenamento & Clinica Sportiva",
+        "eli5": "Pillole video e consigli scientifici pubblicati da esperti accreditati.",
+        "spiegazione": "Bacheca editoriale certificata contenente brevi pillole video da 30-60 secondi, guide posturali e consigli ergonomici creati esclusivamente da professionisti accreditati dalla Commissione Scientifica.",
+        "ruolo": "Offre formazione continua e affidabile sull'ergonomia e sul movimento corretto, priva di algoritmi di polarizzazione, pubblicità commerciale o contenuti non verificati.",
+        "zona": "Companion Apps: Movely Ecosystem (#19 / #M1) e Corsia 1 / 3.",
+        "flows": ["#19"]
+    },
+    {
+        "name": "Co-Pay Welfare Wallet",
+        "cat": "Sicurezza, Anti-Frode & Fiscalità Digitale B2B",
+        "eli5": "Borsellino digitale aziendale per cofinanziare servizi salute e benessere.",
+        "spiegazione": "Portafoglio digitale che gestisce la ripartizione dei pagamenti per servizi di salute e benessere tra la quota welfare aziendale (flexible benefit) e la quota a carico del dipendente.",
+        "ruolo": "Consente acquisti fluidi di prestazioni sanitarie e posturali convenzionate con emissione di ricevute fiscali conformi e tracciamento contabile su Silo 1.",
+        "zona": "Companion Apps: Movely Ecosystem (#19 / #M1) e Corsia 2 / 4.",
+        "flows": ["#19"]
     }
 ]
 

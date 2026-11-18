@@ -39,7 +39,7 @@ ROOT_TEST_CHECK = os.path.join(REPO_ROOT, "test_check.py")
 DEPLOY_SCRIPT_CJS = os.path.join(REPO_ROOT, "architecture-blueprint", "deploy-miro-favorites-tiers-iso.cjs")
 POST_DEPLOY_REPORT_JSON = os.path.join(REPO_ROOT, "scratch", "deploy_col6_report.json")
 
-EXPECTED_SPEC_COUNT = 18
+EXPECTED_SPEC_COUNT = 19
 EXPECTED_HTTP_ERROR_COLUMNS = 6
 MAX_ELI5_WORDS = 10
 MIN_DIAMOND_WIDTH_PX = 360.0

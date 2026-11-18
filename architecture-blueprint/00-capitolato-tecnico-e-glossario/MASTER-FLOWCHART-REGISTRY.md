@@ -1,15 +1,15 @@
-# Master Flowchart Registry & Miro Inventory (18 Badge Ufficiali)
+# Master Flowchart Registry & Miro Inventory (18 Badge Ufficiali Core + Companion Apps Ecosystem)
 
 > **Documento Ufficiale di Registro Tecnico & Inventario Miro Online**  
 > **Board Miro ID:** `uXjVEbo6L2o=` | **URL:** [Miro Architecture Board](https://miro.com/app/board/uXjVEbo6L2o=)  
-> **Zona Architetturale:** ZONA 4 (Flowchart Operativi a 4 Swimlanes sui 3 Livelli)  
+> **Zona Architetturale:** ZONA 4 (Flowchart Operativi a 4 Swimlanes sui 3 Livelli) & Area Companion Apps  
 > **Repository:** `architecture-blueprint/00-capitolato-tecnico-e-glossario/MASTER-FLOWCHART-REGISTRY.md`
 
 ---
 
-## 1. Tabella Master Ufficiale dei 18 Flowchart (Inventario Completo a 10 Colonne)
+## 1. Tabella Master Ufficiale dei Flowchart (Inventario Completo a 10 Colonne)
 
-La seguente tabella rappresenta il registro unico e autoritativo che mappa 1:1 ogni flowchart della ZONA 4 su Miro con la sua identificazione grafica (Badge, Shape ID, Coordinate reali $X, Y$), il conteggio dei nodi ISO certificati, il relativo capitolato tecnico in formato Markdown (`.md`) e il rispettivo sorgente Mermaid (`.mmd`).
+La seguente tabella rappresenta il registro unico e autoritativo che mappa 1:1 ogni flowchart della ZONA 4 su Miro e dell'ecosistema Companion Apps con la sua identificazione grafica (Badge, Shape ID, Coordinate reali $X, Y$), il conteggio dei nodi ISO certificati, il relativo capitolato tecnico in formato Markdown (`.md`) e il rispettivo sorgente Mermaid (`.mmd`).
 
 | Badge | Tier | Colonna Funzionale | Codice | Titolo Flowchart | Nodi ISO | Miro Shape ID | Coordinate Reali (X, Y) | File Capitolato (.md) | Sorgente Mermaid (.mmd) |
 | :---: | :---: | :--- | :---: | :--- | :---: | :---: | :---: | :--- | :--- |
@@ -31,6 +31,7 @@ La seguente tabella rappresenta il registro unico e autoritativo che mappa 1:1 o
 | **#16** | Tier 3 | Col 4: Data Analisi - AI 100%, Multi-Device & Role-Based RAG | `FLOW-4C` | Data Analisi: AI 100%, Multi-Device, Full Export & Role-Based RAG | 17 (Mermaid) / 19 (Miro) | `3458764688417722792` | `X: 4768.26, Y: 8032.48` | [16-software-3-flow-4c-gps-adaptive-zscore.md](16-software-3-flow-4c-gps-adaptive-zscore.md) | `flow-4c-gps-adaptive-zscore.mmd` |
 | **#17** | Tier 3 | Col 5: Libreria Fonti - AI Studio, Chatbot & RAG Sync | `FLOW-5C` | Libreria Fonti: AI Studio, Chatbot Scientifico, Bollettino & RAG Sync | 16 (Mermaid) / 18 (Miro) | `3458764688417722803` | `X: 6645.26, Y: 8033.79` | [17-software-3-flow-5c-tactical-video-cv.md](17-software-3-flow-5c-tactical-video-cv.md) | `flow-5c-tactical-video-cv.mmd` |
 | **#18** | Tier 3 | Col 6: Preferiti - All-in-One, Team Pinning, Albero ltree & AI | `FLOW-6C` | Preferiti Enterprise All-in-One: Team Pinning, ltree, Ricerca Ibrida AI & RLS | 18 | `3458764688417722810` | `X: 9225.38, Y: 8230.99` | [18-software-3-flow-6c-medical-room-research-silo3.md](18-software-3-flow-6c-medical-room-research-silo3.md) | `flow-6c-medical-room-research-silo3.mmd` |
+| **#19** | Companion | Companion Apps: Movely Ecosystem | `FLOW-M1` | Movely Workplace Companion App: Ergonomia, Mini-Triage, Smart Clinic & Privacy Firewall | 18 | `3458764690915095247` | `X: 10700, Y: 650` | [19-software-companion-flow-m1-movely-workplace.md](19-software-companion-flow-m1-movely-workplace.md) | `flow-m1-movely-workplace.mmd` |
 
 ---
 
@@ -249,7 +250,31 @@ In conformita alla "Legge dei Preferiti", i tre flowchart di Colonna 6 (`#06`, `
 
 ---
 
-## 7. Topologia Spaziale della Board Miro (ZONA 4)
+## 7. Companion Apps: Movely Ecosystem (#19 / #M1)
+
+L'Ecosistema Companion Apps espande le funzionalita della piattaforma T7 verso soluzioni verticali specializzate B2B2C. Il modulo `#19` / `#M1` (*Movely Workplace Companion App*) costituisce l'estensione ufficiale dedicata al Corporate Welfare, all'ergonomia attiva e al benessere dei dipendenti sul posto di lavoro.
+
+### Tabella di Mappatura Ufficiale Companion Apps
+
+| Badge | Codice Flusso | Modulo Funzionale | Attori Principali | Corsia Server & DB | Meccanismo Privacy / Gating | File Capitolato (.md) | Sorgente Mermaid (.mmd) |
+| :---: | :---: | :--- | :--- | :--- | :--- | :--- | :--- |
+| **#19** | `FLOW-M1` | Movely Workplace: Ergonomia, Mini-Triage, Smart Clinic & Privacy Firewall | Dipendente, HR Manager, Specialista Convenzionato, Familiari | Corsia 3 Cloud Run / Silo 1 PostgreSQL | K-Anonymity HR Privacy Firewall ($k \ge 5$) & Barriera Sanitaria Invalicabile | [19-software-companion-flow-m1-movely-workplace.md](19-software-companion-flow-m1-movely-workplace.md) | `flow-m1-movely-workplace.mmd` |
+
+### #19 [ FLOW-M1 ] Companion App - Movely Workplace: Ergonomia, Mini-Triage, Smart Clinic & Privacy Firewall
+- **Badge Shape ID:** `3458764690915095247` | **Posizione Miro:** `X: 10700, Y: 650` (Area Companion Apps, Silo 1) | **Nodi ISO:** 18
+- **Caratteristiche Chiave:**
+  - **Ergonomia da Ufficio & Micro-Pause Guidate:** sequenze attive da 60, 120 e 180 secondi con animazioni SVG leggere e posture controllate (alla scrivania da seduti o in piedi) per contrastare la sedentarieta e i disturbi muscolo-scheletrici da videoterminale (DMS);
+  - **Mini-Triage Visivo del Benessere:** autovalutazione percettiva non clinica della durata inferiore a 30 secondi basata su sagoma interattiva SVG a 6 zone anatomiche per l'erogazione deterministica della micro-pausa;
+  - **Ambassador Educational Feed:** canale video verticale certificato (pillole 30-60s a 1080p compresso) curate da fisioterapisti ed ergonomi accreditati dalla Commissione Scientifica T7, privo di algoritmi opachi o advertising commerciale;
+  - **Smart Clinic Zero-Coda:** prenotazione in tempo reale di visite posturali e fisioterapiche con check-in digitale, QR-code e voucher welfare, con disaccoppiamento totale della logistica dai referti sanitari;
+  - **Co-Pay Welfare Wallet:** gestione del portafoglio integrato con split trasparente tra voucher welfare aziendale (flexible benefit) e quota a carico del dipendente (carta/Stripe);
+  - **Family Plan Welfare:** estensione sicura dei benefit di movimento e delle guide posturali a un massimo di 4 familiari del lavoratore con isolamento profili su Silo 1;
+  - **K-Anonymity HR Privacy Firewall ($k \ge 5$):** filtro matematico vincolante che aggrega i dati a livello corporate o sopprime le coorti inferiori a 5 individui, tutelando la privacy dei lavoratori (GDPR Art. 9) e impedendo la sorveglianza datoriale;
+  - **Barriera Sanitaria Invalicabile:** divieto assoluto di memorizzazione o transito di carichi massimali $1\text{RM}$, programmi di ipertrofia agonistica o referti diagnostici (esclusiva dei moduli T7 Core e Silo 2).
+
+---
+
+## 8. Topologia Spaziale della Board Miro (ZONA 4 & Companion Apps)
 
 La Zona 4 si articola su una griglia ortogonale rigorosa:
 
@@ -268,8 +293,8 @@ La Zona 4 si articola su una griglia ortogonale rigorosa:
 
 ---
 
-## 8. Norme di Manutenzione del Registro
+## 9. Norme di Manutenzione del Registro
 
 1. **Invarianza degli ID Miro:** Gli Shape ID riportati sono identificativi univoci generati dalle API Miro e non devono essere modificati a meno di ricreazione esplicita del badge.
 2. **Aggiornamento Sincrono:** Qualsiasi spostamento geometrico di un badge sulla board Miro impone l'aggiornamento immediato delle coordinate $(X, Y)$ in questo registro e nella Sezione 1 del corrispondente file `.md`.
-3. **Integrita dei File di Capitolato:** Ciascuno dei 18 file `.md` rispetta lo standard obbligatorio del "Doppio Livello di Lettura" articolato in 7 sezioni rigorose.
+3. **Integrita dei File di Capitolato:** Ciascuno dei 19 file `.md` (18 flussi core + companion flow) rispetta lo standard obbligatorio del "Doppio Livello di Lettura" articolato in 7 sezioni rigorose.
