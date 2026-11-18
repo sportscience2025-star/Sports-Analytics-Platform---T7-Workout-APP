@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Script per la generazione enciclopedica di 00-GLOSSARIO-TERMINI-TECNICI.md
-Contiene 150 Schede Terminologiche complete con ELI5 (<= 10 parole).
+Contiene 158 Schede Terminologiche complete con ELI5 (<= 10 parole).
 """
 import re
 import os
@@ -46,6 +46,15 @@ TERMS = [
         "ruolo": "Rappresenta fedelmente la risposta fisiologica reale del corpo, evitando l'effetto a gradino delle medie mobili semplici e anticipando stati di sovrallenamento.",
         "zona": 'Colonna 3, Riga 3 (Microciclo MD-X) e Corsia 3 Server.',
         "flows": ['#15']
+    },
+    {
+        "name": 'AI Content Gatekeeper',
+        "cat": 'Algoritmi, Statistica & Machine Learning',
+        "eli5": 'Filtro intelligente che blocca contenuti tossici, spam e video pericolosi.',
+        "spiegazione": 'Sistema di moderazione multimodale automatizzato che analizza testi, immagini e micro-video caricati sulla community, intercettando hate speech, spam commerciale, disinformazione su sostanze dopanti o esecuzioni biomeccaniche gravemente lesive prima della pubblicazione.',
+        "ruolo": "Protegge l'integrità della community B2C Together Social (FLOW-TS1) analizzando i post in tempo reale ed evitando la diffusione di messaggi tossici o video pericolosi per gli atleti amatoriali.",
+        "zona": 'Companion Apps: Together Social (#20 / #TS1) e Corsia 3 Server Scatola Nera.',
+        "flows": ['#20']
     },
     {
         "name": 'Albero Cartelle Gerarchico (PostgreSQL ltree)',
@@ -154,6 +163,15 @@ TERMS = [
         "ruolo": 'Riservato a Tier 3 Enterprise, azzera i tempi morti di monitoraggio accademico per gli staff dei top club sportivi.',
         "zona": 'Colonna 5, Riga 3 (Libreria Fonti Enterprise).',
         "flows": ['#17']
+    },
+    {
+        "name": 'Booking Macchinari e Laboratori Avanzati',
+        "cat": 'Ingegneria Software & Architettura Cloud',
+        "eli5": 'Prenotazione oraria di laboratori biomeccanici e attrezzature scientifiche di vertice.',
+        "spiegazione": "Modulo di prenotazione, noleggio e fatturazione per l'utilizzo temporaneo di laboratori universitari, apparecchiature isocinetiche, pedane di forza triassiali, sistemi ottici 3D e camere ipobariche condivise da centri di eccellenza.",
+        "ruolo": "Ottimizza la saturazione e l'ammortamento dei macchinari ad alto costo tra club professionistici, università e centri di riabilitazione accreditati (FLOW-TS3), gestendo contratti e orari in Silo 1.",
+        "zona": 'Companion Apps: Together Social (#22 / #TS3) e Corsia 1 / 3.',
+        "flows": ['#22']
     },
     {
         "name": 'Cartelle Tematiche & Tag Personalizzati (Preferiti Pro)',
@@ -489,6 +507,15 @@ TERMS = [
         "flows": ['#18']
     },
     {
+        "name": 'Find Your Gym Bro / Gym Girl',
+        "cat": 'Principi Architetturali di Prodotto',
+        "eli5": 'Trova compagni di allenamento compatibili per livello, palestra e orari.',
+        "spiegazione": 'Funzionalità opt-in di matching geolocalizzato e motivazionale che permette agli atleti B2C di connettersi con altri utenti che frequentano la stessa palestra o praticano la stessa disciplina, con preferenze orarie e livelli di forza affini.',
+        "ruolo": "Aumenta l'aderenza all'allenamento e il senso di appartenenza nella community amatoriale Together Social (FLOW-TS1), tutelando la privacy tramite consenso esplicito e raggio geografico mascherato.",
+        "zona": 'Companion Apps: Together Social (#20 / #TS1) e Corsia 1 Client.',
+        "flows": ['#20']
+    },
+    {
         "name": 'Gemini Interactions API & Embedding-2 (Guardrail Enclave T7)',
         "cat": 'Algoritmi, Statistica & Machine Learning',
         "eli5": 'Motore AI stateless privato con controlli di sicurezza integrati.',
@@ -777,6 +804,15 @@ TERMS = [
         "flows": ['#02']
     },
     {
+        "name": 'ORCID Researcher Verification',
+        "cat": 'Sicurezza, Anti-Frode & Fiscalità Digitale B2B',
+        "eli5": "Verifica ufficiale tramite identità accademica ORCID per accedere all'area ricercatori.",
+        "spiegazione": "Procedura di autenticazione e convalida accademica basata sulle API OAuth di ORCID (Open Researcher and Contributor ID), che certifica l'affiliazione universitaria o l'attività di ricerca scientifica del professionista.",
+        "ruolo": "Abilita i ricercatori e i docenti universitari all'interno del Marketplace Pro (FLOW-TS2) alla pubblicazione di bandi per la raccolta di volontari e alla moderazione di tavole rotonde peer-to-peer tra scienziati dello sport.",
+        "zona": 'Companion Apps: Together Social (#21 / #TS2) e Corsia 2 Gateway.',
+        "flows": ['#21']
+    },
+    {
         "name": 'Osgnach Metabolic Power (W/kg) & High Metabolic Load Distance',
         "cat": 'Algoritmi, Statistica & Machine Learning',
         "eli5": 'Energia spesa nelle accelerazioni anche a bassa velocità lineare.',
@@ -1056,6 +1092,24 @@ TERMS = [
         "flows": ['#14']
     },
     {
+        "name": 'Soggetto Volontario Cavia Tokenomics',
+        "cat": 'Sicurezza, Anti-Frode & Fiscalità Digitale B2B',
+        "eli5": 'Incentivi in crediti per utenti che partecipano volontariamente a ricerche.',
+        "spiegazione": 'Sistema di micro-tokenomics cross-ecosistema che premia gli atleti B2C che accettano di candidarsi come volontari ("cavie") per tesi, studi scientifici o protocolli universitari pubblicati da ricercatori e preparatori.',
+        "ruolo": 'Collega in modo etico la community amatoriale (FLOW-TS1) con i bandi di ricerca accademica del Marketplace Pro (FLOW-TS2), accreditando token spendibili in sconti su abbonamenti, gadget o consulenze specialistiche.',
+        "zona": 'Companion Apps: Together Social (#20 / #TS1, #21 / #TS2) e Corsia 3 / 4 Silo 1.',
+        "flows": ['#20', '#21']
+    },
+    {
+        "name": 'Staff Recruiting & Scouting Board',
+        "cat": 'Principi Architetturali di Prodotto',
+        "eli5": 'Bacheca riservata per assumere preparatori, fisioterapisti e analisti sportivi qualificati.',
+        "spiegazione": 'Bacheca di offerte e candidature riservata al recruiting di staff tecnico e sanitario (preparatori atletici, sport scientist, video analyst, fisioterapisti), con filtri basati su certificazioni, paper pubblicati ed esperienza sul campo verificata.',
+        "ruolo": "Facilita l'incontro trasparente e confidenziale tra club di vertice ed eccellenze professionali del movimento umano (FLOW-TS3), eliminando intermediari e garantendo la veridicità dei titoli tramite controlli di piattaforma.",
+        "zona": 'Companion Apps: Together Social (#22 / #TS3) e Corsia 1 / 3.',
+        "flows": ['#22']
+    },
+    {
         "name": 'Step-Up Verification (Verifica Telefono Anti-Troll per Community)',
         "cat": 'Sicurezza, Anti-Frode & Fiscalità Digitale B2B',
         "eli5": 'Richiede il cellulare per bloccare profili falsi e molesti.',
@@ -1263,6 +1317,24 @@ TERMS = [
         "flows": ['#07']
     },
     {
+        "name": 'VIP & Elite Lounges',
+        "cat": 'Sicurezza Enterprise & Identità Societaria (Tier 3)',
+        "eli5": "Spazi di networking riservati a club professionistici e atleti d'elite.",
+        "spiegazione": 'Stanze digitali di networking e confronto a invito blindato, crittografate end-to-end e riservate esclusivamente a dirigenti, preparatori e staff di franchigie di Serie A, Eurolega e federazioni olimpiche (Tier 3).',
+        "ruolo": 'Garantisce riservatezza assoluta su metodologie avanzate, trattative di staff e casi studio ad alte prestazioni (FLOW-TS3), proteggendo le comunicazioni tramite profilazione crittografica e Ghost Mode.',
+        "zona": 'Companion Apps: Together Social (#22 / #TS3) e Corsia 2 / 3.',
+        "flows": ['#22']
+    },
+    {
+        "name": 'VIP Priority Inbox Anti-Spam',
+        "cat": 'Sicurezza, Anti-Frode & Fiscalità Digitale B2B',
+        "eli5": 'Casella messaggi protetta a crediti per filtrare comunicazioni irrilevanti.',
+        "spiegazione": 'Meccanismo di messaggistica asimmetrica a micro-tariffe che impone un costo in crediti o token per inviare messaggi diretti a profili ad alta visibilità (coach affermati, atleti di vertice, ricercatori di punta), restituendo i token se il destinatario accetta la conversazione.',
+        "ruolo": "Protegge i professionisti accreditati (FLOW-TS2) dall'overload informativo e dallo spam quotidiano, garantendo priorità assoluta alle richieste di consulenza autentiche e alle collaborazioni professionali ad alto valore.",
+        "zona": 'Companion Apps: Together Social (#21 / #TS2) e Corsia 2 / 3.',
+        "flows": ['#21']
+    },
+    {
         "name": 'Visualizzatore PDF Protetto In-App (Read-Only)',
         "cat": 'Ingegneria Software & Architettura Cloud',
         "eli5": 'Lettore interno di documenti che impedisce download non autorizzati.',
@@ -1363,7 +1435,7 @@ TERMS = [
     },
 ]
 
-TERM_ALIASES = {'PAR-Q+ (Physical Activity Readiness Questionnaire) & Digital Triage': ['par-q-physical-activity-readiness-questionnaire-digital-triage'], 'Video Ingest Tiers (Zero Upload Tier 1, 1080p Pro Tier 2, 4K/8K Enterprise Tier 3)': ['video-ingest-tiers-policy-tier-1-zero-upload-tier-2-1080p-tier-3-4k8k', 'video-ingest-tiers-1080p-consumer-2k-pro-4k8k-enterprise'], 'Zero AI Biomeccanica (Elaborazione Matematica Pura)': ['zero-ai-biomeccanica'], 'Isolamento Data Analisi Tier 1 (Zero Correlazione Cross-Modulo)': ['isolamento-data-analisi-tier-1'], 'Open Access Papers (Studi Scientifici Pubblici e Gratuiti)': ['open-access-papers-studi-scientifici-pubblici-gratuiti'], "Digital Twin Biomeccanico dell'Atleta": ['digital-twin-biomeccanico-dellatleta'], 'Analisi Sommaria Metriche Lattato (Soglie Aerobica/Anaerobica T7)': ['analisi-sommaria-metriche-lattato'], '32 Protocolli Riabilitativi Clinici (cli_01..cli_32)': ['32-protocolli-riabilitativi-clinici-cli01cli32'], 'SAML 2.0 Enterprise Federation & Single Sign-On': ['saml-20-enterprise-federation-single-sign-on'], 'Role-Based RAG (Controllo Accessi Gerarchico Medico / S&C / Atleta)': ['role-based-rag-controllo-accessi-gerarchico-medico--sc--atleta'], 'Controllo Incrociato & Avvisi di Conflitto (Conflict Alert Schede-Referti)': ['controllo-incrociato--avvisi-di-conflitto-conflict-alert-schede-referti'], 'Chatbot AI Studi Scientifici (Assistente Documentale 24/7)': ['chatbot-ai-studi-scientifici-assistente-documentale-247'], 'Potenza di Calcolo AI 100% (Tier 3 Enterprise)': ['potenza-di-calcolo-ai-100-tier-3'], 'Workout Session Tracker (Avvia Sessione)': ['workout-session-tracker', 'avvia-sessione'], 'Together Social Workout Sharing': ['together-social', 'together-app']}
+TERM_ALIASES = {'PAR-Q+ (Physical Activity Readiness Questionnaire) & Digital Triage': ['par-q-physical-activity-readiness-questionnaire-digital-triage'], 'Video Ingest Tiers (Zero Upload Tier 1, 1080p Pro Tier 2, 4K/8K Enterprise Tier 3)': ['video-ingest-tiers-policy-tier-1-zero-upload-tier-2-1080p-tier-3-4k8k', 'video-ingest-tiers-1080p-consumer-2k-pro-4k8k-enterprise'], 'Zero AI Biomeccanica (Elaborazione Matematica Pura)': ['zero-ai-biomeccanica'], 'Isolamento Data Analisi Tier 1 (Zero Correlazione Cross-Modulo)': ['isolamento-data-analisi-tier-1'], 'Open Access Papers (Studi Scientifici Pubblici e Gratuiti)': ['open-access-papers-studi-scientifici-pubblici-gratuiti'], "Digital Twin Biomeccanico dell'Atleta": ['digital-twin-biomeccanico-dellatleta'], 'Analisi Sommaria Metriche Lattato (Soglie Aerobica/Anaerobica T7)': ['analisi-sommaria-metriche-lattato'], '32 Protocolli Riabilitativi Clinici (cli_01..cli_32)': ['32-protocolli-riabilitativi-clinici-cli01cli32'], 'SAML 2.0 Enterprise Federation & Single Sign-On': ['saml-20-enterprise-federation-single-sign-on'], 'Role-Based RAG (Controllo Accessi Gerarchico Medico / S&C / Atleta)': ['role-based-rag-controllo-accessi-gerarchico-medico--sc--atleta'], 'Controllo Incrociato & Avvisi di Conflitto (Conflict Alert Schede-Referti)': ['controllo-incrociato--avvisi-di-conflitto-conflict-alert-schede-referti'], 'Chatbot AI Studi Scientifici (Assistente Documentale 24/7)': ['chatbot-ai-studi-scientifici-assistente-documentale-247'], 'Potenza di Calcolo AI 100% (Tier 3 Enterprise)': ['potenza-di-calcolo-ai-100-tier-3'], 'Workout Session Tracker (Avvia Sessione)': ['workout-session-tracker', 'avvia-sessione'], 'Together Social Workout Sharing': ['together-social', 'together-app'], 'Find Your Gym Bro / Gym Girl': ['find-your-gym-bro-gym-girl', 'find-your-gym-bro'], 'VIP & Elite Lounges': ['vip-elite-lounges', 'vip-and-elite-lounges'], 'Soggetto Volontario Cavia Tokenomics': ['soggetto-volontario-cavia-tokenomics', 'token-cavia-cross-ecosistema']}
 
 def make_slug(name):
     clean = unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore').decode('utf-8')

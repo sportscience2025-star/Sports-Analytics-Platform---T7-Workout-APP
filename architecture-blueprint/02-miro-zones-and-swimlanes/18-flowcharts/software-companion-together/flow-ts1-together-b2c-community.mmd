@@ -1,0 +1,66 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["COMPANION APP (TOGETHER SOCIAL) - FLOW TS1: B2C COMMUNITY - SHORTS, POST, AI GATEKEEPER & GYM BRO"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (TOGETHER SOCIAL B2C PORTAL)"]
+        START(["Inizio: Apertura Together Social (App Community B2C)"]):::startend
+        UI_FEED_BROWSE["Esplorazione Feed Personale, Video Shorts & Post Tematici Sportivi"]:::client
+        DEC_USER_ACTION{"Selezione Percorso: Pubblicazione Post, Trova Gym Bro o Bando Cavia?"}:::decision
+        UI_POST_CREATE["Creazione Contenuto: Upload Video Shorts o Post con Tag Sportivi"]:::client
+        UI_GYM_BRO["Opt-In Find Your Gym Bro (2,99 euro/mese): Matching per Allenamento"]:::client
+        UI_VOLUNTEER_APPLY["Candidatura a Bandi Ricerca Volontari Cavia & Riscatto Tokenomics"]:::client
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & ACCESS CONTROL"]
+        GW_INGRESS["Envoy API Gateway & Token Broker JWT Tier 1 (mTLS & Rate Limiting)"]:::gateway
+        DEC_AUTH_CONTENT{"Validazione Policy Tier 1 & Consensi Privacy Sanitari?"}:::decision
+        GW_ERR_REJECT["HTTP 422/403: Contenuto Non Conforme, Spam o Mancanza Consenso"]:::error
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (COMMUNITY & TOKENOMICS ENGINES)"]
+        SRV_AI_GATEKEEPER["AI Content Gatekeeper: Analisi Vision & NLP (Anti-Spam, NSFW & No Troll)"]:::server
+        SRV_TOPIC_FILTER["Filtro Tematico Sportivo: Classificazione Tassonomica Fitness & VBT"]:::server
+        SRV_GEO_MATCHING["Motore Matching Geografico Gym Bro: Raggio Prossimita & Obiettivi"]:::server
+        SRV_TOKENOMICS["Tokenomics Engine: Accredito Token Ledger Cross-Ecosistema per Cavia"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (SOCIAL COMMUNITY & TOKENOMICS)"]
+        DB_SILO1_POSTS[("Silo 1 Community: Tabella community_posts, shorts_media & tag_taxonomies")]:::db
+        DB_SILO1_LEDGER[("Silo 1 Ledger: Tabella gym_bro_matches, volunteer_tokens & rewards")]:::db
+        END_FLOW(["Fine: Contenuto Condiviso, Partner Trovato o Token Accreditati"]):::startend
+    end
+
+    %% Connessioni di Flusso ISO 5807
+    START --> UI_FEED_BROWSE
+    UI_FEED_BROWSE --> DEC_USER_ACTION
+    DEC_USER_ACTION -- "Pubblica Post o Shorts" --> UI_POST_CREATE
+    DEC_USER_ACTION -- "Trova Gym Bro" --> UI_GYM_BRO
+    DEC_USER_ACTION -- "Bando Ricerca Cavia" --> UI_VOLUNTEER_APPLY
+
+    UI_POST_CREATE --> GW_INGRESS
+    UI_GYM_BRO --> GW_INGRESS
+    UI_VOLUNTEER_APPLY --> GW_INGRESS
+
+    GW_INGRESS --> DEC_AUTH_CONTENT
+    DEC_AUTH_CONTENT -- "No / Violazione Policy" --> GW_ERR_REJECT
+    GW_ERR_REJECT --> UI_FEED_BROWSE
+
+    DEC_AUTH_CONTENT -- "Si / Post o Shorts" --> SRV_AI_GATEKEEPER
+    SRV_AI_GATEKEEPER --> SRV_TOPIC_FILTER
+    SRV_TOPIC_FILTER --> DB_SILO1_POSTS
+
+    DEC_AUTH_CONTENT -- "Si / Gym Bro Match" --> SRV_GEO_MATCHING
+    SRV_GEO_MATCHING --> DB_SILO1_LEDGER
+
+    DEC_AUTH_CONTENT -- "Si / Candidatura Cavia" --> SRV_TOKENOMICS
+    SRV_TOKENOMICS --> DB_SILO1_LEDGER
+
+    DB_SILO1_POSTS --> END_FLOW
+    DB_SILO1_LEDGER --> END_FLOW

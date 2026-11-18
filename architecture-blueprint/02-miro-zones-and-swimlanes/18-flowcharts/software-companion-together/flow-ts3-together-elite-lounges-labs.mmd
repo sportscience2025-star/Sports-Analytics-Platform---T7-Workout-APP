@@ -1,0 +1,66 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["COMPANION APP (TOGETHER SOCIAL) - FLOW TS3: ELITE LOUNGES & LABS - GHOST MODE, BOOKING & SCOUTING"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (TOGETHER ELITE PORTAL)"]
+        START(["Inizio: Accesso Together Elite (Club & Organizzazioni)"]):::startend
+        UI_GHOST_MODE["Ghost Mode Privacy Guard: Navigazione Invisibile & Profilo Offuscato"]:::client
+        DEC_ELITE_ACTION{"Selezione Modulo: Elite Lounges, Booking Laboratori o Bacheca Staff?"}:::decision
+        UI_VIP_LOUNGES["VIP & Elite Lounges Blindate: Stanze Riservate Club Serie A/Eurolega"]:::client
+        UI_LAB_BOOKING["Vetrina & Booking Laboratori: Prenotazione Oraria Macchinari Avanzati"]:::client
+        UI_STAFF_SCOUT["Bacheca Recruiting & Scouting: Selezione Staff Tecnico, Medico e Fisio"]:::client
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & ACCESS CONTROL"]
+        GW_ELITE_INGRESS["Envoy Enterprise Gateway: mTLS, Role-Based JWT Tier 3 Elite"]:::gateway
+        DEC_SECURITY_GATE{"Controllo Sicurezza: Certificato Organizzazione & Ruoli R1..R6 Validi?"}:::decision
+        GW_ERR_ELITE["HTTP 403 Forbidden: Accesso Negato a Lounge Riservate o Strutture Esterne"]:::error
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (ELITE & VAULT ENGINES)"]
+        SRV_PRIVACY_ENCLAVE["Privacy Guard Enclave: Anonimizzazione Istantanea & Audit Trail Cifrato"]:::server
+        SRV_LAB_SCHEDULER["Motore Booking Macchinari: Verifica Slot Orari, Sanificazione & Quota Club"]:::server
+        SRV_SCOUTING_MATCH["Algoritmo Scouting & Matching Staff: Competenze Certificate & Reputazione"]:::server
+        SRV_VAULT_ENCRYPT["Enterprise Encryption Engine: Cifratura Chiavi Dedicate Trattative"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (ENTERPRISE VAULT & ELITE OPS)"]
+        DB_SILO1_ELITE_LOUNGES[("Silo 1 Enterprise Vault: Tabella elite_lounges, private_chats & tokens")]:::db
+        DB_SILO1_LABS_STAFF[("Silo 1 Elite Ops: Tabella lab_bookings, equipment_slots & staff_board")]:::db
+        END_FLOW(["Fine: Lounge Conclusa, Macchinario Riservato o Trattativa Avviata"]):::startend
+    end
+
+    %% Connessioni di Flusso ISO 5807
+    START --> UI_GHOST_MODE
+    UI_GHOST_MODE --> DEC_ELITE_ACTION
+    DEC_ELITE_ACTION -- "VIP Lounges Serie A" --> UI_VIP_LOUNGES
+    DEC_ELITE_ACTION -- "Booking Macchinari" --> UI_LAB_BOOKING
+    DEC_ELITE_ACTION -- "Recruiting & Scouting" --> UI_STAFF_SCOUT
+
+    UI_VIP_LOUNGES --> GW_ELITE_INGRESS
+    UI_LAB_BOOKING --> GW_ELITE_INGRESS
+    UI_STAFF_SCOUT --> GW_ELITE_INGRESS
+
+    GW_ELITE_INGRESS --> DEC_SECURITY_GATE
+    DEC_SECURITY_GATE -- "No / Certificato Invalido o Permesso Negato" --> GW_ERR_ELITE
+    GW_ERR_ELITE --> UI_GHOST_MODE
+
+    DEC_SECURITY_GATE -- "Si / Ghost Mode & Lounges" --> SRV_PRIVACY_ENCLAVE
+    SRV_PRIVACY_ENCLAVE --> SRV_VAULT_ENCRYPT
+    SRV_VAULT_ENCRYPT --> DB_SILO1_ELITE_LOUNGES
+
+    DEC_SECURITY_GATE -- "Si / Prenotazione Macchinario" --> SRV_LAB_SCHEDULER
+    SRV_LAB_SCHEDULER --> DB_SILO1_LABS_STAFF
+
+    DEC_SECURITY_GATE -- "Si / Candidatura Staff" --> SRV_SCOUTING_MATCH
+    SRV_SCOUTING_MATCH --> DB_SILO1_LABS_STAFF
+
+    DB_SILO1_ELITE_LOUNGES --> END_FLOW
+    DB_SILO1_LABS_STAFF --> END_FLOW

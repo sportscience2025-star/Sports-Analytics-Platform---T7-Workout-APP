@@ -86,6 +86,18 @@ TERM_ALIASES = {
     "Together Social Workout Sharing": [
         "together-social",
         "together-app"
+    ],
+    "Find Your Gym Bro / Gym Girl": [
+        "find-your-gym-bro-gym-girl",
+        "find-your-gym-bro"
+    ],
+    "VIP & Elite Lounges": [
+        "vip-elite-lounges",
+        "vip-and-elite-lounges"
+    ],
+    "Soggetto Volontario Cavia Tokenomics": [
+        "soggetto-volontario-cavia-tokenomics",
+        "token-cavia-cross-ecosistema"
     ]
 }
 
@@ -332,6 +344,78 @@ NEW_TERMS = [
         "ruolo": "Consente acquisti fluidi di prestazioni sanitarie e posturali convenzionate con emissione di ricevute fiscali conformi e tracciamento contabile su Silo 1.",
         "zona": "Companion Apps: Movely Ecosystem (#19 / #M1) e Corsia 2 / 4.",
         "flows": ["#19"]
+    },
+    {
+        "name": "AI Content Gatekeeper",
+        "cat": "Algoritmi, Statistica & Machine Learning",
+        "eli5": "Filtro intelligente che blocca contenuti tossici, spam e video pericolosi.",
+        "spiegazione": "Sistema di moderazione multimodale automatizzato che analizza testi, immagini e micro-video caricati sulla community, intercettando hate speech, spam commerciale, disinformazione su sostanze dopanti o esecuzioni biomeccaniche gravemente lesive prima della pubblicazione.",
+        "ruolo": "Protegge l'integrità della community B2C Together Social (FLOW-TS1) analizzando i post in tempo reale ed evitando la diffusione di messaggi tossici o video pericolosi per gli atleti amatoriali.",
+        "zona": "Companion Apps: Together Social (#20 / #TS1) e Corsia 3 Server Scatola Nera.",
+        "flows": ["#20"]
+    },
+    {
+        "name": "Find Your Gym Bro / Gym Girl",
+        "cat": "Principi Architetturali di Prodotto",
+        "eli5": "Trova compagni di allenamento compatibili per livello, palestra e orari.",
+        "spiegazione": "Funzionalità opt-in di matching geolocalizzato e motivazionale che permette agli atleti B2C di connettersi con altri utenti che frequentano la stessa palestra o praticano la stessa disciplina, con preferenze orarie e livelli di forza affini.",
+        "ruolo": "Aumenta l'aderenza all'allenamento e il senso di appartenenza nella community amatoriale Together Social (FLOW-TS1), tutelando la privacy tramite consenso esplicito e raggio geografico mascherato.",
+        "zona": "Companion Apps: Together Social (#20 / #TS1) e Corsia 1 Client.",
+        "flows": ["#20"]
+    },
+    {
+        "name": "Soggetto Volontario Cavia Tokenomics",
+        "cat": "Sicurezza, Anti-Frode & Fiscalità Digitale B2B",
+        "eli5": "Incentivi in crediti per utenti che partecipano volontariamente a ricerche.",
+        "spiegazione": "Sistema di micro-tokenomics cross-ecosistema che premia gli atleti B2C che accettano di candidarsi come volontari (\"cavie\") per tesi, studi scientifici o protocolli universitari pubblicati da ricercatori e preparatori.",
+        "ruolo": "Collega in modo etico la community amatoriale (FLOW-TS1) con i bandi di ricerca accademica del Marketplace Pro (FLOW-TS2), accreditando token spendibili in sconti su abbonamenti, gadget o consulenze specialistiche.",
+        "zona": "Companion Apps: Together Social (#20 / #TS1, #21 / #TS2) e Corsia 3 / 4 Silo 1.",
+        "flows": ["#20", "#21"]
+    },
+    {
+        "name": "ORCID Researcher Verification",
+        "cat": "Sicurezza, Anti-Frode & Fiscalità Digitale B2B",
+        "eli5": "Verifica ufficiale tramite identità accademica ORCID per accedere all'area ricercatori.",
+        "spiegazione": "Procedura di autenticazione e convalida accademica basata sulle API OAuth di ORCID (Open Researcher and Contributor ID), che certifica l'affiliazione universitaria o l'attività di ricerca scientifica del professionista.",
+        "ruolo": "Abilita i ricercatori e i docenti universitari all'interno del Marketplace Pro (FLOW-TS2) alla pubblicazione di bandi per la raccolta di volontari e alla moderazione di tavole rotonde peer-to-peer tra scienziati dello sport.",
+        "zona": "Companion Apps: Together Social (#21 / #TS2) e Corsia 2 Gateway.",
+        "flows": ["#21"]
+    },
+    {
+        "name": "VIP Priority Inbox Anti-Spam",
+        "cat": "Sicurezza, Anti-Frode & Fiscalità Digitale B2B",
+        "eli5": "Casella messaggi protetta a crediti per filtrare comunicazioni irrilevanti.",
+        "spiegazione": "Meccanismo di messaggistica asimmetrica a micro-tariffe che impone un costo in crediti o token per inviare messaggi diretti a profili ad alta visibilità (coach affermati, atleti di vertice, ricercatori di punta), restituendo i token se il destinatario accetta la conversazione.",
+        "ruolo": "Protegge i professionisti accreditati (FLOW-TS2) dall'overload informativo e dallo spam quotidiano, garantendo priorità assoluta alle richieste di consulenza autentiche e alle collaborazioni professionali ad alto valore.",
+        "zona": "Companion Apps: Together Social (#21 / #TS2) e Corsia 2 / 3.",
+        "flows": ["#21"]
+    },
+    {
+        "name": "VIP & Elite Lounges",
+        "cat": "Sicurezza Enterprise & Identità Societaria (Tier 3)",
+        "eli5": "Spazi di networking riservati a club professionistici e atleti d'elite.",
+        "spiegazione": "Stanze digitali di networking e confronto a invito blindato, crittografate end-to-end e riservate esclusivamente a dirigenti, preparatori e staff di franchigie di Serie A, Eurolega e federazioni olimpiche (Tier 3).",
+        "ruolo": "Garantisce riservatezza assoluta su metodologie avanzate, trattative di staff e casi studio ad alte prestazioni (FLOW-TS3), proteggendo le comunicazioni tramite profilazione crittografica e Ghost Mode.",
+        "zona": "Companion Apps: Together Social (#22 / #TS3) e Corsia 2 / 3.",
+        "flows": ["#22"]
+    },
+    {
+        "name": "Booking Macchinari e Laboratori Avanzati",
+        "cat": "Ingegneria Software & Architettura Cloud",
+        "eli5": "Prenotazione oraria di laboratori biomeccanici e attrezzature scientifiche di vertice.",
+        "spiegazione": "Modulo di prenotazione, noleggio e fatturazione per l'utilizzo temporaneo di laboratori universitari, apparecchiature isocinetiche, pedane di forza triassiali, sistemi ottici 3D e camere ipobariche condivise da centri di eccellenza.",
+        "ruolo": "Ottimizza la saturazione e l'ammortamento dei macchinari ad alto costo tra club professionistici, università e centri di riabilitazione accreditati (FLOW-TS3), gestendo contratti e orari in Silo 1.",
+        "zona": "Companion Apps: Together Social (#22 / #TS3) e Corsia 1 / 3.",
+        "flows": ["#22"]
+    },
+    {
+        "name": "Staff Recruiting & Scouting Board",
+        "cat": "Principi Architetturali di Prodotto",
+        "eli5": "Bacheca riservata per assumere preparatori, fisioterapisti e analisti sportivi qualificati.",
+        "spiegazione": "Bacheca di offerte e candidature riservata al recruiting di staff tecnico e sanitario (preparatori atletici, sport scientist, video analyst, fisioterapisti), con filtri basati su certificazioni, paper pubblicati ed esperienza sul campo verificata.",
+        "ruolo": "Facilita l'incontro trasparente e confidenziale tra club di vertice ed eccellenze professionali del movimento umano (FLOW-TS3), eliminando intermediari e garantendo la veridicità dei titoli tramite controlli di piattaforma.",
+        "zona": "Companion Apps: Together Social (#22 / #TS3) e Corsia 1 / 3.",
+        "flows": ["#22"]
     }
 ]
 

@@ -1,0 +1,66 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["COMPANION APP (TOGETHER SOCIAL) - FLOW TS2: PRO MARKETPLACE - NETWORKING, BANDI RICERCA & PRIORITY INBOX"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (TOGETHER PRO PORTAL)"]
+        START(["Inizio: Accesso Together Pro (Marketplace Professionisti)"]):::startend
+        UI_PRO_SHOWCASE["Vetrina Professionale: Profilo Pubblico Coach, Fisio o Ricercatore"]:::client
+        DEC_PRO_ACTION{"Selezione Modulo: Networking Pari, Bando Ricerca o Priority Inbox?"}:::decision
+        UI_PEER_ROOMS["Stanze Networking Pari: Chat Tematiche Riservate a Ruoli Verificati"]:::client
+        UI_CALL_PUBLISH["Pubblicazione Bandi Ricerca Volontari & Criteri Pre-Screening Cavia"]:::client
+        UI_VIP_INBOX["VIP Priority Inbox Anti-Spam: Filtro Messaggi a Crediti (15 euro/mese)"]:::client
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & ACCESS CONTROL"]
+        GW_PRO_INGRESS["Envoy API Gateway: Rate Limiting & Auth JWT Tier 2 Pro"]:::gateway
+        DEC_VERIFY_GATE{"Verifica Fiscale P.IVA / Codice ATECO o Validazione ORCID ID?"}:::decision
+        GW_ERR_DENIED["HTTP 403 Forbidden: Profilo Non Verificato o Crediti Inbox Esauriti"]:::error
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (MARKETPLACE & SCREENING ENGINES)"]
+        SRV_VERIFY_ENGINE["Motore Verifica Identita: VIES / Agenzia Entrate & ORCID Registry API"]:::server
+        SRV_PRESCREEN_ENGINE["Motore Pre-Screening Cavia: Matching Criteri Inclusione e Privacy"]:::server
+        SRV_INBOX_SPAM_SHIELD["Anti-Spam Priority Shield & Gestione Pacchetto Crediti Aggiuntivi"]:::server
+        SRV_BRIDGE_COL5["Bridge Fonti Col 5: Sincronizzazione Schede Studio con Libreria Fonti"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (PRO MARKETPLACE & CAMPAIGNS)"]
+        DB_SILO1_PRO_REG[("Silo 1 Pro Registry: Tabella pro_showcases, peer_rooms & verified_creds")]:::db
+        DB_SILO1_RESEARCH_INBOX[("Silo 1 Pro Ops: Tabella research_campaigns, cavia_screenings & vip_inbox")]:::db
+        END_FLOW(["Fine: Vetrina Attiva, Bando Pubblicato o Messaggio Ricevuto"]):::startend
+    end
+
+    %% Connessioni di Flusso ISO 5807
+    START --> UI_PRO_SHOWCASE
+    UI_PRO_SHOWCASE --> DEC_PRO_ACTION
+    DEC_PRO_ACTION -- "Networking tra Pari" --> UI_PEER_ROOMS
+    DEC_PRO_ACTION -- "Bandi Ricerca Volontari" --> UI_CALL_PUBLISH
+    DEC_PRO_ACTION -- "Priority Inbox Anti-Spam" --> UI_VIP_INBOX
+
+    UI_PEER_ROOMS --> GW_PRO_INGRESS
+    UI_CALL_PUBLISH --> GW_PRO_INGRESS
+    UI_VIP_INBOX --> GW_PRO_INGRESS
+
+    GW_PRO_INGRESS --> DEC_VERIFY_GATE
+    DEC_VERIFY_GATE -- "No / Dati Non Validi o Crediti Esauriti" --> GW_ERR_DENIED
+    GW_ERR_DENIED --> UI_PRO_SHOWCASE
+
+    DEC_VERIFY_GATE -- "Si / Identita Verificata" --> SRV_VERIFY_ENGINE
+    SRV_VERIFY_ENGINE --> DB_SILO1_PRO_REG
+
+    DEC_VERIFY_GATE -- "Si / Pubblicazione Bando" --> SRV_PRESCREEN_ENGINE
+    SRV_PRESCREEN_ENGINE --> SRV_BRIDGE_COL5
+    SRV_BRIDGE_COL5 --> DB_SILO1_RESEARCH_INBOX
+
+    DEC_VERIFY_GATE -- "Si / Gestione Priority Inbox" --> SRV_INBOX_SPAM_SHIELD
+    SRV_INBOX_SPAM_SHIELD --> DB_SILO1_RESEARCH_INBOX
+
+    DB_SILO1_PRO_REG --> END_FLOW
+    DB_SILO1_RESEARCH_INBOX --> END_FLOW

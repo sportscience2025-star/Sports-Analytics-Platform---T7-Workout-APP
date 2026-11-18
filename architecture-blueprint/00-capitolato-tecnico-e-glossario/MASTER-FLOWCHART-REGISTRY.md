@@ -1,4 +1,4 @@
-# Master Flowchart Registry & Miro Inventory (18 Badge Ufficiali Core + Companion Apps Ecosystem)
+# Master Flowchart Registry & Miro Inventory (18 Badge Ufficiali Core + Companion Apps Ecosystem: Movely & Together Social)
 
 > **Documento Ufficiale di Registro Tecnico & Inventario Miro Online**  
 > **Board Miro ID:** `uXjVEbo6L2o=` | **URL:** [Miro Architecture Board](https://miro.com/app/board/uXjVEbo6L2o=)  
@@ -32,6 +32,9 @@ La seguente tabella rappresenta il registro unico e autoritativo che mappa 1:1 o
 | **#17** | Tier 3 | Col 5: Libreria Fonti - AI Studio, Chatbot & RAG Sync | `FLOW-5C` | Libreria Fonti: AI Studio, Chatbot Scientifico, Bollettino & RAG Sync | 16 (Mermaid) / 18 (Miro) | `3458764688417722803` | `X: 6645.26, Y: 8033.79` | [17-software-3-flow-5c-tactical-video-cv.md](17-software-3-flow-5c-tactical-video-cv.md) | `flow-5c-tactical-video-cv.mmd` |
 | **#18** | Tier 3 | Col 6: Preferiti - All-in-One, Team Pinning, Albero ltree & AI | `FLOW-6C` | Preferiti Enterprise All-in-One: Team Pinning, ltree, Ricerca Ibrida AI & RLS | 18 | `3458764688417722810` | `X: 9225.38, Y: 8230.99` | [18-software-3-flow-6c-medical-room-research-silo3.md](18-software-3-flow-6c-medical-room-research-silo3.md) | `flow-6c-medical-room-research-silo3.mmd` |
 | **#19** | Companion | Companion Apps: Movely Ecosystem | `FLOW-M1` | Movely Workplace Companion App: Ergonomia, Mini-Triage, Smart Clinic & Privacy Firewall | 18 | `3458764690915095247` | `X: 10700, Y: 650` | [19-software-companion-flow-m1-movely-workplace.md](19-software-companion-flow-m1-movely-workplace.md) | `flow-m1-movely-workplace.mmd` |
+| **#20** | Tier 1 | Companion Apps: Together Social Ecosystem | `FLOW-TS1` | Together B2C Community: Shorts, AI Content Gatekeeper, Find Your Gym Bro & Token Cavia | 16 | `3458764690915095251` | `X: 12200, Y: 650` | [20-software-companion-flow-ts1-together-b2c-community.md](20-software-companion-flow-ts1-together-b2c-community.md) | `flow-ts1-together-b2c-community.mmd` |
+| **#21** | Tier 2 | Companion Apps: Together Social Ecosystem | `FLOW-TS2` | Together Pro Marketplace: Verifica P.IVA / ORCID, Stanze Networking Pari, Bandi Ricerca & VIP Priority Inbox | 16 | `3458764690915095252` | `X: 12200, Y: 3600` | [21-software-companion-flow-ts2-together-pro-marketplace.md](21-software-companion-flow-ts2-together-pro-marketplace.md) | `flow-ts2-together-pro-marketplace.mmd` |
+| **#22** | Tier 3 | Companion Apps: Together Social Ecosystem | `FLOW-TS3` | Together Elite Lounges & Labs: Lounges Blindate, Profilo Oscurato Ghost Mode, Booking Macchinari Avanzati & Staff Recruiting | 16 | `3458764690915095253` | `X: 12200, Y: 8100` | [22-software-companion-flow-ts3-together-elite-lounges-labs.md](22-software-companion-flow-ts3-together-elite-lounges-labs.md) | `flow-ts3-together-elite-lounges-labs.mmd` |
 
 ---
 
@@ -274,27 +277,71 @@ L'Ecosistema Companion Apps espande le funzionalita della piattaforma T7 verso s
 
 ---
 
-## 8. Topologia Spaziale della Board Miro (ZONA 4 & Companion Apps)
+## 8. Companion Apps: Together Social (#20/#TS1, #21/#TS2, #22/#TS3)
 
-La Zona 4 si articola su una griglia ortogonale rigorosa:
+L'Ecosistema Companion Apps accoglie la suite ufficiale **Together Social**, concepita per trasformare l'interazione tra praticanti, preparatori e vertici societari in un ambiente strutturato, privo di tossicita e fondato sull'evidenza scientifica e sul rispetto della privacy. La suite si articola sui tre livelli di utenza (Tier 1 B2C Community, Tier 2 Pro Marketplace, Tier 3 Elite Lounges & Labs), ospitata interamente sulla partizione dedicata **Silo 1 (Public, Social & Community)** con barriere invalicabili verso i dati sanitari (Silo 2 Bunker KMS) e la telemetria grezza (Silo 3).
+
+### Tabella di Mappatura Ufficiale Together Social
+
+| Badge | Codice Flusso | Modulo Funzionale | Attori Principali | Corsia Server & DB | Meccanismo Privacy / Gating | File Capitolato (.md) | Sorgente Mermaid (.mmd) |
+| :---: | :---: | :--- | :--- | :--- | :--- | :--- | :--- |
+| **#20** | `FLOW-TS1` | Together B2C Community: Shorts, AI Content Gatekeeper, Find Your Gym Bro & Token Cavia | Atleta Amatoriale, Compagno Gym Bro, Ricercatore Accademico | Corsia 3 Cloud Run / Silo 1 PostgreSQL | AI Content Gatekeeper, Geohash Fuzzy Proximity & Escrow Tokenomics | [20-software-companion-flow-ts1-together-b2c-community.md](20-software-companion-flow-ts1-together-b2c-community.md) | `flow-ts1-together-b2c-community.mmd` |
+| **#21** | `FLOW-TS2` | Together Pro Marketplace: Verifica P.IVA / ORCID, Stanze Networking Pari, Bandi Ricerca & VIP Priority Inbox | Preparatore P.IVA, Ricercatore ORCID, Fisioterapista, Candidati | Corsia 3 Cloud Run / Silo 1 Pro PostgreSQL | VIES / ORCID OAuth Validation, Priority Escrow Inbox & Peer Room Signaling | [21-software-companion-flow-ts2-together-pro-marketplace.md](21-software-companion-flow-ts2-together-pro-marketplace.md) | `flow-ts2-together-pro-marketplace.mmd` |
+| **#22** | `FLOW-TS3` | Together Elite Lounges & Labs: Lounges Blindate, Profilo Oscurato Ghost Mode, Booking Macchinari Avanzati & Staff Recruiting | Dirigente Club Serie A, Head S&C, Direttore Laboratorio, Staff Candidato | Corsia 3 Cloud Run / Silo 1 Elite PostgreSQL | Ghost Mode Cryptographic Masking, Mutual TLS SAML 2.0 & E2EE Lounges | [22-software-companion-flow-ts3-together-elite-lounges-labs.md](22-software-companion-flow-ts3-together-elite-lounges-labs.md) | `flow-ts3-together-elite-lounges-labs.mmd` |
+
+### #20 [ FLOW-TS1 ] Tier 1 (B2C Casual) - Together B2C Community: Shorts, AI Content Gatekeeper, Find Your Gym Bro & Token Cavia
+- **Badge Shape ID:** `3458764690918929298` | **Posizione Miro:** `X: 12500, Y: 650` (Area Companion Apps, Silo 1) | **Nodi ISO:** 16
+- **Caratteristiche Chiave:**
+  - **Feed Shorts Sportivo & Condivisione Workout:** visualizzazione e pubblicazione di micro-video (fino a 60 secondi) collegati agli esercizi del catalogo T7 e alle sessioni registrate tramite il Workout Session Tracker (`#03`), privi di pubblicita commerciale o sponsorizzazioni ingannevoli;
+  - **AI Content Gatekeeper:** moderazione multimodale automatizzata che intercetta testi diffamatori, spam, esecuzioni biomeccaniche pericolose o a rischio infortunistico prima della diffusione pubblica;
+  - **Find Your Gym Bro / Gym Girl:** matching opt-in geolocalizzato su Geohash fuzzy (raggio 1.0-1.5 km mascherato) per trovare partner di allenamento compatibili per disciplina, orari e livello atletico nel pieno rispetto della privacy;
+  - **Programma Soggetto Volontario Cavia Tokenomics:** possibilita di candidarsi liberamente a bandi universitari promossi da ricercatori e preparatori di Tier 2, accumulando Token Cavia convertibili in voucher e sconti sull'ecosistema;
+  - **Isolamento Rigoroso:** zero esposizione di dati clinici, referti o percentuali massimali protette.
+
+### #21 [ FLOW-TS2 ] Tier 2 (Pro P.IVA) - Together Pro Marketplace: Verifica P.IVA / ORCID, Stanze Networking Pari, Bandi Ricerca & VIP Priority Inbox
+- **Badge Shape ID:** `3458764690918929312` | **Posizione Miro:** `X: 12500, Y: 3790` (Area Companion Apps, Silo 1 Pro) | **Nodi ISO:** 16
+- **Caratteristiche Chiave:**
+  - **Verifica Credenziali all'Ingresso:** controllo automatico della Partita IVA e del codice ATECO sportivo/sanitario tramite VIES / Agenzia Entrate o autenticazione accademica tramite protocollo OAuth ORCID ID;
+  - **Stanze di Networking tra Pari:** tavoli di confronto orizzontali WebRTC crittografati riservati esclusivamente a professionisti verificati dello stesso ambito per scambio di metodologie e casi studio;
+  - **Pubblicazione Bandi di Ricerca per Volontari:** pubblicazione guidata di protocolli accademici con deposito cauzionale escrow di Token Cavia per remunerare gli atleti amatoriali di Tier 1;
+  - **VIP Priority Inbox Anti-Spam:** casella di posta professionale con tariffa a crediti per filtrare le richieste di contatto, trattenuti in escrow e rilasciati solo se il professionista accetta il dialogo (con rimborso totale in caso di rifiuto);
+  - **Barriera Sanitaria B2B:** divieto assoluto di conservare o scambiare cartelle cliniche EMR dei propri assistiti in questo modulo.
+
+### #22 [ FLOW-TS3 ] Tier 3 (Elite Teams) - Together Elite Lounges & Labs: Lounges Blindate, Profilo Oscurato Ghost Mode, Booking Macchinari Avanzati & Staff Recruiting
+- **Badge Shape ID:** `3458764690918929317` | **Posizione Miro:** `X: 12500, Y: 8230` | **Nodi ISO:** 16
+- **Caratteristiche Chiave:**
+  - **Accesso Istituzionale Federato:** autenticazione SAML 2.0 / Okta Enterprise, Mutual TLS (mTLS) con certificati hardware e verifica biometrica FIDO2;
+  - **Profilo Oscurato (Ghost Mode):** pseudonimizzazione crittografica unidirezionale che permette a dirigenti di Serie A/Eurolega di consultare profili e fare scouting senza svelare l'identita del club fino al colloquio formale;
+  - **VIP & Elite Lounges Blindate:** stanze di conferenza virtuale a invito crittografate end-to-end con cancellazione automatica dei messaggi per discussioni strategiche riservate;
+  - **Booking Macchinari e Laboratori Avanzati:** piattaforma di noleggio orario/giornaliero per l'utilizzo di pedane di forza triassiali, dinamometri isocinetici e camere ipobariche presso centri universitari convenzionati con copertura assicurativa inclusa;
+  - **Bacheca Recruiting & Scouting Staff:** canale riservato per la ricerca e l'assunzione di preparatori, video analisti e sport scientist con convalida rigorosa di titoli e pubblicazioni scientifiche;
+  - **Isolamento Silo 2/3:** totale disaccoppiamento dai dati tattici di squadra, schede segrete di club e referti EMR custoditi nell'enclave Silo 2 Bunker KMS.
+
+---
+
+## 9. Topologia Spaziale della Board Miro (ZONA 4 & Companion Apps)
+
+La Zona 4 e l'Area Companion Apps si articolano su una griglia ortogonale rigorosa:
 
 ### Struttura per Righe (3 Livelli Applicativi / Tiers)
-- **Riga 1 (In alto - Tier 1 Consumer):** Coordinata $Y \approx 180 \dots 603$. Palette teal (`#0f766e` / `#14b8a6`).
-- **Riga 2 (In mezzo - Tier 2 Pro / P.IVA):** Coordinata $Y \approx 2940 \dots 3815$. Palette ambra (`#b45309` / `#f59e0b`).
-- **Riga 3 (In basso - Tier 3 Elite Club / Ricerca):** Coordinata $Y \approx 6235 \dots 8231$. Palette indaco (`#4338ca` / `#818cf8`).
+- **Riga 1 (In alto - Tier 1 Consumer):** Coordinata $Y \approx 180 \dots 650$. Palette teal (`#0f766e` / `#14b8a6`). Include i flussi core da `#01` a `#06`, la Companion App Movely (`#19` / `#M1` a $X=10700$) e Together B2C Community (`#20` / `#TS1` a $X=12500, Y=650$).
+- **Riga 2 (In mezzo - Tier 2 Pro / P.IVA):** Coordinata $Y \approx 2940 \dots 3815$. Palette ambra (`#b45309` / `#f59e0b`). Include i flussi core da `#07` a `#12` e la Companion App Together Pro Marketplace (`#21` / `#TS2` a $X=12500, Y=3790$).
+- **Riga 3 (In basso - Tier 3 Elite Club / Ricerca):** Coordinata $Y \approx 6235 \dots 8231$. Palette indaco (`#4338ca` / `#818cf8`). Include i flussi core da `#13` a `#18` e la Companion App Together Elite Lounges & Labs (`#22` / `#TS3` a $X=12500, Y=8230$).
 
-### Struttura per Colonne (6 Domini Funzionali Specializzati)
+### Struttura per Colonne (6 Domini Funzionali Core + 2 Aree Companion Apps)
 1. **Colonna 1 ($X \approx -2925 \dots -2448$):** Identity, Security & Anti-Frode (Onboarding, WebAuthn, VIES, Cloud KMS).
 2. **Colonna 2 ($X \approx -108 \dots 251$):** 3D Catalog, Kinematics & Computer Vision (Three.js Draco, Optical Bar Tracking, Multi-Camera 4K).
 3. **Colonna 3 ($X \approx 2459 \dots 3056$):** Periodization, Triage & Workout Execution (Thin Player IndexedDB, Macrocicli DUP/Triage 119, Microciclo MD-X Bunker Silo 2).
 4. **Colonna 4 ($X \approx 4171 \dots 4768$):** Data Analisi (Revisione Biomeccanica NO AI, Data Analisi AI 70% & Wearable T7, Data Analisi AI 100% & Role-Based RAG).
 5. **Colonna 5 ($X \approx 6048 \dots 6645$):** Libreria Fonti (Archivio Open Access Read-Only, Sintesi Premium & Area Studio Locale IndexedDB, AI Studio 100%, Chatbot & RAG Sync Bunker Silo 2).
 6. **Colonna 6 ($X \approx 8960 \dots 9225$):** Preferiti (Lista Lineare Puntatori Silo 1 Tier 1, Cartelle Tematiche/Tag/Template/Fonti Silo 1 Pro Tier 2, Ecosistema All-in-One con Team Pinning, Albero `ltree`, Ricerca Ibrida `tsvector`+`pgvector` AI e Filtro Silenzioso RBAC/RLS Silo 2 Bunker KMS Tier 3; moduli precedenti Movely/Physio ROM/Medical EMR parcheggiati per futura colonna dedicata).
+7. **Area Companion Apps Movely ($X \approx 10700$):** Corporate Welfare, Ergonomia Attiva, Mini-Triage e Smart Clinic con K-Anonymity Privacy Firewall (`#19` / `#M1`).
+8. **Area Companion Apps Together Social ($X \approx 12500$):** Social Network Sportivo, Pro Marketplace e Strutture di Ricerca d'Elite articolate sui 3 Tiers (`#20` / `#TS1`, `#21` / `#TS2`, `#22` / `#TS3`).
 
 ---
 
-## 9. Norme di Manutenzione del Registro
+## 10. Norme di Manutenzione del Registro
 
 1. **Invarianza degli ID Miro:** Gli Shape ID riportati sono identificativi univoci generati dalle API Miro e non devono essere modificati a meno di ricreazione esplicita del badge.
 2. **Aggiornamento Sincrono:** Qualsiasi spostamento geometrico di un badge sulla board Miro impone l'aggiornamento immediato delle coordinate $(X, Y)$ in questo registro e nella Sezione 1 del corrispondente file `.md`.
-3. **Integrita dei File di Capitolato:** Ciascuno dei 19 file `.md` (18 flussi core + companion flow) rispetta lo standard obbligatorio del "Doppio Livello di Lettura" articolato in 7 sezioni rigorose.
+3. **Integrita dei File di Capitolato:** Ciascuno dei 22 file `.md` (18 flussi core + 4 companion flows) rispetta lo standard obbligatorio del "Doppio Livello di Lettura" articolato in 7 sezioni rigorose.

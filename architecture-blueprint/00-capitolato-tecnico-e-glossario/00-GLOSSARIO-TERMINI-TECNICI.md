@@ -1,7 +1,7 @@
 # Glossario Tecnico Vivente & Matrice di Tracciabilità dei Flussi (18 Flowcharts T7)
 
 > **Documento Autoritativo di Architettura (Zona 0 - Miro Board `uXjVEbo6L2o=`)**  
-> Censimento enciclopedico di **150 Termini Tecnici e Acronimi Ufficiali** del progetto *Sports Analytics Platform — T7 Workout APP*.  
+> Censimento enciclopedico di **158 Termini Tecnici e Acronimi Ufficiali** del progetto *Sports Analytics Platform — T7 Workout APP*.  
 > Ogni voce include: Identificativo univoco, Sintesi ELI5 (strettamente $\le 10$ parole per non-tecnici), Spiegazione Operativa, Ruolo Architetturale in T7 e Mappatura 1:1 sui 18 Flussi.
 
 ---
@@ -17,6 +17,7 @@
 
 - [ACWR (Acute:Chronic Workload Ratio)](#acwr-acute-chronic-workload-ratio) — *Telemetria Pro, Performance Tracking & Carico Rosa (Tier 3)*
 - [ACWR EWMA (Exponentially Weighted Moving Average)](#acwr-ewma-exponentially-weighted-moving-average) — *Algoritmi, Statistica & Machine Learning*
+- [AI Content Gatekeeper](#ai-content-gatekeeper) — *Algoritmi, Statistica & Machine Learning*
 - [Albero Cartelle Gerarchico (PostgreSQL ltree)](#albero-cartelle-gerarchico-postgresql-ltree) — *Ingegneria Software & Architettura Cloud*
 - [Ambassador Educational Feed](#ambassador-educational-feed) — *Metodologia d'Allenamento & Clinica Sportiva*
 - [Analisi Sommaria Metriche Lattato (Soglie Aerobica/Anaerobica T7)](#analisi-sommaria-metriche-lattato-soglie-aerobica-anaerobica-t7) — *Telemetria Wearable & Dispositivi Mobili*
@@ -32,6 +33,7 @@
 - [Baricentro di Squadra, Ampiezza & Profondità Tattica](#baricentro-di-squadra-ampiezza-profondita-tattica) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [BMR Mifflin-St Jeor & Harris-Benedict (Fabbisogno Metabolico)](#bmr-mifflin-st-jeor-harris-benedict-fabbisogno-metabolico) — *Metodologia d'Allenamento & Clinica Sportiva*
 - [Bollettino Settimanale Accademico (Feed Tematico Sportivo)](#bollettino-settimanale-accademico-feed-tematico-sportivo) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
+- [Booking Macchinari e Laboratori Avanzati](#booking-macchinari-e-laboratori-avanzati) — *Ingegneria Software & Architettura Cloud*
 
 ### <a id="letter-c"></a>C
 
@@ -81,6 +83,7 @@
 - [FFMI (Fat-Free Mass Index) & Normalizzazione Antropometrica](#ffmi-fat-free-mass-index-normalizzazione-antropometrica) — *Biomeccanica & Valutazione Funzionale*
 - [Filtro Outlier MAD (Median Absolute Deviation)](#filtro-outlier-mad-median-absolute-deviation) — *Algoritmi, Statistica & Machine Learning*
 - [Filtro Silenzioso RBAC & PostgreSQL RLS (Segreto Medico Preferiti)](#filtro-silenzioso-rbac-postgresql-rls-segreto-medico-preferiti) — *Sicurezza Enterprise & Identità Societaria (Tier 3)*
+- [Find Your Gym Bro / Gym Girl](#find-your-gym-bro-gym-girl) — *Principi Architetturali di Prodotto*
 
 ### <a id="letter-g"></a>G
 
@@ -134,6 +137,7 @@
 
 - [Open Access Papers (Studi Scientifici Pubblici e Gratuiti)](#open-access-papers-studi-scientifici-pubblici-e-gratuiti) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [OrbitControls (Yaw 360° e Pitch Zenitale/Nadir)](#orbitcontrols-yaw-360-e-pitch-zenitale-nadir) — *Grafica 3D, WebGL & Rendering Biomeccanico*
+- [ORCID Researcher Verification](#orcid-researcher-verification) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [Osgnach Metabolic Power (W/kg) & High Metabolic Load Distance](#osgnach-metabolic-power-w-kg-high-metabolic-load-distance) — *Algoritmi, Statistica & Machine Learning*
 
 ### <a id="letter-p"></a>P
@@ -174,6 +178,8 @@
 - [Service Worker Offline-First & Cache Storage API](#service-worker-offline-first-cache-storage-api) — *Ingegneria Software & Architettura Cloud*
 - [Smart Clinic Zero-Coda](#smart-clinic-zero-coda) — *Ingegneria Software & Architettura Cloud*
 - [SMPTE Timecode Multi-Camera Synchronization](#smpte-timecode-multi-camera-synchronization) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
+- [Soggetto Volontario Cavia Tokenomics](#soggetto-volontario-cavia-tokenomics) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
+- [Staff Recruiting & Scouting Board](#staff-recruiting-scouting-board) — *Principi Architetturali di Prodotto*
 - [Step-Up Verification (Verifica Telefono Anti-Troll per Community)](#step-up-verification-verifica-telefono-anti-troll-per-community) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [Stripe Identity & Biometric Liveness 3D](#stripe-identity-biometric-liveness-3d) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [Swimlanes (Corsie Architetturali nei Flowchart)](#swimlanes-corsie-architetturali-nei-flowchart) — *Ingegneria Software & Architettura Cloud*
@@ -206,6 +212,8 @@
 - [VBT (Velocity Based Training)](#vbt-velocity-based-training) — *Biomeccanica & Valutazione Funzionale*
 - [Video Ingest Tiers (Zero Upload Tier 1, 1080p Pro Tier 2, 4K/8K Enterprise Tier 3)](#video-ingest-tiers-zero-upload-tier-1-1080p-pro-tier-2-4k-8k-enterprise-tier-3) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [VIES & Sistema di Interscambio (SDI)](#vies-sistema-di-interscambio-sdi) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
+- [VIP & Elite Lounges](#vip-elite-lounges) — *Sicurezza Enterprise & Identità Societaria (Tier 3)*
+- [VIP Priority Inbox Anti-Spam](#vip-priority-inbox-anti-spam) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [Visualizzatore PDF Protetto In-App (Read-Only)](#visualizzatore-pdf-protetto-in-app-read-only) — *Ingegneria Software & Architettura Cloud*
 
 ### <a id="letter-w"></a>W
@@ -237,156 +245,164 @@
 | **02** | [32 Protocolli Riabilitativi Clinici (cli_01..cli_32)](#32-protocolli-riabilitativi-clinici-cli_01-cli_32) | Prescrizione Clinica & Riabilitazione P.IVA (Tier 2) | `#12` |
 | **03** | [ACWR (Acute:Chronic Workload Ratio)](#acwr-acute-chronic-workload-ratio) | Telemetria Pro, Performance Tracking & Carico Rosa (Tier 3) | `#08, #14, #15` |
 | **04** | [ACWR EWMA (Exponentially Weighted Moving Average)](#acwr-ewma-exponentially-weighted-moving-average) | Algoritmi, Statistica & Machine Learning | `#15` |
-| **05** | [Albero Cartelle Gerarchico (PostgreSQL ltree)](#albero-cartelle-gerarchico-postgresql-ltree) | Ingegneria Software & Architettura Cloud | `#18` |
-| **06** | [Ambassador Educational Feed](#ambassador-educational-feed) | Metodologia d'Allenamento & Clinica Sportiva | `#19` |
-| **07** | [Analisi Sommaria Metriche Lattato (Soglie Aerobica/Anaerobica T7)](#analisi-sommaria-metriche-lattato-soglie-aerobica-anaerobica-t7) | Telemetria Wearable & Dispositivi Mobili | `#10` |
-| **08** | [Angoli Principali Biomeccanici](#angoli-principali-biomeccanici) | Biomeccanica & Valutazione Funzionale | `#04, #10, #16` |
-| **09** | [Angoli Specifici Biomeccanici](#angoli-specifici-biomeccanici) | Biomeccanica & Valutazione Funzionale | `#10, #16` |
-| **10** | [API Gateway & Feature Gating](#api-gateway-feature-gating) | Ingegneria Software & Architettura Cloud | `#01, #07, #13` |
-| **11** | [Apple HealthKit & Google Health Connect Pipeline](#apple-healthkit-google-health-connect-pipeline) | Telemetria Wearable & Dispositivi Mobili | `#04` |
-| **12** | [Area Studio Digitale In-App (Offline / IndexedDB)](#area-studio-digitale-in-app-offline-indexeddb) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#11, #17` |
-| **13** | [Bar Path Optical Tracking (Traiettoria Bilanciere da CV)](#bar-path-optical-tracking-traiettoria-bilanciere-da-cv) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08, #11` |
-| **14** | [Baricentro di Squadra, Ampiezza & Profondità Tattica](#baricentro-di-squadra-ampiezza-profondita-tattica) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
-| **15** | [BMR Mifflin-St Jeor & Harris-Benedict (Fabbisogno Metabolico)](#bmr-mifflin-st-jeor-harris-benedict-fabbisogno-metabolico) | Metodologia d'Allenamento & Clinica Sportiva | `#01` |
-| **16** | [Bollettino Settimanale Accademico (Feed Tematico Sportivo)](#bollettino-settimanale-accademico-feed-tematico-sportivo) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
-| **17** | [Cartelle Tematiche & Tag Personalizzati (Preferiti Pro)](#cartelle-tematiche-tag-personalizzati-preferiti-pro) | Principi Architetturali di Prodotto | `#12, #18` |
-| **18** | [Chatbot AI Studi Scientifici (Assistente Documentale 24/7)](#chatbot-ai-studi-scientifici-assistente-documentale-24-7) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
-| **19** | [Clickwrap Liability Waiver (Manleva Medico-Legale Digitale)](#clickwrap-liability-waiver-manleva-medico-legale-digitale) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#01` |
-| **20** | [Clonazione dello Stile e Lessico del Coach (Style-Cloning)](#clonazione-dello-stile-e-lessico-del-coach-style-cloning) | Algoritmi, Statistica & Machine Learning | `#15, #16` |
-| **21** | [Cloud KMS (Key Management Service)](#cloud-kms-key-management-service) | Ingegneria Software & Architettura Cloud | `#13, #14, #15, #18` |
-| **22** | [Cloudflare Turnstile (Scudo Anti-Bot Invisibile)](#cloudflare-turnstile-scudo-anti-bot-invisibile) | Ingegneria Software & Architettura Cloud | `#01, #07` |
-| **23** | [CMJ (Countermovement Jump) & Abalakov Jump](#cmj-countermovement-jump-abalakov-jump) | Biomeccanica & Valutazione Funzionale | `#10` |
-| **24** | [Co-Pay Welfare Wallet](#co-pay-welfare-wallet) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#19` |
-| **25** | [Color-Coding Neuromuscolare Dinamico (Fasce Muscolari Colorate)](#color-coding-neuromuscolare-dinamico-fasce-muscolari-colorate) | Grafica 3D, WebGL & Rendering Biomeccanico | `#02, #08, #14` |
-| **26** | [Commissione Scientifica T7 (Peer-Review Community)](#commissione-scientifica-t7-peer-review-community) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#11, #17` |
-| **27** | [Confronto Video Side-by-Side (Clip Atleta vs Avatar 3D)](#confronto-video-side-by-side-clip-atleta-vs-avatar-3d) | Prescrizione Clinica & Riabilitazione P.IVA (Tier 2) | `#08, #12` |
-| **28** | [Consenso Esplicito Biometrico Art. 9 GDPR](#consenso-esplicito-biometrico-art-9-gdpr) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#13, #18` |
-| **29** | [Controllo Incrociato & Avvisi di Conflitto (Conflict Alert Schede-Referti)](#controllo-incrociato-avvisi-di-conflitto-conflict-alert-schede-referti) | Algoritmi, Statistica & Machine Learning | `#15, #16` |
-| **30** | [Cross-Module Baseline Bridge (Data Analisi verso Programmazione e Catalogo)](#cross-module-baseline-bridge-data-analisi-verso-programmazione-e-catalogo) | Ingegneria Software & Architettura Cloud | `#16` |
-| **31** | [Cues Propriocettivi Verbali & Criteri Oggettivi di Validità](#cues-propriocettivi-verbali-criteri-oggettivi-di-validita) | Grafica 3D, WebGL & Rendering Biomeccanico | `#02, #08` |
-| **32** | [Decoupled Readiness Sub-Scores (4 Domini Indipendenti)](#decoupled-readiness-sub-scores-4-domini-indipendenti) | Metodologia d'Allenamento & Clinica Sportiva | `#15` |
-| **33** | [Diagrammi di Voronoi & Spazio di Controllo Pitch](#diagrammi-di-voronoi-spazio-di-controllo-pitch) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
-| **34** | [Digital Twin Biomeccanico dell'Atleta](#digital-twin-biomeccanico-dell-atleta) | Telemetria Pro, Performance Tracking & Carico Rosa (Tier 3) | `#14` |
-| **35** | [DOP / HDOP (Dilution of Precision Satellite Filtering)](#dop-hdop-dilution-of-precision-satellite-filtering) | Algoritmi, Statistica & Machine Learning | `#16` |
-| **36** | [Doppio Livello Preferiti (Personali vs Team/Staff Pinning)](#doppio-livello-preferiti-personali-vs-team-staff-pinning) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#18` |
-| **37** | [Draco Geometry Compression & Progressive LOD](#draco-geometry-compression-progressive-lod) | Grafica 3D, WebGL & Rendering Biomeccanico | `#02` |
-| **38** | [Dual-Stream Toggle (Video Reale vs Avatar 3D Stilizzato)](#dual-stream-toggle-video-reale-vs-avatar-3d-stilizzato) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08` |
-| **39** | [DUP (Daily Undulating Periodization)](#dup-daily-undulating-periodization) | Metodologia d'Allenamento & Clinica Sportiva | `#09` |
-| **40** | [Dynamic Forensic Watermarking Anti-Leak](#dynamic-forensic-watermarking-anti-leak) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#14` |
-| **41** | [Electronic Medical Record (EMR) & Segreto Medico](#electronic-medical-record-emr-segreto-medico) | Prescrizione Clinica & Riabilitazione P.IVA (Tier 2) | `#18` |
-| **42** | [Epley 1RM Formula & Stima Sub-Massimale](#epley-1rm-formula-stima-sub-massimale) | Metodologia d'Allenamento & Clinica Sportiva | `#03` |
-| **43** | [Ereditarietà Funzionale a Cascata Top-Down (Tier 1 -> Tier 2 -> Tier 3)](#ereditarieta-funzionale-a-cascata-top-down-tier-1->-tier-2->-tier-3) | Principi Architetturali di Prodotto | `#01, #07, #13` |
-| **44** | [Excel Sbloccato (protected: false) & Data Interoperability](#excel-sbloccato-protected-false-data-interoperability) | Metodologia d'Allenamento & Clinica Sportiva | `#10, #16` |
-| **45** | [Fallback per Nuovi Acquisti (Cold Start senza Baseline)](#fallback-per-nuovi-acquisti-cold-start-senza-baseline) | Algoritmi, Statistica & Machine Learning | `#16` |
-| **46** | [Family Plan Welfare](#family-plan-welfare) | Ingegneria Software & Architettura Cloud | `#19` |
-| **47** | [Fan-Out on Write & Redis Cluster ZSET (Timeline Social)](#fan-out-on-write-redis-cluster-zset-timeline-social) | Ingegneria Software & Architettura Cloud | `#05` |
-| **48** | [Fasi Biomeccaniche: Concentrica vs Eccentrica & TUT (Time Under Tension)](#fasi-biomeccaniche-concentrica-vs-eccentrica-tut-time-under-tension) | Grafica 3D, WebGL & Rendering Biomeccanico | `#02, #03` |
-| **49** | [Feature Gating Clinico & Ordine Sanitario (FNOFI / TSRM-PSTRP)](#feature-gating-clinico-ordine-sanitario-fnofi-tsrm-pstrp) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#07, #12` |
-| **50** | [Feature Gating Tier 1 (Consumer)](#feature-gating-tier-1-consumer) | Ingegneria Software & Architettura Cloud | `#01, #02, #03, #04, #05, #06` |
-| **51** | [FFMI (Fat-Free Mass Index) & Normalizzazione Antropometrica](#ffmi-fat-free-mass-index-normalizzazione-antropometrica) | Biomeccanica & Valutazione Funzionale | `#01, #09` |
-| **52** | [Filtro Outlier MAD (Median Absolute Deviation)](#filtro-outlier-mad-median-absolute-deviation) | Algoritmi, Statistica & Machine Learning | `#04, #10` |
-| **53** | [Filtro Silenzioso RBAC & PostgreSQL RLS (Segreto Medico Preferiti)](#filtro-silenzioso-rbac-postgresql-rls-segreto-medico-preferiti) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#18` |
-| **54** | [Gemini Interactions API & Embedding-2 (Guardrail Enclave T7)](#gemini-interactions-api-embedding-2-guardrail-enclave-t7) | Algoritmi, Statistica & Machine Learning | `#18` |
-| **55** | [Gestione Preferiti Studi Scientifici](#gestione-preferiti-studi-scientifici) | Ricerca Scientifica & Documentazione Accademica (Tier 1-2-3) | `#11, #17` |
-| **56** | [glTF / GLB & Compressione Google Draco Mesh](#gltf-glb-compressione-google-draco-mesh) | Grafica 3D, WebGL & Rendering Biomeccanico | `#02` |
-| **57** | [Goniometro Digitale AI (Markerless Joint Angle Extraction)](#goniometro-digitale-ai-markerless-joint-angle-extraction) | Prescrizione Clinica & Riabilitazione P.IVA (Tier 2) | `#12` |
-| **58** | [Graceful Degradation & WebGL Performance Fallback](#graceful-degradation-webgl-performance-fallback) | Grafica 3D, WebGL & Rendering Biomeccanico | `#02` |
-| **59** | [Heart Rate Variability (HRV) & rMSSD Recovery Score](#heart-rate-variability-hrv-rmssd-recovery-score) | Telemetria Wearable & Dispositivi Mobili | `#04, #16` |
-| **60** | [HRV Fusion (Integrazione Carico Interno/Esterno)](#hrv-fusion-integrazione-carico-interno-esterno) | Algoritmi, Statistica & Machine Learning | `#16` |
-| **61** | [IndexedDB & Optimistic Transaction Queue](#indexeddb-optimistic-transaction-queue) | Ingegneria Software & Architettura Cloud | `#03` |
-| **62** | [Indicatori di Qualita Scientifica (CEBM Oxford e Quartili JCR)](#indicatori-di-qualita-scientifica-cebm-oxford-e-quartili-jcr) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
-| **63** | [INI-PEC (Indice Nazionale Posta Elettronica Certificata) & Two-Way OTP](#ini-pec-indice-nazionale-posta-elettronica-certificata-two-way-otp) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#07` |
-| **64** | [Isolamento Data Analisi Tier 1 (Zero Correlazione Cross-Modulo)](#isolamento-data-analisi-tier-1-zero-correlazione-cross-modulo) | Ingegneria Software & Architettura Cloud | `#04` |
-| **65** | [K-Anonymity & Zero-Knowledge Privacy Shield](#k-anonymity-zero-knowledge-privacy-shield) | Ingegneria Software & Architettura Cloud | `#06, #18` |
-| **66** | [K-Anonymity HR Privacy Firewall](#k-anonymity-hr-privacy-firewall) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#19` |
-| **67** | [KYB (Know Your Business) & UBO (Ultimate Beneficial Owner)](#kyb-know-your-business-ubo-ultimate-beneficial-owner) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#13` |
-| **68** | [Libreria Esercizi a Due Livelli di Club (Bozza Atleta vs Ufficiale Societaria)](#libreria-esercizi-a-due-livelli-di-club-bozza-atleta-vs-ufficiale-societaria) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#14` |
-| **69** | [Limitatore Goniometrico di ROM Touch (Range of Motion Lock)](#limitatore-goniometrico-di-rom-touch-range-of-motion-lock) | Prescrizione Clinica & Riabilitazione P.IVA (Tier 2) | `#12` |
-| **70** | [Lista Lineare Preferiti (Tier 1 Base)](#lista-lineare-preferiti-tier-1-base) | Principi Architetturali di Prodotto | `#06` |
-| **71** | [Live Camera AI Real-Time Correction (Feedback Esecutivo sul Momento)](#live-camera-ai-real-time-correction-feedback-esecutivo-sul-momento) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#10, #16` |
-| **72** | [Markerless Motion Capture (Computer Vision AI da Campo)](#markerless-motion-capture-computer-vision-ai-da-campo) | Telemetria Pro, Performance Tracking & Carico Rosa (Tier 3) | `#08, #14, #17` |
-| **73** | [Mean Propulsive Velocity (MPV) vs Peak Velocity](#mean-propulsive-velocity-mpv-vs-peak-velocity) | Biomeccanica & Valutazione Funzionale | `#10` |
-| **74** | [MediaPipe BlazePose 3D (Edge Pose Estimation su Video Mobile)](#mediapipe-blazepose-3d-edge-pose-estimation-su-video-mobile) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08` |
-| **75** | [Microciclo MD-X & Modello Titolari vs Panchinari](#microciclo-md-x-modello-titolari-vs-panchinari) | Metodologia d'Allenamento & Clinica Sportiva | `#15` |
-| **76** | [Mini-Triage Visivo del Benessere](#mini-triage-visivo-del-benessere) | Metodologia d'Allenamento & Clinica Sportiva | `#19` |
-| **77** | [Minimal Detectable Change (MDC 95%) & Cohen's d](#minimal-detectable-change-mdc-95-cohen-s-d) | Biomeccanica & Valutazione Funzionale | `#10` |
-| **78** | [Modelli AI Interni T7 (Inferenza Dedicata 70% vs 100%)](#modelli-ai-interni-t7-inferenza-dedicata-70-vs-100) | Ingegneria Software & Architettura Cloud | `#10, #16` |
-| **79** | [Movely Companion App](#movely-companion-app) | Principi Architetturali di Prodotto | `#19` |
-| **80** | [Movely Corporate Wellness & Ergonomic Engine](#movely-corporate-wellness-ergonomic-engine) | Metodologia d'Allenamento & Clinica Sportiva | `#06` |
-| **81** | [mTLS (Mutual Transport Layer Security) & Chiavi Hardware FIDO2](#mtls-mutual-transport-layer-security-chiavi-hardware-fido2) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#13` |
-| **82** | [Multi-Camera 4K Sync & Secret Club Vault](#multi-camera-4k-sync-secret-club-vault) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#14` |
-| **83** | [MVT (Minimum Velocity Threshold)](#mvt-minimum-velocity-threshold) | Biomeccanica & Valutazione Funzionale | `#10` |
-| **84** | [Open Access Papers (Studi Scientifici Pubblici e Gratuiti)](#open-access-papers-studi-scientifici-pubblici-e-gratuiti) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#05, #11, #17` |
-| **85** | [OrbitControls (Yaw 360° e Pitch Zenitale/Nadir)](#orbitcontrols-yaw-360-e-pitch-zenitale-nadir) | Grafica 3D, WebGL & Rendering Biomeccanico | `#02` |
-| **86** | [Osgnach Metabolic Power (W/kg) & High Metabolic Load Distance](#osgnach-metabolic-power-w-kg-high-metabolic-load-distance) | Algoritmi, Statistica & Machine Learning | `#16` |
-| **87** | [PAP (Post-Activation Potentiation)](#pap-post-activation-potentiation) | Biomeccanica & Valutazione Funzionale | `#10` |
-| **88** | [PAR-Q+ (Physical Activity Readiness Questionnaire) & Digital Triage](#par-q-physical-activity-readiness-questionnaire-digital-triage) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#01` |
-| **89** | [Periodizzazione a Blocchi & Coniugata](#periodizzazione-a-blocchi-coniugata) | Metodologia d'Allenamento & Clinica Sportiva | `#09` |
-| **90** | [Potenza di Calcolo AI 100% (Tier 3 Enterprise)](#potenza-di-calcolo-ai-100-tier-3-enterprise) | Algoritmi, Statistica & Machine Learning | `#14, #15, #16, #17` |
-| **91** | [Progressive LOD (Level of Detail Dinamico WebGL)](#progressive-lod-level-of-detail-dinamico-webgl) | Grafica 3D, WebGL & Rendering Biomeccanico | `#02` |
-| **92** | [Puntatore Relazionale Preferiti (Zero-Duplication Bookmark)](#puntatore-relazionale-preferiti-zero-duplication-bookmark) | Ingegneria Software & Architettura Cloud | `#06, #12, #18` |
-| **93** | [PVT-B (Brief Psychomotor Vigilance Task 3-min)](#pvt-b-brief-psychomotor-vigilance-task-3-min) | Biomeccanica & Valutazione Funzionale | `#15, #16` |
-| **94** | [RAG 100% Private (Isolamento Totale Dati Societari)](#rag-100-private-isolamento-totale-dati-societari) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#16` |
-| **95** | [RAG Gerarchico Scientifico (Retrieval-Augmented Generation)](#rag-gerarchico-scientifico-retrieval-augmented-generation) | Algoritmi, Statistica & Machine Learning | `#08, #09` |
-| **96** | [RAG Sync Libreria Fonti (Sincronizzazione Bunker Silo 2)](#rag-sync-libreria-fonti-sincronizzazione-bunker-silo-2) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
-| **97** | [RBAC (Role-Based Access Control a 3 Tiers x 8 Ruoli)](#rbac-role-based-access-control-a-3-tiers-x-8-ruoli) | Ingegneria Software & Architettura Cloud | `#01, #07, #13` |
-| **98** | [Regressione OLS (Ordinary Least Squares) per 1RM](#regressione-ols-ordinary-least-squares-per-1rm) | Algoritmi, Statistica & Machine Learning | `#10` |
-| **99** | [Return To Play (RTP)](#return-to-play-rtp) | Metodologia d'Allenamento & Clinica Sportiva | `#12, #18` |
-| **100** | [Return To Play (RTP) a 6 Fasi Congiunto](#return-to-play-rtp-a-6-fasi-congiunto) | Telemetria Pro, Performance Tracking & Carico Rosa (Tier 3) | `#18` |
-| **101** | [Revisione Biomeccanica Deterministica (Calcolo Angoli Principali NO AI)](#revisione-biomeccanica-deterministica-calcolo-angoli-principali-no-ai) | Biomeccanica & Valutazione Funzionale | `#04` |
-| **102** | [Revisione Coerente AI (Multimodal RAG & Web Biomechanical Audit)](#revisione-coerente-ai-multimodal-rag-web-biomechanical-audit) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08` |
-| **103** | [Ricerca Ibrida Preferiti (PostgreSQL tsvector + pgvector AI)](#ricerca-ibrida-preferiti-postgresql-tsvector-pgvector-ai) | Algoritmi, Statistica & Machine Learning | `#18` |
-| **104** | [Robust Z-Score (MAD - Median Absolute Deviation)](#robust-z-score-mad-median-absolute-deviation) | Algoritmi, Statistica & Machine Learning | `#15, #16` |
-| **105** | [Role-Based RAG (Controllo Accessi Gerarchico Medico / S&C / Atleta)](#role-based-rag-controllo-accessi-gerarchico-medico-s-c-atleta) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#16, #18` |
-| **106** | [Rolling Reserve & Escrow Anti-Chargeback](#rolling-reserve-escrow-anti-chargeback) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#07` |
-| **107** | [Routing Ortogonale & Standard Zero-Crossing (Design Diagrammi ISO)](#routing-ortogonale-standard-zero-crossing-design-diagrammi-iso) | Principi Architetturali di Prodotto | `#01, #02, #03, #04, #05, #06, #07, #08, #09, #10, #11, #12, #13, #14, #15, #16, #17, #18` |
-| **108** | [SAML 2.0 Enterprise Federation & Single Sign-On](#saml-2-0-enterprise-federation-single-sign-on) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#13` |
-| **109** | [Scala VAS del Dolore (Visual Analogue Scale 0-10)](#scala-vas-del-dolore-visual-analogue-scale-0-10) | Prescrizione Clinica & Riabilitazione P.IVA (Tier 2) | `#12` |
-| **110** | [Scale RPE & RIR (Borg CR10 / Reps in Reserve)](#scale-rpe-rir-borg-cr10-reps-in-reserve) | Metodologia d'Allenamento & Clinica Sportiva | `#03` |
-| **111** | [Schede Tecniche di Sintesi (Studi Premium Copyright-Safe)](#schede-tecniche-di-sintesi-studi-premium-copyright-safe) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#11, #17` |
-| **112** | [Secret Club Vault & Multi-Camera 4K Sync](#secret-club-vault-multi-camera-4k-sync) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#14` |
-| **113** | [Separazione Database Data Analisi vs Catalogo (Isolamento Tier 2)](#separazione-database-data-analisi-vs-catalogo-isolamento-tier-2) | Ingegneria Software & Architettura Cloud | `#10` |
-| **114** | [Service Worker Offline-First & Cache Storage API](#service-worker-offline-first-cache-storage-api) | Ingegneria Software & Architettura Cloud | `#03` |
-| **115** | [Smart Clinic Zero-Coda](#smart-clinic-zero-coda) | Ingegneria Software & Architettura Cloud | `#19` |
-| **116** | [SMPTE Timecode Multi-Camera Synchronization](#smpte-timecode-multi-camera-synchronization) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#14` |
-| **117** | [Step-Up Verification (Verifica Telefono Anti-Troll per Community)](#step-up-verification-verifica-telefono-anti-troll-per-community) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#01, #05` |
-| **118** | [Stripe Identity & Biometric Liveness 3D](#stripe-identity-biometric-liveness-3d) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#07` |
-| **119** | [Swimlanes (Corsie Architetturali nei Flowchart)](#swimlanes-corsie-architetturali-nei-flowchart) | Ingegneria Software & Architettura Cloud | `#01, #02, #03, #04, #05, #06, #07, #08, #09, #10, #11, #12, #13, #14, #15, #16, #17, #18` |
-| **120** | [Tactical Vision & Omografia Prospettica 2D da Telecamera Campo](#tactical-vision-omografia-prospettica-2d-da-telecamera-campo) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
-| **121** | [Tassonomia MeSH Sportiva (Classificazione Ricerca)](#tassonomia-mesh-sportiva-classificazione-ricerca) | Ricerca Scientifica & Documentazione Accademica (Tier 1-2-3) | `#05, #11, #17` |
-| **122** | [Telestrator & Tactical Video Annotations](#telestrator-tactical-video-annotations) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#14` |
-| **123** | [Template Riutilizzabili Preferiti (Clonazione Modelli Pro)](#template-riutilizzabili-preferiti-clonazione-modelli-pro) | Metodologia d'Allenamento & Clinica Sportiva | `#12, #18` |
-| **124** | [Text-to-Kinematics 3D Synthesis (Generatore di Esercizi Solo-Testo)](#text-to-kinematics-3d-synthesis-generatore-di-esercizi-solo-testo) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08` |
-| **125** | [Thin Client (Guscio Visivo)](#thin-client-guscio-visivo) | Ingegneria Software & Architettura Cloud | `#01, #02, #03, #04, #05, #06` |
-| **126** | [Together Pro Marketplace & Video Annotazione Tecnica](#together-pro-marketplace-video-annotazione-tecnica) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#11` |
-| **127** | [Together Social Network & Movely Marketplace](#together-social-network-movely-marketplace) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#05` |
-| **128** | [Together Social Workout Sharing](#together-social-workout-sharing) | Ingegneria Software & Architettura Cloud | `#03, #09, #15` |
-| **129** | [Tonnellaggio & Volume di Carico (Sets x Reps x Kg)](#tonnellaggio-volume-di-carico-sets-x-reps-x-kg) | Metodologia d'Allenamento & Clinica Sportiva | `#03` |
-| **130** | [Training Readiness Composite Score](#training-readiness-composite-score) | Telemetria Wearable & Dispositivi Mobili | `#04` |
-| **131** | [Triage Clinico Patologie & ImpactCalculator](#triage-clinico-patologie-impactcalculator) | Metodologia d'Allenamento & Clinica Sportiva | `#09` |
-| **132** | [Trigonometria Deterministica 2D (Goniometro Digitale)](#trigonometria-deterministica-2d-goniometro-digitale) | Biomeccanica & Valutazione Funzionale | `#04` |
-| **133** | [Two-Phase Injury Risk Architecture (Architettura Rischio Infortuni)](#two-phase-injury-risk-architecture-architettura-rischio-infortuni) | Algoritmi, Statistica & Machine Learning | `#15` |
-| **134** | [Universal Multi-Format Export (Report, Grafici, Presentazioni)](#universal-multi-format-export-report-grafici-presentazioni) | Ingegneria Software & Architettura Cloud | `#16` |
-| **135** | [Valgismo Dinamico del Ginocchio](#valgismo-dinamico-del-ginocchio) | Biomeccanica & Valutazione Funzionale | `#08, #10, #12` |
-| **136** | [Variable Playback Rate & Frame-by-Frame Scrubbing (120fps)](#variable-playback-rate-frame-by-frame-scrubbing-120fps) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08, #14` |
-| **137** | [VBT (Velocity Based Training)](#vbt-velocity-based-training) | Biomeccanica & Valutazione Funzionale | `#10` |
-| **138** | [Video Ingest Tiers (Zero Upload Tier 1, 1080p Pro Tier 2, 4K/8K Enterprise Tier 3)](#video-ingest-tiers-zero-upload-tier-1-1080p-pro-tier-2-4k-8k-enterprise-tier-3) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#02, #08, #14` |
-| **139** | [VIES & Sistema di Interscambio (SDI)](#vies-sistema-di-interscambio-sdi) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#07` |
-| **140** | [Visualizzatore PDF Protetto In-App (Read-Only)](#visualizzatore-pdf-protetto-in-app-read-only) | Ingegneria Software & Architettura Cloud | `#05` |
-| **141** | [Wearable T7 (Ecosistema Hardware Proprietario T7)](#wearable-t7-ecosistema-hardware-proprietario-t7) | Telemetria Wearable & Dispositivi Mobili | `#10, #16` |
-| **142** | [WebAuthn (Passkeys & Biometria Hardware)](#webauthn-passkeys-biometria-hardware) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#01` |
-| **143** | [WebCodecs API & Client-Side Lossless Trimming](#webcodecs-api-client-side-lossless-trimming) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#02, #08, #14` |
-| **144** | [WebRTC MediaStream & Secure Video Recording](#webrtc-mediastream-secure-video-recording) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08, #11` |
-| **145** | [Workout Session Tracker (Avvia Sessione)](#workout-session-tracker-avvia-sessione) | Ingegneria Software & Architettura Cloud | `#03, #09, #15` |
-| **146** | [WORM Storage (Write-Once-Read-Many) Audit Logs](#worm-storage-write-once-read-many-audit-logs) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#13` |
-| **147** | [YOLOv8 Deep Learning Object Detection da Campo](#yolov8-deep-learning-object-detection-da-campo) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
-| **148** | [Z-Score Adattivo (Normalizzazione Statistica)](#z-score-adattivo-normalizzazione-statistica) | Algoritmi, Statistica & Machine Learning | `#16` |
-| **149** | [Z-Weighting & Gestione Doppio Ruolo Tattico](#z-weighting-gestione-doppio-ruolo-tattico) | Algoritmi, Statistica & Machine Learning | `#16` |
-| **150** | [Zero AI Biomeccanica (Elaborazione Matematica Pura)](#zero-ai-biomeccanica-elaborazione-matematica-pura) | Biomeccanica & Valutazione Funzionale | `#04` |
+| **05** | [AI Content Gatekeeper](#ai-content-gatekeeper) | Algoritmi, Statistica & Machine Learning | `#20` |
+| **06** | [Albero Cartelle Gerarchico (PostgreSQL ltree)](#albero-cartelle-gerarchico-postgresql-ltree) | Ingegneria Software & Architettura Cloud | `#18` |
+| **07** | [Ambassador Educational Feed](#ambassador-educational-feed) | Metodologia d'Allenamento & Clinica Sportiva | `#19` |
+| **08** | [Analisi Sommaria Metriche Lattato (Soglie Aerobica/Anaerobica T7)](#analisi-sommaria-metriche-lattato-soglie-aerobica-anaerobica-t7) | Telemetria Wearable & Dispositivi Mobili | `#10` |
+| **09** | [Angoli Principali Biomeccanici](#angoli-principali-biomeccanici) | Biomeccanica & Valutazione Funzionale | `#04, #10, #16` |
+| **10** | [Angoli Specifici Biomeccanici](#angoli-specifici-biomeccanici) | Biomeccanica & Valutazione Funzionale | `#10, #16` |
+| **11** | [API Gateway & Feature Gating](#api-gateway-feature-gating) | Ingegneria Software & Architettura Cloud | `#01, #07, #13` |
+| **12** | [Apple HealthKit & Google Health Connect Pipeline](#apple-healthkit-google-health-connect-pipeline) | Telemetria Wearable & Dispositivi Mobili | `#04` |
+| **13** | [Area Studio Digitale In-App (Offline / IndexedDB)](#area-studio-digitale-in-app-offline-indexeddb) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#11, #17` |
+| **14** | [Bar Path Optical Tracking (Traiettoria Bilanciere da CV)](#bar-path-optical-tracking-traiettoria-bilanciere-da-cv) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08, #11` |
+| **15** | [Baricentro di Squadra, Ampiezza & Profondità Tattica](#baricentro-di-squadra-ampiezza-profondita-tattica) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
+| **16** | [BMR Mifflin-St Jeor & Harris-Benedict (Fabbisogno Metabolico)](#bmr-mifflin-st-jeor-harris-benedict-fabbisogno-metabolico) | Metodologia d'Allenamento & Clinica Sportiva | `#01` |
+| **17** | [Bollettino Settimanale Accademico (Feed Tematico Sportivo)](#bollettino-settimanale-accademico-feed-tematico-sportivo) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
+| **18** | [Booking Macchinari e Laboratori Avanzati](#booking-macchinari-e-laboratori-avanzati) | Ingegneria Software & Architettura Cloud | `#22` |
+| **19** | [Cartelle Tematiche & Tag Personalizzati (Preferiti Pro)](#cartelle-tematiche-tag-personalizzati-preferiti-pro) | Principi Architetturali di Prodotto | `#12, #18` |
+| **20** | [Chatbot AI Studi Scientifici (Assistente Documentale 24/7)](#chatbot-ai-studi-scientifici-assistente-documentale-24-7) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
+| **21** | [Clickwrap Liability Waiver (Manleva Medico-Legale Digitale)](#clickwrap-liability-waiver-manleva-medico-legale-digitale) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#01` |
+| **22** | [Clonazione dello Stile e Lessico del Coach (Style-Cloning)](#clonazione-dello-stile-e-lessico-del-coach-style-cloning) | Algoritmi, Statistica & Machine Learning | `#15, #16` |
+| **23** | [Cloud KMS (Key Management Service)](#cloud-kms-key-management-service) | Ingegneria Software & Architettura Cloud | `#13, #14, #15, #18` |
+| **24** | [Cloudflare Turnstile (Scudo Anti-Bot Invisibile)](#cloudflare-turnstile-scudo-anti-bot-invisibile) | Ingegneria Software & Architettura Cloud | `#01, #07` |
+| **25** | [CMJ (Countermovement Jump) & Abalakov Jump](#cmj-countermovement-jump-abalakov-jump) | Biomeccanica & Valutazione Funzionale | `#10` |
+| **26** | [Co-Pay Welfare Wallet](#co-pay-welfare-wallet) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#19` |
+| **27** | [Color-Coding Neuromuscolare Dinamico (Fasce Muscolari Colorate)](#color-coding-neuromuscolare-dinamico-fasce-muscolari-colorate) | Grafica 3D, WebGL & Rendering Biomeccanico | `#02, #08, #14` |
+| **28** | [Commissione Scientifica T7 (Peer-Review Community)](#commissione-scientifica-t7-peer-review-community) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#11, #17` |
+| **29** | [Confronto Video Side-by-Side (Clip Atleta vs Avatar 3D)](#confronto-video-side-by-side-clip-atleta-vs-avatar-3d) | Prescrizione Clinica & Riabilitazione P.IVA (Tier 2) | `#08, #12` |
+| **30** | [Consenso Esplicito Biometrico Art. 9 GDPR](#consenso-esplicito-biometrico-art-9-gdpr) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#13, #18` |
+| **31** | [Controllo Incrociato & Avvisi di Conflitto (Conflict Alert Schede-Referti)](#controllo-incrociato-avvisi-di-conflitto-conflict-alert-schede-referti) | Algoritmi, Statistica & Machine Learning | `#15, #16` |
+| **32** | [Cross-Module Baseline Bridge (Data Analisi verso Programmazione e Catalogo)](#cross-module-baseline-bridge-data-analisi-verso-programmazione-e-catalogo) | Ingegneria Software & Architettura Cloud | `#16` |
+| **33** | [Cues Propriocettivi Verbali & Criteri Oggettivi di Validità](#cues-propriocettivi-verbali-criteri-oggettivi-di-validita) | Grafica 3D, WebGL & Rendering Biomeccanico | `#02, #08` |
+| **34** | [Decoupled Readiness Sub-Scores (4 Domini Indipendenti)](#decoupled-readiness-sub-scores-4-domini-indipendenti) | Metodologia d'Allenamento & Clinica Sportiva | `#15` |
+| **35** | [Diagrammi di Voronoi & Spazio di Controllo Pitch](#diagrammi-di-voronoi-spazio-di-controllo-pitch) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
+| **36** | [Digital Twin Biomeccanico dell'Atleta](#digital-twin-biomeccanico-dell-atleta) | Telemetria Pro, Performance Tracking & Carico Rosa (Tier 3) | `#14` |
+| **37** | [DOP / HDOP (Dilution of Precision Satellite Filtering)](#dop-hdop-dilution-of-precision-satellite-filtering) | Algoritmi, Statistica & Machine Learning | `#16` |
+| **38** | [Doppio Livello Preferiti (Personali vs Team/Staff Pinning)](#doppio-livello-preferiti-personali-vs-team-staff-pinning) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#18` |
+| **39** | [Draco Geometry Compression & Progressive LOD](#draco-geometry-compression-progressive-lod) | Grafica 3D, WebGL & Rendering Biomeccanico | `#02` |
+| **40** | [Dual-Stream Toggle (Video Reale vs Avatar 3D Stilizzato)](#dual-stream-toggle-video-reale-vs-avatar-3d-stilizzato) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08` |
+| **41** | [DUP (Daily Undulating Periodization)](#dup-daily-undulating-periodization) | Metodologia d'Allenamento & Clinica Sportiva | `#09` |
+| **42** | [Dynamic Forensic Watermarking Anti-Leak](#dynamic-forensic-watermarking-anti-leak) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#14` |
+| **43** | [Electronic Medical Record (EMR) & Segreto Medico](#electronic-medical-record-emr-segreto-medico) | Prescrizione Clinica & Riabilitazione P.IVA (Tier 2) | `#18` |
+| **44** | [Epley 1RM Formula & Stima Sub-Massimale](#epley-1rm-formula-stima-sub-massimale) | Metodologia d'Allenamento & Clinica Sportiva | `#03` |
+| **45** | [Ereditarietà Funzionale a Cascata Top-Down (Tier 1 -> Tier 2 -> Tier 3)](#ereditarieta-funzionale-a-cascata-top-down-tier-1->-tier-2->-tier-3) | Principi Architetturali di Prodotto | `#01, #07, #13` |
+| **46** | [Excel Sbloccato (protected: false) & Data Interoperability](#excel-sbloccato-protected-false-data-interoperability) | Metodologia d'Allenamento & Clinica Sportiva | `#10, #16` |
+| **47** | [Fallback per Nuovi Acquisti (Cold Start senza Baseline)](#fallback-per-nuovi-acquisti-cold-start-senza-baseline) | Algoritmi, Statistica & Machine Learning | `#16` |
+| **48** | [Family Plan Welfare](#family-plan-welfare) | Ingegneria Software & Architettura Cloud | `#19` |
+| **49** | [Fan-Out on Write & Redis Cluster ZSET (Timeline Social)](#fan-out-on-write-redis-cluster-zset-timeline-social) | Ingegneria Software & Architettura Cloud | `#05` |
+| **50** | [Fasi Biomeccaniche: Concentrica vs Eccentrica & TUT (Time Under Tension)](#fasi-biomeccaniche-concentrica-vs-eccentrica-tut-time-under-tension) | Grafica 3D, WebGL & Rendering Biomeccanico | `#02, #03` |
+| **51** | [Feature Gating Clinico & Ordine Sanitario (FNOFI / TSRM-PSTRP)](#feature-gating-clinico-ordine-sanitario-fnofi-tsrm-pstrp) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#07, #12` |
+| **52** | [Feature Gating Tier 1 (Consumer)](#feature-gating-tier-1-consumer) | Ingegneria Software & Architettura Cloud | `#01, #02, #03, #04, #05, #06` |
+| **53** | [FFMI (Fat-Free Mass Index) & Normalizzazione Antropometrica](#ffmi-fat-free-mass-index-normalizzazione-antropometrica) | Biomeccanica & Valutazione Funzionale | `#01, #09` |
+| **54** | [Filtro Outlier MAD (Median Absolute Deviation)](#filtro-outlier-mad-median-absolute-deviation) | Algoritmi, Statistica & Machine Learning | `#04, #10` |
+| **55** | [Filtro Silenzioso RBAC & PostgreSQL RLS (Segreto Medico Preferiti)](#filtro-silenzioso-rbac-postgresql-rls-segreto-medico-preferiti) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#18` |
+| **56** | [Find Your Gym Bro / Gym Girl](#find-your-gym-bro-gym-girl) | Principi Architetturali di Prodotto | `#20` |
+| **57** | [Gemini Interactions API & Embedding-2 (Guardrail Enclave T7)](#gemini-interactions-api-embedding-2-guardrail-enclave-t7) | Algoritmi, Statistica & Machine Learning | `#18` |
+| **58** | [Gestione Preferiti Studi Scientifici](#gestione-preferiti-studi-scientifici) | Ricerca Scientifica & Documentazione Accademica (Tier 1-2-3) | `#11, #17` |
+| **59** | [glTF / GLB & Compressione Google Draco Mesh](#gltf-glb-compressione-google-draco-mesh) | Grafica 3D, WebGL & Rendering Biomeccanico | `#02` |
+| **60** | [Goniometro Digitale AI (Markerless Joint Angle Extraction)](#goniometro-digitale-ai-markerless-joint-angle-extraction) | Prescrizione Clinica & Riabilitazione P.IVA (Tier 2) | `#12` |
+| **61** | [Graceful Degradation & WebGL Performance Fallback](#graceful-degradation-webgl-performance-fallback) | Grafica 3D, WebGL & Rendering Biomeccanico | `#02` |
+| **62** | [Heart Rate Variability (HRV) & rMSSD Recovery Score](#heart-rate-variability-hrv-rmssd-recovery-score) | Telemetria Wearable & Dispositivi Mobili | `#04, #16` |
+| **63** | [HRV Fusion (Integrazione Carico Interno/Esterno)](#hrv-fusion-integrazione-carico-interno-esterno) | Algoritmi, Statistica & Machine Learning | `#16` |
+| **64** | [IndexedDB & Optimistic Transaction Queue](#indexeddb-optimistic-transaction-queue) | Ingegneria Software & Architettura Cloud | `#03` |
+| **65** | [Indicatori di Qualita Scientifica (CEBM Oxford e Quartili JCR)](#indicatori-di-qualita-scientifica-cebm-oxford-e-quartili-jcr) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
+| **66** | [INI-PEC (Indice Nazionale Posta Elettronica Certificata) & Two-Way OTP](#ini-pec-indice-nazionale-posta-elettronica-certificata-two-way-otp) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#07` |
+| **67** | [Isolamento Data Analisi Tier 1 (Zero Correlazione Cross-Modulo)](#isolamento-data-analisi-tier-1-zero-correlazione-cross-modulo) | Ingegneria Software & Architettura Cloud | `#04` |
+| **68** | [K-Anonymity & Zero-Knowledge Privacy Shield](#k-anonymity-zero-knowledge-privacy-shield) | Ingegneria Software & Architettura Cloud | `#06, #18` |
+| **69** | [K-Anonymity HR Privacy Firewall](#k-anonymity-hr-privacy-firewall) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#19` |
+| **70** | [KYB (Know Your Business) & UBO (Ultimate Beneficial Owner)](#kyb-know-your-business-ubo-ultimate-beneficial-owner) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#13` |
+| **71** | [Libreria Esercizi a Due Livelli di Club (Bozza Atleta vs Ufficiale Societaria)](#libreria-esercizi-a-due-livelli-di-club-bozza-atleta-vs-ufficiale-societaria) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#14` |
+| **72** | [Limitatore Goniometrico di ROM Touch (Range of Motion Lock)](#limitatore-goniometrico-di-rom-touch-range-of-motion-lock) | Prescrizione Clinica & Riabilitazione P.IVA (Tier 2) | `#12` |
+| **73** | [Lista Lineare Preferiti (Tier 1 Base)](#lista-lineare-preferiti-tier-1-base) | Principi Architetturali di Prodotto | `#06` |
+| **74** | [Live Camera AI Real-Time Correction (Feedback Esecutivo sul Momento)](#live-camera-ai-real-time-correction-feedback-esecutivo-sul-momento) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#10, #16` |
+| **75** | [Markerless Motion Capture (Computer Vision AI da Campo)](#markerless-motion-capture-computer-vision-ai-da-campo) | Telemetria Pro, Performance Tracking & Carico Rosa (Tier 3) | `#08, #14, #17` |
+| **76** | [Mean Propulsive Velocity (MPV) vs Peak Velocity](#mean-propulsive-velocity-mpv-vs-peak-velocity) | Biomeccanica & Valutazione Funzionale | `#10` |
+| **77** | [MediaPipe BlazePose 3D (Edge Pose Estimation su Video Mobile)](#mediapipe-blazepose-3d-edge-pose-estimation-su-video-mobile) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08` |
+| **78** | [Microciclo MD-X & Modello Titolari vs Panchinari](#microciclo-md-x-modello-titolari-vs-panchinari) | Metodologia d'Allenamento & Clinica Sportiva | `#15` |
+| **79** | [Mini-Triage Visivo del Benessere](#mini-triage-visivo-del-benessere) | Metodologia d'Allenamento & Clinica Sportiva | `#19` |
+| **80** | [Minimal Detectable Change (MDC 95%) & Cohen's d](#minimal-detectable-change-mdc-95-cohen-s-d) | Biomeccanica & Valutazione Funzionale | `#10` |
+| **81** | [Modelli AI Interni T7 (Inferenza Dedicata 70% vs 100%)](#modelli-ai-interni-t7-inferenza-dedicata-70-vs-100) | Ingegneria Software & Architettura Cloud | `#10, #16` |
+| **82** | [Movely Companion App](#movely-companion-app) | Principi Architetturali di Prodotto | `#19` |
+| **83** | [Movely Corporate Wellness & Ergonomic Engine](#movely-corporate-wellness-ergonomic-engine) | Metodologia d'Allenamento & Clinica Sportiva | `#06` |
+| **84** | [mTLS (Mutual Transport Layer Security) & Chiavi Hardware FIDO2](#mtls-mutual-transport-layer-security-chiavi-hardware-fido2) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#13` |
+| **85** | [Multi-Camera 4K Sync & Secret Club Vault](#multi-camera-4k-sync-secret-club-vault) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#14` |
+| **86** | [MVT (Minimum Velocity Threshold)](#mvt-minimum-velocity-threshold) | Biomeccanica & Valutazione Funzionale | `#10` |
+| **87** | [Open Access Papers (Studi Scientifici Pubblici e Gratuiti)](#open-access-papers-studi-scientifici-pubblici-e-gratuiti) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#05, #11, #17` |
+| **88** | [OrbitControls (Yaw 360° e Pitch Zenitale/Nadir)](#orbitcontrols-yaw-360-e-pitch-zenitale-nadir) | Grafica 3D, WebGL & Rendering Biomeccanico | `#02` |
+| **89** | [ORCID Researcher Verification](#orcid-researcher-verification) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#21` |
+| **90** | [Osgnach Metabolic Power (W/kg) & High Metabolic Load Distance](#osgnach-metabolic-power-w-kg-high-metabolic-load-distance) | Algoritmi, Statistica & Machine Learning | `#16` |
+| **91** | [PAP (Post-Activation Potentiation)](#pap-post-activation-potentiation) | Biomeccanica & Valutazione Funzionale | `#10` |
+| **92** | [PAR-Q+ (Physical Activity Readiness Questionnaire) & Digital Triage](#par-q-physical-activity-readiness-questionnaire-digital-triage) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#01` |
+| **93** | [Periodizzazione a Blocchi & Coniugata](#periodizzazione-a-blocchi-coniugata) | Metodologia d'Allenamento & Clinica Sportiva | `#09` |
+| **94** | [Potenza di Calcolo AI 100% (Tier 3 Enterprise)](#potenza-di-calcolo-ai-100-tier-3-enterprise) | Algoritmi, Statistica & Machine Learning | `#14, #15, #16, #17` |
+| **95** | [Progressive LOD (Level of Detail Dinamico WebGL)](#progressive-lod-level-of-detail-dinamico-webgl) | Grafica 3D, WebGL & Rendering Biomeccanico | `#02` |
+| **96** | [Puntatore Relazionale Preferiti (Zero-Duplication Bookmark)](#puntatore-relazionale-preferiti-zero-duplication-bookmark) | Ingegneria Software & Architettura Cloud | `#06, #12, #18` |
+| **97** | [PVT-B (Brief Psychomotor Vigilance Task 3-min)](#pvt-b-brief-psychomotor-vigilance-task-3-min) | Biomeccanica & Valutazione Funzionale | `#15, #16` |
+| **98** | [RAG 100% Private (Isolamento Totale Dati Societari)](#rag-100-private-isolamento-totale-dati-societari) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#16` |
+| **99** | [RAG Gerarchico Scientifico (Retrieval-Augmented Generation)](#rag-gerarchico-scientifico-retrieval-augmented-generation) | Algoritmi, Statistica & Machine Learning | `#08, #09` |
+| **100** | [RAG Sync Libreria Fonti (Sincronizzazione Bunker Silo 2)](#rag-sync-libreria-fonti-sincronizzazione-bunker-silo-2) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
+| **101** | [RBAC (Role-Based Access Control a 3 Tiers x 8 Ruoli)](#rbac-role-based-access-control-a-3-tiers-x-8-ruoli) | Ingegneria Software & Architettura Cloud | `#01, #07, #13` |
+| **102** | [Regressione OLS (Ordinary Least Squares) per 1RM](#regressione-ols-ordinary-least-squares-per-1rm) | Algoritmi, Statistica & Machine Learning | `#10` |
+| **103** | [Return To Play (RTP)](#return-to-play-rtp) | Metodologia d'Allenamento & Clinica Sportiva | `#12, #18` |
+| **104** | [Return To Play (RTP) a 6 Fasi Congiunto](#return-to-play-rtp-a-6-fasi-congiunto) | Telemetria Pro, Performance Tracking & Carico Rosa (Tier 3) | `#18` |
+| **105** | [Revisione Biomeccanica Deterministica (Calcolo Angoli Principali NO AI)](#revisione-biomeccanica-deterministica-calcolo-angoli-principali-no-ai) | Biomeccanica & Valutazione Funzionale | `#04` |
+| **106** | [Revisione Coerente AI (Multimodal RAG & Web Biomechanical Audit)](#revisione-coerente-ai-multimodal-rag-web-biomechanical-audit) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08` |
+| **107** | [Ricerca Ibrida Preferiti (PostgreSQL tsvector + pgvector AI)](#ricerca-ibrida-preferiti-postgresql-tsvector-pgvector-ai) | Algoritmi, Statistica & Machine Learning | `#18` |
+| **108** | [Robust Z-Score (MAD - Median Absolute Deviation)](#robust-z-score-mad-median-absolute-deviation) | Algoritmi, Statistica & Machine Learning | `#15, #16` |
+| **109** | [Role-Based RAG (Controllo Accessi Gerarchico Medico / S&C / Atleta)](#role-based-rag-controllo-accessi-gerarchico-medico-s-c-atleta) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#16, #18` |
+| **110** | [Rolling Reserve & Escrow Anti-Chargeback](#rolling-reserve-escrow-anti-chargeback) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#07` |
+| **111** | [Routing Ortogonale & Standard Zero-Crossing (Design Diagrammi ISO)](#routing-ortogonale-standard-zero-crossing-design-diagrammi-iso) | Principi Architetturali di Prodotto | `#01, #02, #03, #04, #05, #06, #07, #08, #09, #10, #11, #12, #13, #14, #15, #16, #17, #18` |
+| **112** | [SAML 2.0 Enterprise Federation & Single Sign-On](#saml-2-0-enterprise-federation-single-sign-on) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#13` |
+| **113** | [Scala VAS del Dolore (Visual Analogue Scale 0-10)](#scala-vas-del-dolore-visual-analogue-scale-0-10) | Prescrizione Clinica & Riabilitazione P.IVA (Tier 2) | `#12` |
+| **114** | [Scale RPE & RIR (Borg CR10 / Reps in Reserve)](#scale-rpe-rir-borg-cr10-reps-in-reserve) | Metodologia d'Allenamento & Clinica Sportiva | `#03` |
+| **115** | [Schede Tecniche di Sintesi (Studi Premium Copyright-Safe)](#schede-tecniche-di-sintesi-studi-premium-copyright-safe) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#11, #17` |
+| **116** | [Secret Club Vault & Multi-Camera 4K Sync](#secret-club-vault-multi-camera-4k-sync) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#14` |
+| **117** | [Separazione Database Data Analisi vs Catalogo (Isolamento Tier 2)](#separazione-database-data-analisi-vs-catalogo-isolamento-tier-2) | Ingegneria Software & Architettura Cloud | `#10` |
+| **118** | [Service Worker Offline-First & Cache Storage API](#service-worker-offline-first-cache-storage-api) | Ingegneria Software & Architettura Cloud | `#03` |
+| **119** | [Smart Clinic Zero-Coda](#smart-clinic-zero-coda) | Ingegneria Software & Architettura Cloud | `#19` |
+| **120** | [SMPTE Timecode Multi-Camera Synchronization](#smpte-timecode-multi-camera-synchronization) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#14` |
+| **121** | [Soggetto Volontario Cavia Tokenomics](#soggetto-volontario-cavia-tokenomics) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#20, #21` |
+| **122** | [Staff Recruiting & Scouting Board](#staff-recruiting-scouting-board) | Principi Architetturali di Prodotto | `#22` |
+| **123** | [Step-Up Verification (Verifica Telefono Anti-Troll per Community)](#step-up-verification-verifica-telefono-anti-troll-per-community) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#01, #05` |
+| **124** | [Stripe Identity & Biometric Liveness 3D](#stripe-identity-biometric-liveness-3d) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#07` |
+| **125** | [Swimlanes (Corsie Architetturali nei Flowchart)](#swimlanes-corsie-architetturali-nei-flowchart) | Ingegneria Software & Architettura Cloud | `#01, #02, #03, #04, #05, #06, #07, #08, #09, #10, #11, #12, #13, #14, #15, #16, #17, #18` |
+| **126** | [Tactical Vision & Omografia Prospettica 2D da Telecamera Campo](#tactical-vision-omografia-prospettica-2d-da-telecamera-campo) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
+| **127** | [Tassonomia MeSH Sportiva (Classificazione Ricerca)](#tassonomia-mesh-sportiva-classificazione-ricerca) | Ricerca Scientifica & Documentazione Accademica (Tier 1-2-3) | `#05, #11, #17` |
+| **128** | [Telestrator & Tactical Video Annotations](#telestrator-tactical-video-annotations) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#14` |
+| **129** | [Template Riutilizzabili Preferiti (Clonazione Modelli Pro)](#template-riutilizzabili-preferiti-clonazione-modelli-pro) | Metodologia d'Allenamento & Clinica Sportiva | `#12, #18` |
+| **130** | [Text-to-Kinematics 3D Synthesis (Generatore di Esercizi Solo-Testo)](#text-to-kinematics-3d-synthesis-generatore-di-esercizi-solo-testo) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08` |
+| **131** | [Thin Client (Guscio Visivo)](#thin-client-guscio-visivo) | Ingegneria Software & Architettura Cloud | `#01, #02, #03, #04, #05, #06` |
+| **132** | [Together Pro Marketplace & Video Annotazione Tecnica](#together-pro-marketplace-video-annotazione-tecnica) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#11` |
+| **133** | [Together Social Network & Movely Marketplace](#together-social-network-movely-marketplace) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#05` |
+| **134** | [Together Social Workout Sharing](#together-social-workout-sharing) | Ingegneria Software & Architettura Cloud | `#03, #09, #15` |
+| **135** | [Tonnellaggio & Volume di Carico (Sets x Reps x Kg)](#tonnellaggio-volume-di-carico-sets-x-reps-x-kg) | Metodologia d'Allenamento & Clinica Sportiva | `#03` |
+| **136** | [Training Readiness Composite Score](#training-readiness-composite-score) | Telemetria Wearable & Dispositivi Mobili | `#04` |
+| **137** | [Triage Clinico Patologie & ImpactCalculator](#triage-clinico-patologie-impactcalculator) | Metodologia d'Allenamento & Clinica Sportiva | `#09` |
+| **138** | [Trigonometria Deterministica 2D (Goniometro Digitale)](#trigonometria-deterministica-2d-goniometro-digitale) | Biomeccanica & Valutazione Funzionale | `#04` |
+| **139** | [Two-Phase Injury Risk Architecture (Architettura Rischio Infortuni)](#two-phase-injury-risk-architecture-architettura-rischio-infortuni) | Algoritmi, Statistica & Machine Learning | `#15` |
+| **140** | [Universal Multi-Format Export (Report, Grafici, Presentazioni)](#universal-multi-format-export-report-grafici-presentazioni) | Ingegneria Software & Architettura Cloud | `#16` |
+| **141** | [Valgismo Dinamico del Ginocchio](#valgismo-dinamico-del-ginocchio) | Biomeccanica & Valutazione Funzionale | `#08, #10, #12` |
+| **142** | [Variable Playback Rate & Frame-by-Frame Scrubbing (120fps)](#variable-playback-rate-frame-by-frame-scrubbing-120fps) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08, #14` |
+| **143** | [VBT (Velocity Based Training)](#vbt-velocity-based-training) | Biomeccanica & Valutazione Funzionale | `#10` |
+| **144** | [Video Ingest Tiers (Zero Upload Tier 1, 1080p Pro Tier 2, 4K/8K Enterprise Tier 3)](#video-ingest-tiers-zero-upload-tier-1-1080p-pro-tier-2-4k-8k-enterprise-tier-3) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#02, #08, #14` |
+| **145** | [VIES & Sistema di Interscambio (SDI)](#vies-sistema-di-interscambio-sdi) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#07` |
+| **146** | [VIP & Elite Lounges](#vip-elite-lounges) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#22` |
+| **147** | [VIP Priority Inbox Anti-Spam](#vip-priority-inbox-anti-spam) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#21` |
+| **148** | [Visualizzatore PDF Protetto In-App (Read-Only)](#visualizzatore-pdf-protetto-in-app-read-only) | Ingegneria Software & Architettura Cloud | `#05` |
+| **149** | [Wearable T7 (Ecosistema Hardware Proprietario T7)](#wearable-t7-ecosistema-hardware-proprietario-t7) | Telemetria Wearable & Dispositivi Mobili | `#10, #16` |
+| **150** | [WebAuthn (Passkeys & Biometria Hardware)](#webauthn-passkeys-biometria-hardware) | Sicurezza, Anti-Frode & Fiscalità Digitale B2B | `#01` |
+| **151** | [WebCodecs API & Client-Side Lossless Trimming](#webcodecs-api-client-side-lossless-trimming) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#02, #08, #14` |
+| **152** | [WebRTC MediaStream & Secure Video Recording](#webrtc-mediastream-secure-video-recording) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#08, #11` |
+| **153** | [Workout Session Tracker (Avvia Sessione)](#workout-session-tracker-avvia-sessione) | Ingegneria Software & Architettura Cloud | `#03, #09, #15` |
+| **154** | [WORM Storage (Write-Once-Read-Many) Audit Logs](#worm-storage-write-once-read-many-audit-logs) | Sicurezza Enterprise & Identità Societaria (Tier 3) | `#13` |
+| **155** | [YOLOv8 Deep Learning Object Detection da Campo](#yolov8-deep-learning-object-detection-da-campo) | Video Analysis In-App, AI Multimodale & Custom Exercise Creator | `#17` |
+| **156** | [Z-Score Adattivo (Normalizzazione Statistica)](#z-score-adattivo-normalizzazione-statistica) | Algoritmi, Statistica & Machine Learning | `#16` |
+| **157** | [Z-Weighting & Gestione Doppio Ruolo Tattico](#z-weighting-gestione-doppio-ruolo-tattico) | Algoritmi, Statistica & Machine Learning | `#16` |
+| **158** | [Zero AI Biomeccanica (Elaborazione Matematica Pura)](#zero-ai-biomeccanica-elaborazione-matematica-pura) | Biomeccanica & Valutazione Funzionale | `#04` |
 
 ---
 
-## Schede Terminologiche Enciclopediche (150 Termini Ufficiali)
+## Schede Terminologiche Enciclopediche (158 Termini Ufficiali)
 
 ### Ingegneria Software & Architettura Cloud
 
@@ -412,6 +428,13 @@
 - **Spiegazione Semplificata:** Punto d'accesso unico e sicuro per tutte le richieste tra app utente e microservizi cloud, integrato con filtri di autorizzazione per livello di abbonamento.
 - **Ruolo Operativo nel Progetto T7:** Smista il traffico applicando il Feature Gating per i 3 Tier (Base, Pro, Elite), proteggendo i servizi interni e bloccando chiamate non autorizzate.
 - **Zona / Flusso di Riferimento:** Corsia 2 di tutti i Flowchart (Zona 4) e Topologia C4. (Flussi Miro: `#01, #07, #13`)
+
+#### <a id="booking-macchinari-e-laboratori-avanzati"></a>Booking Macchinari e Laboratori Avanzati
+**ELI5:** "Prenotazione oraria di laboratori biomeccanici e attrezzature scientifiche di vertice."
+
+- **Spiegazione Semplificata:** Modulo di prenotazione, noleggio e fatturazione per l'utilizzo temporaneo di laboratori universitari, apparecchiature isocinetiche, pedane di forza triassiali, sistemi ottici 3D e camere ipobariche condivise da centri di eccellenza.
+- **Ruolo Operativo nel Progetto T7:** Ottimizza la saturazione e l'ammortamento dei macchinari ad alto costo tra club professionistici, università e centri di riabilitazione accreditati (FLOW-TS3), gestendo contratti e orari in Silo 1.
+- **Zona / Flusso di Riferimento:** Companion Apps: Together Social (#22 / #TS3) e Corsia 1 / 3. (Flussi Miro: `#22`)
 
 #### <a id="cloud-kms-key-management-service"></a>Cloud KMS (Key Management Service)
 **ELI5:** "Cassaforte cloud per le chiavi che proteggono i dati."
@@ -669,6 +692,13 @@
 - **Ruolo Operativo nel Progetto T7:** Rappresenta fedelmente la risposta fisiologica reale del corpo, evitando l'effetto a gradino delle medie mobili semplici e anticipando stati di sovrallenamento.
 - **Zona / Flusso di Riferimento:** Colonna 3, Riga 3 (Microciclo MD-X) e Corsia 3 Server. (Flussi Miro: `#15`)
 
+#### <a id="ai-content-gatekeeper"></a>AI Content Gatekeeper
+**ELI5:** "Filtro intelligente che blocca contenuti tossici, spam e video pericolosi."
+
+- **Spiegazione Semplificata:** Sistema di moderazione multimodale automatizzato che analizza testi, immagini e micro-video caricati sulla community, intercettando hate speech, spam commerciale, disinformazione su sostanze dopanti o esecuzioni biomeccaniche gravemente lesive prima della pubblicazione.
+- **Ruolo Operativo nel Progetto T7:** Protegge l'integrità della community B2C Together Social (FLOW-TS1) analizzando i post in tempo reale ed evitando la diffusione di messaggi tossici o video pericolosi per gli atleti amatoriali.
+- **Zona / Flusso di Riferimento:** Companion Apps: Together Social (#20 / #TS1) e Corsia 3 Server Scatola Nera. (Flussi Miro: `#20`)
+
 #### <a id="clonazione-dello-stile-e-lessico-del-coach-style-cloning"></a>Clonazione dello Stile e Lessico del Coach (Style-Cloning)
 **ELI5:** "L'AI replica lo stile e il lessico del coach."
 
@@ -925,6 +955,13 @@
 - **Ruolo Operativo nel Progetto T7:** Impedisce al datore di lavoro o all'HR di risalire ai dati posturali, abitudini o risposte individuali dei singoli dipendenti, tutelando la privacy secondo il GDPR.
 - **Zona / Flusso di Riferimento:** Companion Apps: Movely Ecosystem (#19 / #M1) e Corsia 3 Server Scatola Nera. (Flussi Miro: `#19`)
 
+#### <a id="orcid-researcher-verification"></a>ORCID Researcher Verification
+**ELI5:** "Verifica ufficiale tramite identità accademica ORCID per accedere all'area ricercatori."
+
+- **Spiegazione Semplificata:** Procedura di autenticazione e convalida accademica basata sulle API OAuth di ORCID (Open Researcher and Contributor ID), che certifica l'affiliazione universitaria o l'attività di ricerca scientifica del professionista.
+- **Ruolo Operativo nel Progetto T7:** Abilita i ricercatori e i docenti universitari all'interno del Marketplace Pro (FLOW-TS2) alla pubblicazione di bandi per la raccolta di volontari e alla moderazione di tavole rotonde peer-to-peer tra scienziati dello sport.
+- **Zona / Flusso di Riferimento:** Companion Apps: Together Social (#21 / #TS2) e Corsia 2 Gateway. (Flussi Miro: `#21`)
+
 #### <a id="par-q-physical-activity-readiness-questionnaire-digital-triage"></a>PAR-Q+ (Physical Activity Readiness Questionnaire) & Digital Triage
 **ELI5:** "Questionario rapido che intercetta rischi medici prima dell'allenamento."
 
@@ -938,6 +975,13 @@
 - **Spiegazione Semplificata:** Meccanismo prudenziale di pagamento in cui una percentuale dei compensi incassati dal professionista viene trattenuta in garanzia per un intervallo prefissato.
 - **Ruolo Operativo nel Progetto T7:** Protegge la piattaforma e gli utenti finali da chargeback bancari fraudolenti o inadempienze contrattuali nei servizi del marketplace Together Pro.
 - **Zona / Flusso di Riferimento:** Colonna 1 e 5, Riga 2. (Flussi Miro: `#07`)
+
+#### <a id="soggetto-volontario-cavia-tokenomics"></a><a id="token-cavia-cross-ecosistema"></a>Soggetto Volontario Cavia Tokenomics
+**ELI5:** "Incentivi in crediti per utenti che partecipano volontariamente a ricerche."
+
+- **Spiegazione Semplificata:** Sistema di micro-tokenomics cross-ecosistema che premia gli atleti B2C che accettano di candidarsi come volontari ("cavie") per tesi, studi scientifici o protocolli universitari pubblicati da ricercatori e preparatori.
+- **Ruolo Operativo nel Progetto T7:** Collega in modo etico la community amatoriale (FLOW-TS1) con i bandi di ricerca accademica del Marketplace Pro (FLOW-TS2), accreditando token spendibili in sconti su abbonamenti, gadget o consulenze specialistiche.
+- **Zona / Flusso di Riferimento:** Companion Apps: Together Social (#20 / #TS1, #21 / #TS2) e Corsia 3 / 4 Silo 1. (Flussi Miro: `#20, #21`)
 
 #### <a id="step-up-verification-verifica-telefono-anti-troll-per-community"></a>Step-Up Verification (Verifica Telefono Anti-Troll per Community)
 **ELI5:** "Richiede il cellulare per bloccare profili falsi e molesti."
@@ -973,6 +1017,13 @@
 - **Spiegazione Semplificata:** Banca dati europea per la verifica transfrontaliera della validita delle Partite IVA unita al nodo di fatturazione elettronica dell'Agenzia delle Entrate.
 - **Ruolo Operativo nel Progetto T7:** Valida in tempo reale le credenziali fiscali dei professionisti nell'onboarding Tier 2, emettendo fatture elettroniche automatiche a norma di legge.
 - **Zona / Flusso di Riferimento:** Colonna 1, Riga 2 (Setup Fiscale P.IVA). (Flussi Miro: `#07`)
+
+#### <a id="vip-priority-inbox-anti-spam"></a>VIP Priority Inbox Anti-Spam
+**ELI5:** "Casella messaggi protetta a crediti per filtrare comunicazioni irrilevanti."
+
+- **Spiegazione Semplificata:** Meccanismo di messaggistica asimmetrica a micro-tariffe che impone un costo in crediti o token per inviare messaggi diretti a profili ad alta visibilità (coach affermati, atleti di vertice, ricercatori di punta), restituendo i token se il destinatario accetta la conversazione.
+- **Ruolo Operativo nel Progetto T7:** Protegge i professionisti accreditati (FLOW-TS2) dall'overload informativo e dallo spam quotidiano, garantendo priorità assoluta alle richieste di consulenza autentiche e alle collaborazioni professionali ad alto valore.
+- **Zona / Flusso di Riferimento:** Companion Apps: Together Social (#21 / #TS2) e Corsia 2 / 3. (Flussi Miro: `#21`)
 
 #### <a id="webauthn-passkeys-biometria-hardware"></a>WebAuthn (Passkeys & Biometria Hardware)
 **ELI5:** "Accesso sicuro con impronta o volto senza memorizzare password."
@@ -1229,6 +1280,13 @@
 - **Ruolo Operativo nel Progetto T7:** Custodisce registrazioni tattiche e biomeccaniche ad accesso ristretto, impedendo diffusioni non autorizzate o perdite di materiale proprietario del club.
 - **Zona / Flusso di Riferimento:** Colonna 2, Riga 3 (Multi-Staff Cockpit). (Flussi Miro: `#14`)
 
+#### <a id="vip-elite-lounges"></a><a id="vip-and-elite-lounges"></a>VIP & Elite Lounges
+**ELI5:** "Spazi di networking riservati a club professionistici e atleti d'elite."
+
+- **Spiegazione Semplificata:** Stanze digitali di networking e confronto a invito blindato, crittografate end-to-end e riservate esclusivamente a dirigenti, preparatori e staff di franchigie di Serie A, Eurolega e federazioni olimpiche (Tier 3).
+- **Ruolo Operativo nel Progetto T7:** Garantisce riservatezza assoluta su metodologie avanzate, trattative di staff e casi studio ad alte prestazioni (FLOW-TS3), proteggendo le comunicazioni tramite profilazione crittografica e Ghost Mode.
+- **Zona / Flusso di Riferimento:** Companion Apps: Together Social (#22 / #TS3) e Corsia 2 / 3. (Flussi Miro: `#22`)
+
 #### <a id="worm-storage-write-once-read-many-audit-logs"></a>WORM Storage (Write-Once-Read-Many) Audit Logs
 **ELI5:** "Registro blindato in cui nessuno può cancellare le registrazioni."
 
@@ -1252,6 +1310,13 @@
 - **Ruolo Operativo nel Progetto T7:** Preserva coerenza funzionale ed ergonomica su tutta la suite: Tier 2 include Tier 1; Tier 3 include Tier 1 e Tier 2 con logiche enterprise.
 - **Zona / Flusso di Riferimento:** Regola Architetturale 08 & 10 su tutta la Zona 4. (Flussi Miro: `#01, #07, #13`)
 
+#### <a id="find-your-gym-bro-gym-girl"></a><a id="find-your-gym-bro"></a>Find Your Gym Bro / Gym Girl
+**ELI5:** "Trova compagni di allenamento compatibili per livello, palestra e orari."
+
+- **Spiegazione Semplificata:** Funzionalità opt-in di matching geolocalizzato e motivazionale che permette agli atleti B2C di connettersi con altri utenti che frequentano la stessa palestra o praticano la stessa disciplina, con preferenze orarie e livelli di forza affini.
+- **Ruolo Operativo nel Progetto T7:** Aumenta l'aderenza all'allenamento e il senso di appartenenza nella community amatoriale Together Social (FLOW-TS1), tutelando la privacy tramite consenso esplicito e raggio geografico mascherato.
+- **Zona / Flusso di Riferimento:** Companion Apps: Together Social (#20 / #TS1) e Corsia 1 Client. (Flussi Miro: `#20`)
+
 #### <a id="lista-lineare-preferiti-tier-1-base"></a>Lista Lineare Preferiti (Tier 1 Base)
 **ELI5:** "Elenco piatto di esercizi e programmi salvati senza cartelle."
 
@@ -1272,6 +1337,13 @@
 - **Spiegazione Semplificata:** Regola grafica per la progettazione di diagrammi tecnici che impone segmenti connettori a 90 gradi instradati unicamente in corridoi dedicati.
 - **Ruolo Operativo nel Progetto T7:** Azzeramento delle sovrapposizioni visive sulle board Miro e massima chiarezza comunicativa tra architetti software, clinici e programmatori.
 - **Zona / Flusso di Riferimento:** Regola 10 su tutti i 18 Flowchart (Zona 4). (Flussi Miro: `#01, #02, #03, #04, #05, #06, #07, #08, #09, #10, #11, #12, #13, #14, #15, #16, #17, #18`)
+
+#### <a id="staff-recruiting-scouting-board"></a>Staff Recruiting & Scouting Board
+**ELI5:** "Bacheca riservata per assumere preparatori, fisioterapisti e analisti sportivi qualificati."
+
+- **Spiegazione Semplificata:** Bacheca di offerte e candidature riservata al recruiting di staff tecnico e sanitario (preparatori atletici, sport scientist, video analyst, fisioterapisti), con filtri basati su certificazioni, paper pubblicati ed esperienza sul campo verificata.
+- **Ruolo Operativo nel Progetto T7:** Facilita l'incontro trasparente e confidenziale tra club di vertice ed eccellenze professionali del movimento umano (FLOW-TS3), eliminando intermediari e garantendo la veridicità dei titoli tramite controlli di piattaforma.
+- **Zona / Flusso di Riferimento:** Companion Apps: Together Social (#22 / #TS3) e Corsia 1 / 3. (Flussi Miro: `#22`)
 
 ### Video Analysis In-App, AI Multimodale & Custom Exercise Creator
 
