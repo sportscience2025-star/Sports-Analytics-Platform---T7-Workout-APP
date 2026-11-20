@@ -1,15 +1,15 @@
-# Master Flowchart Registry & Miro Inventory (18 Badge Ufficiali Core + Companion Apps Ecosystem: Movely & Together Social)
+# Master Flowchart Registry & Miro Inventory (18 Badge Core + Companion Apps: Movely & Together Social + Colonna 7: Diario Nutrizione)
 
 > **Documento Ufficiale di Registro Tecnico & Inventario Miro Online**  
 > **Board Miro ID:** `uXjVEbo6L2o=` | **URL:** [Miro Architecture Board](https://miro.com/app/board/uXjVEbo6L2o=)  
-> **Zona Architetturale:** ZONA 4 (Flowchart Operativi a 4 Swimlanes sui 3 Livelli) & Area Companion Apps  
+> **Zona Architetturale:** ZONA 4 (Flowchart Operativi a 4 Swimlanes sui 3 Livelli), Area Companion Apps & Colonna 7 Nutrizione  
 > **Repository:** `architecture-blueprint/00-capitolato-tecnico-e-glossario/MASTER-FLOWCHART-REGISTRY.md`
 
 ---
 
 ## 1. Tabella Master Ufficiale dei Flowchart (Inventario Completo a 10 Colonne)
 
-La seguente tabella rappresenta il registro unico e autoritativo che mappa 1:1 ogni flowchart della ZONA 4 su Miro e dell'ecosistema Companion Apps con la sua identificazione grafica (Badge, Shape ID, Coordinate reali $X, Y$), il conteggio dei nodi ISO certificati, il relativo capitolato tecnico in formato Markdown (`.md`) e il rispettivo sorgente Mermaid (`.mmd`).
+La seguente tabella rappresenta il registro unico e autoritativo che mappa 1:1 ogni flowchart della ZONA 4 su Miro, dell'ecosistema Companion Apps e della nuova Colonna 7 Nutrizione con la sua identificazione grafica (Badge, Shape ID, Coordinate reali $X, Y$), il conteggio dei nodi ISO certificati, il relativo capitolato tecnico in formato Markdown (`.md`) e il rispettivo sorgente Mermaid (`.mmd`).
 
 | Badge | Tier | Colonna Funzionale | Codice | Titolo Flowchart | Nodi ISO | Miro Shape ID | Coordinate Reali (X, Y) | File Capitolato (.md) | Sorgente Mermaid (.mmd) |
 | :---: | :---: | :--- | :---: | :--- | :---: | :---: | :---: | :--- | :--- |
@@ -35,6 +35,9 @@ La seguente tabella rappresenta il registro unico e autoritativo che mappa 1:1 o
 | **#20** | Tier 1 | Companion Apps: Together Social Ecosystem | `FLOW-TS1` | Together B2C Community: Shorts, AI Content Gatekeeper, Find Your Gym Bro & Token Cavia | 16 | `3458764690915095251` | `X: 12200, Y: 650` | [20-software-companion-flow-ts1-together-b2c-community.md](20-software-companion-flow-ts1-together-b2c-community.md) | `flow-ts1-together-b2c-community.mmd` |
 | **#21** | Tier 2 | Companion Apps: Together Social Ecosystem | `FLOW-TS2` | Together Pro Marketplace: Verifica P.IVA / ORCID, Stanze Networking Pari, Bandi Ricerca & VIP Priority Inbox | 16 | `3458764690915095252` | `X: 12200, Y: 3600` | [21-software-companion-flow-ts2-together-pro-marketplace.md](21-software-companion-flow-ts2-together-pro-marketplace.md) | `flow-ts2-together-pro-marketplace.mmd` |
 | **#22** | Tier 3 | Companion Apps: Together Social Ecosystem | `FLOW-TS3` | Together Elite Lounges & Labs: Lounges Blindate, Profilo Oscurato Ghost Mode, Booking Macchinari Avanzati & Staff Recruiting | 16 | `3458764690915095253` | `X: 12200, Y: 8100` | [22-software-companion-flow-ts3-together-elite-lounges-labs.md](22-software-companion-flow-ts3-together-elite-lounges-labs.md) | `flow-ts3-together-elite-lounges-labs.mmd` |
+| **#23** | Tier 1 | Col 7: Diario Nutrizione, Misure & Guide | `FLOW-NUT-1A` | Diario Nutrizione, Misure Corporee & Guide Educazionali | 16 | `3458764691143273851` | `X: 14500, Y: 650` | [23-software-1-flow-nut-1a-consumer-nutrition.md](23-software-1-flow-nut-1a-consumer-nutrition.md) | `flow-nut-1a-consumer-nutrition.mmd` |
+| **#24** | Tier 2 | Col 7: Nutrizione Clinica & BIA | `FLOW-NUT-2B` | Nutrizione Clinica vs Coach, Composizione Corporea BIA & Export | 16 | `3458764691143273853` | `X: 14500, Y: 3790` | [24-software-2-flow-nut-2b-pro-nutrition.md](24-software-2-flow-nut-2b-pro-nutrition.md) | `flow-nut-2b-pro-nutrition.mmd` |
+| **#25** | Tier 3 | Col 7: Nutrizione Dinamica & REDs | `FLOW-NUT-3C` | Nutrizione Dinamica, EA/REDs, DEXA, Red Flags & RAG Bunker | 16 | `3458764691143273855` | `X: 14500, Y: 8230` | [25-software-3-flow-nut-3c-elite-nutrition.md](25-software-3-flow-nut-3c-elite-nutrition.md) | `flow-nut-3c-elite-nutrition.mmd` |
 
 ---
 
@@ -319,29 +322,80 @@ L'Ecosistema Companion Apps accoglie la suite ufficiale **Together Social**, con
 
 ---
 
-## 9. Topologia Spaziale della Board Miro (ZONA 4 & Companion Apps)
+## 9. Colonna 7: Diario Nutrizione e Stile di Vita (#23, #24, #25)
 
-La Zona 4 e l'Area Companion Apps si articolano su una griglia ortogonale rigorosa:
+La nuova **Colonna 7** della Zona 4 accoglie l'architettura tecnica ufficiale della sezione **Diario Nutrizione e Stile di Vita**, strutturata sui tre livelli applicativi con piena aderenza alla Legge Funzionale:
+
+### Tabella di Mappatura Ufficiale Colonna 7 (Diario Nutrizione e Stile di Vita)
+
+| Badge | Codice Flusso | Tier | Modulo Funzionale | Attori Principali | Corsia Server & DB | Meccanismo Privacy / Gating | File Capitolato (.md) | Sorgente Mermaid (.mmd) |
+| :---: | :---: | :---: | :--- | :--- | :--- | :--- | :--- | :--- |
+| **#23** | `FLOW-NUT-1A` | Tier 1 | Diario Nutrizione, Misure Corporee & Guide Educazionali | Atleta Amatoriale, Utente Consumer | Corsia 3 Cloud Run / Silo 1 Consumer PostgreSQL | Isolamento Modulo, Zero-AI, Zero-Wearable, Read-Only PDF | [23-software-1-flow-nut-1a-consumer-nutrition.md](23-software-1-flow-nut-1a-consumer-nutrition.md) | `flow-nut-1a-consumer-nutrition.mmd` |
+| **#24** | `FLOW-NUT-2B` | Tier 2 | Nutrizione Clinica vs Coach, Composizione Corporea BIA & Export | Nutrizionista, Dietista, Medico, Coach, Fisioterapista | Corsia 3 Cloud Run / Silo 1 Pro PostgreSQL | Legal RBAC (Legge 3/2018), FFM Calibration, Export Unlocked XLSX | [24-software-2-flow-nut-2b-pro-nutrition.md](24-software-2-flow-nut-2b-pro-nutrition.md) | `flow-nut-2b-pro-nutrition.mmd` |
+| **#25** | `FLOW-NUT-3C` | Tier 3 | Nutrizione Dinamica, EA/REDs, DEXA, Red Flags & RAG Bunker | Medico Sociale, Nutrizionista Club, Head S&C, Atleta | Corsia 3 Cloud Run / Silo 2 Bunker KMS PostgreSQL | Continuous EA Monitoring, Red Flags Human-in-the-Loop, Batch Doping Check | [25-software-3-flow-nut-3c-elite-nutrition.md](25-software-3-flow-nut-3c-elite-nutrition.md) | `flow-nut-3c-elite-nutrition.mmd` |
+
+### #23 [ FLOW-NUT-1A ] Tier 1 (Consumer) - Diario Nutrizione, Misure Corporee & Guide Educazionali
+- **Badge Shape ID:** `3458764691143273851` | **Posizione Miro:** `X: 14500, Y: 650` (Colonna 7, Silo 1) | **Nodi ISO:** 16
+- **Caratteristiche Chiave:**
+  - **Isolamento Totale:** nessuna connessione automatica con la Programmazione (#03), la Data Analisi (#04) o dispositivi wearable; nessun supporto AI o RAG;
+  - **Diario Base Misure Corporee:** registrazione manuale nel tempo di peso e circonferenze (vita, fianchi, braccio, coscia) per monitorare i progressi senza strumenti clinici;
+  - **Modelli di Educazione Alimentare Pre-Confezionati:** consultazione di schede standardizzate con filtri per sport e stile alimentare (onnivoro, vegetariano, vegano);
+  - **Calcolatori Manuali di Base:** stima orientativa del fabbisogno calorico e test del tasso di sudorazione pre/post seduta con calcolo liquidi di reintegro;
+  - **Guida Scientifica agli Integratori:** consultazione catalogo statico classificato per livello di evidenza scientifica (ISSN / AIS Gruppi A-B-C-D);
+  - **Esportazione PDF Read-Only:** consultazione in-app o esportazione di schede statiche non modificabili.
+
+### #24 [ FLOW-NUT-2B ] Tier 2 (Pro P.IVA) - Nutrizione Clinica vs Coach, Composizione Corporea BIA & Export
+- **Badge Shape ID:** `3458764691143273853` | **Posizione Miro:** `X: 14500, Y: 3790` (Colonna 7, Silo 1 Pro) | **Nodi ISO:** 16
+- **Caratteristiche Chiave:**
+  - **Tutela Legale e Split di Ruolo:** sblocco automatico editor diete cliniche grammate per professionisti sanitari/nutrizionali abilitati (Biologo Nutrizionista, Dietista, Medico), o attivazione della modalità protetta di Educazione Alimentare e Timing Energetico per Preparatori e PT (Art. 348 c.p. e Legge 3/2018);
+  - **Architettura a Silos:** isolamento ermetico da Programmazione (#09) e Data Analisi (#10); assenza di RAG e chatbot;
+  - **Studio Completo Composizione Corporea:** inserimento e grafici evolutivi di peso, circonferenze, plicometria (Jackson-Pollock a 3 e 7 pliche), bioimpedenziometria convenzionale e vettoriale (BIVA), massa grassa (FM) e massa magra (FFM), con promemoria per test standardizzati;
+  - **Questionario Anamnestico Nutrizionale:** anamnesi completa su storia ponderale, allergie certificate, intolleranze, regolarità digestiva e orari;
+  - **Pianificazione Multi-Giorno FFM-Based:** piani su giornate tipo (Rest, Medium, High Load), calibrazione proteine ($g/\text{kg FFM}$) e calorie su massa magra reale, timing peri-workout;
+  - **Esportazione Multi-Formato Sbloccata:** export in PDF, Excel (.xlsx sbloccato senza password), Word (.docx) e Notes;
+  - **Test Sudorazione Personalizzato:** protocollo di idratazione con pesate pre/post e liquidi assunti;
+  - **Supporto AI 70% Token-Limited:** spiegazioni razionale con link diretti agli articoli della Libreria Fonti (#11);
+  - **Wearable Monomarca T7:** importazione del dispendio giornaliero limitata esclusivamente a dispositivi a marchio T7;
+  - **Filtro Sicurezza Integratori:** posologie massime, orari (blocco caffeina serale) e fasce d'età.
+
+### #25 [ FLOW-NUT-3C ] Tier 3 (Elite Club) - Nutrizione Dinamica, EA/REDs, DEXA, Red Flags & RAG Bunker
+- **Badge Shape ID:** `3458764691143273855` | **Posizione Miro:** `X: 14500, Y: 8230` (Colonna 7, Silo 2 Bunker KMS) | **Nodi ISO:** 16
+- **Caratteristiche Chiave:**
+  - **Interconnessione Totale Ecosistema (All-in-One):** collegamento diretto e bidirezionale con Programmazione microcicli MD-X (#15), Data Analisi (#16), Readiness Section (#15), Dossier Salute e RAG Privato con AI 100% senza limiti token;
+  - **Sincronizzazione Bidirezionale Composizione Corporea:** ogni variazione di peso o FFM aggiorna automaticamente i parametri di potenza relativa (Watt/kg) e rapporti peso/forza in Data Analisi; i referti DEXA e BIA multifrequenza caricati dallo staff in PDF/XLSX vengono acquisiti istantaneamente da Nutrizione;
+  - **Monitoraggio Continuo Energy Availability (EA) & Prevenzione REDs:** calcolo continuo della formula SI $EA = \frac{EI - EEE}{FFM}$ con indicatore a semaforo per prevenire il deficit cronico;
+  - **Periodizzazione Nutrizionale Dinamica Quotidiana:** adattamento automatico di carboidrati, proteine e timing peri-workout in base ai carichi GPS e al microciclo MD-X;
+  - **Integrazione Readiness e Blocchi di Sicurezza Clinica ("Red Flags" Human-in-the-Loop):** lettura mattutina parametri (sonno, colore urine, calo ponderale rapido, amenorrea) con blocco immediato degli adattamenti automatici e alert prioritized a Medico Sociale e Nutrizionista;
+  - **Correlazione AI Biomarcatori Ematici:** incrocio referti ematochimici e carichi fisici per distinguere carenze reali da alterazioni fisiologiche acute;
+  - **Tutela Antidoping Certificata per Lotto:** verifica API su database Informed Sport e Cologne List del Batch ID di ciascun lotto somministrato;
+  - **Chatbot Nutrizionale 24/7 con RAG Style Cloning:** assistente sempre attivo per gli atleti con risposte sui pasti fuori casa clonate sul protocollo del nutrizionista sociale.
+
+---
+
+## 10. Topologia Spaziale della Board Miro (ZONA 4, Companion Apps & Colonna 7)
+
+La Zona 4, l'Area Companion Apps e la nuova Colonna 7 si articolano su una griglia ortogonale rigorosa:
 
 ### Struttura per Righe (3 Livelli Applicativi / Tiers)
-- **Riga 1 (In alto - Tier 1 Consumer):** Coordinata $Y \approx 180 \dots 650$. Palette teal (`#0f766e` / `#14b8a6`). Include i flussi core da `#01` a `#06`, la Companion App Movely (`#19` / `#M1` a $X=10700$) e Together B2C Community (`#20` / `#TS1` a $X=12500, Y=650$).
-- **Riga 2 (In mezzo - Tier 2 Pro / P.IVA):** Coordinata $Y \approx 2940 \dots 3815$. Palette ambra (`#b45309` / `#f59e0b`). Include i flussi core da `#07` a `#12` e la Companion App Together Pro Marketplace (`#21` / `#TS2` a $X=12500, Y=3790$).
-- **Riga 3 (In basso - Tier 3 Elite Club / Ricerca):** Coordinata $Y \approx 6235 \dots 8231$. Palette indaco (`#4338ca` / `#818cf8`). Include i flussi core da `#13` a `#18` e la Companion App Together Elite Lounges & Labs (`#22` / `#TS3` a $X=12500, Y=8230$).
+- **Riga 1 (In alto - Tier 1 Consumer):** Coordinata $Y \approx 180 \dots 650$. Palette teal (`#0f766e` / `#14b8a6`). Include i flussi core da `#01` a `#06`, la Companion App Movely (`#19` / `#M1` a $X=10700$), Together B2C Community (`#20` / `#TS1` a $X=12500, Y=650$) e Colonna 7 Nutrizione Tier 1 (`#23` / `#NUT1` a $X=14500, Y=650$).
+- **Riga 2 (In mezzo - Tier 2 Pro / P.IVA):** Coordinata $Y \approx 2940 \dots 3815$. Palette ambra (`#b45309` / `#f59e0b`). Include i flussi core da `#07` a `#12`, la Companion App Together Pro Marketplace (`#21` / `#TS2` a $X=12500, Y=3790$) e Colonna 7 Nutrizione Tier 2 (`#24` / `#NUT2` a $X=14500, Y=3790$).
+- **Riga 3 (In basso - Tier 3 Elite Club / Ricerca):** Coordinata $Y \approx 6235 \dots 8231$. Palette indaco (`#4338ca` / `#818cf8`). Include i flussi core da `#13` a `#18`, la Companion App Together Elite Lounges & Labs (`#22` / `#TS3` a $X=12500, Y=8230$) e Colonna 7 Nutrizione Tier 3 (`#25` / `#NUT3` a $X=14500, Y=8230$).
 
-### Struttura per Colonne (6 Domini Funzionali Core + 2 Aree Companion Apps)
+### Struttura per Colonne (7 Domini Funzionali + 2 Aree Companion Apps)
 1. **Colonna 1 ($X \approx -2925 \dots -2448$):** Identity, Security & Anti-Frode (Onboarding, WebAuthn, VIES, Cloud KMS).
 2. **Colonna 2 ($X \approx -108 \dots 251$):** 3D Catalog, Kinematics & Computer Vision (Three.js Draco, Optical Bar Tracking, Multi-Camera 4K).
 3. **Colonna 3 ($X \approx 2459 \dots 3056$):** Periodization, Triage & Workout Execution (Thin Player IndexedDB, Macrocicli DUP/Triage 119, Microciclo MD-X Bunker Silo 2).
 4. **Colonna 4 ($X \approx 4171 \dots 4768$):** Data Analisi (Revisione Biomeccanica NO AI, Data Analisi AI 70% & Wearable T7, Data Analisi AI 100% & Role-Based RAG).
 5. **Colonna 5 ($X \approx 6048 \dots 6645$):** Libreria Fonti (Archivio Open Access Read-Only, Sintesi Premium & Area Studio Locale IndexedDB, AI Studio 100%, Chatbot & RAG Sync Bunker Silo 2).
-6. **Colonna 6 ($X \approx 8960 \dots 9225$):** Preferiti (Lista Lineare Puntatori Silo 1 Tier 1, Cartelle Tematiche/Tag/Template/Fonti Silo 1 Pro Tier 2, Ecosistema All-in-One con Team Pinning, Albero `ltree`, Ricerca Ibrida `tsvector`+`pgvector` AI e Filtro Silenzioso RBAC/RLS Silo 2 Bunker KMS Tier 3; moduli precedenti Movely/Physio ROM/Medical EMR parcheggiati per futura colonna dedicata).
+6. **Colonna 6 ($X \approx 8960 \dots 9225$):** Preferiti (Lista Lineare Puntatori Silo 1 Tier 1, Cartelle Tematiche/Tag/Template/Fonti Silo 1 Pro Tier 2, Ecosistema All-in-One con Team Pinning, Albero `ltree`, Ricerca Ibrida `tsvector`+`pgvector` AI e Filtro Silenzioso RBAC/RLS Silo 2 Bunker KMS Tier 3).
 7. **Area Companion Apps Movely ($X \approx 10700$):** Corporate Welfare, Ergonomia Attiva, Mini-Triage e Smart Clinic con K-Anonymity Privacy Firewall (`#19` / `#M1`).
 8. **Area Companion Apps Together Social ($X \approx 12500$):** Social Network Sportivo, Pro Marketplace e Strutture di Ricerca d'Elite articolate sui 3 Tiers (`#20` / `#TS1`, `#21` / `#TS2`, `#22` / `#TS3`).
+9. **Colonna 7: Diario Nutrizione e Stile di Vita ($X \approx 14500$):** Diario Misure Corporee & Guide Educazionali Consumer, Nutrizione Clinica vs Coach BIA & Export Pro, Nutrizione Dinamica EA/REDs & RAG Bunker Elite (`#23` / `#NUT1`, `#24` / `#NUT2`, `#25` / `#NUT3`).
 
 ---
 
-## 10. Norme di Manutenzione del Registro
+## 11. Norme di Manutenzione del Registro
 
 1. **Invarianza degli ID Miro:** Gli Shape ID riportati sono identificativi univoci generati dalle API Miro e non devono essere modificati a meno di ricreazione esplicita del badge.
 2. **Aggiornamento Sincrono:** Qualsiasi spostamento geometrico di un badge sulla board Miro impone l'aggiornamento immediato delle coordinate $(X, Y)$ in questo registro e nella Sezione 1 del corrispondente file `.md`.
-3. **Integrita dei File di Capitolato:** Ciascuno dei 22 file `.md` (18 flussi core + 4 companion flows) rispetta lo standard obbligatorio del "Doppio Livello di Lettura" articolato in 7 sezioni rigorose.
+3. **Integrita dei File di Capitolato:** Ciascuno dei 25 file `.md` (18 flussi core + 4 companion flows + 3 nutrition flows) rispetta lo standard obbligatorio del "Doppio Livello di Lettura" articolato in 7 sezioni rigorose.

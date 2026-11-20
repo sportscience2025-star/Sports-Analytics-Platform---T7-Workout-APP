@@ -1433,9 +1433,171 @@ TERMS = [
         "zona": 'Colonna 4, Riga 1 (Data Analisi Casual).',
         "flows": ['#04']
     },
+    {
+        "name": 'Diario Nutrizione e Stile di Vita',
+        "cat": "Metodologia d'Allenamento & Clinica Sportiva",
+        "eli5": 'Traccia peso, pasti, idratazione ed abitudini quotidiane.',
+        "spiegazione": 'Modulo per la registrazione e il monitoraggio di peso corporeo, circonferenze, idratazione, timing nutrizionale e abitudini alimentari per sportivi e atleti.',
+        "ruolo": 'Garantisce la progressione antropometrica, l\'aderenza dietetica e l\'ottimizzazione del recupero, differenziato nei 3 Tier con regole di isolamento e gating sanitario.',
+        "zona": 'Colonna 7, Righe 1, 2 e 3 (Diario Nutrizione).',
+        "flows": ['#23', '#24', '#25']
+    },
+    {
+        "name": 'Tasso di Sudorazione (Sweat Rate)',
+        "cat": 'Biomeccanica & Valutazione Funzionale',
+        "eli5": 'Litri di sudore persi per ora durante l\'allenamento.',
+        "spiegazione": 'Volume di liquidi corporei espulsi tramite sudorazione durante l\'attività fisica, calcolato tramite la differenza tra peso pre e post-esercizio corretta per liquidi ingeriti ed escrezioni.',
+        "ruolo": 'Permette di stimare la disidratazione acuta e calcolare il reintegro idro-elettrolitico (120-150% del deficit) per prevenire cali di prestazione e crampi.',
+        "zona": 'Colonna 7, Righe 1 e 2 (Diario Nutrizione e Pro Hub).',
+        "flows": ['#23', '#24']
+    },
+    {
+        "name": 'Classificazione Evidenze Integratori Sportivi',
+        "cat": 'Ricerca Scientifica & Documentazione Accademica (Tier 1-2-3)',
+        "eli5": 'Guida scientifica sull\'efficacia reale degli integratori per sportivi.',
+        "spiegazione": 'Tassonomia basata sulle linee guida internazionali ISSN e AIS che suddivide i supplementi in quattro classi (A: efficacia dimostrata, B: promettenti, C: privi di prove, D: rischiosi o vietati).',
+        "ruolo": 'Protegge l\'utente amatoriale e il professionista da acquisti inutili, orientando le scelte nutrizionali solo su sostanze con solida evidenza scientifica.',
+        "zona": 'Colonna 7, Righe 1 e 2 (Guide & Filtro Sicurezza).',
+        "flows": ['#23', '#24']
+    },
+    {
+        "name": 'Fabbisogno Energetico Basale e Totale',
+        "cat": "Metodologia d'Allenamento & Clinica Sportiva",
+        "eli5": 'Calorie necessarie per vivere ed allenarsi ogni giorno.',
+        "spiegazione": 'Quantità di calorie giornaliere consumate a riposo per le funzioni vitali (BMR) e dispendio energetico complessivo comprensivo delle attività lavorative e sportive (TDEE).',
+        "ruolo": 'Fornisce la baseline energetica su cui calibrare il bilancio calorico (ipocalorico, normocalorico, ipercalorico) nei piani nutrizionali dei 3 Tier.',
+        "zona": 'Colonna 7, Righe 1, 2 e 3 (Calcolatori & Piani).',
+        "flows": ['#23', '#24', '#25']
+    },
+    {
+        "name": 'Tutela Legale Nutrizione (Legge 3/2018 & Art. 348 c.p.)',
+        "cat": 'Sicurezza, Anti-Frode & Fiscalità Digitale B2B',
+        "eli5": 'Diete grammate solo a nutrizionisti, educazione ai coach.',
+        "spiegazione": 'Quadro normativo italiano che riserva la prescrizione di diete grammate e piani clinici esclusivamente a Biologi Nutrizionisti, Dietisti e Medici, sanzionando penalmente l\'esercizio abusivo.',
+        "ruolo": 'Attiva a livello API Gateway lo sblocco dell\'editor diete solo per i professionisti abilitati, proteggendo preparatori e personal trainer tramite modalità di sola educazione alimentare.',
+        "zona": 'Colonna 7, Riga 2 (Legal RBAC Gateway).',
+        "flows": ['#24']
+    },
+    {
+        "name": 'BIA Vettoriale BIVA',
+        "cat": 'Biomeccanica & Valutazione Funzionale',
+        "eli5": 'Mappa grafica dell\'idratazione e massa cellulare dell\'atleta.',
+        "spiegazione": 'Metodica di bioimpedenziometria che analizza i parametri grezzi di resistenza (R) e reattanza (Xc) su un piano cartesiano probabilistico (ellissi di tolleranza di Piccoli), senza stime matematiche empiriche.',
+        "ruolo": 'Permette ai professionisti di Tier 2 e ai club di Tier 3 di diagnosticare stati di disidratazione, iperidratazione e integrità delle membrane cellulari prima e dopo la competizione.',
+        "zona": 'Colonna 7, Righe 2 e 3 (Composizione Corporea Pro/Elite).',
+        "flows": ['#24', '#25']
+    },
+    {
+        "name": 'Massa Grassa FM e Massa Magra FFM',
+        "cat": 'Biomeccanica & Valutazione Funzionale',
+        "eli5": 'Chili di muscoli e grasso che compongono il corpo.',
+        "spiegazione": 'Scomposizione bicompartimentale del peso corporeo in tessuto adiposo (Fat Mass) e compartimento magro comprensivo di muscoli, scheletro, organi e acqua corporea (Fat-Free Mass).',
+        "ruolo": 'Costituisce la metrica fondamentale su cui calibrare l\'apporto proteico (g/kg FFM), l\'Energy Availability e il monitoraggio delle oscillazioni ponderali durante la stagione agonistica.',
+        "zona": 'Colonna 7, Righe 1, 2 e 3 (Composizione Corporea).',
+        "flows": ['#23', '#24', '#25']
+    },
+    {
+        "name": 'Plicometria Jackson-Pollock',
+        "cat": 'Biomeccanica & Valutazione Funzionale',
+        "eli5": 'Misura lo spessore del grasso con apposito calibro.',
+        "spiegazione": 'Protocollo antropometrico che misura lo spessore delle pliche cutanee in millimetri in punti anatomici codificati per stimare la densità corporea e la percentuale di grasso.',
+        "ruolo": 'Fornisce al preparatore e nutrizionista di Tier 2 uno strumento economico e affidabile per monitorare le variazioni distrettuali di grasso sottocutaneo nel tempo.',
+        "zona": 'Colonna 7, Riga 2 (Hub Composizione Corporea Pro).',
+        "flows": ['#24']
+    },
+    {
+        "name": 'Wearable Esclusivo T7',
+        "cat": 'Telemetria Wearable & Dispositivi Mobili',
+        "eli5": 'Importa calorie solo da bracciali ufficiali a marchio T7.',
+        "spiegazione": 'Vincolo architetturale di Tier 2 che limita l\'importazione automatica del dispendio calorico giornaliero esclusivamente ai dispositivi hardware proprietari dell\'ecosistema T7.',
+        "ruolo": 'Delinea la barriera commerciale e tecnica tra Tier 2 (monomarca) e Tier 3 (Any-Wearable), garantendo affidabilità e certificazione del dato di dispendio.',
+        "zona": 'Colonna 7, Riga 2 (Corsia 3 Server Scatola Nera).',
+        "flows": ['#24']
+    },
+    {
+        "name": 'Esportazione Multi-Formato Sbloccata',
+        "cat": 'Ingegneria Software & Architettura Cloud',
+        "eli5": 'Scarica tabelle e diete modificabili senza blocchi password.',
+        "spiegazione": 'Capacità di esportare schede e piani nutrizionali in formati multipli sbloccati (.pdf, .xlsx senza password, .docx, .txt), consentendo personalizzazioni al professionista.',
+        "ruolo": 'Supera i vincoli di sola lettura del Tier 1 (Read-Only PDF), permettendo a preparatori e nutrizionisti di integrare fogli di calcolo e formule proprietarie.',
+        "zona": 'Colonna 7, Righe 2 e 3 (Export Station).',
+        "flows": ['#24', '#25']
+    },
+    {
+        "name": 'AI Rationale Limitata 70%',
+        "cat": 'Algoritmi, Statistica & Machine Learning',
+        "eli5": 'Spiega razionale della dieta con link a studi scientifici.',
+        "spiegazione": 'Servizio di generazione automatica di note esplicative sul piano nutrizionale e sugli integratori con potenza calibrata al 70%, quota token mensile e link diretti ai paper scientifici di Colonna 5.',
+        "ruolo": 'Fornisce al professionista P.IVA spiegazioni scientifiche pronte per il cliente senza eccedere nei costi computazionali dell\'infrastruttura.',
+        "zona": 'Colonna 7, Riga 2 (Corsia 3 Server).',
+        "flows": ['#24']
+    },
+    {
+        "name": 'Energy Availability EA & Sindrome REDs',
+        "cat": "Metodologia d'Allenamento & Clinica Sportiva",
+        "eli5": 'Calorie rimaste per il corpo dopo l\'esercizio fisico.',
+        "spiegazione": 'Rapporto tra l\'energia alimentare residua (calorie ingerite meno spesa dell\'allenamento) e la massa magra FFM: EA = (EI - EEE) / FFM. Valori inferiori a 30 kcal/kg FFM/die innescano la sindrome REDs.',
+        "ruolo": 'Costituisce il pilastro preventivo primario in Tier 3: monitora continuamente atlete e atleti prevenendo fratture da stress, amenorrea, disfunzioni tiroidee e calo prestazionale.',
+        "zona": 'Colonna 7, Riga 3 (Corsia 3 Server Scatola Nera).',
+        "flows": ['#25']
+    },
+    {
+        "name": 'DEXA Dual-Energy X-ray Absorptiometry',
+        "cat": 'Biomeccanica & Valutazione Funzionale',
+        "eli5": 'Esame radiologico gold standard per densità ossea e muscolare.',
+        "spiegazione": 'Tecnologia a doppio raggio X a basso dosaggio considerata il riferimento d\'oro per la misurazione tricompartimentale di densità minerale ossea (BMD), massa grassa e massa magra distrettuale.',
+        "ruolo": 'Consente allo staff medico di Tier 3 di caricare referti strumentali in PDF/XLSX aggiornando automaticamente la FFM e i parametri di potenza atletica in Data Analisi.',
+        "zona": 'Colonna 7, Riga 3 (Cockpit Medico Elite).',
+        "flows": ['#25']
+    },
+    {
+        "name": 'Periodizzazione Nutrizionale Dinamica',
+        "cat": "Metodologia d'Allenamento & Clinica Sportiva",
+        "eli5": 'Adatta cibo e carboidrati al carico GPS quotidiano.',
+        "spiegazione": 'Modulazione quotidiana automatizzata di macronutrienti e calorie in funzione del microciclo MD-X (#15) e del dispendio energetico rilevato dalle pettorine GPS (#16).',
+        "ruolo": 'Satura il glicogeno nei giorni pre-gara (MD-1) e massimizza la riparazione tissutale e la sintesi proteica nei giorni post-gara (MD+1) o di recupero.',
+        "zona": 'Colonna 7, Riga 3 (Corsia 3 Server).',
+        "flows": ['#25']
+    },
+    {
+        "name": 'Red Flags Cliniche Human-in-the-Loop',
+        "cat": 'Prescrizione Clinica & Riabilitazione P.IVA (Tier 2)',
+        "eli5": 'Blocco automatico per anomalie mediche con alert al dottore.',
+        "spiegazione": 'Campanelli d\'allarme clinico (calo ponderale rapido > 3% in 48h, amenorrea secondaria, disidratazione severa) che intercettano condizioni patologiche bloccando gli automatismi software.',
+        "ruolo": 'Congela gli adattamenti nutrizionali automatici e invia notifiche ad alta priorità a Medico Sociale e Nutrizionista, imponendo una visita clinica prima del nulla osta.',
+        "zona": 'Colonna 7, Riga 3 (Corsia 2 Gateway & Corsia 3 Server).',
+        "flows": ['#25']
+    },
+    {
+        "name": 'Certificazione Antidoping per Lotto Batch',
+        "cat": 'Sicurezza Enterprise & Identità Societaria (Tier 3)',
+        "eli5": 'Verifica che il lotto dell\'integratore sia esente da doping.',
+        "spiegazione": 'Controllo incrociato in tempo reale del numero di lotto (Batch ID) dell\'integratore sulle banche dati internazionali di laboratori accreditati WADA (Informed Sport, Cologne List, NSF).',
+        "ruolo": 'Azzera il rischio di squalifiche per contaminazione accidentale negli atleti professionisti di club Serie A ed Eurolega prima della somministrazione.',
+        "zona": 'Colonna 7, Riga 3 (Corsia 3 Server).',
+        "flows": ['#25']
+    },
+    {
+        "name": 'Potenza Relativa Watt su kg W-kg',
+        "cat": 'Biomeccanica & Valutazione Funzionale',
+        "eli5": 'Rapporto tra watt generati e peso corporeo dell\'atleta.',
+        "spiegazione": 'Espressione della potenza meccanica generata durante un gesto atletico normalizzata per la massa corporea dell\'atleta: W/kg = Potenza (W) / Peso (kg).',
+        "ruolo": 'Permette il confronto oggettivo tra atleti di taglia diversa nei test sui salti (CMJ) e nelle accelerazioni GPS, ricalcolato all\'istante ad ogni variazione ponderale registrata in Nutrizione.',
+        "zona": 'Colonna 7, Riga 3 e Colonna 4, Riga 3 (Data Analisi).',
+        "flows": ['#16', '#25']
+    },
+    {
+        "name": 'Chatbot Nutrizionale RAG 24/7',
+        "cat": 'Algoritmi, Statistica & Machine Learning',
+        "eli5": 'Assistente 24 ore addestrato sui protocolli del nutrizionista.',
+        "spiegazione": 'Assistente conversazionale basato su RAG privato (Silo 2 Bunker KMS) che risponde 24 ore su 24 all\'atleta replicando il lessico, i protocolli e le ricette del nutrizionista sociale.',
+        "ruolo": 'Fornisce indicazioni istantanee su scelte alimentari durante trasferte, ristoranti o orari notturni, senza esporre dati all\'esterno del club.',
+        "zona": 'Colonna 7, Riga 3 (Corsia 3 Server).',
+        "flows": ['#25']
+    },
 ]
 
-TERM_ALIASES = {'PAR-Q+ (Physical Activity Readiness Questionnaire) & Digital Triage': ['par-q-physical-activity-readiness-questionnaire-digital-triage'], 'Video Ingest Tiers (Zero Upload Tier 1, 1080p Pro Tier 2, 4K/8K Enterprise Tier 3)': ['video-ingest-tiers-policy-tier-1-zero-upload-tier-2-1080p-tier-3-4k8k', 'video-ingest-tiers-1080p-consumer-2k-pro-4k8k-enterprise'], 'Zero AI Biomeccanica (Elaborazione Matematica Pura)': ['zero-ai-biomeccanica'], 'Isolamento Data Analisi Tier 1 (Zero Correlazione Cross-Modulo)': ['isolamento-data-analisi-tier-1'], 'Open Access Papers (Studi Scientifici Pubblici e Gratuiti)': ['open-access-papers-studi-scientifici-pubblici-gratuiti'], "Digital Twin Biomeccanico dell'Atleta": ['digital-twin-biomeccanico-dellatleta'], 'Analisi Sommaria Metriche Lattato (Soglie Aerobica/Anaerobica T7)': ['analisi-sommaria-metriche-lattato'], '32 Protocolli Riabilitativi Clinici (cli_01..cli_32)': ['32-protocolli-riabilitativi-clinici-cli01cli32'], 'SAML 2.0 Enterprise Federation & Single Sign-On': ['saml-20-enterprise-federation-single-sign-on'], 'Role-Based RAG (Controllo Accessi Gerarchico Medico / S&C / Atleta)': ['role-based-rag-controllo-accessi-gerarchico-medico--sc--atleta'], 'Controllo Incrociato & Avvisi di Conflitto (Conflict Alert Schede-Referti)': ['controllo-incrociato--avvisi-di-conflitto-conflict-alert-schede-referti'], 'Chatbot AI Studi Scientifici (Assistente Documentale 24/7)': ['chatbot-ai-studi-scientifici-assistente-documentale-247'], 'Potenza di Calcolo AI 100% (Tier 3 Enterprise)': ['potenza-di-calcolo-ai-100-tier-3'], 'Workout Session Tracker (Avvia Sessione)': ['workout-session-tracker', 'avvia-sessione'], 'Together Social Workout Sharing': ['together-social', 'together-app'], 'Find Your Gym Bro / Gym Girl': ['find-your-gym-bro-gym-girl', 'find-your-gym-bro'], 'VIP & Elite Lounges': ['vip-elite-lounges', 'vip-and-elite-lounges'], 'Soggetto Volontario Cavia Tokenomics': ['soggetto-volontario-cavia-tokenomics', 'token-cavia-cross-ecosistema']}
+TERM_ALIASES = {'PAR-Q+ (Physical Activity Readiness Questionnaire) & Digital Triage': ['par-q-physical-activity-readiness-questionnaire-digital-triage'], 'Video Ingest Tiers (Zero Upload Tier 1, 1080p Pro Tier 2, 4K/8K Enterprise Tier 3)': ['video-ingest-tiers-policy-tier-1-zero-upload-tier-2-1080p-tier-3-4k8k', 'video-ingest-tiers-1080p-consumer-2k-pro-4k8k-enterprise'], 'Zero AI Biomeccanica (Elaborazione Matematica Pura)': ['zero-ai-biomeccanica'], 'Isolamento Data Analisi Tier 1 (Zero Correlazione Cross-Modulo)': ['isolamento-data-analisi-tier-1'], 'Open Access Papers (Studi Scientifici Pubblici e Gratuiti)': ['open-access-papers-studi-scientifici-pubblici-gratuiti'], "Digital Twin Biomeccanico dell'Atleta": ['digital-twin-biomeccanico-dellatleta'], 'Analisi Sommaria Metriche Lattato (Soglie Aerobica/Anaerobica T7)': ['analisi-sommaria-metriche-lattato'], '32 Protocolli Riabilitativi Clinici (cli_01..cli_32)': ['32-protocolli-riabilitativi-clinici-cli01cli32'], 'SAML 2.0 Enterprise Federation & Single Sign-On': ['saml-20-enterprise-federation-single-sign-on'], 'Role-Based RAG (Controllo Accessi Gerarchico Medico / S&C / Atleta)': ['role-based-rag-controllo-accessi-gerarchico-medico--sc--atleta'], 'Controllo Incrociato & Avvisi di Conflitto (Conflict Alert Schede-Referti)': ['controllo-incrociato--avvisi-di-conflitto-conflict-alert-schede-referti'], 'Chatbot AI Studi Scientifici (Assistente Documentale 24/7)': ['chatbot-ai-studi-scientifici-assistente-documentale-247'], 'Potenza di Calcolo AI 100% (Tier 3 Enterprise)': ['potenza-di-calcolo-ai-100-tier-3'], 'Workout Session Tracker (Avvia Sessione)': ['workout-session-tracker', 'avvia-sessione'], 'Together Social Workout Sharing': ['together-social', 'together-app'], 'Find Your Gym Bro / Gym Girl': ['find-your-gym-bro-gym-girl', 'find-your-gym-bro'], 'VIP & Elite Lounges': ['vip-elite-lounges', 'vip-and-elite-lounges'], 'Soggetto Volontario Cavia Tokenomics': ['soggetto-volontario-cavia-tokenomics', 'token-cavia-cross-ecosistema'], 'Diario Nutrizione e Stile di Vita': ['diario-nutrizione-e-stile-di-vita', 'diario-nutrizione'], 'Tasso di Sudorazione (Sweat Rate)': ['tasso-di-sudorazione-sweat-rate', 'tasso-di-sudorazione'], 'Classificazione Evidenze Integratori Sportivi': ['classificazione-evidenze-integratori-sportivi', 'classificazione-evidenze-integratori'], 'Fabbisogno Energetico Basale e Totale': ['fabbisogno-energetico-basale-e-totale', 'fabbisogno-energetico-basale-e-totale-bmr-tdee', 'fabbisogno-energetico-basale'], 'Tutela Legale Nutrizione (Legge 3/2018 & Art. 348 c.p.)': ['tutela-legale-legge-32018-e-art-348-cp', 'tutela-legale-nutrizione-legge-32018-art-348-cp', 'tutela-legale-nutrizione'], 'BIA Vettoriale BIVA': ['bia-vettoriale-biva', 'bia-vettoriale'], 'Massa Grassa FM e Massa Magra FFM': ['massa-grassa-fm-e-massa-magra-ffm', 'massa-grassa-fm'], 'Plicometria Jackson-Pollock': ['plicometria-jackson-pollock', 'plicometria-jackson-pollock-3-e-7-pliche'], 'Wearable Esclusivo T7': ['wearable-esclusivo-t7', 'wearable-proprietario-t7'], 'Esportazione Multi-Formato Sbloccata': ['esportazione-multi-formato-sbloccata', 'export-multi-formato-sbloccato'], 'AI Rationale Limitata 70%': ['ai-rationale-limitata-70', 'ai-rationale-70'], 'Energy Availability EA & Sindrome REDs': ['energy-availability-ea-e-sindrome-reds', 'energy-availability-ea'], 'DEXA Dual-Energy X-ray Absorptiometry': ['dexa-dual-energy-x-ray-absorptiometry', 'dexa'], 'Periodizzazione Nutrizionale Dinamica': ['periodizzazione-nutrizionale-dinamica', 'periodizzazione-nutrizionale'], 'Red Flags Cliniche Human-in-the-Loop': ['red-flags-cliniche-human-in-the-loop', 'red-flags-cliniche'], 'Certificazione Antidoping per Lotto Batch': ['certificazione-antidoping-per-lotto-batch', 'certificazione-antidoping-per-lotto'], 'Potenza Relativa Watt su kg W-kg': ['potenza-relativa-watt-su-kg-w-kg', 'potenza-relativa-watt-su-kg'], 'Chatbot Nutrizionale RAG 24/7': ['chatbot-nutrizionale-rag-247', 'chatbot-nutrizionale-rag']}
 
 def make_slug(name):
     clean = unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore').decode('utf-8')

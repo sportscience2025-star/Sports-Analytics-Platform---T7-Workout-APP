@@ -1,0 +1,64 @@
+flowchart TD
+    classDef startend fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["COLONNA 7: DIARIO NUTRIZIONE E STILE DI VITA - FLOW NUT-1A: TIER 1 (CONSUMER) - MISURE, GUIDE & CALCOLATORI"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (CONSUMER B2C APP)"]
+        START(["Inizio: Diario Nutrizione & Stile di Vita (Tier 1)"]):::startend
+        UI_DASHBOARD["Dashboard Misure: Diario Peso & Circonferenze (Vita, Fianchi, Braccio, Coscia)"]:::client
+        DEC_ACTION{"Selezione Strumento Nutrizione: Log Misure, Guide o Calcolatori?"}:::decision
+        UI_GUIDES["Linee Guida Educazionali & Integratori (Filtri Sport, Diete Onnivoro/Veg & Evidenze)"]:::client
+        UI_CALCULATORS["Calcolatori Manuali: Fabbisogno Energetico & Tasso di Sudorazione Pre/Post Seduta"]:::client
+        UI_EXPORT_PDF["Visualizzazione & Esportazione Schede in PDF (Read-Only, Parametri Fissi)"]:::client
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & ACCESS CONTROL"]
+        GW_INGRESS["Envoy API Gateway & Tier 1 Policy Guard (TLS Termination, Rate Limiting & Gating)"]:::gateway
+        DEC_VALIDATE{"Validazione Payload & Limiti Consumer (No-AI, No-Wearable, Formato Misure)?"}:::decision
+        GW_ERR_REJECT["HTTP 422/403: Parametri Non Validi, Fuori Range o Gating Consumer Attivo"]:::error
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (NUTRITION ENGINES)"]
+        SRV_SWEAT_CALC["Motore Calcolo Fabbisogno & Tasso Sudorazione (Formule Standard L/h & Kcal Basali)"]:::server
+        SRV_SUPPLEMENT_FILTER["Catalogo Statico Integratori Sportivi (Classificazione Evidenze ISSN / AIS)"]:::server
+        SRV_PDF_RENDERER["Renderizzatore PDF Read-Only Schede Nutrizionali (Documento Statico Certificato)"]:::server
+        SRV_ANALYTICS_ISOLATION["Modulo Isolamento: Disaccoppiamento Rigoroso da Programmazione e Telemetria"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (CONSUMER PARTITION)"]
+        DB_BODY_MEASURES[("Silo 1 Consumer: Tabella user_body_measurements (Storico Peso & Circonferenze)")]:::db
+        DB_GUIDES_CATALOG[("Silo 1 Catalog: Tabella nutritional_guidelines_static (Tabelle & Classificazioni)")]:::db
+        END_FLOW(["Fine: Misura Registrata, Calcolo Eseguito o PDF Scaricato"]):::startend
+    end
+
+    %% Connessioni di Flusso ISO 5807
+    START --> UI_DASHBOARD
+    UI_DASHBOARD --> DEC_ACTION
+    DEC_ACTION -- "Consulta Linee Guida" --> UI_GUIDES
+    DEC_ACTION -- "Calcolatori Base" --> UI_CALCULATORS
+    DEC_ACTION -- "Esporta PDF" --> UI_EXPORT_PDF
+
+    UI_GUIDES --> GW_INGRESS
+    UI_CALCULATORS --> GW_INGRESS
+    UI_EXPORT_PDF --> GW_INGRESS
+
+    GW_INGRESS --> DEC_VALIDATE
+    DEC_VALIDATE -- "No / Dati Fuori Range" --> GW_ERR_REJECT
+    GW_ERR_REJECT --> UI_DASHBOARD
+
+    DEC_VALIDATE -- "Si / Parametri Validi" --> SRV_SWEAT_CALC
+    SRV_SWEAT_CALC --> SRV_SUPPLEMENT_FILTER
+    DEC_VALIDATE -- "Richiesta Export" --> SRV_PDF_RENDERER
+    SRV_PDF_RENDERER --> SRV_ANALYTICS_ISOLATION
+
+    SRV_SUPPLEMENT_FILTER --> DB_BODY_MEASURES
+    SRV_ANALYTICS_ISOLATION --> DB_GUIDES_CATALOG
+
+    DB_BODY_MEASURES --> END_FLOW
+    DB_GUIDES_CATALOG --> END_FLOW

@@ -1,0 +1,64 @@
+flowchart TD
+    classDef startend fill:#4338ca,stroke:#818cf8,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["COLONNA 7: DIARIO NUTRIZIONE E STILE DI VITA - FLOW NUT-3C: TIER 3 (ELITE CLUB) - NUTRIZIONE DINAMICA, EA/REDS, DEXA, RED FLAGS & RAG BUNKER"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (ELITE ENTERPRISE SUITE)"]
+        START(["Inizio: Nutrizione Dinamica & Prestazione Elite (Tier 3)"]):::startend
+        UI_DEXA_BIA_SYNC["Cockpit Composizione Corporea: DEXA, BIA & Sync W/kg Bidirezionale con Data Analisi"]:::client
+        DEC_ENERGY_AVAILABILITY{"Energy Availability (EA) < 30 kcal/kg FFM: Rischio Sindrome REDs?"}:::decision
+        UI_RED_FLAGS_OVERRIDE["Blocco Clinico Red Flags & Alert Medico Sociale (Calo Ponderale, Amenorrea, Disidratazione)"]:::client
+        UI_DYNAMIC_PERIODIZATION["Periodizzazione Nutrizionale Dinamica: Adattamento Kcal/Macro su GPS & Carico (#15)"]:::client
+        UI_CHATBOT_RAG_247["Chatbot Nutrizionale Atleti 24/7 & RAG Privato Clonato su Stile Nutrizionista Club"]:::client
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & ACCESS CONTROL"]
+        GW_ELITE_INGRESS["Envoy Enterprise Gateway: mTLS 1.3, KMS Auth & Zero-Trust Medico-Nutrizionista"]:::gateway
+        DEC_SAFETY_GATE{"Presenza Red Flag Clinica o Mancanza Certificazione Doping Lotto?"}:::decision
+        GW_ALERT_DISPATCH["HTTP 409/423: Alert Clinico Red Flags Attivo & Blocco Push Adattamenti Dinamici"]:::error
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (ELITE NUTRITION & RAG ENGINES)"]
+        SRV_RED_S_ENGINE["Motore Calcolo EA & Prevenzione REDs: EA = (Kcal In - Kcal Out) / FFM (Semaforo Rischio)"]:::server
+        SRV_BLOOD_BIOMARKER_CORR["Correlazione AI Biomarcatori Ematici & Carichi: Distinzione Carenze vs Sforzo Acuto"]:::server
+        SRV_ANTIDOPING_BATCH_CHECK["Motore Certificazione Antidoping per Lotto (API Informed Sport & Cologne List)"]:::server
+        SRV_RAG_STYLE_CLONER["RAG Privato 100% & Style Cloning Nutrizionista: Consigli Pasti 24/7 Token Illimitati"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 2 (BUNKER CLUB KMS & ENCRYPTED RESEARCH)"]
+        DB_BUNKER_NUTRITION[("Silo 2 Bunker KMS: athlete_clinical_nutrition_vault (AES-256-GCM & Segreto Medico)")]:::db
+        DB_DATA_ANALYSIS_BRIDGE[("Silo 2 Sync Engine: Bridge Nutrizione <-> Data Analisi (W/kg #16, DEXA PDF/XLSX)")]:::db
+        END_FLOW(["Fine: Nutrizione Adattata, Atleta Protetto, Red Flags Risolte & RAG Operativo"]):::startend
+    end
+
+    %% Connessioni di Flusso ISO 5807
+    START --> UI_DEXA_BIA_SYNC
+    UI_DEXA_BIA_SYNC --> DEC_ENERGY_AVAILABILITY
+    DEC_ENERGY_AVAILABILITY -- "EA < 30 kcal/kg FFM" --> UI_RED_FLAGS_OVERRIDE
+    DEC_ENERGY_AVAILABILITY -- "EA Ottimale / Dinamica" --> UI_DYNAMIC_PERIODIZATION
+    DEC_ENERGY_AVAILABILITY -- "Chatbot Nutrizionale RAG" --> UI_CHATBOT_RAG_247
+
+    UI_RED_FLAGS_OVERRIDE --> GW_ELITE_INGRESS
+    UI_DYNAMIC_PERIODIZATION --> GW_ELITE_INGRESS
+    UI_CHATBOT_RAG_247 --> GW_ELITE_INGRESS
+
+    GW_ELITE_INGRESS --> DEC_SAFETY_GATE
+    DEC_SAFETY_GATE -- "Red Flag o Doping Alert" --> GW_ALERT_DISPATCH
+    GW_ALERT_DISPATCH --> UI_DEXA_BIA_SYNC
+
+    DEC_SAFETY_GATE -- "Parametri Idonei" --> SRV_RED_S_ENGINE
+    SRV_RED_S_ENGINE --> SRV_BLOOD_BIOMARKER_CORR
+    DEC_SAFETY_GATE -- "Check Lotto Doping" --> SRV_ANTIDOPING_BATCH_CHECK
+    SRV_ANTIDOPING_BATCH_CHECK --> SRV_RAG_STYLE_CLONER
+
+    SRV_BLOOD_BIOMARKER_CORR --> DB_BUNKER_NUTRITION
+    SRV_RAG_STYLE_CLONER --> DB_DATA_ANALYSIS_BRIDGE
+
+    DB_BUNKER_NUTRITION --> END_FLOW
+    DB_DATA_ANALYSIS_BRIDGE --> END_FLOW

@@ -1,0 +1,64 @@
+flowchart TD
+    classDef startend fill:#b45309,stroke:#f59e0b,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef client fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#0f172a;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef gateway fill:#ede9fe,stroke:#7c3aed,stroke-width:1px,color:#0f172a;
+    classDef server fill:#d1fae5,stroke:#059669,stroke-width:1px,color:#0f172a;
+    classDef db fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#0f172a;
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+
+    TITLE["COLONNA 7: DIARIO NUTRIZIONE E STILE DI VITA - FLOW NUT-2B: TIER 2 (PRO P.IVA) - NUTRIZIONE CLINICA VS COACH & COMPOSIZIONE CORPOREA BIA"]
+
+    subgraph LANE_CLIENT["CORSIA 1: THIN CLIENT UI/UX (PRO B2B APP)"]
+        START(["Inizio: Nutrizione Pro & Composizione Corporea (Tier 2)"]):::startend
+        UI_ANAMNESIS_FORM["Questionario Anamnestico Nutrizionale Approfondito (Storia, Allergie, Orari)"]:::client
+        DEC_ROLE_GATE{"Ruolo Professionale Accreditato (Legge 3/2018): Sanitario vs Coach/PT?"}:::decision
+        UI_CLINICAL_DIET_EDITOR["Editor Diete Cliniche Grammate & Piani Multi-Giorno (Nutrizionista/Dietista/Medico)"]:::client
+        UI_COACH_EDUCATION_MODE["Modalita Educazione Alimentare & Timing Energetico (Coach & Preparatori Atletici)"]:::client
+        UI_BODY_COMP_HUB["Hub Composizione Corporea: Plicometria, BIA Vettoriale, Grafici FM/FFM & Alert Condizioni"]:::client
+    end
+
+    subgraph LANE_GATEWAY["CORSIA 2: API GATEWAY & ACCESS CONTROL"]
+        GW_PRO_INGRESS["Envoy API Gateway: Legal Role-Based Access Control (Albo/ATECO, JWT & Rate Limiter)"]:::gateway
+        DEC_AUTH_LEGAL{"Convalida Fiscale & Abilitazione Sanitaria (Art. 348 c.p. / Legge 3/2018)?"}:::decision
+        GW_ERR_DENIED["HTTP 403 Forbidden: Esercizio Abusivo Professione o Quota AI 70% Superata"]:::error
+    end
+
+    subgraph LANE_SERVER["CORSIA 3: SERVER SCATOLA NERA (PRO NUTRITION ENGINES)"]
+        SRV_AI_RATIONALE["Motore AI Rationale (Potenza 70% Token-Limited): Razionale Piano & Fonti Col 5"]:::server
+        SRV_FFM_CALIBRATOR["Calibratore FFM & Protocollo Idratazione Reale: Proteine g/kg FFM & Test Sudorazione"]:::server
+        SRV_SUPPLEMENT_SAFETY["Filtro Sicurezza Integratori: Dosaggi Corretti, Blocco Caffeina Serale & Warning"]:::server
+        SRV_WEARABLE_T7_SYNC["Sync Dispendio Wearable Esclusivo T7 & Multi-Export (PDF, XLSX, DOCX, Notes)"]:::server
+    end
+
+    subgraph LANE_DB["CORSIA 4: DATABASE SILO 1 (PRO B2B PARTITION)"]
+        DB_BODY_COMP[("Silo 1 Pro: Tabella client_body_composition_bia (Plicometria, BIA & FM/FFM)")]:::db
+        DB_NUTRITION_PLANS[("Silo 1 Pro: Tabella professional_diet_plans_export (Piani Multi-Giorno & Anamnesi)")]:::db
+        END_FLOW(["Fine: Piano Nutrizionale Rilasciato, Composizione Registrata & Export Generato"]):::startend
+    end
+
+    %% Connessioni di Flusso ISO 5807
+    START --> UI_ANAMNESIS_FORM
+    UI_ANAMNESIS_FORM --> DEC_ROLE_GATE
+    DEC_ROLE_GATE -- "Nutrizionista / Medico" --> UI_CLINICAL_DIET_EDITOR
+    DEC_ROLE_GATE -- "Coach / Preparatore" --> UI_COACH_EDUCATION_MODE
+    DEC_ROLE_GATE -- "Hub BIA & Plicometria" --> UI_BODY_COMP_HUB
+
+    UI_CLINICAL_DIET_EDITOR --> GW_PRO_INGRESS
+    UI_COACH_EDUCATION_MODE --> GW_PRO_INGRESS
+    UI_BODY_COMP_HUB --> GW_PRO_INGRESS
+
+    GW_PRO_INGRESS --> DEC_AUTH_LEGAL
+    DEC_AUTH_LEGAL -- "No / Mancanza Titoli" --> GW_ERR_DENIED
+    GW_ERR_DENIED --> UI_ANAMNESIS_FORM
+
+    DEC_AUTH_LEGAL -- "Si / Abilitato" --> SRV_AI_RATIONALE
+    SRV_AI_RATIONALE --> SRV_FFM_CALIBRATOR
+    DEC_AUTH_LEGAL -- "Sicurezza Integratori" --> SRV_SUPPLEMENT_SAFETY
+    SRV_SUPPLEMENT_SAFETY --> SRV_WEARABLE_T7_SYNC
+
+    SRV_FFM_CALIBRATOR --> DB_BODY_COMP
+    SRV_WEARABLE_T7_SYNC --> DB_NUTRITION_PLANS
+
+    DB_BODY_COMP --> END_FLOW
+    DB_NUTRITION_PLANS --> END_FLOW
