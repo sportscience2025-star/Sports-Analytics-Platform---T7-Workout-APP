@@ -240,11 +240,11 @@ const T1_CONNECTORS = [
   { id: 'NUT1_C04', start: 'NUT1_DEC_ACTION', end: 'NUT1_UI_CALCULATORS', startSnap: 'right', endSnap: 'left', label: 'Calcolatori Base' },
   { id: 'NUT1_C05', start: 'NUT1_DEC_ACTION', end: 'NUT1_UI_EXPORT_PDF', startSnap: 'right', endSnap: 'left', label: 'Esporta PDF' },
   { id: 'NUT1_C06', start: 'NUT1_UI_GUIDES', end: 'NUT1_GW_INGRESS', startSnap: 'bottom', endSnap: 'top', label: '' },
-  { id: 'NUT1_C07', start: 'NUT1_UI_CALCULATORS', end: 'NUT1_GW_INGRESS', startSnap: 'bottom', endSnap: 'right', label: '' },
+  { id: 'NUT1_C07', start: 'NUT1_UI_CALCULATORS', end: 'NUT1_GW_INGRESS', startSnap: 'left', endSnap: 'right', label: '' },
   { id: 'NUT1_C08', start: 'NUT1_UI_EXPORT_PDF', end: 'NUT1_GW_INGRESS', startSnap: 'bottom', endSnap: 'right', label: '' },
   { id: 'NUT1_C09', start: 'NUT1_GW_INGRESS', end: 'NUT1_DEC_VALIDATE', startSnap: 'bottom', endSnap: 'top', label: '' },
   { id: 'NUT1_C10', start: 'NUT1_DEC_VALIDATE', end: 'NUT1_GW_ERR_REJECT', startSnap: 'right', endSnap: 'left', label: 'No / Dati Fuori Range', strokeColor: '#dc2626' },
-  { id: 'NUT1_C11', start: 'NUT1_GW_ERR_REJECT', end: 'NUT1_UI_DASHBOARD', startSnap: 'top', endSnap: 'right', label: 'Riprova Inserimento', strokeColor: '#dc2626' },
+  { id: 'NUT1_C11', start: 'NUT1_GW_ERR_REJECT', end: 'NUT1_UI_DASHBOARD', startSnap: 'left', endSnap: 'right', label: 'Riprova Inserimento', strokeColor: '#dc2626' },
   { id: 'NUT1_C12', start: 'NUT1_DEC_VALIDATE', end: 'NUT1_SRV_SWEAT_CALC', startSnap: 'bottom', endSnap: 'top', label: 'Si / Parametri Validi' },
   { id: 'NUT1_C13', start: 'NUT1_SRV_SWEAT_CALC', end: 'NUT1_SRV_SUPPLEMENT_FILTER', startSnap: 'bottom', endSnap: 'top', label: 'Filtro Evidenze' },
   { id: 'NUT1_C14', start: 'NUT1_DEC_VALIDATE', end: 'NUT1_SRV_PDF_RENDERER', startSnap: 'right', endSnap: 'left', label: 'Richiesta Export' },
@@ -262,11 +262,11 @@ const T2_CONNECTORS = [
   { id: 'NUT2_C04', start: 'NUT2_DEC_ROLE_GATE', end: 'NUT2_UI_COACH_EDUCATION_MODE', startSnap: 'right', endSnap: 'left', label: 'Coach / Preparatore' },
   { id: 'NUT2_C05', start: 'NUT2_DEC_ROLE_GATE', end: 'NUT2_UI_BODY_COMP_HUB', startSnap: 'right', endSnap: 'left', label: 'Hub BIA & Plicometria' },
   { id: 'NUT2_C06', start: 'NUT2_UI_CLINICAL_DIET_EDITOR', end: 'NUT2_GW_PRO_INGRESS', startSnap: 'bottom', endSnap: 'top', label: '' },
-  { id: 'NUT2_C07', start: 'NUT2_UI_COACH_EDUCATION_MODE', end: 'NUT2_GW_PRO_INGRESS', startSnap: 'bottom', endSnap: 'right', label: '' },
+  { id: 'NUT2_C07', start: 'NUT2_UI_COACH_EDUCATION_MODE', end: 'NUT2_GW_PRO_INGRESS', startSnap: 'left', endSnap: 'right', label: '' },
   { id: 'NUT2_C08', start: 'NUT2_UI_BODY_COMP_HUB', end: 'NUT2_GW_PRO_INGRESS', startSnap: 'bottom', endSnap: 'right', label: '' },
   { id: 'NUT2_C09', start: 'NUT2_GW_PRO_INGRESS', end: 'NUT2_DEC_AUTH_LEGAL', startSnap: 'bottom', endSnap: 'top', label: '' },
   { id: 'NUT2_C10', start: 'NUT2_DEC_AUTH_LEGAL', end: 'NUT2_GW_ERR_DENIED', startSnap: 'right', endSnap: 'left', label: 'No / Mancanza Titoli', strokeColor: '#dc2626' },
-  { id: 'NUT2_C11', start: 'NUT2_GW_ERR_DENIED', end: 'NUT2_UI_ANAMNESIS_FORM', startSnap: 'top', endSnap: 'right', label: 'Blocco Abuso Legale', strokeColor: '#dc2626' },
+  { id: 'NUT2_C11', start: 'NUT2_GW_ERR_DENIED', end: 'NUT2_UI_ANAMNESIS_FORM', startSnap: 'left', endSnap: 'right', label: 'Blocco Abuso Legale', strokeColor: '#dc2626' },
   { id: 'NUT2_C12', start: 'NUT2_DEC_AUTH_LEGAL', end: 'NUT2_SRV_AI_RATIONALE', startSnap: 'bottom', endSnap: 'top', label: 'Si / Abilitato' },
   { id: 'NUT2_C13', start: 'NUT2_SRV_AI_RATIONALE', end: 'NUT2_SRV_FFM_CALIBRATOR', startSnap: 'bottom', endSnap: 'top', label: 'Calibrazione FFM' },
   { id: 'NUT2_C14', start: 'NUT2_DEC_AUTH_LEGAL', end: 'NUT2_SRV_SUPPLEMENT_SAFETY', startSnap: 'right', endSnap: 'left', label: 'Sicurezza Integratori' },
@@ -284,11 +284,11 @@ const T3_CONNECTORS = [
   { id: 'NUT3_C04', start: 'NUT3_DEC_ENERGY_AVAILABILITY', end: 'NUT3_UI_DYNAMIC_PERIODIZATION', startSnap: 'right', endSnap: 'left', label: 'EA Ottimale / Dinamica' },
   { id: 'NUT3_C05', start: 'NUT3_DEC_ENERGY_AVAILABILITY', end: 'NUT3_UI_CHATBOT_RAG_247', startSnap: 'right', endSnap: 'left', label: 'Chatbot Nutrizionale RAG' },
   { id: 'NUT3_C06', start: 'NUT3_UI_RED_FLAGS_OVERRIDE', end: 'NUT3_GW_ELITE_INGRESS', startSnap: 'bottom', endSnap: 'top', label: '' },
-  { id: 'NUT3_C07', start: 'NUT3_UI_DYNAMIC_PERIODIZATION', end: 'NUT3_GW_ELITE_INGRESS', startSnap: 'bottom', endSnap: 'right', label: '' },
+  { id: 'NUT3_C07', start: 'NUT3_UI_DYNAMIC_PERIODIZATION', end: 'NUT3_GW_ELITE_INGRESS', startSnap: 'left', endSnap: 'right', label: '' },
   { id: 'NUT3_C08', start: 'NUT3_UI_CHATBOT_RAG_247', end: 'NUT3_GW_ELITE_INGRESS', startSnap: 'bottom', endSnap: 'right', label: '' },
   { id: 'NUT3_C09', start: 'NUT3_GW_ELITE_INGRESS', end: 'NUT3_DEC_SAFETY_GATE', startSnap: 'bottom', endSnap: 'top', label: '' },
   { id: 'NUT3_C10', start: 'NUT3_DEC_SAFETY_GATE', end: 'NUT3_GW_ALERT_DISPATCH', startSnap: 'right', endSnap: 'left', label: 'Red Flag o Doping Alert', strokeColor: '#dc2626' },
-  { id: 'NUT3_C11', start: 'NUT3_GW_ALERT_DISPATCH', end: 'NUT3_UI_DEXA_BIA_SYNC', startSnap: 'top', endSnap: 'right', label: 'Reset Clinico Staff', strokeColor: '#dc2626' },
+  { id: 'NUT3_C11', start: 'NUT3_GW_ALERT_DISPATCH', end: 'NUT3_UI_DEXA_BIA_SYNC', startSnap: 'left', endSnap: 'right', label: 'Reset Clinico Staff', strokeColor: '#dc2626' },
   { id: 'NUT3_C12', start: 'NUT3_DEC_SAFETY_GATE', end: 'NUT3_SRV_RED_S_ENGINE', startSnap: 'bottom', endSnap: 'top', label: 'Parametri Idonei' },
   { id: 'NUT3_C13', start: 'NUT3_SRV_RED_S_ENGINE', end: 'NUT3_SRV_BLOOD_BIOMARKER_CORR', startSnap: 'bottom', endSnap: 'top', label: 'Biomarcatori Ematici' },
   { id: 'NUT3_C14', start: 'NUT3_DEC_SAFETY_GATE', end: 'NUT3_SRV_ANTIDOPING_BATCH_CHECK', startSnap: 'right', endSnap: 'left', label: 'Check Lotto Doping' },
@@ -384,14 +384,92 @@ async function fetchAllConnectors(accessToken) {
   return items;
 }
 
+function getSnapPoint(node, snap) {
+  const halfW = node.width / 2;
+  const halfH = node.height / 2;
+  switch (snap) {
+    case 'top': return { x: node.x, y: node.y - halfH };
+    case 'bottom': return { x: node.x, y: node.y + halfH };
+    case 'left': return { x: node.x - halfW, y: node.y };
+    case 'right': return { x: node.x + halfW, y: node.y };
+    default: throw new Error(`Snap non riconosciuto: ${snap}`);
+  }
+}
+
+function buildElbowedSegments(startNode, endNode, startSnap, endSnap) {
+  const pStart = getSnapPoint(startNode, startSnap);
+  const pEnd = getSnapPoint(endNode, endSnap);
+  if (Math.abs(pStart.x - pEnd.x) < 0.1 || Math.abs(pStart.y - pEnd.y) < 0.1) {
+    return [{ p1: pStart, p2: pEnd }];
+  }
+  const startIsVertical = startSnap === 'top' || startSnap === 'bottom';
+  const endIsVertical = endSnap === 'top' || endSnap === 'bottom';
+  if (startIsVertical && !endIsVertical) {
+    const elbow = { x: pStart.x, y: pEnd.y };
+    return [{ p1: pStart, p2: elbow }, { p1: elbow, p2: pEnd }];
+  }
+  if (!startIsVertical && endIsVertical) {
+    const elbow = { x: pEnd.x, y: pStart.y };
+    return [{ p1: pStart, p2: elbow }, { p1: elbow, p2: pEnd }];
+  }
+  if (startIsVertical && endIsVertical) {
+    const midY = (pStart.y + pEnd.y) / 2;
+    return [
+      { p1: pStart, p2: { x: pStart.x, y: midY } },
+      { p1: { x: pStart.x, y: midY }, p2: { x: pEnd.x, y: midY } },
+      { p1: { x: pEnd.x, y: midY }, p2: pEnd }
+    ];
+  }
+  const midX = (pStart.x + pEnd.x) / 2;
+  return [
+    { p1: pStart, p2: { x: midX, y: pStart.y } },
+    { p1: { x: midX, y: pStart.y }, p2: { x: midX, y: pEnd.y } },
+    { p1: { x: midX, y: pEnd.y }, p2: pEnd }
+  ];
+}
+
+function segmentIntersectsBox(p1, p2, box, expandPx = 0) {
+  const bMinX = box.minX - expandPx;
+  const bMaxX = box.maxX + expandPx;
+  const bMinY = box.minY - expandPx;
+  const bMaxY = box.maxY + expandPx;
+  if (Math.abs(p1.x - p2.x) < 0.1) {
+    const segX = p1.x;
+    const segMinY = Math.min(p1.y, p2.y);
+    const segMaxY = Math.max(p1.y, p2.y);
+    return segX > bMinX && segX < bMaxX && Math.max(segMinY, bMinY) < Math.min(segMaxY, bMaxY);
+  }
+  if (Math.abs(p1.y - p2.y) < 0.1) {
+    const segY = p1.y;
+    const segMinX = Math.min(p1.x, p2.x);
+    const segMaxX = Math.max(p1.x, p2.x);
+    return segY > bMinY && segY < bMaxY && Math.max(segMinX, bMinX) < Math.min(segMaxX, bMaxX);
+  }
+  return false;
+}
+
 function validateGeometry(nodes, connectors) {
   const errors = [];
+  let totalCrossings = 0;
+  let totalOverlaps = 0;
+  let totalNoFlyViolations = 0;
 
   if (nodes.length !== EXPECTED_ISO_COUNT) {
     errors.push(`Conteggio nodi errato: ${nodes.length}, attesi ${EXPECTED_ISO_COUNT}`);
   }
 
+  const nodeMap = new Map();
+  const boxMap = new Map();
+
   for (const n of nodes) {
+    nodeMap.set(n.key, n);
+    boxMap.set(n.key, {
+      minX: n.x - n.width / 2,
+      maxX: n.x + n.width / 2,
+      minY: n.y - n.height / 2,
+      maxY: n.y + n.height / 2
+    });
+
     if (n.shape === 'rhombus') {
       if (n.width < MIN_DIAMOND_WIDTH_PX || n.height < MIN_DIAMOND_HEIGHT_PX) {
         errors.push(`Rombo ${n.key} sotto soglia minima (${n.width}x${n.height})`);
@@ -399,6 +477,18 @@ function validateGeometry(nodes, connectors) {
     } else {
       if (n.width < MIN_RECT_WIDTH_PX || n.width > MAX_RECT_WIDTH_PX) {
         errors.push(`Rettangolo ${n.key} larghezza fuori range (${n.width})`);
+      }
+    }
+  }
+
+  // Verifica overlaps tra nodi
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const bA = boxMap.get(nodes[i].key);
+      const bB = boxMap.get(nodes[j].key);
+      if (bA.minX < bB.maxX && bA.maxX > bB.minX && bA.minY < bB.maxY && bA.maxY > bB.minY) {
+        totalOverlaps++;
+        errors.push(`Overlap tra nodi ${nodes[i].key} e ${nodes[j].key}`);
       }
     }
   }
@@ -423,12 +513,33 @@ function validateGeometry(nodes, connectors) {
       const xOverlap = Math.max(0, Math.min(bBox.right + MIN_BADGE_CLEARANCE_PX, nBox.right) - Math.max(bBox.left - MIN_BADGE_CLEARANCE_PX, nBox.left));
       const yOverlap = Math.max(0, Math.min(bBox.bottom + MIN_BADGE_CLEARANCE_PX, nBox.bottom) - Math.max(bBox.top - MIN_BADGE_CLEARANCE_PX, nBox.top));
       if (xOverlap > 0 && yOverlap > 0) {
+        totalNoFlyViolations++;
         errors.push(`Nodo ${n.key} invade la No-Fly Zone del Badge ${badge.id_tag}!`);
       }
     }
   }
 
-  return errors;
+  // Verifica matematica 0 line-box crossings
+  for (const conn of connectors) {
+    const s = nodeMap.get(conn.start);
+    const e = nodeMap.get(conn.end);
+    if (!s || !e) {
+      errors.push(`Connettore ${conn.id} nodi non trovati: ${conn.start} -> ${conn.end}`);
+      continue;
+    }
+    const segs = buildElbowedSegments(s, e, conn.startSnap, conn.endSnap);
+    for (const [key, box] of boxMap.entries()) {
+      if (key === conn.start || key === conn.end) continue;
+      for (const seg of segs) {
+        if (segmentIntersectsBox(seg.p1, seg.p2, box, 0)) {
+          totalCrossings++;
+          errors.push(`Line-box crossing: connettore ${conn.id} (${conn.start} -> ${conn.end}) attraversa nodo ${key}`);
+        }
+      }
+    }
+  }
+
+  return { errors, totalCrossings, totalOverlaps, totalNoFlyViolations };
 }
 
 // ============================================================================
@@ -445,14 +556,20 @@ async function main() {
   console.log(`Nodi ISO definiti: ${ALL_NODES.length} (attesi: ${EXPECTED_ISO_COUNT})`);
   console.log(`Connettori definiti: ${ALL_CONNECTORS.length}`);
 
-  // Validazione geometrica locale
-  const geomErrors = validateGeometry(ALL_NODES, ALL_CONNECTORS);
-  if (geomErrors.length > 0) {
+  // Validazione geometrica locale deterministica
+  const validation = validateGeometry(ALL_NODES, ALL_CONNECTORS);
+  console.log(`-> Nodi ISO validati: ${ALL_NODES.length}`);
+  console.log(`-> Connettori validati: ${ALL_CONNECTORS.length}`);
+  console.log(`-> Line-box crossings: ${validation.totalCrossings}`);
+  console.log(`-> Overlaps tra nodi: ${validation.totalOverlaps}`);
+  console.log(`-> Violazioni No-Fly Zone (40px): ${validation.totalNoFlyViolations}`);
+
+  if (validation.errors.length > 0) {
     console.error('ERRORI DI VALIDAZIONE GEOMETRICA:');
-    geomErrors.forEach((e) => console.error(` - ${e}`));
+    validation.errors.forEach((e) => console.error(` - ${e}`));
     process.exit(1);
   }
-  console.log('Validazione geometrica completata: 0 errori. Tutti i vincoli Regola 10 rispettati.');
+  console.log('Validazione geometrica completata: 0 errori, 0 line-box crossings. Tutti i vincoli Regola 10 rispettati.');
 
   if (isValidateOnly) {
     console.log('Modalita --validate-only completata con successo.');

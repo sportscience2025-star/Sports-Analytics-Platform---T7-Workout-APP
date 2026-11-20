@@ -231,6 +231,24 @@ def check_5_deploy_script_and_token_security() -> Dict[str, Any]:
             findings.append(f"Deploy report nodes_created {report_data.get('nodes_created')} != {TOTAL_EXPECTED_ISO}")
         if report_data.get("badges_created") != 3:
             findings.append(f"Deploy report badges_created {report_data.get('badges_created')} != 3")
+        crossings = report_data.get("crossings")
+        if crossings is None or crossings != 0:
+            findings.append(f"Rule 10 Zero-Crossing violation: reported crossings = {crossings} (must be 0)")
+
+    # Esecuzione validazione geometrica locale deterministica
+    try:
+        res = subprocess.run(
+            ["node", DEPLOY_SCRIPT, "--validate-only"],
+            capture_output=True,
+            text=True,
+            timeout=15
+        )
+        if res.returncode != 0:
+            findings.append(f"deploy-miro-nutrition-tiers-iso.cjs --validate-only failed: {res.stderr or res.stdout}")
+        elif "Line-box crossings: 0" not in res.stdout:
+            findings.append("deploy-miro-nutrition-tiers-iso.cjs --validate-only did not certify Line-box crossings: 0")
+    except Exception as e:
+        findings.append(f"Error executing deploy script validation: {str(e)}")
 
     return {
         "check": "check_5_deploy_script_and_token_security",
