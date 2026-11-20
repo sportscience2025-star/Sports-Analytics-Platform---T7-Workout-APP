@@ -38,3 +38,5 @@ architecture-blueprint/**/*.svg
 # Python cache
 __pycache__/
 *.pyc
+.venv/
+sidequests/**/.venv/
