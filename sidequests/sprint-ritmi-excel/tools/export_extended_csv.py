@@ -14,9 +14,13 @@ for sheet_name in ["Atleta 1", "Atleta 2", "Atleta 3"]:
     csv_rows = [col_headers]
     for r in range(9, ws.max_row + 1):
         dist = ws.cell(row=r, column=1).value
+        t100 = ws.cell(row=r, column=2).value
         row_vals = [dist]
         for c in range(2, 19):
+            p_val = ws.cell(row=8, column=c).value
             val = ws.cell(row=r, column=c).value
+            if val is None and t100 is not None and p_val:
+                val = t100 / p_val if t100 > 0 else 0.0
             if val is not None:
                 if dist == 50 and c == 9: # 50m @ 83%
                     formatted = f"{val:.2f}".replace(".", ",")
