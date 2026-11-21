@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
 """
-Auditing and verification script for ritmi_atleti.xlsx.
+Auditing and verification script for ritmi_atleti.xlsx (Versione Z7 -> Z1 Unificata).
 Validates:
 1. Formulas integrity (624 formulas =$B{row}/C$8).
-2. Freeze panes ('C9' on all athlete sheets).
-3. Column dimensions and row heights for small screen usability.
-4. WCAG AAA fill colors and font colors matching palette_zone_fisiologiche.csv.
-5. Grey fill on championship distances (100m, 200m, 400m).
-6. Visual legend in sheet 4.
+2. Numbers integrity (Column B inputs, distances 50-600m, percentages 100-50%).
+3. Freeze panes ('C9' on all athlete sheets).
+4. Column dimensions (6.4 for C..R) and touch row heights (21.5 pt).
+5. WCAG AAA fill colors and font colors matching palette_zone_fisiologiche_v2.csv.
+6. Zero cells with missing/white/inactive fill: all 221 cells mapped to Z7..Z1.
+7. Visual legend in sheet 4 aligned with Z7 -> Z1 hierarchy.
 """
 import openpyxl
 from openpyxl.utils import get_column_letter
 import csv
 
 EXCEL_PATH = r"sidequests\sprint-ritmi-excel\output\ritmi_atleti.xlsx"
-CSV_ZONES_PATH = r"sidequests\sprint-ritmi-excel\output\palette_zone_fisiologiche.csv"
+CSV_ZONES_PATH = r"sidequests\sprint-ritmi-excel\output\palette_zone_fisiologiche_v2.csv"
 
 PERCENTAGES = [
     ("100%", 1.00, "0%"),
@@ -38,15 +39,15 @@ PERCENTAGES = [
 
 DISTANCES = [50, 60, 80, 100, 120, 150, 200, 250, 300, 350, 400, 500, 600]
 
-PALETTE_FIELD_ELITE = {
-    "Z1_MAX_VELOCITY": {"bg": "9E2A2B", "font": "FFFFFF"},
-    "Z2_LACTIC_POWER": {"bg": "6C3483", "font": "FFFFFF"},
-    "Z3_SPECIAL_END_1": {"bg": "93401A", "font": "FFFFFF"},
-    "Z4_SPECIAL_END_2": {"bg": "F5CBA7", "font": "1E1E1E"},
-    "Z5_INTENSIVE_TEMPO": {"bg": "F9E79F", "font": "1E1E1E"},
-    "Z6_EXTENSIVE_TEMPO": {"bg": "A9DFBF", "font": "1E1E1E"},
-    "Z7_AEROBIC_RECOVERY": {"bg": "AED6F1", "font": "1E1E1E"},
-    "Z_INACTIVE": {"bg": "EEEEEE", "font": "616161"},
+PALETTE_ZONES = {
+    "Z7": {"bg": "9E2A2B", "font": "FFFFFF"},
+    "Z6": {"bg": "6C3483", "font": "FFFFFF"},
+    "Z5": {"bg": "93401A", "font": "FFFFFF"},
+    "Z4": {"bg": "F5CBA7", "font": "1E1E1E"},
+    "Z3": {"bg": "F9E79F", "font": "1E1E1E"},
+    "Z2": {"bg": "A9DFBF", "font": "1E1E1E"},
+    "Z1": {"bg": "AED6F1", "font": "1E1E1E"},
+    "OFF": {"bg": "EEEEEE", "font": "616161"},
 }
 
 def load_expected_matrix():
@@ -95,7 +96,7 @@ def verify_all():
             row = 9 + r_offset
             dist_str = str(d)
             
-            # Check row height
+            # Row height
             assert ws.row_dimensions[row].height == 21.5, f"Row {row} height error"
             
             # Distance cell
@@ -110,7 +111,7 @@ def verify_all():
             assert b_cell.font.bold is True
             assert b_cell.number_format == "0.0"
             exp_z100 = expected_matrix[dist_str]["100%"]
-            assert PALETTE_FIELD_ELITE[exp_z100]["bg"] in str(b_cell.fill.start_color.rgb)
+            assert PALETTE_ZONES[exp_z100]["bg"] in str(b_cell.fill.start_color.rgb)
             total_colors_checked += 1
             
             # Columns C..R
@@ -118,7 +119,7 @@ def verify_all():
                 col_letter = get_column_letter(c_idx)
                 cell = ws.cell(row, c_idx)
                 
-                # Formula check
+                # Formula check: MUST BE EXACT =$B{row}/{col_letter}$8
                 expected_formula = f"=$B{row}/{col_letter}$8"
                 assert cell.value == expected_formula, f"Formula mismatch at {col_letter}{row}: '{cell.value}' != '{expected_formula}'"
                 total_formulas += 1
@@ -130,12 +131,12 @@ def verify_all():
                     assert cell.number_format == "0.0"
                 total_formats += 1
                 
-                # Color check
+                # Color check (All 221 cells mapped)
                 exp_z = expected_matrix[dist_str][p_name]
-                exp_bg = PALETTE_FIELD_ELITE[exp_z]["bg"]
-                exp_font = PALETTE_FIELD_ELITE[exp_z]["font"]
-                assert exp_bg in str(cell.fill.start_color.rgb), f"Bg color error at {dist_str}m {p_name}: expected {exp_bg}, got {cell.fill.start_color.rgb}"
-                assert exp_font in str(cell.font.color.rgb), f"Font color error at {dist_str}m {p_name}: expected {exp_font}, got {cell.font.color.rgb}"
+                exp_bg = PALETTE_ZONES[exp_z]["bg"]
+                exp_font = PALETTE_ZONES[exp_z]["font"]
+                assert exp_bg in str(cell.fill.start_color.rgb), f"Bg error at {dist_str}m {p_name}: {exp_bg} != {cell.fill.start_color.rgb}"
+                assert exp_font in str(cell.font.color.rgb), f"Font error at {dist_str}m {p_name}: {exp_font} != {cell.font.color.rgb}"
                 total_colors_checked += 1
 
     print(f"Verified {total_formulas} formulas, {total_formats} number formats, and {total_colors_checked} WCAG AAA color cells.")
@@ -144,7 +145,10 @@ def verify_all():
     ws_notes = wb["Legenda e Guida Mobile"]
     assert ws_notes["A1"].value is not None
     assert ws_notes["A3"].value == "Zona"
-    print("Legend and mobile guide sheet verified.")
+    assert ws_notes["A4"].value == "Z7"
+    assert ws_notes["A10"].value == "Z1"
+    assert ws_notes["A11"].value == "OFF"
+    print("Legend sheet verified with Z7 -> Z1 hierarchy.")
     print("ALL AUDIT CHECKS PASSED: 100% SUCCESS.")
 
 if __name__ == "__main__":

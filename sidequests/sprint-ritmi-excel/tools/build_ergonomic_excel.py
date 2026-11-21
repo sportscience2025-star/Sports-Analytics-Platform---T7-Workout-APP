@@ -2,14 +2,14 @@
 """
 Builder del file Excel definitivo con:
 1. Palette cromatica ergonomica WCAG AAA ("Field High-Contrast Elite").
-2. Matrice di suddivisione fisiologica bidimensionale (7 Zone Funzionali + Zona Inattiva).
+2. Matrice di suddivisione fisiologica bidimensionale V2 (Nomenclatura invertita Z7 -> Z1 + OFF).
 3. Ottimizzazioni per schermi piccoli / dispositivi mobili:
    - Freeze Panes su 'C9' (blocco bidirezionale intestazioni e massimale A-B).
    - Larghezza colonne ottimizzata (6.4 per C..R) per visualizzare 11-12 colonne su smartphone.
    - Altezza righe tattile (21.5 pt) per schermi touch.
    - Griglia visibile anti-riverbero.
 4. Formule Excel vive: =$B{riga}/C$8 su tutte le celle C..R.
-5. Foglio dedicato "Legenda e Guida Mobile" con campioni colore reali.
+5. Foglio dedicato "Legenda e Guida Mobile" con gerarchia Z7 (Max Velocità) -> Z1 (Rigenerazione).
 """
 
 import openpyxl
@@ -87,56 +87,56 @@ ATHLETE_DATA_EXTENDED = {
 }
 
 PALETTE_FIELD_ELITE = {
-    "Z1_MAX_VELOCITY": {
+    "Z7": {
         "name": "Velocità Massima & Accel. Alattacida",
         "system": "ATP-PCr puro, fibre rapide IIx (<= 8s)",
         "bg_hex": "9E2A2B",   # Rosso mattone / corallo profondo
         "font_hex": "FFFFFF", # Bianco puro (Contrasto 7.45:1 AAA)
         "bold": True,
     },
-    "Z2_LACTIC_POWER": {
+    "Z6": {
         "name": "Potenza Lattacida & Speed Endurance",
         "system": "Glicolisi max / VLamax (8 - 18s)",
         "bg_hex": "6C3483",   # Viola prugna nobile
         "font_hex": "FFFFFF", # Bianco puro (Contrasto 8.55:1 AAA)
         "bold": False,
     },
-    "Z3_SPECIAL_END_1": {
+    "Z5": {
         "name": "Special Endurance 1 (SE1)",
         "system": "Capacità lattacida, acidosi max (18 - 40s)",
         "bg_hex": "93401A",   # Terracotta calda brunita
         "font_hex": "FFFFFF", # Bianco puro (Contrasto 7.03:1 AAA)
         "bold": False,
     },
-    "Z4_SPECIAL_END_2": {
+    "Z4": {
         "name": "Special Endurance 2 (SE2)",
         "system": "Misto lattacido-aerobico severo (40 - 90s)",
         "bg_hex": "F5CBA7",   # Ambra vellutata / ocra morbida
         "font_hex": "1E1E1E", # Dark charcoal (Contrasto 11.10:1 AAA)
         "bold": False,
     },
-    "Z5_INTENSIVE_TEMPO": {
+    "Z3": {
         "name": "Intensive Tempo (Vittori / Hart)",
         "system": "Glicolisi controllata 4-8 mM (13 - 70s)",
         "bg_hex": "F9E79F",   # Giallo sabbia dorato
         "font_hex": "1E1E1E", # Dark charcoal (Contrasto 13.46:1 AAA)
         "bold": False,
     },
-    "Z6_EXTENSIVE_TEMPO": {
+    "Z2": {
         "name": "Extensive Tempo & Capillarizzazione",
         "system": "Ossidativo sub-LT2, recupero attivo (14 - 140s)",
         "bg_hex": "A9DFBF",   # Verde salvia rilassante
         "font_hex": "1E1E1E", # Dark charcoal (Contrasto 11.11:1 AAA)
         "bold": False,
     },
-    "Z7_AEROBIC_RECOVERY": {
+    "Z1": {
         "name": "Rigenerazione Aerobica Prolungata",
         "system": "Ossidativo puro sub-LT1 (28 - 180s)",
         "bg_hex": "AED6F1",   # Azzurro polvere
         "font_hex": "1E1E1E", # Dark charcoal (Contrasto 10.87:1 AAA)
         "bold": False,
     },
-    "Z_INACTIVE": {
+    "OFF": {
         "name": "Zona Inattiva / Sub-Funzionale",
         "system": "Non raccomandata: altera la stiffness del piede",
         "bg_hex": "EEEEEE",   # Grigio perla neutro
@@ -145,9 +145,19 @@ PALETTE_FIELD_ELITE = {
     },
 }
 
+# Mapping retrocompatibile con ID lunghi
+PALETTE_FIELD_ELITE["Z7_MAX_VELOCITY"] = PALETTE_FIELD_ELITE["Z7"]
+PALETTE_FIELD_ELITE["Z6_LACTIC_POWER"] = PALETTE_FIELD_ELITE["Z6"]
+PALETTE_FIELD_ELITE["Z5_SPECIAL_END_1"] = PALETTE_FIELD_ELITE["Z5"]
+PALETTE_FIELD_ELITE["Z4_SPECIAL_END_2"] = PALETTE_FIELD_ELITE["Z4"]
+PALETTE_FIELD_ELITE["Z3_INTENSIVE_TEMPO"] = PALETTE_FIELD_ELITE["Z3"]
+PALETTE_FIELD_ELITE["Z2_EXTENSIVE_TEMPO"] = PALETTE_FIELD_ELITE["Z2"]
+PALETTE_FIELD_ELITE["Z1_AEROBIC_RECOVERY"] = PALETTE_FIELD_ELITE["Z1"]
+PALETTE_FIELD_ELITE["Z_INACTIVE"] = PALETTE_FIELD_ELITE["OFF"]
+
 def load_zone_matrix():
     matrix = {}
-    csv_path = "sidequests/sprint-ritmi-excel/output/palette_zone_fisiologiche.csv"
+    csv_path = "sidequests/sprint-ritmi-excel/output/palette_zone_fisiologiche_v2.csv"
     with open(csv_path, "r", encoding="utf-8") as f:
         reader = csv.reader(f, delimiter=";")
         header = next(reader)
@@ -273,7 +283,7 @@ def build_ergonomic_workbook():
     ws_notes["A1"] = "GUIDA OPERATIVA & LEGENDA ERGONOMICA WCAG AAA DELLE ZONE DI ALLENAMENTO"
     ws_notes["A1"].font = font_title
     
-    # Tabella Legenda Zone Visiva
+    # Tabella Legenda Zone Visiva (Gerarchia Decrescente: Z7 Top -> Z1 Min + OFF)
     ws_notes["A3"] = "Zona"
     ws_notes["B3"] = "Nome della Zona"
     ws_notes["C3"] = "Sistema Energetico & Finestra Temporale"
@@ -287,14 +297,14 @@ def build_ergonomic_workbook():
         ws_notes[c].alignment = align_left if c != "A3" and c != "D3" else align_center
         
     zone_order = [
-        ("Z1_MAX_VELOCITY", "Z1", "7.45:1 (AAA)", "50m, 60m, 80m @ 95-100%"),
-        ("Z2_LACTIC_POWER", "Z2", "8.55:1 (AAA)", "100m-150m @ 95-100%, 60-80m @ 90-93%"),
-        ("Z3_SPECIAL_END_1", "Z3", "7.03:1 (AAA)", "150m-300m @ 90-98%, 100-120m @ 88-93%"),
-        ("Z4_SPECIAL_END_2", "Z4", "11.10:1 (AAA)", "300m-600m @ 85-98%"),
-        ("Z5_INTENSIVE_TEMPO", "Z5", "13.46:1 (AAA)", "100m-250m @ 80-88%, 300-600m @ 75-83%"),
-        ("Z6_EXTENSIVE_TEMPO", "Z6", "11.11:1 (AAA)", "150m-600m @ 65-75%, 100-120m @ 70-75%"),
-        ("Z7_AEROBIC_RECOVERY", "Z7", "10.87:1 (AAA)", "250m-600m @ 50-60%"),
-        ("Z_INACTIVE", "OFF", "5.34:1 (AA)", "50m-80m @ 50-80%, 100-120m @ 50-65% (Disattivata)"),
+        ("Z7", "Z7", "7.45:1 (AAA)", "50m, 60m, 80m @ 95-100%"),
+        ("Z6", "Z6", "8.55:1 (AAA)", "100m-150m @ 95-100%, 50m-80m @ 90-93%"),
+        ("Z5", "Z5", "7.03:1 (AAA)", "150m-300m @ 90-98%, 100m-120m @ 88-93%"),
+        ("Z4", "Z4", "11.10:1 (AAA)", "300m-600m @ 85-98%"),
+        ("Z3", "Z3", "13.46:1 (AAA)", "50m-250m @ 78-88%, 300m-600m @ 75-83%"),
+        ("Z2", "Z2", "11.11:1 (AAA)", "50m-600m @ 65-75% (50m-120m @ 70-75%)"),
+        ("Z1", "Z1", "10.87:1 (AAA)", "150m-600m @ 50-60%"),
+        ("OFF", "OFF", "5.34:1 (AA)", "50m-120m @ <= 65% (Disattivata)"),
     ]
     
     for idx, (zid, short_code, contrast_val, dist_desc) in enumerate(zone_order, start=4):
@@ -343,7 +353,7 @@ def build_ergonomic_workbook():
     ws_notes.column_dimensions["D"].width = 16.0
     ws_notes.column_dimensions["E"].width = 46.0
     
-    # Note di Campo e Funzionalità Mobile
+    # Note di Campo e Funzionalità Mobile con Nomenclatura Z7->Z1 e Correzione Submassimali
     notes_text = [
         ("FUNZIONALITÀ SMART PER PICCOLI SCHERMI (MOBILE & TABLET)",
          "1. Blocco Riquadri Bidirezionale (Freeze Panes 'C9'): quando scorri a destra verso le percentuali estensive, "
@@ -352,17 +362,30 @@ def build_ergonomic_workbook():
          "3. Touch Targets (Altezza 21.5 pt): righe più alte per evitare tocchi accidentali con dita sudate o guanti in pista.\n"
          "4. Larghezza Colonne Compatta (6.4): permette di vedere fino a 11-12 colonne simultaneamente su smartphone senza dover continuamente scorrere."),
         
-        ("PERCHÉ LE CELLE A BASSA INTENSITÀ SUI TRATTI BREVI SONO DISATTIVATE (ZONA OFF)",
-         "- Un centometrista da 10.8s che corre 50m al 50% registra 11.8s (15.2 km/h). A questa velocità, il tempo di contatto a terra raddoppia "
-         "(Tc > 0.15s contro i 0.08-0.09s dello sprint) e l'atleta 'rulla' sul tallone anziché caricare l'arco plantare e il tendine d'Achille.\n"
-         "- Come teorizzato da Charlie Francis (la 'Gray Zone') e Dan Pfaff, queste prove distruggono la stiffness reattiva della caviglia senza fornire "
-         "alcun beneficio aerobico (che richiede volumi di almeno 15-20 minuti su distanze >= 200m).\n"
-         "- Le celle 'OFF' mantengono la stima matematica visibile ma sono desaturate in grigio perla per indicare al tecnico che non devono essere usate come ripetute."),
-         
+        ("STRUTTURA DIDATTICA E GERARCHIA DELLE ZONE (Z7 TOP -> Z1 BASE)",
+         "- Z7 (Rosso Mattone): Massima Velocità ed Accelerazione Alattacida (50-80m @ 95-100%, t <= 8s, ATP-PCr puro, fibre rapide IIx).\n"
+         "- Z6 (Viola Prugna): Potenza Lattacida & Speed Endurance (100-150m @ 95-100%, 50-80m @ 90-93%, VLamax, glicolisi rapida).\n"
+         "- Z5 (Terracotta): Special Endurance 1 - SE1 (150-300m @ 90-98%, 100-120m @ 88-93%, acidosi max, capacità lattacida 18-40s).\n"
+         "- Z4 (Ambra Chiaro): Special Endurance 2 - SE2 (300-600m @ 85-98%, resistenza alla velocità prolungata, misto severo 40-90s).\n"
+         "- Z3 (Giallo Sabbia): Intensive Tempo (50-250m @ 78-88%, 300-600m @ 75-83%, decontrazione neurale, glicolisi controllata 4-8 mM).\n"
+         "- Z2 (Verde Salvia): Extensive Tempo & Capillarizzazione (50-600m @ 65-75%, recupero attivo, ossidativo sub-LT2, capillarizzazione).\n"
+         "- Z1 (Azzurro Polvere): Rigenerazione Aerobica Prolungata (150-600m @ 50-60%, ossidativo puro sub-LT1, drenaggio metabolico).\n"
+         "- OFF (Grigio Perla): Zona Inattiva / Sub-Funzionale (50-120m @ <= 65%, disattivata per prevenire alterazione della stiffness)."),
+
+        ("PERCHÉ LE CELLE <= 65% SUI TRATTI BREVI SONO DISATTIVATE (ZONA OFF) E IL VALORE DI Z3 (80m @ 83%)",
+         "- Sotto il 65% sui tratti brevi (50m-120m), un atleta corre a meno di 4.5-5.0 m/s (16-18 km/h). A questa andatura il tempo di contatto "
+         "raddoppia (Tc > 0.16s), l'appoggio rulla sul tallone e si distrugge la stiffness reattiva senza ottenere alcuno stimolo aerobico "
+         "(che richiede sforzi continui prolungati o ripetute estese >= 200m). Tali celle sono desaturate in grigio (OFF).\n"
+         "- Al contrario, le prove submassimali al 78-88% sui 50-100m (incluso l'80m all'83%, che per un velocista da 10.8s corrisponde a 27.2 km/h "
+         "e Tc ~ 0.115s) appartengono a pieno titolo alla ZONA 3 (Intensive Tempo): mantengono il Fast SSC, educano alla decontrazione muscolare "
+         "senza co-contrazioni antagoniste parassite (metodo Carlo Vittori e Dan Pfaff) e stimolano la capacità lattacida controllata (4-8 mM)."),
+          
         ("LINEE GUIDA SCIENTIFICHE D'USO SUL CAMPO",
-         "- Flying Start: per distanze <= 80m a ritmi submassimali (<=85%), partire con rincorsa lanciata di 10-15m per evitare che l'accelerazione statica falsi il ritmo.\n"
-         "- Regola di Stop del 3%: nelle sedute di velocità pura (Z1/Z2), interrompere la serie non appena il tempo registrato sale di oltre il 3% rispetto al crono target.\n"
-         "- Autoregolazione dinamica: modificando un massimale in Colonna B, tutte le 16 percentuali submassimali si ricalcolano istantaneamente.")
+         "- Regola di Stop del 3% (SNC Fatigue Cutoff): nelle sedute di velocità pura e potenza lattacida (Z7/Z6), interrompere la serie "
+         "non appena il crono registrato sale di oltre il 3% rispetto al target (es. da 10.80s a oltre 11.12s), per evitare fatica neurale parassita.\n"
+         "- Flying Start su Z3: per prove tecniche di ritmo su 50m, 60m e 80m al 78-88% (Z3), adottare un avvio lanciato di 10-15m per evitare che "
+         "la fase di accelerazione statica iniziale alteri la velocità di crociera e la biomeccanica front-side.\n"
+         "- Autoregolazione dinamica: modificando un massimale in Colonna B, tutte le 16 percentuali submassimali (da Z7 a Z1) si ricalcolano istantaneamente.")
     ]
     
     r_idx = 14
@@ -378,7 +401,7 @@ def build_ergonomic_workbook():
 
     out_file = "sidequests/sprint-ritmi-excel/output/ritmi_atleti.xlsx"
     wb.save(out_file)
-    print(f"Workbook ergonomico salvato con successo in: {out_file}")
+    print(f"Workbook ergonomico v2 salvato con successo in: {out_file}")
 
 if __name__ == "__main__":
     build_ergonomic_workbook()
