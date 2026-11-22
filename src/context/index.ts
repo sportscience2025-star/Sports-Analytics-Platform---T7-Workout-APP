@@ -5,3 +5,4 @@
  */
 
 export * from './TierContext';
+export * from './AthleteContext';
