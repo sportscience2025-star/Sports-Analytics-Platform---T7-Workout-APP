@@ -55,7 +55,7 @@
   - Unit test matematici sui casi limite (`0`, negativi, `NaN`, `Infinity`).
   - `py test_check.py` e `npm run typecheck` con 0 errori.
 
-### [ ] TASK-003: Offline Storage Engine & IndexedDB Wrapper
+### [x] TASK-003: Offline Storage Engine & IndexedDB Wrapper
 - **Descrizione:** Creazione dell'infrastruttura IndexedDB tipizzata per il Thin Client PWA (ADR-01) con supporto a: esecuzione offline del Workout Player, salvataggio locale appunti dell'Area Studio, cache preferiti e Transaction Queue per sincronizzazione ottimistica.
 - **File Target:**
   - `src/services/storage/indexeddb.ts` (Nuovo: wrapper `IndexedDBService` con store: `workout_sessions`, `study_notes`, `favorites_cache`, `offline_queue`)
@@ -579,3 +579,4 @@
 | 2026-11-22 | **FASE 1** | Redazione Ufficiale Master Implementation Roadmap | Superato (100%) | `c9725f0` | Definizione sequenza atomica di 36 task architetturali |
 | 2026-11-22 | **TASK-001** | Core Domain Types & SI Units Expansion | Superato (100%) | `f14924d` | Implementazione types strict: tier, physics (SI), athlete, device, readiness, nutrition, index |
 | 2026-11-22 | **TASK-002** | Metrological Validator & SI Guard | Superato (100%) | `d24a468` | Validatori SI, sanitizzazione hot-path, formatter ergonomico anti-jittering e test suite |
+| 2026-11-22 | **TASK-003** | Offline Storage Engine & IndexedDB Wrapper | Superato (100%) | Pending Commit | Storage engine 4 store, in-memory fallback, sync queue con idempotenza, zombie recovery e test |
