@@ -47,7 +47,7 @@ Dall'ispezione dell'immagine allegata dall'utente (`media_1795300998963_714624a3
 | :---: | :--- | :--- | :---: | :---: | :---: | :--- |
 | **Z7** | **Velocità Massima & Accel. Alattacida** | ATP-PCr puro, fibre rapide IIx ($t \le 8\text{ s}$) | `#9E2A2B` | `#FFFFFF` | **7.45:1** (AAA) | $50\text{ m}, 60\text{ m}, 80\text{ m} \ @ \ 95 - 100\%$ |
 | **Z6** | **Potenza Lattacida & Speed Endurance** | Glicolisi max / $VLa_{\max}$ ($8 - 18\text{ s}$) | `#6C3483` | `#FFFFFF` | **8.55:1** (AAA) | $100\text{m} - 150\text{ m} \ @ \ 95 - 100\%$, $50 - 80\text{ m} \ @ \ 90 - 93\%$ |
-| **Z5** | **Special Endurance 1 (SE1)** | Capacità lattacida, acidosi max ($18 - 40\text{ s}$) | `#93401A` | `#FFFFFF` | **7.03:1** (AAA) | $150\text{m} - 300\text{ m} \ @ \ 90 - 98\%$, $100 - 120\text{ m} \ @ \ 88 - 93\%$ |
+| **Z5** | **Special Endurance 1 (SE1) - Potenza & Capacità** | Potenza Lattacida (rec. $\ge 12-20\text{ min}$) / Capacità (rec. $4-8\text{ min}$) ($18 - 40\text{ s}$) | `#93401A` | `#FFFFFF` | **7.03:1** (AAA) | $150\text{m} - 300\text{ m} \ @ \ 90 - 98\%$, $100 - 120\text{ m} \ @ \ 88 - 93\%$ (SE1) |
 | **Z4** | **Special Endurance 2 (SE2)** | Misto lattacido-aerobico severo ($40 - 90\text{ s}$) | `#F5CBA7` | `#1E1E1E` | **11.10:1** (AAA) | $300\text{m} - 600\text{ m} \ @ \ 85 - 98\%$ |
 | **Z3** | **Intensive Tempo** | Glicolisi controllata $4 - 8\text{ mM}$ ($13 - 70\text{ s}$) | `#F9E79F` | `#1E1E1E` | **13.46:1** (AAA) | $50\text{m} - 250\text{ m} \ @ \ 78 - 88\%$, $300 - 600\text{ m} \ @ \ 75 - 83\%$ *(include 80m @ 83%)* |
 | **Z2** | **Extensive Tempo & Capillarizzazione** | Ossidativo sub-$LT_2$, recupero attivo ($14 - 140\text{ s}$) | `#A9DFBF` | `#1E1E1E` | **11.11:1** (AAA) | $50\text{m} - 600\text{ m} \ @ \ 65 - 75\%$ *(con $50 - 120\text{ m} \ @ \ 70 - 75\%$)* |
@@ -104,16 +104,43 @@ La matrice bidimensionale $Z(d, p)$ è codificata nel file [palette_zone_fisiolo
 
 ---
 
-## 4. Testo Riscritto delle Note di Campo nel Foglio Excel ("Legenda e Guida Mobile")
+## 4. Matrice Metodologica: Sforzo, Tempo di Recupero e Sistemi Energetici (SEP vs SEM)
+
+Implementata come tabella operativa alle righe 14–25 del Foglio 4 ("Legenda e Guida Mobile") del workbook Excel:
+
+| Zona | Distanze Tipiche | Intensità | Tempo di Recupero | Effetto Fisiologico Bersaglio & Adattamento Molecolare |
+| :---: | :---: | :---: | :--- | :--- |
+| **Z7** | $50\text{m} - 80\text{ m}$ | $95 - 100\%$ | **Completo** ($4 - 8\text{ min}$) | **Velocità Massima & Accelerazione Alattacida** (ATP-PCr puro, fibre rapide IIx) |
+| **Z6** | $100\text{m} - 150\text{ m}$ | $95 - 100\%$ | **Completo** ($8 - 12\text{ min}$) | **Potenza Lattacida Breve / Speed Endurance** ($VLa_{\max}$ picco, glicolisi rapida) |
+| **Z5 (SEP)** | $150\text{m} - 300\text{ m}$ | $95 - 100\%$ | **COMPLETO** ($12 - 20+\text{ min}$) | **POTENZA LATTACIDA PROLUNGATA** (Speed Endurance Production - Prova singola o time trial 250m/300m) |
+| **Z5 (SEM)** | $150\text{m} - 300\text{ m}$ | $90 - 95\%$ | **INCOMPLETO** ($4 - 8\text{ min}$) | **CAPACITÀ LATTACIDA & BUFFERING** (Speed Endurance Maintenance - Serie ripetute in acidosi) |
+| **Z4** | $300\text{m} - 600\text{ m}$ | $85 - 98\%$ | **Ampio** ($12 - 25\text{ min}$) | **Special Endurance 2 / Misto Lattacido-Aerobico Severo** (Tenuta 400m/800m) |
+| **Z3** | $50\text{m} - 250\text{ m}$ | $78 - 88\%$ | **Breve** ($1.5 - 3\text{ min}$) | **Intensive Tempo** (Glicolisi controllata $4 - 8\text{ mM}$, Fast SSC, decontrazione neurale) |
+| **Z2** | $50\text{m} - 600\text{ m}$ | $65 - 75\%$ | **Molto breve** ($45\text{s} - 2\text{ min}$) | **Extensive Tempo & Capillarizzazione** (Ossidativo sub-$LT_2$, recupero attivo) |
+| **Z1** | $150\text{m} - 600\text{ m}$ | $50 - 60\%$ | **Minimo / Continuo** | **Rigenerazione Aerobica Prolungata** (Sub-$LT_1$, drenaggio metabolico) |
+| **OFF** | $50\text{m} - 120\text{ m}$ | $\le 65\%$ | **Non applicabile** | **Disattivata** (Perdita reattività / alterazione della stiffness elastico-riflessa) |
+
+---
+
+## 5. Testo Riscritto delle Note di Campo nel Foglio Excel ("Legenda e Guida Mobile")
 
 Tutti i testi esplicativi collocati a fondo pagina nel quarto foglio del file Excel sono stati integralmente riscritti per recepire:
 1. La nuova nomenclatura invertita **Z7 (Top) -> Z1 (Base)**;
 2. La sostituzione di ogni vecchio riferimento ("Z1/Z2 per la velocità pura" ora diventa espressamente **"Z7/Z6"**);
-3. La spiegazione scientifica aggiornata sulla differenziazione tra **Z3 (80m @ 83%)** e **OFF ($\le 65\%$)**.
+3. La spiegazione scientifica aggiornata sulla differenziazione tra **Z3 (80m @ 83%)** e **OFF ($\le 65\%$)**;
+4. La trattazione scientifica del **Tempo di Recupero come variabile discriminante tra Potenza Lattacida (SEP) e Capacità Lattacida (SEM)** sui 150m–300m.
 
 Di seguito il testo integrale implementato nel foglio:
 
-### Blocco 1: Funzionalità Smart per Piccoli Schermi (Mobile & Tablet)
+### Blocco 1: Il Ruolo Cruciale del Tempo di Recupero: Potenza Lattacida vs Capacità Lattacida sui 150m–300m
+> - **La distanza percorsa NON determina da sola il sistema energetico bersaglio:** è la combinazione di Distanza (Tempo sotto tensione) × Intensità × **TEMPO DI RECUPERO** a stabilire se si allena la Potenza o la Capacità.  
+> - **POTENZA LATTACIDA (SEP - Speed Endurance Production):** se un velocista (es. centometrista o duecentista) corre un singolo 250m o 300m massimale al 100% (o 2 prove con recupero completo $\ge 15-20\text{ min}$), alla partenza il pH è neutro ($\sim 7{,}1$) e la fosfocreatina è al 100%. L'enzima PFK-1 lavora alla massima velocità catalitica, sprigionando il massimo picco glicolitico ($VLa_{\max}$) e accumulo di lattato oltre $18-22\text{ mM}$. Questo stimolo allena la massima potenza erogabile per reggere gli ultimi 30–50m di un 200m.  
+> - **CAPACITÀ LATTACIDA (SEM - Speed Endurance Maintenance):** se la stessa distanza (200m–300m) viene corsa con recupero incompleto ($4-8\text{ min}$), l'atleta riparte in piena acidosi (pH $\sim 6{,}80$). Come dimostrato da Bogdanis (1996), la PFK-1 viene inibita del 45% dai protoni $H^+$ residui; la massima potenza non può essere espressa e l'organismo è forzato ad allenare la capacità tampone muscolare (bicarbonati, carnosina) e l'efficienza dei trasportatori MCT1/MCT4.  
+> - **Pertanto, la Special Endurance 1 (Z5) possiede una doppia natura metodologica:** con recupero completo è Potenza Lattacida Prolungata; con recupero parziale è Capacità Lattacida e tolleranza all'acidosi.
+
+---
+
+### Blocco 2: Funzionalità Smart per Piccoli Schermi (Mobile & Tablet)
 > 1. **Blocco Riquadri Bidirezionale (Freeze Panes `C9`):** quando scorri a destra verso le percentuali estensive, la colonna della distanza (A) e la colonna del massimale 100% (B) restano sempre ancorate e visibili sul lato sinistro dello schermo.  
 > 2. Quando scorri verso il basso verso i 600m, l'intestazione delle percentuali (riga 8) resta sempre bloccata in alto.  
 > 3. **Touch Targets (Altezza 21.5 pt):** righe rialzate per facilitare il tocco mirato con un solo dito, anche con guanti in pista o display bagnato.  
@@ -121,10 +148,10 @@ Di seguito il testo integrale implementato nel foglio:
 
 ---
 
-### Blocco 2: Struttura Didattica e Gerarchia delle Zone (Z7 Top -> Z1 Base)
+### Blocco 3: Struttura Didattica e Gerarchia delle Zone (Z7 Top -> Z1 Base)
 > - **Z7 (Rosso Mattone):** Massima Velocità ed Accelerazione Alattacida ($50 - 80\text{ m} \ @ \ 95 - 100\%$, $t \le 8\text{ s}$, ATP-PCr puro, fibre rapide IIx).  
 > - **Z6 (Viola Prugna):** Potenza Lattacida & Speed Endurance ($100 - 150\text{ m} \ @ \ 95 - 100\%$, $50 - 80\text{ m} \ @ \ 90 - 93\%$, $VLa_{\max}$, glicolisi rapida).  
-> - **Z5 (Terracotta):** Special Endurance 1 - SE1 ($150 - 300\text{ m} \ @ \ 90 - 98\%$, $100 - 120\text{ m} \ @ \ 88 - 93\%$, acidosi max, capacità lattacida $18 - 40\text{ s}$).  
+> - **Z5 (Terracotta):** Special Endurance 1 - SE1 ($150 - 300\text{ m} \ @ \ 90 - 98\%$, Potenza Lattacida con rec. completo $\ge 12-20\text{ min}$, Capacità con rec. incompleto $4-8\text{ min}$).  
 > - **Z4 (Ambra Chiaro):** Special Endurance 2 - SE2 ($300 - 600\text{ m} \ @ \ 85 - 98\%$, resistenza alla velocità prolungata, misto severo $40 - 90\text{ s}$).  
 > - **Z3 (Giallo Sabbia):** Intensive Tempo ($50 - 250\text{ m} \ @ \ 78 - 88\%$, $300 - 600\text{ m} \ @ \ 75 - 83\%$, decontrazione neurale, glicolisi controllata $4 - 8\text{ mM}$).  
 > - **Z2 (Verde Salvia):** Extensive Tempo & Capillarizzazione ($50 - 600\text{ m} \ @ \ 65 - 75\%$, recupero attivo, ossidativo sub-$LT_2$, capillarizzazione).  
@@ -133,30 +160,30 @@ Di seguito il testo integrale implementato nel foglio:
 
 ---
 
-### Blocco 3: Perché le Celle <= 65% sui Tratti Brevi Sono Disattivate (Zona OFF) e il Valore di Z3 (80m @ 83%)
+### Blocco 4: Perché le Celle <= 65% sui Tratti Brevi Sono Disattivate (Zona OFF) e il Valore di Z3 (80m @ 83%)
 > - Sotto il $65\%$ sui tratti brevi ($50 - 120\text{ m}$), un atleta corre a meno di $4{,}5 - 5{,}0\text{ m/s}$ ($16 - 18\text{ km/h}$). A questa andatura il tempo di contatto raddoppia ($T_c > 0{,}16\text{ s}$), l'appoggio rulla sul tallone e si distrugge la stiffness reattiva senza ottenere alcuno stimolo aerobico (che richiede sforzi continui prolungati o ripetute estese $\ge 200\text{ m}$). Tali celle sono desaturate in grigio (`OFF`).  
 > - Al contrario, le prove submassimali al $78 - 88\%$ sui $50 - 100\text{ m}$ (incluso l'80m all'83%, che per un velocista da 10.8s corrisponde a $27{,}2\text{ km/h}$ e $T_c \approx 0{,}115\text{ s}$) appartengono a pieno titolo alla **ZONA 3 (Intensive Tempo)**: mantengono il Fast SSC, educano alla decontrazione muscolare senza co-contrazioni antagoniste parassite (metodo Carlo Vittori e Dan Pfaff) e stimolano la capacità lattacida controllata ($4 - 8\text{ mM}$).
 
 ---
 
-### Blocco 4: Linee Guida Scientifiche d'Uso sul Campo
-> - **Regola di Stop del 3% (SNC Fatigue Cutoff):** nelle sedute di velocità pura e potenza lattacida (**Z7/Z6**), interrompere la serie o aumentare il recupero non appena il crono registrato sale di oltre il $3\%$ rispetto al target (es. da $10{,}80\text{ s}$ a oltre $11{,}12\text{ s}$), per evitare fatica neurale parassita e deterioramento motorio.  
+### Blocco 5: Linee Guida Scientifiche d'Uso sul Campo
+> - **Regola di Stop del 3% (SNC Fatigue Cutoff):** nelle sedute di velocità pura e potenza lattacida (**Z7/Z6/Z5 SEP**), interrompere la serie o aumentare il recupero non appena il crono registrato sale di oltre il $3\%$ rispetto al target (es. da $10{,}80\text{ s}$ a oltre $11{,}12\text{ s}$), per evitare fatica neurale parassita e deterioramento motorio.  
 > - **Flying Start su Z3:** per prove tecniche di ritmo su $50\text{ m}, 60\text{ m}$ e $80\text{ m}$ al $78 - 88\%$ (**Z3**), adottare un avvio lanciato di $10 - 15\text{ m}$ per evitare che la fase di accelerazione statica iniziale alteri la velocità di crociera e la biomeccanica front-side.  
 > - **Autoregolazione Dinamica:** modificando un massimale in Colonna B, tutte le 16 percentuali submassimali (da **Z7** a **Z1**) si ricalcolano istantaneamente tramite formula viva Excel (`=$B{riga}/C$8`).
 
 ---
 
-## 5. Verifica Meccanica e Integrità del File Excel
+## 6. Verifica Meccanica e Integrità del File Excel
 
 L'audit automatico eseguito tramite lo script `sidequests/sprint-ritmi-excel/tools/verify_all.py` ha certificato:
 1. **Formule Vive (624 celle):** Tutte le celle delle colonne `C..R` su Atleta 1, Atleta 2 e Atleta 3 contengono la formula esatta `=$B{riga}/C$8`. Zero valori statici o sovrascritti.
 2. **Formattazione Numerica (675 celle):** Tutte le celle riportano `0.0` (un decimale), ad eccezione dei 50m all'83% che riportano `0.00` per visualizzare la risoluzione centesimale ($7{,}11\text{ s}$ vs $7{,}1\text{ s}$).
 3. **Mappatura Cromatica WCAG AAA (663 celle):** Tutte le celle sono colorate esattamente in conformità ai codici HEX della palette v2 (`#9E2A2B`, `#6C3483`, `#93401A`, `#F5CBA7`, `#F9E79F`, `#A9DFBF`, `#AED6F1`, `#EEEEEE`).
-4. **Foglio Legenda:** Verificato con gerarchia decrescente Z7 (riga 4) -> Z1 (riga 10) + OFF (riga 11).
+4. **Foglio Legenda:** Verificato con gerarchia decrescente Z7 (riga 4) -> Z1 (riga 10) + OFF (riga 11), tabella Matrice dei Recuperi e Note a celle espanse.
 
 ---
 
-## 6. Conclusioni Metodologiche per lo Staff Tecnico
+## 7. Conclusioni Metodologiche per lo Staff Tecnico
 
 La presente revisione didattica e funzionale risolve definitivamente ogni incoerenza tra teoria scientifica e pratica di campo:
 1. Soddisfa la preferenza didattica dell'utente di porre **Z7 come massima intensità** e **Z1 come minima intensità**, standardizzando il linguaggio tra atleti e tecnici.

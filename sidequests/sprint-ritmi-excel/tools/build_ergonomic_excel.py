@@ -17,6 +17,7 @@ from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 import csv
 import os
+import math
 
 PERCENTAGES = [
     ("100%", 1.00, "0%"),
@@ -96,14 +97,14 @@ PALETTE_FIELD_ELITE = {
     },
     "Z6": {
         "name": "Potenza Lattacida & Speed Endurance",
-        "system": "Glicolisi max / VLamax (8 - 18s)",
+        "system": "Glicolisi rapida / VLamax picco (8 - 18s)",
         "bg_hex": "6C3483",   # Viola prugna nobile
         "font_hex": "FFFFFF", # Bianco puro (Contrasto 8.55:1 AAA)
         "bold": False,
     },
     "Z5": {
-        "name": "Special Endurance 1 (SE1)",
-        "system": "Capacità lattacida, acidosi max (18 - 40s)",
+        "name": "Special Endurance 1 (SE1) - Potenza & Capacità",
+        "system": "Potenza Lattacida (rec. >=12-20') / Capacità (rec. 4-8') (18 - 40s)",
         "bg_hex": "93401A",   # Terracotta calda brunita
         "font_hex": "FFFFFF", # Bianco puro (Contrasto 7.03:1 AAA)
         "bold": False,
@@ -282,6 +283,9 @@ def build_ergonomic_workbook():
     
     ws_notes["A1"] = "GUIDA OPERATIVA & LEGENDA ERGONOMICA WCAG AAA DELLE ZONE DI ALLENAMENTO"
     ws_notes["A1"].font = font_title
+    ws_notes.merge_cells("A1:E1")
+    ws_notes.row_dimensions[1].height = 28.0
+    ws_notes["A1"].alignment = Alignment(vertical="center", horizontal="left")
     
     # Tabella Legenda Zone Visiva (Gerarchia Decrescente: Z7 Top -> Z1 Min + OFF)
     ws_notes["A3"] = "Zona"
@@ -299,8 +303,8 @@ def build_ergonomic_workbook():
     zone_order = [
         ("Z7", "Z7", "7.45:1 (AAA)", "50m, 60m, 80m @ 95-100%"),
         ("Z6", "Z6", "8.55:1 (AAA)", "100m-150m @ 95-100%, 50m-80m @ 90-93%"),
-        ("Z5", "Z5", "7.03:1 (AAA)", "150m-300m @ 90-98%, 100m-120m @ 88-93%"),
-        ("Z4", "Z4", "11.10:1 (AAA)", "300m-600m @ 85-98%"),
+        ("Z5", "Z5", "7.03:1 (AAA)", "150m-300m @ 90-98%, 100m-120m @ 88-93% (SE1)"),
+        ("Z4", "Z4", "11.10:1 (AAA)", "300m-600m @ 85-98% (SE2)"),
         ("Z3", "Z3", "13.46:1 (AAA)", "50m-250m @ 78-88%, 300m-600m @ 75-83%"),
         ("Z2", "Z2", "11.11:1 (AAA)", "50m-600m @ 65-75% (50m-120m @ 70-75%)"),
         ("Z1", "Z1", "10.87:1 (AAA)", "150m-600m @ 50-60%"),
@@ -347,14 +351,103 @@ def build_ergonomic_workbook():
         cE.alignment = align_left
         cE.border = thin_border
         
-    ws_notes.column_dimensions["A"].width = 8.0
+    ws_notes.column_dimensions["A"].width = 8.5
     ws_notes.column_dimensions["B"].width = 38.0
-    ws_notes.column_dimensions["C"].width = 46.0
+    ws_notes.column_dimensions["C"].width = 52.0
     ws_notes.column_dimensions["D"].width = 16.0
-    ws_notes.column_dimensions["E"].width = 46.0
+    ws_notes.column_dimensions["E"].width = 50.0
+
+    # Nuova Sezione: Tabella Matrice di Sforzo e Recupero (SEP vs SEM)
+    ws_notes["A14"] = "MATRICE METODOLOGICA: SFORZO, TEMPO DI RECUPERO E SISTEMI ENERGETICI (SEP vs SEM)"
+    ws_notes["A14"].font = font_title
+    ws_notes.merge_cells("A14:E14")
+    ws_notes.row_dimensions[14].height = 26.0
+    ws_notes["A14"].alignment = Alignment(vertical="center", horizontal="left")
+
+    rec_headers = [
+        ("A16", "Zona"),
+        ("B16", "Distanze Tipiche"),
+        ("C16", "Intensità"),
+        ("D16", "Tempo di Recupero"),
+        ("E16", "Effetto Fisiologico Bersaglio & Adattamento Molecolare"),
+    ]
+    for cell_id, text in rec_headers:
+        c = ws_notes[cell_id]
+        c.value = text
+        c.font = font_header_bold
+        c.fill = fill_header
+        c.border = header_border
+        c.alignment = align_left if cell_id != "A16" and cell_id != "C16" else align_center
+
+    recovery_matrix_data = [
+        ("Z7", "Z7", "50m - 80m", "95 - 100%", "Completo (4 - 8 min)", "Velocità Massima & Accelerazione Alattacida (ATP-PCr puro, fibre rapide IIx)"),
+        ("Z6", "Z6", "100m - 150m", "95 - 100%", "Completo (8 - 12 min)", "Potenza Lattacida Breve / Speed Endurance (VLamax picco, glicolisi rapida)"),
+        ("Z5", "Z5 (SEP)", "150m - 300m", "95 - 100%", "COMPLETO (12 - 20+ min)", "POTENZA LATTACIDA PROLUNGATA (Speed Endurance Production - Prova singola o time trial 250m/300m)"),
+        ("Z5", "Z5 (SEM)", "150m - 300m", "90 - 95%", "INCOMPLETO (4 - 8 min)", "CAPACITÀ LATTACIDA & BUFFERING (Speed Endurance Maintenance - Serie ripetute in acidosi)"),
+        ("Z4", "Z4", "300m - 600m", "85 - 98%", "Ampio (12 - 25 min)", "Special Endurance 2 / Misto Lattacido-Aerobico Severo (Tenuta 400m/800m)"),
+        ("Z3", "Z3", "50m - 250m", "78 - 88%", "Breve (1.5 - 3 min)", "Intensive Tempo (Glicolisi controllata 4-8 mM, Fast SSC, decontrazione neurale)"),
+        ("Z2", "Z2", "50m - 600m", "65 - 75%", "Molto breve (45s - 2 min)", "Extensive Tempo & Capillarizzazione (Ossidativo sub-LT2, recupero attivo)"),
+        ("Z1", "Z1", "150m - 600m", "50 - 60%", "Minimo / Continuo", "Rigenerazione Aerobica Prolungata (Sub-LT1, drenaggio metabolico)"),
+        ("OFF", "OFF", "50m - 120m", "<= 65%", "Non applicabile", "Disattivata (Perdita reattività / alterazione della stiffness elastico-riflessa)"),
+    ]
+
+    for r_offset, (zid, label, d_str, int_str, rec_str, eff_str) in enumerate(recovery_matrix_data):
+        curr_row = 17 + r_offset
+        ws_notes.row_dimensions[curr_row].height = 21.0
+        cfg = PALETTE_FIELD_ELITE[zid]
+
+        # Col A
+        cA = ws_notes[f"A{curr_row}"]
+        cA.value = label
+        cA.font = Font(name="Calibri", size=8.5, bold=True, color=cfg["font_hex"])
+        cA.fill = PatternFill(start_color=cfg["bg_hex"], end_color=cfg["bg_hex"], fill_type="solid")
+        cA.alignment = align_center
+        cA.border = thin_border
+
+        # Col B
+        cB = ws_notes[f"B{curr_row}"]
+        cB.value = d_str
+        cB.font = font_body
+        cB.alignment = align_left
+        cB.border = thin_border
+
+        # Col C
+        cC = ws_notes[f"C{curr_row}"]
+        cC.value = int_str
+        cC.font = font_body
+        cC.alignment = align_center
+        cC.border = thin_border
+
+        # Col D
+        cD = ws_notes[f"D{curr_row}"]
+        cD.value = rec_str
+        cD.font = Font(name="Calibri", size=9.5, bold=True if "COMPLETO" in rec_str or "INCOMPLETO" in rec_str else False, color="1E1E1E")
+        cD.alignment = align_left
+        cD.border = thin_border
+
+        # Col E
+        cE = ws_notes[f"E{curr_row}"]
+        cE.value = eff_str
+        cE.font = font_body
+        cE.alignment = align_left
+        cE.border = thin_border
     
     # Note di Campo e Funzionalità Mobile con Nomenclatura Z7->Z1 e Correzione Submassimali
     notes_text = [
+        ("IL RUOLO CRUCIALE DEL TEMPO DI RECUPERO: POTENZA LATTACIDA VS CAPACITÀ LATTACIDA SUI 150m-300m",
+         "- La distanza percorsa NON determina da sola il sistema energetico bersaglio: è la combinazione di Distanza (Tempo sotto tensione) "
+         "x Intensità x TEMPO DI RECUPERO a stabilire se si allena la Potenza o la Capacità.\n"
+         "- POTENZA LATTACIDA (SEP - Speed Endurance Production): se un velocista (es. centometrista o duecentista) corre un singolo 250m o 300m "
+         "massimale al 100% (o 2 prove con recupero completo >= 15-20 min), alla partenza il pH è neutro (~7.1) e la fosfocreatina è al 100%. "
+         "L'enzima PFK-1 lavora alla massima velocità catalitica, sprigionando il massimo picco glicolitico (VLamax) e accumulo di lattato "
+         "oltre 18-22 mM. Questo stimolo allena la massima potenza erogabile per reggere gli ultimi 30-50m di un 200m.\n"
+         "- CAPACITÀ LATTACIDA (SEM - Speed Endurance Maintenance): se la stessa distanza (200m-300m) viene corsa con recupero incompleto (4-8 min), "
+         "l'atleta riparte in piena acidosi (pH ~6.80). Come dimostrato da Bogdanis (1996), la PFK-1 viene inibita del 45% dai protoni H+ residui; "
+         "la massima potenza non può essere espressa e l'organismo è forzato ad allenare la capacità tampone muscolare (bicarbonati, carnosina) "
+         "e l'efficienza dei trasportatori MCT1/MCT4.\n"
+         "- Pertanto, la Special Endurance 1 (Z5) possiede una doppia natura metodologica: con recupero completo è Potenza Lattacida Prolungata; "
+         "con recupero parziale è Capacità Lattacida e tolleranza all'acidosi."),
+
         ("FUNZIONALITÀ SMART PER PICCOLI SCHERMI (MOBILE & TABLET)",
          "1. Blocco Riquadri Bidirezionale (Freeze Panes 'C9'): quando scorri a destra verso le percentuali estensive, "
          "la colonna della distanza (A) e la colonna del massimale 100% (B) restano sempre visibili sul lato sinistro dello schermo.\n"
@@ -365,7 +458,7 @@ def build_ergonomic_workbook():
         ("STRUTTURA DIDATTICA E GERARCHIA DELLE ZONE (Z7 TOP -> Z1 BASE)",
          "- Z7 (Rosso Mattone): Massima Velocità ed Accelerazione Alattacida (50-80m @ 95-100%, t <= 8s, ATP-PCr puro, fibre rapide IIx).\n"
          "- Z6 (Viola Prugna): Potenza Lattacida & Speed Endurance (100-150m @ 95-100%, 50-80m @ 90-93%, VLamax, glicolisi rapida).\n"
-         "- Z5 (Terracotta): Special Endurance 1 - SE1 (150-300m @ 90-98%, 100-120m @ 88-93%, acidosi max, capacità lattacida 18-40s).\n"
+         "- Z5 (Terracotta): Special Endurance 1 - SE1 (150-300m @ 90-98%, Potenza con rec. completo >=12-20', Capacità con rec. incompleto 4-8').\n"
          "- Z4 (Ambra Chiaro): Special Endurance 2 - SE2 (300-600m @ 85-98%, resistenza alla velocità prolungata, misto severo 40-90s).\n"
          "- Z3 (Giallo Sabbia): Intensive Tempo (50-250m @ 78-88%, 300-600m @ 75-83%, decontrazione neurale, glicolisi controllata 4-8 mM).\n"
          "- Z2 (Verde Salvia): Extensive Tempo & Capillarizzazione (50-600m @ 65-75%, recupero attivo, ossidativo sub-LT2, capillarizzazione).\n"
@@ -381,22 +474,29 @@ def build_ergonomic_workbook():
          "senza co-contrazioni antagoniste parassite (metodo Carlo Vittori e Dan Pfaff) e stimolano la capacità lattacida controllata (4-8 mM)."),
           
         ("LINEE GUIDA SCIENTIFICHE D'USO SUL CAMPO",
-         "- Regola di Stop del 3% (SNC Fatigue Cutoff): nelle sedute di velocità pura e potenza lattacida (Z7/Z6), interrompere la serie "
+         "- Regola di Stop del 3% (SNC Fatigue Cutoff): nelle sedute di velocità pura e potenza lattacida (Z7/Z6/Z5 SEP), interrompere la serie "
          "non appena il crono registrato sale di oltre il 3% rispetto al target (es. da 10.80s a oltre 11.12s), per evitare fatica neurale parassita.\n"
          "- Flying Start su Z3: per prove tecniche di ritmo su 50m, 60m e 80m al 78-88% (Z3), adottare un avvio lanciato di 10-15m per evitare che "
          "la fase di accelerazione statica iniziale alteri la velocità di crociera e la biomeccanica front-side.\n"
          "- Autoregolazione dinamica: modificando un massimale in Colonna B, tutte le 16 percentuali submassimali (da Z7 a Z1) si ricalcolano istantaneamente.")
     ]
     
-    r_idx = 14
+    r_idx = 28
     for title, desc in notes_text:
         ws_notes[f"A{r_idx}"] = title
         ws_notes[f"A{r_idx}"].font = font_sec
+        ws_notes.merge_cells(start_row=r_idx, start_column=1, end_row=r_idx, end_column=5)
+        ws_notes.row_dimensions[r_idx].height = 24.0
+        ws_notes[f"A{r_idx}"].alignment = Alignment(vertical="center", horizontal="left")
+
         ws_notes[f"A{r_idx+1}"] = desc
         ws_notes[f"A{r_idx+1}"].font = font_body
-        ws_notes[f"A{r_idx+1}"].alignment = Alignment(wrap_text=True)
-        lines_count = desc.count("\n") + len(desc) // 100 + 1
-        ws_notes.row_dimensions[r_idx+1].height = max(lines_count * 18, 36)
+        ws_notes.merge_cells(start_row=r_idx+1, start_column=1, end_row=r_idx+1, end_column=5)
+        ws_notes[f"A{r_idx+1}"].alignment = Alignment(wrap_text=True, vertical="top", horizontal="left")
+        
+        # Stima accurata delle linee considerando la larghezza aggregata di ~164 caratteri (A..E)
+        total_lines = sum(max(1, math.ceil(len(p) / 120)) for p in desc.split("\n"))
+        ws_notes.row_dimensions[r_idx+1].height = max(total_lines * 17 + 10, 36)
         r_idx += 3
 
     out_file = "sidequests/sprint-ritmi-excel/output/ritmi_atleti.xlsx"
