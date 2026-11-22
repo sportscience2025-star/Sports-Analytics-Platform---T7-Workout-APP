@@ -43,7 +43,7 @@
   - `py test_check.py` passa con esito 100% positivo.
   - Nessun tipo `any`, tutti i campi opzionali espliciti, union type rigorosi.
 
-### [ ] TASK-002: Metrological Validator & SI Guard
+### [x] TASK-002: Metrological Validator & SI Guard
 - **Descrizione:** Implementazione del modulo runtime di validazione dimensionale per grandezze fisiche del Sistema Internazionale: Forza ($F$ in $\text{N}$), Potenza ($P$ in $\text{W}$), Velocità ($v$ in $\text{m/s}$), Carico ($L$ in $\text{kg}$), Angoli ($^{\circ}$). Sanitizzazione automatica per prevenire `NaN`, `Infinity` o `undefined` sia nei calcoli che nel rendering UI.
 - **File Target:**
   - `src/utils/metrology-guard.ts` (Nuovo: funzioni di validazione `validateForceN`, `validatePowerW`, `validateVelocityMps`, `validateLoadKg`, `sanitizeNumeric`)
@@ -578,3 +578,4 @@
 | :---: | :---: | :--- | :---: | :---: | :--- |
 | 2026-11-22 | **FASE 1** | Redazione Ufficiale Master Implementation Roadmap | Superato (100%) | `c9725f0` | Definizione sequenza atomica di 36 task architetturali |
 | 2026-11-22 | **TASK-001** | Core Domain Types & SI Units Expansion | Superato (100%) | `f14924d` | Implementazione types strict: tier, physics (SI), athlete, device, readiness, nutrition, index |
+| 2026-11-22 | **TASK-002** | Metrological Validator & SI Guard | Superato (100%) | Pending Commit | Validatori SI, sanitizzazione hot-path, formatter ergonomico anti-jittering e test suite |

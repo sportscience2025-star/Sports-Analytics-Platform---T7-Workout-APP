@@ -16,6 +16,7 @@ import os
 import re
 import json
 import glob
+import subprocess
 
 def fail(message: str) -> None:
     print(f"FAILED: {message}")
@@ -34,7 +35,7 @@ print("=== T7 WORKOUT PLATFORM VALIDATION SUITE ===")
 # -------------------------------------------------------------
 # 1. Validazione Catalogo Esercizi (296 Esercizi)
 # -------------------------------------------------------------
-print("\n[1/7] Validating Exercise Catalog (src/data/exercises/)...")
+print("\n[1/8] Validating Exercise Catalog (src/data/exercises/)...")
 category_files = ['chest.ts', 'back.ts', 'legs.ts', 'shoulders.ts', 'arms.ts', 'core.ts']
 total_exercises = 0
 exercise_ids = set()
@@ -68,7 +69,7 @@ for aux in ['clinical-knee.ts', 'index.ts']:
 # -------------------------------------------------------------
 # 2. Validazione Condizioni Cliniche (119 Condizioni)
 # -------------------------------------------------------------
-print("\n[2/7] Validating Clinical Conditions (src/data/conditions/)...")
+print("\n[2/8] Validating Clinical Conditions (src/data/conditions/)...")
 condition_files = [
     'arti-inferiori.ts',
     'arti-superiori.ts',
@@ -105,7 +106,7 @@ if total_conditions != 119:
 # -------------------------------------------------------------
 # 3. Validazione Fonti Scientifiche (322 Fonti)
 # -------------------------------------------------------------
-print("\n[3/7] Validating Scientific Sources (src/data/sources.ts)...")
+print("\n[3/8] Validating Scientific Sources (src/data/sources.ts)...")
 sources_path = os.path.join("src", "data", "sources.ts")
 if not os.path.exists(sources_path):
     fail(f"Missing sources file: {sources_path}")
@@ -125,7 +126,7 @@ if total_sources != 322:
 # -------------------------------------------------------------
 # 4. Validazione Sintattica Ricorsiva TypeScript/TSX in src/
 # -------------------------------------------------------------
-print("\n[4/7] Validating delimiter syntax across all src/ .ts and .tsx files...")
+print("\n[4/8] Validating delimiter syntax across all src/ .ts and .tsx files...")
 src_all = glob.glob("src/**/*.ts", recursive=True) + glob.glob("src/**/*.tsx", recursive=True)
 if not src_all:
     fail("No TypeScript files found in src/")
@@ -142,7 +143,7 @@ print(f"-> Successfully checked {len(src_all)} TypeScript files in src/ with zer
 # -------------------------------------------------------------
 # 5. Validazione tsconfig.json (allowJs: false, strict: true)
 # -------------------------------------------------------------
-print("\n[5/7] Validating tsconfig.json...")
+print("\n[5/8] Validating tsconfig.json...")
 tsconfig_path = "tsconfig.json"
 if not os.path.exists(tsconfig_path):
     fail("Missing tsconfig.json")
@@ -162,7 +163,7 @@ print("-> tsconfig.json validated (allowJs: false, strict: true).")
 # -------------------------------------------------------------
 # 6. Validazione index.html (Mount Puro React, zero script legacy)
 # -------------------------------------------------------------
-print("\n[6/7] Validating index.html...")
+print("\n[6/8] Validating index.html...")
 if not os.path.exists("index.html"):
     fail("Missing index.html")
 with open("index.html", "r", encoding="utf-8") as f:
@@ -183,7 +184,7 @@ print("-> index.html validated (clean React 18 mount, zero legacy scripts).")
 # -------------------------------------------------------------
 # 7. Validazione Service Worker (sw.js)
 # -------------------------------------------------------------
-print("\n[7/7] Validating Service Worker (sw.js)...")
+print("\n[7/8] Validating Service Worker (sw.js)...")
 if not os.path.exists("sw.js"):
     fail("Missing sw.js")
 with open("sw.js", "r", encoding="utf-8") as f:
@@ -197,6 +198,22 @@ if re.search(r"['\"]\./js/", sw_content):
     fail("sw.js CORE_ASSETS still contains legacy ./js/ references")
 
 print("-> sw.js validated (active cache versioning, clean asset manifest).")
+
+# -------------------------------------------------------------
+# 8. Validazione Suite Metrologica SI & Number Format (TASK-002)
+# -------------------------------------------------------------
+print("\n[8/8] Validating Metrological Guard & SI Formatter Suite (tests/metrology-guard.test.ts)...")
+test_file = os.path.join("tests", "metrology-guard.test.ts")
+if not os.path.exists(test_file):
+    fail(f"Missing test file: {test_file}")
+
+result = subprocess.run(["npx", "tsx", test_file], shell=True, capture_output=True, text=True)
+if result.returncode != 0:
+    print(result.stdout)
+    print(result.stderr)
+    fail("Metrology unit test suite failed!")
+
+print("-> Metrology guard and SI number format suite passed (100% tests OK).")
 
 print("\n" + "=" * 50)
 print("SUCCESS: 100% REACT 18 + TYPESCRIPT STRICT VALIDATION PASSED!")

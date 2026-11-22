@@ -230,7 +230,7 @@ export const STANDARD_GRAVITY_MPS2 = 9.80665;
 export const MIN_VALID_LOAD_KG = 0.0;
 export const MAX_VALID_LOAD_KG = 1000.0;
 export const MIN_VALID_VELOCITY_MPS = 0.0;
-export const MAX_VALID_VELOCITY_MPS = 10.0;
+export const MAX_VALID_VELOCITY_MPS = 12.50;
 
 /**
  * Smart constructor con validazione di finitezza per la Forza in Newton.
@@ -262,7 +262,7 @@ export function asWatts(value: number): Watts {
  * @returns Valore tipizzato MetersPerSecond
  */
 export function asMetersPerSecond(value: number): MetersPerSecond {
-  if (!Number.isFinite(value) || value < MIN_VALID_VELOCITY_MPS) {
+  if (!Number.isFinite(value)) {
     throw new TypeError(`Valore non valido per Velocita (m/s): ${value}`);
   }
   return value as MetersPerSecond;
