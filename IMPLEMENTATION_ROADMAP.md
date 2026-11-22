@@ -68,7 +68,7 @@
   - Test di scrittura/lettura asincrona, gestione store upgrade, fallback in caso di IndexedDB non supportato.
   - `py test_check.py` e `npm run typecheck` verificati.
 
-### [ ] TASK-004: Tier & RBAC Context Provider
+### [x] TASK-004: Tier & RBAC Context Provider
 - **Descrizione:** Implementazione del React Context globale per la gestione dello stato del Tier (Tier 1 Consumer, Tier 2 Pro Coach, Tier 3 Elite Club) con matrice di permessi deterministica, simulatore di switch rapido per collaudo e verifiche runtime di feature gating.
 - **File Target:**
   - `src/context/TierContext.tsx` (Nuovo: `TierProvider`, `useTierContext`, simulatore switch Tier)
@@ -580,3 +580,4 @@
 | 2026-11-22 | **TASK-001** | Core Domain Types & SI Units Expansion | Superato (100%) | `f14924d` | Implementazione types strict: tier, physics (SI), athlete, device, readiness, nutrition, index |
 | 2026-11-22 | **TASK-002** | Metrological Validator & SI Guard | Superato (100%) | `d24a468` | Validatori SI, sanitizzazione hot-path, formatter ergonomico anti-jittering e test suite |
 | 2026-11-22 | **TASK-003** | Offline Storage Engine & IndexedDB Wrapper | Superato (100%) | `e0a7b8e` | Storage engine 4 store, in-memory fallback, sync queue con idempotenza, zombie recovery e test |
+| 2026-11-22 | **TASK-004** | Tier & RBAC Context Provider | Superato (100%) | `ac29a03` | React Context e Hook useTier per Tier 1/2/3, RBAC, GDPR Art. 9, Art. 348 c.p., silo resolution e test suite |
