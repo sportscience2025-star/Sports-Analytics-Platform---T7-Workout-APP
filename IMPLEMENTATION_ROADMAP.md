@@ -109,7 +109,7 @@
 
 ## MACRO-SEZIONE 2: Global Navigation Shell & Apple-Grade UI System (Layer 1)
 
-### [ ] TASK-007: Apple-Inspired Global Navigation Shell
+### [x] TASK-007: Apple-Inspired Global Navigation Shell
 - **Descrizione:** Implementazione del layout principale Dark Cockpit ispirato al design industriale Apple (ZONA 3 Schema 5, `zona3-05-global-navigation-shell.mmd`): Fixed Top Header con Selettore Permanente Atleta/Squadra a 2 click, Tier Badge Switcher interattivo, BLE Status Pill e Menu Profilo. Superfici glassmorphism (`backdrop-filter: blur(20px)`), contrasto elevato, zero emoji spontanee.
 - **File Target:**
   - `src/components/layout/GlobalHeader.tsx` (Nuovo: testata fissa superiore)
@@ -582,4 +582,5 @@
 | 2026-11-22 | **TASK-003** | Offline Storage Engine & IndexedDB Wrapper | Superato (100%) | `e0a7b8e` | Storage engine 4 store, in-memory fallback, sync queue con idempotenza, zombie recovery e test |
 | 2026-11-22 | **TASK-004** | Tier & RBAC Context Provider | Superato (100%) | `5f4d969` | React Context e Hook useTier per Tier 1/2/3, RBAC, GDPR Art. 9, Art. 348 c.p., silo resolution e test suite |
 | 2026-11-22 | **TASK-005** | Global Athlete & Squad Context Provider | Superato (100%) | `b5e4592` | React Context e Hook useAthleteContext per Selettore Atleta/Squadra a 2-click, Tier 1 single mode e test suite |
-| 2026-11-22 | **TASK-006** | Hardware & BLE Telemetry Context Provider | Superato (100%) | `5715c15` | React Context e Hook useBle per sensoristica BLE, Web Bluetooth API, simulatore 10 Hz e test suite |
+| 2026-11-22 | **TASK-006** | Hardware & BLE Telemetry Context Provider | Superato (100%) | `b90b6d5` | React Context e Hook useBle per sensoristica BLE, Web Bluetooth API, simulatore 10 Hz e test suite |
+| 2026-11-22 | **TASK-007** | Apple-Inspired Global Navigation Shell | Superato (100%) | `631adb3` | Layout master glassmorphism Apple Dark Cockpit: GlobalHeader, ContextSelectorDropdown a 2-click, TierBadgeSwitcher, BleStatusPill e test suite |
