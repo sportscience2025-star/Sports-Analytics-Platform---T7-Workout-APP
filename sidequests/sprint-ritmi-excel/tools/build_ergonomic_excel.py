@@ -305,9 +305,9 @@ def build_ergonomic_workbook():
         ("Z6", "Z6", "8.55:1 (AAA)", "100m-150m @ 95-100%, 50m-80m @ 90-93%"),
         ("Z5", "Z5", "7.03:1 (AAA)", "150m-300m @ 90-98%, 100m-120m @ 88-93% (SE1)"),
         ("Z4", "Z4", "11.10:1 (AAA)", "300m-600m @ 85-98% (SE2)"),
-        ("Z3", "Z3", "13.46:1 (AAA)", "50m-250m @ 78-88%, 300m-600m @ 75-83%"),
-        ("Z2", "Z2", "11.11:1 (AAA)", "50m-600m @ 65-75% (Extensive Tempo Tecnico)"),
-        ("Z1", "Z1", "10.87:1 (AAA)", "50m-600m @ 50-60% (Rigenerazione, Riscaldamento & Flush Runs)"),
+        ("Z3", "Z3", "13.46:1 (AAA)", "50m-200m @ 70-88%, 100-150m @ 65-88%, 250-300m @ 73-88%, 350-600m @ 78-83%"),
+        ("Z2", "Z2", "11.11:1 (AAA)", "50m-200m @ 65% (100-150m @ 60%), 250-300m @ 65-70%, 350-600m @ 70-75%"),
+        ("Z1", "Z1", "10.87:1 (AAA)", "50m-300m @ 50-60% (100-150m @ 50-55%), 350-600m @ 50-65% (Rigenerazione & Flush)"),
     ]
     
     for idx, (zid, short_code, contrast_val, dist_desc) in enumerate(zone_order, start=4):
@@ -384,9 +384,9 @@ def build_ergonomic_workbook():
         ("Z5", "Z5 (SEP)", "150m - 300m", "95 - 100%", "COMPLETO (12 - 20+ min)", "POTENZA LATTACIDA PROLUNGATA (Speed Endurance Production - Prova singola o time trial 250m/300m)"),
         ("Z5", "Z5 (SEM)", "150m - 300m", "90 - 95%", "INCOMPLETO (4 - 8 min)", "CAPACITÀ LATTACIDA & BUFFERING (Speed Endurance Maintenance - Serie ripetute in acidosi)"),
         ("Z4", "Z4", "300m - 600m", "85 - 98%", "Ampio (12 - 25 min)", "Special Endurance 2 / Misto Lattacido-Aerobico Severo (Tenuta 400m/800m)"),
-        ("Z3", "Z3", "50m - 250m", "78 - 88%", "Breve (1.5 - 3 min)", "Intensive Tempo (Glicolisi controllata 4-8 mM, Fast SSC, decontrazione neurale)"),
-        ("Z2", "Z2", "50m - 600m", "65 - 75%", "Molto breve (45s - 2 min)", "Extensive Tempo Tecnico & Capillarizzazione (Ossidativo sub-LT2, recupero attivo)"),
-        ("Z1", "Z1", "50m - 600m", "50 - 60%", "Minimo / Continuo", "Rigenerazione Aerobica, Strides Riscaldamento & Flush Runs su erba (Sub-LT1)"),
+        ("Z3", "Z3", "50m - 300m", "70 - 88%", "Breve (1.5 - 3 min)", "Intensive Tempo (Glicolisi controllata 4-8 mM, Fast SSC, decontrazione neurale)"),
+        ("Z2", "Z2", "50m - 600m", "60 - 75%", "Molto breve (45s - 2 min)", "Extensive Tempo Tecnico & Capillarizzazione (Ossidativo sub-LT2, recupero attivo)"),
+        ("Z1", "Z1", "50m - 600m", "50 - 65%", "Minimo / Continuo", "Rigenerazione Aerobica, Strides Riscaldamento & Flush Runs su erba (Sub-LT1)"),
     ]
 
     for r_offset, (zid, label, d_str, int_str, rec_str, eff_str) in enumerate(recovery_matrix_data):
@@ -458,9 +458,9 @@ def build_ergonomic_workbook():
          "- Z6 (Viola Prugna): Potenza Lattacida & Speed Endurance (100-150m @ 95-100%, 50-80m @ 90-93%, VLamax, glicolisi rapida).\n"
          "- Z5 (Terracotta): Special Endurance 1 - SE1 (150-300m @ 90-98%, Potenza con rec. completo >=12-20', Capacità con rec. incompleto 4-8').\n"
          "- Z4 (Ambra Chiaro): Special Endurance 2 - SE2 (300-600m @ 85-98%, resistenza alla velocità prolungata, misto severo 40-90s).\n"
-         "- Z3 (Giallo Sabbia): Intensive Tempo (50-250m @ 78-88%, 300-600m @ 75-83%, decontrazione neurale, glicolisi controllata 4-8 mM).\n"
-         "- Z2 (Verde Salvia): Extensive Tempo Tecnico & Capillarizzazione (50-600m @ 65-75%, recupero attivo, ossidativo sub-LT2, postura e capillarizzazione).\n"
-         "- Z1 (Azzurro Polvere): Rigenerazione Aerobica, Strides Riscaldamento & Flush Runs (50-600m @ 50-60%, riscaldamento pre-gara, flush su erba, riatletizzazione)."),
+         "- Z3 (Giallo Sabbia): Intensive Tempo (50-200m @ 70-88%, 100-150m @ 65-88%, 250-300m @ 73-88%, 350-600m @ 78-83%, decontrazione neurale, glicolisi controllata 4-8 mM).\n"
+         "- Z2 (Verde Salvia): Extensive Tempo Tecnico & Capillarizzazione (50-200m @ 65%, 100-150m @ 60%, 250-300m @ 65-70%, 350-600m @ 70-75%, recupero attivo, ossidativo sub-LT2, postura e capillarizzazione).\n"
+         "- Z1 (Azzurro Polvere): Rigenerazione Aerobica, Strides Riscaldamento & Flush Runs (50-300m @ 50-60%, 100-150m @ 50-55%, 350-600m @ 50-65%, riscaldamento pre-gara, flush su erba, riatletizzazione)."),
 
         ("IL VALORE METODOLOGICO DEI TRATTI BREVI SUBMASSIMALI (50m-120m @ 50%-65%): RISCALDAMENTO, FLUSH RUNS E RECUPERO ATTIVO",
          "- La tesi secondo cui correre tratti brevi sotto il 65% 'distrugge la stiffness reattiva' è un mito dogmatico smentito dalla fisiologia e dalla biomeccanica:\n"

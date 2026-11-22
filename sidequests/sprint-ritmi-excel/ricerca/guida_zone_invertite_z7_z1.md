@@ -60,19 +60,19 @@ La matrice bidimensionale $Z(d, p)$ è codificata nel file [palette_zone_fisiolo
 
 | Distanza | 100% | 98% | 95% | 93% | 90,0% | 88% | 85% | 83% | 80,0% | 78% | 75% | 73% | 70,0% | 65% | 60,0% | 55% | 50,0% |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **50 m** | **Z7** | **Z7** | **Z7** | **Z6** | **Z6** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
-| **60 m** | **Z7** | **Z7** | **Z7** | **Z6** | **Z6** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
-| **80 m** | **Z7** | **Z7** | **Z7** | **Z6** | **Z6** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
-| **100 m** | **Z6** | **Z6** | **Z6** | **Z5** | **Z5** | **Z5** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
-| **120 m** | **Z6** | **Z6** | **Z6** | **Z5** | **Z5** | **Z5** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
-| **150 m** | **Z6** | **Z6** | **Z6** | **Z5** | **Z5** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
-| **200 m** | **Z5** | **Z5** | **Z5** | **Z5** | **Z5** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
-| **250 m** | **Z5** | **Z5** | **Z5** | **Z5** | **Z5** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
-| **300 m** | **Z5** | **Z5** | **Z5** | **Z5** | **Z5** | **Z4** | **Z4** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
-| **350 m** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
-| **400 m** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
-| **500 m** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
-| **600 m** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
+| **50 m** | **Z7** | **Z7** | **Z7** | **Z6** | **Z6** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z1** | **Z1** | **Z1** |
+| **60 m** | **Z7** | **Z7** | **Z7** | **Z6** | **Z6** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z1** | **Z1** | **Z1** |
+| **80 m** | **Z7** | **Z7** | **Z7** | **Z6** | **Z6** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z1** | **Z1** | **Z1** |
+| **100 m** | **Z6** | **Z6** | **Z6** | **Z5** | **Z5** | **Z5** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z1** | **Z1** |
+| **120 m** | **Z6** | **Z6** | **Z6** | **Z5** | **Z5** | **Z5** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z1** | **Z1** |
+| **150 m** | **Z6** | **Z6** | **Z6** | **Z5** | **Z5** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z1** | **Z1** |
+| **200 m** | **Z5** | **Z5** | **Z5** | **Z5** | **Z5** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z1** | **Z1** | **Z1** |
+| **250 m** | **Z5** | **Z5** | **Z5** | **Z5** | **Z5** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
+| **300 m** | **Z5** | **Z5** | **Z5** | **Z5** | **Z5** | **Z4** | **Z4** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
+| **350 m** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** | **Z1** |
+| **400 m** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** | **Z1** |
+| **500 m** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** | **Z1** |
+| **600 m** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z4** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** | **Z1** |
 
 ---
 
@@ -86,18 +86,18 @@ La matrice bidimensionale $Z(d, p)$ è codificata nel file [palette_zone_fisiolo
 | Z6          | Potenza Lattacida & Speed Endurance   |    15 |        6,8% | 8.55:1 AAA  |
 | Z5          | Special Endurance 1 (SE1)             |    23 |       10,4% | 7.03:1 AAA  |
 | Z4          | Special Endurance 2 (SE2)             |    30 |       13,6% | 11.10:1 AAA |
-| Z3          | Intensive Tempo (Vittori / Hart)      |    58 |       26,2% | 13.46:1 AAA |
-| Z2          | Extensive Tempo Tecnico & Capillariz. |    47 |       21,3% | 11.11:1 AAA |
-| Z1          | Rigenerazione Aerobica & Strides      |    39 |       17,6% | 10.87:1 AAA |
+| Z3          | Intensive Tempo (Vittori / Hart)      |    81 |       36,7% | 13.46:1 AAA |
+| Z2          | Extensive Tempo Tecnico & Capillariz. |    23 |       10,4% | 11.11:1 AAA |
+| Z1          | Rigenerazione Aerobica & Strides      |    40 |       18,1% | 10.87:1 AAA |
 +---------------------------------------------------------------------------------------+
 | TOTALE      | 13 Distanze x 17 Percentuali          |   221 |      100,0% | CONFORME    |
 +---------------------------------------------------------------------------------------+
 ```
 
 #### Considerazioni sulla Nuova Distribuzione
-- **Eliminazione Totale delle Celle OFF (0 celle, 0%):** Superato definitivamente il falso mito dell'inutilità dei tratti brevi submassimali. Le 20 celle precedentemente scartate sono state riallocate su base scientifica: la colonna del 65% a Z2 (Extensive Tempo Tecnico) e le colonne 50%–60% a Z1 (Rigenerazione, Riscaldamento & Flush Runs).
-- **Copertura Funzionale al 100%:** Tutte le 221 celle possiedono una destinazione didattica e fisiologica chiara. L'allenatore dispone ora dei crono di riferimento sia per le sedute di velocità pura e potenza, sia per il riscaldamento, il defaticamento e i giorni di recupero attivo.
-- **Piramide Neurale Bilanciata:** La velocità massimale pura (Z7) e la potenza lattacida estrema (Z6) rappresentano il $10{,}9\%$ (24 celle), mentre le zone di supporto estensivo e rigenerativo (Z2 + Z1) coprono il $38{,}9\%$ (86 celle), rispecchiando l'esatta polarizzazione High-Low dell'atletica d'élite.
+- **Integrazione della Scala a Gradoni Originale di Angelo ($\le 75\%$):** Il layout delle percentuali submassimali ricalca esattamente la progressione geometrica collaudata sul campo da Angelo (riferimento `media_1795307086663_96b2ec4b.jpg`). Sulle distanze brevi (50m–150m), l'Intensive Tempo (Z3) si spinge fino al 70% (e fino al 65% sui 100m, 120m e 150m), dove la velocità rimane biomeccanicamente idonea a stimolare il ciclo allungamento-accorciamento (SSC) rapido e la coordinazione front-side.
+- **Transizione Fluida verso Extensive Tempo (Z2) e Rigenerazione (Z1):** L'Extensive Tempo Tecnico (Z2) presidia la cerniera di transizione (65% sui 50m–80m e 200m; 60% sui 100m–150m; 65%–70% sui 250m–300m; 70%–75% sui 350m–600m). Le percentuali più basse (50%–60%) costituiscono la base solida di Rigenerazione Aerobica, Strides di Riscaldamento e Lactic Flush Runs (Z1, 40 celle, 18,1%).
+- **Eliminazione Totale delle Celle OFF (0 celle, 0%):** Tutte le 221 celle possiedono una destinazione didattica e fisiologica chiara. Zero desaturazione in grigio, piena leggibilità WCAG AAA.
 
 ---
 
@@ -149,9 +149,9 @@ Di seguito il testo integrale implementato nel foglio:
 > - **Z6 (Viola Prugna):** Potenza Lattacida & Speed Endurance ($100 - 150\text{ m} \ @ \ 95 - 100\%$, $50 - 80\text{ m} \ @ \ 90 - 93\%$, $VLa_{\max}$, glicolisi rapida).  
 > - **Z5 (Terracotta):** Special Endurance 1 - SE1 ($150 - 300\text{ m} \ @ \ 90 - 98\%$, Potenza Lattacida con rec. completo $\ge 12-20\text{ min}$, Capacità con rec. incompleto $4-8\text{ min}$).  
 > - **Z4 (Ambra Chiaro):** Special Endurance 2 - SE2 ($300 - 600\text{ m} \ @ \ 85 - 98\%$, resistenza alla velocità prolungata, misto severo $40 - 90\text{ s}$).  
-> - **Z3 (Giallo Sabbia):** Intensive Tempo ($50 - 250\text{ m} \ @ \ 78 - 88\%$, $300 - 600\text{ m} \ @ \ 75 - 83\%$, decontrazione neurale, glicolisi controllata $4 - 8\text{ mM}$).  
-> - **Z2 (Verde Salvia):** Extensive Tempo Tecnico & Capillarizzazione ($50 - 600\text{ m} \ @ \ 65 - 75\%$, recupero attivo, ossidativo sub-$LT_2$, postura e capillarizzazione).  
-> - **Z1 (Azzurro Polvere):** Rigenerazione Aerobica, Strides Riscaldamento & Flush Runs ($50 - 600\text{ m} \ @ \ 50 - 60\%$, riscaldamento pre-gara, flush su erba, riatletizzazione).  
+> - **Z3 (Giallo Sabbia):** Intensive Tempo ($50 - 200\text{ m} \ @ \ 70 - 88\%$, $100 - 150\text{ m} \ @ \ 65 - 88\%$, $250 - 300\text{ m} \ @ \ 73 - 88\%$, $350 - 600\text{ m} \ @ \ 78 - 83\%$, decontrazione neurale, glicolisi controllata $4 - 8\text{ mM}$).  
+> - **Z2 (Verde Salvia):** Extensive Tempo Tecnico & Capillarizzazione ($50 - 200\text{ m} \ @ \ 65\%$, $100 - 150\text{ m} \ @ \ 60\%$, $250 - 300\text{ m} \ @ \ 65 - 70\%$, $350 - 600\text{ m} \ @ \ 70 - 75\%$, recupero attivo, ossidativo sub-$LT_2$, postura e capillarizzazione).  
+> - **Z1 (Azzurro Polvere):** Rigenerazione Aerobica, Strides Riscaldamento & Flush Runs ($50 - 300\text{ m} \ @ \ 50 - 60\%$, $100 - 150\text{ m} \ @ \ 50 - 55\%$, $350 - 600\text{ m} \ @ \ 50 - 65\%$, riscaldamento pre-gara, flush su erba, riatletizzazione).  
 
 ---
 
