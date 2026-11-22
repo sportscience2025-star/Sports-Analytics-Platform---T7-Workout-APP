@@ -211,3 +211,118 @@ export interface VbtAnalysisData {
   };
 }
 
+// ==========================================
+// RIGORE METROLOGICO SISTEMA INTERNAZIONALE (ADR-03)
+// ==========================================
+
+declare const __brand: unique symbol;
+export type Brand<K, T> = K & { readonly [__brand]: T };
+
+export type Newtons = Brand<number, 'Newtons'>;
+export type Watts = Brand<number, 'Watts'>;
+export type MetersPerSecond = Brand<number, 'MetersPerSecond'>;
+export type Kilograms = Brand<number, 'Kilograms'>;
+export type Degrees = Brand<number, 'Degrees'>;
+export type Milliseconds = Brand<number, 'Milliseconds'>;
+export type Seconds = Brand<number, 'Seconds'>;
+
+export const STANDARD_GRAVITY_MPS2 = 9.80665;
+export const MIN_VALID_LOAD_KG = 0.0;
+export const MAX_VALID_LOAD_KG = 1000.0;
+export const MIN_VALID_VELOCITY_MPS = 0.0;
+export const MAX_VALID_VELOCITY_MPS = 10.0;
+
+/**
+ * Smart constructor con validazione di finitezza per la Forza in Newton.
+ * @param value Valore numerico della forza
+ * @returns Valore tipizzato Newtons
+ */
+export function asNewtons(value: number): Newtons {
+  if (!Number.isFinite(value)) {
+    throw new TypeError(`Valore non valido per Forza (Newtons): ${value}`);
+  }
+  return value as Newtons;
+}
+
+/**
+ * Smart constructor con validazione di finitezza per la Potenza in Watt.
+ * @param value Valore numerico della potenza
+ * @returns Valore tipizzato Watts
+ */
+export function asWatts(value: number): Watts {
+  if (!Number.isFinite(value)) {
+    throw new TypeError(`Valore non valido per Potenza (Watts): ${value}`);
+  }
+  return value as Watts;
+}
+
+/**
+ * Smart constructor per la Velocita in m/s con verifica limiti fisici.
+ * @param value Valore numerico della velocita
+ * @returns Valore tipizzato MetersPerSecond
+ */
+export function asMetersPerSecond(value: number): MetersPerSecond {
+  if (!Number.isFinite(value) || value < MIN_VALID_VELOCITY_MPS) {
+    throw new TypeError(`Valore non valido per Velocita (m/s): ${value}`);
+  }
+  return value as MetersPerSecond;
+}
+
+/**
+ * Smart constructor per il Carico in kg con verifica limiti fisici.
+ * @param value Valore numerico del carico
+ * @returns Valore tipizzato Kilograms
+ */
+export function asKilograms(value: number): Kilograms {
+  if (!Number.isFinite(value) || value < MIN_VALID_LOAD_KG) {
+    throw new TypeError(`Valore non valido per Carico (kg): ${value}`);
+  }
+  return value as Kilograms;
+}
+
+/**
+ * Smart constructor per l'Angolo articolare in gradi.
+ * @param value Valore numerico dell'angolo
+ * @returns Valore tipizzato Degrees
+ */
+export function asDegrees(value: number): Degrees {
+  if (!Number.isFinite(value)) {
+    throw new TypeError(`Valore non valido per Angolo (gradi): ${value}`);
+  }
+  return value as Degrees;
+}
+
+/**
+ * Smart constructor per il Tempo in millisecondi (non negativo).
+ * @param value Valore numerico del tempo in ms
+ * @returns Valore tipizzato Milliseconds
+ */
+export function asMilliseconds(value: number): Milliseconds {
+  if (!Number.isFinite(value) || value < 0) {
+    throw new TypeError(`Valore non valido per Tempo (ms): ${value}`);
+  }
+  return value as Milliseconds;
+}
+
+/**
+ * Smart constructor per il Tempo in secondi (non negativo).
+ * @param value Valore numerico del tempo in s
+ * @returns Valore tipizzato Seconds
+ */
+export function asSeconds(value: number): Seconds {
+  if (!Number.isFinite(value) || value < 0) {
+    throw new TypeError(`Valore non valido per Tempo (s): ${value}`);
+  }
+  return value as Seconds;
+}
+
+export interface SiKinematicsPoint {
+  loadKg: Kilograms;
+  velocityMps: MetersPerSecond;
+  forceN?: Newtons;
+  powerW?: Watts;
+  reps?: number;
+  timestampMs?: Milliseconds;
+}
+
+
