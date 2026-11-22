@@ -147,7 +147,7 @@ def verify_all():
     assert ws_notes["A3"].value == "Zona"
     assert ws_notes["A4"].value == "Z7"
     assert ws_notes["A10"].value == "Z1"
-    assert ws_notes["A11"].value == "OFF"
+    assert ws_notes["A11"].value is None
     print("Legend sheet verified with Z7 -> Z1 hierarchy.")
     print("ALL AUDIT CHECKS PASSED: 100% SUCCESS.")
 

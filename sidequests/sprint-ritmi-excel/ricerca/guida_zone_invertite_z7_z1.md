@@ -1,5 +1,5 @@
-# GUIDA DIDATTICA E ARCHITETTURA GERARCHICA DELLE ZONE DI SPRINT (Z7 TOP -> Z1 BASE + OFF)
-## Revisione Metodologica, Allineamento WCAG AAA e Integrazione dei Ritmi Submassimali (60–100m all'80–88%)
+# GUIDA DIDATTICA E ARCHITETTURA GERARCHICA DELLE ZONE DI SPRINT (Z7 TOP -> Z1 BASE)
+## Revisione Metodologica, Allineamento WCAG AAA e Integrazione dei Ritmi Submassimali (60–100m all'80–88% e 50–120m al 50–65%)
 
 **Data di redazione:** 22 Novembre 2026  
 **Autore:** Agente Revisore della Guida e della Struttura Didattica di Atletica Leggera  
@@ -14,15 +14,14 @@
 ## 1. Executive Summary e Ratio della Ristrutturazione
 
 ### 1.1 La Nuova Struttura Gerarchica Decrescente (Z7 -> Z1)
-Su esplicita e corretta indicazione dell'utente, l'architettura delle zone di allenamento per la corsa veloce è stata allineata alla convenzione didattica piramidale decrescente:
+Su esplicita e corretta indicazione dell'utente, l'architettura delle zone di allenamento per la corsa veloce è stata allineata alla convenzione didattica piramidale decrescente a 7 zone continue:
 - **ZONA 7 (Vertice, Massima Intensità):** Velocità Massima ed Accelerazione Alattacida (ATP-PCr puro, $t \le 8\text{ s}$).
 - **ZONA 6:** Potenza Lattacida & Speed Endurance (Glicolisi anaerobica massimale / $VLa_{\max}$, $8 - 18\text{ s}$).
-- **ZONA 5:** Special Endurance 1 - SE1 (Capacità lattacida e massima acidosi, $18 - 40\text{ s}$).
+- **ZONA 5:** Special Endurance 1 - SE1 (Potenza Lattacida con rec. completo $\ge 12-20\text{ min}$ / Capacità con rec. incompleto $4-8\text{ min}$, $18 - 40\text{ s}$).
 - **ZONA 4:** Special Endurance 2 - SE2 (Resistenza alla velocità prolungata, misto lattacido-aerobico, $40 - 90\text{ s}$).
 - **ZONA 3:** Intensive Tempo (Glicolisi controllata $4 - 8\text{ mM}$, decontrazione neurale a ritmo gara, $13 - 70\text{ s}$).
-- **ZONA 2:** Extensive Tempo & Capillarizzazione (Ossidativo sub-$LT_2$, recupero attivo, capillarizzazione muscolare, $14 - 140\text{ s}$).
-- **ZONA 1 (Base, Minima Intensità):** Rigenerazione Aerobica Prolungata (Ossidativo puro sub-$LT_1$, drenaggio metabolico, $28 - 180\text{ s}$).
-- **ZONA OFF:** Zona Inattiva / Sub-Funzionale (Disattivata su tratti brevi $\le 65\%$ per prevenire alterazioni biomeccaniche della stiffness).
+- **ZONA 2:** Extensive Tempo Tecnico & Capillarizzazione (Ossidativo sub-$LT_2$, recupero attivo, capillarizzazione muscolare e postura, $14 - 140\text{ s}$).
+- **ZONA 1 (Base, Minima Intensità):** Rigenerazione Aerobica, Strides di Riscaldamento & Flush Runs su erba (Ossidativo puro sub-$LT_1$, drenaggio metabolico, rialzo termico e riatletizzazione).
 
 Tale ordinamento risulta intuitivo e pedagogicamente impeccabile: **all'aumentare del numero della zona corrisponde un incremento diretto dell'intensità neurale, del reclutamento delle fibre veloci (Tipo IIx) e della velocità di avanzamento**.
 
@@ -48,11 +47,10 @@ Dall'ispezione dell'immagine allegata dall'utente (`media_1795300998963_714624a3
 | **Z7** | **Velocità Massima & Accel. Alattacida** | ATP-PCr puro, fibre rapide IIx ($t \le 8\text{ s}$) | `#9E2A2B` | `#FFFFFF` | **7.45:1** (AAA) | $50\text{ m}, 60\text{ m}, 80\text{ m} \ @ \ 95 - 100\%$ |
 | **Z6** | **Potenza Lattacida & Speed Endurance** | Glicolisi max / $VLa_{\max}$ ($8 - 18\text{ s}$) | `#6C3483` | `#FFFFFF` | **8.55:1** (AAA) | $100\text{m} - 150\text{ m} \ @ \ 95 - 100\%$, $50 - 80\text{ m} \ @ \ 90 - 93\%$ |
 | **Z5** | **Special Endurance 1 (SE1) - Potenza & Capacità** | Potenza Lattacida (rec. $\ge 12-20\text{ min}$) / Capacità (rec. $4-8\text{ min}$) ($18 - 40\text{ s}$) | `#93401A` | `#FFFFFF` | **7.03:1** (AAA) | $150\text{m} - 300\text{ m} \ @ \ 90 - 98\%$, $100 - 120\text{ m} \ @ \ 88 - 93\%$ (SE1) |
-| **Z4** | **Special Endurance 2 (SE2)** | Misto lattacido-aerobico severo ($40 - 90\text{ s}$) | `#F5CBA7` | `#1E1E1E` | **11.10:1** (AAA) | $300\text{m} - 600\text{ m} \ @ \ 85 - 98\%$ |
+| **Z4** | **Special Endurance 2 (SE2)** | Misto lattacido-aerobico severo ($40 - 90\text{ s}$) | `#F5CBA7` | `#1E1E1E` | **11.10:1** (AAA) | $300\text{m} - 600\text{ m} \ @ \ 85 - 98\%$ (SE2) |
 | **Z3** | **Intensive Tempo** | Glicolisi controllata $4 - 8\text{ mM}$ ($13 - 70\text{ s}$) | `#F9E79F` | `#1E1E1E` | **13.46:1** (AAA) | $50\text{m} - 250\text{ m} \ @ \ 78 - 88\%$, $300 - 600\text{ m} \ @ \ 75 - 83\%$ *(include 80m @ 83%)* |
-| **Z2** | **Extensive Tempo & Capillarizzazione** | Ossidativo sub-$LT_2$, recupero attivo ($14 - 140\text{ s}$) | `#A9DFBF` | `#1E1E1E` | **11.11:1** (AAA) | $50\text{m} - 600\text{ m} \ @ \ 65 - 75\%$ *(con $50 - 120\text{ m} \ @ \ 70 - 75\%$)* |
-| **Z1** | **Rigenerazione Aerobica Prolungata** | Ossidativo puro sub-$LT_1$ ($28 - 180\text{ s}$) | `#AED6F1` | `#1E1E1E` | **10.87:1** (AAA) | $150\text{m} - 600\text{ m} \ @ \ 50 - 60\%$ |
-| **OFF** | **Zona Inattiva / Sub-Funzionale** | Non raccomandata: altera la stiffness del piede | `#EEEEEE` | `#616161` | **5.34:1** (AA) | $50\text{m} - 120\text{ m} \ @ \ \le 65\%$ *(Disattivata per perdita reattività)* |
+| **Z2** | **Extensive Tempo Tecnico & Capillarizzazione** | Ossidativo sub-$LT_2$, recupero attivo ($14 - 140\text{ s}$) | `#A9DFBF` | `#1E1E1E` | **11.11:1** (AAA) | $50\text{m} - 600\text{ m} \ @ \ 65 - 75\%$ *(Extensive Tempo Tecnico)* |
+| **Z1** | **Rigenerazione Aerobica, Riscaldamento & Flush** | Ossidativo puro sub-$LT_1$ ($28 - 180\text{ s}$) | `#AED6F1` | `#1E1E1E` | **10.87:1** (AAA) | $50\text{m} - 600\text{ m} \ @ \ 50 - 60\%$ *(Strides riscaldamento & Flush runs)* |
 
 ---
 
@@ -62,11 +60,11 @@ La matrice bidimensionale $Z(d, p)$ è codificata nel file [palette_zone_fisiolo
 
 | Distanza | 100% | 98% | 95% | 93% | 90,0% | 88% | 85% | 83% | 80,0% | 78% | 75% | 73% | 70,0% | 65% | 60,0% | 55% | 50,0% |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **50 m** | **Z7** | **Z7** | **Z7** | **Z6** | **Z6** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | OFF | OFF | OFF | OFF |
-| **60 m** | **Z7** | **Z7** | **Z7** | **Z6** | **Z6** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | OFF | OFF | OFF | OFF |
-| **80 m** | **Z7** | **Z7** | **Z7** | **Z6** | **Z6** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | OFF | OFF | OFF | OFF |
-| **100 m** | **Z6** | **Z6** | **Z6** | **Z5** | **Z5** | **Z5** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | OFF | OFF | OFF | OFF |
-| **120 m** | **Z6** | **Z6** | **Z6** | **Z5** | **Z5** | **Z5** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | OFF | OFF | OFF | OFF |
+| **50 m** | **Z7** | **Z7** | **Z7** | **Z6** | **Z6** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
+| **60 m** | **Z7** | **Z7** | **Z7** | **Z6** | **Z6** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
+| **80 m** | **Z7** | **Z7** | **Z7** | **Z6** | **Z6** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
+| **100 m** | **Z6** | **Z6** | **Z6** | **Z5** | **Z5** | **Z5** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
+| **120 m** | **Z6** | **Z6** | **Z6** | **Z5** | **Z5** | **Z5** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
 | **150 m** | **Z6** | **Z6** | **Z6** | **Z5** | **Z5** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
 | **200 m** | **Z5** | **Z5** | **Z5** | **Z5** | **Z5** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
 | **250 m** | **Z5** | **Z5** | **Z5** | **Z5** | **Z5** | **Z3** | **Z3** | **Z3** | **Z3** | **Z3** | **Z2** | **Z2** | **Z2** | **Z2** | **Z1** | **Z1** | **Z1** |
@@ -89,24 +87,23 @@ La matrice bidimensionale $Z(d, p)$ è codificata nel file [palette_zone_fisiolo
 | Z5          | Special Endurance 1 (SE1)             |    23 |       10,4% | 7.03:1 AAA  |
 | Z4          | Special Endurance 2 (SE2)             |    30 |       13,6% | 11.10:1 AAA |
 | Z3          | Intensive Tempo (Vittori / Hart)      |    58 |       26,2% | 13.46:1 AAA |
-| Z2          | Extensive Tempo & Capillarizzazione   |    42 |       19,0% | 11.11:1 AAA |
-| Z1          | Rigenerazione Aerobica Prolungata     |    24 |       10,9% | 10.87:1 AAA |
-| OFF         | Zona Inattiva / Sub-Funzionale        |    20 |        9,0% | 5.34:1 AA   |
+| Z2          | Extensive Tempo Tecnico & Capillariz. |    47 |       21,3% | 11.11:1 AAA |
+| Z1          | Rigenerazione Aerobica & Strides      |    39 |       17,6% | 10.87:1 AAA |
 +---------------------------------------------------------------------------------------+
 | TOTALE      | 13 Distanze x 17 Percentuali          |   221 |      100,0% | CONFORME    |
 +---------------------------------------------------------------------------------------+
 ```
 
 #### Considerazioni sulla Nuova Distribuzione
-- **Riduzione delle Celle OFF dal 20,8% (46 celle) al 9,0% (20 celle):** La correzione ha restituito alla piena operatività didattica 26 celle di enorme valore sul campo (i tratti 50–80m tra il 70% e l'88%), eliminando l'errore di considerare "inutile" l'allenamento tecnico a ritmi submassimali sostenuti.
-- **Predominanza dell'Intensive Tempo (Z3 - 26,2%):** Con 58 celle, Z3 diventa la zona quantitativamente più rilevante per volume di lavoro speciale: permette centinaia di metri di corsa senza saturare il sistema nervoso centrale.
-- **Piramide Neurale Bilanciata:** La velocità massimale pura (Z7) e la potenza lattacida estrema (Z6) assorbono complessivamente il $10{,}9\%$ (24 celle), rispecchiando l'esatta proporzione biologica del carico ad alta intensità (High-Low di Charlie Francis).
+- **Eliminazione Totale delle Celle OFF (0 celle, 0%):** Superato definitivamente il falso mito dell'inutilità dei tratti brevi submassimali. Le 20 celle precedentemente scartate sono state riallocate su base scientifica: la colonna del 65% a Z2 (Extensive Tempo Tecnico) e le colonne 50%–60% a Z1 (Rigenerazione, Riscaldamento & Flush Runs).
+- **Copertura Funzionale al 100%:** Tutte le 221 celle possiedono una destinazione didattica e fisiologica chiara. L'allenatore dispone ora dei crono di riferimento sia per le sedute di velocità pura e potenza, sia per il riscaldamento, il defaticamento e i giorni di recupero attivo.
+- **Piramide Neurale Bilanciata:** La velocità massimale pura (Z7) e la potenza lattacida estrema (Z6) rappresentano il $10{,}9\%$ (24 celle), mentre le zone di supporto estensivo e rigenerativo (Z2 + Z1) coprono il $38{,}9\%$ (86 celle), rispecchiando l'esatta polarizzazione High-Low dell'atletica d'élite.
 
 ---
 
 ## 4. Matrice Metodologica: Sforzo, Tempo di Recupero e Sistemi Energetici (SEP vs SEM)
 
-Implementata come tabella operativa alle righe 14–25 del Foglio 4 ("Legenda e Guida Mobile") del workbook Excel:
+Implementata come tabella operativa alle righe 14–24 del Foglio 4 ("Legenda e Guida Mobile") del workbook Excel:
 
 | Zona | Distanze Tipiche | Intensità | Tempo di Recupero | Effetto Fisiologico Bersaglio & Adattamento Molecolare |
 | :---: | :---: | :---: | :--- | :--- |
@@ -116,9 +113,8 @@ Implementata come tabella operativa alle righe 14–25 del Foglio 4 ("Legenda e 
 | **Z5 (SEM)** | $150\text{m} - 300\text{ m}$ | $90 - 95\%$ | **INCOMPLETO** ($4 - 8\text{ min}$) | **CAPACITÀ LATTACIDA & BUFFERING** (Speed Endurance Maintenance - Serie ripetute in acidosi) |
 | **Z4** | $300\text{m} - 600\text{ m}$ | $85 - 98\%$ | **Ampio** ($12 - 25\text{ min}$) | **Special Endurance 2 / Misto Lattacido-Aerobico Severo** (Tenuta 400m/800m) |
 | **Z3** | $50\text{m} - 250\text{ m}$ | $78 - 88\%$ | **Breve** ($1.5 - 3\text{ min}$) | **Intensive Tempo** (Glicolisi controllata $4 - 8\text{ mM}$, Fast SSC, decontrazione neurale) |
-| **Z2** | $50\text{m} - 600\text{ m}$ | $65 - 75\%$ | **Molto breve** ($45\text{s} - 2\text{ min}$) | **Extensive Tempo & Capillarizzazione** (Ossidativo sub-$LT_2$, recupero attivo) |
-| **Z1** | $150\text{m} - 600\text{ m}$ | $50 - 60\%$ | **Minimo / Continuo** | **Rigenerazione Aerobica Prolungata** (Sub-$LT_1$, drenaggio metabolico) |
-| **OFF** | $50\text{m} - 120\text{ m}$ | $\le 65\%$ | **Non applicabile** | **Disattivata** (Perdita reattività / alterazione della stiffness elastico-riflessa) |
+| **Z2** | $50\text{m} - 600\text{ m}$ | $65 - 75\%$ | **Molto breve** ($45\text{s} - 2\text{ min}$) | **Extensive Tempo Tecnico & Capillarizzazione** (Ossidativo sub-$LT_2$, recupero attivo) |
+| **Z1** | $50\text{m} - 600\text{ m}$ | $50 - 60\%$ | **Minimo / Continuo** | **Rigenerazione Aerobica, Strides Riscaldamento & Flush Runs su erba** (Sub-$LT_1$) |
 
 ---
 
@@ -127,7 +123,7 @@ Implementata come tabella operativa alle righe 14–25 del Foglio 4 ("Legenda e 
 Tutti i testi esplicativi collocati a fondo pagina nel quarto foglio del file Excel sono stati integralmente riscritti per recepire:
 1. La nuova nomenclatura invertita **Z7 (Top) -> Z1 (Base)**;
 2. La sostituzione di ogni vecchio riferimento ("Z1/Z2 per la velocità pura" ora diventa espressamente **"Z7/Z6"**);
-3. La spiegazione scientifica aggiornata sulla differenziazione tra **Z3 (80m @ 83%)** e **OFF ($\le 65\%$)**;
+3. Il riscatto scientifico e la riassegnazione dei tratti brevi submassimali (50m–120m al 50%–65%) a **Z2 (Extensive Tempo Tecnico)** e **Z1 (Rigenerazione, Riscaldamento & Flush Runs)** con eliminazione definitiva della categoria "OFF";
 4. La trattazione scientifica del **Tempo di Recupero come variabile discriminante tra Potenza Lattacida (SEP) e Capacità Lattacida (SEM)** sui 150m–300m.
 
 Di seguito il testo integrale implementato nel foglio:
@@ -154,15 +150,16 @@ Di seguito il testo integrale implementato nel foglio:
 > - **Z5 (Terracotta):** Special Endurance 1 - SE1 ($150 - 300\text{ m} \ @ \ 90 - 98\%$, Potenza Lattacida con rec. completo $\ge 12-20\text{ min}$, Capacità con rec. incompleto $4-8\text{ min}$).  
 > - **Z4 (Ambra Chiaro):** Special Endurance 2 - SE2 ($300 - 600\text{ m} \ @ \ 85 - 98\%$, resistenza alla velocità prolungata, misto severo $40 - 90\text{ s}$).  
 > - **Z3 (Giallo Sabbia):** Intensive Tempo ($50 - 250\text{ m} \ @ \ 78 - 88\%$, $300 - 600\text{ m} \ @ \ 75 - 83\%$, decontrazione neurale, glicolisi controllata $4 - 8\text{ mM}$).  
-> - **Z2 (Verde Salvia):** Extensive Tempo & Capillarizzazione ($50 - 600\text{ m} \ @ \ 65 - 75\%$, recupero attivo, ossidativo sub-$LT_2$, capillarizzazione).  
-> - **Z1 (Azzurro Polvere):** Rigenerazione Aerobica Prolungata ($150 - 600\text{ m} \ @ \ 50 - 60\%$, ossidativo puro sub-$LT_1$, drenaggio metabolico).  
-> - **OFF (Grigio Perla):** Zona Inattiva / Sub-Funzionale ($50 - 120\text{ m} \ @ \ \le 65\%$, disattivata per prevenire alterazione della stiffness).
+> - **Z2 (Verde Salvia):** Extensive Tempo Tecnico & Capillarizzazione ($50 - 600\text{ m} \ @ \ 65 - 75\%$, recupero attivo, ossidativo sub-$LT_2$, postura e capillarizzazione).  
+> - **Z1 (Azzurro Polvere):** Rigenerazione Aerobica, Strides Riscaldamento & Flush Runs ($50 - 600\text{ m} \ @ \ 50 - 60\%$, riscaldamento pre-gara, flush su erba, riatletizzazione).  
 
 ---
 
-### Blocco 4: Perché le Celle <= 65% sui Tratti Brevi Sono Disattivate (Zona OFF) e il Valore di Z3 (80m @ 83%)
-> - Sotto il $65\%$ sui tratti brevi ($50 - 120\text{ m}$), un atleta corre a meno di $4{,}5 - 5{,}0\text{ m/s}$ ($16 - 18\text{ km/h}$). A questa andatura il tempo di contatto raddoppia ($T_c > 0{,}16\text{ s}$), l'appoggio rulla sul tallone e si distrugge la stiffness reattiva senza ottenere alcuno stimolo aerobico (che richiede sforzi continui prolungati o ripetute estese $\ge 200\text{ m}$). Tali celle sono desaturate in grigio (`OFF`).  
-> - Al contrario, le prove submassimali al $78 - 88\%$ sui $50 - 100\text{ m}$ (incluso l'80m all'83%, che per un velocista da 10.8s corrisponde a $27{,}2\text{ km/h}$ e $T_c \approx 0{,}115\text{ s}$) appartengono a pieno titolo alla **ZONA 3 (Intensive Tempo)**: mantengono il Fast SSC, educano alla decontrazione muscolare senza co-contrazioni antagoniste parassite (metodo Carlo Vittori e Dan Pfaff) e stimolano la capacità lattacida controllata ($4 - 8\text{ mM}$).
+### Blocco 4: Il Valore Metodologico dei Tratti Brevi Submassimali (50m–120m @ 50%–65%): Riscaldamento, Flush Runs e Recupero Attivo
+> - La tesi secondo cui correre tratti brevi sotto il $65\%$ "distrugge la stiffness reattiva" è un mito dogmatico smentito dalla fisiologia e dalla biomeccanica applicata:
+> - **1. Spring-Mass Model "Tunable" (Farley & McMahon):** il corpo umano adatta la stiffness in millisecondi via feed-forward. Allunghi controllati non diseducano l'arco riflesso; al contrario, la stiffness cala a causa della fatica cronica del SNC e delle tendinopatie da sovraccarico, che vengono prevenute proprio dal lavoro rigenerativo.
+> - **2. Extensive Tempo di Charlie Francis:** Francis costruiva l'80% del volume settimanale dei suoi campioni olimpici su $1.500 - 3.000\text{ m}$ di Extensive Tempo fatto di serie da 100m su erba in 18–22s (esattamente il 50%–55% del massimale), per stimolare il letto capillare (VEGF) e permettere al SNC di rigenerarsi.
+> - **3. Pratica dei Grandi Tecnici:** Carlo Vittori (*allunghi di riscaldamento a scioltezza elastica*), Dan Pfaff ad ALTIS (*barefoot grass flush runs*), Clyde Hart (*warm-up strides* e diagonali su erba) e Ryan Banta (*return-to-play post hamstring injury*) utilizzano quotidianamente i 50m–120m al 50%–65% come ponte termico preparatorio, decontrazione muscolare e ricircolo del lattato (George Brooks Lactate Shuttle MCT1/MCT4).
 
 ---
 
@@ -178,8 +175,8 @@ Di seguito il testo integrale implementato nel foglio:
 L'audit automatico eseguito tramite lo script `sidequests/sprint-ritmi-excel/tools/verify_all.py` ha certificato:
 1. **Formule Vive (624 celle):** Tutte le celle delle colonne `C..R` su Atleta 1, Atleta 2 e Atleta 3 contengono la formula esatta `=$B{riga}/C$8`. Zero valori statici o sovrascritti.
 2. **Formattazione Numerica (675 celle):** Tutte le celle riportano `0.0` (un decimale), ad eccezione dei 50m all'83% che riportano `0.00` per visualizzare la risoluzione centesimale ($7{,}11\text{ s}$ vs $7{,}1\text{ s}$).
-3. **Mappatura Cromatica WCAG AAA (663 celle):** Tutte le celle sono colorate esattamente in conformità ai codici HEX della palette v2 (`#9E2A2B`, `#6C3483`, `#93401A`, `#F5CBA7`, `#F9E79F`, `#A9DFBF`, `#AED6F1`, `#EEEEEE`).
-4. **Foglio Legenda:** Verificato con gerarchia decrescente Z7 (riga 4) -> Z1 (riga 10) + OFF (riga 11), tabella Matrice dei Recuperi e Note a celle espanse.
+3. **Mappatura Cromatica WCAG AAA (663 celle):** Tutte le celle sono colorate esattamente in conformità ai codici HEX della palette v2 su 7 zone continue (`#9E2A2B`, `#6C3483`, `#93401A`, `#F5CBA7`, `#F9E79F`, `#A9DFBF`, `#AED6F1`).
+4. **Foglio Legenda:** Verificato con gerarchia decrescente Z7 (riga 4) -> Z1 (riga 10), tabella Matrice dei Recuperi a 8 livelli operativi e Note didattiche a celle espanse. Zero celle OFF.
 
 ---
 
@@ -188,5 +185,5 @@ L'audit automatico eseguito tramite lo script `sidequests/sprint-ritmi-excel/too
 La presente revisione didattica e funzionale risolve definitivamente ogni incoerenza tra teoria scientifica e pratica di campo:
 1. Soddisfa la preferenza didattica dell'utente di porre **Z7 come massima intensità** e **Z1 come minima intensità**, standardizzando il linguaggio tra atleti e tecnici.
 2. Riscatta la dignità dell'**80m all'83%** e delle prove submassimali brevi ($50 - 100\text{ m}$ al $78 - 88\%$), collocandole nel cuore dell'**Intensive Tempo (Z3)** quale strumento insostituibile di ritmizzazione, decontrazione muscolare e prevenzione degli infortuni agli ischiocrurali.
-3. Mantiene la protezione biologica della **Zona OFF**, confinandola con rigore a ciò che è realmente privo di valore allenante ($\le 65\%$ sui tratti brevi).
+3. **Elimina definitivamente la Zona OFF:** restituisce piena dignità fisiologica e pratica ai tratti 50m–120m al 50%–65%, inquadrandoli come **Z2 (Extensive Tempo Tecnico)** e **Z1 (Rigenerazione, Riscaldamento & Flush Runs)** nel solco dell'esperienza di Carlo Vittori, Dan Pfaff e Charlie Francis.
 4. Consegna uno strumento Excel nativo, reattivo, ergonomico e leggibile in qualsiasi condizione atmosferica a bordo pista.

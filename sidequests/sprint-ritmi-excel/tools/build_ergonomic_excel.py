@@ -306,9 +306,8 @@ def build_ergonomic_workbook():
         ("Z5", "Z5", "7.03:1 (AAA)", "150m-300m @ 90-98%, 100m-120m @ 88-93% (SE1)"),
         ("Z4", "Z4", "11.10:1 (AAA)", "300m-600m @ 85-98% (SE2)"),
         ("Z3", "Z3", "13.46:1 (AAA)", "50m-250m @ 78-88%, 300m-600m @ 75-83%"),
-        ("Z2", "Z2", "11.11:1 (AAA)", "50m-600m @ 65-75% (50m-120m @ 70-75%)"),
-        ("Z1", "Z1", "10.87:1 (AAA)", "150m-600m @ 50-60%"),
-        ("OFF", "OFF", "5.34:1 (AA)", "50m-120m @ <= 65% (Disattivata)"),
+        ("Z2", "Z2", "11.11:1 (AAA)", "50m-600m @ 65-75% (Extensive Tempo Tecnico)"),
+        ("Z1", "Z1", "10.87:1 (AAA)", "50m-600m @ 50-60% (Rigenerazione, Riscaldamento & Flush Runs)"),
     ]
     
     for idx, (zid, short_code, contrast_val, dist_desc) in enumerate(zone_order, start=4):
@@ -386,9 +385,8 @@ def build_ergonomic_workbook():
         ("Z5", "Z5 (SEM)", "150m - 300m", "90 - 95%", "INCOMPLETO (4 - 8 min)", "CAPACITÀ LATTACIDA & BUFFERING (Speed Endurance Maintenance - Serie ripetute in acidosi)"),
         ("Z4", "Z4", "300m - 600m", "85 - 98%", "Ampio (12 - 25 min)", "Special Endurance 2 / Misto Lattacido-Aerobico Severo (Tenuta 400m/800m)"),
         ("Z3", "Z3", "50m - 250m", "78 - 88%", "Breve (1.5 - 3 min)", "Intensive Tempo (Glicolisi controllata 4-8 mM, Fast SSC, decontrazione neurale)"),
-        ("Z2", "Z2", "50m - 600m", "65 - 75%", "Molto breve (45s - 2 min)", "Extensive Tempo & Capillarizzazione (Ossidativo sub-LT2, recupero attivo)"),
-        ("Z1", "Z1", "150m - 600m", "50 - 60%", "Minimo / Continuo", "Rigenerazione Aerobica Prolungata (Sub-LT1, drenaggio metabolico)"),
-        ("OFF", "OFF", "50m - 120m", "<= 65%", "Non applicabile", "Disattivata (Perdita reattività / alterazione della stiffness elastico-riflessa)"),
+        ("Z2", "Z2", "50m - 600m", "65 - 75%", "Molto breve (45s - 2 min)", "Extensive Tempo Tecnico & Capillarizzazione (Ossidativo sub-LT2, recupero attivo)"),
+        ("Z1", "Z1", "50m - 600m", "50 - 60%", "Minimo / Continuo", "Rigenerazione Aerobica, Strides Riscaldamento & Flush Runs su erba (Sub-LT1)"),
     ]
 
     for r_offset, (zid, label, d_str, int_str, rec_str, eff_str) in enumerate(recovery_matrix_data):
@@ -461,17 +459,18 @@ def build_ergonomic_workbook():
          "- Z5 (Terracotta): Special Endurance 1 - SE1 (150-300m @ 90-98%, Potenza con rec. completo >=12-20', Capacità con rec. incompleto 4-8').\n"
          "- Z4 (Ambra Chiaro): Special Endurance 2 - SE2 (300-600m @ 85-98%, resistenza alla velocità prolungata, misto severo 40-90s).\n"
          "- Z3 (Giallo Sabbia): Intensive Tempo (50-250m @ 78-88%, 300-600m @ 75-83%, decontrazione neurale, glicolisi controllata 4-8 mM).\n"
-         "- Z2 (Verde Salvia): Extensive Tempo & Capillarizzazione (50-600m @ 65-75%, recupero attivo, ossidativo sub-LT2, capillarizzazione).\n"
-         "- Z1 (Azzurro Polvere): Rigenerazione Aerobica Prolungata (150-600m @ 50-60%, ossidativo puro sub-LT1, drenaggio metabolico).\n"
-         "- OFF (Grigio Perla): Zona Inattiva / Sub-Funzionale (50-120m @ <= 65%, disattivata per prevenire alterazione della stiffness)."),
+         "- Z2 (Verde Salvia): Extensive Tempo Tecnico & Capillarizzazione (50-600m @ 65-75%, recupero attivo, ossidativo sub-LT2, postura e capillarizzazione).\n"
+         "- Z1 (Azzurro Polvere): Rigenerazione Aerobica, Strides Riscaldamento & Flush Runs (50-600m @ 50-60%, riscaldamento pre-gara, flush su erba, riatletizzazione)."),
 
-        ("PERCHÉ LE CELLE <= 65% SUI TRATTI BREVI SONO DISATTIVATE (ZONA OFF) E IL VALORE DI Z3 (80m @ 83%)",
-         "- Sotto il 65% sui tratti brevi (50m-120m), un atleta corre a meno di 4.5-5.0 m/s (16-18 km/h). A questa andatura il tempo di contatto "
-         "raddoppia (Tc > 0.16s), l'appoggio rulla sul tallone e si distrugge la stiffness reattiva senza ottenere alcuno stimolo aerobico "
-         "(che richiede sforzi continui prolungati o ripetute estese >= 200m). Tali celle sono desaturate in grigio (OFF).\n"
-         "- Al contrario, le prove submassimali al 78-88% sui 50-100m (incluso l'80m all'83%, che per un velocista da 10.8s corrisponde a 27.2 km/h "
-         "e Tc ~ 0.115s) appartengono a pieno titolo alla ZONA 3 (Intensive Tempo): mantengono il Fast SSC, educano alla decontrazione muscolare "
-         "senza co-contrazioni antagoniste parassite (metodo Carlo Vittori e Dan Pfaff) e stimolano la capacità lattacida controllata (4-8 mM)."),
+        ("IL VALORE METODOLOGICO DEI TRATTI BREVI SUBMASSIMALI (50m-120m @ 50%-65%): RISCALDAMENTO, FLUSH RUNS E RECUPERO ATTIVO",
+         "- La tesi secondo cui correre tratti brevi sotto il 65% 'distrugge la stiffness reattiva' è un mito dogmatico smentito dalla fisiologia e dalla biomeccanica:\n"
+         "- 1. Spring-Mass Model 'Tunable': Il corpo umano adatta la stiffness in millisecondi via feed-forward (Farley & McMahon). Allunghi controllati "
+         "non de-calibrano l'arco riflesso; al contrario, la stiffness cala a causa della fatica cronica del SNC e dell'infiammazione tendinea, che vengono prevenute proprio dal lavoro rigenerativo.\n"
+         "- 2. Extensive Tempo di Charlie Francis: Francis costruiva l'80% del volume settimanale dei suoi velocisti olimpici su 1.500-3.000m di Extensive Tempo "
+         "fatto di serie da 100m su erba in 18-22s (esattamente il 50%-55% del massimale), per stimolare il letto capillare (VEGF) e favorire il recupero del SNC.\n"
+         "- 3. Pratica dei Grandi Tecnici: Carlo Vittori ('allunghi di riscaldamento a scioltezza elastica'), Dan Pfaff ad ALTIS ('barefoot grass flush runs'), "
+         "Clyde Hart ('warm-up strides') e Ryan Banta ('return-to-play post hamstring injury') utilizzano quotidianamente i 50m-120m al 50%-65% come "
+         "ponte termico preparatorio, decontrazione muscolare e ricircolo del lattato (George Brooks Lactate Shuttle MCT1/MCT4)."),
           
         ("LINEE GUIDA SCIENTIFICHE D'USO SUL CAMPO",
          "- Regola di Stop del 3% (SNC Fatigue Cutoff): nelle sedute di velocità pura e potenza lattacida (Z7/Z6/Z5 SEP), interrompere la serie "
