@@ -93,7 +93,7 @@
   - Selezione atleta a 2 click con propagazione immediata dello stato a tutte le feature.
   - `py test_check.py` e `npm run typecheck` con 0 errori.
 
-### [ ] TASK-006: Hardware & BLE Telemetry Context Provider
+### [x] TASK-006: Hardware & BLE Telemetry Context Provider
 - **Descrizione:** Implementazione del React Context per il monitoraggio dello stato di connessione con la sensoristica di campo (encoder lineari Vitruve, cardiofrequenzimetri Polar H10, wearable T7 proprietari) con simulatore stream di telemetria per testing locale.
 - **File Target:**
   - `src/context/BleContext.tsx` (Nuovo: stato connessione `connectedDevices`, stream `liveTelemetry`, metodi `connectDevice`, `disconnectDevice`)
@@ -581,4 +581,5 @@
 | 2026-11-22 | **TASK-002** | Metrological Validator & SI Guard | Superato (100%) | `d24a468` | Validatori SI, sanitizzazione hot-path, formatter ergonomico anti-jittering e test suite |
 | 2026-11-22 | **TASK-003** | Offline Storage Engine & IndexedDB Wrapper | Superato (100%) | `e0a7b8e` | Storage engine 4 store, in-memory fallback, sync queue con idempotenza, zombie recovery e test |
 | 2026-11-22 | **TASK-004** | Tier & RBAC Context Provider | Superato (100%) | `5f4d969` | React Context e Hook useTier per Tier 1/2/3, RBAC, GDPR Art. 9, Art. 348 c.p., silo resolution e test suite |
-| 2026-11-22 | **TASK-005** | Global Athlete & Squad Context Provider | Superato (100%) | `0fedcdd` | React Context e Hook useAthleteContext per Selettore Atleta/Squadra a 2-click, Tier 1 single mode e test suite |
+| 2026-11-22 | **TASK-005** | Global Athlete & Squad Context Provider | Superato (100%) | `b5e4592` | React Context e Hook useAthleteContext per Selettore Atleta/Squadra a 2-click, Tier 1 single mode e test suite |
+| 2026-11-22 | **TASK-006** | Hardware & BLE Telemetry Context Provider | Superato (100%) | `5715c15` | React Context e Hook useBle per sensoristica BLE, Web Bluetooth API, simulatore 10 Hz e test suite |

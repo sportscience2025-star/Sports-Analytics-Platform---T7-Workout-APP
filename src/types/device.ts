@@ -78,3 +78,47 @@ export interface LinearTransducerRepetition {
   romMeters: number;
   durationMs: Milliseconds;
 }
+
+export const MIN_HEART_RATE_BPM = 30;
+export const MAX_HEART_RATE_BPM = 240;
+
+export interface LiveTelemetryState {
+  vbtFrame: VbtTelemetryFrame | null;
+  heartRateFrame: HeartRateTelemetryFrame | null;
+  latestRepetition: LinearTransducerRepetition | null;
+  repetitionHistory: readonly LinearTransducerRepetition[];
+  lastUpdatedMs: Milliseconds;
+}
+
+// ============================================================================
+// CONTRATTI WEB BLUETOOTH API NATIVI (ZERO ANY, STRICT TYPESCRIPT)
+// ============================================================================
+
+export interface BleGattCharacteristic {
+  readonly uuid: string;
+  readonly value?: DataView;
+  startNotifications(): Promise<BleGattCharacteristic>;
+  stopNotifications(): Promise<BleGattCharacteristic>;
+  addEventListener(type: string, listener: (event: Event) => void): void;
+  removeEventListener(type: string, listener: (event: Event) => void): void;
+}
+
+export interface BleGattServer {
+  readonly connected: boolean;
+  connect(): Promise<BleGattServer>;
+  disconnect(): void;
+  getPrimaryService(serviceUuid: string | number): Promise<BleGattService>;
+}
+
+export interface BleGattService {
+  readonly uuid: string;
+  getCharacteristic(characteristicUuid: string | number): Promise<BleGattCharacteristic>;
+}
+
+export interface BleDeviceNative {
+  readonly id: string;
+  readonly name?: string;
+  readonly gatt?: BleGattServer;
+  addEventListener(type: string, listener: (event: Event) => void): void;
+  removeEventListener(type: string, listener: (event: Event) => void): void;
+}
