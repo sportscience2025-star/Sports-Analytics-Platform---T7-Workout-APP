@@ -577,4 +577,4 @@
 | Data | Task ID | Descrizione Operativa | Esito Test | Commit Hash | Note di Rilascio |
 | :---: | :---: | :--- | :---: | :---: | :--- |
 | 2026-11-22 | **FASE 1** | Redazione Ufficiale Master Implementation Roadmap | Superato (100%) | `c9725f0` | Definizione sequenza atomica di 36 task architetturali |
-| 2026-11-22 | **TASK-001** | Core Domain Types & SI Units Expansion | Superato (100%) | Pending Commit | Implementazione types strict: tier, physics (SI), athlete, device, readiness, nutrition, index |
+| 2026-11-22 | **TASK-001** | Core Domain Types & SI Units Expansion | Superato (100%) | `f14924d` | Implementazione types strict: tier, physics (SI), athlete, device, readiness, nutrition, index |
