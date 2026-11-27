@@ -12,6 +12,9 @@ export type UserRole =
   | 'sc_coach'
   | 'physiotherapist'
   | 'team_doctor'
+  | 'sports_doctor'
+  | 'clinical_nutritionist'
+  | 'dietitian'
   | 'match_analyst'
   | 'researcher'
   | 'admin';
@@ -26,13 +29,16 @@ export type SensitivityClass =
   | 'CLINICAL_GDPR_ART9';
 
 export type AppModuleId =
-  | 'cockpit'
   | 'catalog'
   | 'programming'
   | 'analysis'
-  | 'community'
+  | 'sources'
+  | 'rag'
   | 'favorites'
   | 'nutrition'
+  | 'onboarding'
+  | 'cockpit'
+  | 'community'
   | 'companion_movely'
   | 'companion_together';
 
@@ -62,8 +68,62 @@ export const MAX_ATHLETES_TIER1 = 1;
 export const MAX_ATHLETES_TIER2 = 50;
 export const MAX_ATHLETES_TIER3 = 10000;
 
+export const CLINICAL_STAFF_ROLES: readonly UserRole[] = Object.freeze([
+  'team_doctor',
+  'sports_doctor',
+  'physiotherapist',
+  'clinical_nutritionist',
+  'dietitian'
+]);
+
+export const NUTRITION_PRESCRIPTION_ROLES: readonly UserRole[] = Object.freeze([
+  'team_doctor',
+  'sports_doctor',
+  'clinical_nutritionist',
+  'dietitian'
+]);
+
+const TIER1_ALLOWED_MODULES: readonly AppModuleId[] = Object.freeze([
+  'cockpit',
+  'onboarding',
+  'catalog',
+  'programming',
+  'analysis',
+  'sources',
+  'favorites',
+  'nutrition'
+]);
+
+const TIER2_ALLOWED_MODULES: readonly AppModuleId[] = Object.freeze([
+  'cockpit',
+  'onboarding',
+  'catalog',
+  'programming',
+  'analysis',
+  'sources',
+  'community',
+  'favorites',
+  'nutrition',
+  'companion_together'
+]);
+
+const TIER3_ALLOWED_MODULES: readonly AppModuleId[] = Object.freeze([
+  'cockpit',
+  'onboarding',
+  'catalog',
+  'programming',
+  'analysis',
+  'sources',
+  'rag',
+  'community',
+  'favorites',
+  'nutrition',
+  'companion_movely',
+  'companion_together'
+]);
+
 export const TIER_PERMISSIONS_MATRIX: Readonly<Record<TierLevel, TierFeaturePermissions>> = Object.freeze({
-  tier1: {
+  tier1: Object.freeze({
     tier: 'tier1',
     maxAthletes: MAX_ATHLETES_TIER1,
     canExportRawExcel: false,
@@ -71,16 +131,9 @@ export const TIER_PERMISSIONS_MATRIX: Readonly<Record<TierLevel, TierFeaturePerm
     canAccessMultiStaffBunker: false,
     canAccessResearchWarehouse: false,
     hasCustomBranding: false,
-    allowedModules: [
-      'cockpit',
-      'catalog',
-      'programming',
-      'analysis',
-      'favorites',
-      'nutrition',
-    ],
-  },
-  tier2: {
+    allowedModules: TIER1_ALLOWED_MODULES
+  }),
+  tier2: Object.freeze({
     tier: 'tier2',
     maxAthletes: MAX_ATHLETES_TIER2,
     canExportRawExcel: true,
@@ -88,37 +141,19 @@ export const TIER_PERMISSIONS_MATRIX: Readonly<Record<TierLevel, TierFeaturePerm
     canAccessMultiStaffBunker: false,
     canAccessResearchWarehouse: false,
     hasCustomBranding: false,
-    allowedModules: [
-      'cockpit',
-      'catalog',
-      'programming',
-      'analysis',
-      'community',
-      'favorites',
-      'nutrition',
-      'companion_together',
-    ],
-  },
-  tier3: {
+    allowedModules: TIER2_ALLOWED_MODULES
+  }),
+  tier3: Object.freeze({
     tier: 'tier3',
     maxAthletes: MAX_ATHLETES_TIER3,
     canExportRawExcel: true,
     canAccessAdvancedBiomechanics: true,
     canAccessMultiStaffBunker: true,
-    canAccessResearchWarehouse: true,
+    // Silo 3 Research Warehouse e riservato ai soli utenti con ruolo 'researcher' ed opt-in (ADR-02)
+    canAccessResearchWarehouse: false,
     hasCustomBranding: true,
-    allowedModules: [
-      'cockpit',
-      'catalog',
-      'programming',
-      'analysis',
-      'community',
-      'favorites',
-      'nutrition',
-      'companion_movely',
-      'companion_together',
-    ],
-  },
+    allowedModules: TIER3_ALLOWED_MODULES
+  })
 });
 
 /**
@@ -127,16 +162,19 @@ export const TIER_PERMISSIONS_MATRIX: Readonly<Record<TierLevel, TierFeaturePerm
  * @returns true se il ruolo ha accesso ai dati clinici sensibili
  */
 export function isClinicalStaff(role: UserRole): boolean {
-  return role === 'team_doctor' || role === 'physiotherapist';
+  return CLINICAL_STAFF_ROLES.includes(role);
 }
 
 /**
  * Verifica se un utente e abilitato all'elaborazione di piani nutrizionali personalizzati (Art. 348 c.p.).
+ * Richiede sia una licenza clinica attiva sia l'appartenenza a una professione sanitaria/nutrizionale abilitata.
  * @param role Ruolo RBAC dell'utente
- * @param hasClinicalLicense Flag di iscrizione all'albo dei biologi nutrizionisti o medici
- * @returns true se l'utente possiede titolo legale per prescrivere diete grammate
+ * @param hasClinicalLicense Flag di iscrizione all'albo dei biologi nutrizionisti, dietisti o medici
+ * @returns true se l'utente possiede titolo legale e ruolo clinico per prescrivere diete grammate
  */
 export function canPrescribeNutrition(role: UserRole, hasClinicalLicense: boolean = false): boolean {
-  if (role === 'team_doctor') return true;
-  return hasClinicalLicense;
+  if (!hasClinicalLicense) {
+    return false;
+  }
+  return NUTRITION_PRESCRIPTION_ROLES.includes(role);
 }

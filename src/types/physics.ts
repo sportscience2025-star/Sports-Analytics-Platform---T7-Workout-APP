@@ -4,6 +4,10 @@
  * Rispetta la Regola R1 (Divieto di any) e Regola R2 (Interfacce condivise).
  */
 
+/**
+ * @deprecated Legacy unbranded VBT point. Use {@link SiKinematicsPoint} with branded SI units
+ * (`Kilograms`, `MetersPerSecond`, `Newtons`, `Watts`) for new code.
+ */
 export interface LoadVelocityPoint {
   load: number;
   velocity: number;
@@ -169,6 +173,11 @@ export interface VelocityStepTableRow {
   pct: string;
 }
 
+/**
+ * @deprecated Legacy unbranded VBT analysis payload. Uses unbranded numbers and legacy `f0_kg`
+ * naming (kg instead of SI Newtons). Migrate callers to `VBTAnalysisResult`, `SiKinematicsPoint`,
+ * and branded SI types (`Kilograms`, `MetersPerSecond`, `Newtons`, `Watts`).
+ */
 export interface VbtAnalysisData {
   athleteName: string;
   testType: string;
@@ -187,6 +196,7 @@ export interface VbtAnalysisData {
       margin: number;
     };
     f0: number;
+    /** @deprecated Legacy force-at-zero-velocity in kg; prefer `f0_N` in Newtons (SI). */
     f0_kg: number;
     v0: number;
     pmax: number;
@@ -230,6 +240,7 @@ export const STANDARD_GRAVITY_MPS2 = 9.80665;
 export const MIN_VALID_LOAD_KG = 0.0;
 export const MAX_VALID_LOAD_KG = 1000.0;
 export const MIN_VALID_VELOCITY_MPS = 0.0;
+export const MIN_ECCENTRIC_VELOCITY_MPS = -5.0;
 export const MAX_VALID_VELOCITY_MPS = 12.50;
 
 /**
@@ -257,25 +268,29 @@ export function asWatts(value: number): Watts {
 }
 
 /**
- * Smart constructor per la Velocita in m/s con verifica limiti fisici.
- * @param value Valore numerico della velocita
+ * Smart constructor per la Velocita in m/s con verifica limiti fisici (supporta fase eccentrica negativa fino a MIN_ECCENTRIC_VELOCITY_MPS).
+ * @param value Valore numerico della velocita in m/s compreso tra MIN_ECCENTRIC_VELOCITY_MPS (-5.0) e MAX_VALID_VELOCITY_MPS (12.50)
  * @returns Valore tipizzato MetersPerSecond
  */
 export function asMetersPerSecond(value: number): MetersPerSecond {
-  if (!Number.isFinite(value)) {
-    throw new TypeError(`Valore non valido per Velocita (m/s): ${value}`);
+  if (!Number.isFinite(value) || value < MIN_ECCENTRIC_VELOCITY_MPS || value > MAX_VALID_VELOCITY_MPS) {
+    throw new TypeError(
+      `Valore non valido per Velocita (m/s): ${value} (intervallo consentito [${MIN_ECCENTRIC_VELOCITY_MPS}, ${MAX_VALID_VELOCITY_MPS}])`
+    );
   }
   return value as MetersPerSecond;
 }
 
 /**
- * Smart constructor per il Carico in kg con verifica limiti fisici.
- * @param value Valore numerico del carico
+ * Smart constructor per il Carico in kg con verifica limiti fisici [MIN_VALID_LOAD_KG, MAX_VALID_LOAD_KG].
+ * @param value Valore numerico del carico in kg compreso tra 0.0 e 1000.0
  * @returns Valore tipizzato Kilograms
  */
 export function asKilograms(value: number): Kilograms {
-  if (!Number.isFinite(value) || value < MIN_VALID_LOAD_KG) {
-    throw new TypeError(`Valore non valido per Carico (kg): ${value}`);
+  if (!Number.isFinite(value) || value < MIN_VALID_LOAD_KG || value > MAX_VALID_LOAD_KG) {
+    throw new TypeError(
+      `Valore non valido per Carico (kg): ${value} (intervallo consentito [${MIN_VALID_LOAD_KG}, ${MAX_VALID_LOAD_KG}])`
+    );
   }
   return value as Kilograms;
 }

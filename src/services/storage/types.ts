@@ -9,6 +9,8 @@ import {
   STORE_STUDY_NOTES,
   STORE_FAVORITES_CACHE,
   STORE_OFFLINE_QUEUE,
+  SYNC_STATE_PENDING,
+  SYNC_STATE_SYNCED,
 } from './constants';
 import { DataSiloPartition } from '../../types/tier';
 
@@ -18,6 +20,9 @@ export type AppStoreName =
   | typeof STORE_STUDY_NOTES
   | typeof STORE_FAVORITES_CACHE
   | typeof STORE_OFFLINE_QUEUE;
+
+/** Flag numerico di stato sincronizzazione compatibile con IDBValidKey */
+export type SyncStateFlag = typeof SYNC_STATE_PENDING | typeof SYNC_STATE_SYNCED;
 
 // ============================================================================
 // STORE 1: WORKOUT SESSIONS (WORKOUT PLAYER PWA)
@@ -49,7 +54,9 @@ export interface WorkoutSessionRecord {
   readonly sets: readonly WorkoutSetRecord[];
   readonly totalVolumeKg: number;
   readonly notes?: string;
-  readonly isSynced: boolean; // Indexed: by_isSynced
+  readonly syncState: SyncStateFlag; // Indexed: by_syncState (0 = pending, 1 = synced)
+  readonly siloPartition: DataSiloPartition; // Isolamento multi-tenant ADR-02
+  readonly clubId?: string; // Obbligatorio per silo2_club_bunker
   readonly updatedAt: string;
 }
 
@@ -59,6 +66,7 @@ export interface WorkoutSessionRecord {
 
 export interface StudyNoteRecord {
   readonly noteId: string; // Primary key
+  readonly userId: string; // Proprietario dell'appunto per isolamento tenant
   readonly sourceId: string; // Indexed: by_sourceId (PMID o DOI studio)
   readonly sourceTitle?: string;
   readonly athleteId?: string; // Opzionale se collegato a caso studio atleta
@@ -66,6 +74,8 @@ export interface StudyNoteRecord {
   readonly content: string;
   readonly tags: readonly string[];
   readonly canvasData?: string; // Vettori SVG o serialized state per mappe concettuali
+  readonly siloPartition: DataSiloPartition; // Isolamento multi-tenant ADR-02
+  readonly clubId?: string; // Obbligatorio per silo2_club_bunker
   readonly createdAt: string;
   readonly updatedAt: string; // Indexed: by_updatedAt
 }
@@ -86,6 +96,8 @@ export interface FavoritesCacheRecord {
   readonly folderId?: string; // Indexed: by_folderId (per cartelle tematiche Tier 2)
   readonly tags: readonly string[];
   readonly orderIndex: number;
+  readonly siloPartition: DataSiloPartition; // Isolamento multi-tenant ADR-02
+  readonly clubId?: string; // Obbligatorio per silo2_club_bunker
   readonly cachedAt: string;
 }
 
@@ -105,6 +117,8 @@ export interface QueuedTransaction {
   readonly headers?: Readonly<Record<string, string>>;
   readonly status: QueueTransactionStatus; // Indexed: by_status
   readonly createdAt: string; // Indexed: by_createdAt (ordinamento FIFO)
+  readonly syncStartedAt?: string; // Timestamp ingresso in stato 'syncing' per recovery zombie
+  readonly updatedAt?: string; // Timestamp ultimo aggiornamento di stato
   readonly retryCount: number;
   readonly maxRetries: number;
   readonly nextRetryAt?: string; // Indexed: by_nextRetryAt (prevenzione starvation)
@@ -112,6 +126,13 @@ export interface QueuedTransaction {
   readonly siloPartition: DataSiloPartition; // Isolamento multi-tenant ADR-02
   readonly clubId?: string;
   readonly userId: string;
+}
+
+/** Filtro opzionale di scoping multi-tenant per il prelievo delle transazioni pendenti */
+export interface SyncQueueScopeFilter {
+  readonly userId?: string;
+  readonly siloPartition?: DataSiloPartition;
+  readonly clubId?: string;
 }
 
 // ============================================================================
@@ -137,7 +158,7 @@ export interface IStorageEngine {
   getByIndex<K extends AppStoreName>(
     storeName: K,
     indexName: string,
-    query: string | number | boolean
+    query: string | number
   ): Promise<StoreRecordMap[K][]>;
   clear<K extends AppStoreName>(storeName: K): Promise<void>;
   count<K extends AppStoreName>(storeName: K): Promise<number>;

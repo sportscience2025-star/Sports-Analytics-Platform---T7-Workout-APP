@@ -18,10 +18,16 @@ export const REHYDRATION_RATIO_MAX = 1.5;
 // Orario limite assunzione caffeina (tutela sonno atleti)
 export const CAFFEINE_CURFEW_HOUR_24H = 16;
 
+/**
+ * Stato di Energy Availability secondo il Consensus Statement IOC su REDs:
+ * - `'optimal'`: >= OPTIMAL_EA_THRESHOLD_KCAL_KG_FFM (45.0 kcal/kg FFM/die)
+ * - `'suboptimal'`: compreso tra LEA_THRESHOLD_KCAL_KG_FFM (30.0) e 45.0 kcal/kg FFM/die
+ * - `'high_risk_reds'`: < LEA_THRESHOLD_KCAL_KG_FFM (30.0 kcal/kg FFM/die, Low Energy Availability severa)
+ */
 export type EnergyAvailabilityStatus =
   | 'optimal'
   | 'suboptimal'
-  | 'low_risk_reds';
+  | 'high_risk_reds';
 
 export type BivaHydrationStatus =
   | 'dehydrated'
@@ -97,6 +103,50 @@ export interface BiaVectorMetrics {
   hydrationStatus: BivaHydrationStatus;
   cellIntegrityStatus: BivaCellIntegrityStatus;
   toleranceEllipse: ToleranceEllipsePercentile;
+}
+
+/**
+ * Alias di contratto per le metriche bioimpedenziometriche BIVA (IMPLEMENTATION_ROADMAP).
+ */
+export type BiaMetrics = BiaVectorMetrics;
+
+/**
+ * Singolo slot/pasto giornaliero all'interno di un piano nutrizionale o guida educativa.
+ */
+export interface MealSlot {
+  id: string;
+  slotLabel: string; // es. 'Colazione', 'Pre-Allenamento', 'Post-Allenamento'
+  scheduledTime24h: string; // Formato HH:mm (es. '08:00')
+  energyKcal?: number;
+  proteinGrams?: number;
+  carbohydratesGrams?: number;
+  fatGrams?: number;
+  fluidTargetLiters?: number;
+  rehydrationRatioApplied?: number; // Compreso tra REHYDRATION_RATIO_MIN (1.2) e REHYDRATION_RATIO_MAX (1.5)
+  containsCaffeine: boolean;
+  caffeineCurfewHour24h: number; // Default CAFFEINE_CURFEW_HOUR_24H (16)
+  notes?: string;
+}
+
+/**
+ * Piano nutrizionale o guida educativa alimentare conforme ad Art. 348 c.p.
+ * I piani di tipo `'grammed_clinical'` richiedono un ruolo sanitario abilitato (`LegalNutritionRole` clinico).
+ */
+export interface MealPlan {
+  id: string;
+  athleteId: string;
+  title: string;
+  date: string;
+  dietaryPattern: DietaryPattern;
+  planType: MealPlanType;
+  prescribedByRole: LegalNutritionRole;
+  prescribedByUserId: string;
+  dailyEnergyTargetKcal?: number;
+  targetBodyMassKg?: Kilograms;
+  rehydrationRatioRange: readonly [typeof REHYDRATION_RATIO_MIN, typeof REHYDRATION_RATIO_MAX];
+  caffeineCurfewHour24h: typeof CAFFEINE_CURFEW_HOUR_24H;
+  slots: readonly MealSlot[];
+  notes?: string;
 }
 
 export interface EnergyAvailabilityRecord {

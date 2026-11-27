@@ -5,19 +5,74 @@
  * Conforme a Regola 01 (zero emoji spontanee, solo SVG) e Regola 02 (costanti in MAIUSCOLO).
  */
 
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { ContextSelectorDropdown } from './ContextSelectorDropdown';
 import { TierBadgeSwitcher } from './TierBadgeSwitcher';
 import { BleStatusPill } from './BleStatusPill';
+import { isKeyboardFocusTarget } from '../../hooks/useDismissiblePopover';
 
 export const HEADER_HEIGHT_PX = 64;
 export const Z_INDEX_HEADER = 50;
+export const HEADER_BLUR_PX = 20;
+export const LOGO_BADGE_SIZE_PX = 32;
+export const LOGO_BADGE_RADIUS_PX = 8;
+export const PROFILE_BUTTON_SIZE_PX = 36;
+export const PROFILE_ICON_SIZE_PX = 18;
+export const PROFILE_TRANSITION_MS = 150;
+export const SAFE_AREA_TOP_CSS = 'env(safe-area-inset-top, 0px)';
+export const HEADER_GLASS_BG = 'rgba(11, 14, 20, 0.85)';
+export const PROFILE_BUTTON_BG = 'rgba(30, 41, 59, 0.6)';
+export const HEADER_FOCUS_OUTLINE = '2px solid #38bdf8';
+export const HEADER_FOCUS_SHADOW = '0 0 0 3px rgba(56, 189, 248, 0.35)';
+export const PROFILE_BUTTON_LABEL = 'Menu profilo e impostazioni utente';
+
+/**
+ * Gestore di ripiego no-op quando il consumer non fornisce `onProfileClick`.
+ */
+const DEFAULT_PROFILE_CLICK = (): void => {};
 
 export interface GlobalHeaderProps {
+  /** Callback opzionale invocata al click sul pulsante profilo utente. */
   onProfileClick?: () => void;
+  /** Stato opzionale di apertura del menu profilo associato per `aria-expanded`. */
+  isProfileMenuOpen?: boolean;
 }
 
-export const GlobalHeader: React.FC<GlobalHeaderProps> = ({ onProfileClick }) => {
+/**
+ * Barra fissa superiore della Global Navigation Shell con supporto safe-area e wrap mobile.
+ * @param props Proprieta della testata (`onProfileClick` e `isProfileMenuOpen` opzionali)
+ * @returns Elemento `<header>` fisso ad alto contrasto con selettore di contesto e stato hardware
+ */
+export const GlobalHeader: React.FC<GlobalHeaderProps> = ({
+  onProfileClick = DEFAULT_PROFILE_CLICK,
+  isProfileMenuOpen
+}) => {
+  const [isProfileFocused, setIsProfileFocused] = useState<boolean>(false);
+
+  /**
+   * Inoltra l'evento di attivazione del pulsante profilo al callback configurato.
+   */
+  const handleProfileButtonClick = useCallback((): void => {
+    onProfileClick();
+  }, [onProfileClick]);
+
+  /**
+   * Attiva l'anello di focus accessibile solo su navigazione da tastiera (`:focus-visible`).
+   * @param event Evento focus React del pulsante profilo
+   */
+  const handleProfileFocus = useCallback((event: React.FocusEvent<HTMLButtonElement>): void => {
+    if (isKeyboardFocusTarget(event.currentTarget)) {
+      setIsProfileFocused(true);
+    }
+  }, []);
+
+  /**
+   * Disattiva l'anello di focus al blur del pulsante profilo.
+   */
+  const handleProfileBlur = useCallback((): void => {
+    setIsProfileFocused(false);
+  }, []);
+
   return (
     <header
       style={{
@@ -25,28 +80,34 @@ export const GlobalHeader: React.FC<GlobalHeaderProps> = ({ onProfileClick }) =>
         top: 0,
         left: 0,
         right: 0,
-        height: `${HEADER_HEIGHT_PX}px`,
-        backgroundColor: 'rgba(11, 14, 20, 0.85)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
+        minHeight: `calc(${HEADER_HEIGHT_PX}px + ${SAFE_AREA_TOP_CSS})`,
+        backgroundColor: HEADER_GLASS_BG,
+        backdropFilter: `blur(${HEADER_BLUR_PX}px)`,
+        WebkitBackdropFilter: `blur(${HEADER_BLUR_PX}px)`,
         borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
         zIndex: Z_INDEX_HEADER,
         display: 'flex',
+        flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '0 1.25rem',
+        gap: '0.5rem 0.75rem',
+        paddingTop: `calc(0.375rem + ${SAFE_AREA_TOP_CSS})`,
+        paddingBottom: '0.375rem',
+        paddingLeft: '1rem',
+        paddingRight: '1rem',
+        maxWidth: '100vw',
         boxSizing: 'border-box'
       }}
     >
       {/* Sezione Sinistra: Brand & Tier Badge */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', minWidth: 0, flexWrap: 'wrap' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           {/* Badge Logo T7 */}
           <div
             style={{
-              width: '32px',
-              height: '32px',
-              borderRadius: '8px',
+              width: `${LOGO_BADGE_SIZE_PX}px`,
+              height: `${LOGO_BADGE_SIZE_PX}px`,
+              borderRadius: `${LOGO_BADGE_RADIUS_PX}px`,
               background: 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)',
               display: 'flex',
               alignItems: 'center',
@@ -92,36 +153,56 @@ export const GlobalHeader: React.FC<GlobalHeaderProps> = ({ onProfileClick }) =>
       </div>
 
       {/* Sezione Centrale: Selettore Permanente Atleta/Squadra a 2 Click */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: 0, maxWidth: '100%' }}>
         <ContextSelectorDropdown />
       </div>
 
       {/* Sezione Destra: Stato Hardware BLE e Azioni Profilo */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginLeft: 'auto' }}>
         <BleStatusPill />
 
         {/* Pulsante Menu Profilo / Impostazioni */}
         <button
           type="button"
-          onClick={onProfileClick}
-          aria-label="Menu profilo e impostazioni utente"
+          onClick={handleProfileButtonClick}
+          onFocus={handleProfileFocus}
+          onBlur={handleProfileBlur}
+          title={PROFILE_BUTTON_LABEL}
+          aria-label={PROFILE_BUTTON_LABEL}
+          aria-expanded={isProfileMenuOpen}
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '36px',
-            height: '36px',
+            width: `${PROFILE_BUTTON_SIZE_PX}px`,
+            height: `${PROFILE_BUTTON_SIZE_PX}px`,
             borderRadius: '999px',
-            backgroundColor: 'rgba(30, 41, 59, 0.6)',
+            backgroundColor: PROFILE_BUTTON_BG,
             border: '1px solid rgba(255, 255, 255, 0.12)',
             color: '#94a3b8',
             cursor: 'pointer',
-            transition: 'all 150ms ease-in-out',
-            outline: 'none'
+            transition: `all ${PROFILE_TRANSITION_MS}ms ease-in-out`,
+            ...(isProfileFocused
+              ? {
+                  outline: HEADER_FOCUS_OUTLINE,
+                  outlineOffset: '2px',
+                  boxShadow: HEADER_FOCUS_SHADOW
+                }
+              : {})
           }}
         >
           {/* Icona Utente SVG */}
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg
+            width={PROFILE_ICON_SIZE_PX}
+            height={PROFILE_ICON_SIZE_PX}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
             <circle cx="12" cy="7" r="4" />
           </svg>

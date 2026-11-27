@@ -4,13 +4,13 @@
  * Conforme a ZONA 4 (Flowchart 15 Readiness Section), ADR-01 (Thin Client) e Regola 02.
  */
 
-import { Milliseconds, Seconds } from './physics';
+import { Milliseconds, Seconds, asMilliseconds, asSeconds } from './physics';
 
 // Costanti Scientifiche Validate PVT-B (Basner & Dinges, 2011)
-export const PVTB_LAPSE_THRESHOLD_MS = 355 as Milliseconds;
-export const PVTB_FALSE_START_THRESHOLD_MS = 100 as Milliseconds;
-export const PVTB_MAX_VALID_RT_MS = 2000 as Milliseconds;
-export const PVTB_STANDARD_TEST_DURATION_SEC = 180 as Seconds; // 3 minuti
+export const PVTB_LAPSE_THRESHOLD_MS: Milliseconds = asMilliseconds(355);
+export const PVTB_FALSE_START_THRESHOLD_MS: Milliseconds = asMilliseconds(100);
+export const PVTB_MAX_VALID_RT_MS: Milliseconds = asMilliseconds(2000);
+export const PVTB_STANDARD_TEST_DURATION_SEC: Seconds = asSeconds(180); // 3 minuti
 
 // Costanti Statistica Robusta (Rousseeuw & Croux)
 export const MAD_NORMAL_CONSISTENCY_CONSTANT = 1.4826;

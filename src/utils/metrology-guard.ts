@@ -27,6 +27,7 @@ import {
   MAX_VALID_LOAD_KG,
   MIN_VALID_VELOCITY_MPS,
   MAX_VALID_VELOCITY_MPS,
+  MIN_ECCENTRIC_VELOCITY_MPS as PHYSICS_MIN_ECCENTRIC_VELOCITY_MPS,
 } from '../types/physics';
 
 // ============================================================================
@@ -37,35 +38,43 @@ import {
 export const EPSILON_DIVISION_GUARD = 1e-7;
 
 /** Limiti fisiologici Carico / Massa (kg) */
-export const MIN_PHYSIOLOGICAL_LOAD_KG = MIN_VALID_LOAD_KG; // 0.0 kg
-export const MAX_PHYSIOLOGICAL_LOAD_KG = MAX_VALID_LOAD_KG; // 1000.0 kg (record mondiale powerlifting + margine sicurezza)
+export const MIN_PHYSIOLOGICAL_LOAD_KG = MIN_VALID_LOAD_KG;
+export const MAX_PHYSIOLOGICAL_LOAD_KG = MAX_VALID_LOAD_KG;
+export const DEFAULT_MIN_LOAD_KG = MIN_PHYSIOLOGICAL_LOAD_KG;
+export const DEFAULT_MAX_LOAD_KG = MAX_PHYSIOLOGICAL_LOAD_KG;
 
 /** Limiti fisiologici Velocita (m/s) */
-export const MIN_PHYSIOLOGICAL_VELOCITY_MPS = MIN_VALID_VELOCITY_MPS; // 0.0 m/s
-export const MAX_BARBELL_VBT_VELOCITY_MPS = 4.0; // Velocita massima propulsiva bilanciere (jump squat scarico)
-export const MAX_PHYSIOLOGICAL_VELOCITY_MPS = MAX_VALID_VELOCITY_MPS; // 12.50 m/s (picco assoluto sprint umano Usain Bolt 12.42 m/s)
-export const MIN_ECCENTRIC_VELOCITY_MPS = -5.0; // Limite inferiore velocita eccentrica negativa VBT
+export const MIN_PHYSIOLOGICAL_VELOCITY_MPS = MIN_VALID_VELOCITY_MPS;
+export const MAX_PHYSIOLOGICAL_VELOCITY_MPS = MAX_VALID_VELOCITY_MPS;
+export const MIN_ECCENTRIC_VELOCITY_MPS = PHYSICS_MIN_ECCENTRIC_VELOCITY_MPS;
 
 /** Limiti fisiologici Forza (N) */
 export const MIN_PHYSIOLOGICAL_FORCE_N = 0.0;
-export const MAX_PHYSIOLOGICAL_FORCE_N = 15000.0; // Picco massimo atleti elite drop jump / IMTP su pedane Vald ForceDecks
-export const MIN_SHEAR_FORCE_N = -5000.0; // Forze di taglio orizzontali / frenata antero-posteriore
+export const MAX_PHYSIOLOGICAL_FORCE_N = 15000.0;
+export const MIN_SHEAR_FORCE_N = -5000.0;
 
 /** Limiti fisiologici Potenza (W) */
 export const MIN_PHYSIOLOGICAL_POWER_W = 0.0;
-export const MAX_PHYSIOLOGICAL_POWER_W = 10000.0; // Picco alattacido cicloergometro / pedana velocisti
+export const MAX_PHYSIOLOGICAL_POWER_W = 10000.0;
 
 /** Limiti fisiologici Angoli articolari (Gradi sessagesimali) */
 export const MIN_PHYSIOLOGICAL_ANGLE_DEG = 0.0;
 export const MAX_PHYSIOLOGICAL_ANGLE_DEG = 360.0;
-export const KNEE_FLEXION_MIN_DEG = 0.0;
-export const KNEE_FLEXION_MAX_DEG = 165.0; // Escursione fisiologica flesso-estensione ginocchio
 
 /** Limiti temporali (ms / s) */
 export const MIN_PHYSIOLOGICAL_TIME_MS = 0.0;
-export const MAX_PHYSIOLOGICAL_TIME_MS = 86400000.0; // 24 ore in millisecondi
+export const MAX_PHYSIOLOGICAL_TIME_MS = 86400000.0;
 export const MIN_PHYSIOLOGICAL_TIME_SEC = 0.0;
-export const MAX_PHYSIOLOGICAL_TIME_SEC = 86400.0; // 24 ore in secondi
+export const MAX_PHYSIOLOGICAL_TIME_SEC = 86400.0;
+
+/** Pattern per rigetto notazioni numeriche non decimali (esadecimale, binario, ottale) */
+const NON_DECIMAL_RADIX_REGEX = /^[+-]?0[xbo]/i;
+
+/** Pattern per stringhe numeriche italiane con separatore migliaia '.' e decimale ',' (es. "1.250,5") */
+const ITALIAN_GROUPING_COMMA_REGEX = /^[+-]?\d{1,3}(?:\.\d{3})+(?:,\d*)?$/;
+
+/** Pattern per stringhe decimali semplici con virgola europea (es. "102,5") */
+const SIMPLE_COMMA_DECIMAL_REGEX = /^[+-]?(?:\d+,\d*|\d*,\d+)$/;
 
 // ============================================================================
 // TIPI E STRUTTURE DEL RISULTATO DI VALIDAZIONE (BOUNDARY-PATH)
@@ -75,7 +84,7 @@ export type MetrologyErrorCode =
   | 'NON_FINITE'
   | 'BELOW_MIN'
   | 'ABOVE_MAX'
-  | 'ZERO_DIVISION_RISK';
+  | 'INVALID_BOUNDS';
 
 export interface ValidationSuccess<T> {
   readonly isValid: true;
@@ -98,85 +107,357 @@ export interface NumericValidationOptions {
   readonly customMax?: number;
 }
 
+interface BoundedMetricConfig<T extends number> {
+  readonly label: string;
+  readonly unit: string;
+  readonly defaultMin: number;
+  readonly defaultMax: number;
+  readonly negativeMin?: number;
+  readonly hardMin?: number;
+  readonly hardMax?: number;
+  readonly defaultFallback: T;
+  readonly brand: (value: number) => T;
+}
+
 // ============================================================================
-// SEZIONE 1: FUNZIONI HOT-PATH (NON-ALLOCANTI, PER STREAMING BLE 60-120 FPS)
+// HELPER INTERNI CONDIVISI (PARSING STRETTO & VALIDATORE GENERICO)
 // ============================================================================
 
 /**
- * Sanitizza un valore generico garantendo un numero finito sicuro IEEE 754.
- * Gestisce conversioni da stringhe con virgola (formato europeo continentale "102,5"),
- * intercetta e normalizza il -0 in +0, rigetta stringhe vuote, null, undefined e booleani verso il fallback.
+ * Converte un valore grezzo in numero finito normalizzando -0 in +0, oppure restituisce null.
+ * Rigetta notazioni non decimali (0x/0b/0o) e gestisce il formato italiano con separatore migliaia e virgola.
  *
- * @param val Valore grezzo in ingresso (numero, stringa, null, undefined)
- * @param fallback Valore numerico di recupero sicuro in caso di valore non valido (default: 0)
- * @returns Valore numerico finito garantito (mai NaN, mai Infinity)
+ * @param val Valore grezzo in ingresso
+ * @returns Numero finito valido oppure null se non convertibile
  */
-export function sanitizeNumeric(val: unknown, fallback = 0): number {
+function parseFiniteNumeric(val: unknown): number | null {
   if (val === null || val === undefined || typeof val === 'boolean') {
-    return fallback;
+    return null;
   }
 
   if (typeof val === 'number') {
     if (!Number.isFinite(val)) {
-      return fallback;
+      return null;
     }
     return val === 0 ? 0 : val;
   }
 
   if (typeof val === 'string') {
     const trimmed = val.trim();
-    if (trimmed.length === 0) {
-      return fallback;
+    if (trimmed.length === 0 || NON_DECIMAL_RADIX_REGEX.test(trimmed)) {
+      return null;
     }
-    const normalizedString = trimmed.replace(',', '.');
+
+    let normalizedString = trimmed;
+    if (trimmed.includes(',')) {
+      if (ITALIAN_GROUPING_COMMA_REGEX.test(trimmed)) {
+        // Rimuove i punti delle migliaia prima di convertire la virgola decimale
+        normalizedString = trimmed.replace(/\./g, '').replace(',', '.');
+      } else if (SIMPLE_COMMA_DECIMAL_REGEX.test(trimmed)) {
+        normalizedString = trimmed.replace(',', '.');
+      } else {
+        return null;
+      }
+    }
+
     const parsed = Number(normalizedString);
     if (!Number.isFinite(parsed)) {
-      return fallback;
+      return null;
     }
     return parsed === 0 ? 0 : parsed;
   }
 
-  return fallback;
+  return null;
+}
+
+/**
+ * Normalizza il valore di fallback assicurando finitezza e rispetto dei limiti fisici del costruttore.
+ *
+ * @param fallback Valore di ripiego fornito dal chiamante
+ * @param config Configurazione della grandezza fisica target
+ * @returns Valore di fallback garantito valido e tipizzato come T
+ */
+function resolveSafeFallback<T extends number>(fallback: T, config: BoundedMetricConfig<T>): T {
+  if (!Number.isFinite(fallback)) {
+    return config.defaultFallback;
+  }
+
+  const normalized = fallback === 0 ? 0 : fallback;
+  if (config.hardMin !== undefined && normalized < config.hardMin) {
+    return config.defaultFallback;
+  }
+  if (config.hardMax !== undefined && normalized > config.hardMax) {
+    return config.defaultFallback;
+  }
+
+  return config.brand(normalized);
+}
+
+/**
+ * Validatore generico condiviso per tutte le grandezze metrologiche SI limitate su intervallo [min, max].
+ * Verifica opzioni, limiti fisici del costruttore, finitezza e coerenza di allowNegative senza silent clamping.
+ *
+ * @param val Valore grezzo in ingresso
+ * @param fallback Valore di ripiego tipizzato
+ * @param options Opzioni opzionali per limiti custom e segno negativo
+ * @param config Configurazione metrologica e costruttore branded della grandezza
+ * @returns ValidationResult tipizzato con esito positivo o errore strutturato
+ */
+function validateBoundedMetric<T extends number>(
+  val: unknown,
+  fallback: T,
+  options: NumericValidationOptions | undefined,
+  config: BoundedMetricConfig<T>
+): ValidationResult<T> {
+  const safeFallback = resolveSafeFallback(fallback, config);
+  const suffix = config.unit.length > 0 ? ` ${config.unit}` : '';
+
+  if (options?.customMin !== undefined && !Number.isFinite(options.customMin)) {
+    return {
+      isValid: false,
+      fallback: safeFallback,
+      errorCode: 'NON_FINITE',
+      rawValue: val,
+      message: `Limite minimo custom non finito per ${config.label}: ${String(options.customMin)}`,
+    };
+  }
+
+  if (options?.customMax !== undefined && !Number.isFinite(options.customMax)) {
+    return {
+      isValid: false,
+      fallback: safeFallback,
+      errorCode: 'NON_FINITE',
+      rawValue: val,
+      message: `Limite massimo custom non finito per ${config.label}: ${String(options.customMax)}`,
+    };
+  }
+
+  const allowNegative = options?.allowNegative ?? false;
+  const baseMin = allowNegative && config.negativeMin !== undefined ? config.negativeMin : config.defaultMin;
+
+  let effectiveMin = options?.customMin ?? baseMin;
+  // Impedisce valori negativi se allowNegative e disabilitato anche in presenza di customMin < 0
+  if (!allowNegative && effectiveMin < 0) {
+    effectiveMin = 0;
+  }
+  // Applica il pavimento fisico del tipo branded per prevenire TypeError dai costruttori
+  if (config.hardMin !== undefined && effectiveMin < config.hardMin) {
+    effectiveMin = config.hardMin;
+  }
+
+  let effectiveMax = options?.customMax ?? config.defaultMax;
+  if (config.hardMax !== undefined && effectiveMax > config.hardMax) {
+    effectiveMax = config.hardMax;
+  }
+
+  if (effectiveMin > effectiveMax) {
+    return {
+      isValid: false,
+      fallback: safeFallback,
+      errorCode: 'INVALID_BOUNDS',
+      rawValue: val,
+      message: `Intervallo non valido per ${config.label}: min (${effectiveMin}${suffix}) > max (${effectiveMax}${suffix})`,
+    };
+  }
+
+  const sanitized = parseFiniteNumeric(val);
+  if (sanitized === null) {
+    return {
+      isValid: false,
+      fallback: safeFallback,
+      errorCode: 'NON_FINITE',
+      rawValue: val,
+      message: `${config.label} non numerico o non finito: ${String(val)}`,
+    };
+  }
+
+  if (sanitized < effectiveMin) {
+    return {
+      isValid: false,
+      fallback: safeFallback,
+      errorCode: 'BELOW_MIN',
+      rawValue: val,
+      message: `${config.label} (${sanitized}${suffix}) inferiore al limite consentito (${effectiveMin}${suffix})`,
+    };
+  }
+
+  if (sanitized > effectiveMax) {
+    return {
+      isValid: false,
+      fallback: safeFallback,
+      errorCode: 'ABOVE_MAX',
+      rawValue: val,
+      message: `${config.label} (${sanitized}${suffix}) superiore al limite fisiologico (${effectiveMax}${suffix})`,
+    };
+  }
+
+  return {
+    isValid: true,
+    value: config.brand(sanitized),
+  };
+}
+
+// ============================================================================
+// CONFIGURAZIONI DOMINIO SI (ALLOCATE UNA SOLA VOLTA A MODULE LOAD)
+// ============================================================================
+
+const LOAD_KG_CONFIG: BoundedMetricConfig<Kilograms> = {
+  label: 'Carico',
+  unit: 'kg',
+  defaultMin: MIN_PHYSIOLOGICAL_LOAD_KG,
+  defaultMax: MAX_PHYSIOLOGICAL_LOAD_KG,
+  hardMin: MIN_VALID_LOAD_KG,
+  hardMax: MAX_VALID_LOAD_KG,
+  defaultFallback: asKilograms(0),
+  brand: asKilograms,
+};
+
+const VELOCITY_MPS_CONFIG: BoundedMetricConfig<MetersPerSecond> = {
+  label: 'Velocita',
+  unit: 'm/s',
+  defaultMin: MIN_PHYSIOLOGICAL_VELOCITY_MPS,
+  defaultMax: MAX_PHYSIOLOGICAL_VELOCITY_MPS,
+  negativeMin: MIN_ECCENTRIC_VELOCITY_MPS,
+  hardMin: MIN_ECCENTRIC_VELOCITY_MPS,
+  hardMax: MAX_VALID_VELOCITY_MPS,
+  defaultFallback: asMetersPerSecond(0),
+  brand: asMetersPerSecond,
+};
+
+const FORCE_N_CONFIG: BoundedMetricConfig<Newtons> = {
+  label: 'Forza',
+  unit: 'N',
+  defaultMin: MIN_PHYSIOLOGICAL_FORCE_N,
+  defaultMax: MAX_PHYSIOLOGICAL_FORCE_N,
+  negativeMin: MIN_SHEAR_FORCE_N,
+  defaultFallback: asNewtons(0),
+  brand: asNewtons,
+};
+
+const POWER_W_CONFIG: BoundedMetricConfig<Watts> = {
+  label: 'Potenza',
+  unit: 'W',
+  defaultMin: MIN_PHYSIOLOGICAL_POWER_W,
+  defaultMax: MAX_PHYSIOLOGICAL_POWER_W,
+  defaultFallback: asWatts(0),
+  brand: asWatts,
+};
+
+const ANGLE_DEG_CONFIG: BoundedMetricConfig<Degrees> = {
+  label: 'Angolo',
+  unit: '°',
+  defaultMin: MIN_PHYSIOLOGICAL_ANGLE_DEG,
+  defaultMax: MAX_PHYSIOLOGICAL_ANGLE_DEG,
+  defaultFallback: asDegrees(0),
+  brand: asDegrees,
+};
+
+const TIME_MS_CONFIG: BoundedMetricConfig<Milliseconds> = {
+  label: 'Tempo',
+  unit: 'ms',
+  defaultMin: MIN_PHYSIOLOGICAL_TIME_MS,
+  defaultMax: MAX_PHYSIOLOGICAL_TIME_MS,
+  hardMin: 0,
+  defaultFallback: asMilliseconds(0),
+  brand: asMilliseconds,
+};
+
+const TIME_SEC_CONFIG: BoundedMetricConfig<Seconds> = {
+  label: 'Tempo',
+  unit: 's',
+  defaultMin: MIN_PHYSIOLOGICAL_TIME_SEC,
+  defaultMax: MAX_PHYSIOLOGICAL_TIME_SEC,
+  hardMin: 0,
+  defaultFallback: asSeconds(0),
+  brand: asSeconds,
+};
+
+// ============================================================================
+// SEZIONE 1: FUNZIONI HOT-PATH (NON-ALLOCANTI, PER STREAMING BLE 60-120 FPS)
+// ============================================================================
+
+/**
+ * Sanitizza un valore generico garantendo un numero finito sicuro IEEE 754.
+ * Gestisce conversioni da stringhe con virgola (es. "102,5" e "1.250,5"), normalizza -0 in +0,
+ * rigetta stringhe 0x/0b/0o, vuote, null, undefined e booleani verso il fallback sicuro.
+ *
+ * @param val Valore grezzo in ingresso (numero, stringa, null, undefined)
+ * @param fallback Valore numerico di recupero sicuro in caso di valore non valido (default: 0)
+ * @returns Valore numerico finito garantito (mai NaN, mai Infinity, mai -0)
+ */
+export function sanitizeNumeric(val: unknown, fallback = 0): number {
+  const safeFallback = typeof fallback === 'number' && Number.isFinite(fallback)
+    ? (fallback === 0 ? 0 : fallback)
+    : 0;
+  const parsed = parseFiniteNumeric(val);
+  return parsed === null ? safeFallback : parsed;
 }
 
 /**
  * Esegue una divisione sicura tra due numeri applicando la guardia epsilon contro la divisione per zero.
- * Previene tassativamente la produzione di Infinity, -Infinity o NaN.
+ * Previene tassativamente Infinity, -Infinity, NaN e normalizza -0 in +0.
  *
  * @param numerator Numeratore
  * @param denominator Denominatore
  * @param fallback Valore di recupero in caso di denominatore non valido o quasi-zero (default: 0)
- * @returns Risultato della divisione o fallback
+ * @returns Risultato della divisione normalizzato oppure fallback finito
  */
 export function safeDivide(numerator: number, denominator: number, fallback = 0): number {
+  const safeFallback = Number.isFinite(fallback) ? (fallback === 0 ? 0 : fallback) : 0;
   if (!Number.isFinite(numerator) || !Number.isFinite(denominator)) {
-    return fallback;
+    return safeFallback;
   }
   if (Math.abs(denominator) <= EPSILON_DIVISION_GUARD) {
-    return fallback;
+    return safeFallback;
   }
   const result = numerator / denominator;
-  return Number.isFinite(result) ? result : fallback;
+  if (!Number.isFinite(result)) {
+    return safeFallback;
+  }
+  return result === 0 ? 0 : result;
 }
 
 /**
  * Limita un valore numerico entro l'intervallo chiuso specificato [min, max].
- * Se il valore non e finito, restituisce min.
+ * Gestisce limiti invertiti (min > max), limiti non finiti e normalizza -0 in +0.
  *
  * @param val Valore numerico da limitare
  * @param min Limite inferiore consentito
  * @param max Limite superiore consentito
- * @returns Valore compreso tra min e max
+ * @returns Valore finito compreso nell'intervallo sicuro
  */
 export function clampToRange(val: number, min: number, max: number): number {
-  if (!Number.isFinite(val)) {
-    return min;
+  const minFinite = Number.isFinite(min);
+  const maxFinite = Number.isFinite(max);
+
+  if (!minFinite && !maxFinite) {
+    return Number.isFinite(val) ? (val === 0 ? 0 : val) : 0;
   }
-  if (val < min) {
-    return min;
+
+  if (!minFinite) {
+    const safeMax = max === 0 ? 0 : max;
+    if (!Number.isFinite(val) || val > safeMax) {
+      return safeMax;
+    }
+    return val === 0 ? 0 : val;
   }
-  if (val > max) {
-    return max;
+
+  if (!maxFinite) {
+    const safeMin = min === 0 ? 0 : min;
+    if (!Number.isFinite(val) || val < safeMin) {
+      return safeMin;
+    }
+    return val === 0 ? 0 : val;
+  }
+
+  const effectiveMin = min <= max ? min : max;
+  const effectiveMax = min <= max ? max : min;
+
+  if (!Number.isFinite(val) || val < effectiveMin) {
+    return effectiveMin === 0 ? 0 : effectiveMin;
+  }
+  if (val > effectiveMax) {
+    return effectiveMax === 0 ? 0 : effectiveMax;
   }
   return val === 0 ? 0 : val;
 }
@@ -195,47 +476,10 @@ export function clampToRange(val: number, min: number, max: number): number {
  */
 export function validateLoadKg(
   val: unknown,
-  fallback = asKilograms(0),
+  fallback = LOAD_KG_CONFIG.defaultFallback,
   options?: NumericValidationOptions
 ): ValidationResult<Kilograms> {
-  const sanitized = sanitizeNumeric(val, NaN);
-  const min = options?.customMin ?? MIN_PHYSIOLOGICAL_LOAD_KG;
-  const max = options?.customMax ?? MAX_PHYSIOLOGICAL_LOAD_KG;
-
-  if (!Number.isFinite(sanitized)) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'NON_FINITE',
-      rawValue: val,
-      message: `Carico non numerico o non finito: ${String(val)}`,
-    };
-  }
-
-  if (sanitized < min) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'BELOW_MIN',
-      rawValue: val,
-      message: `Carico (${sanitized} kg) inferiore al limite consentito (${min} kg)`,
-    };
-  }
-
-  if (sanitized > max) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'ABOVE_MAX',
-      rawValue: val,
-      message: `Carico (${sanitized} kg) superiore al limite fisiologico (${max} kg)`,
-    };
-  }
-
-  return {
-    isValid: true,
-    value: asKilograms(sanitized),
-  };
+  return validateBoundedMetric(val, fallback, options, LOAD_KG_CONFIG);
 }
 
 /**
@@ -249,48 +493,10 @@ export function validateLoadKg(
  */
 export function validateVelocityMps(
   val: unknown,
-  fallback = asMetersPerSecond(0),
+  fallback = VELOCITY_MPS_CONFIG.defaultFallback,
   options?: NumericValidationOptions
 ): ValidationResult<MetersPerSecond> {
-  const sanitized = sanitizeNumeric(val, NaN);
-  const allowNegative = options?.allowNegative ?? false;
-  const min = options?.customMin ?? (allowNegative ? MIN_ECCENTRIC_VELOCITY_MPS : MIN_PHYSIOLOGICAL_VELOCITY_MPS);
-  const max = options?.customMax ?? MAX_PHYSIOLOGICAL_VELOCITY_MPS;
-
-  if (!Number.isFinite(sanitized)) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'NON_FINITE',
-      rawValue: val,
-      message: `Velocita non numerica o non finita: ${String(val)}`,
-    };
-  }
-
-  if (sanitized < min) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'BELOW_MIN',
-      rawValue: val,
-      message: `Velocita (${sanitized} m/s) inferiore al limite consentito (${min} m/s)`,
-    };
-  }
-
-  if (sanitized > max) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'ABOVE_MAX',
-      rawValue: val,
-      message: `Velocita (${sanitized} m/s) superiore al limite fisiologico (${max} m/s)`,
-    };
-  }
-
-  return {
-    isValid: true,
-    value: asMetersPerSecond(sanitized < 0 && !allowNegative ? 0 : sanitized),
-  };
+  return validateBoundedMetric(val, fallback, options, VELOCITY_MPS_CONFIG);
 }
 
 /**
@@ -304,48 +510,10 @@ export function validateVelocityMps(
  */
 export function validateForceN(
   val: unknown,
-  fallback = asNewtons(0),
+  fallback = FORCE_N_CONFIG.defaultFallback,
   options?: NumericValidationOptions
 ): ValidationResult<Newtons> {
-  const sanitized = sanitizeNumeric(val, NaN);
-  const allowNegative = options?.allowNegative ?? false;
-  const min = options?.customMin ?? (allowNegative ? MIN_SHEAR_FORCE_N : MIN_PHYSIOLOGICAL_FORCE_N);
-  const max = options?.customMax ?? MAX_PHYSIOLOGICAL_FORCE_N;
-
-  if (!Number.isFinite(sanitized)) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'NON_FINITE',
-      rawValue: val,
-      message: `Forza non numerica o non finita: ${String(val)}`,
-    };
-  }
-
-  if (sanitized < min) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'BELOW_MIN',
-      rawValue: val,
-      message: `Forza (${sanitized} N) inferiore al limite consentito (${min} N)`,
-    };
-  }
-
-  if (sanitized > max) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'ABOVE_MAX',
-      rawValue: val,
-      message: `Forza (${sanitized} N) superiore al limite fisiologico (${max} N)`,
-    };
-  }
-
-  return {
-    isValid: true,
-    value: asNewtons(sanitized),
-  };
+  return validateBoundedMetric(val, fallback, options, FORCE_N_CONFIG);
 }
 
 /**
@@ -358,47 +526,10 @@ export function validateForceN(
  */
 export function validatePowerW(
   val: unknown,
-  fallback = asWatts(0),
+  fallback = POWER_W_CONFIG.defaultFallback,
   options?: NumericValidationOptions
 ): ValidationResult<Watts> {
-  const sanitized = sanitizeNumeric(val, NaN);
-  const min = options?.customMin ?? MIN_PHYSIOLOGICAL_POWER_W;
-  const max = options?.customMax ?? MAX_PHYSIOLOGICAL_POWER_W;
-
-  if (!Number.isFinite(sanitized)) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'NON_FINITE',
-      rawValue: val,
-      message: `Potenza non numerica o non finita: ${String(val)}`,
-    };
-  }
-
-  if (sanitized < min) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'BELOW_MIN',
-      rawValue: val,
-      message: `Potenza (${sanitized} W) inferiore al limite consentito (${min} W)`,
-    };
-  }
-
-  if (sanitized > max) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'ABOVE_MAX',
-      rawValue: val,
-      message: `Potenza (${sanitized} W) superiore al limite fisiologico (${max} W)`,
-    };
-  }
-
-  return {
-    isValid: true,
-    value: asWatts(sanitized),
-  };
+  return validateBoundedMetric(val, fallback, options, POWER_W_CONFIG);
 }
 
 /**
@@ -411,47 +542,10 @@ export function validatePowerW(
  */
 export function validateAngleDeg(
   val: unknown,
-  fallback = asDegrees(0),
+  fallback = ANGLE_DEG_CONFIG.defaultFallback,
   options?: NumericValidationOptions
 ): ValidationResult<Degrees> {
-  const sanitized = sanitizeNumeric(val, NaN);
-  const min = options?.customMin ?? MIN_PHYSIOLOGICAL_ANGLE_DEG;
-  const max = options?.customMax ?? MAX_PHYSIOLOGICAL_ANGLE_DEG;
-
-  if (!Number.isFinite(sanitized)) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'NON_FINITE',
-      rawValue: val,
-      message: `Angolo non numerico o non finito: ${String(val)}`,
-    };
-  }
-
-  if (sanitized < min) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'BELOW_MIN',
-      rawValue: val,
-      message: `Angolo (${sanitized}°) inferiore al limite articolare (${min}°)`,
-    };
-  }
-
-  if (sanitized > max) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'ABOVE_MAX',
-      rawValue: val,
-      message: `Angolo (${sanitized}°) superiore al limite articolare (${max}°)`,
-    };
-  }
-
-  return {
-    isValid: true,
-    value: asDegrees(sanitized),
-  };
+  return validateBoundedMetric(val, fallback, options, ANGLE_DEG_CONFIG);
 }
 
 /**
@@ -464,47 +558,10 @@ export function validateAngleDeg(
  */
 export function validateTimeMs(
   val: unknown,
-  fallback = asMilliseconds(0),
+  fallback = TIME_MS_CONFIG.defaultFallback,
   options?: NumericValidationOptions
 ): ValidationResult<Milliseconds> {
-  const sanitized = sanitizeNumeric(val, NaN);
-  const min = options?.customMin ?? MIN_PHYSIOLOGICAL_TIME_MS;
-  const max = options?.customMax ?? MAX_PHYSIOLOGICAL_TIME_MS;
-
-  if (!Number.isFinite(sanitized)) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'NON_FINITE',
-      rawValue: val,
-      message: `Tempo in ms non numerico o non finito: ${String(val)}`,
-    };
-  }
-
-  if (sanitized < min) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'BELOW_MIN',
-      rawValue: val,
-      message: `Tempo (${sanitized} ms) negativo o inferiore al minimo (${min} ms)`,
-    };
-  }
-
-  if (sanitized > max) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'ABOVE_MAX',
-      rawValue: val,
-      message: `Tempo (${sanitized} ms) superiore al massimo consentito (${max} ms)`,
-    };
-  }
-
-  return {
-    isValid: true,
-    value: asMilliseconds(sanitized),
-  };
+  return validateBoundedMetric(val, fallback, options, TIME_MS_CONFIG);
 }
 
 /**
@@ -517,45 +574,8 @@ export function validateTimeMs(
  */
 export function validateTimeSec(
   val: unknown,
-  fallback = asSeconds(0),
+  fallback = TIME_SEC_CONFIG.defaultFallback,
   options?: NumericValidationOptions
 ): ValidationResult<Seconds> {
-  const sanitized = sanitizeNumeric(val, NaN);
-  const min = options?.customMin ?? MIN_PHYSIOLOGICAL_TIME_SEC;
-  const max = options?.customMax ?? MAX_PHYSIOLOGICAL_TIME_SEC;
-
-  if (!Number.isFinite(sanitized)) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'NON_FINITE',
-      rawValue: val,
-      message: `Tempo in secondi non numerico o non finito: ${String(val)}`,
-    };
-  }
-
-  if (sanitized < min) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'BELOW_MIN',
-      rawValue: val,
-      message: `Tempo (${sanitized} s) negativo o inferiore al minimo (${min} s)`,
-    };
-  }
-
-  if (sanitized > max) {
-    return {
-      isValid: false,
-      fallback,
-      errorCode: 'ABOVE_MAX',
-      rawValue: val,
-      message: `Tempo (${sanitized} s) superiore al massimo consentito (${max} s)`,
-    };
-  }
-
-  return {
-    isValid: true,
-    value: asSeconds(sanitized),
-  };
+  return validateBoundedMetric(val, fallback, options, TIME_SEC_CONFIG);
 }

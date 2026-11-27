@@ -5,6 +5,7 @@
  * Conforme ad ADR-01 (Thin Client) e Regola 02 (un file = una responsabilita).
  */
 
+import { useMemo } from 'react';
 import { useTierContext, TierContextValue } from '../context/TierContext';
 
 export interface UseTierReturn extends TierContextValue {
@@ -17,19 +18,20 @@ export interface UseTierReturn extends TierContextValue {
 
 /**
  * Hook per verificare il livello di abbonamento attivo e autorizzazioni RBAC.
+ * Memoizza l'oggetto restituito rispetto al contesto per evitare re-render superflui nei consumer.
  * @returns Stato del contesto con flag precalcolati per il rendering condizionale
  */
 export function useTier(): UseTierReturn {
   const context = useTierContext();
 
-  return {
+  return useMemo<UseTierReturn>(() => ({
     ...context,
     canExportExcel: context.permissions.canExportRawExcel,
     canAccessBiomechanics: context.permissions.canAccessAdvancedBiomechanics,
     canAccessBunker: context.permissions.canAccessMultiStaffBunker,
     canAccessResearch: context.permissions.canAccessResearchWarehouse,
     hasCustomBranding: context.permissions.hasCustomBranding
-  };
+  }), [context]);
 }
 
 export default useTier;

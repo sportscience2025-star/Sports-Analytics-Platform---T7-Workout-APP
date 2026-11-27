@@ -5,12 +5,25 @@
  * Conforme ad ADR-01 (Thin Client) e Regola 02 (un file = una responsabilita).
  */
 
-import { useAthleteContext as useAthleteContextInternal, AthleteContextValue } from '../context/AthleteContext';
-import { AthleticAvailabilityStatus, TacticalRole } from '../types';
+import { useMemo } from 'react';
+import { useAthleteRawContext, AthleteContextValue } from '../context/AthleteContext';
+import {
+  AthleticAvailabilityStatus,
+  TacticalRole,
+  DualTacticalRoleAssignment,
+  RtpPhase,
+  AVAILABILITY_FIT,
+  AVAILABILITY_INJURED,
+  AVAILABILITY_REHAB
+} from '../types';
+
+const EMPTY_STRING = '';
 
 export interface UseAthleteContextReturn extends AthleteContextValue {
   activeAvailabilityStatus: AthleticAvailabilityStatus | null;
   activeTacticalRole: TacticalRole | null;
+  dualRole: DualTacticalRoleAssignment | undefined;
+  currentRtpPhase: RtpPhase | undefined;
   athleteFullName: string;
   teamName: string;
   isFit: boolean;
@@ -18,39 +31,48 @@ export interface UseAthleteContextReturn extends AthleteContextValue {
 }
 
 /**
- * Hook per accedere e manovrare il contesto attivo Atleta / Squadra.
- * @returns Stato del contesto con flag precalcolati e metodi di switch a 2 click
+ * Hook per accedere e manovrare il contesto attivo Atleta / Squadra con scorciatoie memoizzate.
+ * @returns Stato del contesto con flag precalcolati, doppio ruolo, fase RTP e metodi di switch a 2 click
  */
 export function useAthleteContext(): UseAthleteContextReturn {
-  const context = useAthleteContextInternal();
+  const context = useAthleteRawContext();
 
-  const athleteFullName = context.selectedAthlete
-    ? `${context.selectedAthlete.name} ${context.selectedAthlete.surname}`
-    : '';
+  return useMemo<UseAthleteContextReturn>(() => {
+    const athlete = context.selectedAthlete;
+    const athleteFullName = athlete
+      ? `${athlete.name} ${athlete.surname}`
+      : EMPTY_STRING;
 
-  const teamName = context.selectedTeam ? context.selectedTeam.name : '';
+    const teamName = context.selectedTeam ? context.selectedTeam.name : EMPTY_STRING;
 
-  const activeAvailabilityStatus = context.selectedAthlete
-    ? context.selectedAthlete.availabilityStatus
-    : null;
+    const activeAvailabilityStatus = athlete
+      ? athlete.availabilityStatus
+      : null;
 
-  const activeTacticalRole = context.selectedAthlete
-    ? context.selectedAthlete.tacticalRole
-    : null;
+    const activeTacticalRole = athlete
+      ? athlete.tacticalRole
+      : null;
 
-  const isFit = activeAvailabilityStatus === 'fit';
-  const isInjuredOrRehab =
-    activeAvailabilityStatus === 'injured' || activeAvailabilityStatus === 'rehab';
+    const dualRole = athlete?.dualRole;
+    const currentRtpPhase = athlete?.currentRtpPhase;
 
-  return {
-    ...context,
-    activeAvailabilityStatus,
-    activeTacticalRole,
-    athleteFullName,
-    teamName,
-    isFit,
-    isInjuredOrRehab
-  };
+    const isFit = activeAvailabilityStatus === AVAILABILITY_FIT;
+    const isInjuredOrRehab =
+      activeAvailabilityStatus === AVAILABILITY_INJURED ||
+      activeAvailabilityStatus === AVAILABILITY_REHAB;
+
+    return {
+      ...context,
+      activeAvailabilityStatus,
+      activeTacticalRole,
+      dualRole,
+      currentRtpPhase,
+      athleteFullName,
+      teamName,
+      isFit,
+      isInjuredOrRehab
+    };
+  }, [context]);
 }
 
 export default useAthleteContext;

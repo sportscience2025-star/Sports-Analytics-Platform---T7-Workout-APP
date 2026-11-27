@@ -8,6 +8,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
+    "typecheck:tests": "tsc -p tsconfig.test.json --noEmit",
     "build:diagrams": "node -e \"const fs=require('fs'),cp=require('child_process'),p='architecture-blueprint/02-miro-zones-and-swimlanes';fs.readdirSync(p).filter(f=>f.endsWith('.mmd')).forEach(f=>cp.execSync('npx mmdc -i '+p+'/'+f+' -o '+p+'/'+f.replace('.mmd','.svg'),{stdio:'inherit'}))\""
   },
   "dependencies": {

@@ -27,13 +27,23 @@ export const STORE_FAVORITES_CACHE = 'favorites_cache' as const;
 export const STORE_OFFLINE_QUEUE = 'offline_queue' as const;
 
 // ============================================================================
+// STATI DI SINCRONIZZAZIONE VALIDI COME IDBValidKey
+// ============================================================================
+
+/** Stato pendente numerico per chiavi/indici IndexedDB (i booleani non sono IDBValidKey validi) */
+export const SYNC_STATE_PENDING = 0 as const;
+
+/** Stato sincronizzato numerico per chiavi/indici IndexedDB (i booleani non sono IDBValidKey validi) */
+export const SYNC_STATE_SYNCED = 1 as const;
+
+// ============================================================================
 // NOMI DEGLI INDICI PER I 4 STORE
 // ============================================================================
 
 // Indici per workout_sessions
 export const INDEX_SESSIONS_ATHLETE_ID = 'by_athleteId' as const;
 export const INDEX_SESSIONS_STARTED_AT = 'by_startedAt' as const;
-export const INDEX_SESSIONS_IS_SYNCED = 'by_isSynced' as const;
+export const INDEX_SESSIONS_SYNC_STATE = 'by_syncState' as const;
 
 // Indici per study_notes
 export const INDEX_NOTES_SOURCE_ID = 'by_sourceId' as const;
@@ -55,6 +65,12 @@ export const INDEX_QUEUE_NEXT_RETRY_AT = 'by_nextRetryAt' as const;
 
 /** Numero massimo predefinito di tentativi di sincronizzazione prima del fallimento permanente */
 export const DEFAULT_MAX_RETRIES = 5;
+
+/** Numero massimo predefinito di transazioni prelevate per singolo batch di peekPending */
+export const DEFAULT_PEEK_LIMIT = 10;
+
+/** Numero minimo consentito per il limite di prelievo in peekPending */
+export const MIN_PEEK_LIMIT = 1;
 
 /** Ritardo base per il calcolo del backoff esponenziale in millisecondi */
 export const BASE_RETRY_DELAY_MS = 1000;

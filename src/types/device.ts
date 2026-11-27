@@ -5,7 +5,14 @@
  * Conforme a Regola 02 (costanti in MAIUSCOLO, zero magic numbers).
  */
 
-import { Milliseconds, Newtons, Watts, MetersPerSecond } from './physics';
+import {
+  Milliseconds,
+  Newtons,
+  Watts,
+  MetersPerSecond,
+  Kilograms,
+  Degrees
+} from './physics';
 
 export type BleDeviceType =
   | 'vbt_encoder'
@@ -33,41 +40,129 @@ export const GATT_CYCLING_POWER_SERVICE_UUID = '00001818-0000-1000-8000-00805f9b
 export const GATT_FITNESS_MACHINE_SERVICE_16BIT = 0x1826;
 export const GATT_FITNESS_MACHINE_SERVICE_UUID = '00001826-0000-1000-8000-00805f9b34fb';
 
-// Servizi Proprietari T7 Hardware Ecosystem
-export const GATT_T7_VBT_ENCODER_SERVICE_UUID = '0000t701-0000-1000-8000-00805f9b34fb';
-export const GATT_T7_LACTATE_SENSOR_SERVICE_UUID = '0000t702-0000-1000-8000-00805f9b34fb';
+// Servizi Proprietari T7 Hardware Ecosystem (UUID 128-bit vendor validi, esterni al Bluetooth SIG Base UUID)
+export const GATT_T7_VBT_ENCODER_SERVICE_UUID = '77010001-7437-4000-8000-00805f9b34fb';
+export const GATT_T7_LACTATE_SENSOR_SERVICE_UUID = '77020001-7437-4000-8000-00805f9b34fb';
 
+export const MIN_BATTERY_LEVEL_PCT = 0;
+export const MAX_BATTERY_LEVEL_PCT = 100;
+export const MIN_HEART_RATE_BPM = 30;
+export const MAX_HEART_RATE_BPM = 240;
+
+/**
+ * Metadati identificativi e stato di connessione di un dispositivo BLE rilevato o associato.
+ */
 export interface BleDeviceInfo {
   id: string;
   name: string;
   type: BleDeviceType;
   connectionStatus: BleConnectionStatus;
+  vendorId?: string;
+  isT7Proprietary?: boolean;
   batteryLevel?: number; // 0 - 100%
-  rssi?: number; // Intensita segnale dBm
+  rssi?: number; // Intensita segnale in dBm
   firmwareVersion?: string;
   hardwareSerial?: string;
 }
 
-export interface TelemetryFrame {
+/**
+ * Struttura base comune a tutti i pacchetti di telemetria hardware ricevuti via BLE.
+ */
+export interface BaseTelemetryFrame {
   deviceId: string;
   deviceType: BleDeviceType;
   timestampMs: Milliseconds;
   sequenceNumber: number;
 }
 
-export interface HeartRateTelemetryFrame extends TelemetryFrame {
+/**
+ * Pacchetto telemetrico per fascia cardiofrequenzimetra (bpm e intervalli RR in ms).
+ */
+export interface HeartRateTelemetryFrame extends BaseTelemetryFrame {
   deviceType: 'heart_rate_strap';
   heartRateBpm: number;
   rrIntervalsMs?: readonly Milliseconds[];
 }
 
-export interface VbtTelemetryFrame extends TelemetryFrame {
+/**
+ * Pacchetto telemetrico per encoder lineare VBT (spostamento in mm, velocita in m/s, forza in N, potenza in W).
+ */
+export interface VbtTelemetryFrame extends BaseTelemetryFrame {
   deviceType: 'vbt_encoder';
   displacementMm: number;
   instantVelocityMps: MetersPerSecond;
   instantForceN?: Newtons;
   instantPowerW?: Watts;
 }
+
+/**
+ * Pacchetto telemetrico per sensore ottico o motion-capture (angoli articolari in gradi).
+ */
+export interface OpticalSensorTelemetryFrame extends BaseTelemetryFrame {
+  deviceType: 'optical_sensor';
+  kneeAngleDeg?: Degrees;
+  hipAngleDeg?: Degrees;
+  ankleAngleDeg?: Degrees;
+  trackingConfidence?: number; // 0.0 - 1.0
+}
+
+/**
+ * Pacchetto telemetrico per bilancia impedenziometrica smart (massa corporea in kg e bioimpedenza in Ohm).
+ */
+export interface SmartScaleTelemetryFrame extends BaseTelemetryFrame {
+  deviceType: 'smart_scale';
+  bodyMassKg: Kilograms;
+  resistanceOhms?: number;
+  reactanceOhms?: number;
+}
+
+/**
+ * Pacchetto telemetrico per analizzatore di lattato ematico / wearable T7 (concentrazione in mmol/L).
+ */
+export interface LactateAnalyzerTelemetryFrame extends BaseTelemetryFrame {
+  deviceType: 'lactate_analyzer';
+  bloodLactateMmolL: number;
+  sampleTemperatureCelsius?: number;
+  isT7Wearable?: boolean;
+}
+
+/**
+ * Alias di compatibilita per il frame wearable lattato T7.
+ */
+export type T7WearableTelemetryFrame = LactateAnalyzerTelemetryFrame;
+
+/**
+ * Pacchetto telemetrico per tracker GPS da campo (velocita istantanea in m/s e distanza in metri).
+ */
+export interface GpsTrackerTelemetryFrame extends BaseTelemetryFrame {
+  deviceType: 'gps_tracker';
+  instantSpeedMps: MetersPerSecond;
+  totalDistanceMeters: number;
+  accelerationMps2?: number;
+  highSpeedRunningMeters?: number;
+}
+
+/**
+ * Pacchetto telemetrico generico per sensori ausiliari con unita esplicita.
+ */
+export interface GenericSensorTelemetryFrame extends BaseTelemetryFrame {
+  deviceType: 'generic_sensor';
+  metricKey: string;
+  numericValue: number;
+  unitLabel: string;
+}
+
+/**
+ * Discriminated union completa per tutti i frame di telemetria hardware supportati.
+ */
+export type TelemetryFrame =
+  | VbtTelemetryFrame
+  | HeartRateTelemetryFrame
+  | OpticalSensorTelemetryFrame
+  | SmartScaleTelemetryFrame
+  | LactateAnalyzerTelemetryFrame
+  | GpsTrackerTelemetryFrame
+  | GenericSensorTelemetryFrame;
 
 export interface LinearTransducerRepetition {
   repNumber: number;
@@ -78,9 +173,6 @@ export interface LinearTransducerRepetition {
   romMeters: number;
   durationMs: Milliseconds;
 }
-
-export const MIN_HEART_RATE_BPM = 30;
-export const MAX_HEART_RATE_BPM = 240;
 
 export interface LiveTelemetryState {
   vbtFrame: VbtTelemetryFrame | null;
@@ -97,6 +189,8 @@ export interface LiveTelemetryState {
 export interface BleGattCharacteristic {
   readonly uuid: string;
   readonly value?: DataView;
+  readValue?: () => Promise<DataView>;
+  writeValue?: (value: BufferSource) => Promise<void>;
   startNotifications(): Promise<BleGattCharacteristic>;
   stopNotifications(): Promise<BleGattCharacteristic>;
   addEventListener(type: string, listener: (event: Event) => void): void;
