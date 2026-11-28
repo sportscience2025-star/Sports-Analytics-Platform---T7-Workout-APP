@@ -120,8 +120,9 @@ def add_audit_columns(ws, start_row=9, num_rows=13, include_col_u_400f=False):
         if include_col_u_400f:
             c_u = ws[f"U{row}"]
             # 250m=riga 16, 300m=riga 17, 350m=riga 18; 500-600m=righe 20-21
+            # Nota: le celle unite A4:B4, C4:D4 ed E6:F6 memorizzano il valore nella prima cella a sinistra (A4, C4, E6)
             if row in (16, 17, 18):
-                c_u.value = f'=IF(AND($B$4>0,$D$4>0),$B$4*(A{row}/200)^$F$6,"")'
+                c_u.value = f'=IF(AND($A$4>0,$C$4>0),$A$4*(A{row}/200)^$E$6,"")'
                 c_u.number_format = "0.0"
             elif row in (20, 21):
                 c_u.value = "Test 600m o MAS"
@@ -136,6 +137,7 @@ def add_400f_profile_header(ws):
     """
     Inserisce il riquadro profilo atleta 400m donne nelle righe 2-6 (sopra riga 8)
     con parametri modificabili e indicatori derivati (CRS, b_ind, SRR, passo 200m).
+    Nota Excel: nelle celle unite X:Y il valore risiede sempre nella cella di sinistra X.
     """
     thin_side = Side(border_style="thin", color="B0B0B0")
     thin_border = Border(left=thin_side, right=thin_side, top=thin_side, bottom=thin_side)
@@ -149,7 +151,7 @@ def add_400f_profile_header(ws):
     align_c = Alignment(horizontal="center", vertical="center")
     align_l = Alignment(horizontal="left", vertical="center")
 
-    ws.merge_cells("A2:J2")
+    ws.merge_cells("A2:U2")
     ws["A2"] = "PROFILO 400m DONNE (20-25 ANNI) - ANCORE FISIOLOGICHE & CONTROLLO CURVA"
     ws["A2"].font = font_title
     ws["A2"].fill = fill_title
@@ -157,6 +159,7 @@ def add_400f_profile_header(ws):
     ws.row_dimensions[2].height = 20.0
 
     # Riga 3-4: Input modificabili (sfondo crema chiaro, celle sbloccate per Regola 05)
+    # A4 = PB 200m, C4 = Goal 400m, E4 = MAS, G4 = MSS
     inputs = [
         ("A3", "B3", "A4", "B4", "PB 200m (s)", DEFAULT_PB_200M_S, "0.00"),
         ("C3", "D3", "C4", "D4", "Goal 400m (s)", DEFAULT_GOAL_400M_S, "0.00"),
@@ -183,13 +186,13 @@ def add_400f_profile_header(ws):
         ws[v1].border = thin_border
         ws[v2].border = thin_border
 
-    # Riga 5-6: Indicatori scientifici derivati automaticamente
+    # Riga 5-6: Indicatori scientifici derivati automaticamente dalle celle sinistre (A4, C4, E4, G4)
     derived = [
-        ("A5", "B5", "A6", "B6", "CRS (400-2x200)", "=IF(AND(B4>0,D4>0),D4-2*B4,\"\")", "0.00"),
-        ("C5", "D5", "C6", "D6", "Pass. 200m Gara", f"=IF(B4>0,B4+{HART_200M_RACE_OFFSET_S},\"\")", "0.00"),
-        ("E5", "F5", "E6", "F6", "b_ind (200->400)", "=IF(AND(B4>0,D4>0),LN(D4/B4)/LN(2),\"\")", "0.000"),
-        ("G5", "H5", "G6", "H6", "SRR (MSS/MAS)", "=IF(AND(F4>0,H4>0),H4/F4,\"\")", "0.00"),
-        ("I5", "J5", "I6", "J6", "Profilo Rappelt", f"=IF(G6=\"\",\"\",IF(G6>={SRR_SPRINT_TYPE_MIN},\"Sprint-type\",IF(G6<={SRR_ENDURANCE_TYPE_MAX},\"Endurance-type\",\"Bilanciata\")))", "@"),
+        ("A5", "B5", "A6", "B6", "CRS (400-2x200)", '=IF(AND(A4>0,C4>0),C4-2*A4,"")', "0.00"),
+        ("C5", "D5", "C6", "D6", "Pass. 200m Gara", f'=IF(A4>0,A4+{HART_200M_RACE_OFFSET_S},"")', "0.00"),
+        ("E5", "F5", "E6", "F6", "b_ind (200->400)", '=IF(AND(A4>0,C4>0),LN(C4/A4)/LN(2),"")', "0.000"),
+        ("G5", "H5", "G6", "H6", "SRR (MSS/MAS)", '=IF(AND(E4>0,G4>0),G4/E4,"")', "0.00"),
+        ("I5", "K5", "I6", "K6", "Profilo Rappelt", f'=IF(G6="","",IF(G6>={SRR_SPRINT_TYPE_MIN},"Sprint-type",IF(G6<={SRR_ENDURANCE_TYPE_MAX},"Endurance-type","Bilanciata")))', "@"),
     ]
     ws.row_dimensions[5].height = 16.0
     ws.row_dimensions[6].height = 19.0

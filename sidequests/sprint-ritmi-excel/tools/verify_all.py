@@ -109,6 +109,12 @@ def verify_all():
         if is_400f:
             assert ws["U8"].value == "Stima B (250-350)"
             assert len(ws.conditional_formatting) > 0, "Missing Conditional Formatting on 400F"
+            # Verifica riferimenti celle unite del riquadro profilo (prima cella a sinistra di ogni blocco)
+            assert ws["A6"].value == '=IF(AND(A4>0,C4>0),C4-2*A4,"")', f"CRS formula mismatch: {ws['A6'].value}"
+            assert ws["C6"].value == '=IF(A4>0,A4+1.5,"")', f"Pass 200m mismatch: {ws['C6'].value}"
+            assert ws["E6"].value == '=IF(AND(A4>0,C4>0),LN(C4/A4)/LN(2),"")', f"b_ind mismatch: {ws['E6'].value}"
+            assert ws["G6"].value == '=IF(AND(E4>0,G4>0),G4/E4,"")', f"SRR mismatch: {ws['G6'].value}"
+            assert ws["U16"].value == '=IF(AND($A$4>0,$C$4>0),$A$4*(A16/200)^$E$6,"")', f"Stima B mismatch: {ws['U16'].value}"
 
         # 3. Data Rows
         for r_offset, d in enumerate(DISTANCES):
