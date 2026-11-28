@@ -109,7 +109,7 @@
 - **Strategia & Strumenti:** Skills: `app-navigation-integrator`, `client-server-ip-isolation`. Regole: 02.
 - **Criteri di Accettazione & Validazione:** In Tier 1 visibili i moduli base; in Tier 2 e 3 sblocco progressivo delle funzioni avanzate. `py test_check.py` superato.
 
-### [ ] TASK-009: Standard 4-State UI Infrastructure
+### [x] TASK-009: Standard 4-State UI Infrastructure
 - **Dipendenze:** Richiede: `TASK-007`, `TASK-008`.
 - **Descrizione & Obiettivo Funzionale:** Implementazione dei componenti riutilizzabili per i 4 stati UI obbligatori da capitolato su ogni vista della piattaforma (CAPITOLATO_TECNICO Sezione 4):
   1. *Empty State:* Layout guidato con checklist interattiva (zero tabelle mute o schermate bianche);
@@ -848,3 +848,4 @@
 | 2026-11-28 | **CONSOLIDATION** | Consolidation & Bugfix Sprint (TASK-001..007) | Superato (100%) | `faece7b` | Audit multi-agente Wave 1-3: fix UUID GATT, metrologia SI, IndexedDB/SyncQueue, RBAC/Art. 348 c.p., AthleteContext, BleContext, Shell WAI-ARIA, root wiring in App.tsx e tsconfig.test.json |
 | 2026-11-28 | **TASK-008** | Adaptive Multi-Tier Navigation Bars | Superato (100%) | `faece7b` | Sub-navigazione desktop a 6 schede con contatore badge e bottom-nav mobile touch-friendly integrata in App.tsx |
 | 2026-11-28 | **RE-ARCHITECT** | Revisione Totale Roadmap & Benchmark Kinepose (TASK-009..045) | Superato (100%) | *In Corso* | Refactoring totale Roadmap su 45 Task Prompt-Ready, allineamento Glossario (197 termini) e dossier UI/UX video biomeccanica |
+| 2026-11-28 | **TASK-009** | Standard 4-State UI Infrastructure | Superato (100%) | `in progress` | EmptyState (checklist interattiva), LoadingSkeleton (GPU translate3d + progressbar), ErrorFallback (exponential backoff + offline), ViewStateContainer, SW v127 e tests/ui-states.test.ts |

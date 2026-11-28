@@ -5508,3 +5508,55 @@ html {
     }
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   STANDARD 4-STATE UI INFRASTRUCTURE (TASK-009 — GPU Shimmer & Reduced Motion)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes t7SkeletonSweep {
+    0% {
+        transform: translate3d(-100%, 0, 0);
+    }
+    100% {
+        transform: translate3d(100%, 0, 0);
+    }
+}
+
+.t7-skeleton-shimmer {
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(30, 41, 59, 0.72);
+}
+
+.t7-skeleton-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(148, 163, 184, 0.16) 50%,
+        transparent 100%
+    );
+    will-change: transform;
+    animation: t7SkeletonSweep 1.5s infinite linear;
+}
+
+.t7-skeleton-progress-fill {
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .t7-skeleton-shimmer,
+    .t7-skeleton-shimmer::after,
+    .t7-skeleton-progress-fill {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .t7-skeleton-shimmer::after {
+        display: none;
+    }
+}
+
+
