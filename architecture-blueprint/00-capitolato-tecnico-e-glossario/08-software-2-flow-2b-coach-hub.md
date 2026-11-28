@@ -22,7 +22,7 @@ I personal trainer, preparatori atletici e fisioterapisti insegnano ogni giorno 
 - **Risoluzione Video Massima 1080p (Full HD a 60fps):** Standard video calibrato per tablet professionali (iPad Pro, tablet Android) e display da studio, con downscaling automatico WebCodecs qualora il file sorgente ecceda i 1080p;
 - **Editing Video Integrato:** Strumenti completi per modificare i video caricati direttamente dal thin client (taglio/trimming millimetrico, rallentatore a 0.25x, 0.5x, 0.75x e velocizzazione a 1.25x, 1.5x, 2.0x);
 - **Gestione Preferiti Pro:** Salvataggio rapido degli esercizi nella lista personale dei preferiti del professionista;
-- **Limite Vincolante di Condivisione 1:1:** Divieto categorico di condividere contemporaneamente esercizi specifici con più di un singolo atleta (assegnazione individuale 1:1 in Silo 2 Bunker). La condivisione massiva/broadcast di squadra è riservata esclusivamente al Tier 3 Enterprise.
+- **Limite Vincolante di Condivisione 1:1:** Divieto categorico di condividere contemporaneamente esercizi specifici con più di un singolo atleta (assegnazione individuale 1:1 in Silo 1 Pro). La condivisione massiva/broadcast di squadra è riservata esclusivamente al Tier 3 Enterprise.
 
 ### Specifiche di Business & Metriche
 - **Target Utente:** Coach, chinesiologi, personal trainer con Partita IVA e fisioterapisti dello sport (Tier 2 – B2B Pro).
@@ -41,14 +41,14 @@ I personal trainer, preparatori atletici e fisioterapisti insegnano ogni giorno 
    - Scheda esercizio con toggle istantaneo *"Video 1080p Reale (Editing Attivo) vs Modello 3D"*;
    - Selettore di assegnazione atleta con vincolo 1:1.
 2. **Corsia 2: API Gateway & RBAC Feature Gating Tier 2 (Envoy Gateway Pro):**
-   - Verifica credenziali JWT Tier 2 e quota storage dedicata (Silo 2 Bunker);
+   - Verifica credenziali JWT Tier 2 e quota storage dedicata (Silo 1 Pro);
    - Controllo risoluzione video in ingresso: accettazione $\le 1080\text{p}$, trigger downscaling client se superiore;
    - Gatekeeper di condivisione: verifica della cardinalità del destinatario (`ARRAY_LENGTH(athlete_ids) == 1`). Qualora la selezione contenga più atleti, blocco immediato `403 Forbidden` (`ERR_SHARE_LIMIT_EXCEEDED_TIER2`).
 3. **Corsia 3: Server Scatola Nera (Multimodal RAG 322 Papers & Kinematic Synthesis):**
    - Motore Multimodal RAG indicizzato su 322 paper accademici e PubMed: arricchisce la bozza manuale del coach con evidenze scientifiche e spunti correttivi;
    - Estrazione cinematica edge MediaPipe BlazePose (33 landmark 3D);
    - Sintesi mesh 3D personalizzata Draco GLB opzionale.
-4. **Corsia 4: Database Tripartito (Silo 2 - Bunker Pro PostgreSQL AES-256):**
+4. **Corsia 4: Database Tripartito (Silo 1 Pro - Pro Coach PostgreSQL AES-256):**
    - Tabelle `pro_custom_exercises`: schede tecniche personalizzate con punti di forza/debolezza ed esito revisione AI;
    - Tabella `pro_favorites`: archivio preferiti del coach;
    - Tabella `pro_athlete_assignments`: record di assegnazione univoco 1:1 atleta.
@@ -63,7 +63,7 @@ sequenceDiagram
     actor Coach as Coach Pro P.IVA (Thin Client React 18)
     participant GW as API Gateway & Gating Tier 2 (Corsia 2)
     participant RAG as Server Scatola Nera AI RAG (Corsia 3)
-    participant DB as Silo 2 Bunker Pro (Corsia 4)
+    participant DB as Silo 1 Pro DB (Corsia 4)
 
     Coach->>Coach: Registrazione o Caricamento Video 1080p (Full HD 60fps)
     alt Risoluzione > 1080p (es. 2K o 4K)
@@ -93,7 +93,7 @@ sequenceDiagram
         GW->>GW: Controllo Cardinalità Destinatari (Must be 1:1)
         alt Singolo Atleta Selezionato
             GW->>DB: INSERT INTO pro_athlete_assignments (exerciseId, athleteId)
-            DB-->>GW: Commit Silo 2 Confermato
+            DB-->>GW: Commit Silo 1 Pro Confermato
             GW-->>Coach: 200 OK (Esercizio assegnato al cliente)
         else Più Atleti Selezionati (Multiplo)
             GW-->>Coach: 403 Forbidden (ERR_SHARE_LIMIT_EXCEEDED_TIER2: Limite 1:1 Enforced)
@@ -152,12 +152,12 @@ sequenceDiagram
 14. `T2_UI_DIFF_APPROVAL` (Modale Diff: Approvazione / Modifica Spiegazione AI): Interfaccia comparativa in cui il professionista approva, modifica o scarta i suggerimenti didattici dell'AI.
 15. `T2_UI_VIEWER_TOGGLE_PRO` (Scheda Esercizio: Toggle Video 1080p vs Modello 3D): Switch interattivo tra il video reale 1080p con velocità regolabile e la mesh 3D interattiva.
 16. `T2_DEC_ACTION_DEST` (Destinazione Salvataggio / Condivisione Esercizio?): Bivio tra archiviazione nei preferiti Pro vs assegnazione/condivisione con atleta.
-17. `T2_GW_FAVORITES` (API Gateway: POST /api/v1/pro/favorites): Salvataggio dell'esercizio personalizzato nei preferiti del coach in Silo 2.
+17. `T2_GW_FAVORITES` (API Gateway: POST /api/v1/pro/favorites): Salvataggio dell'esercizio personalizzato nei preferiti del coach in Silo 1 Pro.
 18. `T2_DEC_SHARE_TARGET` (Selezione Destinatario Condivisione Esercizio?): Selezione destinatario: singolo atleta (1:1) vs selezione multipla contemporanea.
 19. `T2_GW_SHARE_ENFORCEMENT` (Gateway: Controllo Limite di Condivisione 1:1?): Controllo gateway rigoroso: se destinatario singolo $\implies$ autorizza; se selezione multipla $\implies$ blocca.
 20. `T2_UI_SHARE_BLOCK_ALERT` (Blocco Condivisione Multi-Atleta Limite 1:1): Modal di divieto: condivisione contemporanea con più atleti non consentita per Tier 2. Invito all'upgrade a Tier 3 per broadcast.
-21. `T2_DB_SAVE_SILO2` (Database Silo 2: pro_custom_exercises & Assegnazione 1:1 Atleta): Persistenza della scheda esercizio criptata AES-256 e legame esclusivo 1:1 con l'atleta.
-22. `T2_END_READY` (Fine: Esercizio Operativo nel Catalogo Pro & Condiviso 1:1): Transizione al Coach Workout Builder (`FLOW-3B`).
+21. `T2_DB_SAVE_SILO1` (Database Silo 1 Pro: pro_custom_exercises & Assegnazione 1:1 Atleta): Persistenza della scheda esercizio criptata AES-256 e legame esclusivo 1:1 con l'atleta.
+22: `T2_END_READY` (Fine: Esercizio Operativo nel Catalogo Pro & Condiviso 1:1): Transizione al Coach Workout Builder (`FLOW-3B`).
 
 ---
 
@@ -169,7 +169,7 @@ sequenceDiagram
 | `T2_GW_RES_CHECK` | Risoluzione clip $\le 1080\text{p}$? | Procedi a editor video integrato (`T2_UI_VIDEO_EDITOR`) | Downscaling automatico client a 1080p (`T2_UI_DOWNSCALE_1080P`) |
 | `T2_DEC_AI_SUPPORT` | Richiesta supporto AI per spiegazione? | Invocazione AI Scatola Nera RAG (`T2_SRV_AI_COMPLETION`) | Mantieni bozza manuale coach (`T2_UI_VIEWER_TOGGLE_PRO`) |
 | `T2_DEC_ACTION_DEST` | Destinazione esercizio custom? | Assegna / Condividi con Atleta (`T2_DEC_SHARE_TARGET`) | Salva nella lista Preferiti Pro (`T2_GW_FAVORITES`) |
-| `T2_GW_SHARE_ENFORCEMENT` | Destinatario strettamente singolo (1:1)? | Autorizza e salva in Silo 2 (`T2_DB_SAVE_SILO2`) | Blocco gateway `403 Forbidden` (`T2_UI_SHARE_BLOCK_ALERT`) |
+| `T2_GW_SHARE_ENFORCEMENT` | Destinatario strettamente singolo (1:1)? | Autorizza e salva in Silo 1 Pro (`T2_DB_SAVE_SILO1`) | Blocco gateway `403 Forbidden` (`T2_UI_SHARE_BLOCK_ALERT`) |
 
 ### I 4 Stati di Interfaccia Utente (UI States):
 1. **Empty State:** Nessun esercizio personalizzato registrato dal coach: card *"Crea il tuo primo esercizio personalizzato filmando un allievo in 1080p o consultando la libreria con triage 119"*.
@@ -206,7 +206,7 @@ sequenceDiagram
   "framerate": 60,
   "trimDurationMs": 15600,
   "speedRatesConfigured": [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 2.0],
-  "videoVaultUrl": "https://storage.t7workout.app/silo2/pro-vault/cust_ex_1080p_9941a.mp4",
+  "videoVaultUrl": "https://storage.t7workout.app/silo1-pro/pro-vault/cust_ex_1080p_9941a.mp4",
   "technicalExplanation": {
     "coachStrengths": "Ottima stabilità scapolare e mantenimento del rachide lombare neutro in discesa.",
     "coachWeaknesses": "Tendenza al blocco articolare anticipato del ginocchio che sposta il focus sui lombari.",

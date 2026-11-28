@@ -1,8 +1,8 @@
-# Glossario Tecnico Vivente & Matrice di Tracciabilità dei Flussi (18 Flowcharts T7)
+# Glossario Tecnico Vivente & Matrice di Tracciabilità dei Flussi (Ecosistema T7 Workout & Flowcharts Ufficiali)
 
 > **Documento Autoritativo di Architettura (Zona 0 - Miro Board `uXjVEbo6L2o=`)**  
-> Censimento enciclopedico di **176 Termini Tecnici e Acronimi Ufficiali** del progetto *Sports Analytics Platform — T7 Workout APP*.  
-> Ogni voce include: Identificativo univoco, Sintesi ELI5 (strettamente $\le 10$ parole per non-tecnici), Spiegazione Operativa, Ruolo Architetturale in T7 e Mappatura 1:1 sui 18 Flussi.
+> Censimento enciclopedico di **197 Termini Tecnici e Acronimi Ufficiali** del progetto *Sports Analytics Platform — T7 Workout APP*.  
+> Ogni voce include: Identificativo univoco, Sintesi ELI5 (strettamente $\le 10$ parole per non-tecnici), Spiegazione Operativa, Ruolo Architetturale in T7 e Mappatura 1:1 sui Flussi Ufficiali.
 
 ---
 
@@ -25,6 +25,7 @@
 - [Angoli Principali Biomeccanici](#angoli-principali-biomeccanici) — *Biomeccanica & Valutazione Funzionale*
 - [Angoli Specifici Biomeccanici](#angoli-specifici-biomeccanici) — *Biomeccanica & Valutazione Funzionale*
 - [API Gateway & Feature Gating](#api-gateway-feature-gating) — *Ingegneria Software & Architettura Cloud*
+- [App Switcher 3-in-1 (Fase 1 Bridge)](#app-switcher-3-in-1-fase-1-bridge) — *Ingegneria Software & Architettura Cloud*
 - [Apple HealthKit & Google Health Connect Pipeline](#apple-healthkit-google-health-connect-pipeline) — *Telemetria Wearable & Dispositivi Mobili*
 - [Area Studio Digitale In-App (Offline / IndexedDB)](#area-studio-digitale-in-app-offline-indexeddb) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 
@@ -39,8 +40,12 @@
 
 ### <a id="letter-c"></a>C
 
+- [Card Certificata T7 (Post-Workout Sharing)](#card-certificata-t7-post-workout-sharing) — *Ingegneria Software & Architettura Cloud*
 - [Cartelle Tematiche & Tag Personalizzati (Preferiti Pro)](#cartelle-tematiche-tag-personalizzati-preferiti-pro) — *Principi Architetturali di Prodotto*
+- [Censimento Organico RBAC](#censimento-organico-rbac) — *Sicurezza Enterprise & Identità Societaria (Tier 3)*
+- [Centro Notifiche e Approvazioni (Inbox)](#centro-notifiche-e-approvazioni-inbox) — *Ingegneria Software & Architettura Cloud*
 - [Certificazione Antidoping per Lotto Batch](#certificazione-antidoping-per-lotto-batch) — *Sicurezza Enterprise & Identità Societaria (Tier 3)*
+- [Chat Privata (Staff e Coach-Atleta)](#chat-privata-staff-e-coach-atleta) — *Ingegneria Software & Architettura Cloud*
 - [Chatbot AI Studi Scientifici (Assistente Documentale 24/7)](#chatbot-ai-studi-scientifici-assistente-documentale-24-7) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [Chatbot Nutrizionale RAG 24/7](#chatbot-nutrizionale-rag-24-7) — *Algoritmi, Statistica & Machine Learning*
 - [Classificazione Evidenze Integratori Sportivi](#classificazione-evidenze-integratori-sportivi) — *Ricerca Scientifica & Documentazione Accademica (Tier 1-2-3)*
@@ -50,10 +55,12 @@
 - [Cloudflare Turnstile (Scudo Anti-Bot Invisibile)](#cloudflare-turnstile-scudo-anti-bot-invisibile) — *Ingegneria Software & Architettura Cloud*
 - [CMJ (Countermovement Jump) & Abalakov Jump](#cmj-countermovement-jump-abalakov-jump) — *Biomeccanica & Valutazione Funzionale*
 - [Co-Pay Welfare Wallet](#co-pay-welfare-wallet) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
+- [Codice Azienda (Onboarding Movely Bridge)](#codice-azienda-onboarding-movely-bridge) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [Color-Coding Neuromuscolare Dinamico (Fasce Muscolari Colorate)](#color-coding-neuromuscolare-dinamico-fasce-muscolari-colorate) — *Grafica 3D, WebGL & Rendering Biomeccanico*
 - [Commissione Scientifica T7 (Peer-Review Community)](#commissione-scientifica-t7-peer-review-community) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [Confronto Video Side-by-Side (Clip Atleta vs Avatar 3D)](#confronto-video-side-by-side-clip-atleta-vs-avatar-3d) — *Prescrizione Clinica & Riabilitazione P.IVA (Tier 2)*
 - [Consenso Esplicito Biometrico Art. 9 GDPR](#consenso-esplicito-biometrico-art-9-gdpr) — *Sicurezza Enterprise & Identità Societaria (Tier 3)*
+- [Control Room & Home Dashboard](#control-room-home-dashboard) — *Ingegneria Software & Architettura Cloud*
 - [Controllo Incrociato & Avvisi di Conflitto (Conflict Alert Schede-Referti)](#controllo-incrociato-avvisi-di-conflitto-conflict-alert-schede-referti) — *Algoritmi, Statistica & Machine Learning*
 - [Cross-Module Baseline Bridge (Data Analisi verso Programmazione e Catalogo)](#cross-module-baseline-bridge-data-analisi-verso-programmazione-e-catalogo) — *Ingegneria Software & Architettura Cloud*
 - [Cues Propriocettivi Verbali & Criteri Oggettivi di Validità](#cues-propriocettivi-verbali-criteri-oggettivi-di-validita) — *Grafica 3D, WebGL & Rendering Biomeccanico*
@@ -61,14 +68,18 @@
 ### <a id="letter-d"></a>D
 
 - [Decoupled Readiness Sub-Scores (4 Domini Indipendenti)](#decoupled-readiness-sub-scores-4-domini-indipendenti) — *Metodologia d'Allenamento & Clinica Sportiva*
+- [Device Manager & Hub Dispositivi](#device-manager-hub-dispositivi) — *Telemetria Wearable & Dispositivi Mobili*
 - [DEXA Dual-Energy X-ray Absorptiometry](#dexa-dual-energy-x-ray-absorptiometry) — *Biomeccanica & Valutazione Funzionale*
 - [Diagrammi di Voronoi & Spazio di Controllo Pitch](#diagrammi-di-voronoi-spazio-di-controllo-pitch) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [Diario Nutrizione e Stile di Vita](#diario-nutrizione-e-stile-di-vita) — *Metodologia d'Allenamento & Clinica Sportiva*
 - [Digital Twin Biomeccanico dell'Atleta](#digital-twin-biomeccanico-dell-atleta) — *Telemetria Pro, Performance Tracking & Carico Rosa (Tier 3)*
 - [DOP / HDOP (Dilution of Precision Satellite Filtering)](#dop-hdop-dilution-of-precision-satellite-filtering) — *Algoritmi, Statistica & Machine Learning*
 - [Doppio Livello Preferiti (Personali vs Team/Staff Pinning)](#doppio-livello-preferiti-personali-vs-team-staff-pinning) — *Sicurezza Enterprise & Identità Societaria (Tier 3)*
+- [Dossier Salute & Anamnesi Personale](#dossier-salute-anamnesi-personale) — *Prescrizione Clinica & Riabilitazione P.IVA (Tier 2)*
 - [Draco Geometry Compression & Progressive LOD](#draco-geometry-compression-progressive-lod) — *Grafica 3D, WebGL & Rendering Biomeccanico*
+- [Driver / Bouncer Sprint Profile](#driver-bouncer-sprint-profile) — *Biomeccanica & Valutazione Funzionale*
 - [Dual-Stream Toggle (Video Reale vs Avatar 3D Stilizzato)](#dual-stream-toggle-video-reale-vs-avatar-3d-stilizzato) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
+- [Dual-Stream Video / Stickman Viewport](#dual-stream-video-stickman-viewport) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [DUP (Daily Undulating Periodization)](#dup-daily-undulating-periodization) — *Metodologia d'Allenamento & Clinica Sportiva*
 - [Dynamic Forensic Watermarking Anti-Leak](#dynamic-forensic-watermarking-anti-leak) — *Sicurezza Enterprise & Identità Societaria (Tier 3)*
 
@@ -88,17 +99,21 @@
 - [Family Plan Welfare](#family-plan-welfare) — *Ingegneria Software & Architettura Cloud*
 - [Fan-Out on Write & Redis Cluster ZSET (Timeline Social)](#fan-out-on-write-redis-cluster-zset-timeline-social) — *Ingegneria Software & Architettura Cloud*
 - [Fasi Biomeccaniche: Concentrica vs Eccentrica & TUT (Time Under Tension)](#fasi-biomeccaniche-concentrica-vs-eccentrica-tut-time-under-tension) — *Grafica 3D, WebGL & Rendering Biomeccanico*
+- [FEA (Analisi Stress Fibre Muscolari 3D)](#fea-analisi-stress-fibre-muscolari-3d) — *Biomeccanica & Valutazione Funzionale*
 - [Feature Gating Clinico & Ordine Sanitario (FNOFI / TSRM-PSTRP)](#feature-gating-clinico-ordine-sanitario-fnofi-tsrm-pstrp) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [Feature Gating Tier 1 (Consumer)](#feature-gating-tier-1-consumer) — *Ingegneria Software & Architettura Cloud*
 - [FFMI (Fat-Free Mass Index) & Normalizzazione Antropometrica](#ffmi-fat-free-mass-index-normalizzazione-antropometrica) — *Biomeccanica & Valutazione Funzionale*
 - [Filtro Outlier MAD (Median Absolute Deviation)](#filtro-outlier-mad-median-absolute-deviation) — *Algoritmi, Statistica & Machine Learning*
 - [Filtro Silenzioso RBAC & PostgreSQL RLS (Segreto Medico Preferiti)](#filtro-silenzioso-rbac-postgresql-rls-segreto-medico-preferiti) — *Sicurezza Enterprise & Identità Societaria (Tier 3)*
 - [Find Your Gym Bro / Gym Girl](#find-your-gym-bro-gym-girl) — *Principi Architetturali di Prodotto*
+- [Flight Time (Tempo di Volo Sprint)](#flight-time-tempo-di-volo-sprint) — *Biomeccanica & Valutazione Funzionale*
 
 ### <a id="letter-g"></a>G
 
+- [GCT (Ground Contact Time)](#gct-ground-contact-time) — *Biomeccanica & Valutazione Funzionale*
 - [Gemini Interactions API & Embedding-2 (Guardrail Enclave T7)](#gemini-interactions-api-embedding-2-guardrail-enclave-t7) — *Algoritmi, Statistica & Machine Learning*
 - [Gestione Preferiti Studi Scientifici](#gestione-preferiti-studi-scientifici) — *Ricerca Scientifica & Documentazione Accademica (Tier 1-2-3)*
+- [Gestione Pubblicità Tier-gated](#gestione-pubblicita-tier-gated) — *Principi Architetturali di Prodotto*
 - [glTF / GLB & Compressione Google Draco Mesh](#gltf-glb-compressione-google-draco-mesh) — *Grafica 3D, WebGL & Rendering Biomeccanico*
 - [Goniometro Digitale AI (Markerless Joint Angle Extraction)](#goniometro-digitale-ai-markerless-joint-angle-extraction) — *Prescrizione Clinica & Riabilitazione P.IVA (Tier 2)*
 - [Graceful Degradation & WebGL Performance Fallback](#graceful-degradation-webgl-performance-fallback) — *Grafica 3D, WebGL & Rendering Biomeccanico*
@@ -132,6 +147,7 @@
 
 - [Markerless Motion Capture (Computer Vision AI da Campo)](#markerless-motion-capture-computer-vision-ai-da-campo) — *Telemetria Pro, Performance Tracking & Carico Rosa (Tier 3)*
 - [Massa Grassa FM e Massa Magra FFM](#massa-grassa-fm-e-massa-magra-ffm) — *Biomeccanica & Valutazione Funzionale*
+- [Match Analisi (Modulo Verticale Sport-Specifico Tier 3 — Fase 2)](#match-analisi-modulo-verticale-sport-specifico-tier-3-fase-2) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [Mean Propulsive Velocity (MPV) vs Peak Velocity](#mean-propulsive-velocity-mpv-vs-peak-velocity) — *Biomeccanica & Valutazione Funzionale*
 - [MediaPipe BlazePose 3D (Edge Pose Estimation su Video Mobile)](#mediapipe-blazepose-3d-edge-pose-estimation-su-video-mobile) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [Microciclo MD-X & Modello Titolari vs Panchinari](#microciclo-md-x-modello-titolari-vs-panchinari) — *Metodologia d'Allenamento & Clinica Sportiva*
@@ -153,6 +169,7 @@
 
 ### <a id="letter-p"></a>P
 
+- [Pannello Abbonamenti / Token AI / Store T7](#pannello-abbonamenti-token-ai-store-t7) — *Ingegneria Software & Architettura Cloud*
 - [PAP (Post-Activation Potentiation)](#pap-post-activation-potentiation) — *Biomeccanica & Valutazione Funzionale*
 - [PAR-Q+ (Physical Activity Readiness Questionnaire) & Digital Triage](#par-q-physical-activity-readiness-questionnaire-digital-triage) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [Periodizzazione a Blocchi & Coniugata](#periodizzazione-a-blocchi-coniugata) — *Metodologia d'Allenamento & Clinica Sportiva*
@@ -160,6 +177,7 @@
 - [Plicometria Jackson-Pollock](#plicometria-jackson-pollock) — *Biomeccanica & Valutazione Funzionale*
 - [Potenza di Calcolo AI 100% (Tier 3 Enterprise)](#potenza-di-calcolo-ai-100-tier-3-enterprise) — *Algoritmi, Statistica & Machine Learning*
 - [Potenza Relativa Watt su kg W-kg](#potenza-relativa-watt-su-kg-w-kg) — *Biomeccanica & Valutazione Funzionale*
+- [PR (Personal Record) Live Tracking](#pr-personal-record-live-tracking) — *Metodologia d'Allenamento & Clinica Sportiva*
 - [Progressive LOD (Level of Detail Dinamico WebGL)](#progressive-lod-level-of-detail-dinamico-webgl) — *Grafica 3D, WebGL & Rendering Biomeccanico*
 - [Puntatore Relazionale Preferiti (Zero-Duplication Bookmark)](#puntatore-relazionale-preferiti-zero-duplication-bookmark) — *Ingegneria Software & Architettura Cloud*
 - [PVT-B (Brief Psychomotor Vigilance Task 3-min)](#pvt-b-brief-psychomotor-vigilance-task-3-min) — *Biomeccanica & Valutazione Funzionale*
@@ -189,6 +207,7 @@
 - [Scale RPE & RIR (Borg CR10 / Reps in Reserve)](#scale-rpe-rir-borg-cr10-reps-in-reserve) — *Metodologia d'Allenamento & Clinica Sportiva*
 - [Schede Tecniche di Sintesi (Studi Premium Copyright-Safe)](#schede-tecniche-di-sintesi-studi-premium-copyright-safe) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [Secret Club Vault & Multi-Camera 4K Sync](#secret-club-vault-multi-camera-4k-sync) — *Sicurezza Enterprise & Identità Societaria (Tier 3)*
+- [Semaforo RTP (Disponibilità Clinico-Sportiva)](#semaforo-rtp-disponibilita-clinico-sportiva) — *Prescrizione Clinica & Riabilitazione P.IVA (Tier 2)*
 - [Separazione Database Data Analisi vs Catalogo (Isolamento Tier 2)](#separazione-database-data-analisi-vs-catalogo-isolamento-tier-2) — *Ingegneria Software & Architettura Cloud*
 - [Service Worker Offline-First & Cache Storage API](#service-worker-offline-first-cache-storage-api) — *Ingegneria Software & Architettura Cloud*
 - [Smart Clinic Zero-Coda](#smart-clinic-zero-coda) — *Ingegneria Software & Architettura Cloud*
@@ -196,6 +215,8 @@
 - [Soggetto Volontario Cavia Tokenomics](#soggetto-volontario-cavia-tokenomics) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [Staff Recruiting & Scouting Board](#staff-recruiting-scouting-board) — *Principi Architetturali di Prodotto*
 - [Step-Up Verification (Verifica Telefono Anti-Troll per Community)](#step-up-verification-verifica-telefono-anti-troll-per-community) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
+- [Stickman Overlay & Kinematic Twin](#stickman-overlay-kinematic-twin) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
+- [Stride Cycle & Waveform (Ciclo del Passo Bilaterale)](#stride-cycle-waveform-ciclo-del-passo-bilaterale) — *Biomeccanica & Valutazione Funzionale*
 - [Stripe Identity & Biometric Liveness 3D](#stripe-identity-biometric-liveness-3d) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [Swimlanes (Corsie Architetturali nei Flowchart)](#swimlanes-corsie-architetturali-nei-flowchart) — *Ingegneria Software & Architettura Cloud*
 
@@ -208,6 +229,10 @@
 - [Template Riutilizzabili Preferiti (Clonazione Modelli Pro)](#template-riutilizzabili-preferiti-clonazione-modelli-pro) — *Metodologia d'Allenamento & Clinica Sportiva*
 - [Text-to-Kinematics 3D Synthesis (Generatore di Esercizi Solo-Testo)](#text-to-kinematics-3d-synthesis-generatore-di-esercizi-solo-testo) — *Video Analysis In-App, AI Multimodale & Custom Exercise Creator*
 - [Thin Client (Guscio Visivo)](#thin-client-guscio-visivo) — *Ingegneria Software & Architettura Cloud*
+- [Together Pro Marketplace & Video Annotazione Tecnica](#together-pro-marketplace-video-annotazione-tecnica) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
+- [Together Social Network & Movely Marketplace](#together-social-network-movely-marketplace) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
+- [Together Social Workout Sharing](#together-social-workout-sharing) — *Ingegneria Software & Architettura Cloud*
+- [Token Cavia (Ricompensa Soggetto Volontario)](#token-cavia-cross-ecosistema) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [Together Pro Marketplace & Video Annotazione Tecnica](#together-pro-marketplace-video-annotazione-tecnica) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [Together Social Network & Movely Marketplace](#together-social-network-movely-marketplace) — *Sicurezza, Anti-Frode & Fiscalità Digitale B2B*
 - [Together Social Workout Sharing](#together-social-workout-sharing) — *Ingegneria Software & Architettura Cloud*
@@ -1699,3 +1724,154 @@
 - **Spiegazione Semplificata:** Albero tassonomico Medical Subject Headings (MeSH) integrato con descrittori specialistici di scienze motorie per la catalogazione rigorosa delle pubblicazioni peer-reviewed.
 - **Ruolo Operativo nel Progetto T7:** Organizza le ricerche scientifiche in macro-categorie e filtri specialistici per consentire recuperi documentali precisi in Libreria Fonti.
 - **Zona / Flusso di Riferimento:** Colonna 5, Righe 1, 2 e 3 (Libreria Fonti). (Flussi Miro: `#05, #11, #17`)
+
+---
+
+### Nuovi Termini Core, Video Biomeccanica & Control Room
+
+#### <a id="app-switcher-3-in-1-fase-1-bridge"></a>App Switcher 3-in-1 (Fase 1 Bridge)
+**ELI5:** "Pulsante per passare comodamente tra T7, Movely e Together."
+
+- **Spiegazione Semplificata:** Selettore presente nell'header o nel profilo utente che funge da ponte di navigazione tra T7 Workout, Movely (corporate wellness) e Together (social community).
+- **Ruolo Operativo nel Progetto T7:** Nella Fase 1 connette l'ecosistema a livello concettuale e di routing SSO, prima della separazione in tre applicazioni distribuite autonomamente.
+- **Zona / Flusso di Riferimento:** Global Header & Profilo Utente. (Flussi Miro: `#01, #19, #20`)
+
+#### <a id="card-certificata-t7-post-workout-sharing"></a>Card Certificata T7 (Post-Workout Sharing)
+**ELI5:** "Scheda verificata con i risultati dell'allenamento condivisibile sui social."
+
+- **Spiegazione Semplificata:** Riepilogo visuale generato al termine della sessione di allenamento contenente tonnellaggio sollevato, volume, durata, record personali (PR) e badge di certificazione dei dati.
+- **Ruolo Operativo nel Progetto T7:** Fornisce all'utente la scelta tra salvataggio privato nello storico T7 o esportazione su Together Social con filtro privacy sui dati sensibili.
+- **Zona / Flusso di Riferimento:** Colonna 3, Righe 1, 2, 3 (Programmazione & Workout Tracker). (Flussi Miro: `#03, #09, #15`)
+
+#### <a id="censimento-organico-rbac"></a>Censimento Organico RBAC
+**ELI5:** "Registrazione completa della rosa giocatori e ruoli dello staff."
+
+- **Spiegazione Semplificata:** Procedura di onboarding corporate per i Club di Tier 3 che consente l'importazione massiva dell'organigramma (medici, fisioterapisti, coach, analisti, atleti) con assegnazione granulare dei permessi.
+- **Ruolo Operativo nel Progetto T7:** Configura la matrice di segregazione dei dati assicurando che i referti sanitari siano accessibili solo al personale medico abilitato.
+- **Zona / Flusso di Riferimento:** Colonna 1, Riga 3 (Onboarding Enterprise KMS). (Flussi Miro: `#13`)
+
+#### <a id="centro-notifiche-e-approvazioni-inbox"></a>Centro Notifiche e Approvazioni (Inbox)
+**ELI5:** "Pannello dove il coach riceve e approva video e referti."
+
+- **Spiegazione Semplificata:** Hub di messaggistica asincrona e workflow Human-in-the-Loop in cui convergono le richieste di revisione video, gli alert di anomalie HRV/PVT, le doppie firme e le approvazioni cliniche.
+- **Ruolo Operativo nel Progetto T7:** Centralizza le decisioni dello staff evitando la dispersione di comunicazioni sanitarie o tecniche su canali non protetti.
+- **Zona / Flusso di Riferimento:** Header & Cartella Atleta. (Flussi Miro: `#08, #14, #15, #25`)
+
+#### <a id="chat-privata-staff-e-coach-atleta"></a>Chat Privata (Staff e Coach-Atleta)
+**ELI5:** "Messaggistica sicura interna per comunicare con atleti e colleghi."
+
+- **Spiegazione Semplificata:** Canale di messaggistica istantanea cifrata bidirezionale 1:1 (coach-atleta) e di gruppo riservata allo staff tecnico-sanitario, totalmente isolata dai feed pubblici social.
+- **Ruolo Operativo nel Progetto T7:** Tutela il segreto professionale e la riservatezza delle indicazioni tecniche e sanitarie all'interno del team.
+- **Zona / Flusso di Riferimento:** Comunicazioni Interne T7. (Flussi Miro: `#08, #14, #15`)
+
+#### <a id="codice-azienda-onboarding-movely-bridge"></a>Codice Azienda (Onboarding Movely Bridge)
+**ELI5:** "Chiave aziendale che attiva i benefit welfare e l'accesso guidato."
+
+- **Spiegazione Semplificata:** Codice alfanumerico fornito dal datore di lavoro che il dipendente inserisce durante la registrazione a T7 per sbloccare i crediti welfare e impostare Movely come vista di atterraggio.
+- **Ruolo Operativo nel Progetto T7:** Funge da ponte di accoglienza per utenti sedentari, proteggendoli dalla complessità tecnica dell'app finché non decidono di esplorare i moduli sportivi.
+- **Zona / Flusso di Riferimento:** Colonna 1, Riga 1 (Onboarding Consumer). (Flussi Miro: `#01, #19`)
+
+#### <a id="control-room-home-dashboard"></a>Control Room & Home Dashboard
+**ELI5:** "Schermata iniziale con riepilogo giornaliero, allenamento e allarmi salute."
+
+- **Spiegazione Semplificata:** Centro di comando primario visualizzato all'apertura dell'applicazione: integra la sessione del giorno, il calendario delle attività, i grafici di carico e gli alert prioritari sulla salute della squadra.
+- **Ruolo Operativo nel Progetto T7:** Riduce la distanza operativa a 2 click da qualsiasi funzione critica dell'applicazione, fungendo da snodo centrale tra pianificazione e monitoraggio.
+- **Zona / Flusso di Riferimento:** Home / Control Room T7. (Flussi Miro: `#01..#25`)
+
+#### <a id="device-manager-hub-dispositivi"></a>Device Manager & Hub Dispositivi
+**ELI5:** "Pannello per collegare e gestire tutti i sensori Bluetooth."
+
+- **Spiegazione Semplificata:** Sezione tecnica dell'applicazione deputata alla scansione, associazione, accoppiamento e diagnostica dei dispositivi indossabili e della sensoristica da campo.
+- **Ruolo Operativo nel Progetto T7:** Applica il feature gating hardware: zero wearable in Tier 1, soli dispositivi proprietari T7 in Tier 2, qualsiasi wearable o encoder di mercato in Tier 3.
+- **Zona / Flusso di Riferimento:** Impostazioni & Hub Dispositivi. (Flussi Miro: `#04, #10, #16`)
+
+#### <a id="dossier-salute-anamnesi-personale"></a>Dossier Salute & Anamnesi Personale
+**ELI5:** "Archivio protetto con referti medici, esami e piani nutrizionali."
+
+- **Spiegazione Semplificata:** Sezione riservata del profilo utente contenente l'anamnesi storica, i referti clinici caricati dai sanitari, le valutazioni posturali e i piani alimentari, custoditi nel rispetto del GDPR Art. 9.
+- **Ruolo Operativo nel Progetto T7:** Punto di convergenza clinica dove atterra anche il lavoratore che proviene da Movely tramite Single Sign-On per consultare i referti della visita in azienda.
+- **Zona / Flusso di Riferimento:** Profilo Personale & Silo 1/2. (Flussi Miro: `#01, #09, #18, #19`)
+
+#### <a id="driver-bouncer-sprint-profile"></a>Driver / Bouncer Sprint Profile
+**ELI5:** "Classificazione biomeccanica tra corsa radente di forza o elastica."
+
+- **Spiegazione Semplificata:** Modello classificatorio dello sprint che distingue atleti a trazione orizzontale ('Driver': passi lunghi, maggiore GCT, spinta propulsiva a terra) da atleti elastico-reattivi ('Bouncer': tempo di contatto minimo, frequenza elevata, rimbalzo verticale).
+- **Ruolo Operativo nel Progetto T7:** Guida il preparatore nella programmazione specifica: carichi di spinta orizzontale per i Bouncer o pliometria reattiva per i Driver.
+- **Zona / Flusso di Riferimento:** Colonna 4, Riga 3 (Data Analisi Gait Cockpit & Sprint). (Flussi Miro: `#16`)
+
+#### <a id="dual-stream-video-stickman-viewport"></a>Dual-Stream Video / Stickman Viewport
+**ELI5:** "Schermo diviso con maniglia per confrontare video e scheletro."
+
+- **Spiegazione Semplificata:** Layout di visualizzazione a split-screen orizzontale con slider centrale draggabile che affianca il video reale della prova atletica e il gemello cinematico a fondo nero puro.
+- **Ruolo Operativo nel Progetto T7:** Strumento diagnostico d'élite per sincronizzare al singolo frame l'esecuzione reale dell'atleta e la cinematica pura.
+- **Zona / Flusso di Riferimento:** Colonna 4, Riga 3 (Data Analisi Gait Cockpit). (Flussi Miro: `#16`)
+
+#### <a id="fea-analisi-stress-fibre-muscolari-3d"></a>FEA (Analisi Stress Fibre Muscolari 3D)
+**ELI5:** "Simulazione che mostra visivamente lo sforzo delle fibre muscolari."
+
+- **Spiegazione Semplificata:** Modello bio-ingegneristico agli elementi finiti (Finite Element Analysis) che colora la mappa muscolare 3D per evidenziare i punti di massima sollecitazione e tensione tendinea durante l'esercizio.
+- **Ruolo Operativo nel Progetto T7:** Permette a medici e preparatori d'élite di individuare micro-sovraccarichi e prevenire lesioni muscolari da stress ripetuto.
+- **Zona / Flusso di Riferimento:** Colonna 2, Riga 3 (Multi-Camera 4K & FEA). (Flussi Miro: `#14`)
+
+#### <a id="flight-time-tempo-di-volo-sprint"></a>Flight Time (Tempo di Volo Sprint)
+**ELI5:** "Tempo in cui l'atleta è sospeso in aria correndo."
+
+- **Spiegazione Semplificata:** Durata in millisecondi (ms) tra il distacco del piede dal suolo (toe-off) e il successivo contatto dell'arto controlaterale (touchdown).
+- **Ruolo Operativo nel Progetto T7:** Parametro chiave per il calcolo della frequenza del passo e del profilo verticale vs orizzontale nello sprint.
+- **Zona / Flusso di Riferimento:** Colonna 4, Riga 3 (Data Analisi Gait Cockpit & Sprint). (Flussi Miro: `#16`)
+
+#### <a id="gct-ground-contact-time"></a>GCT (Ground Contact Time)
+**ELI5:** "Tempo in cui il piede tocca terra durante il passo."
+
+- **Spiegazione Semplificata:** Durata in millisecondi (ms) in cui il piede dell'atleta resta a contatto con il suolo durante la fase di appoggio nello sprint o nella corsa.
+- **Ruolo Operativo nel Progetto T7:** Metrica primaria di prestazione reattiva e stiffness muscolo-tendinea; se prolungata (>150ms in sprint lanciato) indica deficit di reattività.
+- **Zona / Flusso di Riferimento:** Colonna 4, Riga 3 (Data Analisi Gait Cockpit & Sprint). (Flussi Miro: `#16`)
+
+#### <a id="gestione-pubblicita-tier-gated"></a>Gestione Pubblicità Tier-gated
+**ELI5:** "Pubblicità presenti per utenti base, ridotte per professionisti, zero per club."
+
+- **Spiegazione Semplificata:** Modello di sponsorizzazione differenziato per piano: inserzioni sportive e annunci contestuali per Tier 1 Consumer, solo annunci tecnici selezionati per Tier 2 Pro, e totale assenza di pubblicità per Tier 3 Elite.
+- **Ruolo Operativo nel Progetto T7:** Monetizza la fascia gratuita tutelando invece l'esperienza pulita e professionale dei clienti paganti e delle squadre d'élite.
+- **Zona / Flusso di Riferimento:** Architettura Commerciale Ecosistema. (Flussi Miro: `#01..#25`)
+
+#### <a id="match-analisi-modulo-verticale-sport-specifico-tier-3-fase-2"></a>Match Analisi (Modulo Verticale Sport-Specifico Tier 3 — Fase 2)
+**ELI5:** "Analisi tattica e video della partita differita alla Fase 2."
+
+- **Spiegazione Semplificata:** Modulo altamente specializzato per la video analisi tattica di squadra, baricentro, diagrammi di Voronoi e tracciamento multi-giocatore in base alla disciplina sportiva.
+- **Ruolo Operativo nel Progetto T7:** Parcheggiato ufficialmente come aggiornamento successivo (Fase 2) per concentrare lo sviluppo iniziale della piattaforma sul core orizzontale di T7 Workout.
+- **Zona / Flusso di Riferimento:** Colonna 5, Riga 3 (Match Analisi — Fase 2). (Flussi Miro: `#17`)
+
+#### <a id="pannello-abbonamenti-token-ai-store-t7"></a>Pannello Abbonamenti / Token AI / Store T7
+**ELI5:** "Area per gestire abbonamenti, crediti AI e acquistare sensori."
+
+- **Spiegazione Semplificata:** Sezione amministrativa per la gestione del piano attivo (Tier 1/2/3), il monitoraggio del consumo di Token AI (nel Tier 2 con limite 70%) e l'acquisto dell'hardware wearable proprietario T7.
+- **Ruolo Operativo nel Progetto T7:** Governa l'economia dei servizi a pagamento e la monetizzazione della piattaforma nel rispetto della trasparenza verso il cliente.
+- **Zona / Flusso di Riferimento:** Profilo & Impostazioni T7. (Flussi Miro: `#07, #13, #21`)
+
+#### <a id="pr-personal-record-live-tracking"></a>PR (Personal Record) Live Tracking
+**ELI5:** "Rilevamento istantaneo di carichi record superati durante l'allenamento."
+
+- **Spiegazione Semplificata:** Algoritmo in background che confronta le serie e i carichi sollevati in tempo reale durante il Workout Player con lo storico massimale dell'atleta, segnalando i nuovi record raggiunti.
+- **Ruolo Operativo nel Progetto T7:** Aumenta la motivazione dell'atleta durante l'allenamento e alimenta automaticamente la Card Certificata T7 a fine sessione.
+- **Zona / Flusso di Riferimento:** Colonna 3, Righe 1, 2, 3 (Workout Player Tracker). (Flussi Miro: `#03, #09, #15`)
+
+#### <a id="semaforo-rtp-disponibilita-clinico-sportiva"></a>Semaforo RTP (Disponibilità Clinico-Sportiva)
+**ELI5:** "Indicatore verde, giallo o rosso sull'idoneità dell'atleta a giocare."
+
+- **Spiegazione Semplificata:** Metrica visiva di sintesi clinico-funzionale calcolata incrociando l'anamnesi infortuni, i test di forza/ROM e la Readiness giornaliera: Verde (Disponibile), Giallo (Differenziato), Rosso (Non disponibile).
+- **Ruolo Operativo nel Progetto T7:** Consente a staff medico e allenatore di allinearsi all'istante sulla rosa convocabile, bloccando schede ad alto impatto per atleti non idonei.
+- **Zona / Flusso di Riferimento:** Roster Squadra & Cartella Clinica. (Flussi Miro: `#09, #15, #18`)
+
+#### <a id="stickman-overlay-kinematic-twin"></a>Stickman Overlay & Kinematic Twin
+**ELI5:** "Scheletro geometrico sovrimpresso sul corpo per analizzare i movimenti."
+
+- **Spiegazione Semplificata:** Rappresentazione vettoriale scheletrica composta da segmenti ossei e giunti articolari ricavati in tempo reale dall'elaborazione video o da reti neurali di pose estimation.
+- **Ruolo Operativo nel Progetto T7:** Consente la visualizzazione pulita delle leve corporee eliminando lo sfondo ambientale e facilitando il rilevamento di compensi articolari.
+- **Zona / Flusso di Riferimento:** Colonna 4, Righe 2 e 3 (Data Analisi Live Cam & Split Viewport). (Flussi Miro: `#10, #16`)
+
+#### <a id="stride-cycle-waveform-ciclo-del-passo-bilaterale"></a>Stride Cycle & Waveform (Ciclo del Passo Bilaterale)
+**ELI5:** "Onda grafica che confronta il movimento di entrambe le gambe."
+
+- **Spiegazione Semplificata:** Serie temporale normalizzata (0-100% o 20-100% del ciclo del passo) che traccia l'estensione angolare e la traiettoria articolare di gamba destra e sinistra sovrapposte.
+- **Ruolo Operativo nel Progetto T7:** Individua asimmetrie cinematiche bilaterali (>15%) tra arto destro e sinistro per la prevenzione infortuni e il Return to Play.
+- **Zona / Flusso di Riferimento:** Colonna 4, Riga 3 (Data Analisi Gait Cockpit & Sprint). (Flussi Miro: `#16`)
