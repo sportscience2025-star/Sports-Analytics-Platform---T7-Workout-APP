@@ -75,6 +75,7 @@ export const GlobalHeader: React.FC<GlobalHeaderProps> = ({
 
   return (
     <header
+      className="t7-global-header"
       style={{
         position: 'fixed',
         top: 0,

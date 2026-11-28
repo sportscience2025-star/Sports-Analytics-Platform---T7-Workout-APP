@@ -125,7 +125,7 @@
   - Rispetto rigoroso della "Regola dei 2 click": selezione atleta/squadra in $\le 2$ tocchi.
   - `py test_check.py` e `npm run typecheck` con esito 100% positivo.
 
-### [ ] TASK-008: Adaptive Multi-Tier Navigation Bars
+### [x] TASK-008: Adaptive Multi-Tier Navigation Bars
 - **Descrizione:** Implementazione della barra laterale Desktop (Sidebar) e della barra inferiore Mobile (Bottom Nav) con visibilità adattiva dei 7 moduli canonici in base al Tier attivo, indicatori di stato attivo, badge contatori dinamici (es. preferiti salvati, alert clinici) e blocco con CTA Upgrade per i moduli non abilitati nel Tier corrente.
 - **File Target:**
   - `src/components/layout/SidebarNav.tsx` (Nuovo: sidebar desktop responsive)
@@ -585,3 +585,4 @@
 | 2026-11-22 | **TASK-006** | Hardware & BLE Telemetry Context Provider | Superato (100%) | `b90b6d5` | React Context e Hook useBle per sensoristica BLE, Web Bluetooth API, simulatore 10 Hz e test suite |
 | 2026-11-22 | **TASK-007** | Apple-Inspired Global Navigation Shell | Superato (100%) | `715347e` | Layout master glassmorphism Apple Dark Cockpit: GlobalHeader, ContextSelectorDropdown a 2-click, TierBadgeSwitcher, BleStatusPill e test suite |
 | 2026-11-28 | **CONSOLIDATION** | Consolidation & Bugfix Sprint (TASK-001..007) | Superato (100%) | `faece7b` | Audit multi-agente Wave 1-3: fix UUID GATT, metrologia SI, IndexedDB/SyncQueue, RBAC/Art. 348 c.p., AthleteContext, BleContext, Shell WAI-ARIA, root wiring in App.tsx e tsconfig.test.json |
+| 2026-11-28 | **TASK-008** | Adaptive Multi-Tier Navigation Bars | Superato (100%) | `16e3708` | SidebarNav desktop (>=1024px), BottomNav mobile (<1024px, 5 tab + Altro), TierUpgradeModal con focus trap e gating, sync useFavorites, CSS/SW v126 e test suite |

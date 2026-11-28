@@ -246,7 +246,7 @@ export const T7AppShell: React.FC = () => {
   return (
     <AthleteProvider enforceSingleAthlete={isTier1}>
       <BleProvider allowedTier={tier}>
-        <GlobalNavigationShell>
+        <GlobalNavigationShell showNavigation={false}>
           <div className="t7-app-root" style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
             {/* Barra di Sotto-Navigazione Desktop a 6 Schede sotto GlobalHeader (senza logo duplicato ne sticky overlap) */}
             {!isMobileViewport && (

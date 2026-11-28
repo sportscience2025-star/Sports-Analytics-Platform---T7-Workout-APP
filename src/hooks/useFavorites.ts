@@ -10,6 +10,28 @@ import type { Exercise } from '../types/exercise';
 
 const STORAGE_KEY_FAVORITES = 't7_favorites';
 const STORAGE_KEY_CUSTOM = 't7_custom_exercises';
+const FAVORITES_UPDATED_EVENT = 't7-favorites-updated';
+
+/**
+ * Legge in modo sicuro un array JSON da localStorage restituendo un array vuoto in caso di errore o SSR.
+ * @param key Chiave localStorage da leggere
+ * @returns Array tipizzato letto dallo storage
+ */
+function readStoredArraySafe<T>(key: string): T[] {
+  try {
+    if (typeof window === 'undefined' || typeof window.localStorage === 'undefined') {
+      return [];
+    }
+    const stored = window.localStorage.getItem(key);
+    if (!stored) {
+      return [];
+    }
+    const parsed: unknown = JSON.parse(stored);
+    return Array.isArray(parsed) ? (parsed as T[]) : [];
+  } catch {
+    return [];
+  }
+}
 
 export interface UseFavoritesReturn {
   favoriteIds: string[];
@@ -28,30 +50,25 @@ export interface UseFavoritesReturn {
  * Hook per interagire con i preferiti salvati e gli esercizi creati dall'utente.
  */
 export function useFavorites(): UseFavoritesReturn {
-  const [favoriteIds, setFavoriteIds] = useState<string[]>(() => {
-    try {
-      if (typeof window === 'undefined') return [];
-      const stored = localStorage.getItem(STORAGE_KEY_FAVORITES);
-      return stored ? (JSON.parse(stored) as string[]) : [];
-    } catch {
-      return [];
-    }
-  });
+  const [favoriteIds, setFavoriteIds] = useState<string[]>(() =>
+    readStoredArraySafe<string>(STORAGE_KEY_FAVORITES)
+  );
 
-  const [customExercises, setCustomExercises] = useState<Exercise[]>(() => {
-    try {
-      if (typeof window === 'undefined') return [];
-      const stored = localStorage.getItem(STORAGE_KEY_CUSTOM);
-      return stored ? (JSON.parse(stored) as Exercise[]) : [];
-    } catch {
-      return [];
-    }
-  });
+  const [customExercises, setCustomExercises] = useState<Exercise[]>(() =>
+    readStoredArraySafe<Exercise>(STORAGE_KEY_CUSTOM)
+  );
 
-  // Salva i preferiti su localStorage ad ogni variazione
+  // Salva i preferiti su localStorage ad ogni variazione e notifica gli altri consumer nel tab
   useEffect(() => {
+    if (typeof window === 'undefined' || typeof window.localStorage === 'undefined') {
+      return;
+    }
     try {
-      localStorage.setItem(STORAGE_KEY_FAVORITES, JSON.stringify(favoriteIds));
+      const serialized = JSON.stringify(favoriteIds);
+      if (window.localStorage.getItem(STORAGE_KEY_FAVORITES) !== serialized) {
+        window.localStorage.setItem(STORAGE_KEY_FAVORITES, serialized);
+        window.dispatchEvent(new CustomEvent(FAVORITES_UPDATED_EVENT));
+      }
     } catch {
       // Ignora errori di quota storage
     }
@@ -59,12 +76,50 @@ export function useFavorites(): UseFavoritesReturn {
 
   // Salva gli esercizi custom su localStorage ad ogni variazione
   useEffect(() => {
+    if (typeof window === 'undefined' || typeof window.localStorage === 'undefined') {
+      return;
+    }
     try {
-      localStorage.setItem(STORAGE_KEY_CUSTOM, JSON.stringify(customExercises));
+      const serialized = JSON.stringify(customExercises);
+      if (window.localStorage.getItem(STORAGE_KEY_CUSTOM) !== serialized) {
+        window.localStorage.setItem(STORAGE_KEY_CUSTOM, serialized);
+        window.dispatchEvent(new CustomEvent(FAVORITES_UPDATED_EVENT));
+      }
     } catch {
       // Ignora errori di quota storage
     }
   }, [customExercises]);
+
+  // Sincronizza in tempo reale gli aggiornamenti ai preferiti provenienti da altri componenti o tab
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const syncFromStorage = (): void => {
+      const latestFavorites = readStoredArraySafe<string>(STORAGE_KEY_FAVORITES);
+      setFavoriteIds((prev) =>
+        JSON.stringify(prev) === JSON.stringify(latestFavorites) ? prev : latestFavorites
+      );
+      const latestCustom = readStoredArraySafe<Exercise>(STORAGE_KEY_CUSTOM);
+      setCustomExercises((prev) =>
+        JSON.stringify(prev) === JSON.stringify(latestCustom) ? prev : latestCustom
+      );
+    };
+
+    const handleStorageEvent = (event: StorageEvent): void => {
+      if (event.key === STORAGE_KEY_FAVORITES || event.key === STORAGE_KEY_CUSTOM || event.key === null) {
+        syncFromStorage();
+      }
+    };
+
+    window.addEventListener(FAVORITES_UPDATED_EVENT, syncFromStorage);
+    window.addEventListener('storage', handleStorageEvent);
+    return () => {
+      window.removeEventListener(FAVORITES_UPDATED_EVENT, syncFromStorage);
+      window.removeEventListener('storage', handleStorageEvent);
+    };
+  }, []);
 
   /**
    * Verifica se un determinato ID esercizio appartiene alla lista dei preferiti.

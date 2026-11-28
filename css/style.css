@@ -5470,3 +5470,41 @@ html {
     transform: translateY(-2px);
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   ADAPTIVE MULTI-TIER NAVIGATION SHELL (TASK-008 — Desktop >=1024 / Mobile <1024)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@media (min-width: 1024px) {
+    .t7-global-header {
+        flex-wrap: nowrap !important;
+    }
+
+    .t7-sidebar-nav {
+        display: flex;
+    }
+
+    .t7-bottom-nav {
+        display: none;
+    }
+
+    .t7-shell-main--with-nav {
+        padding-left: 240px;
+        padding-bottom: 0;
+    }
+}
+
+@media (max-width: 1023px) {
+    .t7-sidebar-nav {
+        display: none;
+    }
+
+    .t7-bottom-nav {
+        display: block;
+    }
+
+    .t7-shell-main--with-nav {
+        padding-left: 0;
+        padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+    }
+}
+
