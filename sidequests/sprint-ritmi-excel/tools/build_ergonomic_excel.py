@@ -16,28 +16,38 @@ import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 import csv
-import os
 import math
+
+from profile_400m_women import (
+    SHEET_NAME_400F,
+    ATHLETE_400F_REFERENCE,
+    load_400f_zone_matrix,
+    add_audit_columns,
+    add_400f_profile_header,
+    apply_high_intensity_conditional_formatting,
+)
 
 PERCENTAGES = [
     ("100%", 1.00, "0%"),
     ("98%", 0.98, "0%"),
     ("95%", 0.95, "0%"),
     ("93%", 0.93, "0%"),
-    ("90,0%", 0.90, "0.0%"),
+    ("90,0%", 0.90, "0%"),
     ("88%", 0.88, "0%"),
     ("85%", 0.85, "0%"),
     ("83%", 0.83, "0%"),
-    ("80,0%", 0.80, "0.0%"),
+    ("80,0%", 0.80, "0%"),
     ("78%", 0.78, "0%"),
     ("75%", 0.75, "0%"),
     ("73%", 0.73, "0%"),
-    ("70,0%", 0.70, "0.0%"),
+    ("70,0%", 0.70, "0%"),
     ("65%", 0.65, "0%"),
-    ("60,0%", 0.60, "0.0%"),
+    ("60,0%", 0.60, "0%"),
     ("55%", 0.55, "0%"),
-    ("50,0%", 0.50, "0.0%"),
+    ("50,0%", 0.50, "0%"),
 ]
+
+SHORT_PRECISE_DISTANCES = ("50", "60", "80")
 
 ATHLETE_DATA_EXTENDED = {
     "Atleta 1": [
@@ -111,7 +121,7 @@ PALETTE_FIELD_ELITE = {
     },
     "Z4": {
         "name": "Special Endurance 2 (SE2)",
-        "system": "Misto lattacido-aerobico severo (40 - 90s)",
+        "system": "Misto lattacido-aerobico severo (40 - 110s)",
         "bg_hex": "F5CBA7",   # Ambra vellutata / ocra morbida
         "font_hex": "1E1E1E", # Dark charcoal (Contrasto 11.10:1 AAA)
         "bold": False,
@@ -170,194 +180,204 @@ def load_zone_matrix():
                 matrix[dist_str][pct_name] = row[col_idx + 1]
     return matrix
 
+def populate_athlete_sheet(ws, athlete_rows, zone_matrix, styles, is_400f=False):
+    """Popola un foglio atleta con freeze panes C9, formule T100/p protette, formati metrologici e audit."""
+    ws.protection.sheet = False
+    ws.views.sheetView[0].showGridLines = True
+    ws.views.sheetView[0].zoomScale = 100
+    ws.freeze_panes = "C9"
+
+    if is_400f:
+        add_400f_profile_header(ws)
+
+    # Row 8: Header
+    ws.row_dimensions[8].height = 25.0
+    cell_a8 = ws.cell(row=8, column=1, value="m")
+    cell_a8.font = styles["font_header_bold"]
+    cell_a8.alignment = styles["align_center"]
+    cell_a8.border = styles["header_border"]
+    cell_a8.fill = styles["fill_header"]
+
+    for c_idx, (p_name, p_val, p_fmt) in enumerate(PERCENTAGES, start=2):
+        cell = ws.cell(row=8, column=c_idx, value=p_val)
+        cell.font = styles["font_header_bold"] if c_idx == 2 else styles["font_header"]
+        cell.alignment = styles["align_center"]
+        cell.border = styles["header_border"]
+        cell.number_format = p_fmt
+        cell.fill = styles["fill_header"]
+
+    # Data rows (9 to 21)
+    for offset, (dist_str, t100_val) in enumerate(athlete_rows):
+        row_idx = 9 + offset
+        ws.row_dimensions[row_idx].height = 21.5  # Tattile touch target
+        num_fmt = "0.00" if dist_str in SHORT_PRECISE_DISTANCES else "0.0"
+
+        # Col A: Distanza
+        cell_a = ws.cell(row=row_idx, column=1, value=int(dist_str))
+        cell_a.font = styles["font_dist"]
+        cell_a.alignment = styles["align_center"]
+        cell_a.border = styles["thin_border"]
+        cell_a.fill = styles["fill_grey_dist"] if dist_str in ["100", "200", "400"] else styles["fill_white"]
+
+        # Col B: Massimale T100 (Input manuale evidenziato)
+        cell_b = ws.cell(row=row_idx, column=2, value=t100_val)
+        z_id_100 = zone_matrix[dist_str]["100%"]
+        cfg_100 = PALETTE_FIELD_ELITE[z_id_100]
+        cell_b.font = Font(name="Calibri", size=9, bold=True, color=cfg_100["font_hex"])
+        cell_b.alignment = styles["align_center"]
+        cell_b.border = styles["b_input_border"]
+        cell_b.number_format = num_fmt
+        cell_b.fill = PatternFill(start_color=cfg_100["bg_hex"], end_color=cfg_100["bg_hex"], fill_type="solid")
+
+        # Colonne C..R: Formule Vive con guardia <=0 (=IF($B{riga}<=0,"",$B{riga}/C$8))
+        for col_idx, (p_name, p_val, p_fmt) in enumerate(PERCENTAGES[1:], start=3):
+            col_letter = get_column_letter(col_idx)
+            formula_str = f'=IF($B{row_idx}<=0,"",$B{row_idx}/{col_letter}$8)'
+            cell_der = ws.cell(row=row_idx, column=col_idx, value=formula_str)
+
+            z_id = zone_matrix[dist_str][p_name]
+            cfg = PALETTE_FIELD_ELITE[z_id]
+
+            cell_der.font = Font(name="Calibri", size=9, bold=cfg["bold"], color=cfg["font_hex"])
+            cell_der.alignment = styles["align_center"]
+            cell_der.border = styles["thin_border"]
+            cell_der.fill = PatternFill(start_color=cfg["bg_hex"], end_color=cfg["bg_hex"], fill_type="solid")
+            cell_der.number_format = num_fmt
+
+    # Larghezza Colonne Ottimizzata per Display Mobili
+    ws.column_dimensions["A"].width = 6.8
+    ws.column_dimensions["B"].width = 7.2
+    for col_idx in range(3, 19):
+        ws.column_dimensions[get_column_letter(col_idx)].width = 6.4
+
+    # Colonne Audit S, T (+ U su 400F)
+    add_audit_columns(ws, start_row=9, num_rows=len(athlete_rows), include_col_u_400f=is_400f)
+
+    if is_400f:
+        apply_high_intensity_conditional_formatting(ws, PALETTE_FIELD_ELITE)
+
+
 def build_ergonomic_workbook():
-    zone_matrix = load_zone_matrix()
+    """Genera il workbook ritmi_atleti.xlsx con fogli atleti, foglio 400m donne e legenda aggiornata."""
+    zone_matrix_base = load_zone_matrix()
+    zone_matrix_400f = load_400f_zone_matrix()
     wb = openpyxl.Workbook()
-    wb.remove(wb.active) # Remove default sheet
-    
-    # Styles
-    font_header = Font(name="Calibri", size=10, bold=False, color="1E1E1E")
-    font_header_bold = Font(name="Calibri", size=10, bold=True, color="1E1E1E")
-    font_dist = Font(name="Calibri", size=9, bold=True, color="1E1E1E")
-    
-    align_center = Alignment(horizontal="center", vertical="center")
-    align_left = Alignment(horizontal="left", vertical="center")
-    
+    wb.remove(wb.active)  # Remove default sheet
+
     border_thin_side = Side(border_style="thin", color="B0B0B0")
-    thin_border = Border(left=border_thin_side, right=border_thin_side, top=border_thin_side, bottom=border_thin_side)
-    
     border_header_bottom = Side(border_style="medium", color="707070")
-    header_border = Border(left=border_thin_side, right=border_thin_side, top=border_thin_side, bottom=border_header_bottom)
-    
     border_b_side = Side(border_style="medium", color="303030")
-    b_input_border = Border(left=border_b_side, right=border_b_side, top=border_thin_side, bottom=border_thin_side)
-    
-    fill_header = PatternFill(start_color="F2F4F4", end_color="F2F4F4", fill_type="solid")
-    fill_grey_dist = PatternFill(start_color="D6DBDF", end_color="D6DBDF", fill_type="solid") # Official championship distances (100, 200, 400)
-    fill_white = PatternFill(start_color="FFFFFF", end_color="FFFFFF", fill_type="solid")
-    
+
+    styles = {
+        "font_header": Font(name="Calibri", size=10, bold=False, color="1E1E1E"),
+        "font_header_bold": Font(name="Calibri", size=10, bold=True, color="1E1E1E"),
+        "font_dist": Font(name="Calibri", size=9, bold=True, color="1E1E1E"),
+        "align_center": Alignment(horizontal="center", vertical="center"),
+        "align_left": Alignment(horizontal="left", vertical="center"),
+        "thin_border": Border(left=border_thin_side, right=border_thin_side, top=border_thin_side, bottom=border_thin_side),
+        "header_border": Border(left=border_thin_side, right=border_thin_side, top=border_thin_side, bottom=border_header_bottom),
+        "b_input_border": Border(left=border_b_side, right=border_b_side, top=border_thin_side, bottom=border_thin_side),
+        "fill_header": PatternFill(start_color="F2F4F4", end_color="F2F4F4", fill_type="solid"),
+        "fill_grey_dist": PatternFill(start_color="D6DBDF", end_color="D6DBDF", fill_type="solid"),
+        "fill_white": PatternFill(start_color="FFFFFF", end_color="FFFFFF", fill_type="solid"),
+    }
+
     for athlete_name, athlete_rows in ATHLETE_DATA_EXTENDED.items():
         ws = wb.create_sheet(title=athlete_name)
-        
-        # 1. Excel Small Screen & Grid Configuration
-        ws.views.sheetView[0].showGridLines = True
-        ws.views.sheetView[0].zoomScale = 100
-        # FREEZE PANES BIDIREZIONALE: blocca riga 8 (intestazioni) e colonne A-B (distanza e massimale)
-        ws.freeze_panes = "C9"
-        
-        # Row 8: Header
-        ws.row_dimensions[8].height = 25.0
-        
-        cell_a8 = ws.cell(row=8, column=1, value="m")
-        cell_a8.font = font_header_bold
-        cell_a8.alignment = align_center
-        cell_a8.border = header_border
-        cell_a8.fill = fill_header
-        
-        for c_idx, (p_name, p_val, p_fmt) in enumerate(PERCENTAGES, start=2):
-            cell = ws.cell(row=8, column=c_idx, value=p_val)
-            cell.font = font_header_bold if c_idx == 2 else font_header
-            cell.alignment = align_center
-            cell.border = header_border
-            cell.number_format = p_fmt
-            cell.fill = fill_header
-            
-        # Data rows (9 to 21)
-        for offset, (dist_str, t100_val) in enumerate(athlete_rows):
-            row_idx = 9 + offset
-            ws.row_dimensions[row_idx].height = 21.5 # Tattile touch target
-            
-            # Col A: Distanza
-            cell_a = ws.cell(row=row_idx, column=1, value=int(dist_str))
-            cell_a.font = font_dist
-            cell_a.alignment = align_center
-            cell_a.border = thin_border
-            if dist_str in ["100", "200", "400"]:
-                cell_a.fill = fill_grey_dist
-            else:
-                cell_a.fill = fill_white
-                
-            # Col B: Massimale T100 (Input manuale evidenziato)
-            cell_b = ws.cell(row=row_idx, column=2, value=t100_val)
-            z_id_100 = zone_matrix[dist_str]["100%"]
-            cfg_100 = PALETTE_FIELD_ELITE[z_id_100]
-            cell_b.font = Font(name="Calibri", size=9, bold=True, color=cfg_100["font_hex"])
-            cell_b.alignment = align_center
-            cell_b.border = b_input_border
-            cell_b.number_format = "0.0"
-            cell_b.fill = PatternFill(start_color=cfg_100["bg_hex"], end_color=cfg_100["bg_hex"], fill_type="solid")
-            
-            # Colonne C..R: Formule Vive =$B{riga}/C$8 con mappatura 2D WCAG AAA
-            for col_idx, (p_name, p_val, p_fmt) in enumerate(PERCENTAGES[1:], start=3):
-                col_letter = get_column_letter(col_idx)
-                formula_str = f"=$B{row_idx}/{col_letter}$8"
-                cell_der = ws.cell(row=row_idx, column=col_idx, value=formula_str)
-                
-                z_id = zone_matrix[dist_str][p_name]
-                cfg = PALETTE_FIELD_ELITE[z_id]
-                
-                cell_der.font = Font(name="Calibri", size=9, bold=cfg["bold"], color=cfg["font_hex"])
-                cell_der.alignment = align_center
-                cell_der.border = thin_border
-                cell_der.fill = PatternFill(start_color=cfg["bg_hex"], end_color=cfg["bg_hex"], fill_type="solid")
-                
-                # Number format: 0.00 for 50m @ 83%, 0.0 for others
-                if dist_str == "50" and p_name == "83%":
-                    cell_der.number_format = "0.00"
-                else:
-                    cell_der.number_format = "0.0"
+        populate_athlete_sheet(ws, athlete_rows, zone_matrix_base, styles, is_400f=False)
 
-        # Larghezza Colonne Ottimizzata per Display Mobili
-        ws.column_dimensions["A"].width = 6.8
-        ws.column_dimensions["B"].width = 7.2
-        for col_idx in range(3, 19):
-            ws.column_dimensions[get_column_letter(col_idx)].width = 6.4
+    # Foglio dedicato 400m Donne (20-25 anni, medio-alto livello)
+    ws_400f = wb.create_sheet(title=SHEET_NAME_400F)
+    populate_athlete_sheet(ws_400f, ATHLETE_400F_REFERENCE, zone_matrix_400f, styles, is_400f=True)
 
-    # Foglio 4: Legenda Ergonomica e Guida Mobile
+    # Foglio 5: Legenda Ergonomica e Guida Mobile
     ws_notes = wb.create_sheet(title="Legenda e Guida Mobile")
+    ws_notes.protection.sheet = False
     ws_notes.views.sheetView[0].showGridLines = True
-    
+
     font_title = Font(name="Calibri", size=13, bold=True, color="1F497D")
     font_sec = Font(name="Calibri", size=11, bold=True, color="1E1E1E")
     font_body = Font(name="Calibri", size=9.5, color="333333")
-    
+
+    font_header_bold = styles["font_header_bold"]
+    fill_header = styles["fill_header"]
+    header_border = styles["header_border"]
+    thin_border = styles["thin_border"]
+    align_center = styles["align_center"]
+    align_left = styles["align_left"]
+
     ws_notes["A1"] = "GUIDA OPERATIVA & LEGENDA ERGONOMICA WCAG AAA DELLE ZONE DI ALLENAMENTO"
     ws_notes["A1"].font = font_title
     ws_notes.merge_cells("A1:E1")
     ws_notes.row_dimensions[1].height = 28.0
     ws_notes["A1"].alignment = Alignment(vertical="center", horizontal="left")
-    
-    # Tabella Legenda Zone Visiva (Gerarchia Decrescente: Z7 Top -> Z1 Min + OFF)
+
+    # Tabella Legenda Zone Visiva (Gerarchia Decrescente: Z7 Top -> Z1 Min)
     ws_notes["A3"] = "Zona"
     ws_notes["B3"] = "Nome della Zona"
     ws_notes["C3"] = "Sistema Energetico & Finestra Temporale"
     ws_notes["D3"] = "Contrasto WCAG"
-    ws_notes["E3"] = "Distanze & Percentuali Tipiche"
-    
+    ws_notes["E3"] = "Distanze & Percentuali Tipiche (Base / 400F)"
+
     for c in ["A3", "B3", "C3", "D3", "E3"]:
         ws_notes[c].font = font_header_bold
         ws_notes[c].fill = fill_header
         ws_notes[c].border = header_border
         ws_notes[c].alignment = align_left if c != "A3" and c != "D3" else align_center
-        
+
     zone_order = [
-        ("Z7", "Z7", "7.45:1 (AAA)", "50m, 60m, 80m @ 95-100%"),
-        ("Z6", "Z6", "8.55:1 (AAA)", "100m-150m @ 95-100%, 50m-80m @ 90-93%"),
-        ("Z5", "Z5", "7.03:1 (AAA)", "150m-300m @ 90-98%, 100m-120m @ 88-93% (SE1)"),
-        ("Z4", "Z4", "11.10:1 (AAA)", "300m-600m @ 85-98% (SE2)"),
-        ("Z3", "Z3", "13.46:1 (AAA)", "50m-200m @ 70-88%, 100-150m @ 65-88%, 250-300m @ 73-88%, 350-600m @ 78-83%"),
-        ("Z2", "Z2", "11.11:1 (AAA)", "50m-200m @ 65% (100-150m @ 60%), 250-300m @ 65-70%, 350-600m @ 70-75%"),
-        ("Z1", "Z1", "10.87:1 (AAA)", "50m-300m @ 50-60% (100-150m @ 50-55%), 350-600m @ 50-65% (Rigenerazione & Flush)"),
+        ("Z7", "Z7", "7.45:1 (AAA)", "Base: 50-80m @ 95-100% | 400F: <= 8s (50-60m @ 95-100%, 50m @ 90-93%)"),
+        ("Z6", "Z6", "8.55:1 (AAA)", "Base: 100-150m @ 95-100%, 50-80m @ 90-93% | 400F: 8-18s (60-120m @ >=85%)"),
+        ("Z5", "Z5", "7.03:1 (AAA)", "Base: 200-300m @ 90-100%, 150m @ 90-93%, 100-120m @ 88-93% | 400F: 18-40s"),
+        ("Z4", "Z4", "11.10:1 (AAA)", "Base: 350-600m @ 85-100%, 300m @ 85-88% | 400F: 300-600m @ 85-100% (>40s, fino a 110s)"),
+        ("Z3", "Z3", "13.46:1 (AAA)", "Base: 50-80/200m @ 70-88%, 100-150m @ 65-85%, 250-300m @ 73-83%, 350-600m @ 78-83% | 400F: 75-83% (73-83% su 350-600m)"),
+        ("Z2", "Z2", "11.11:1 (AAA)", "Base: 50-80/200m @ 65%, 100-150m @ 60%, 250-300m @ 65-70%, 350-600m @ 70-75% | 400F: 65-73% (60-70% su 350-600m)"),
+        ("Z1", "Z1", "10.87:1 (AAA)", "Base: 50-300m @ 50-60% (100-150m @ 50-55%), 350-600m @ 50-65% | 400F: 50-60% (500-600m @ 50-55% solo erba)"),
     ]
-    
+
     for idx, (zid, short_code, contrast_val, dist_desc) in enumerate(zone_order, start=4):
         cfg = PALETTE_FIELD_ELITE[zid]
-        ws_notes.row_dimensions[idx].height = 22.0
-        
-        # Col A: Campione Colore Reale
+        ws_notes.row_dimensions[idx].height = 24.0
+
         cA = ws_notes[f"A{idx}"]
         cA.value = short_code
         cA.font = Font(name="Calibri", size=9, bold=True, color=cfg["font_hex"])
         cA.fill = PatternFill(start_color=cfg["bg_hex"], end_color=cfg["bg_hex"], fill_type="solid")
         cA.alignment = align_center
         cA.border = thin_border
-        
-        # Col B: Nome
+
         cB = ws_notes[f"B{idx}"]
         cB.value = cfg["name"]
         cB.font = Font(name="Calibri", size=9.5, bold=True, color="1E1E1E")
         cB.alignment = align_left
         cB.border = thin_border
-        
-        # Col C: Sistema
+
         cC = ws_notes[f"C{idx}"]
         cC.value = cfg["system"]
         cC.font = font_body
         cC.alignment = align_left
         cC.border = thin_border
-        
-        # Col D: Contrasto
+
         cD = ws_notes[f"D{idx}"]
         cD.value = contrast_val
         cD.font = font_body
         cD.alignment = align_center
         cD.border = thin_border
-        
-        # Col E: Distanze
+
         cE = ws_notes[f"E{idx}"]
         cE.value = dist_desc
         cE.font = font_body
-        cE.alignment = align_left
+        cE.alignment = Alignment(wrap_text=True, vertical="center", horizontal="left")
         cE.border = thin_border
-        
-    ws_notes.column_dimensions["A"].width = 8.5
+
+    ws_notes.column_dimensions["A"].width = 11.0
     ws_notes.column_dimensions["B"].width = 38.0
     ws_notes.column_dimensions["C"].width = 52.0
-    ws_notes.column_dimensions["D"].width = 16.0
-    ws_notes.column_dimensions["E"].width = 50.0
+    ws_notes.column_dimensions["D"].width = 20.0
+    ws_notes.column_dimensions["E"].width = 58.0
 
-    # Nuova Sezione: Tabella Matrice di Sforzo e Recupero (SEP vs SEM)
-    ws_notes["A14"] = "MATRICE METODOLOGICA: SFORZO, TEMPO DI RECUPERO E SISTEMI ENERGETICI (SEP vs SEM)"
+    # Sezione 2: Tabella Matrice di Sforzo e Recupero (SEP vs SEM + 400m Donne)
+    ws_notes["A14"] = "MATRICE METODOLOGICA: SFORZO, TEMPO DI RECUPERO E SISTEMI ENERGETICI (SEP vs SEM & 400F)"
     ws_notes["A14"].font = font_title
     ws_notes.merge_cells("A14:E14")
     ws_notes.row_dimensions[14].height = 26.0
@@ -366,7 +386,7 @@ def build_ergonomic_workbook():
     rec_headers = [
         ("A16", "Zona"),
         ("B16", "Distanze Tipiche"),
-        ("C16", "Intensità"),
+        ("C16", "Intensita"),
         ("D16", "Tempo di Recupero"),
         ("E16", "Effetto Fisiologico Bersaglio & Adattamento Molecolare"),
     ]
@@ -379,22 +399,22 @@ def build_ergonomic_workbook():
         c.alignment = align_left if cell_id != "A16" and cell_id != "C16" else align_center
 
     recovery_matrix_data = [
-        ("Z7", "Z7", "50m - 80m", "95 - 100%", "Completo (4 - 8 min)", "Velocità Massima & Accelerazione Alattacida (ATP-PCr puro, fibre rapide IIx)"),
-        ("Z6", "Z6", "100m - 150m", "95 - 100%", "Completo (8 - 12 min)", "Potenza Lattacida Breve / Speed Endurance (VLamax picco, glicolisi rapida)"),
-        ("Z5", "Z5 (SEP)", "150m - 300m", "95 - 100%", "COMPLETO (12 - 20+ min)", "POTENZA LATTACIDA PROLUNGATA (Speed Endurance Production - Prova singola o time trial 250m/300m)"),
-        ("Z5", "Z5 (SEM)", "150m - 300m", "90 - 95%", "INCOMPLETO (4 - 8 min)", "CAPACITÀ LATTACIDA & BUFFERING (Speed Endurance Maintenance - Serie ripetute in acidosi)"),
-        ("Z4", "Z4", "300m - 600m", "85 - 98%", "Ampio (12 - 25 min)", "Special Endurance 2 / Misto Lattacido-Aerobico Severo (Tenuta 400m/800m)"),
-        ("Z3", "Z3", "50m - 300m", "70 - 88%", "Breve (1.5 - 3 min)", "Intensive Tempo (Glicolisi controllata 4-8 mM, Fast SSC, decontrazione neurale)"),
-        ("Z2", "Z2", "50m - 600m", "60 - 75%", "Molto breve (45s - 2 min)", "Extensive Tempo Tecnico & Capillarizzazione (Ossidativo sub-LT2, recupero attivo)"),
-        ("Z1", "Z1", "50m - 600m", "50 - 65%", "Minimo / Continuo", "Rigenerazione Aerobica, Strides Riscaldamento & Flush Runs su erba (Sub-LT1)"),
+        ("Z7", "Z7", "50m - 80m (400F <=8s)", "95 - 100%", "Completo (4 - 8 min)", "Velocita Massima & Accelerazione Alattacida (ATP-PCr puro, fibre rapide IIx; non ridurre rec. alle donne)"),
+        ("Z6", "Z6", "100m - 150m (400F 8-18s)", "95 - 100%", "Completo (8 - 12 min)", "Potenza Lattacida Breve / Speed Endurance (VLamax picco, glicolisi rapida)"),
+        ("Z5", "Z5 (SEP)", "200m - 300m (150m 90-93%)", "95 - 100%", "COMPLETO (12 - 20+ min)", "POTENZA LATTACIDA PROLUNGATA (Speed Endurance Production - Prova singola o time trial 250m/300m)"),
+        ("Z5", "Z5 (SEM)", "150m - 300m", "90 - 95%", "INCOMPLETO (4 - 8 min; 400F 4-6')", "CAPACITA LATTACIDA & BUFFERING (Speed Endurance Maintenance - Serie ripetute in acidosi; stop 3%)"),
+        ("Z4", "Z4 (Submax)", "300m - 600m", "85 - 90%", "Medio-Ampio (8 - 12 min)", "Special Endurance 2 submassimale (Vittori/Hart; tolleranza acidosi su 2-4 prove)"),
+        ("Z4", "Z4 (Gara)", "300m - 600m", "92 - 100%", "Ampio (15 - 25 min)", "Special Endurance 2 / Tenuta 400m-800m vicino al ritmo gara (USATF/UKA)"),
+        ("Z3", "Z3", "50m - 600m", "70 - 88% (400F 73-83%)", "Breve (1.5-2.5' <=300m; 2-4' >350m)", "Intensive Tempo (Glicolisi controllata 4-8 mM, Fast SSC, decontrazione; 5-8' tra serie lunghe)"),
+        ("Z2", "Z2", "50m - 600m", "60 - 75% (400F 60-73%)", "Molto breve (45s - 2 min)", "Extensive Tempo Tecnico & Capillarizzazione (Ossidativo sub-LT2, recupero attivo)"),
+        ("Z1", "Z1", "50m - 600m", "50 - 60% (65% base 350-600)", "Minimo / Continuo", "Rigenerazione Aerobica, Strides Riscaldamento & Flush Runs su erba (Sub-LT1)"),
     ]
 
     for r_offset, (zid, label, d_str, int_str, rec_str, eff_str) in enumerate(recovery_matrix_data):
         curr_row = 17 + r_offset
-        ws_notes.row_dimensions[curr_row].height = 21.0
+        ws_notes.row_dimensions[curr_row].height = 22.0
         cfg = PALETTE_FIELD_ELITE[zid]
 
-        # Col A
         cA = ws_notes[f"A{curr_row}"]
         cA.value = label
         cA.font = Font(name="Calibri", size=8.5, bold=True, color=cfg["font_hex"])
@@ -402,85 +422,56 @@ def build_ergonomic_workbook():
         cA.alignment = align_center
         cA.border = thin_border
 
-        # Col B
         cB = ws_notes[f"B{curr_row}"]
         cB.value = d_str
         cB.font = font_body
         cB.alignment = align_left
         cB.border = thin_border
 
-        # Col C
         cC = ws_notes[f"C{curr_row}"]
         cC.value = int_str
         cC.font = font_body
         cC.alignment = align_center
         cC.border = thin_border
 
-        # Col D
         cD = ws_notes[f"D{curr_row}"]
         cD.value = rec_str
         cD.font = Font(name="Calibri", size=9.5, bold=True if "COMPLETO" in rec_str or "INCOMPLETO" in rec_str else False, color="1E1E1E")
         cD.alignment = align_left
         cD.border = thin_border
 
-        # Col E
         cE = ws_notes[f"E{curr_row}"]
         cE.value = eff_str
         cE.font = font_body
         cE.alignment = align_left
         cE.border = thin_border
-    
-    # Note di Campo e Funzionalità Mobile con Nomenclatura Z7->Z1 e Correzione Submassimali
+
+    # Note di Campo, Specificita 400m Donne e Ciclo Mestruale
     notes_text = [
-        ("IL RUOLO CRUCIALE DEL TEMPO DI RECUPERO: POTENZA LATTACIDA VS CAPACITÀ LATTACIDA SUI 150m-300m",
-         "- La distanza percorsa NON determina da sola il sistema energetico bersaglio: è la combinazione di Distanza (Tempo sotto tensione) "
-         "x Intensità x TEMPO DI RECUPERO a stabilire se si allena la Potenza o la Capacità.\n"
-         "- POTENZA LATTACIDA (SEP - Speed Endurance Production): se un velocista (es. centometrista o duecentista) corre un singolo 250m o 300m "
-         "massimale al 100% (o 2 prove con recupero completo >= 15-20 min), alla partenza il pH è neutro (~7.1) e la fosfocreatina è al 100%. "
-         "L'enzima PFK-1 lavora alla massima velocità catalitica, sprigionando il massimo picco glicolitico (VLamax) e accumulo di lattato "
-         "oltre 18-22 mM. Questo stimolo allena la massima potenza erogabile per reggere gli ultimi 30-50m di un 200m.\n"
-         "- CAPACITÀ LATTACIDA (SEM - Speed Endurance Maintenance): se la stessa distanza (200m-300m) viene corsa con recupero incompleto (4-8 min), "
-         "l'atleta riparte in piena acidosi (pH ~6.80). Come dimostrato da Bogdanis (1996), la PFK-1 viene inibita del 45% dai protoni H+ residui; "
-         "la massima potenza non può essere espressa e l'organismo è forzato ad allenare la capacità tampone muscolare (bicarbonati, carnosina) "
-         "e l'efficienza dei trasportatori MCT1/MCT4.\n"
-         "- Pertanto, la Special Endurance 1 (Z5) possiede una doppia natura metodologica: con recupero completo è Potenza Lattacida Prolungata; "
-         "con recupero parziale è Capacità Lattacida e tolleranza all'acidosi."),
+        ("IL RUOLO CRUCIALE DEL TEMPO DI RECUPERO: POTENZA LATTACIDA VS CAPACITA LATTACIDA SUI 150m-300m",
+         "- La distanza percorsa NON determina da sola il sistema energetico bersaglio: e la combinazione di Distanza x Intensita x TEMPO DI RECUPERO a stabilire se si allena la Potenza o la Capacita.\n"
+         "- POTENZA LATTACIDA (SEP - Speed Endurance Production): prova singola o 2 prove con recupero completo >= 12-20 min; pH neutro (~7.1), PFK-1 al 100%, picco glicolitico VLamax (>18-22 mM).\n"
+         "- CAPACITA LATTACIDA (SEM - Speed Endurance Maintenance): recupero incompleto (4-8 min); ripartenza in acidosi (pH ~6.80), inibizione PFK-1 del 45% (Bogdanis, 1996), stimolo su potere tampone e trasportatori MCT1/MCT4."),
 
-        ("FUNZIONALITÀ SMART PER PICCOLI SCHERMI (MOBILE & TABLET)",
-         "1. Blocco Riquadri Bidirezionale (Freeze Panes 'C9'): quando scorri a destra verso le percentuali estensive, "
-         "la colonna della distanza (A) e la colonna del massimale 100% (B) restano sempre visibili sul lato sinistro dello schermo.\n"
-         "2. Quando scorri verso il basso verso i 600m, l'intestazione delle percentuali (riga 8) resta sempre visibile in alto.\n"
-         "3. Touch Targets (Altezza 21.5 pt): righe più alte per evitare tocchi accidentali con dita sudate o guanti in pista.\n"
-         "4. Larghezza Colonne Compatta (6.4): permette di vedere fino a 11-12 colonne simultaneamente su smartphone senza dover continuamente scorrere."),
-        
-        ("STRUTTURA DIDATTICA E GERARCHIA DELLE ZONE (Z7 TOP -> Z1 BASE)",
-         "- Z7 (Rosso Mattone): Massima Velocità ed Accelerazione Alattacida (50-80m @ 95-100%, t <= 8s, ATP-PCr puro, fibre rapide IIx).\n"
-         "- Z6 (Viola Prugna): Potenza Lattacida & Speed Endurance (100-150m @ 95-100%, 50-80m @ 90-93%, VLamax, glicolisi rapida).\n"
-         "- Z5 (Terracotta): Special Endurance 1 - SE1 (150-300m @ 90-98%, Potenza con rec. completo >=12-20', Capacità con rec. incompleto 4-8').\n"
-         "- Z4 (Ambra Chiaro): Special Endurance 2 - SE2 (300-600m @ 85-98%, resistenza alla velocità prolungata, misto severo 40-90s).\n"
-         "- Z3 (Giallo Sabbia): Intensive Tempo (50-200m @ 70-88%, 100-150m @ 65-88%, 250-300m @ 73-88%, 350-600m @ 78-83%, decontrazione neurale, glicolisi controllata 4-8 mM).\n"
-         "- Z2 (Verde Salvia): Extensive Tempo Tecnico & Capillarizzazione (50-200m @ 65%, 100-150m @ 60%, 250-300m @ 65-70%, 350-600m @ 70-75%, recupero attivo, ossidativo sub-LT2, postura e capillarizzazione).\n"
-         "- Z1 (Azzurro Polvere): Rigenerazione Aerobica, Strides Riscaldamento & Flush Runs (50-300m @ 50-60%, 100-150m @ 50-55%, 350-600m @ 50-65%, riscaldamento pre-gara, flush su erba, riatletizzazione)."),
+        ("SPECIFICITA SCIENTIFICHE PER ATLETE 400m DONNE (20-25 ANNI, ~52.5-56.5 s)",
+         "- Validita della formula =IF($B<=0,\"\",$B/C$8): mantenuta come motore di riga perche su 80-400m lo scarto rispetto ai modelli meccanici (<=0.04-0.15s) e inferiore alla variabilita biologica giornaliera (CV 1.0-1.5%, Haugen 2019), mentre sostituirla con MAS/ASR/D' introdurrebbe rumore statistico.\n"
+         "- Ripartizione energetica (Duffield et al., 2005): nei 400m femminili il contributo aerobico sale al ~45% (vs ~41% uomini), con crossover >50% tra 15 e 30s (Spencer & Gastin, 2001). Per questo nel foglio '400m Donne (20-25)' il 73-75% su 350-600m passa in Z3 bassa e il 65-73% su 50-200m (75% su 150-200m Hart) rientra in Z2.\n"
+         "- Speed Reserve Ratio (Rappelt et al., 2025) & Calibrazione Colonna B: MSS/MAS >= 1.81 = Sprint-type, <= 1.77 = Endurance-type. Per stimare 250-350m non testati in Colonna U si usa la Power-Law locale tra 200m e 400m (b_ind ~1.14-1.17, mai Riegel fisso 1.06); per 500-600m serve test diretto o MAS.\n"
+         "- Formattazione Condizionale Dinamica (>=85% su 400F): le celle B9:H21 aggiornano il colore Z7/Z6/Z5/Z4 in base al tempo reale calcolato (<=8s, 8-18s, 18-40s, >40s), azzerando le discrepanze temporali.\n"
+         "- Ciclo Mestruale (McNulty et al., 2020; Oosthuyse & Bosch, 2010): effetto medio sulle prestazioni triviale. Non duplicare le tabelle: ancorare le sedute a velocita target + RPE (piu stabili di FC o lattato fisso in fase medio-luteale, dove la temperatura basale sale di 0.3-0.5 C)."),
 
-        ("IL VALORE METODOLOGICO DEI TRATTI BREVI SUBMASSIMALI (50m-120m @ 50%-65%): RISCALDAMENTO, FLUSH RUNS E RECUPERO ATTIVO",
-         "- La tesi secondo cui correre tratti brevi sotto il 65% 'distrugge la stiffness reattiva' è un mito dogmatico smentito dalla fisiologia e dalla biomeccanica:\n"
-         "- 1. Spring-Mass Model 'Tunable': Il corpo umano adatta la stiffness in millisecondi via feed-forward (Farley & McMahon). Allunghi controllati "
-         "non de-calibrano l'arco riflesso; al contrario, la stiffness cala a causa della fatica cronica del SNC e dell'infiammazione tendinea, che vengono prevenute proprio dal lavoro rigenerativo.\n"
-         "- 2. Extensive Tempo di Charlie Francis: Francis costruiva l'80% del volume settimanale dei suoi velocisti olimpici su 1.500-3.000m di Extensive Tempo "
-         "fatto di serie da 100m su erba in 18-22s (esattamente il 50%-55% del massimale), per stimolare il letto capillare (VEGF) e favorire il recupero del SNC.\n"
-         "- 3. Pratica dei Grandi Tecnici: Carlo Vittori ('allunghi di riscaldamento a scioltezza elastica'), Dan Pfaff ad ALTIS ('barefoot grass flush runs'), "
-         "Clyde Hart ('warm-up strides') e Ryan Banta ('return-to-play post hamstring injury') utilizzano quotidianamente i 50m-120m al 50%-65% come "
-         "ponte termico preparatorio, decontrazione muscolare e ricircolo del lattato (George Brooks Lactate Shuttle MCT1/MCT4)."),
-          
+        ("FUNZIONALITA SMART PER PICCOLI SCHERMI & AUDIT CURVA",
+         "1. Blocco Riquadri Bidirezionale (Freeze Panes 'C9'): colonna distanza (A) e massimale (B) fisse a sinistra; riga percentuali (8) fissa in alto.\n"
+         "2. Risoluzione metrologica uniforme: '0.00' su 50-80m per evitare errori di arrotondamento fino a 0.05s; '0.0' su 100-600m.\n"
+         "3. Colonne Audit S e T: mostrano v100 (m/s) e verificano automaticamente la monotonicita decrescente dai 120m ai 600m ('ANOMALIA' in caso di inversioni)."),
+
         ("LINEE GUIDA SCIENTIFICHE D'USO SUL CAMPO",
-         "- Regola di Stop del 3% (SNC Fatigue Cutoff): nelle sedute di velocità pura e potenza lattacida (Z7/Z6/Z5 SEP), interrompere la serie "
-         "non appena il crono registrato sale di oltre il 3% rispetto al target (es. da 10.80s a oltre 11.12s), per evitare fatica neurale parassita.\n"
-         "- Flying Start su Z3: per prove tecniche di ritmo su 50m, 60m e 80m al 78-88% (Z3), adottare un avvio lanciato di 10-15m per evitare che "
-         "la fase di accelerazione statica iniziale alteri la velocità di crociera e la biomeccanica front-side.\n"
-         "- Autoregolazione dinamica: modificando un massimale in Colonna B, tutte le 16 percentuali submassimali (da Z7 a Z1) si ricalcolano istantaneamente.")
+         "- Regola di Stop del 3% (SNC Fatigue Cutoff): in Z7/Z6/Z5 SEP interrompere la serie appena il crono sale oltre il +3% rispetto al target.\n"
+         "- Partenza Lanciata Obbligatoria (Flying Start) su 50-80m submassimali (<90%): evita di falsare l'accelerazione iniziale e il tempo di contatto.\n"
+         "- Modificabilita Totale (Regola 05): nessun foglio o cella e protetto da password.")
     ]
-    
-    r_idx = 28
+
+    r_idx = 29
     for title, desc in notes_text:
         ws_notes[f"A{r_idx}"] = title
         ws_notes[f"A{r_idx}"].font = font_sec
@@ -492,15 +483,15 @@ def build_ergonomic_workbook():
         ws_notes[f"A{r_idx+1}"].font = font_body
         ws_notes.merge_cells(start_row=r_idx+1, start_column=1, end_row=r_idx+1, end_column=5)
         ws_notes[f"A{r_idx+1}"].alignment = Alignment(wrap_text=True, vertical="top", horizontal="left")
-        
-        # Stima accurata delle linee considerando la larghezza aggregata di ~164 caratteri (A..E)
+
         total_lines = sum(max(1, math.ceil(len(p) / 120)) for p in desc.split("\n"))
         ws_notes.row_dimensions[r_idx+1].height = max(total_lines * 17 + 10, 36)
         r_idx += 3
 
     out_file = "sidequests/sprint-ritmi-excel/output/ritmi_atleti.xlsx"
     wb.save(out_file)
-    print(f"Workbook ergonomico v2 salvato con successo in: {out_file}")
+    print(f"Workbook ergonomico v3 (con profilo 400m Donne) salvato in: {out_file}")
+
 
 if __name__ == "__main__":
     build_ergonomic_workbook()
