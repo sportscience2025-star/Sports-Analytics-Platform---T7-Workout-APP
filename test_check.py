@@ -35,7 +35,7 @@ print("=== T7 WORKOUT PLATFORM VALIDATION SUITE ===")
 # -------------------------------------------------------------
 # 1. Validazione Catalogo Esercizi (296 Esercizi)
 # -------------------------------------------------------------
-print("\n[1/16] Validating Exercise Catalog (src/data/exercises/)...")
+print("\n[1/17] Validating Exercise Catalog (src/data/exercises/)...")
 category_files = ['chest.ts', 'back.ts', 'legs.ts', 'shoulders.ts', 'arms.ts', 'core.ts']
 total_exercises = 0
 exercise_ids = set()
@@ -69,7 +69,7 @@ for aux in ['clinical-knee.ts', 'index.ts']:
 # -------------------------------------------------------------
 # 2. Validazione Condizioni Cliniche (119 Condizioni)
 # -------------------------------------------------------------
-print("\n[2/16] Validating Clinical Conditions (src/data/conditions/)...")
+print("\n[2/17] Validating Clinical Conditions (src/data/conditions/)...")
 condition_files = [
     'arti-inferiori.ts',
     'arti-superiori.ts',
@@ -106,7 +106,7 @@ if total_conditions != 119:
 # -------------------------------------------------------------
 # 3. Validazione Fonti Scientifiche (322 Fonti)
 # -------------------------------------------------------------
-print("\n[3/16] Validating Scientific Sources (src/data/sources.ts)...")
+print("\n[3/17] Validating Scientific Sources (src/data/sources.ts)...")
 sources_path = os.path.join("src", "data", "sources.ts")
 if not os.path.exists(sources_path):
     fail(f"Missing sources file: {sources_path}")
@@ -126,7 +126,7 @@ if total_sources != 322:
 # -------------------------------------------------------------
 # 4. Validazione Sintattica Ricorsiva TypeScript/TSX in src/
 # -------------------------------------------------------------
-print("\n[4/16] Validating delimiter syntax across all src/ .ts and .tsx files...")
+print("\n[4/17] Validating delimiter syntax across all src/ .ts and .tsx files...")
 src_all = glob.glob("src/**/*.ts", recursive=True) + glob.glob("src/**/*.tsx", recursive=True)
 if not src_all:
     fail("No TypeScript files found in src/")
@@ -143,7 +143,7 @@ print(f"-> Successfully checked {len(src_all)} TypeScript files in src/ with zer
 # -------------------------------------------------------------
 # 5. Validazione tsconfig.json (allowJs: false, strict: true)
 # -------------------------------------------------------------
-print("\n[5/16] Validating tsconfig.json...")
+print("\n[5/17] Validating tsconfig.json...")
 tsconfig_path = "tsconfig.json"
 if not os.path.exists(tsconfig_path):
     fail("Missing tsconfig.json")
@@ -163,7 +163,7 @@ print("-> tsconfig.json validated (allowJs: false, strict: true).")
 # -------------------------------------------------------------
 # 6. Validazione index.html (Mount Puro React, zero script legacy)
 # -------------------------------------------------------------
-print("\n[6/16] Validating index.html...")
+print("\n[6/17] Validating index.html...")
 if not os.path.exists("index.html"):
     fail("Missing index.html")
 with open("index.html", "r", encoding="utf-8") as f:
@@ -184,7 +184,7 @@ print("-> index.html validated (clean React 18 mount, zero legacy scripts).")
 # -------------------------------------------------------------
 # 7. Validazione Service Worker (sw.js)
 # -------------------------------------------------------------
-print("\n[7/16] Validating Service Worker (sw.js)...")
+print("\n[7/17] Validating Service Worker (sw.js)...")
 if not os.path.exists("sw.js"):
     fail("Missing sw.js")
 with open("sw.js", "r", encoding="utf-8") as f:
@@ -202,7 +202,7 @@ print("-> sw.js validated (active cache versioning, clean asset manifest).")
 # -------------------------------------------------------------
 # 8. Validazione Suite Metrologica SI & Number Format (TASK-002)
 # -------------------------------------------------------------
-print("\n[8/16] Validating Metrological Guard & SI Formatter Suite (tests/metrology-guard.test.ts)...")
+print("\n[8/17] Validating Metrological Guard & SI Formatter Suite (tests/metrology-guard.test.ts)...")
 test_file_metrology = os.path.join("tests", "metrology-guard.test.ts")
 if not os.path.exists(test_file_metrology):
     fail(f"Missing test file: {test_file_metrology}")
@@ -218,7 +218,7 @@ print("-> Metrology guard and SI number format suite passed (100% tests OK).")
 # -------------------------------------------------------------
 # 9. Validazione Offline Storage Engine & Sync Queue (TASK-003)
 # -------------------------------------------------------------
-print("\n[9/16] Validating Offline Storage Engine & Sync Queue Suite (tests/storage-engine.test.ts)...")
+print("\n[9/17] Validating Offline Storage Engine & Sync Queue Suite (tests/storage-engine.test.ts)...")
 test_file_storage = os.path.join("tests", "storage-engine.test.ts")
 if not os.path.exists(test_file_storage):
     fail(f"Missing test file: {test_file_storage}")
@@ -234,7 +234,7 @@ print("-> Offline storage engine and sync queue suite passed (100% tests OK).")
 # -------------------------------------------------------------
 # 10. Validazione Tier & RBAC Context Suite (TASK-004)
 # -------------------------------------------------------------
-print("\n[10/16] Validating Tier & RBAC Context Suite (tests/tier-context.test.ts)...")
+print("\n[10/17] Validating Tier & RBAC Context Suite (tests/tier-context.test.ts)...")
 test_file_tier = os.path.join("tests", "tier-context.test.ts")
 if not os.path.exists(test_file_tier):
     fail(f"Missing test file: {test_file_tier}")
@@ -250,7 +250,7 @@ print("-> Tier and RBAC context suite passed (100% tests OK).")
 # -------------------------------------------------------------
 # 11. Validazione Global Athlete & Squad Context Suite (TASK-005)
 # -------------------------------------------------------------
-print("\n[11/16] Validating Global Athlete & Squad Context Suite (tests/athlete-context.test.ts)...")
+print("\n[11/17] Validating Global Athlete & Squad Context Suite (tests/athlete-context.test.ts)...")
 test_file_athlete = os.path.join("tests", "athlete-context.test.ts")
 if not os.path.exists(test_file_athlete):
     fail(f"Missing test file: {test_file_athlete}")
@@ -266,7 +266,7 @@ print("-> Athlete and Squad context suite passed (100% tests OK).")
 # -------------------------------------------------------------
 # 12. Validazione Hardware & BLE Telemetry Suite (TASK-006)
 # -------------------------------------------------------------
-print("\n[12/16] Validating Hardware & BLE Telemetry Suite (tests/ble-context.test.ts)...")
+print("\n[12/17] Validating Hardware & BLE Telemetry Suite (tests/ble-context.test.ts)...")
 test_file_ble = os.path.join("tests", "ble-context.test.ts")
 if not os.path.exists(test_file_ble):
     fail(f"Missing test file: {test_file_ble}")
@@ -282,7 +282,7 @@ print("-> Hardware and BLE telemetry suite passed (100% tests OK).")
 # -------------------------------------------------------------
 # 13. Validazione Global Navigation Shell & Layout Suite (TASK-007)
 # -------------------------------------------------------------
-print("\n[13/16] Validating Global Navigation Shell & Layout Suite (tests/layout-shell.test.ts)...")
+print("\n[13/17] Validating Global Navigation Shell & Layout Suite (tests/layout-shell.test.ts)...")
 test_file_layout = os.path.join("tests", "layout-shell.test.ts")
 if not os.path.exists(test_file_layout):
     fail(f"Missing test file: {test_file_layout}")
@@ -298,7 +298,7 @@ print("-> Global Navigation Shell and layout suite passed (100% tests OK).")
 # -------------------------------------------------------------
 # 14. Validazione Adaptive Multi-Tier Navigation Bars Suite (TASK-008)
 # -------------------------------------------------------------
-print("\n[14/16] Validating Adaptive Multi-Tier Navigation Bars Suite (tests/navigation-bars.test.ts)...")
+print("\n[14/17] Validating Adaptive Multi-Tier Navigation Bars Suite (tests/navigation-bars.test.ts)...")
 test_file_nav = os.path.join("tests", "navigation-bars.test.ts")
 if not os.path.exists(test_file_nav):
     fail(f"Missing test file: {test_file_nav}")
@@ -314,7 +314,7 @@ print("-> Adaptive Multi-Tier Navigation Bars suite passed (100% tests OK).")
 # -------------------------------------------------------------
 # 15. Validazione Standard 4-State UI Infrastructure Suite (TASK-009)
 # -------------------------------------------------------------
-print("\n[15/16] Validating Standard 4-State UI Infrastructure Suite (tests/ui-states.test.ts)...")
+print("\n[15/17] Validating Standard 4-State UI Infrastructure Suite (tests/ui-states.test.ts)...")
 test_file_ui_states = os.path.join("tests", "ui-states.test.ts")
 if not os.path.exists(test_file_ui_states):
     fail(f"Missing test file: {test_file_ui_states}")
@@ -328,9 +328,25 @@ if result_u.returncode != 0:
 print("-> Standard 4-State UI Infrastructure suite passed (100% tests OK).")
 
 # -------------------------------------------------------------
-# 16. Validazione tsconfig.test.json (Test Suite Strict Typing Config)
+# 16. Validazione Home Dashboard & Control Room Cockpit Suite (TASK-010)
 # -------------------------------------------------------------
-print("\n[16/16] Validating tsconfig.test.json...")
+print("\n[16/17] Validating Home Dashboard & Control Room Cockpit Suite (tests/home-control-room.test.ts)...")
+test_file_home = os.path.join("tests", "home-control-room.test.ts")
+if not os.path.exists(test_file_home):
+    fail(f"Missing test file: {test_file_home}")
+
+result_h = subprocess.run(["npx", "tsx", test_file_home], shell=True, capture_output=True, text=True)
+if result_h.returncode != 0:
+    print(result_h.stdout)
+    print(result_h.stderr)
+    fail("Home Dashboard & Control Room Cockpit unit test suite failed!")
+
+print("-> Home Dashboard & Control Room Cockpit suite passed (100% tests OK).")
+
+# -------------------------------------------------------------
+# 17. Validazione tsconfig.test.json (Test Suite Strict Typing Config)
+# -------------------------------------------------------------
+print("\n[17/17] Validating tsconfig.test.json...")
 tsconfig_test_path = "tsconfig.test.json"
 if not os.path.exists(tsconfig_test_path):
     fail("Missing tsconfig.test.json")

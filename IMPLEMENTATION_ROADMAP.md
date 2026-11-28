@@ -130,7 +130,7 @@
 
 ## MACRO-SEZIONE 3: Home Control Room, Identity & Onboarding Multi-Tier (Colonna 1 / Flow 1A, 1B, 1C + Home)
 
-### [ ] TASK-010: Home Dashboard & Control Room Cockpit
+### [x] TASK-010: Home Dashboard & Control Room Cockpit
 - **Dipendenze:** Richiede: `TASK-005`, `TASK-007`, `TASK-009`.
 - **Descrizione & Obiettivo Funzionale:** Implementazione della schermata di atterraggio principale all'apertura dell'app (Home / Control Room):
   - *Riepilogo Giornata:* Sessione di allenamento pianificata del giorno con pulsante rapido "Avvia Sessione";
@@ -849,3 +849,4 @@
 | 2026-11-28 | **TASK-008** | Adaptive Multi-Tier Navigation Bars | Superato (100%) | `faece7b` | Sub-navigazione desktop a 6 schede con contatore badge e bottom-nav mobile touch-friendly integrata in App.tsx |
 | 2026-11-28 | **RE-ARCHITECT** | Revisione Totale Roadmap & Benchmark Kinepose (TASK-009..045) | Superato (100%) | *In Corso* | Refactoring totale Roadmap su 45 Task Prompt-Ready, allineamento Glossario (197 termini) e dossier UI/UX video biomeccanica |
 | 2026-11-28 | **TASK-009** | Standard 4-State UI Infrastructure | Superato (100%) | `ae92dbc` | EmptyState (checklist interattiva), LoadingSkeleton (GPU translate3d + progressbar), ErrorFallback (exponential backoff + offline), ViewStateContainer, SW v127 e tests/ui-states.test.ts |
+| 2026-11-28 | **TASK-010** | Home Dashboard & Control Room Cockpit | Superato (100%) | `in progress` | ControlRoomView con ViewStateContainer, DailyWorkoutCard (kg/min/RTP), CertifiedT7CardsHistory (filtro privacy share), MicrocycleCalendarWidget, TeamHealthAlertsBanner (Tier 3 staff + ACWR > 1.50) e tests/home-control-room.test.ts |
