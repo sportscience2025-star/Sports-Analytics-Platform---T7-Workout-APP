@@ -20,11 +20,14 @@ import math
 
 from profile_400m_women import (
     SHEET_NAME_400F,
+    CSV_BASE_ZONES_PATH,
+    CSV_400F_ZONES_PATH,
     ATHLETE_400F_REFERENCE,
-    load_400f_zone_matrix,
+    classify_zone_2d,
+    export_2d_palette_csv,
     add_audit_columns,
     add_400f_profile_header,
-    apply_high_intensity_conditional_formatting,
+    apply_2d_zone_conditional_formatting,
 )
 
 PERCENTAGES = [
@@ -64,36 +67,6 @@ ATHLETE_DATA_EXTENDED = {
         ("400", 54.0),
         ("500", 72.0),
         ("600", 91.0),
-    ],
-    "Atleta 2": [
-        ("50", 6.0),
-        ("60", 7.0),
-        ("80", 9.1),
-        ("100", 11.1),
-        ("120", 13.6),
-        ("150", 17.6),
-        ("200", 23.6),
-        ("250", 32.5),
-        ("300", 39.5),
-        ("350", 47.5),
-        ("400", 56.0),
-        ("500", 75.0),
-        ("600", 95.0),
-    ],
-    "Atleta 3": [
-        ("50", 0.0),
-        ("60", 7.7),
-        ("80", 9.8),
-        ("100", 12.1),
-        ("120", 15.3),
-        ("150", 18.4),
-        ("200", 25.0),
-        ("250", 32.0),
-        ("300", 40.5), # Exact from Photo 3
-        ("350", 49.5), # Calibrated
-        ("400", 58.8), # Exact from Photo 3
-        ("500", 78.0), # Calibrated
-        ("600", 98.5), # Calibrated
     ]
 }
 
@@ -180,8 +153,12 @@ def load_zone_matrix():
                 matrix[dist_str][pct_name] = row[col_idx + 1]
     return matrix
 
-def populate_athlete_sheet(ws, athlete_rows, zone_matrix, styles, is_400f=False):
-    """Popola un foglio atleta con freeze panes C9, formule T100/p protette, formati metrologici e audit."""
+def populate_athlete_sheet(ws, athlete_rows, styles, is_400f=False):
+    """
+    Popola un foglio atleta con freeze panes C9, formule T100/p protette,
+    colorazione 2D continua (Intensita x Durata) e Formattazione Condizionale live.
+    """
+    profile = "400f" if is_400f else "base"
     ws.protection.sheet = False
     ws.views.sheetView[0].showGridLines = True
     ws.views.sheetView[0].zoomScale = 100
@@ -221,7 +198,7 @@ def populate_athlete_sheet(ws, athlete_rows, zone_matrix, styles, is_400f=False)
 
         # Col B: Massimale T100 (Input manuale evidenziato)
         cell_b = ws.cell(row=row_idx, column=2, value=t100_val)
-        z_id_100 = zone_matrix[dist_str]["100%"]
+        z_id_100 = classify_zone_2d(1.0, t100_val, profile=profile)
         cfg_100 = PALETTE_FIELD_ELITE[z_id_100]
         cell_b.font = Font(name="Calibri", size=9, bold=True, color=cfg_100["font_hex"])
         cell_b.alignment = styles["align_center"]
@@ -235,7 +212,8 @@ def populate_athlete_sheet(ws, athlete_rows, zone_matrix, styles, is_400f=False)
             formula_str = f'=IF($B{row_idx}<=0,"",$B{row_idx}/{col_letter}$8)'
             cell_der = ws.cell(row=row_idx, column=col_idx, value=formula_str)
 
-            z_id = zone_matrix[dist_str][p_name]
+            t_calc = t100_val / p_val if t100_val > 0 else 0.0
+            z_id = classify_zone_2d(p_val, t_calc, profile=profile)
             cfg = PALETTE_FIELD_ELITE[z_id]
 
             cell_der.font = Font(name="Calibri", size=9, bold=cfg["bold"], color=cfg["font_hex"])
@@ -253,14 +231,16 @@ def populate_athlete_sheet(ws, athlete_rows, zone_matrix, styles, is_400f=False)
     # Colonne Audit S, T (+ U su 400F)
     add_audit_columns(ws, start_row=9, num_rows=len(athlete_rows), include_col_u_400f=is_400f)
 
-    if is_400f:
-        apply_high_intensity_conditional_formatting(ws, PALETTE_FIELD_ELITE)
+    # Formattazione Condizionale 2D attiva su ENTRAMBI i fogli atleti
+    apply_2d_zone_conditional_formatting(ws, PALETTE_FIELD_ELITE, profile=profile)
 
 
 def build_ergonomic_workbook():
-    """Genera il workbook ritmi_atleti.xlsx con fogli atleti, foglio 400m donne e legenda aggiornata."""
-    zone_matrix_base = load_zone_matrix()
-    zone_matrix_400f = load_400f_zone_matrix()
+    """Genera ritmi_atleti.xlsx con esattamente 3 fogli (Atleta 1, 400m Donne, Legenda)."""
+    # Rigenera deterministicamente i CSV fallback allineati al modello continuo 2D
+    export_2d_palette_csv(ATHLETE_DATA_EXTENDED["Atleta 1"], PERCENTAGES, CSV_BASE_ZONES_PATH, profile="base")
+    export_2d_palette_csv(ATHLETE_400F_REFERENCE, PERCENTAGES, CSV_400F_ZONES_PATH, profile="400f")
+
     wb = openpyxl.Workbook()
     wb.remove(wb.active)  # Remove default sheet
 
@@ -282,15 +262,15 @@ def build_ergonomic_workbook():
         "fill_white": PatternFill(start_color="FFFFFF", end_color="FFFFFF", fill_type="solid"),
     }
 
-    for athlete_name, athlete_rows in ATHLETE_DATA_EXTENDED.items():
-        ws = wb.create_sheet(title=athlete_name)
-        populate_athlete_sheet(ws, athlete_rows, zone_matrix_base, styles, is_400f=False)
+    # Foglio 1: Atleta 1 (Velocisti 100m / 200m)
+    ws_base = wb.create_sheet(title="Atleta 1")
+    populate_athlete_sheet(ws_base, ATHLETE_DATA_EXTENDED["Atleta 1"], styles, is_400f=False)
 
-    # Foglio dedicato 400m Donne (20-25 anni, medio-alto livello)
+    # Foglio 2: 400m Donne (20-25 anni, medio-alto livello)
     ws_400f = wb.create_sheet(title=SHEET_NAME_400F)
-    populate_athlete_sheet(ws_400f, ATHLETE_400F_REFERENCE, zone_matrix_400f, styles, is_400f=True)
+    populate_athlete_sheet(ws_400f, ATHLETE_400F_REFERENCE, styles, is_400f=True)
 
-    # Foglio 5: Legenda Ergonomica e Guida Mobile
+    # Foglio 3: Legenda Ergonomica e Guida Mobile (ultima pagina)
     ws_notes = wb.create_sheet(title="Legenda e Guida Mobile")
     ws_notes.protection.sheet = False
     ws_notes.views.sheetView[0].showGridLines = True
@@ -317,7 +297,7 @@ def build_ergonomic_workbook():
     ws_notes["B3"] = "Nome della Zona"
     ws_notes["C3"] = "Sistema Energetico & Finestra Temporale"
     ws_notes["D3"] = "Contrasto WCAG"
-    ws_notes["E3"] = "Distanze & Percentuali Tipiche (Base / 400F)"
+    ws_notes["E3"] = "Come nasce il colore (Intensita % x Tempo)"
 
     for c in ["A3", "B3", "C3", "D3", "E3"]:
         ws_notes[c].font = font_header_bold
@@ -326,13 +306,13 @@ def build_ergonomic_workbook():
         ws_notes[c].alignment = align_left if c != "A3" and c != "D3" else align_center
 
     zone_order = [
-        ("Z7", "Z7", "7.45:1 (AAA)", "Base: 50-80m @ 95-100% | 400F: <= 8s (50-60m @ 95-100%, 50m @ 90-93%)"),
-        ("Z6", "Z6", "8.55:1 (AAA)", "Base: 100-150m @ 95-100%, 50-80m @ 90-93% | 400F: 8-18s (60-120m @ >=85%)"),
-        ("Z5", "Z5", "7.03:1 (AAA)", "Base: 200-300m @ 90-100%, 150m @ 90-93%, 100-120m @ 88-93% | 400F: 18-40s"),
-        ("Z4", "Z4", "11.10:1 (AAA)", "Base: 350-600m @ 85-100%, 300m @ 85-88% | 400F: 300-600m @ 85-100% (>40s, fino a 110s)"),
-        ("Z3", "Z3", "13.46:1 (AAA)", "Base: 50-80/200m @ 70-88%, 100-150m @ 65-85%, 250-300m @ 73-83%, 350-600m @ 78-83% | 400F: 75-83% (73-83% su 350-600m)"),
-        ("Z2", "Z2", "11.11:1 (AAA)", "Base: 50-80/200m @ 65%, 100-150m @ 60%, 250-300m @ 65-70%, 350-600m @ 70-75% | 400F: 65-73% (60-70% su 350-600m)"),
-        ("Z1", "Z1", "10.87:1 (AAA)", "Base: 50-300m @ 50-60% (100-150m @ 50-55%), 350-600m @ 50-65% | 400F: 50-60% (500-600m @ 50-55% solo erba)"),
+        ("Z7", "Z7", "7.45:1 (AAA)", "95-100% E tempo <= 8.0 s (velocita massima / accelerazione alattacida pura)"),
+        ("Z6", "Z6", "8.55:1 (AAA)", "95-100% con tempo 8.1-18.0 s, oppure 93% su sprint brevi molto rapidi"),
+        ("Z5", "Z5", "7.03:1 (AAA)", "95-100% con tempo 18.1-40.0 s, oppure transizione 88-93% su sprint brevi/medi"),
+        ("Z4", "Z4", "11.10:1 (AAA)", ">=85% sopra i 40.0 s (300-600m), oppure fascia ponte 85-88% su 50-250m (es. 100m @ 85% = ritmo 400m)"),
+        ("Z3", "Z3", "13.46:1 (AAA)", "78-83% sempre; su prove brevi fino a 70-75% (Atleta 1) / 75% (400F); su 350-600m 73-83% su 400F"),
+        ("Z2", "Z2", "11.11:1 (AAA)", "Atleta 1: 65% breve -> 70-75% su 350-600m | 400F: 65-73% breve -> 60-70% su 350-600m"),
+        ("Z1", "Z1", "10.87:1 (AAA)", "50-60% (fino a 65% su 350-600m Atleta 1; 50-55% su 500-600m 400F = recupero su erba)"),
     ]
 
     for idx, (zid, short_code, contrast_val, dist_desc) in enumerate(zone_order, start=4):
@@ -374,9 +354,9 @@ def build_ergonomic_workbook():
     ws_notes.column_dimensions["B"].width = 38.0
     ws_notes.column_dimensions["C"].width = 52.0
     ws_notes.column_dimensions["D"].width = 20.0
-    ws_notes.column_dimensions["E"].width = 58.0
+    ws_notes.column_dimensions["E"].width = 62.0
 
-    # Sezione 2: Tabella Matrice di Sforzo e Recupero (SEP vs SEM + 400m Donne)
+    # Sezione 2: Tabella Matrice di Sforzo e Recupero (SEP vs SEM + Ponte 400m)
     ws_notes["A14"] = "MATRICE METODOLOGICA: SFORZO, TEMPO DI RECUPERO E SISTEMI ENERGETICI (SEP vs SEM & 400F)"
     ws_notes["A14"].font = font_title
     ws_notes.merge_cells("A14:E14")
@@ -399,13 +379,13 @@ def build_ergonomic_workbook():
         c.alignment = align_left if cell_id != "A16" and cell_id != "C16" else align_center
 
     recovery_matrix_data = [
-        ("Z7", "Z7", "50m - 80m (400F <=8s)", "95 - 100%", "Completo (4 - 8 min)", "Velocita Massima & Accelerazione Alattacida (ATP-PCr puro, fibre rapide IIx; non ridurre rec. alle donne)"),
-        ("Z6", "Z6", "100m - 150m (400F 8-18s)", "95 - 100%", "Completo (8 - 12 min)", "Potenza Lattacida Breve / Speed Endurance (VLamax picco, glicolisi rapida)"),
-        ("Z5", "Z5 (SEP)", "200m - 300m (150m 90-93%)", "95 - 100%", "COMPLETO (12 - 20+ min)", "POTENZA LATTACIDA PROLUNGATA (Speed Endurance Production - Prova singola o time trial 250m/300m)"),
-        ("Z5", "Z5 (SEM)", "150m - 300m", "90 - 95%", "INCOMPLETO (4 - 8 min; 400F 4-6')", "CAPACITA LATTACIDA & BUFFERING (Speed Endurance Maintenance - Serie ripetute in acidosi; stop 3%)"),
-        ("Z4", "Z4 (Submax)", "300m - 600m", "85 - 90%", "Medio-Ampio (8 - 12 min)", "Special Endurance 2 submassimale (Vittori/Hart; tolleranza acidosi su 2-4 prove)"),
-        ("Z4", "Z4 (Gara)", "300m - 600m", "92 - 100%", "Ampio (15 - 25 min)", "Special Endurance 2 / Tenuta 400m-800m vicino al ritmo gara (USATF/UKA)"),
-        ("Z3", "Z3", "50m - 600m", "70 - 88% (400F 73-83%)", "Breve (1.5-2.5' <=300m; 2-4' >350m)", "Intensive Tempo (Glicolisi controllata 4-8 mM, Fast SSC, decontrazione; 5-8' tra serie lunghe)"),
+        ("Z7", "Z7", "50m - 60m (<=8s)", "95 - 100%", "Completo (4 - 8 min)", "Velocita Massima & Accelerazione Alattacida (ATP-PCr puro, fibre IIx; non ridurre rec. alle donne)"),
+        ("Z6", "Z6", "80m - 150m (8-18s; 93% brevi)", "93 - 100%", "Completo (8 - 12 min)", "Potenza Lattacida Breve / Speed Endurance (VLamax picco, glicolisi rapida)"),
+        ("Z5", "Z5 (SEP)", "150m - 300m (18-40s)", "95 - 100%", "COMPLETO (12 - 20+ min)", "POTENZA LATTACIDA PROLUNGATA (Speed Endurance Production - Prova singola o 2 prove)"),
+        ("Z5", "Z5 (SEM)", "50m - 300m (transizione)", "88 - 93%", "INCOMPLETO (4 - 8 min; 400F 4-6')", "CAPACITA LATTACIDA & BUFFERING (Speed Endurance Maintenance - Serie ripetute; stop 3%)"),
+        ("Z4", "Z4 (Submax/Ponte)", "50m - 600m", "85 - 90%", "Medio-Ampio (6 - 12 min)", "Ponte ritmo specifico 400m su 100-250m (es. 100m @ 85%) e SE2 submassimale 300-600m (Vittori/Hart)"),
+        ("Z4", "Z4 (Gara)", "300m - 600m (>40s)", "92 - 100%", "Ampio (15 - 25 min)", "Special Endurance 2 / Tenuta 400m-800m vicino al ritmo gara (USATF/UKA)"),
+        ("Z3", "Z3", "50m - 600m", "70 - 83% (400F 73-83%)", "Breve (1.5-2.5' <=300m; 2-4' >350m)", "Intensive Tempo (Glicolisi controllata 4-8 mM, Fast SSC, decontrazione; 5-8' tra serie lunghe)"),
         ("Z2", "Z2", "50m - 600m", "60 - 75% (400F 60-73%)", "Molto breve (45s - 2 min)", "Extensive Tempo Tecnico & Capillarizzazione (Ossidativo sub-LT2, recupero attivo)"),
         ("Z1", "Z1", "50m - 600m", "50 - 60% (65% base 350-600)", "Minimo / Continuo", "Rigenerazione Aerobica, Strides Riscaldamento & Flush Runs su erba (Sub-LT1)"),
     ]
@@ -446,29 +426,30 @@ def build_ergonomic_workbook():
         cE.alignment = align_left
         cE.border = thin_border
 
-    # Note di Campo, Specificita 400m Donne e Ciclo Mestruale
+    # Note Operative Chiare per il Campo
     notes_text = [
-        ("IL RUOLO CRUCIALE DEL TEMPO DI RECUPERO: POTENZA LATTACIDA VS CAPACITA LATTACIDA SUI 150m-300m",
+        ("COME LEGGERE TEMPI E COLORI IN PISTA (MODELLO 2D CONTINUO)",
+         "1. Tempo della cella: si calcola sempre come Massimale (Colonna B) / Intensita (Riga 8) (es. 11.6s / 0.85 = 13.65s).\n"
+         "2. Regola 2D (Intensita % x Tempo): su entrambi i fogli ('Atleta 1' e '400m Donne (20-25)'), il colore NON guarda solo i secondi ma combina QUANTO FORTE corri (%) e QUANTO DURA la prova (s). "
+         "Al 95-100% comanda la durata (<=8s Rosso Z7, 8-18s Viola Z6, 18-40s Terracotta Z5, >40s Ambra Z4). Appena scendi sotto il 95%, l'intensita modula la zona un gradino alla volta: "
+         "ad esempio sui 100m (11.6s), l'85% (13.65s, ritmo gara 400m) e Ambra Z4 (non Viola Z6) e prosegue all'83% (13.98s) in Giallo Z3, senza salti bruschi.\n"
+         "3. Aggiornamento automatico: modificando qualsiasi tempo in Colonna B si aggiornano subito sia i ritmi sia i colori (se una cella e vuota o <=0 diventa grigio neutro OFF)."),
+
+        ("IL RUOLO CRUCIALE DEL TEMPO DI RECUPERO: POTENZA LATTACIDA VS CAPACITA LATTACIDA",
          "- La distanza percorsa NON determina da sola il sistema energetico bersaglio: e la combinazione di Distanza x Intensita x TEMPO DI RECUPERO a stabilire se si allena la Potenza o la Capacita.\n"
-         "- POTENZA LATTACIDA (SEP - Speed Endurance Production): prova singola o 2 prove con recupero completo >= 12-20 min; pH neutro (~7.1), PFK-1 al 100%, picco glicolitico VLamax (>18-22 mM).\n"
-         "- CAPACITA LATTACIDA (SEM - Speed Endurance Maintenance): recupero incompleto (4-8 min); ripartenza in acidosi (pH ~6.80), inibizione PFK-1 del 45% (Bogdanis, 1996), stimolo su potere tampone e trasportatori MCT1/MCT4."),
+         "- POTENZA LATTACIDA (SEP): recupero completo >= 12-20 min; pH neutro (~7.1), PFK-1 al 100%, picco glicolitico VLamax (>18-22 mM).\n"
+         "- CAPACITA LATTACIDA (SEM): recupero incompleto (4-8 min); ripartenza in acidosi (pH ~6.80), inibizione PFK-1 del 45% (Bogdanis, 1996), stimolo su potere tampone e trasportatori MCT1/MCT4."),
 
-        ("SPECIFICITA SCIENTIFICHE PER ATLETE 400m DONNE (20-25 ANNI, ~52.5-56.5 s)",
-         "- Validita della formula =IF($B<=0,\"\",$B/C$8): mantenuta come motore di riga perche su 80-400m lo scarto rispetto ai modelli meccanici (<=0.04-0.15s) e inferiore alla variabilita biologica giornaliera (CV 1.0-1.5%, Haugen 2019), mentre sostituirla con MAS/ASR/D' introdurrebbe rumore statistico.\n"
-         "- Ripartizione energetica (Duffield et al., 2005): nei 400m femminili il contributo aerobico sale al ~45% (vs ~41% uomini), con crossover >50% tra 15 e 30s (Spencer & Gastin, 2001). Per questo nel foglio '400m Donne (20-25)' il 73-75% su 350-600m passa in Z3 bassa e il 65-73% su 50-200m (75% su 150-200m Hart) rientra in Z2.\n"
-         "- Speed Reserve Ratio (Rappelt et al., 2025) & Calibrazione Colonna B: MSS/MAS >= 1.81 = Sprint-type, <= 1.77 = Endurance-type. Per stimare 250-350m non testati in Colonna U si usa la Power-Law locale tra 200m e 400m (b_ind ~1.14-1.17, mai Riegel fisso 1.06); per 500-600m serve test diretto o MAS.\n"
-         "- Formattazione Condizionale Dinamica (>=85% su 400F): le celle B9:H21 aggiornano il colore Z7/Z6/Z5/Z4 in base al tempo reale calcolato (<=8s, 8-18s, 18-40s, >40s), azzerando le discrepanze temporali.\n"
-         "- Ciclo Mestruale (McNulty et al., 2020; Oosthuyse & Bosch, 2010): effetto medio sulle prestazioni triviale. Non duplicare le tabelle: ancorare le sedute a velocita target + RPE (piu stabili di FC o lattato fisso in fase medio-luteale, dove la temperatura basale sale di 0.3-0.5 C)."),
+        ("SPECIFICITA PER ATLETE 400m DONNE (20-25 ANNI) & CICLO MESTRUALE",
+         "- Ripartizione energetica (Duffield et al., 2005): nei 400m femminili il contributo aerobico sale al ~45% (crossover >50% tra 15 e 30s, Spencer & Gastin 2001). Per questo tra 83% e 50% il foglio 400F adatta le soglie Z3/Z2/Z1 al profilo piu aerobico delle 400entiste.\n"
+         "- Speed Reserve Ratio (Rappelt et al., 2025): MSS/MAS >= 1.81 = Sprint-type, <= 1.77 = Endurance-type. In Colonna U la stima di 250-350m usa b_ind locale tra 200m e 400m (mai Riegel fisso 1.06); per 500-600m serve test diretto o MAS.\n"
+         "- Ciclo Mestruale (McNulty et al., 2020; Oosthuyse & Bosch, 2010): effetto medio triviale; ancorare le sedute a velocita target + RPE (piu stabili di FC o lattato fisso in fase medio-luteale)."),
 
-        ("FUNZIONALITA SMART PER PICCOLI SCHERMI & AUDIT CURVA",
-         "1. Blocco Riquadri Bidirezionale (Freeze Panes 'C9'): colonna distanza (A) e massimale (B) fisse a sinistra; riga percentuali (8) fissa in alto.\n"
-         "2. Risoluzione metrologica uniforme: '0.00' su 50-80m per evitare errori di arrotondamento fino a 0.05s; '0.0' su 100-600m.\n"
-         "3. Colonne Audit S e T: mostrano v100 (m/s) e verificano automaticamente la monotonicita decrescente dai 120m ai 600m ('ANOMALIA' in caso di inversioni)."),
-
-        ("LINEE GUIDA SCIENTIFICHE D'USO SUL CAMPO",
-         "- Regola di Stop del 3% (SNC Fatigue Cutoff): in Z7/Z6/Z5 SEP interrompere la serie appena il crono sale oltre il +3% rispetto al target.\n"
-         "- Partenza Lanciata Obbligatoria (Flying Start) su 50-80m submassimali (<90%): evita di falsare l'accelerazione iniziale e il tempo di contatto.\n"
-         "- Modificabilita Totale (Regola 05): nessun foglio o cella e protetto da password.")
+        ("LINEE GUIDA DI CAMPO & MODIFICABILITA (REGOLA 05)",
+         "- Regola di Stop del 3%: in Z7/Z6/Z5 SEP interrompere la serie se il crono peggiora oltre il +3% rispetto al target.\n"
+         "- Partenza Lanciata (Flying Start) su 50-80m submassimali (<90%): evita di falsare accelerazione e tempo di contatto.\n"
+         "- Audit Curva (Colonne S e T): mostra v100 (m/s) e segnala 'ANOMALIA' dai 120m ai 600m se la velocita media non decresce.\n"
+         "- File 100% sbloccato: nessuna password o cella protetta su tutti e 3 i fogli.")
     ]
 
     r_idx = 29
@@ -490,7 +471,7 @@ def build_ergonomic_workbook():
 
     out_file = "sidequests/sprint-ritmi-excel/output/ritmi_atleti.xlsx"
     wb.save(out_file)
-    print(f"Workbook ergonomico v3 (con profilo 400m Donne) salvato in: {out_file}")
+    print(f"Workbook ergonomico v4 (3 fogli + CF 2D continua) salvato in: {out_file}")
 
 
 if __name__ == "__main__":

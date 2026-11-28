@@ -1,28 +1,53 @@
 # -*- coding: utf-8 -*-
 """
-Modulo dedicato al profilo fisiologico, biomeccanico e metrologico per
-atlete donne 400entiste di medio-alto livello (20-25 anni, ~52.5-56.5 s).
+Modulo dedicato al profilo fisiologico, biomeccanico e metrologico per:
+- Classificazione continua 2D (Intensita % x Durata t) priva di salti >= 2 zone
+  su entrambi i fogli ('Atleta 1' 100/200m e '400m Donne (20-25)').
+- Cruscotto profilo 400m donne (CRS Vittori, Passaggio 200m Hart, b_ind, SRR Rappelt 2025).
+- Colonne di audit curva (S, T, U) e Formattazione Condizionale 2D Excel pura.
 
 Riferimenti scientifici principali (Regola 04):
 - Duffield et al. (2005): ripartizione energetica 400m donne (~45% aerobico / 55% anaerobico).
 - Hanon et al. (2010) & Hanon & Gajer (2009): cinetica VO2 e decelerazione finale 14-20%.
 - Rappelt et al. (2025): Speed Reserve Ratio (SRR = MSS/MAS; >=1.81 Sprint-type, <=1.77 Endurance-type).
 - Sandford et al. (2021) & Bundle/Weyand (2003): ASR e decadimento esponenziale sopra MAS.
-- McNulty et al. (2020) & Oosthuyse & Bosch (2010): stabilita della velocita rispetto a FC/lattato nel ciclo mestruale.
+- Mader & Heck (1986) / Haugen et al. (2019): intensita minima per VLamax (Z6) e velocita max (Z7).
+- McNulty et al. (2020) & Oosthuyse & Bosch (2010): stabilita velocita vs FC/lattato nel ciclo mestruale.
 """
 
 import csv
+import math
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.formatting.rule import FormulaRule
-from openpyxl.utils import get_column_letter
 
 SHEET_NAME_400F = "400m Donne (20-25)"
+CSV_BASE_ZONES_PATH = "sidequests/sprint-ritmi-excel/output/palette_zone_fisiologiche_v2.csv"
 CSV_400F_ZONES_PATH = "sidequests/sprint-ritmi-excel/output/palette_zone_fisiologiche_400f.csv"
 
-# Soglie temporali (s) per la classificazione dinamica ad alta intensita (>= 85%)
+# Costanti modello continuo 2D - Regime Alta Intensita (p >= 0.845)
 Z7_MAX_SECONDS = 8.0
-Z6_MAX_SECONDS = 18.0
-Z5_MAX_SECONDS = 40.0
+LN_ZONE_STEP = 0.807
+S_MAX_CEIL = 7.35
+S_MAX_FLOOR = 4.20
+SCORE_Z4_BASE = 4.0
+HIGH_INT_MIN_PCT = 0.845
+HIGH_INT_SPAN_PCT = 0.105
+
+# Costanti modello continuo 2D - Regime Tempo/Aerobico (p < 0.845), profilo Base (Atleta 1)
+BASE_T0 = 12.0
+BASE_T_SPAN = 5.0
+BASE_P3_MIN = 0.680
+BASE_P3_DELTA = 0.075
+BASE_P2_MIN = 0.605
+BASE_P2_DELTA = 0.050
+
+# Costanti modello continuo 2D - Regime Tempo/Aerobico (p < 0.845), profilo 400m Donne
+W400_T0 = 15.0
+W400_T_SPAN = 4.0
+W400_P3_MAX = 0.745
+W400_P3_DELTA = 0.025
+W400_P2_MAX = 0.625
+W400_P2_DELTA = 0.035
 
 # Costanti di riferimento per il profilo campione 400m donne (modificabili a mano in Excel)
 DEFAULT_PB_200M_S = 24.5
@@ -53,19 +78,63 @@ ATHLETE_400F_REFERENCE = [
 ]
 
 
-def load_400f_zone_matrix():
-    """Carica la matrice 2D specifica per 400entiste donne da CSV."""
-    matrix = {}
-    with open(CSV_400F_ZONES_PATH, "r", encoding="utf-8") as f:
-        reader = csv.reader(f, delimiter=";")
-        header = next(reader)
-        pct_names = header[1:]
-        for row in reader:
-            dist_str = row[0]
-            matrix[dist_str] = {}
-            for col_idx, pct_name in enumerate(pct_names):
-                matrix[dist_str][pct_name] = row[col_idx + 1]
-    return matrix
+def classify_zone_2d(pct_val, time_s, profile="base"):
+    """
+    Classifica una prova nella scala Z7..Z1 (oppure OFF se time_s <= 0) combinando
+    intensita relativa (pct_val in [0.50, 1.00]) e durata (time_s in secondi).
+    Garantisce continuita matematica (nessun salto >= 2 zone tra colonne adiacenti).
+    """
+    if time_s is None or not isinstance(time_s, (int, float)) or time_s <= 0:
+        return "OFF"
+
+    if pct_val >= HIGH_INT_MIN_PCT:
+        # Tetto energetico in funzione logaritmica della durata (ancorato a 8s / 18s / 40s)
+        raw_s_max = 7.0 - (math.log(time_s / Z7_MAX_SECONDS) / LN_ZONE_STEP)
+        s_max = min(S_MAX_CEIL, max(S_MAX_FLOOR, raw_s_max))
+        # Modulazione continua con la percentuale p: impedisce che 85% diventi Z6/Z7
+        pct_factor = min(1.0, (pct_val - HIGH_INT_MIN_PCT) / HIGH_INT_SPAN_PCT)
+        score = SCORE_Z4_BASE + pct_factor * (s_max - SCORE_Z4_BASE)
+
+        if score >= 7.0:
+            return "Z7"
+        if score >= 6.0:
+            return "Z6"
+        if score >= 5.0:
+            return "Z5"
+        return "Z4"
+
+    # Regime submassimale (p < 84.5%): curve calibrate sul profilo metabolico
+    if profile == "400f":
+        u = min(1.0, max(0.0, math.log(time_s / W400_T0) / math.log(W400_T_SPAN)))
+        p3 = W400_P3_MAX - W400_P3_DELTA * u
+        p2 = W400_P2_MAX - W400_P2_DELTA * u
+    else:
+        u = min(1.0, max(0.0, math.log(time_s / BASE_T0) / math.log(BASE_T_SPAN)))
+        p3 = BASE_P3_MIN + BASE_P3_DELTA * u
+        p2 = BASE_P2_MIN + BASE_P2_DELTA * u
+
+    if pct_val >= p3:
+        return "Z3"
+    if pct_val >= p2:
+        return "Z2"
+    return "Z1"
+
+
+def export_2d_palette_csv(athlete_rows, percentages, csv_path, profile="base"):
+    """
+    Genera deterministicamente il CSV fallback della matrice 2D tramite classify_zone_2d
+    cosi che i riempimenti statici combacino al 100% con la Formattazione Condizionale.
+    """
+    header = ["distanza"] + [p_name for p_name, _, _ in percentages]
+    with open(csv_path, "w", encoding="utf-8", newline="") as f:
+        writer = csv.writer(f, delimiter=";")
+        writer.writerow(header)
+        for dist_str, t100_val in athlete_rows:
+            row_zones = [dist_str]
+            for _, p_val, _ in percentages:
+                t_calc = t100_val / p_val if t100_val > 0 else 0.0
+                row_zones.append(classify_zone_2d(p_val, t_calc, profile=profile))
+            writer.writerow(row_zones)
 
 
 def add_audit_columns(ws, start_row=9, num_rows=13, include_col_u_400f=False):
@@ -99,7 +168,6 @@ def add_audit_columns(ws, start_row=9, num_rows=13, include_col_u_400f=False):
 
     for offset in range(num_rows):
         row = start_row + offset
-        # Velocita media massimale (m/s)
         c_s = ws[f"S{row}"]
         c_s.value = f'=IF($B{row}>0,A{row}/$B{row},"")'
         c_s.font = font_body
@@ -107,7 +175,6 @@ def add_audit_columns(ws, start_row=9, num_rows=13, include_col_u_400f=False):
         c_s.border = thin_border
         c_s.number_format = "0.00"
 
-        # Verifica monotonicita decrescente dai 120m (riga 13) in poi
         c_t = ws[f"T{row}"]
         if row >= 13:
             c_t.value = f'=IF(OR($B{row}<=0,$B{row-1}<=0),"",IF(S{row}>=S{row-1},"ANOMALIA","OK"))'
@@ -119,8 +186,7 @@ def add_audit_columns(ws, start_row=9, num_rows=13, include_col_u_400f=False):
 
         if include_col_u_400f:
             c_u = ws[f"U{row}"]
-            # 250m=riga 16, 300m=riga 17, 350m=riga 18; 500-600m=righe 20-21
-            # Nota: le celle unite A4:B4, C4:D4 ed E6:F6 memorizzano il valore nella prima cella a sinistra (A4, C4, E6)
+            # Le celle unite A4:B4, C4:D4 ed E6:F6 memorizzano il valore nella prima cella a sinistra (A4, C4, E6)
             if row in (16, 17, 18):
                 c_u.value = f'=IF(AND($A$4>0,$C$4>0),$A$4*(A{row}/200)^$E$6,"")'
                 c_u.number_format = "0.0"
@@ -158,8 +224,6 @@ def add_400f_profile_header(ws):
     ws["A2"].alignment = align_l
     ws.row_dimensions[2].height = 20.0
 
-    # Riga 3-4: Input modificabili (sfondo crema chiaro, celle sbloccate per Regola 05)
-    # A4 = PB 200m, C4 = Goal 400m, E4 = MAS, G4 = MSS
     inputs = [
         ("A3", "B3", "A4", "B4", "PB 200m (s)", DEFAULT_PB_200M_S, "0.00"),
         ("C3", "D3", "C4", "D4", "Goal 400m (s)", DEFAULT_GOAL_400M_S, "0.00"),
@@ -186,7 +250,6 @@ def add_400f_profile_header(ws):
         ws[v1].border = thin_border
         ws[v2].border = thin_border
 
-    # Riga 5-6: Indicatori scientifici derivati automaticamente dalle celle sinistre (A4, C4, E4, G4)
     derived = [
         ("A5", "B5", "A6", "B6", "CRS (400-2x200)", '=IF(AND(A4>0,C4>0),C4-2*A4,"")', "0.00"),
         ("C5", "D5", "C6", "D6", "Pass. 200m Gara", f'=IF(A4>0,A4+{HART_200M_RACE_OFFSET_S},"")', "0.00"),
@@ -215,24 +278,59 @@ def add_400f_profile_header(ws):
         ws[v2].border = thin_border
 
 
-def apply_high_intensity_conditional_formatting(ws, palette):
+def _build_2d_cf_rules(anchor_cell, pct_header, profile):
     """
-    Applica la Formattazione Condizionale sulle celle ad alta intensita (B9:H21, >=85%)
-    cosi che i colori Z7/Z6/Z5/Z4 si adattino dinamicamente al tempo reale calcolato
-    quando l'allenatore modifica i massimali in Colonna B.
+    Costruisce le 8 regole Excel 2D (OFF, Z7..Z1) per una coppia (cella attiva, header colonna).
+    Usa IF(AND(ISNUMBER(...), ...), ..., FALSE) per prevenire errori LN su celle vuote.
     """
-    target_range = "B9:H21"
-    rules = [
-        ("Z7", f"=AND(ISNUMBER(B9),B9>0,B9<={Z7_MAX_SECONDS})"),
-        ("Z6", f"=AND(ISNUMBER(B9),B9>{Z7_MAX_SECONDS},B9<={Z6_MAX_SECONDS})"),
-        ("Z5", f"=AND(ISNUMBER(B9),B9>{Z6_MAX_SECONDS},B9<={Z5_MAX_SECONDS})"),
-        ("Z4", f"=AND(ISNUMBER(B9),B9>{Z5_MAX_SECONDS})"),
+    valid_guard = f"AND(ISNUMBER({anchor_cell}),{anchor_cell}>0,ISNUMBER({pct_header}))"
+    score_expr = (
+        f"{SCORE_Z4_BASE}+MIN(1,({pct_header}-{HIGH_INT_MIN_PCT})/{HIGH_INT_SPAN_PCT})"
+        f"*(MIN({S_MAX_CEIL},MAX({S_MAX_FLOOR},7-LN({anchor_cell}/{Z7_MAX_SECONDS})/{LN_ZONE_STEP}))-{SCORE_Z4_BASE})"
+    )
+
+    if profile == "400f":
+        u_expr = f"MIN(1,MAX(0,LN({anchor_cell}/{W400_T0})/LN({W400_T_SPAN})))"
+        z3_cond = f"{pct_header}>={W400_P3_MAX}-{W400_P3_DELTA}*{u_expr}"
+        z2_cond = f"{pct_header}>={W400_P2_MAX}-{W400_P2_DELTA}*{u_expr}"
+    else:
+        u_expr = f"MIN(1,MAX(0,LN({anchor_cell}/{BASE_T0})/LN({BASE_T_SPAN})))"
+        z3_cond = f"{pct_header}>={BASE_P3_MIN}+{BASE_P3_DELTA}*{u_expr}"
+        z2_cond = f"{pct_header}>={BASE_P2_MIN}+{BASE_P2_DELTA}*{u_expr}"
+
+    return [
+        ("OFF", f"=OR(NOT(ISNUMBER({anchor_cell})),{anchor_cell}<=0)"),
+        ("Z7", f"=IF({valid_guard},AND({pct_header}>={HIGH_INT_MIN_PCT},{score_expr}>=7),FALSE)"),
+        ("Z6", f"=IF({valid_guard},AND({pct_header}>={HIGH_INT_MIN_PCT},{score_expr}>=6),FALSE)"),
+        ("Z5", f"=IF({valid_guard},AND({pct_header}>={HIGH_INT_MIN_PCT},{score_expr}>=5),FALSE)"),
+        ("Z4", f"=IF({valid_guard},{pct_header}>={HIGH_INT_MIN_PCT},FALSE)"),
+        ("Z3", f"=IF({valid_guard},{z3_cond},FALSE)"),
+        ("Z2", f"=IF({valid_guard},{z2_cond},FALSE)"),
+        ("Z1", f"={valid_guard}"),
     ]
-    for z_id, formula in rules:
-        cfg = palette[z_id]
-        fill = PatternFill(start_color=cfg["bg_hex"], end_color=cfg["bg_hex"], fill_type="solid")
-        font = Font(name="Calibri", size=9, bold=cfg["bold"], color=cfg["font_hex"])
-        ws.conditional_formatting.add(
-            target_range,
-            FormulaRule(formula=[formula], stopIfTrue=True, fill=fill, font=font),
-        )
+
+
+def apply_2d_zone_conditional_formatting(ws, palette, profile="base"):
+    """
+    Applica la Formattazione Condizionale 2D (Intensita x Durata) su B9:B21 e C9:R21
+    su entrambi i fogli atleti, preservando bold=True sulla Colonna B.
+    """
+    ranges = [
+        ("B9:B21", "B9", "B$8", True),
+        ("C9:R21", "C9", "C$8", False),
+    ]
+    for target_range, anchor_cell, pct_header, force_bold in ranges:
+        rules = _build_2d_cf_rules(anchor_cell, pct_header, profile=profile)
+        for z_id, formula in rules:
+            cfg = palette[z_id]
+            fill = PatternFill(start_color=cfg["bg_hex"], end_color=cfg["bg_hex"], fill_type="solid")
+            font = Font(
+                name="Calibri",
+                size=9,
+                bold=True if force_bold else cfg["bold"],
+                color=cfg["font_hex"],
+            )
+            ws.conditional_formatting.add(
+                target_range,
+                FormulaRule(formula=[formula], stopIfTrue=True, fill=fill, font=font),
+            )
